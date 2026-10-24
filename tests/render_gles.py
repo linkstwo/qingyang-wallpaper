@@ -69,11 +69,11 @@ quad_values=[0,0,1086,0,0,1448,0,1448,1086,0,1086,1448]
 quad_raw=bytes((F*len(quad_values))(*quad_values));quad=buffer(quad_raw)
 mesh_raw=(assets/'character_mesh.bin').read_bytes();mesh=buffer(mesh_raw);pins=buffer((assets/'character_pins.bin').read_bytes());fg_raw=(assets/'foreground_mesh.bin').read_bytes();fg=buffer(fg_raw)
 viewport(0,0,W,H);enable(0x0BE2);blend(0x0302,0x0303);enableAttr(a)
-def frame(wider):
- cover=max(W/1086,H/1448);scale=min(cover,W/850) if wider else cover
- image_width=1086*scale
- x=max(W-image_width,min(0,W*.5-610*scale)) if wider and image_width>W else (W-image_width)*.5
- return scale,x,min(0,(H-1448*scale)*.5) if wider else (H-1448*scale)*.5,min(1.6,cover/scale)
+def frame(wider,size_percent=90):
+ cover=max(W/1086,H/1448);scale=min(cover,W/1086*size_percent/100) if wider else cover
+ x=W*.5-590*scale if wider else (W-1086*scale)*.5
+ y=min(0,(H-1448*scale)*.5) if wider else (H-1448*scale)*.5
+ return scale,x,y,min(1.45,cover/scale)
 def transform(mapping):
  scale,x,y,gain=mapping;u('ndcScale',2*scale/W,-2*scale/H);u('ndcOffset',2*x/W-1,1-2*y/H)
 def layer(b,count,texture,number,mask_mode,pinned=False):
@@ -84,7 +84,7 @@ def layer(b,count,texture,number,mask_mode,pinned=False):
  bindBuffer(0x8892,b);attrPointer(a,2,0x1406,0,0,None);drawArrays(4,0,count)
 def render(wider=True,view=(0,0),body=(0,0),chest=(0,0),hair=(0,0),enhanced=True,fill_override=None):
  mapping=frame(wider);u('view',*view);u('body',*body);u('chest',*chest);u('hair',*hair);u('motionGain',mapping[3]);u('tipMode',int(enhanced));u('softFrame',int(wider))
- cover=min(1,math.hypot(*view)*100+max(map(abs,body+chest+hair))*3);u('cover',cover if fill_override is None else fill_override)
+ u('cover',1 if fill_override is None else fill_override)
  clearColor(.06,.09,.12,1);clear(0x4000)
  if wider:
   transform(frame(False));layer(quad,6,'background.png',-1,0)

@@ -17,8 +17,8 @@ final class Physics {
 
     private final Spring bodyX = new Spring(2.4f, 0.88f, 1.2f);
     private final Spring bodyY = new Spring(2.4f, 0.88f, 1.2f);
-    private final Spring chestX = new Spring(2.85f, 0.36f, 1.4f);
-    private final Spring chestY = new Spring(2.85f, 0.36f, 1.4f);
+    private final Spring chestX = new Spring(2.6f, 0.43f, 1.4f);
+    private final Spring chestY = new Spring(2.8f, 0.48f, 1.4f);
     private final Spring hairX = new Spring(1.7f, 0.58f, 1.5f);
 
     private final Spring legacyChestX = new Spring(3.2f, 0.50f, 1.4f);
@@ -38,6 +38,7 @@ final class Physics {
 
     private float targetX;
     private float targetY;
+    private float driveX, driveY;
     private float prevVx;
     private float prevVy;
 
@@ -49,6 +50,7 @@ final class Physics {
         hairX.reset();
         legacyChestX.reset(); legacyChestY.reset(); tipX.reset(); tipY.reset();
         viewX = viewY = targetX = targetY = prevVx = prevVy = 0.0f;
+        driveX = driveY = 0f;
         bodyPx = bodyPy = chestPx = chestPy = hairPx = hairPy = 0.0f;
     }
 
@@ -78,6 +80,24 @@ final class Physics {
         prevVx = vx;
         prevVy = vy;
 
+        if (enhanced) {
+            // One smooth physical drive, independent of the displayed camera easing.
+            // Android linear acceleration uses +y upward; source texture uses +y downward.
+            float fx = motion.alphaY * 0.12f - motion.ax * 0.6f - vx * 0.06f;
+            float fy = motion.alphaX * 0.12f + motion.ay * 0.6f - vy * 0.06f;
+            driveX = MathX.mix(driveX, 6f * (float) Math.tanh(fx / 6f), dt, 0.045f);
+            driveY = MathX.mix(driveY, 6f * (float) Math.tanh(fy / 6f), dt, 0.045f);
+            float bx = bodyX.step(driveX * 9f, dt), by = bodyY.step(driveY * 9f, dt);
+            float cx = chestX.step(driveX * 20f + bx * 18f, dt);
+            float cy = chestY.step(driveY * 20f + by * 18f, dt);
+            float hx = tipX.step(driveX * 12f + bx * 10f, dt);
+            float hy = tipY.step(driveY * 8f + by * 8f, dt);
+            bodyPx = bx * BODY_PIXELS; bodyPy = by * BODY_PIXELS;
+            chestPx = cx * 8.5f; chestPy = cy * 8.5f;
+            hairPx = hx * 14f; hairPy = hy * 7f;
+            return;
+        }
+
         // 陀螺仪角加速度：真机快速甩动时倾斜角可能几乎没变，靠这一路给回弹激励。
         // 轴向对应：绕屏幕纵轴左右倾（roll）→ wy → 横向回弹；绕屏幕横轴前后倾（pitch）→ wx → 纵向回弹。
         final float gx = MathX.limit(motion.alphaY * (enhanced ? 0.15f : 0.05f), 6.0f);
@@ -102,6 +122,7 @@ final class Physics {
     /** 是否还有值得画的运动（静止时渲染降到 10fps 省电）。 */
     boolean moving() {
         return Math.abs(viewX - targetX) + Math.abs(viewY - targetY) > 0.002f
+                || Math.abs(driveX) + Math.abs(driveY) > 0.01f
                 || unsettled(bodyX) || unsettled(bodyY)
                 || unsettled(enhanced ? chestX : legacyChestX)
                 || unsettled(enhanced ? chestY : legacyChestY)

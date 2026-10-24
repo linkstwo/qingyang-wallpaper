@@ -11,4 +11,6 @@ final class SceneSettings {
     }
     boolean wider() { return preferences.getBoolean("wider", true); }
     void wider(boolean value) { preferences.edit().putBoolean("wider", value).apply(); }
+    int sizePercent() { return Math.max(65, Math.min(125, preferences.getInt("sizePercent", 90))); }
+    void sizePercent(int value) { preferences.edit().putInt("sizePercent", Math.max(65, Math.min(125, value))).apply(); }
 }

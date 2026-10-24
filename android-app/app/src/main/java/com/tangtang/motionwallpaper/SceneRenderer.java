@@ -3,6 +3,9 @@ package com.tangtang.motionwallpaper;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.hardware.display.DisplayManager;
+import android.view.Display;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 
@@ -27,6 +30,9 @@ final class SceneRenderer {
     private boolean wider;
     private boolean phonePreview;
     private int viewportWidth = 1, viewportHeight = 1;
+    private int viewportX, viewportY, sizePercent;
+    private float xOffset = 0.5f, yOffset = 0.5f;
+    private int xPixels, yPixels;
     private float motionGain = 1f;
     private MeshAssets meshes;
     private int program;
@@ -70,6 +76,15 @@ final class SceneRenderer {
     }
 
     void phonePreview(boolean value) { phonePreview = value; }
+
+    void offsets(float x, float y, int px, int py) {
+        xOffset = x; yOffset = y; xPixels = px; yPixels = py;
+    }
+
+    String framingSnapshot() {
+        return "surface=" + surfaceWidth + "x" + surfaceHeight + " visible=" + viewportX + "," + viewportY
+                + ":" + viewportWidth + "x" + viewportHeight + " size=" + sizePercent + "% wide=" + wider;
+    }
 
     boolean isReady() {
         return ready;
@@ -139,32 +154,33 @@ final class SceneRenderer {
         surfaceWidth = Math.max(1, width);
         surfaceHeight = Math.max(1, height);
         wider = settings.wider();
-        int[] viewport = {0, 0, surfaceWidth, surfaceHeight};
-        if (phonePreview) {
-            android.util.DisplayMetrics display = context.getResources().getDisplayMetrics();
-            float aspect = Math.min(display.widthPixels, display.heightPixels)
-                    / (float) Math.max(1, Math.max(display.widthPixels, display.heightPixels));
-            viewport = Framing.previewViewport(surfaceWidth, surfaceHeight, aspect);
-        }
+        sizePercent = settings.sizePercent();
+        Point displaySize = new Point(surfaceWidth, surfaceHeight);
+        DisplayManager manager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+        Display display = manager == null ? null : manager.getDisplay(Display.DEFAULT_DISPLAY);
+        if (display != null) display.getRealSize(displaySize);
+        int[] viewport = phonePreview
+                ? Framing.previewViewport(surfaceWidth, surfaceHeight, displaySize.x / (float) Math.max(1, displaySize.y))
+                : WallpaperViewport.visible(surfaceWidth, surfaceHeight, displaySize.x, displaySize.y,
+                        xOffset, yOffset, xPixels, yPixels);
+        viewportX = viewport[0]; viewportY = viewport[1];
         viewportWidth = viewport[2]; viewportHeight = viewport[3];
-        Framing frame = new Framing(viewportWidth, viewportHeight, wider);
+        Framing frame = new Framing(viewportWidth, viewportHeight, wider, sizePercent);
         ndcScaleX = 2f * frame.scale / viewportWidth;
         ndcScaleY = -2f * frame.scale / viewportHeight;
         ndcOffsetX = 2f * frame.x / viewportWidth - 1f;
         ndcOffsetY = 1f - 2f * frame.y / viewportHeight;
         motionGain = frame.motionGain;
-        GLES20.glViewport(viewport[0], viewport[1], viewportWidth, viewportHeight);
+        GLES20.glViewport(viewportX, surfaceHeight - viewportY - viewportHeight, viewportWidth, viewportHeight);
     }
 
     void draw(Physics physics) {
         if (!ready) {
             return;
         }
-        if (wider != settings.wider()) resize(surfaceWidth, surfaceHeight);
-        final float cover = MathX.clamp(
-                (float) Math.hypot(physics.viewX, physics.viewY) * 100.0f
-                        + Math.max(Math.abs(physics.bodyPx), Math.max(Math.abs(physics.chestPx), Math.max(Math.abs(physics.hairPx), Math.abs(physics.hairPy)))) * 3.0f,
-                0.0f, 1.0f);
+        if (wider != settings.wider() || sizePercent != settings.sizePercent()) resize(surfaceWidth, surfaceHeight);
+        // Always fill the old silhouette. A motion-dependent cover made it flash at rest.
+        final float cover = 1f;
         GLES20.glUseProgram(program);
         GLES20.glUniform2f(uView, physics.viewX, physics.viewY);
         GLES20.glUniform2f(uBody, physics.bodyPx, physics.bodyPy);

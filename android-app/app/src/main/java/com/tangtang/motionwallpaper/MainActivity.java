@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.SeekBar;
 
 /** 入口页：应用内预览（与壁纸同一个渲染器和物理）＋ 一个“设为动态壁纸”按钮。 */
 public final class MainActivity extends Activity {
@@ -49,9 +50,33 @@ public final class MainActivity extends Activity {
         });
         root.addView(framing);
 
+        TextView sizeLabel = new TextView(this);
+        sizeLabel.setTextColor(Color.parseColor("#cfe6e0"));
+        sizeLabel.setPadding(dp(14), dp(4), dp(14), 0);
+        sizeLabel.setText("人物大小 " + sceneSettings.sizePercent() + "% · 锁屏仍裁剪就向左调小");
+        root.addView(sizeLabel);
+        SeekBar size = new SeekBar(this);
+        size.setMax(60);
+        size.setProgress(sceneSettings.sizePercent() - 65);
+        size.setContentDescription("人物大小，65%到125%，锁屏裁剪时调小");
+        size.setPadding(dp(14), 0, dp(14), 0);
+        size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
+                if (!fromUser) return;
+                sceneSettings.sizePercent(progress + 65);
+                // Editing this slider is an explicit request for the wider composition.
+                sceneSettings.wider(true);
+                framing.setText("构图：舒展肩背 · 点此切近景");
+                sizeLabel.setText("人物大小 " + sceneSettings.sizePercent() + "% · 锁屏仍裁剪就向左调小");
+            }
+            public void onStartTrackingTouch(SeekBar bar) {}
+            public void onStopTrackingTouch(SeekBar bar) {}
+        });
+        root.addView(size);
+
         TextView hint = new TextView(this);
-        hint.setText("预览按手机比例显示，构图会保存到壁纸。\n缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
-                + "先切换构图，再点【设为动态壁纸】进入系统选择器，按系统提供的选项应用。");
+        hint.setText("轻漾 0.5.3 · 预览按手机比例显示。大小会立即保存到壁纸。\n缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
+                + "系统可能额外放大；先调小人物留出肩背，再点【设为动态壁纸】进入系统选择器，按系统提供的选项应用。");
         hint.setTextColor(Color.parseColor("#cfe6e0"));
         hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13.0f);
         hint.setPadding(dp(14), dp(10), dp(14), dp(4));

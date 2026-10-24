@@ -1,11 +1,11 @@
 {
-  "assertions": 10111,
+  "assertions": 10118,
   "legacyChestPeak": 0.5796626,
-  "enhancedChestPeak": 3.3129857,
+  "enhancedChestPeak": 1.8530873,
   "legacyHairPeak": 0.8895876,
-  "enhancedHairPeak": 4.4611001,
-  "hairYPeak": 1.0455801,
+  "enhancedHairPeak": 3.1968012,
+  "hairYPeak": 0.7069767,
   "oldVisibleRight": 868.8,
-  "newVisibleRight": 1035.0,
+  "newVisibleRight": 1193.333,
   "phoneTested": false
 }

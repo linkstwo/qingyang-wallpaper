@@ -79,8 +79,23 @@ public final class ResponseRegression {
         Framing close = new Framing(1260, 2800, false), wide = new Framing(1260, 2800, true);
         float oldRight = (1260 - close.x) / close.scale, newRight = (1260 - wide.x) / wide.scale;
         check(oldRight < 950 && newRight > 1020, "wider frame must actually reveal the back contour");
-        check(wide.scale * wide.motionGain >= close.scale * .999f,
-                "pulling back must preserve screen-space inertia at the target phone ratio");
+        check(wide.motionGain > 1f && wide.motionGain <= 1.45f,
+                "inertia compensation must stay bounded instead of inflating a small portrait");
+        for (float offset : new float[]{0f, .5f, 1f}) {
+            int[] rect = WallpaperViewport.visible(2520, 2800, 1260, 2800, offset, 0f, -Math.round(1260*offset), 0);
+            check(rect[0] == Math.round(1260*offset) && rect[2] == 1260, "compose inside the scrolled display, not full Surface");
+        }
+        int[] clamped = WallpaperViewport.visible(800, 600, 1260, 2800, Float.NaN, Float.NaN, -9999, -9999);
+        check(clamped[0]==0 && clamped[1]==0 && clamped[2]==800 && clamped[3]==600, "small system preview must remain in bounds");
+        // The source back contour x=1010 stays visible through a 25% centre crop.
+        float back = wide.x + 1010f * wide.scale;
+        check(back < 1260*.9f && back > 1260*.5f, "back contour must have compositor crop margin");
+        Physics translation = new Physics(); MotionInput shove = new MotionInput(); shove.ax = 5f;
+        for(int n=0;n<30;n++) translation.step(1f/120f,shove);
+        check(translation.chestPx < -.1f && translation.bodyPx < 0, "translation must drive inertia opposite the applied acceleration");
+        shove.ax=0;
+        for(int n=0;n<120*6;n++) translation.step(1f/120f,shove);
+        check(!translation.moving(), "linear acceleration response must settle");
         System.out.printf("{\"assertions\":%d,\"legacyChestPeak\":%.7f,\"enhancedChestPeak\":%.7f,"
                 + "\"legacyHairPeak\":%.7f,\"enhancedHairPeak\":%.7f,\"hairYPeak\":%.7f,"
                 + "\"oldVisibleRight\":%.3f,\"newVisibleRight\":%.3f,\"phoneTested\":false}%n",

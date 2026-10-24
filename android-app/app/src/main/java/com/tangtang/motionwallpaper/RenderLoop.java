@@ -102,7 +102,7 @@ final class RenderLoop {
                 if (!egl.swap()) throw new IllegalStateException(egl.lastError());
                 if (!firstSwap) {
                     firstSwap = true;
-                    Log.i(TAG, "FIRST_SWAP_OK " + width + "x" + height
+                    Log.i(TAG, "FIRST_SWAP_OK " + renderer.framingSnapshot()
                             + " triangles=" + renderer.characterTriangles() + " | " + title);
                 }
                 lastError = "";
@@ -166,6 +166,15 @@ final class RenderLoop {
                 accumulator = 0L;
                 schedule();
             }
+        });
+    }
+
+    void offsets(final float x, final float y, final int px, final int py) {
+        handler.post(() -> {
+            if (closed) return;
+            renderer.offsets(x, y, px, py);
+            needResize = true;
+            schedule();
         });
     }
 

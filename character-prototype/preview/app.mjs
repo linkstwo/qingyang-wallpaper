@@ -59,9 +59,9 @@ async function start(){
     const dt=clamp((now-last)/1000,0,0.1);last=now;
     if(!paused){
       if(fixed===null){accumulator+=dt;while(accumulator>=1/120){if(startDemo!==null){const d=getInput((now-startDemo)/1000-accumulator);target=d;phase.textContent=d.phase;if(d.done)startDemo=null;}physics(1/120);accumulator-=1/120;}}
-      gl.uniform2f(U.view,view.x,view.y);gl.uniform2f(U.body,visualValues[0],visualValues[1]);gl.uniform2f(U.chest,visualValues[2],visualValues[3]);gl.uniform2f(U.hair,visualValues[4],visualValues[5]);gl.uniform1f(U.cover,clamp(Math.hypot(view.x,view.y)*100+Math.max(...visualValues.map(Math.abs))*3,0,1));
+      gl.uniform2f(U.view,view.x,view.y);gl.uniform2f(U.body,visualValues[0],visualValues[1]);gl.uniform2f(U.chest,visualValues[2],visualValues[3]);gl.uniform2f(U.hair,visualValues[4],visualValues[5]);gl.uniform1f(U.cover,1);
       gl.clearColor(0.1,0.1,0.1,1);gl.clear(gl.COLOR_BUFFER_BIT);
-      const wider=composition.value==='wide',frame=framing(canvas.width,canvas.height,wider);
+      const wider=composition.value==='wide',frame=framing(canvas.width,canvas.height,wider,Number(document.querySelector('#size').value));
       gl.uniform1f(U.motionGain,frame.motionGain);gl.uniform1f(U.tipMode,response.value==='legacy'?0:1);gl.uniform1f(U.softFrame,wider?1:0);
       if(wider){transform(framing(canvas.width,canvas.height,false));draw(quad,background,-1);}
       transform(frame);
