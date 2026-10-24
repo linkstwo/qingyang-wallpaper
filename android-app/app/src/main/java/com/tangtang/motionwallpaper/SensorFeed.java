@@ -11,7 +11,7 @@ import android.os.SystemClock;
 import android.view.Display;
 
 /**
- * 三轴动作数据源。沿用原轻漾 0.4.0 的取数策略（只读参考）：
+ * 姿态与惯性数据源：优先游戏旋转向量，退回普通旋转向量，再退回重力姿态。
  * 优先 TYPE_GRAVITY + TYPE_LINEAR_ACCELERATION（系统融合好的），再挂陀螺仪；
  * 缺融合传感器时退回 TYPE_ACCELEROMETER 自己低通分重力（时间常数 0.24 秒）。
  * 采样周期 20ms（SENSOR_DELAY_GAME 量级），屏幕旋转变化时重新取基线。
@@ -28,6 +28,7 @@ final class SensorFeed implements SensorEventListener {
     private boolean active;
     private boolean hasGravity;
     private boolean hasLinear;
+    private boolean hasAttitude;
     private boolean gravityReady;
     private int rotation;
     private long count;
@@ -56,6 +57,7 @@ final class SensorFeed implements SensorEventListener {
         motion.rotation(rotation);
         hasGravity = register(Sensor.TYPE_GRAVITY);
         hasLinear = register(Sensor.TYPE_LINEAR_ACCELERATION);
+        hasAttitude = register(Sensor.TYPE_GAME_ROTATION_VECTOR) || register(Sensor.TYPE_ROTATION_VECTOR);
         register(Sensor.TYPE_GYROSCOPE);
         if (!hasGravity || !hasLinear) {
             register(Sensor.TYPE_ACCELEROMETER);
@@ -113,7 +115,15 @@ final class SensorFeed implements SensorEventListener {
         }
         count++;
         lastEvent = now;
+        boolean poseChanged = false;
         switch (event.sensor.getType()) {
+            case Sensor.TYPE_GAME_ROTATION_VECTOR:
+            case Sensor.TYPE_ROTATION_VECTOR: {
+                float w = event.values.length >= 4 ? event.values[3]
+                        : (float)Math.sqrt(Math.max(0f, 1f-x*x-y*y-z*z));
+                poseChanged = motion.orientation(x, y, z, w, event.timestamp);
+                break;
+            }
             case Sensor.TYPE_ACCELEROMETER: {
                 final float dt = accelStamp == 0L ? 0.02f
                         : MathX.clamp((event.timestamp - accelStamp) * 1.0E-9f, 0.001f, 0.2f);
@@ -143,7 +153,7 @@ final class SensorFeed implements SensorEventListener {
             default:
                 break;
         }
-        if (wake != null && motion.excited()) {
+        if (wake != null && (poseChanged || motion.excited())) {
             wake.run();
         }
     }
@@ -165,7 +175,7 @@ final class SensorFeed implements SensorEventListener {
             return "动作感应已暂停";
         }
         if (fresh()) {
-            return "三轴动作数据正常 · " + count;
+            return (hasAttitude && motion.copy().hasPose ? "融合姿态与惯性感应" : "重力姿态与惯性感应") + " · " + count;
         }
         return warning.isEmpty() ? "等待动作数据" : warning;
     }
@@ -173,10 +183,10 @@ final class SensorFeed implements SensorEventListener {
     /** 供验收日志打印原始动作量：能直接看出注入了哪一路传感器。 */
     String motionSnapshot() {
         return String.format(java.util.Locale.US,
-                "tilt=%.3f,%.3f,%.3f w=%.2f,%.2f,%.2f alpha=%.2f,%.2f,%.2f lin=%.2f,%.2f,%.2f",
+                "tilt=%.3f,%.3f,%.3f w=%.2f,%.2f,%.2f alpha=%.2f,%.2f,%.2f lin=%.2f,%.2f,%.2f pose=%.3f,%.3f valid=%s",
                 motion.tiltX, motion.tiltY, motion.tiltZ,
                 motion.wx, motion.wy, motion.wz,
                 motion.alphaX, motion.alphaY, motion.alphaZ,
-                motion.ax, motion.ay, motion.az);
+                motion.ax, motion.ay, motion.az, motion.poseYaw, motion.posePitch, motion.hasPose);
     }
 }

@@ -29,4 +29,4 @@ Android API 依据：https://developer.android.com/reference/android/service/wal
 
 ## 保存状态
 
-节点一源码将提交到现有 feature/cloud-framing-response 分支。0.5.2 文档中的403是当时状态；当前授权已修复，不代表本轮推送失败。
+节点一已提交到 feature/cloud-framing-response，GitHub提交d8c84bf；后续0.5.4见CLOUD_RESULT-0.5.4.md。0.5.2 文档中的403是当时状态；当前授权已修复，不代表本轮推送失败。

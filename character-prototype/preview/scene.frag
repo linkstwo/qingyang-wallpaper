@@ -25,6 +25,9 @@ void main(){
     float edge=min(min(v_uv.x,1.0-v_uv.x),min(v_uv.y,1.0-v_uv.y));
     alpha=mix(smoothstep(0.0,0.045,edge),1.0,texture2D(u_mask,v_uv).r);
   }
-  if(u_layer>=0.0 && u_softFrame>0.5) alpha*=1.0-smoothstep(0.86,1.0,v_uv.y);
+  if(u_layer>=0.0 && u_softFrame>0.5){
+    alpha*=smoothstep(0.0,0.025,v_uv.y);
+    alpha*=1.0-smoothstep(0.86,1.0,v_uv.y);
+  }
   gl_FragColor=vec4(rgb,alpha);
 }

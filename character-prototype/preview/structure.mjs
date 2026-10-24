@@ -1,0 +1,58 @@
+// Source-pixel depth proxy, manually fitted to the existing main view.
+// Side/back references guide volume only: no registered multiview reconstruction.
+export const structure = {
+  version:1, source:[1086,1448], units:'source pixels; positive depth towards viewer',
+  pivot:[620,1100], cameraDistance:2200, yawRadians:.14, pitchRadians:.07,
+  references:['main-front-three-quarter.png','side-reference.png','back-reference.png'],
+  limitation:'Bounded main-view depth proxy. Hidden surfaces and 360-degree viewing are not reconstructed.'
+};
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
+const bell=(x,y,cx,cy,rx,ry)=>Math.exp(-2*(((x-cx)/rx)**2+((y-cy)/ry)**2));
+export function depthAt(x,y){
+  // A broad head plate keeps the eyes/glasses together. Rounded torso/shoulder
+  // and clothed chest volumes supply differential parallax below the neck.
+  const head=1-smooth(350,510,y);
+  const torso=85*bell(x,y,735,820,340,460);
+  const shoulder=95*bell(x,y,815,565,180,220);
+  const chest=105*bell(x,y,575,785,170,210);
+  const arm=65*bell(x,y,800,985,160,300);
+  const body=Math.pow(torso**4+shoulder**4+chest**4+arm**4,.25);
+  return head*(110+12*bell(x,y,400,340,150,140))+(1-head)*body;
+}
+export function depthWeights(vertices){
+  const values=new Float32Array(vertices.length/2);
+  for(let i=0;i<values.length;i++)values[i]=depthAt(vertices[2*i],vertices[2*i+1]);
+  return values;
+}
+export function projectPoint(x,y,depth,viewX,viewY,pin=0){
+  const [px,py]=structure.pivot,dx=x-px,dy=y-py;
+  const yaw=clamp(viewX,-1,1)*structure.yawRadians,pitch=clamp(viewY,-1,1)*structure.pitchRadians;
+  const cy=Math.cos(yaw),sy=Math.sin(yaw),cx=Math.cos(pitch),sx=Math.sin(pitch);
+  const rx=cy*dx+sy*depth,rz=-sy*dx+cy*depth,ry=cx*dy-sx*rz,z=sx*dy+cx*rz;
+  const d=structure.cameraDistance,k=d/(d-z),k0=d/(d-depth),free=(1-pin)*smooth(0,45,depth);
+  const tx=rx*k-dx*k0,ty=ry*k-dy*k0;
+  return [x+tx/Math.sqrt(1+tx*tx/576)*free,y+ty/Math.sqrt(1+ty*ty/400)*free];
+}
+
+// CPU reference of the shared vertex shader, for geometry/GPU regression and tooling.
+export function deformPoint(x,y,depth,view,body,chest,hair,gain,pin=0,spatial=true){
+  const q=spatial?projectPoint(x,y,depth,...view,pin):[x,y];
+  const head=1-smooth(340,495,y),neck=bell(x,y,630,410,220,180),torso=bell(x,y,721,789,310,430);
+  const tissue=bell(x,y,577,785,165,205),tipT=clamp((y-275)/205,0,1),strand=(x-(191+53*tipT))/36;
+  const tip=Math.exp(-2*strand*strand)*smooth(285,465,y)*(1-smooth(480,515,y));
+  const weight=.32+.68*torso+.22*neck+.3*head;
+  const dx=(body[0]*weight+chest[0]*tissue+hair[0]*tip)*gain;
+  const dy=(body[1]*weight+chest[1]*tissue+hair[1]*tip)*gain;
+  let ix=dx,iy=dy;
+  if(spatial){
+    const yaw=clamp(view[0],-1,1)*structure.yawRadians,pitch=clamp(view[1],-1,1)*structure.pitchRadians;
+    const cy=Math.cos(yaw),sy=Math.sin(yaw),cx=Math.cos(pitch),sx=Math.sin(pitch);
+    const rotate=(x,y,z)=>{const rx=cy*x+sy*z,rz=-sy*x+cy*z;return [rx,cx*y-sx*rz,sx*y+cx*rz];};
+    const project=p=>{const k=structure.cameraDistance/(structure.cameraDistance-p[2]);return [p[0]*k,p[1]*k];};
+    const r=[x-structure.pivot[0],y-structure.pivot[1],depth];
+    const before=project(rotate(...r)),after=project(rotate(r[0]+dx,r[1]+dy,r[2]+(chest[2]||0)*tissue*gain));
+    ix=after[0]-before[0];iy=after[1]-before[1];
+  }
+  return [q[0]+ix*(1-pin),q[1]+iy*(1-pin)];
+}

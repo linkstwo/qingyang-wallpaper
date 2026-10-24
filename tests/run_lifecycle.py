@@ -20,7 +20,7 @@ with tempfile.TemporaryDirectory(prefix='qingyang-lifecycle-') as temp:
     shutil.copytree(ROOT / 'tests' / 'host-fixtures', src)
     package = pathlib.Path('com/tangtang/motionwallpaper')
     real = ROOT / 'android-app/app/src/main/java' / package
-    for name in ('RenderLoop.java', 'EglCore.java', 'MathX.java', 'MotionInput.java', 'Physics.java', 'Spring.java'):
+    for name in ('RenderLoop.java', 'EglCore.java', 'MathX.java', 'Attitude.java', 'MotionInput.java', 'Physics.java', 'Spring.java'):
         target = src / package / name
         if args.baseline and name in ('RenderLoop.java', 'EglCore.java'):
             shutil.copyfile(ROOT / 'tests' / 'baseline' / name, target)

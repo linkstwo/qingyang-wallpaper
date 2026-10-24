@@ -1,6 +1,7 @@
 import {makeMesh,clamp,demoInput} from './rig.mjs';
 import {Response,framing} from './response.mjs';
 import {contactWeights} from './contact-rig.mjs';
+import {depthWeights} from './structure.mjs';
 const canvas=document.querySelector('#scene'),stage=document.querySelector('#stage'),phase=document.querySelector('#phase'),stats=document.querySelector('#stats');
 const query=new URLSearchParams(location.search);
 try { await start(); } catch(error) {phase.classList.add('error');phase.textContent='加载失败：'+error.message;console.error(error);}
@@ -13,8 +14,8 @@ async function start(){
   const [vertex,fragment]=await Promise.all(['scene.vert','scene.frag'].map(loadText));
   const compile=(type,text)=>{const s=gl.createShader(type);gl.shaderSource(s,text);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;};
   const program=gl.createProgram();gl.attachShader(program,compile(gl.VERTEX_SHADER,vertex));gl.attachShader(program,compile(gl.FRAGMENT_SHADER,fragment));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));gl.useProgram(program);
-  const uniform=name=>gl.getUniformLocation(program,name),pos=gl.getAttribLocation(program,'a_source'),pin=gl.getAttribLocation(program,'a_pin');
-  const U=Object.fromEntries(['size','view','body','chest','hair','layer','texture','mask','maskMode','cover','ndcScale','ndcOffset','motionGain','tipMode','softFrame'].map(n=>[n,uniform('u_'+n)]));
+  const uniform=name=>gl.getUniformLocation(program,name),pos=gl.getAttribLocation(program,'a_source'),pin=gl.getAttribLocation(program,'a_pin'),depth=gl.getAttribLocation(program,'a_depth');
+  const U=Object.fromEntries(['size','view','body','chest','hair','layer','texture','mask','maskMode','cover','ndcScale','ndcOffset','motionGain','tipMode','softFrame','structureMode'].map(n=>[n,uniform('u_'+n)]));
   gl.uniform2f(U.size,W,H);gl.uniform1i(U.texture,0);gl.uniform1i(U.mask,1);gl.enableVertexAttribArray(pos);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
   const texture=async name=>{const img=new Image();img.src=name;await img.decode();if(img.width!==W||img.height!==H)throw Error('素材尺寸未对齐');const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);return tex;};
   const original=await texture(config.texture),background=await texture(config.background),mask=await texture('mask.png');
@@ -24,12 +25,12 @@ async function start(){
   // The generated mask supplies detailed hair and limb boundaries; all RGB is
   // sampled from the untouched source image, not a regenerated character.
   const characterData=makeMesh([[0,0],[W,0],[W,H],[0,H]],[],config.limits.triangleEdgePixels),character=buffer(characterData);
-  const pins=buffer(contactWeights(characterData));
+  const pins=buffer(contactWeights(characterData)),depths=buffer(depthWeights(characterData));
   const foreground=buffer(makeMesh(config.foregroundOutline,[],80));
   const draw=(mesh,tex,layer,maskMode=0)=>{
     gl.uniform1f(U.layer,layer);gl.uniform1f(U.maskMode,maskMode);gl.bindTexture(gl.TEXTURE_2D,tex);
-    if(layer===1){gl.enableVertexAttribArray(pin);gl.bindBuffer(gl.ARRAY_BUFFER,pins.b);gl.vertexAttribPointer(pin,1,gl.FLOAT,false,0,0);}
-    else{gl.disableVertexAttribArray(pin);gl.vertexAttrib1f(pin,0);}
+    if(layer===1){gl.enableVertexAttribArray(depth);gl.bindBuffer(gl.ARRAY_BUFFER,depths.b);gl.vertexAttribPointer(depth,1,gl.FLOAT,false,0,0);gl.enableVertexAttribArray(pin);gl.bindBuffer(gl.ARRAY_BUFFER,pins.b);gl.vertexAttribPointer(pin,1,gl.FLOAT,false,0,0);}
+    else{gl.disableVertexAttribArray(depth);gl.vertexAttrib1f(depth,0);gl.disableVertexAttribArray(pin);gl.vertexAttrib1f(pin,0);}
     gl.bindBuffer(gl.ARRAY_BUFFER,mesh.b);gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);gl.drawArrays(gl.TRIANGLES,0,mesh.count);
   };
   const resize=()=>{const dpr=Math.min(devicePixelRatio,2),r=stage.getBoundingClientRect();canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);gl.viewport(0,0,canvas.width,canvas.height);};
@@ -59,10 +60,10 @@ async function start(){
     const dt=clamp((now-last)/1000,0,0.1);last=now;
     if(!paused){
       if(fixed===null){accumulator+=dt;while(accumulator>=1/120){if(startDemo!==null){const d=getInput((now-startDemo)/1000-accumulator);target=d;phase.textContent=d.phase;if(d.done)startDemo=null;}physics(1/120);accumulator-=1/120;}}
-      gl.uniform2f(U.view,view.x,view.y);gl.uniform2f(U.body,visualValues[0],visualValues[1]);gl.uniform2f(U.chest,visualValues[2],visualValues[3]);gl.uniform2f(U.hair,visualValues[4],visualValues[5]);gl.uniform1f(U.cover,1);
+      gl.uniform2f(U.view,view.x,view.y);gl.uniform2f(U.body,visualValues[0],visualValues[1]);gl.uniform3f(U.chest,visualValues[2],visualValues[3],visualValues[6]);gl.uniform2f(U.hair,visualValues[4],visualValues[5]);gl.uniform1f(U.cover,1);
       gl.clearColor(0.1,0.1,0.1,1);gl.clear(gl.COLOR_BUFFER_BIT);
-      const wider=composition.value==='wide',frame=framing(canvas.width,canvas.height,wider,Number(document.querySelector('#size').value));
-      gl.uniform1f(U.motionGain,frame.motionGain);gl.uniform1f(U.tipMode,response.value==='legacy'?0:1);gl.uniform1f(U.softFrame,wider?1:0);
+      const wider=composition.value==='wide',frame=framing(canvas.width,canvas.height,wider,Number(document.querySelector('#size').value),Number(document.querySelector('#top').value));
+      gl.uniform1f(U.motionGain,frame.motionGain);gl.uniform1f(U.tipMode,response.value==='legacy'?0:1);gl.uniform1f(U.softFrame,wider?1:0);gl.uniform1f(U.structureMode,document.querySelector('#structure').checked?1:0);
       if(wider){transform(framing(canvas.width,canvas.height,false));draw(quad,background,-1);}
       transform(frame);
       document.body.dataset.framing=JSON.stringify(frame);

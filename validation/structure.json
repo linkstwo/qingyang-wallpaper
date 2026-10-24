@@ -1,0 +1,34 @@
+{
+  "triangles": 16384,
+  "vertices": 49152,
+  "depthMin": 0.00017840771761257201,
+  "depthMax": 121.94358825683594,
+  "minAreaRatio": 0.4688842987019982,
+  "maxAreaRatio": 1.5116930026362898,
+  "maxTravel": 28.188902047921157,
+  "pinnedError": 0,
+  "minCoupledAreaRatio": 0.2215960175714902,
+  "maxCoupledAreaRatio": 2.147622142281887,
+  "phoneTested": false,
+  "structure": {
+    "version": 1,
+    "source": [
+      1086,
+      1448
+    ],
+    "units": "source pixels; positive depth towards viewer",
+    "pivot": [
+      620,
+      1100
+    ],
+    "cameraDistance": 2200,
+    "yawRadians": 0.14,
+    "pitchRadians": 0.07,
+    "references": [
+      "main-front-three-quarter.png",
+      "side-reference.png",
+      "back-reference.png"
+    ],
+    "limitation": "Bounded main-view depth proxy. Hidden surfaces and 360-degree viewing are not reconstructed."
+  }
+}

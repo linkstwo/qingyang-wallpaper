@@ -1,3 +1,5 @@
+> 历史节点：当时403授权后来已修复，源码已推送GitHub；当前版本见CLOUD_RESULT-0.5.4.md。
+
 # 云端增量 0.5.2 / versionCode 11
 
 继承 fix/wallpaper-egl-lifecycle 的 86eaca6，工作分支 feature/cloud-framing-response。没有重建App、没有修改四原图/遮罩/背景/接触网格/包名/签名身份。用户已实际看到0.5.1人物和动态；本轮为进一步增强，尚未真机验收。

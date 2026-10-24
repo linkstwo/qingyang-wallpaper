@@ -8,9 +8,17 @@ final class SceneSettings {
     private final SharedPreferences preferences;
     SceneSettings(Context context) {
         preferences = context.getSharedPreferences("scene", Context.MODE_PRIVATE);
+        if (preferences.getInt("framingRevision", 0) < 1) {
+            // One-time migration: an old saved close-up must not hide the new safe framing.
+            preferences.edit().putBoolean("wider", true).putInt("framingRevision", 1).apply();
+        }
     }
     boolean wider() { return preferences.getBoolean("wider", true); }
     void wider(boolean value) { preferences.edit().putBoolean("wider", value).apply(); }
+    int topPercent() { return Math.max(0, Math.min(20, preferences.getInt("topPercent", 10))); }
+    void topPercent(int value) { preferences.edit().putInt("topPercent", Math.max(0, Math.min(20, value))).apply(); }
+    boolean structure() { return preferences.getBoolean("structure", true); }
+    void structure(boolean value) { preferences.edit().putBoolean("structure", value).apply(); }
     int sizePercent() { return Math.max(65, Math.min(125, preferences.getInt("sizePercent", 90))); }
     void sizePercent(int value) { preferences.edit().putInt("sizePercent", Math.max(65, Math.min(125, value))).apply(); }
 }

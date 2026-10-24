@@ -18,6 +18,10 @@ final class Framing {
     }
 
     Framing(int width, int height, boolean wider, int sizePercent) {
+        this(width, height, wider, sizePercent, 10);
+    }
+
+    Framing(int width, int height, boolean wider, int sizePercent, int topPercent) {
         float w = Math.max(1, width), h = Math.max(1, height);
         float cover = Math.max(w / 1086f, h / 1448f);
         // Reserve real room at the back, including a modest compositor centre crop.
@@ -25,8 +29,10 @@ final class Framing {
         scale = wider ? Math.min(cover, w / 1086f * MathX.clamp(sizePercent, 65, 125) / 100f) : cover;
         x = wider ? w * 0.5f - 590f * scale : (w - 1086f * scale) * 0.5f;
         float centeredY = (h - 1448f * scale) * 0.5f;
-        // The source hair already touches its top edge; keep it at the screen edge.
-        y = wider ? Math.min(0f, centeredY) : centeredY;
+        // Reserve top room for compositor zoom as well as horizontal back margin.
+        y = wider && centeredY >= 0f
+                ? Math.min(h - 1448f * scale, h * MathX.clamp(topPercent, 0, 20) / 100f)
+                : centeredY;
         // Screen-space inertia stays legible when the composition pulls back.
         motionGain = Math.min(1.45f, cover / scale);
     }

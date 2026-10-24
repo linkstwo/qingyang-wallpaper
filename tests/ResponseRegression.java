@@ -87,6 +87,9 @@ public final class ResponseRegression {
         }
         int[] clamped = WallpaperViewport.visible(800, 600, 1260, 2800, Float.NaN, Float.NaN, -9999, -9999);
         check(clamped[0]==0 && clamped[1]==0 && clamped[2]==800 && clamped[3]==600, "small system preview must remain in bounds");
+        Framing lowered=new Framing(1260,2800,true,90,10);
+        check(lowered.y>=280f-.01f, "top margin must reserve room for a compositor centre crop");
+        check(lowered.y+333f*lowered.scale>2800*.1f, "face must remain below the simulated 25% crop edge");
         // The source back contour x=1010 stays visible through a 25% centre crop.
         float back = wide.x + 1010f * wide.scale;
         check(back < 1260*.9f && back > 1260*.5f, "back contour must have compositor crop margin");
@@ -96,9 +99,51 @@ public final class ResponseRegression {
         shove.ax=0;
         for(int n=0;n<120*6;n++) translation.step(1f/120f,shove);
         check(!translation.moving(), "linear acceleration response must settle");
+        Physics pushPull=new Physics(); MotionInput depthForce=new MotionInput(); depthForce.az=4f;
+        for(int n=0;n<60;n++)pushPull.step(1f/120f,depthForce);
+        check(pushPull.chestPz<-.1f && pushPull.chestPx==0 && pushPull.chestPy==0,
+                "forward acceleration must excite depth inertia without fake lateral motion");
+        depthForce.az=0;
+        for(int n=0;n<120*6;n++)pushPull.step(1f/120f,depthForce);
+        check(Math.abs(pushPull.chestPz)<.001f && !pushPull.moving(), "depth spring must settle and allow idle rendering");
+        // Relative fused quaternion: yaw must work even while gravity is unchanged.
+        MotionInput fused = new MotionInput();
+        fused.orientation(0,0,0,1,1_000_000_000L);
+        float half=.14f;
+        fused.orientation(0,(float)Math.sin(half),0,(float)Math.cos(half),1_020_000_000L);
+        check(fused.hasPose && Math.abs(fused.poseYaw-.28f)<.00001f && fused.tiltX==0,
+                "upright yaw must be observable without a gravity tilt");
+        MotionInput fusedSample=fused.copy();
+        fused.orientation(0,-(float)Math.sin(half),0,-(float)Math.cos(half),1_040_000_000L);
+        check(Math.abs(fused.poseYaw-fusedSample.poseYaw)<.00001f, "q and -q represent the same pose");
+        fused.orientation(0,0,0,0,1_060_000_000L);
+        fused.orientation(0,0,0,1,1_010_000_000L);
+        check(Math.abs(fused.poseYaw-.28f)<.00001f, "bad and out-of-order pose events must be ignored");
+        Physics observed=new Physics();
+        for(int n=0;n<120*5;n++)observed.step(1f/120f,fusedSample);
+        check(Math.abs(observed.viewX-(float)Math.tanh(-1))<.00001f, "held fused yaw must hold the viewing direction");
+        check(Math.abs(observed.chestPx)+Math.abs(observed.hairPx)<.001f, "holding a view must not keep shaking the body");
+        fused.rotation(1); fused.orientation(0,0,0,1,2_000_000_000L);
+        fused.orientation((float)Math.sin(half),0,0,(float)Math.cos(half),2_020_000_000L);
+        check(Math.abs(fused.poseYaw+.28f)<.00001f, "landscape must remap quaternion axes consistently");
+        MotionInput arbitrary=new MotionInput();
+        float b=(float)Math.sqrt(.5);
+        arbitrary.orientation(b,0,0,b,3_000_000_000L);
+        arbitrary.orientation(b*(float)Math.cos(half),b*(float)Math.sin(half),b*(float)Math.sin(half),b*(float)Math.cos(half),3_020_000_000L);
+        check(Math.abs(arbitrary.poseYaw-.28f)<.00001f && Math.abs(arbitrary.posePitch)<.00001f,
+                "a tilted entry pose must use local relative axes, not world Euler subtraction");
+        fused.age(2_700_000_000L);
+        check(!fused.hasPose, "stale fusion must fall back to gravity");
+        fused.reset(); check(!fused.hasPose && fused.poseYaw==0, "calibration must clear pose and baseline");
+        Physics depthReplay=new Physics(); MotionInput depthSignal=new MotionInput(); float depthPeak=0;
+        for(int n=0;n<120*6;n++){
+            double t=n/120.0;depthSignal.az=t<2?(float)(4*Math.sin(t*Math.PI*4)):0;
+            depthReplay.step(1f/120f,depthSignal);depthPeak=Math.max(depthPeak,Math.abs(depthReplay.chestPz));
+        }
+        check(depthPeak>.2f && Math.abs(depthReplay.chestPz)<.001f,"oscillating forward/back input must excite and settle the third axis");
         System.out.printf("{\"assertions\":%d,\"legacyChestPeak\":%.7f,\"enhancedChestPeak\":%.7f,"
                 + "\"legacyHairPeak\":%.7f,\"enhancedHairPeak\":%.7f,\"hairYPeak\":%.7f,"
-                + "\"oldVisibleRight\":%.3f,\"newVisibleRight\":%.3f,\"phoneTested\":false}%n",
-                assertions, old[0], enhanced[0], old[1], enhanced[1], enhanced[2], oldRight, newRight);
+                + "\"depthPeak\":%.7f,\"oldVisibleRight\":%.3f,\"newVisibleRight\":%.3f,\"phoneTested\":false}%n",
+                assertions, old[0], enhanced[0], old[1], enhanced[1], enhanced[2], depthPeak, oldRight, newRight);
     }
 }

@@ -16,11 +16,37 @@
       "sha256": "16EB1EE449B422DFCA32DEC08FFB9F048EB16C2CE07A8557E262EA1C1B7FEFBD"
     },
     {
+      "name": "character_depth.bin",
+      "bytes": 196608,
+      "sha256": "2BF18A40F368F658820ADE13EC00BE91754BFFE2B6649D7311DD46467F8A3875"
+    },
+    {
       "name": "foreground_mesh.bin",
       "bytes": 1704,
       "sha256": "013BF3671344D6BDD047920853BAEFAFBDEE3BC794A530E882C88DC8A699B9E4"
     }
   ],
+  "structure": {
+    "version": 1,
+    "source": [
+      1086,
+      1448
+    ],
+    "units": "source pixels; positive depth towards viewer",
+    "pivot": [
+      620,
+      1100
+    ],
+    "cameraDistance": 2200,
+    "yawRadians": 0.14,
+    "pitchRadians": 0.07,
+    "references": [
+      "main-front-three-quarter.png",
+      "side-reference.png",
+      "back-reference.png"
+    ],
+    "limitation": "Bounded main-view depth proxy. Hidden surfaces and 360-degree viewing are not reconstructed."
+  },
   "counts": {
     "characterTriangles": 16384,
     "characterVertices": 49152,

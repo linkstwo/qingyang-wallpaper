@@ -5,6 +5,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { makeMesh } from '../../character-prototype/preview/rig.mjs';
+import { structure, depthWeights } from '../../character-prototype/preview/structure.mjs';
 import { contactWeights, contactPin } from '../../character-prototype/preview/contact-rig.mjs';
 
 const PREVIEW = fileURLToPath(new URL('../../character-prototype/preview/', import.meta.url));
@@ -41,8 +42,10 @@ const report = {
   bins: [
     writeBin('character_mesh.bin', character),
     writeBin('character_pins.bin', pins),
+    writeBin('character_depth.bin', depthWeights(character)),
     writeBin('foreground_mesh.bin', foreground),
   ],
+  structure,
   counts: {
     characterTriangles: character.length / 6,
     characterVertices: character.length / 2,

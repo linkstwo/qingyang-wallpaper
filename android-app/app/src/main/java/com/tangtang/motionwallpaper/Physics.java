@@ -1,9 +1,9 @@
 package com.tangtang.motionwallpaper;
 
-/**
- * 与 preview/response.mjs 数值对照的形变与回弹。
- * 增量响应：保持原视角与躯干节奏，局部回弹降低阻尼、增强陀螺仪激励；
- * 发梢有独立的两轴延迟。Physics(false)保留0.5.1响应供同输入比较。
+/** Fixed-step view following and layered inertia, checked against preview/response.mjs.
+ * Fused attitude controls the held view; smoothed angular/linear acceleration drives
+ * body, clothed soft tissue and independently delayed hair. Physics(false) preserves
+ * the 0.5.1 baseline for deterministic comparison.
  */
 final class Physics {
     private final boolean enhanced;
@@ -18,6 +18,7 @@ final class Physics {
     private final Spring bodyX = new Spring(2.4f, 0.88f, 1.2f);
     private final Spring bodyY = new Spring(2.4f, 0.88f, 1.2f);
     private final Spring chestX = new Spring(2.6f, 0.43f, 1.4f);
+    private final Spring chestZ = new Spring(3.1f, 0.54f, 1.2f);
     private final Spring chestY = new Spring(2.8f, 0.48f, 1.4f);
     private final Spring hairX = new Spring(1.7f, 0.58f, 1.5f);
 
@@ -33,12 +34,13 @@ final class Physics {
     float bodyPy;
     float chestPx;
     float chestPy;
+    float chestPz;
     float hairPx;
     float hairPy;
 
     private float targetX;
     private float targetY;
-    private float driveX, driveY;
+    private float driveX, driveY, driveZ;
     private float prevVx;
     private float prevVy;
 
@@ -46,12 +48,12 @@ final class Physics {
         bodyX.reset();
         bodyY.reset();
         chestX.reset();
-        chestY.reset();
+        chestY.reset(); chestZ.reset();
         hairX.reset();
         legacyChestX.reset(); legacyChestY.reset(); tipX.reset(); tipY.reset();
         viewX = viewY = targetX = targetY = prevVx = prevVy = 0.0f;
-        driveX = driveY = 0f;
-        bodyPx = bodyPy = chestPx = chestPy = hairPx = hairPy = 0.0f;
+        driveX = driveY = driveZ = 0f;
+        bodyPx = bodyPy = chestPx = chestPy = chestPz = hairPx = hairPy = 0.0f;
     }
 
     /**
@@ -60,6 +62,13 @@ final class Physics {
      * 重力基线在进入壁纸时取，所以怎么拿着都算中性；保持倾斜就停在对应位置。
      */
     private void updateTarget(MotionInput motion) {
+        if (enhanced && motion.hasPose) {
+            // A held yaw around world vertical is invisible to gravity alone.
+            // Modest roll contribution preserves the familiar sideways-tilt gesture.
+            targetX = (float)Math.tanh((-motion.poseYaw - motion.poseRoll * 0.35f) / 0.28f);
+            targetY = (float)Math.tanh(motion.posePitch / 0.25f);
+            return;
+        }
         targetX = MathX.clamp(motion.tiltX / TILT_FULL, -1.0f, 1.0f);
         targetY = MathX.clamp(motion.tiltZ / TILT_FULL, -1.0f, 1.0f);
     }
@@ -87,13 +96,15 @@ final class Physics {
             float fy = motion.alphaX * 0.12f + motion.ay * 0.6f - vy * 0.06f;
             driveX = MathX.mix(driveX, 6f * (float) Math.tanh(fx / 6f), dt, 0.045f);
             driveY = MathX.mix(driveY, 6f * (float) Math.tanh(fy / 6f), dt, 0.045f);
+            driveZ = MathX.mix(driveZ, 6f * (float)Math.tanh(-motion.az * 0.6f / 6f), dt, 0.045f);
+            float cz = chestZ.step(driveZ * 22f, dt);
             float bx = bodyX.step(driveX * 9f, dt), by = bodyY.step(driveY * 9f, dt);
             float cx = chestX.step(driveX * 20f + bx * 18f, dt);
             float cy = chestY.step(driveY * 20f + by * 18f, dt);
             float hx = tipX.step(driveX * 12f + bx * 10f, dt);
             float hy = tipY.step(driveY * 8f + by * 8f, dt);
             bodyPx = bx * BODY_PIXELS; bodyPy = by * BODY_PIXELS;
-            chestPx = cx * 8.5f; chestPy = cy * 8.5f;
+            chestPx = cx * 8.5f; chestPy = cy * 8.5f; chestPz = cz * 8.5f;
             hairPx = hx * 14f; hairPy = hy * 7f;
             return;
         }
@@ -122,10 +133,10 @@ final class Physics {
     /** 是否还有值得画的运动（静止时渲染降到 10fps 省电）。 */
     boolean moving() {
         return Math.abs(viewX - targetX) + Math.abs(viewY - targetY) > 0.002f
-                || Math.abs(driveX) + Math.abs(driveY) > 0.01f
+                || Math.abs(driveX) + Math.abs(driveY) + Math.abs(driveZ) > 0.01f
                 || unsettled(bodyX) || unsettled(bodyY)
                 || unsettled(enhanced ? chestX : legacyChestX)
-                || unsettled(enhanced ? chestY : legacyChestY)
+                || unsettled(enhanced ? chestY : legacyChestY) || (enhanced && unsettled(chestZ))
                 || unsettled(enhanced ? tipX : hairX) || (enhanced && unsettled(tipY));
     }
 
@@ -135,7 +146,7 @@ final class Physics {
 
     /** 供验收日志打印：一行说清当前视角与回弹。 */
     String snapshot() {
-        return String.format(java.util.Locale.US, "view=%.3f,%.3f body=%.2f,%.2f chest=%.2f,%.2f hair=%.2f,%.2f",
-                viewX, viewY, bodyPx, bodyPy, chestPx, chestPy, hairPx, hairPy);
+        return String.format(java.util.Locale.US, "view=%.3f,%.3f body=%.2f,%.2f chest=%.2f,%.2f,%.2f hair=%.2f,%.2f",
+                viewX, viewY, bodyPx, bodyPy, chestPx, chestPy, chestPz, hairPx, hairPy);
     }
 }

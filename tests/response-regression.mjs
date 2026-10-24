@@ -11,6 +11,12 @@ for(const enhanced of [false,true]){
   assert.ok(Math.abs(hair-java[enhanced?'enhancedHairPeak':'legacyHairPeak'])<1e-4,'JS and production Java hair trajectory');
   if(enhanced)assert.ok(Math.abs(hy-java.hairYPeak)<1e-4,'independent vertical hair trajectory');
 }
+const depthModel=new Response();let depthPeak=0;
+for(let n=0;n<120*6;n++){
+ const t=n/120;depthModel.step(1/120,{linearZ:t<2?4*Math.sin(t*Math.PI*4):0});depthPeak=Math.max(depthPeak,Math.abs(depthModel.values[6]));
+}
+assert.ok(Math.abs(depthPeak-java.depthPeak)<1e-4,'Java/JS depth spring trajectory');
+assert.ok(Math.abs(depthModel.values[6])<.001,'depth spring must settle');
 assert.equal(hairWeight(200,260),0,'hair root fixed');
 assert.ok(hairWeight(240,475)>.8,'free strand tip');
 assert.ok(hairWeight(392,333)<1e-9,'face and glasses outside hair response');

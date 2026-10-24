@@ -19,27 +19,30 @@ final class MeshAssets {
 
     final FloatBuffer characterMesh;
     final FloatBuffer characterPins;
+    final FloatBuffer characterDepth;
     final FloatBuffer foregroundMesh;
 
-    private MeshAssets(FloatBuffer characterMesh, FloatBuffer characterPins, FloatBuffer foregroundMesh) {
+    private MeshAssets(FloatBuffer characterMesh, FloatBuffer characterPins, FloatBuffer characterDepth, FloatBuffer foregroundMesh) {
         this.characterMesh = characterMesh;
         this.characterPins = characterPins;
+        this.characterDepth = characterDepth;
         this.foregroundMesh = foregroundMesh;
     }
 
     static MeshAssets load(Context context) throws IOException {
         FloatBuffer mesh = read(context, "character_mesh.bin");
         FloatBuffer pins = read(context, "character_pins.bin");
+        FloatBuffer depth = read(context, "character_depth.bin");
         FloatBuffer foreground = read(context, "foreground_mesh.bin");
 
         int triangles = mesh.capacity() / 6;
         if (triangles != EXPECTED_CHARACTER_TRIANGLES) {
             throw new IOException("character_mesh.bin 三角数不对：期望 " + EXPECTED_CHARACTER_TRIANGLES + "，实际 " + triangles);
         }
-        if (pins.capacity() != mesh.capacity() / 2) {
+        if (pins.capacity() != mesh.capacity() / 2 || depth.capacity() != pins.capacity()) {
             throw new IOException("character_pins.bin 顶点数不匹配：" + pins.capacity() + " vs " + mesh.capacity() / 2);
         }
-        return new MeshAssets(mesh, pins, foreground);
+        return new MeshAssets(mesh, pins, depth, foreground);
     }
 
     private static FloatBuffer read(Context context, String name) throws IOException {

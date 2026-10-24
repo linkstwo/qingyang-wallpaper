@@ -30,14 +30,14 @@ final class SceneRenderer {
     private boolean wider;
     private boolean phonePreview;
     private int viewportWidth = 1, viewportHeight = 1;
-    private int viewportX, viewportY, sizePercent;
+    private int viewportX, viewportY, sizePercent, topPercent;
     private float xOffset = 0.5f, yOffset = 0.5f;
     private int xPixels, yPixels;
     private float motionGain = 1f;
     private MeshAssets meshes;
     private int program;
     private int aSource;
-    private int aPin;
+    private int aPin, aDepth;
     private int uSize;
     private int uView;
     private int uBody;
@@ -47,7 +47,7 @@ final class SceneRenderer {
     private int uMaskMode;
     private int uCover;
     private int uNdcScale;
-    private int uMotionGain, uTipMode, uSoftFrame;
+    private int uMotionGain, uTipMode, uSoftFrame, uStructureMode;
     private int uNdcOffset;
     private int uTexture;
     private int uMask;
@@ -56,7 +56,7 @@ final class SceneRenderer {
     private int texBackground;
     private int quadBuffer;
     private int characterBuffer;
-    private int pinBuffer;
+    private int pinBuffer, depthBuffer;
     private int foregroundBuffer;
     private int quadCount;
     private int characterCount;
@@ -83,7 +83,7 @@ final class SceneRenderer {
 
     String framingSnapshot() {
         return "surface=" + surfaceWidth + "x" + surfaceHeight + " visible=" + viewportX + "," + viewportY
-                + ":" + viewportWidth + "x" + viewportHeight + " size=" + sizePercent + "% wide=" + wider;
+                + ":" + viewportWidth + "x" + viewportHeight + " size=" + sizePercent + "% top=" + topPercent + "% wide=" + wider;
     }
 
     boolean isReady() {
@@ -104,6 +104,8 @@ final class SceneRenderer {
         GLES20.glUseProgram(program);
         aSource = GLES20.glGetAttribLocation(program, "a_source");
         aPin = GLES20.glGetAttribLocation(program, "a_pin");
+        aDepth = GLES20.glGetAttribLocation(program, "a_depth");
+        uStructureMode = GLES20.glGetUniformLocation(program, "u_structureMode");
         uSize = GLES20.glGetUniformLocation(program, "u_size");
         uView = GLES20.glGetUniformLocation(program, "u_view");
         uBody = GLES20.glGetUniformLocation(program, "u_body");
@@ -119,7 +121,7 @@ final class SceneRenderer {
         uNdcOffset = GLES20.glGetUniformLocation(program, "u_ndcOffset");
         uTexture = GLES20.glGetUniformLocation(program, "u_texture");
         uMask = GLES20.glGetUniformLocation(program, "u_mask");
-        if (aSource < 0 || aPin < 0 || uSize < 0 || uView < 0 || uHair < 0) {
+        if (aDepth < 0 || aSource < 0 || aPin < 0 || uSize < 0 || uView < 0 || uHair < 0) {
             throw new IOException("着色器变量缺失");
         }
 
@@ -135,6 +137,7 @@ final class SceneRenderer {
         characterBuffer = makeBuffer(meshes.characterMesh);
         characterCount = meshes.characterMesh.capacity() / 2;
         pinBuffer = makeBuffer(meshes.characterPins);
+        depthBuffer = makeBuffer(meshes.characterDepth);
         foregroundBuffer = makeBuffer(meshes.foregroundMesh);
         foregroundCount = meshes.foregroundMesh.capacity() / 2;
 
@@ -155,6 +158,7 @@ final class SceneRenderer {
         surfaceHeight = Math.max(1, height);
         wider = settings.wider();
         sizePercent = settings.sizePercent();
+        topPercent = settings.topPercent();
         Point displaySize = new Point(surfaceWidth, surfaceHeight);
         DisplayManager manager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
         Display display = manager == null ? null : manager.getDisplay(Display.DEFAULT_DISPLAY);
@@ -165,7 +169,7 @@ final class SceneRenderer {
                         xOffset, yOffset, xPixels, yPixels);
         viewportX = viewport[0]; viewportY = viewport[1];
         viewportWidth = viewport[2]; viewportHeight = viewport[3];
-        Framing frame = new Framing(viewportWidth, viewportHeight, wider, sizePercent);
+        Framing frame = new Framing(viewportWidth, viewportHeight, wider, sizePercent, topPercent);
         ndcScaleX = 2f * frame.scale / viewportWidth;
         ndcScaleY = -2f * frame.scale / viewportHeight;
         ndcOffsetX = 2f * frame.x / viewportWidth - 1f;
@@ -178,16 +182,17 @@ final class SceneRenderer {
         if (!ready) {
             return;
         }
-        if (wider != settings.wider() || sizePercent != settings.sizePercent()) resize(surfaceWidth, surfaceHeight);
+        if (wider != settings.wider() || sizePercent != settings.sizePercent() || topPercent != settings.topPercent()) resize(surfaceWidth, surfaceHeight);
         // Always fill the old silhouette. A motion-dependent cover made it flash at rest.
         final float cover = 1f;
         GLES20.glUseProgram(program);
         GLES20.glUniform2f(uView, physics.viewX, physics.viewY);
         GLES20.glUniform2f(uBody, physics.bodyPx, physics.bodyPy);
-        GLES20.glUniform2f(uChest, physics.chestPx, physics.chestPy);
+        GLES20.glUniform3f(uChest, physics.chestPx, physics.chestPy, physics.chestPz);
         GLES20.glUniform2f(uHair, physics.hairPx, physics.hairPy);
         GLES20.glUniform1f(uMotionGain, motionGain);
         GLES20.glUniform1f(uTipMode, 1f);
+        GLES20.glUniform1f(uStructureMode, settings.structure() ? 1f : 0f);
         GLES20.glUniform1f(uSoftFrame, wider ? 1f : 0f);
         GLES20.glUniform1f(uCover, cover);
         GLES20.glUniform2f(uNdcScale, ndcScaleX, ndcScaleY);
@@ -221,10 +226,15 @@ final class SceneRenderer {
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         if (usePins) {
             GLES20.glEnableVertexAttribArray(aPin);
+            GLES20.glEnableVertexAttribArray(aDepth);
+            GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, depthBuffer);
+            GLES20.glVertexAttribPointer(aDepth, 1, GLES20.GL_FLOAT, false, 0, 0);
             GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, pinBuffer);
             GLES20.glVertexAttribPointer(aPin, 1, GLES20.GL_FLOAT, false, 0, 0);
         } else {
             GLES20.glDisableVertexAttribArray(aPin);
+            GLES20.glDisableVertexAttribArray(aDepth);
+            GLES20.glVertexAttrib1f(aDepth, 0f);
             GLES20.glVertexAttrib1f(aPin, 0.0f);
         }
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, buffer);
@@ -245,13 +255,13 @@ final class SceneRenderer {
             }
         }
         texOriginal = texMask = texBackground = 0;
-        int[] buffers = {quadBuffer, characterBuffer, pinBuffer, foregroundBuffer};
+        int[] buffers = {quadBuffer, characterBuffer, pinBuffer, depthBuffer, foregroundBuffer};
         for (int buffer : buffers) {
             if (buffer != 0) {
                 GLES20.glDeleteBuffers(1, new int[]{buffer}, 0);
             }
         }
-        quadBuffer = characterBuffer = pinBuffer = foregroundBuffer = 0;
+        quadBuffer = characterBuffer = pinBuffer = depthBuffer = foregroundBuffer = 0;
         meshes = null;
     }
 
@@ -259,7 +269,7 @@ final class SceneRenderer {
     void abandonGlResources() {
         ready = false;
         program = texOriginal = texMask = texBackground = 0;
-        quadBuffer = characterBuffer = pinBuffer = foregroundBuffer = 0;
+        quadBuffer = characterBuffer = pinBuffer = depthBuffer = foregroundBuffer = 0;
         meshes = null;
     }
 

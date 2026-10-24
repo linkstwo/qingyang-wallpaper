@@ -74,8 +74,36 @@ public final class MainActivity extends Activity {
         });
         root.addView(size);
 
+        TextView topLabel = new TextView(this);
+        topLabel.setTextColor(Color.parseColor("#cfe6e0"));
+        topLabel.setPadding(dp(14), 0, dp(14), 0);
+        topLabel.setText("上下位置 " + sceneSettings.topPercent() + "% · 头部被裁时向右下移");
+        root.addView(topLabel);
+        SeekBar top = new SeekBar(this);
+        top.setMax(20); top.setProgress(sceneSettings.topPercent());
+        top.setContentDescription("人物上下位置，向右下移，给头部留出空间");
+        top.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
+                if (!fromUser) return;
+                sceneSettings.topPercent(progress); sceneSettings.wider(true);
+                framing.setText("构图：舒展肩背 · 点此切近景");
+                topLabel.setText("上下位置 " + progress + "% · 头部被裁时向右下移");
+            }
+            public void onStartTrackingTouch(SeekBar bar) {}
+            public void onStopTrackingTouch(SeekBar bar) {}
+        });
+        root.addView(top);
+
+        Button structure = new Button(this);
+        structure.setText(sceneSettings.structure() ? "视角：立体观察 · 点此仅保留回弹" : "视角：仅回弹 · 点此开启立体观察");
+        structure.setOnClickListener(v -> {
+            sceneSettings.structure(!sceneSettings.structure());
+            structure.setText(sceneSettings.structure() ? "视角：立体观察 · 点此仅保留回弹" : "视角：仅回弹 · 点此开启立体观察");
+        });
+        root.addView(structure);
+
         TextView hint = new TextView(this);
-        hint.setText("轻漾 0.5.3 · 预览按手机比例显示。大小会立即保存到壁纸。\n缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
+        hint.setText("轻漾 0.5.4 · 预览按手机比例显示。大小会立即保存到壁纸。\n缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
                 + "系统可能额外放大；先调小人物留出肩背，再点【设为动态壁纸】进入系统选择器，按系统提供的选项应用。");
         hint.setTextColor(Color.parseColor("#cfe6e0"));
         hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13.0f);

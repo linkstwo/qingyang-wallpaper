@@ -4,9 +4,9 @@
 
 长期目标是手机转动如同换角度观察角色，角色轮廓与遮挡随之自然变化的裸眼立体感；现有主视角表面形变仍只是早期起点。
 
-**本分支为云端增量 0.5.2/11：舒展肩背/原近景切换、增强回弹与发梢双轴响应。** 用户已反馈0.5.1能显示人物；本轮0.5.2尚未真机验收。云端release未签名，正式覆盖升级由本机沿用原密钥签名，不能直接安装unsigned APK。
+**当前开发版本0.5.4/13，分支feature/cloud-framing-response。** 本轮分两个节点：0.5.3改善锁屏裁剪与回弹；0.5.4加入相对融合姿态、深度网格、有限透视转向与三轴局部惯性联动。代码、release构建和桌面GLES检查通过，实际手机锁屏/手感仍待验；正式包由本机dsh沿用原密钥签名。
 
-接续先读 [本轮结果与签名交接](docs/CLOUD_RESULT-0.5.2.md)，再对照 [云端任务](docs/CLOUD_TASK.md)。全部代码、原图和参考资料都随仓库提供，不依赖本机 D 盘、AI 桥或聊天附件。
+接续先读 [最新结果与dsh交接](docs/CLOUD_RESULT-0.5.4.md)，可单独回看 [裁剪与运动节点](docs/CLOUD_RESULT-0.5.3.md)。代码、四张原图与参考资料随仓库提供。大角度的隐藏表面与自遮挡尚未完成；游戏旋转向量可能长期漂移。
 
 | 内容 | 路径 |
 |---|---|
@@ -25,10 +25,13 @@
 ```sh
 node android-app/tools/export_mesh.mjs --check
 python3 scripts/verify_assets.py
+python3 tests/run_lifecycle.py
+python3 tests/run_response.py
+node tests/structure-regression.mjs
 cd android-app
-./gradlew assembleDebug
+./gradlew assembleRelease
 ```
 
 桌面查看：`python3 character-prototype/serve_preview.py --port 8643`，打开 `http://127.0.0.1:8643/`。此页面用于比较人物效果，不能当作手机锁屏验收。
 
-工程是自定义 2.5D，未包含完成的 Cubism 动作模型。旧 0.4.0 APK 的反编译材料与工具没有放入仓库，也不参与编译。签名私钥和口令只留本地；云端调试用 debug 包，正式覆盖升级回本地用原 0.5.0 密钥签名。
+工程是自定义 2.5D，未包含完成的 Cubism 动作模型。旧 0.4.0 APK 的反编译材料与工具没有放入仓库，也不参与编译。签名私钥和口令只留本地；云端 unsigned release 不能直接安装，正式覆盖升级回本地用原发布密钥签名。
