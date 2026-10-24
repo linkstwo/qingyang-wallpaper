@@ -1,0 +1,128 @@
+{
+  "source": "character-prototype/preview/{rig.mjs,contact-rig.mjs,mesh.json}（只读）",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "bins": [
+    {
+      "name": "character_mesh.bin",
+      "bytes": 393216,
+      "sha256": "C527DEF9574B7B2D456F7052B86E17A4AB49E9D980719C1B3E4EDE12613FBE04"
+    },
+    {
+      "name": "character_pins.bin",
+      "bytes": 196608,
+      "sha256": "16EB1EE449B422DFCA32DEC08FFB9F048EB16C2CE07A8557E262EA1C1B7FEFBD"
+    },
+    {
+      "name": "foreground_mesh.bin",
+      "bytes": 1704,
+      "sha256": "013BF3671344D6BDD047920853BAEFAFBDEE3BC794A530E882C88DC8A699B9E4"
+    }
+  ],
+  "counts": {
+    "characterTriangles": 16384,
+    "characterVertices": 49152,
+    "foregroundTriangles": 71,
+    "foregroundVertices": 213
+  },
+  "springs": {
+    "body": {
+      "frequency": 2.4,
+      "damping": 0.88,
+      "limit": 1.2
+    },
+    "chest": {
+      "frequency": 3.2,
+      "damping": 0.5,
+      "limit": 1.4
+    },
+    "hair": {
+      "frequency": 1.7,
+      "damping": 0.58,
+      "limit": 1.5
+    }
+  },
+  "limits": {
+    "bodyPixels": 5,
+    "chestPixels": 7,
+    "hairPixels": 10,
+    "triangleEdgePixels": 27
+  },
+  "pins": {
+    "min": 0,
+    "max": 1,
+    "pinnedCount": 7068
+  },
+  "images": [
+    {
+      "name": "original.png",
+      "bytes": 3149695,
+      "srcSha256": "90FCBEDFABA49FAC7028597393FB4532C3D649E2F150CF45DB6F6B9DC624B7E1",
+      "dstSha256": "90FCBEDFABA49FAC7028597393FB4532C3D649E2F150CF45DB6F6B9DC624B7E1",
+      "identical": true
+    },
+    {
+      "name": "mask.png",
+      "bytes": 949379,
+      "srcSha256": "627FDC83355AE1A952E8E9AD194ABAAFB9CB11C207B739E9794CDD5CA97E5789",
+      "dstSha256": "627FDC83355AE1A952E8E9AD194ABAAFB9CB11C207B739E9794CDD5CA97E5789",
+      "identical": true
+    },
+    {
+      "name": "background.png",
+      "bytes": 2095777,
+      "srcSha256": "0286D772A001F9B908692F691641889E54EC27E26EBE83E4C2D51B9BF944E317",
+      "dstSha256": "0286D772A001F9B908692F691641889E54EC27E26EBE83E4C2D51B9BF944E317",
+      "identical": true
+    }
+  ],
+  "contactRecheck": [
+    {
+      "name": "paper",
+      "pin": 1
+    },
+    {
+      "name": "paper edge",
+      "pin": 1
+    },
+    {
+      "name": "far fingers",
+      "pin": 1
+    },
+    {
+      "name": "far palm",
+      "pin": 1
+    },
+    {
+      "name": "near fingers",
+      "pin": 1
+    },
+    {
+      "name": "near palm",
+      "pin": 1
+    },
+    {
+      "name": "seated support",
+      "pin": 1
+    },
+    {
+      "name": "face",
+      "pin": 0
+    },
+    {
+      "name": "shoulder",
+      "pin": 0
+    },
+    {
+      "name": "torso",
+      "pin": 0
+    },
+    {
+      "name": "elbow",
+      "pin": 0
+    }
+  ],
+  "contactRecheckPassed": true
+}

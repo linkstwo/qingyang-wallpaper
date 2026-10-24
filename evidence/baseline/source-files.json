@@ -1,0 +1,80 @@
+{
+  "note": "Application source before cloud bugfix/tuning. sha256 is canonical LF for Git; rawLocalSha256 preserves Windows source provenance.",
+  "files": [
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/EglCore.java",
+      "sha256": "45d94db008986421ff577b14a61b639edceeec4658a3f7dd4ad5b2fc222ecc58",
+      "rawLocalSha256": "45d94db008986421ff577b14a61b639edceeec4658a3f7dd4ad5b2fc222ecc58"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MainActivity.java",
+      "sha256": "e38ac029e22f948c4037053e55512d930f22ff4b4226843ff0e22d13ceeca8c0",
+      "rawLocalSha256": "e38ac029e22f948c4037053e55512d930f22ff4b4226843ff0e22d13ceeca8c0"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MathX.java",
+      "sha256": "55d59ca88945546e5bc36ab715294e8f3f0894ff6e9156e078976749c8a69397",
+      "rawLocalSha256": "55d59ca88945546e5bc36ab715294e8f3f0894ff6e9156e078976749c8a69397"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MeshAssets.java",
+      "sha256": "592659590afcd7460a05797b09fcfc7f6aa05558aae17ce8de5192c0af0a479c",
+      "rawLocalSha256": "592659590afcd7460a05797b09fcfc7f6aa05558aae17ce8de5192c0af0a479c"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MotionInput.java",
+      "sha256": "68c4ee559f0b914798104ca7a8ef8e8d43303babc7fa18db2cd93da6a8e5d1ea",
+      "rawLocalSha256": "68c4ee559f0b914798104ca7a8ef8e8d43303babc7fa18db2cd93da6a8e5d1ea"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MotionWallpaperService.java",
+      "sha256": "a6724721c03c4b167f2ed9de82be2f52711acfe8d804aa78be5216e30dad882b",
+      "rawLocalSha256": "a6724721c03c4b167f2ed9de82be2f52711acfe8d804aa78be5216e30dad882b"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/Physics.java",
+      "sha256": "56809cf2ccccab8ae9a40e633787b67908112bf2bf6f0c0ae50519e54f69cb89",
+      "rawLocalSha256": "56809cf2ccccab8ae9a40e633787b67908112bf2bf6f0c0ae50519e54f69cb89"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/PreviewView.java",
+      "sha256": "3f0171b38df63988d5cc5515776641d44fe28ab0998c8422ac47d56553c83716",
+      "rawLocalSha256": "3f0171b38df63988d5cc5515776641d44fe28ab0998c8422ac47d56553c83716"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/RenderLoop.java",
+      "sha256": "3360987fd8b321f7e96e53ac3423bef46aae197354e220780bbbe212a0246cb9",
+      "rawLocalSha256": "3360987fd8b321f7e96e53ac3423bef46aae197354e220780bbbe212a0246cb9"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SceneRenderer.java",
+      "sha256": "63776629267c1ddc05a4ed514bfd0e73c183dbaa30d2ff169a4f323156c7b961",
+      "rawLocalSha256": "63776629267c1ddc05a4ed514bfd0e73c183dbaa30d2ff169a4f323156c7b961"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SensorFeed.java",
+      "sha256": "54aee4a90a091245cceb8ab16029f85eed2deaf5759ceca20ce4f189906b8585",
+      "rawLocalSha256": "54aee4a90a091245cceb8ab16029f85eed2deaf5759ceca20ce4f189906b8585"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/Spring.java",
+      "sha256": "d16aba367658988adee35b8f0757c9fd7d4baf344b542dc4c7bdc25d82bbd238",
+      "rawLocalSha256": "d16aba367658988adee35b8f0757c9fd7d4baf344b542dc4c7bdc25d82bbd238"
+    },
+    {
+      "path": "android-app/app/build.gradle.kts",
+      "sha256": "a097ac951676e24ff15149867694f7629cba27640679842dde2138fea2ba91cf",
+      "rawLocalSha256": "a097ac951676e24ff15149867694f7629cba27640679842dde2138fea2ba91cf"
+    },
+    {
+      "path": "android-app/build.gradle.kts",
+      "sha256": "6f79ccc856ea94e3789abc9c3ee3a7ccce3861206d6bf2d05c832b81407088cf",
+      "rawLocalSha256": "6f79ccc856ea94e3789abc9c3ee3a7ccce3861206d6bf2d05c832b81407088cf"
+    },
+    {
+      "path": "android-app/settings.gradle.kts",
+      "sha256": "383d83bbe6043807738ac667b4efb5c5c6abf0f28e12ba4d8f3c7fe53911832a",
+      "rawLocalSha256": "383d83bbe6043807738ac667b4efb5c5c6abf0f28e12ba4d8f3c7fe53911832a"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-24",
+  "timezone": "Asia/Singapore",
+  "scope": "Windows independent Git-tree export; preparation only, not Android lockscreen acceptance",
+  "independentWorkspace": "ASCII path with a space, outside original project",
+  "localSigningPropertiesAbsent": true,
+  "localSdkPropertiesAbsent": true,
+  "sdkProvidedByEnvironment": true,
+  "checks": {
+    "assetsVerified": 13,
+    "identicalImageCopyPairs": 4,
+    "referenceOriginalsIncluded": 4,
+    "baselineApkSha256Verified": true,
+    "baselineApkSignatureVerified": true,
+    "androidAssetsExactExportCheckPassed": true,
+    "contactMeshCasesPassed": 11,
+    "spring30_60_120FpsAndMeshValidationPassed": true,
+    "applicationJavaFilesUnchanged": 12,
+    "gradleWrapperJarMatchesOfficialSha256": true,
+    "gradleDistributionSha256Pinned": true,
+    "debugBuildPassedWithoutLocalSigningFiles": true,
+    "unsignedReleaseBuildPassedWithoutLocalSigningFiles": true,
+    "linuxWrapperExecutableBitSet": true,
+    "privateSigningMaterialExcludedFromGit": true
+  },
+  "portabilityChanges": [
+    "relative paths and read-only --check for asset exporter",
+    "Gradle 8.7 wrapper with official checksum",
+    "conditional release signing: preserve local signing, allow unsigned cloud output",
+    "validation scripts create their output directory on first run",
+    "Git text normalized to LF except Windows batch launcher"
+  ],
+  "notVerified": [
+    "Linux container compilation was not executed locally",
+    "phone lockscreen display, performance, power and heat",
+    "black screen fix: no application Java was changed in this preparation commit",
+    "new gyro elasticity or segmented hair-tip animation",
+    "the assistant reply body in the 查看项目任务 chat: tool returned only content-reference markers"
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "files": [
+    {
+      "path": "references/originals/back-reference.png",
+      "bytes": 3179135,
+      "sha256": "8bd1d23c05f72f3a48d3585184a635242d5c5a7cbe5070d2b7d9e0f61ce50574",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "references/originals/front-variant.png",
+      "bytes": 3082076,
+      "sha256": "5c767d2a58335d2aef978f6ad35a7e556f6da3c96d1de2312cf863dd4f4967bc",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "references/originals/main-front-three-quarter.png",
+      "bytes": 3149695,
+      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "references/originals/side-reference.png",
+      "bytes": 3024201,
+      "sha256": "a516ad4653775d3295434602371861f7ed1ea822454dedd810cf1dabd0d620d3",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "character-prototype/preview/background.png",
+      "bytes": 2095777,
+      "sha256": "0286d772a001f9b908692f691641889e54ec27e26ebe83e4c2d51b9bf944e317",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "character-prototype/preview/mask.png",
+      "bytes": 949379,
+      "sha256": "627fdc83355ae1a952e8e9ad194abaafb9cb11c207b739e9794cdd5ca97e5789",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "character-prototype/preview/original.png",
+      "bytes": 3149695,
+      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "android-app/app/src/main/assets/background.png",
+      "bytes": 2095777,
+      "sha256": "0286d772a001f9b908692f691641889e54ec27e26ebe83e4c2d51b9bf944e317",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "android-app/app/src/main/assets/character_mesh.bin",
+      "bytes": 393216,
+      "sha256": "c527def9574b7b2d456f7052b86e17a4ab49e9d980719c1b3e4ede12613fbe04"
+    },
+    {
+      "path": "android-app/app/src/main/assets/character_pins.bin",
+      "bytes": 196608,
+      "sha256": "16eb1ee449b422dfca32dec08ffb9f048eb16c2ce07a8557e262ea1c1b7fefbd"
+    },
+    {
+      "path": "android-app/app/src/main/assets/foreground_mesh.bin",
+      "bytes": 1704,
+      "sha256": "013bf3671344d6bdd047920853baefafbdee3bc794a530e882c88dc8a699b9e4"
+    },
+    {
+      "path": "android-app/app/src/main/assets/mask.png",
+      "bytes": 949379,
+      "sha256": "627fdc83355ae1a952e8e9ad194abaafb9cb11c207b739e9794cdd5ca97e5789",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "path": "android-app/app/src/main/assets/original.png",
+      "bytes": 3149695,
+      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "dimensions": [
+        1086,
+        1448
+      ]
+    }
+  ],
+  "identicalCopies": [
+    [
+      "references/originals/main-front-three-quarter.png",
+      "character-prototype/preview/original.png"
+    ],
+    [
+      "character-prototype/preview/original.png",
+      "android-app/app/src/main/assets/original.png"
+    ],
+    [
+      "character-prototype/preview/mask.png",
+      "android-app/app/src/main/assets/mask.png"
+    ],
+    [
+      "character-prototype/preview/background.png",
+      "android-app/app/src/main/assets/background.png"
+    ]
+  ]
+}

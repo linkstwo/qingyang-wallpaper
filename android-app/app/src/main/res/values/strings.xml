@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">轻漾壁纸</string>
+    <string name="wallpaper_label">轻漾 · 感应动态壁纸</string>
+    <string name="wallpaper_description">随手机动作产生局部形变与自然回弹。离线运行，沿用系统锁屏。</string>
+</resources>
