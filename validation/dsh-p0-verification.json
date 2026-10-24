@@ -1,0 +1,60 @@
+{
+  "verifier": "dsh",
+  "date": "2026-10-24",
+  "scope": "P0 锁屏黑屏修复的独立整合与验证（老板授权 A 项）",
+  "source": {
+    "codex_commit": "ef83d26 @ D:/workspace/qingyang-work-20261024",
+    "patch": "validation/P0-egl-lifecycle.patch (73311 bytes)",
+    "applied_on_main": "9c73bfe",
+    "branch": "fix/wallpaper-egl-lifecycle",
+    "commits": [
+      "c2d1be4 Integrate P0 wallpaper EGL lifecycle fix (from codex ef83d26 / P0-egl-lifecycle.patch)",
+      "42a8d3e Delivery version 0.5.1 / versionCode 10"
+    ]
+  },
+  "root_cause_confirmed_by_dsh": {
+    "finding": "EglCore.create() 从未被调用；全工程 egl.* 调用点只有 hasSurface / swap / createSurface / release",
+    "effect": "frame() 首句 !egl.hasSurface() 恒真 ⇒ 壁纸 Surface 从未绘制 ⇒ 锁屏与桌面都黑",
+    "why_preview_looked_fine": "PreviewView 走 GLSurfaceView 自有 EGL 路径，与壁纸引擎是两条独立上下文，预览正常证明不了壁纸路径"
+  },
+  "tests": {
+    "forward": {
+      "cmd": "python tests/run_lifecycle.py",
+      "result": "PASS 52 lifecycle assertions; host Java uses real RenderLoop/EglCore, fake Android/EGL/renderer, no phone claim.",
+      "exit": 0
+    },
+    "reverse": {
+      "cmd": "python tests/run_lifecycle.py --baseline",
+      "result": "AssertionError: initial wallpaper frame must reach swap (original 0.5.0 regression)",
+      "exit": 1,
+      "meaning": "同一套断言跑修复前源码在首帧处失败 ⇒ 黑屏根因被独立复现，不是只靠结论"
+    }
+  },
+  "artifact_evidence": {
+    "apk": "dist/轻漾-2.5D-0.5.1.apk",
+    "bytes": 6335472,
+    "sha256": "E1F237AA198455CDDA192E595D25231B547D0B6A4C1E85164C650F9CB99FD07D",
+    "versionCode": 10,
+    "versionName": "0.5.1",
+    "package": "com.tangtang.motionwallpaper",
+    "signer_sha256": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
+    "signer_note": "与 0.5.0 同一密钥 ⇒ 手机上可直接覆盖安装，无需卸载",
+    "dex_markers": {
+      "tool": "android-app/tools/check_dex_markers.py（直接在 classes.dex 字节里搜，不靠反汇编输出）",
+      "new_0_5_1": ["FIRST_SWAP_OK", "EGL ready ", "EGL retry in ", "Cannot create window"],
+      "old_0_5_0": [],
+      "meaning": "交付件里确实带 P0 修复代码；旧 0.5.0 里确实没有 ⇒ 成对证据，不是同一个 DEX 换名字"
+    }
+  },
+  "not_verified": [
+    "真机上锁屏/桌面是否真的显示画面（老板自测）：本轮按老板要求未启动模拟器、未操作真机；主机断言与 DEX 特征都不能替代真机画面",
+    "锁屏与桌面切换、熄屏停绘、亮屏恢复、反复熄屏唤醒恢复：待真机",
+    "陀螺仪更 Q 弹、发梢来回摆：属于 B 项，本轮未开始"
+  ],
+  "boundaries": [
+    "未合 main；main 与 dist/轻漾-2.5D-0.5.0.apk 故障基线原样保留",
+    "codex 的候选 validation/qingyang-0.5.0-p0-candidate.apk 未改动",
+    "签名私钥、口令、local.properties 未入库（.gitignore 第 23-25 行已确认生效）",
+    "0.5.1 APK 按 codex 要求只留本机 dist 交付，未入库、未创建公开 Release"
+  ]
+}
