@@ -44,6 +44,7 @@
       "limit": 1.5
     }
   },
+  "responseNote": "springs/limits are legacy geometry metadata; runtime response is Physics.java + preview/response.mjs, checked by tests/run_response.py",
   "limits": {
     "bodyPixels": 5,
     "chestPixels": 7,

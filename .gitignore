@@ -44,3 +44,7 @@
 !/validation/
 /validation/*.log
 /validation/*.apk
+
+# Rendered previews are delivered separately; regenerate with tests/render_gles.py.
+/validation/*.png
+/validation/*.mp4

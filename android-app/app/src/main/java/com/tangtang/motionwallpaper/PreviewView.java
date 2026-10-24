@@ -12,7 +12,7 @@ import java.util.Locale;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-/** 应用内预览：和壁纸服务共用同一个 SceneRenderer 与 Physics，所见即壁纸所见。 */
+/** 应用内预览：与壁纸共享 SceneRenderer/Physics，系统实际锁屏仍需独立验收。 */
 final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer {
     private static final String TAG = "QingyangPreview";
     private static final long STEP_NANOS = 8333333L;
@@ -38,17 +38,20 @@ final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer 
     }
 
     void start() {
+        lastNanos = accumulator = 0L;
+        onResume();
         feed.start();
     }
 
     void stop() {
         feed.stop();
+        onPause();
         physics.reset();
     }
 
     void recalibrate() {
         feed.calibrate();
-        physics.reset();
+        queueEvent(() -> { physics.reset(); lastNanos = accumulator = 0L; });
     }
 
     String stats() {
@@ -61,7 +64,10 @@ final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer 
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        // 真正创建放在 onSurfaceChanged（那里才知道尺寸）
+        if (scene != null) scene.abandonGlResources();
+        scene = null;
+        lastNanos = accumulator = 0L;
+        // Recreate GPU resources for each new context, after dimensions are known.
     }
 
     @Override
@@ -69,6 +75,7 @@ final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer 
         try {
             if (scene == null) {
                 scene = new SceneRenderer(getContext());
+                scene.phonePreview(true);
                 scene.create(width, height);
                 Log.i(TAG, "渲染器就绪 tiles=" + scene.characterTriangles() + " size=" + width + "x" + height);
             } else {

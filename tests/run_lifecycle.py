@@ -13,6 +13,7 @@ java = str(java_home / 'bin' / ('java' + exe))
 if not pathlib.Path(javac).exists():
     javac = shutil.which('javac') or javac
     java = shutil.which('java') or java
+compile_cmd = [javac] if pathlib.Path(javac).exists() else [java, '-m', 'jdk.compiler/com.sun.tools.javac.Main']
 with tempfile.TemporaryDirectory(prefix='qingyang-lifecycle-') as temp:
     folder = pathlib.Path(temp)
     src = folder / 'src'
@@ -30,5 +31,5 @@ with tempfile.TemporaryDirectory(prefix='qingyang-lifecycle-') as temp:
     classes.mkdir()
     argfile = folder / 'sources.txt'
     argfile.write_text('\n'.join('"' + str(p).replace('\\', '/') + '"' for p in sources), encoding='utf-8')
-    subprocess.run([javac, '-encoding', 'UTF-8', '-d', str(classes), '@' + str(argfile)], check=True)
+    subprocess.run(compile_cmd + ['-encoding', 'UTF-8', '-d', str(classes), '@' + str(argfile)], check=True)
     subprocess.run([java, '-ea', '-cp', str(classes), 'com.tangtang.motionwallpaper.LifecycleRegression'], check=True)

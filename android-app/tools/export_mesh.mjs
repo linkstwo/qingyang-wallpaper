@@ -50,6 +50,7 @@ const report = {
     foregroundVertices: foreground.length / 2,
   },
   springs: config.springs,
+  responseNote: 'springs/limits are legacy geometry metadata; runtime response is Physics.java + preview/response.mjs, checked by tests/run_response.py',
   limits: config.limits,
   pins: {
     min: Math.min(...pins),
@@ -74,6 +75,8 @@ for (const name of ['original.png', 'mask.png', 'background.png']) {
     identical: sha(bytes) === sha(again),
   });
 }
+
+for (const name of ['scene.vert', 'scene.frag']) output(name, fs.readFileSync(path.join(PREVIEW, name)));
 
 // 独立复核：安卓端会用它校验的关键接触点
 const fixed = [['paper', 120, 1010], ['paper edge', 300, 1100], ['far fingers', 170, 920], ['far palm', 260, 930], ['near fingers', 205, 1190], ['near palm', 310, 1190], ['seated support', 500, 1400]];

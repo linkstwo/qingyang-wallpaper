@@ -87,7 +87,7 @@ final class SensorFeed implements SensorEventListener {
     }
 
     MotionInput motion() {
-        return motion;
+        return motion.copy();
     }
 
     @Override

@@ -17,6 +17,7 @@ import android.widget.TextView;
 /** 入口页：应用内预览（与壁纸同一个渲染器和物理）＋ 一个“设为动态壁纸”按钮。 */
 public final class MainActivity extends Activity {
     private PreviewView preview;
+    private SceneSettings sceneSettings;
     private TextView status;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final Runnable tick = new Runnable() {
@@ -36,12 +37,21 @@ public final class MainActivity extends Activity {
         root.setOrientation(LinearLayout.VERTICAL);
         root.setBackgroundColor(Color.parseColor("#0b0f14"));
 
+        sceneSettings = new SceneSettings(this);
         preview = new PreviewView(this);
         root.addView(preview, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
 
+        Button framing = new Button(this);
+        framing.setText(sceneSettings.wider() ? "构图：舒展肩背 · 点此切近景" : "构图：近景 · 点此看更多肩背");
+        framing.setOnClickListener(v -> {
+            sceneSettings.wider(!sceneSettings.wider());
+            framing.setText(sceneSettings.wider() ? "构图：舒展肩背 · 点此切近景" : "构图：近景 · 点此看更多肩背");
+        });
+        root.addView(framing);
+
         TextView hint = new TextView(this);
-        hint.setText("缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
-                + "点【设为动态壁纸】后选择“轻漾 · 感应动态壁纸”，桌面与锁屏都生效。");
+        hint.setText("预览按手机比例显示，构图会保存到壁纸。\n缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
+                + "先切换构图，再点【设为动态壁纸】进入系统选择器，按系统提供的选项应用。");
         hint.setTextColor(Color.parseColor("#cfe6e0"));
         hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13.0f);
         hint.setPadding(dp(14), dp(10), dp(14), dp(4));

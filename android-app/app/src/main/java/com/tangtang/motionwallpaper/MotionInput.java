@@ -32,7 +32,7 @@ final class MotionInput {
     private long accelStamp;
     private int rotation;
 
-    void reset() {
+    synchronized void reset() {
         tiltX = tiltY = tiltZ = 0.0f;
         ax = ay = az = 0.0f;
         wx = wy = wz = 0.0f;
@@ -43,7 +43,7 @@ final class MotionInput {
         accelStamp = 0L;
     }
 
-    void rotation(int value) {
+    synchronized void rotation(int value) {
         if (rotation != value) {
             rotation = value;
             reset();
@@ -75,7 +75,7 @@ final class MotionInput {
         return MathX.clamp((now - last) * 1.0E-9f, 0.001f, 0.2f);
     }
 
-    void gravity(float x, float y, float z, long stamp) {
+    synchronized void gravity(float x, float y, float z, long stamp) {
         if (!MathX.valid(x, y, z) || stamp <= gravityStamp) {
             return;
         }
@@ -95,7 +95,7 @@ final class MotionInput {
         gravityStamp = stamp;
     }
 
-    void acceleration(float x, float y, float z, long stamp) {
+    synchronized void acceleration(float x, float y, float z, long stamp) {
         if (!MathX.valid(x, y, z) || stamp <= accelStamp) {
             return;
         }
@@ -111,7 +111,7 @@ final class MotionInput {
         accelStamp = stamp;
     }
 
-    void gyro(float x, float y, float z, long stamp) {
+    synchronized void gyro(float x, float y, float z, long stamp) {
         if (!MathX.valid(x, y, z) || stamp <= gyroStamp) {
             return;
         }
@@ -138,7 +138,7 @@ final class MotionInput {
     }
 
     /** 传感器长时间没数据时把挥动量衰减掉，避免锁屏里残留一个假回弹。 */
-    void age(long nowNanos) {
+    synchronized void age(long nowNanos) {
         if (accelStamp != 0L && nowNanos - accelStamp > 180000000L) {
             ax = ay = az = 0.0f;
         }
@@ -148,8 +148,18 @@ final class MotionInput {
         }
     }
 
+    /** Atomic frame input for GLSurfaceView's render thread. */
+    synchronized MotionInput copy() {
+        MotionInput sample = new MotionInput();
+        sample.tiltX = tiltX; sample.tiltY = tiltY; sample.tiltZ = tiltZ;
+        sample.ax = ax; sample.ay = ay; sample.az = az;
+        sample.wx = wx; sample.wy = wy; sample.wz = wz;
+        sample.alphaX = alphaX; sample.alphaY = alphaY; sample.alphaZ = alphaZ;
+        return sample;
+    }
+
     /** 有没有值得唤醒渲染的动作（用于静止时降到 10fps 省电）。 */
-    boolean excited() {
+    synchronized boolean excited() {
         return Math.abs(ax) + Math.abs(ay) + Math.abs(az) > 0.18f
                 || Math.abs(alphaX) + Math.abs(alphaY) + Math.abs(alphaZ) > 0.25f
                 || Math.abs(wx) + Math.abs(wy) + Math.abs(wz) > 0.12f;
