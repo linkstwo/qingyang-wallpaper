@@ -1,0 +1,1 @@
+package android.opengl; public class GLES20 {public static final int GL_NO_ERROR=0;public static int nextError;public static int glGetError(){int e=nextError;nextError=0;return e;}}

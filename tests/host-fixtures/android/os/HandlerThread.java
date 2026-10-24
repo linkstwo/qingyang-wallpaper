@@ -1,0 +1,1 @@
+package android.os; public class HandlerThread {final Looper looper=new Looper(); public HandlerThread(String n){} public void start(){} public Looper getLooper(){return looper;} public boolean quitSafely(){looper.closed=true;return true;} }

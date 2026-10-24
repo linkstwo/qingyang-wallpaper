@@ -1,0 +1,366 @@
+{
+  "source": "D:/QingyangWallpaper/",
+  "date": "2026-10-24",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "58e09647186d79fd2208066a1eb13a650872f97b5a933b16225906d836d20a33",
+      "bytes": 217
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "bebca85109a3f6e8eb16cac758db1abd23fd662f3bd7c77a6be129dad89c3a28",
+      "bytes": 826
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "684346d753ca1f9b4f6337837384662ed970c75dc090df44a14cb7365db1518c",
+      "bytes": 2692
+    },
+    {
+      "path": "README.md",
+      "sha256": "ce60d781ac8f34cf83cc6df58a3f7e3c83d2d9a882b6e41aec16f86fc643db3d",
+      "bytes": 1903
+    },
+    {
+      "path": "android-app/README.md",
+      "sha256": "2dd0c0fbba09d1d618376ffe6cc290ee0f9fd4074c9a70e8788f3c4193858540",
+      "bytes": 8052
+    },
+    {
+      "path": "android-app/app/build.gradle.kts",
+      "sha256": "a097ac951676e24ff15149867694f7629cba27640679842dde2138fea2ba91cf",
+      "bytes": 1303
+    },
+    {
+      "path": "android-app/app/src/main/AndroidManifest.xml",
+      "sha256": "7ace06369070ce391023acb97be012a6119164e62be994ccb3df8733abfaf4a0",
+      "bytes": 1665
+    },
+    {
+      "path": "android-app/app/src/main/assets/background.png",
+      "sha256": "0286d772a001f9b908692f691641889e54ec27e26ebe83e4c2d51b9bf944e317",
+      "bytes": 2095777
+    },
+    {
+      "path": "android-app/app/src/main/assets/character_mesh.bin",
+      "sha256": "c527def9574b7b2d456f7052b86e17a4ab49e9d980719c1b3e4ede12613fbe04",
+      "bytes": 393216
+    },
+    {
+      "path": "android-app/app/src/main/assets/character_pins.bin",
+      "sha256": "16eb1ee449b422dfca32dec08ffb9f048eb16c2ce07a8557e262ea1c1b7fefbd",
+      "bytes": 196608
+    },
+    {
+      "path": "android-app/app/src/main/assets/foreground_mesh.bin",
+      "sha256": "013bf3671344d6bdd047920853baefafbdee3bc794a530e882c88dc8a699b9e4",
+      "bytes": 1704
+    },
+    {
+      "path": "android-app/app/src/main/assets/mask.png",
+      "sha256": "627fdc83355ae1a952e8e9ad194abaafb9cb11c207b739e9794cdd5ca97e5789",
+      "bytes": 949379
+    },
+    {
+      "path": "android-app/app/src/main/assets/mesh-report.json",
+      "sha256": "828163729763bbd45b79c9720a471c5e61104bd56b61d4b879df07f6c7e6d29b",
+      "bytes": 2683
+    },
+    {
+      "path": "android-app/app/src/main/assets/original.png",
+      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "bytes": 3149695
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/EglCore.java",
+      "sha256": "45d94db008986421ff577b14a61b639edceeec4658a3f7dd4ad5b2fc222ecc58",
+      "bytes": 3358
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MainActivity.java",
+      "sha256": "e38ac029e22f948c4037053e55512d930f22ff4b4226843ff0e22d13ceeca8c0",
+      "bytes": 4232
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MathX.java",
+      "sha256": "55d59ca88945546e5bc36ab715294e8f3f0894ff6e9156e078976749c8a69397",
+      "bytes": 731
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MeshAssets.java",
+      "sha256": "592659590afcd7460a05797b09fcfc7f6aa05558aae17ce8de5192c0af0a479c",
+      "bytes": 2674
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MotionInput.java",
+      "sha256": "68c4ee559f0b914798104ca7a8ef8e8d43303babc7fa18db2cd93da6a8e5d1ea",
+      "bytes": 5316
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MotionWallpaperService.java",
+      "sha256": "a6724721c03c4b167f2ed9de82be2f52711acfe8d804aa78be5216e30dad882b",
+      "bytes": 5251
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/Physics.java",
+      "sha256": "56809cf2ccccab8ae9a40e633787b67908112bf2bf6f0c0ae50519e54f69cb89",
+      "bytes": 4498
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/PreviewView.java",
+      "sha256": "3f0171b38df63988d5cc5515776641d44fe28ab0998c8422ac47d56553c83716",
+      "bytes": 3611
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/RenderLoop.java",
+      "sha256": "3360987fd8b321f7e96e53ac3423bef46aae197354e220780bbbe212a0246cb9",
+      "bytes": 8381
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SceneRenderer.java",
+      "sha256": "63776629267c1ddc05a4ed514bfd0e73c183dbaa30d2ff169a4f323156c7b961",
+      "bytes": 15028
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SensorFeed.java",
+      "sha256": "54aee4a90a091245cceb8ab16029f85eed2deaf5759ceca20ce4f189906b8585",
+      "bytes": 6228
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/Spring.java",
+      "sha256": "d16aba367658988adee35b8f0757c9fd7d4baf344b542dc4c7bdc25d82bbd238",
+      "bytes": 1282
+    },
+    {
+      "path": "android-app/app/src/main/res/drawable/icon.xml",
+      "sha256": "eaeec93e773088b94a2dec811f111d88e669fa1ae71ce3f4d631cf79cb8a8289",
+      "bytes": 705
+    },
+    {
+      "path": "android-app/app/src/main/res/values/strings.xml",
+      "sha256": "e9f3fb850df2b4ba0c6a1ba1b93e1e03d3d0deeca5d211bac3d03d8b37cce35e",
+      "bytes": 324
+    },
+    {
+      "path": "android-app/app/src/main/res/values/themes.xml",
+      "sha256": "62ab996557791f64824f84de5b7472c0329225d46867b7bcbaaed2ce1b77c4d6",
+      "bytes": 209
+    },
+    {
+      "path": "android-app/app/src/main/res/xml/wallpaper.xml",
+      "sha256": "82c89b7a725a49598624b92b3f27cddff92bdc380dd0720c6f21e3309eb3a8dd",
+      "bytes": 279
+    },
+    {
+      "path": "android-app/build.gradle.kts",
+      "sha256": "6f79ccc856ea94e3789abc9c3ee3a7ccce3861206d6bf2d05c832b81407088cf",
+      "bytes": 73
+    },
+    {
+      "path": "android-app/gradle.properties",
+      "sha256": "8b4937912715ec73ccbab052fb5a2760d6c67336bbe5bcfe01979a140849a103",
+      "bytes": 125
+    },
+    {
+      "path": "android-app/gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "cb0da6751c2b753a16ac168bb354870ebb1e162e9083f116729cec9c781156b8",
+      "bytes": 43453
+    },
+    {
+      "path": "android-app/gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "dd7a1ea9958ebb69a3b4b91854fbdb5ed746996a26ae32c5b1a051f7ce4b8613",
+      "bytes": 337
+    },
+    {
+      "path": "android-app/gradlew",
+      "sha256": "fc977a94723af68aaffa4e5d60496fb4aeed1884b6b19e5e2f2fd7612673313d",
+      "bytes": 8692
+    },
+    {
+      "path": "android-app/gradlew.bat",
+      "sha256": "bdecf875b6868cbcbd36a1f85eedf0832f358ff28092c5797ed645f7edce77d9",
+      "bytes": 2918
+    },
+    {
+      "path": "android-app/settings.gradle.kts",
+      "sha256": "383d83bbe6043807738ac667b4efb5c5c6abf0f28e12ba4d8f3c7fe53911832a",
+      "bytes": 272
+    },
+    {
+      "path": "android-app/tools/compare_shots.py",
+      "sha256": "226f26ec2e71ac53ec1e33a9b92aa9d0fdd6d31679e51637775a50f26b0da6fe",
+      "bytes": 2197
+    },
+    {
+      "path": "android-app/tools/export_mesh.mjs",
+      "sha256": "fe938fc3fea0ba13476653f16dc6ffbbe1ec15811f0e9dcbf147d1abce728247",
+      "bytes": 3762
+    },
+    {
+      "path": "character-prototype/README.md",
+      "sha256": "8e58e2f18a5bd470ce2ca80db336ec0e3e5aae937ae74654a9d7846b2c8ab2dd",
+      "bytes": 3742
+    },
+    {
+      "path": "character-prototype/preview/app.mjs",
+      "sha256": "d21920dea1c140760ede57fb676c68da923ed931794eb33add72be063ff1bda1",
+      "bytes": 11147
+    },
+    {
+      "path": "character-prototype/preview/background.png",
+      "sha256": "0286d772a001f9b908692f691641889e54ec27e26ebe83e4c2d51b9bf944e317",
+      "bytes": 2095777
+    },
+    {
+      "path": "character-prototype/preview/contact-rig.mjs",
+      "sha256": "873a5d114c51249e2b71d9f8e8eb924219fe199891869852d176a84100ab7ccf",
+      "bytes": 1715
+    },
+    {
+      "path": "character-prototype/preview/earcut-LICENSE.txt",
+      "sha256": "324139c19d87af03fda38afea1590e00ca354c4159bdb2ae9e9cec070cfa46a8",
+      "bytes": 738
+    },
+    {
+      "path": "character-prototype/preview/earcut.mjs",
+      "sha256": "83d5b59bc520601bb2dd7401a2f8382a008d8d95e0e6e0fe45759ae4fda1aa56",
+      "bytes": 21256
+    },
+    {
+      "path": "character-prototype/preview/index.html",
+      "sha256": "8b400a3b4c3d39cf6734bada856116e6a47086480d7f354dd127aa903e15a594",
+      "bytes": 2517
+    },
+    {
+      "path": "character-prototype/preview/mask.png",
+      "sha256": "627fdc83355ae1a952e8e9ad194abaafb9cb11c207b739e9794cdd5ca97e5789",
+      "bytes": 949379
+    },
+    {
+      "path": "character-prototype/preview/mesh.json",
+      "sha256": "3a2f449e69dec457d4dc95696baa4e184cc476d19931f7c085be1a1c69a62e78",
+      "bytes": 2138
+    },
+    {
+      "path": "character-prototype/preview/motion-preview-v1.webm",
+      "sha256": "dfbfcb3033b949d8f6c30bd1227e5c4991d29259b10f943523313cd4816036ff",
+      "bytes": 8302040
+    },
+    {
+      "path": "character-prototype/preview/original.png",
+      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "bytes": 3149695
+    },
+    {
+      "path": "character-prototype/preview/rig.mjs",
+      "sha256": "eedb4b6e60a79706c02ae3a8a799568238144435fe41701dd62c4c89b070d95a",
+      "bytes": 2230
+    },
+    {
+      "path": "character-prototype/preview/validate-contacts.mjs",
+      "sha256": "257fc55b0b2e5d162b7de89723a656b6acfc36b05d95ee7ac5f3669cb94251ec",
+      "bytes": 1950
+    },
+    {
+      "path": "character-prototype/preview/validate.mjs",
+      "sha256": "d891a46e8e8ca29780572bb2acfed7b459c8dd3ec92a2ea43944970659e9b8f8",
+      "bytes": 1956
+    },
+    {
+      "path": "character-prototype/preview/video.html",
+      "sha256": "39a70fab3986e7624cc61d65388d771fb95047f4e7293087f220ffac95b5081e",
+      "bytes": 527
+    },
+    {
+      "path": "character-prototype/serve_preview.py",
+      "sha256": "71c3cf6f63c7743433a99d508a7970befef3ce667cf6d0721d663df40e0597d1",
+      "bytes": 1505
+    },
+    {
+      "path": "docs/BLACK_SCREEN.md",
+      "sha256": "42898dbdf2a92e7380eaad8b1a9fbfd770c5908d79a8972d567925ac6589c434",
+      "bytes": 2684
+    },
+    {
+      "path": "docs/BUILD.md",
+      "sha256": "7e7c0283e0e38c13d892d1ed95878a9ba0f814ddb9a37abe9075b147793e4ef8",
+      "bytes": 3386
+    },
+    {
+      "path": "docs/CLOUD_TASK.md",
+      "sha256": "222201bd562309c589df7de64a2280368089a55322369f34a7f8a9d3a197f30d",
+      "bytes": 3486
+    },
+    {
+      "path": "docs/CONTEXT.md",
+      "sha256": "889138a0a6485207b615f5d84b59de3cfeb77935f41e3dfa62d34819e91eedf2",
+      "bytes": 2008
+    },
+    {
+      "path": "evidence/README.md",
+      "sha256": "df4461cc728cb224344bd2c7c3c7d1e2b8d324d399d480e3c26534e81b644850",
+      "bytes": 1062
+    },
+    {
+      "path": "evidence/baseline/qingyang-0.5.0.apk",
+      "sha256": "c8a61b9894269651e778e11aa7558fb411648071d896202a994835defa859db7",
+      "bytes": 6332852
+    },
+    {
+      "path": "evidence/baseline/source-files.json",
+      "sha256": "23e6fc0f3a420b8e06ac78ba35828f9986585e4ecba831838b907ffe25f93f09",
+      "bytes": 4315
+    },
+    {
+      "path": "evidence/desktop-contact-shake.png",
+      "sha256": "db82ac3be745abe92221193609216ef4403f47fab642d9cc2372216807177d5f",
+      "bytes": 56263
+    },
+    {
+      "path": "evidence/desktop-contact-tilt-hold.png",
+      "sha256": "701537ce228380ed05f9dd420686703a410fd6f0230a581020564d9e0ef14156",
+      "bytes": 56078
+    },
+    {
+      "path": "references/README.md",
+      "sha256": "0fc2e58786465e3481c2b9bda44f59afd99a89e9b5e1f316b3dd547a77e25484",
+      "bytes": 1378
+    },
+    {
+      "path": "references/asset-manifest.json",
+      "sha256": "360481447e8a144bd04f4ece771c6c18c3f9b695450e44b4a2dcb459c511118d",
+      "bytes": 3568
+    },
+    {
+      "path": "references/originals/back-reference.png",
+      "sha256": "8bd1d23c05f72f3a48d3585184a635242d5c5a7cbe5070d2b7d9e0f61ce50574",
+      "bytes": 3179135
+    },
+    {
+      "path": "references/originals/front-variant.png",
+      "sha256": "5c767d2a58335d2aef978f6ad35a7e556f6da3c96d1de2312cf863dd4f4967bc",
+      "bytes": 3082076
+    },
+    {
+      "path": "references/originals/main-front-three-quarter.png",
+      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "bytes": 3149695
+    },
+    {
+      "path": "references/originals/side-reference.png",
+      "sha256": "a516ad4653775d3295434602371861f7ed1ea822454dedd810cf1dabd0d620d3",
+      "bytes": 3024201
+    },
+    {
+      "path": "scripts/check_handoff.py",
+      "sha256": "793dc4bacaa3e729652d13a5e8e93531d7be913cd0c5ad9508097c4b58a278fc",
+      "bytes": 2388
+    },
+    {
+      "path": "scripts/verify_assets.py",
+      "sha256": "c5a6f1764346a05dc2cd6f77bb7019b8f8fdf726d0d769d58c74f666a7f2dad1",
+      "bytes": 1261
+    }
+  ]
+}

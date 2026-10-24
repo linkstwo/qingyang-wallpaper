@@ -263,6 +263,14 @@ final class SceneRenderer {
         meshes = null;
     }
 
+    /** A lost context already owns/deletes these objects; never delete its IDs in another context. */
+    void abandonGlResources() {
+        ready = false;
+        program = texOriginal = texMask = texBackground = 0;
+        quadBuffer = characterBuffer = pinBuffer = foregroundBuffer = 0;
+        meshes = null;
+    }
+
     private int makeBuffer(FloatBuffer source) {
         int[] ids = new int[1];
         GLES20.glGenBuffers(1, ids, 0);

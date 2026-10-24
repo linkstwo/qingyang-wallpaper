@@ -1,6 +1,7 @@
 package com.tangtang.motionwallpaper;
 
 import android.content.Context;
+import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -45,13 +46,35 @@ final class RenderLoop {
     private int frames;
     private int fps;
     private long fpsWindowStart;
-    private String lastError = "";
+    private volatile String lastError = "";
+    private int retryCount;
+    private boolean firstSwap;
 
     private final Runnable frame = new Runnable() {
         @Override
         public void run() {
             framePending = false;
-            if (closed || !active || !surfaceReady || !egl.hasSurface()) {
+            if (closed || !active || !surfaceReady) {
+                return;
+            }
+            if (surface == null || !surface.isValid()) {
+                surfaceReady = false;
+                feed.stop();
+                destroyGl();
+                return;
+            }
+            try {
+                if (!egl.hasSurface()) {
+                    if (!egl.create(surface)) throw new IllegalStateException(egl.lastError());
+                    Log.i(TAG, "EGL ready " + width + "x" + height + " | " + title);
+                    firstSwap = false;
+                    needResize = true;
+                    feed.start();
+                } else if (!egl.makeCurrent()) {
+                    throw new IllegalStateException(egl.lastError());
+                }
+            } catch (Exception error) {
+                report(error);
                 return;
             }
             final long startNanos = SystemClock.elapsedRealtimeNanos();
@@ -68,12 +91,22 @@ final class RenderLoop {
             try {
                 if (!renderer.isReady()) {
                     renderer.create(width, height);
+                    needResize = false;
                 } else if (needResize) {
                     needResize = false;
                     renderer.resize(width, height);
                 }
                 renderer.draw(physics);
-                egl.swap();
+                final int glError = GLES20.glGetError();
+                if (glError != GLES20.GL_NO_ERROR) throw new IllegalStateException("draw glError=0x" + Integer.toHexString(glError));
+                if (!egl.swap()) throw new IllegalStateException(egl.lastError());
+                if (!firstSwap) {
+                    firstSwap = true;
+                    Log.i(TAG, "FIRST_SWAP_OK " + width + "x" + height
+                            + " triangles=" + renderer.characterTriangles() + " | " + title);
+                }
+                lastError = "";
+                retryCount = 0;
             } catch (Exception error) {
                 report(error);
                 return;
@@ -121,7 +154,10 @@ final class RenderLoop {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                if (closed) return;
                 destroyGl();
+                firstSwap = false;
+                retryCount = 0;
                 surface = target;
                 width = Math.max(1, surfaceWidth);
                 height = Math.max(1, surfaceHeight);
@@ -137,11 +173,11 @@ final class RenderLoop {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                if (closed) return;
                 width = Math.max(1, surfaceWidth);
                 height = Math.max(1, surfaceHeight);
-                if (egl.hasSurface() && surface != null && surface.isValid()) {
-                    egl.createSurface(surface);
-                }
+                // A native window resize keeps the context and textures. Only update the viewport.
+                // A replacement native Surface arrives through setSurface().
                 needResize = true;
                 schedule();
             }
@@ -156,6 +192,7 @@ final class RenderLoop {
                     return;
                 }
                 active = value;
+                firstSwap = false;
                 lastNanos = 0L;
                 accumulator = 0L;
                 physics.reset();
@@ -179,6 +216,8 @@ final class RenderLoop {
             @Override
             public void run() {
                 surfaceReady = false;
+                active = false;
+                surface = null;
                 feed.stop();
                 destroyGl();
             }
@@ -230,16 +269,29 @@ final class RenderLoop {
         Log.e(TAG, "渲染失败", error);
         feed.stop();
         destroyGl();
-        active = false;
-        handler.removeCallbacks(frame);
-        framePending = false;
+        lastNanos = 0L;
+        accumulator = 0L;
+        physics.reset();
+        // Preserve the caller's desired active state. Transient window/context failures must
+        // recover without waiting for a new visibility callback, with bounded retry frequency.
+        if (!closed && active && surfaceReady && surface != null && surface.isValid()) {
+            final long delay = Math.min(2000L, 250L << Math.min(retryCount++, 3));
+            framePending = true;
+            handler.postDelayed(frame, delay);
+            Log.w(TAG, "EGL retry in " + delay + "ms | " + lastError);
+        }
     }
 
     private void destroyGl() {
         handler.removeCallbacks(frame);
         framePending = false;
-        renderer.release();
-        egl.release();
+        try {
+            if (egl.makeCurrent()) renderer.release();
+            else renderer.abandonGlResources();
+        } finally {
+            egl.release();
+            firstSwap = false;
+        }
     }
 
     private void await(Runnable action) {
@@ -259,7 +311,9 @@ final class RenderLoop {
             }
         })) {
             try {
-                latch.await(2000L, TimeUnit.MILLISECONDS);
+                if (!latch.await(2000L, TimeUnit.MILLISECONDS)) {
+                    Log.w(TAG, "Render thread cleanup timed out; Surface teardown not yet acknowledged");
+                }
             } catch (InterruptedException interrupted) {
                 Thread.currentThread().interrupt();
             }

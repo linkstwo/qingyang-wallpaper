@@ -1,0 +1,1 @@
+package android.util; import java.util.*; public class Log {public static List<String> lines=new ArrayList<>(); public static int i(String t,String m){lines.add(m);return 0;}public static int w(String t,String m){lines.add(m);return 0;}public static int e(String t,String m,Throwable e){lines.add(m+":"+e.getMessage());return 0;}}

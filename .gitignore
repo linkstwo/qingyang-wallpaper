@@ -38,3 +38,9 @@
 **/*.bak*
 **/node_modules/
 !android-app/gradle/wrapper/gradle-wrapper.jar
+
+# Incremental Work validation and regression sources
+!/tests/
+!/validation/
+/validation/*.log
+/validation/*.apk

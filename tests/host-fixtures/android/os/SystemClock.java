@@ -1,0 +1,1 @@
+package android.os; public class SystemClock { public static long elapsedRealtimeNanos(){return Looper.now*1000000L;} }
