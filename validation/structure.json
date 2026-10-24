@@ -3,15 +3,15 @@
   "vertices": 49152,
   "depthMin": 0.00017840771761257201,
   "depthMax": 121.94358825683594,
-  "minAreaRatio": 0.4688842987019982,
-  "maxAreaRatio": 1.5116930026362898,
-  "maxTravel": 28.188902047921157,
+  "minAreaRatio": 0.7543245865401437,
+  "maxAreaRatio": 1.2377999163752165,
+  "maxTravel": 21.571455259918093,
   "pinnedError": 0,
-  "minCoupledAreaRatio": 0.2215960175714902,
-  "maxCoupledAreaRatio": 2.147622142281887,
+  "minCoupledAreaRatio": 0.24471854126704204,
+  "maxCoupledAreaRatio": 2.065600216787503,
   "phoneTested": false,
   "structure": {
-    "version": 1,
+    "version": 2,
     "source": [
       1086,
       1448
@@ -24,6 +24,15 @@
     "cameraDistance": 2200,
     "yawRadians": 0.14,
     "pitchRadians": 0.07,
+    "headPlate": {
+      "anchor": [
+        430,
+        330
+      ],
+      "depth": 116,
+      "rigidThroughY": 395,
+      "neckEndsY": 565
+    },
     "references": [
       "main-front-three-quarter.png",
       "side-reference.png",

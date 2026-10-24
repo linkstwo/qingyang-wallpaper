@@ -27,7 +27,7 @@
     }
   ],
   "structure": {
-    "version": 1,
+    "version": 2,
     "source": [
       1086,
       1448
@@ -40,6 +40,15 @@
     "cameraDistance": 2200,
     "yawRadians": 0.14,
     "pitchRadians": 0.07,
+    "headPlate": {
+      "anchor": [
+        430,
+        330
+      ],
+      "depth": 116,
+      "rigidThroughY": 395,
+      "neckEndsY": 565
+    },
     "references": [
       "main-front-three-quarter.png",
       "side-reference.png",

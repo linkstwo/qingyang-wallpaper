@@ -23,6 +23,19 @@ precision highp float;
     vec3 r=vec3(p-vec2(620.0,1100.0),depth);
     return perspective(rotateSurface(r+delta))-perspective(rotateSurface(r));
   }
+  float headWeight(vec2 p){return 1.0-smoothstep(395.0,565.0,p.y);}
+  vec2 boundedTurn(vec2 p,float depth){
+    vec2 t=projectSurface(p,depth);
+    return t/sqrt(vec2(1.0)+t*t/vec2(576.0,400.0))*smoothstep(0.0,45.0,depth);
+  }
+  vec2 rigidHeadTurn(vec2 p){
+    vec2 anchor=vec2(430.0,330.0);
+    vec3 r=vec3(anchor-vec2(620.0,1100.0),116.0);
+    vec2 axis=perspective(rotateSurface(r+vec3(0.0,100.0,0.0)))-perspective(rotateSurface(r));
+    float angle=atan(-axis.x,axis.y),c=cos(angle),s=sin(angle);
+    vec2 d=p-anchor;
+    return boundedTurn(anchor,116.0)+vec2(c*d.x-s*d.y,s*d.x+c*d.y)-d;
+  }
   void main(){
     vec2 p=a_source, q=p;
     v_uv=p/u_size;
@@ -42,9 +55,8 @@ precision highp float;
       float strand=(p.x-(191.0+53.0*tipT))/36.0;
       float tip=exp(-2.0*strand*strand)*smoothstep(285.0,465.0,p.y)*(1.0-smoothstep(480.0,515.0,p.y));
       float hair=mix(legacyHair,tip,u_tipMode);
-      vec2 turn=projectSurface(p,a_depth);
-      turn/=sqrt(vec2(1.0)+turn*turn/vec2(576.0,400.0));
-      turn*=u_structureMode*smoothstep(0.0,45.0,a_depth);
+      float headRigid=headWeight(p);
+      vec2 turn=mix(boundedTurn(p,a_depth),rigidHeadTurn(p),headRigid)*u_structureMode;
       vec2 inertia=u_body*(0.32+0.68*torso+0.22*neck);
       inertia+=u_chest.xy*chest;
       inertia+=u_hair*hair;
@@ -52,7 +64,17 @@ precision highp float;
       inertia*=u_motionGain;
       // Springs act in local material space; the held view projects all 3 axes.
       vec2 spatialInertia=projectInertia(p,a_depth,vec3(inertia,u_chest.z*chest*u_motionGain));
-      q+=(turn+mix(inertia,spatialInertia,u_structureMode))*active;
+      vec2 headAnchor=vec2(430.0,330.0);
+      float headBody=.32+.68*bell(headAnchor,vec2(721.0,789.0),vec2(310.0,430.0))
+        +.22*bell(headAnchor,vec2(630.0,410.0),vec2(220.0,180.0))+.3;
+      vec2 headInertia=u_body*headBody*u_motionGain;
+      vec2 headSpatial=projectInertia(headAnchor,116.0,vec3(headInertia,0.0));
+      vec2 movement=mix(inertia,spatialInertia,u_structureMode);
+      vec2 hairLocal=u_hair*hair*u_motionGain;
+      vec2 hairSpatial=projectInertia(p,a_depth,vec3(hairLocal,0.0));
+      movement=mix(movement,mix(headInertia,headSpatial,u_structureMode)
+        +mix(hairLocal,hairSpatial,u_structureMode),headRigid);
+      q+=(turn+movement)*active;
     }
     else if(u_layer>2.5){} // Paper/workbench stay with their pinned contacts.
     gl_Position=vec4(q.x*u_ndcScale.x+u_ndcOffset.x,q.y*u_ndcScale.y+u_ndcOffset.y,0.0,1.0);

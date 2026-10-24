@@ -1,8 +1,9 @@
 // Source-pixel depth proxy, manually fitted to the existing main view.
 // Side/back references guide volume only: no registered multiview reconstruction.
 export const structure = {
-  version:1, source:[1086,1448], units:'source pixels; positive depth towards viewer',
+  version:2, source:[1086,1448], units:'source pixels; positive depth towards viewer',
   pivot:[620,1100], cameraDistance:2200, yawRadians:.14, pitchRadians:.07,
+  headPlate:{anchor:[430,330],depth:116,rigidThroughY:395,neckEndsY:565},
   references:['main-front-three-quarter.png','side-reference.png','back-reference.png'],
   limitation:'Bounded main-view depth proxy. Hidden surfaces and 360-degree viewing are not reconstructed.'
 };
@@ -25,14 +26,37 @@ export function depthWeights(vertices){
   for(let i=0;i<values.length;i++)values[i]=depthAt(vertices[2*i],vertices[2*i+1]);
   return values;
 }
-export function projectPoint(x,y,depth,viewX,viewY,pin=0){
+function surfaceDelta(x,y,depth,viewX,viewY){
   const [px,py]=structure.pivot,dx=x-px,dy=y-py;
   const yaw=clamp(viewX,-1,1)*structure.yawRadians,pitch=clamp(viewY,-1,1)*structure.pitchRadians;
   const cy=Math.cos(yaw),sy=Math.sin(yaw),cx=Math.cos(pitch),sx=Math.sin(pitch);
   const rx=cy*dx+sy*depth,rz=-sy*dx+cy*depth,ry=cx*dy-sx*rz,z=sx*dy+cx*rz;
-  const d=structure.cameraDistance,k=d/(d-z),k0=d/(d-depth),free=(1-pin)*smooth(0,45,depth);
+  const d=structure.cameraDistance,k=d/(d-z),k0=d/(d-depth),free=smooth(0,45,depth);
   const tx=rx*k-dx*k0,ty=ry*k-dy*k0;
-  return [x+tx/Math.sqrt(1+tx*tx/576)*free,y+ty/Math.sqrt(1+ty*ty/400)*free];
+  return [tx/Math.sqrt(1+tx*tx/576)*free,ty/Math.sqrt(1+ty*ty/400)*free];
+}
+
+// Weak-perspective head plate: preserve facial distances, blend only through neck.
+// Orientation is extracted from a projected vertical axis, never tuned per eye/vertex.
+export const headWeight=(y)=>1-smooth(395,565,y);
+function rotateVector(x,y,z,view){
+  const yaw=clamp(view[0],-1,1)*structure.yawRadians,pitch=clamp(view[1],-1,1)*structure.pitchRadians;
+  const cy=Math.cos(yaw),sy=Math.sin(yaw),cx=Math.cos(pitch),sx=Math.sin(pitch);
+  const rx=cy*x+sy*z,rz=-sy*x+cy*z;
+  return [rx,cx*y-sx*rz,sx*y+cx*rz];
+}
+const perspective=p=>{const k=structure.cameraDistance/(structure.cameraDistance-p[2]);return [p[0]*k,p[1]*k];};
+function headDelta(x,y,view){
+  const {anchor:[hx,hy],depth}=structure.headPlate;
+  const r=[hx-structure.pivot[0],hy-structure.pivot[1],depth];
+  const a=perspective(rotateVector(...r,view)),b=perspective(rotateVector(r[0],r[1]+100,r[2],view));
+  const angle=Math.atan2(-(b[0]-a[0]),b[1]-a[1]),c=Math.cos(angle),s=Math.sin(angle);
+  const dx=x-hx,dy=y-hy,t=surfaceDelta(hx,hy,depth,...view);
+  return [t[0]+c*dx-s*dy-dx,t[1]+s*dx+c*dy-dy];
+}
+export function projectPoint(x,y,depth,viewX,viewY,pin=0){
+  const h=headWeight(y),a=surfaceDelta(x,y,depth,viewX,viewY),b=headDelta(x,y,[viewX,viewY]);
+  return [x+((1-h)*a[0]+h*b[0])*(1-pin),y+((1-h)*a[1]+h*b[1])*(1-pin)];
 }
 
 // CPU reference of the shared vertex shader, for geometry/GPU regression and tooling.
@@ -54,5 +78,22 @@ export function deformPoint(x,y,depth,view,body,chest,hair,gain,pin=0,spatial=tr
     const before=project(rotate(...r)),after=project(rotate(r[0]+dx,r[1]+dy,r[2]+(chest[2]||0)*tissue*gain));
     ix=after[0]-before[0];iy=after[1]-before[1];
   }
+  const h=headWeight(y),{anchor:[hx,hy],depth:hd}=structure.headPlate;
+  const hw=.32+.68*bell(hx,hy,721,789,310,430)+.22*bell(hx,hy,630,410,220,180)+.3*(1-smooth(340,495,hy));
+  let hi=[body[0]*hw*gain,body[1]*hw*gain];
+  if(spatial){
+    const r=[hx-structure.pivot[0],hy-structure.pivot[1],hd];
+    const a=perspective(rotateVector(...r,view)),b=perspective(rotateVector(r[0]+hi[0],r[1]+hi[1],r[2],view));
+    hi=[b[0]-a[0],b[1]-a[1]];
+  }
+  let hairDelta=[hair[0]*tip*gain,hair[1]*tip*gain];
+  if(spatial){
+    const r=[x-structure.pivot[0],y-structure.pivot[1],depth];
+    const a=perspective(rotateVector(...r,view)),b=perspective(rotateVector(r[0]+hairDelta[0],r[1]+hairDelta[1],r[2],view));
+    hairDelta=[b[0]-a[0],b[1]-a[1]];
+  }
+  // Hair overlays the common skull motion, with a continuous neck blend.
+  ix=ix*(1-h)+(hi[0]+hairDelta[0])*h;
+  iy=iy*(1-h)+(hi[1]+hairDelta[1])*h;
   return [q[0]+ix*(1-pin),q[1]+iy*(1-pin)];
 }

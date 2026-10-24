@@ -1,0 +1,8 @@
+{
+  "anglePairs": 25,
+  "baselineDistanceError": 8.970172669504421,
+  "maxDistanceError": 9.947598300641403e-14,
+  "maxNeutralError": 0,
+  "maxBoundaryJump": 0.00020855657227129707,
+  "phoneTested": false
+}
