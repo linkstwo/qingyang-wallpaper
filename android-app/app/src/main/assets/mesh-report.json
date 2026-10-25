@@ -27,7 +27,7 @@
     }
   ],
   "structure": {
-    "version": 3,
+    "version": 4,
     "source": [
       1086,
       1448
@@ -48,6 +48,13 @@
       "depth": 116,
       "rigidThroughY": 395,
       "neckEndsY": 565
+    },
+    "hairEnvelope": {
+      "width": 56,
+      "rootStart": 285,
+      "rootEnd": 465,
+      "releaseStart": 480,
+      "releaseEnd": 650
     },
     "armSupport": {
       "shoulder": [

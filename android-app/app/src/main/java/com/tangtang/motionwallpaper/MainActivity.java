@@ -103,7 +103,7 @@ public final class MainActivity extends Activity {
         root.addView(structure);
 
         TextView hint = new TextView(this);
-        hint.setText("轻漾 0.5.4 · 预览按手机比例显示。大小会立即保存到壁纸。\n缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
+        hint.setText("轻漾 0.5.5 · 预览按手机比例显示。大小会立即保存到壁纸。\n缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
                 + "系统可能额外放大；先调小人物留出肩背，再点【设为动态壁纸】进入系统选择器，按系统提供的选项应用。");
         hint.setTextColor(Color.parseColor("#cfe6e0"));
         hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13.0f);

@@ -66,4 +66,4 @@ adb logcat -d -s QingyangWallpaper QingyangRender QingyangPreview EGL_emulation 
 0.5.0证书SHA-256：`0A8F4734E62F984C94BD38D63A0AC15DD06CF9BFB5041175F51FB3AE114CEAAB`。
 私钥与signing.properties留本地、均被Git排除。不要重新生成替换它，不在云端提交口令。debug包/其它密钥不能覆盖该发布包；不要要求用户先卸载现用版本来掩盖签名变化。
 
-当前开发源码0.5.4/13；裁剪与回弹节点0.5.3/12可独立测试。正式候选回本地用现有密钥签名后做手机验收。
+当前开发源码0.5.5/14；裁剪与回弹节点0.5.3/12可独立测试。正式候选回本地用现有密钥签名后做手机验收。

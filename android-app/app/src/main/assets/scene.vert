@@ -90,8 +90,8 @@ precision highp float;
       float legacyHair=bell(p,vec2(246.0,367.0),vec2(110.0,210.0));
       // Front loose strand: fixed roots, progressively freer tips, away from glasses/face.
       float tipT=clamp((p.y-275.0)/205.0,0.0,1.0);
-      float strand=(p.x-(191.0+53.0*tipT))/36.0;
-      float tip=exp(-2.0*strand*strand)*smoothstep(285.0,465.0,p.y)*(1.0-smoothstep(480.0,515.0,p.y));
+      float strand=(p.x-(191.0+53.0*tipT))/56.0;
+      float tip=exp(-2.0*strand*strand)*smoothstep(285.0,465.0,p.y)*(1.0-smoothstep(480.0,650.0,p.y));
       float hair=mix(legacyHair,tip,u_tipMode);
       float headRigid=headWeight(p);
       vec2 turn=mix(boundedTurn(p,a_depth),rigidHeadTurn(p),headRigid)*u_structureMode;

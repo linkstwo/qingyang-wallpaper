@@ -1,6 +1,6 @@
 # 轻漾 Android 工程
 
-当前开发版本 **0.5.4 / versionCode13**，包名 `com.tangtang.motionwallpaper`。源码分支 `feature/cloud-framing-response`，继承现有 EGL 生命周期修复。先看 [最新交接](../docs/CLOUD_RESULT-0.5.4.md) 和 [构建说明](../docs/BUILD.md)。
+当前开发版本 **0.5.5 / versionCode14**，包名 `com.tangtang.motionwallpaper`。源码分支 `feature/cloud-framing-response`，继承现有 EGL 生命周期修复。先看 [最新交接](../docs/CLOUD_RESULT-0.5.5-HAIR.md) 和 [构建说明](../docs/BUILD.md)。
 
 应用与 WallpaperService 共用生产 GLES 着色器、网格和物理。已加入锁屏可见窗口构图、人物大小、融合姿态控制、有限深度视差和身体/软组织/发梢惯性。仍是主视角附近的2.5D，不是完整人体3D或360度转身。
 

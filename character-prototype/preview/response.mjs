@@ -42,4 +42,4 @@ export function framing(width,height,wider=true,sizePercent=90,topPercent=10){
   const w=Math.max(1,width),h=Math.max(1,height),cover=Math.max(w/1086,h/1448),scale=wider?Math.min(cover,w/1086*clamp(sizePercent,65,125)/100):cover;
   return {scale,x:wider?w*.5-590*scale:(w-1086*scale)*.5,y:wider&&h>=1448*scale?Math.min(h-1448*scale,h*clamp(topPercent,0,20)/100):(h-1448*scale)*.5,motionGain:Math.min(1.45,cover/scale)};
 }
-export function hairWeight(x,y){const t=clamp((y-275)/205,0,1),s=(x-(191+53*t))/36;const smooth=(a,b,v)=>{const u=clamp((v-a)/(b-a),0,1);return u*u*(3-2*u);};return Math.exp(-2*s*s)*smooth(285,465,y)*(1-smooth(480,515,y));}
+export {hairWeight} from './structure.mjs';

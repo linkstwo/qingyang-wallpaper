@@ -7,11 +7,11 @@
   "maxAreaRatio": 1.4769534305508012,
   "maxTravel": 21.571455259918093,
   "pinnedError": 0,
-  "minCoupledAreaRatio": 0.24471854126704204,
-  "maxCoupledAreaRatio": 2.065600216787503,
+  "minCoupledAreaRatio": 0.4868524737791203,
+  "maxCoupledAreaRatio": 1.6922020370604216,
   "phoneTested": false,
   "structure": {
-    "version": 3,
+    "version": 4,
     "source": [
       1086,
       1448
@@ -32,6 +32,13 @@
       "depth": 116,
       "rigidThroughY": 395,
       "neckEndsY": 565
+    },
+    "hairEnvelope": {
+      "width": 56,
+      "rootStart": 285,
+      "rootEnd": 465,
+      "releaseStart": 480,
+      "releaseEnd": 650
     },
     "armSupport": {
       "shoulder": [

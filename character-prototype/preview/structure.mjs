@@ -1,9 +1,10 @@
 // Source-pixel depth proxy, manually fitted to the existing main view.
 // Side/back references guide volume only: no registered multiview reconstruction.
 export const structure = {
-  version:3, source:[1086,1448], units:'source pixels; positive depth towards viewer',
+  version:4, source:[1086,1448], units:'source pixels; positive depth towards viewer',
   pivot:[620,1100], cameraDistance:2200, yawRadians:.14, pitchRadians:.07,
   headPlate:{anchor:[430,330],depth:116,rigidThroughY:395,neckEndsY:565},
+  hairEnvelope:{width:56,rootStart:285,rootEnd:465,releaseStart:480,releaseEnd:650},
   armSupport:{shoulder:[815,575],elbow:[815,1010],wrist:[350,1175],upperRadius:48,foreRadius:42,feather:36},
   references:['main-front-three-quarter.png','side-reference.png','back-reference.png'],
   limitation:'Bounded main-view depth proxy. Hidden surfaces and 360-degree viewing are not reconstructed.'
@@ -60,12 +61,20 @@ function projectSurfacePoint(x,y,depth,viewX,viewY,pin=0){
   return [x+((1-h)*a[0]+h*b[0])*(1-pin),y+((1-h)*a[1]+h*b[1])*(1-pin)];
 }
 
+// A free tip must not be abruptly re-pinned below the visible strand.
+// Broader transverse support and a 170px release keep the displacement gradient
+// safe at the existing spring limits without changing its centreline amplitude.
+export function hairWeight(x,y){
+  const {width,rootStart,rootEnd,releaseStart,releaseEnd}=structure.hairEnvelope;
+  const t=clamp((y-275)/205,0,1),strand=(x-(191+53*t))/width;
+  return Math.exp(-2*strand*strand)*smooth(rootStart,rootEnd,y)*(1-smooth(releaseStart,releaseEnd,y));
+}
+
 // CPU reference of the shared vertex shader, for geometry/GPU regression and tooling.
 function deformSurfacePoint(x,y,depth,view,body,chest,hair,gain,pin=0,spatial=true){
   const q=spatial?projectSurfacePoint(x,y,depth,...view,pin):[x,y];
   const head=1-smooth(340,495,y),neck=bell(x,y,630,410,220,180),torso=bell(x,y,721,789,310,430);
-  const tissue=bell(x,y,577,785,165,205),tipT=clamp((y-275)/205,0,1),strand=(x-(191+53*tipT))/36;
-  const tip=Math.exp(-2*strand*strand)*smooth(285,465,y)*(1-smooth(480,515,y));
+  const tissue=bell(x,y,577,785,165,205),tip=hairWeight(x,y);
   const weight=.32+.68*torso+.22*neck+.3*head;
   const dx=(body[0]*weight+chest[0]*tissue+hair[0]*tip)*gain;
   const dy=(body[1]*weight+chest[1]*tissue+hair[1]*tip)*gain;
