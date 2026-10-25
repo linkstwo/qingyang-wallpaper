@@ -37,7 +37,8 @@
     "Implemented bounded torso-acceleration coupling with old0.5.6 response selectable; deterministic peak body0.354→1.179 and relative response1.853→5.580 source pixels",
     "Passed163 crop/settings checks,10132 existing response assertions,52 lifecycle checks, full old/new Java/JS trajectory parity max error<0.000002 and combined-force displacement bounds",
     "Viewed actual local Edge WebGL four-way composition/motion render; this is desktop rendering, not native Android UI",
-    "Built0.5.7/16 release offline including vital Lint; signed with original certificate and verified new editor DEX, assets unchanged, ZIP/alignment/manifest and negative signature cases"
+    "Built0.5.7/16 release offline including vital Lint; signed with original certificate and verified new editor DEX, assets unchanged, ZIP/alignment/manifest and negative signature cases",
+    "Cloud published the exact original-key signed0.5.7 APK without rebuilding; anonymous public release download independently completed with matching SHA256"
   ],
   "next": [
     "User checks fullscreen pinch/pan/save and actual lockscreen shoulder/forearm/waist crop; native touch and OEM crop still pending",
@@ -56,8 +57,8 @@
   },
   "blocked": [
     {
-      "task": "Browser DOM/layout test",
-      "reason": "Local browser executable absent, official download returned HTML rather than a ZIP; separate browser could not reach loopback server. GLES rendering completed instead."
+      "task": "Remaining phone/native verification",
+      "reason": "No connected phone was used. Selected local desktop environment detached after build/sign/desktop WebGL verification; native touch/OEM crop/upgrade/long tests remain pending."
     }
   ],
   "pendingPhoneChecks": [
@@ -94,7 +95,8 @@
     "docs/S1-BASICS-0.5.7.md",
     "validation/s1-basics-0.5.7.json",
     "validation/s1-visual-0.5.7.html",
-    "validation/build-0.5.7-signed.json"
+    "validation/build-0.5.7-signed.json",
+    "https://github.com/linkstwo/qingyang-wallpaper/actions/runs/40173213599"
   ],
   "priorityAcceptance": "Current clarified S1: preserve the main photo; allow the user to choose a sufficiently large lockscreen composition showing shoulder, forearm and waist using fullscreen pinch/pan, save and reopen consistently. Actual OEM crop requires phone validation.",
   "assetAuthorization": {
@@ -128,7 +130,8 @@
     "certificateSha256": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
     "report": "validation/build-0.5.7-signed.json",
     "libraryFileId": "libfile_89dd6e001fcc8191b7b32459c71ef6c0",
-    "phoneInstallTested": false
+    "phoneInstallTested": false,
+    "applicationCommit": "e76a8fa9755f2fa4deb703920c43e7cf91593e9c"
   },
   "s1Basics": {
     "status": "awaiting_phone",
@@ -141,5 +144,14 @@
       "Other-angle photos participating dynamically",
       "Continuous multi-angle visibility/occlusion"
     ]
+  },
+  "release": {
+    "tag": "v0.5.7",
+    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.7",
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.7/qingyang-0.5.7.apk",
+    "assetId": 674397263,
+    "sha256": "3a7361cbb34b9765ed83eac8a5ff9281668f60ad39837adcf5c15fbeb701ff4c",
+    "anonymousDownloadVerified": true,
+    "workflowRun": 40173213599
   }
 }

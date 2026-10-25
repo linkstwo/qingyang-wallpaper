@@ -1,7 +1,7 @@
 from pathlib import Path
-import json,os,subprocess,tempfile
+import json,os,subprocess,tempfile,shutil
 ROOT=Path(__file__).resolve().parents[1]
-JDK=Path(os.environ.get('JAVA_HOME',r'C:\AndroidSetup\jdk\jdk-17.0.20.1+1'))
+JDK=Path(os.environ['JAVA_HOME']) if os.environ.get('JAVA_HOME') else (Path(shutil.which('javac')).resolve().parent.parent if shutil.which('javac') else Path(r'C:\AndroidSetup\jdk\jdk-17.0.20.1+1'))
 EXE='.exe' if os.name=='nt' else ''
 SOURCE=ROOT/'android-app/app/src/main/java/com/tangtang/motionwallpaper'
 with tempfile.TemporaryDirectory(prefix='qingyang-s1-') as tmp:

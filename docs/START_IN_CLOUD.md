@@ -16,6 +16,6 @@
 
 真实release构建与vitalLint通过，已原密钥签名验签。163项取景/保存检查、10132项原响应断言、52项生命周期及新旧Java/JS逐步响应核对通过；实际Edge WebGL画面对照已查看。手机原生手势、安装、OEM锁屏裁切及功耗尚未验证。
 
-[下载候选APK](https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.7/qingyang-0.5.7.apk)（发布上传完成后可用）。签名和哈希见[记录](../validation/build-0.5.7-signed.json)。
+[下载候选APK](https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.7/qingyang-0.5.7.apk)（已在GitHub云端匿名下载并核对SHA-256）。签名和哈希见[记录](../validation/build-0.5.7-signed.json)。
 
 S1仍在进行，S2—S8未整体完成。十图已取回，逐图检查/配准与连续显露仍后置待做。用户反馈优先；不能用测试数量、静态背图或纯缩放冒报连续换面。

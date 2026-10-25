@@ -32,3 +32,8 @@
 未验：Android原生双指/多指手势与按钮实际点击、用户手机安装升级、OEM最终锁屏裁切/额外缩放、全生命周期、功耗温升。不存在“已保证所有手机所见即所得”的结论。onZoomChanged的0–1是系统提示，未当成实际缩放因子反算。
 
 下一步先收集具体取景/手感反馈，再决定剩余基础修正；十图配准及连续视角尚未推进，不标S1或S2—S8整体完成。原0.5.6保留回退。
+
+
+## 云端发布完成
+
+源码提交e76a8fa9755f2fa4deb703920c43e7cf91593e9c；[下载0.5.7 APK](https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.7/qingyang-0.5.7.apk)。GitHub云端直接接收已原签名包，没有重构建或上传私钥。发布后匿名重新下载完整APK，SHA-256逐字节校验一致；[执行记录](https://github.com/linkstwo/qingyang-wallpaper/actions/runs/40173213599)全部步骤成功。一次性发布配置已经清理。此后只更新交接/测试运行器的JDK自动定位，应用代码与签名包保持一致。选中的本地环境已断开，未新增任何手机实测结论。

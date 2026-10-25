@@ -42,11 +42,6 @@
 # Incremental Work validation and regression sources
 !/tests/
 !/validation/
-!/.github/
-/.github/*
-!/.github/workflows/
-/.github/workflows/*
-!/.github/workflows/publish-signed-057.yml
 /validation/*.log
 /validation/*.apk
 

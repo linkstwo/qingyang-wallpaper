@@ -25,5 +25,10 @@
   "build": "Gradle8.7/AGP8.5.0/JDK17/SDK34 assembleRelease + vitalLint, offline",
   "notes": "Full-screen crop math/settings and response tested on host; actual WebGL viewed; native UI, OEM lockscreen, gestures and upgrade still require phone.",
   "baseCommit": "16509d5676d09925e293e6b28ed8d21bdd8b09bf",
-  "libraryFileId": "libfile_89dd6e001fcc8191b7b32459c71ef6c0"
+  "libraryFileId": "libfile_89dd6e001fcc8191b7b32459c71ef6c0",
+  "applicationCommit": "e76a8fa9755f2fa4deb703920c43e7cf91593e9c",
+  "releaseUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.7",
+  "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.7/qingyang-0.5.7.apk",
+  "anonymousReleaseDownloadVerified": true,
+  "publishWorkflowRunId": 40173213599
 }
