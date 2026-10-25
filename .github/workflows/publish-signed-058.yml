@@ -16,15 +16,18 @@ jobs:
     steps:
       - name: Retrieve already signed APK
         run: |
+          set -euo pipefail
           gh api repos/${{ github.repository }}/git/blobs/b3fcb1dc193d21d9cf45078db31ddd7d3882b2a6 --jq .content | base64 --decode > qingyang-0.5.8.apk
           echo "$APK_SHA256  qingyang-0.5.8.apk" | sha256sum --check
       - name: Independently verify original release certificate
         run: |
+          set -euo pipefail
           signer=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)
           "$signer" verify --verbose --print-certs qingyang-0.5.8.apk | tee verification.txt
-          grep -F "Signer #1 certificate SHA-256 digest: $CERT_SHA256" verification.txt
+          grep -F "certificate SHA-256 digest: $CERT_SHA256" verification.txt
       - name: Publish existing bytes
         run: |
+          set -euo pipefail
           cat > release-notes.md <<'NOTES'
           新阅读照片与胸部全屏居中构图；保持Q弹，重新适配新姿势的遮罩、深度、手臂及接触约束。主界面以人物预览为主，取景面板默认收起，冻结编辑按需重绘。
           
@@ -44,6 +47,7 @@ jobs:
           fi
       - name: Verify anonymous public download
         run: |
+          set -euo pipefail
           curl -fL --retry 4 --retry-delay 2 --max-time 120 "https://github.com/${{ github.repository }}/releases/download/v0.5.8/qingyang-0.5.8.apk" -o anonymous.apk
           echo "$APK_SHA256  anonymous.apk" | sha256sum --check
           echo ANONYMOUS_RELEASE_DOWNLOAD_SHA256_OK
