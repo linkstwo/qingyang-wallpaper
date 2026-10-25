@@ -41,11 +41,12 @@
     "Cloud published the exact original-key signed0.5.7 APK without rebuilding; anonymous public release download independently completed with matching SHA256",
     "Persisted latest user authorisation: new reading image, full-screen chest-centred large composition, minimum60% source-picture height only as fallback, Q-elastic motion retained, UI/interaction/performance improvements and original-key APK delivery.",
     "Recorded interrupted0.5.8 work as recovery_required rather than a delivered release; on reconnection the working directory was not recovered and branch application baseline remained0.5.7.",
-    "Uploaded original keystore received and certificate verified against the prior release; private file remains outside the repository. Recovered reading-v2 source and empty workshop plate, regenerated new-pose geometry/matte/depth/contacts and chest-centred crop. UI recovery and fresh final validation still pending."
+    "Uploaded original keystore received and certificate verified against the prior release; private file remains outside the repository. Recovered reading-v2 source and empty workshop plate, regenerated new-pose geometry/matte/depth/contacts and chest-centred crop. UI recovery and fresh final validation still pending.",
+    "Restored compact preview-first home/editor UI, explicit source-centre action, draft save/cancel and demand-driven/vsync preview rendering; not yet native-phone tested."
   ],
   "next": [
     "Read docs/CURRENT_HANDOFF-0.5.8.md before any older preserve-main-photo instruction; the user has now authorised the new reading image.",
-    "Finish restoring preview-first UI/editor and demand-driven preview rendering; then rerun new-pose safety/response/GLES checks and build release before original-key signing.",
+    "Run fresh crop/settings, response/lifecycle, CPU/GLES projection and mesh safety checks, then release build and original-key sign/verify/deliver.",
     "Rebuild new-pose matte, depth/mesh, head/hair/torso-relative elastic fields, arm and paper contacts; retain the user's Q-elastic response. Do not merely swap or resize the texture.",
     "Implement and validate large chest-centred full-lockscreen framing plus compact preview-first UI and responsive crop editing; minimise lower fill while preserving useful character regions.",
     "Rerun final export consistency, response/lifecycle, crop/save, CPU/GLES and mesh safety checks after recovery; rebuild unsigned release0.5.8/17. Earlier transient results do not validate recovered/final files.",
@@ -170,7 +171,7 @@
     "versionName": "0.5.8",
     "versionCode": 17,
     "status": "in_progress",
-    "recoveryRequired": true,
+    "recoveryRequired": false,
     "durableApplicationBaseline": "e76a8fa9755f2fa4deb703920c43e7cf91593e9c",
     "lastVerifiedBranchHeadBeforeThisHandoff": "602a4923c4b10f962804fe2daf9f707cc7aff2a6",
     "applicationChangesCommitted": true,
@@ -179,13 +180,15 @@
     "sourceImageLibraryId": "libfile_4f121f15747c8191ae4e79700c7fd655",
     "sourceImageName": "1000030775.png",
     "signingKeyCertificateVerified": true,
-    "recoveredAssetsAndCrop": true
+    "recoveredAssetsAndCrop": true,
+    "uiRecovered": true
   },
   "recovery": {
-    "required": true,
+    "required": false,
     "reason": "After the user interrupted/reconnected, the previous working directory and in-memory transfer state were not recovered.0.5.8 code/assets were not committed to the branch; no durable0.5.8 APK was delivered.",
     "previousTransientResults": "A release build and later updated new-pose/GLES/mesh checks were observed in the interrupted run, but final changes were not rebuilt/saved together. These are historical observations only; rerun after recovery.",
-    "independentWorkMayProceed": true
+    "independentWorkMayProceed": true,
+    "note": "New-pose assets/crop recovered and committed; preview-first UI/editor and demand-driven preview now restored. Fresh final validation, release build/signature and delivery remain pending."
   },
   "runtimePolicy": {
     "mode": "cloud_only",

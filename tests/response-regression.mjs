@@ -18,8 +18,8 @@ for(let n=0;n<120*6;n++){
 assert.ok(Math.abs(depthPeak-java.depthPeak)<1e-4,'Java/JS depth spring trajectory');
 assert.ok(Math.abs(depthModel.values[6])<.001,'depth spring must settle');
 assert.equal(hairWeight(200,260),0,'hair root fixed');
-assert.ok(hairWeight(240,475)>.8,'free strand tip');
-assert.ok(hairWeight(392,333)<1e-9,'face and glasses outside hair response');
+assert.ok(hairWeight(480,590)>.8,'free strand tip');
+assert.ok(hairWeight(550,305)<1e-9,'face and glasses outside hair response');
 assert.ok(hairWeight(630,410)<1e-12,'neck is not a loose hair strand');
 const frame=framing(1260,2800,true);assert.ok(Math.abs((1260-frame.x)/frame.scale-java.newVisibleRight)<.01);
 console.log('PASS: Java/JS response parity, framing coverage and root/face/tip weight checks');

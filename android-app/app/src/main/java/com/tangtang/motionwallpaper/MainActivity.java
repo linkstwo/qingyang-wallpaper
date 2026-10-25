@@ -1,57 +1,38 @@
 package com.tangtang.motionwallpaper;
 
 import android.app.Activity;
-import android.app.WallpaperManager;
-import android.content.ComponentName;
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-/** Large live preview with direct access to the actual wallpaper crop. */
+/** A full-screen character preview with two primary actions. */
 public final class MainActivity extends Activity {
     private PreviewView preview;
     private SceneSettings settings;
-    @Override public void onCreate(Bundle state) {
-        super.onCreate(state);
-        settings=new SceneSettings(this);
-        LinearLayout root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(0xff101917);
-        preview=new PreviewView(this);
-        root.addView(preview,new LinearLayout.LayoutParams(-1,0,1));
-        LinearLayout controls=new LinearLayout(this);controls.setOrientation(LinearLayout.VERTICAL);
-        controls.setPadding(dp(12),dp(8),dp(12),dp(12));
-        TextView text=new TextView(this);text.setTextColor(0xffcfe6e0);text.setTextSize(13);
-        text.setText("轻漾 0.5.7 · 肩、胳膊、腰由你取景\n进入全屏后双指缩放、单指移动，再保存到壁纸。");
-        controls.addView(text);
-        controls.addView(button("全屏调整锁屏取景",()->startActivity(new Intent(this,FramingEditorActivity.class))),
-                new LinearLayout.LayoutParams(-1,dp(48)));
-        LinearLayout presets=row();
-        add(presets,"肩臂腰",()->preset(0));add(presets,"完整原图",()->preset(1));add(presets,"近景",()->preset(2));
-        controls.addView(presets);
-        LinearLayout motion=row();
-        Button response=add(motion,settings.lively()?"动感：明显":"动感：原版",()->{});
-        response.setOnClickListener(v->{settings.lively(!settings.lively());response.setText(settings.lively()?"动感：明显":"动感：原版");});
-        Button structure=add(motion,settings.structure()?"视角：开启":"视角：关闭",()->{});
-        structure.setOnClickListener(v->{settings.structure(!settings.structure());structure.setText(settings.structure()?"视角：开启":"视角：关闭");});
-        add(motion,"校准回正",()->preview.recalibrate());controls.addView(motion);
-        LinearLayout apply=row();
-        add(apply,"设为动态壁纸",()->{
-            Intent i=new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
-            i.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,new ComponentName(this,MotionWallpaperService.class));
-            try{startActivity(i);}catch(Exception e){Toast.makeText(this,"请从系统壁纸设置选择轻漾",Toast.LENGTH_LONG).show();}
-        });
-        add(apply,"静态角度参考",()->startActivity(new Intent(this,FramingStudyActivity.class)));
-        controls.addView(apply);root.addView(controls);setContentView(root);
+    private TextView subtitle;
+    @Override public void onCreate(Bundle state){
+        super.onCreate(state);Ui.immersive(this);settings=new SceneSettings(this);
+        FrameLayout root=new FrameLayout(this);root.setBackgroundColor(0xff17221c);
+        preview=new PreviewView(this);root.addView(preview,new FrameLayout.LayoutParams(-1,-1));
+        LinearLayout header=new LinearLayout(this);header.setOrientation(LinearLayout.VERTICAL);header.setPadding(dp(20),dp(42),dp(20),dp(12));
+        header.addView(Ui.text(this,"轻漾",25,Ui.INK));subtitle=Ui.text(this,"正在加载人物…",12,Ui.MUTED);header.addView(subtitle);
+        root.addView(header,new FrameLayout.LayoutParams(-1,-2,Gravity.TOP));
+        preview.listener(error->subtitle.setText(error.isEmpty()?"轻转手机看视角 · 轻晃感受回弹":"加载失败："+error));
+        LinearLayout card=new LinearLayout(this);card.setOrientation(LinearLayout.VERTICAL);card.setPadding(dp(12),dp(12),dp(12),dp(12));card.setBackground(Ui.card(this,0xe91b2a22));
+        LinearLayout actions=new LinearLayout(this);add(actions,"调整构图",false,()->startActivity(new Intent(this,FramingEditorActivity.class)));add(actions,"设为壁纸",true,()->Ui.apply(this));card.addView(actions);
+        LinearLayout options=new LinearLayout(this);Button response=add(options,settings.lively()?"Q弹 · 开启":"动感 · 柔和",false,()->{});
+        response.setOnClickListener(v->{settings.lively(!settings.lively());response.setText(settings.lively()?"Q弹 · 开启":"动感 · 柔和");preview.requestRender();});
+        add(options,"回正",false,()->preview.recalibrate());add(options,"更多",false,()->more());card.addView(options);
+        FrameLayout.LayoutParams bottom=new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM);bottom.setMargins(dp(14),0,dp(14),dp(26));root.addView(card,bottom);setContentView(root);
     }
-    private void preset(int mode){Point p=new Point();getWindowManager().getDefaultDisplay().getRealSize(p);settings.frame(CropFrame.preset(p.x,p.y,mode));}
-    private LinearLayout row(){LinearLayout r=new LinearLayout(this);r.setOrientation(LinearLayout.HORIZONTAL);return r;}
-    private Button button(String text,Runnable action){Button b=new Button(this);b.setText(text);b.setTextSize(12);b.setAllCaps(false);b.setPadding(dp(2),0,dp(2),0);b.setOnClickListener(v->action.run());return b;}
-    private Button add(LinearLayout r,String text,Runnable action){Button b=button(text,action);r.addView(b,new LinearLayout.LayoutParams(0,dp(46),1));return b;}
-    @Override protected void onResume(){super.onResume();preview.start();}
+    private void more(){new AlertDialog.Builder(this).setTitle("显示与查看").setItems(new String[]{settings.structure()?"关闭视角响应":"开启视角响应","查看静态角度参考","版本 0.5.8 · 新人物构图"},(d,n)->{if(n==0){settings.structure(!settings.structure());preview.requestRender();}else if(n==1)startActivity(new Intent(this,FramingStudyActivity.class));}).setNegativeButton("关闭",null).show();}
+    private Button add(LinearLayout row,String text,boolean primary,Runnable action){Button b=Ui.button(this,text,primary,action);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,dp(48),1);p.setMargins(dp(3),dp(3),dp(3),dp(3));row.addView(b,p);return b;}
+    @Override protected void onResume(){super.onResume();Ui.immersive(this);preview.start();}
     @Override protected void onPause(){preview.stop();super.onPause();}
-    private int dp(float value){return Math.round(value*getResources().getDisplayMetrics().density);}
+    private int dp(float v){return Ui.dp(this,v);}
 }

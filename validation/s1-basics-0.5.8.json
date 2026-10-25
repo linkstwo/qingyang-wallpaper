@@ -1,0 +1,27 @@
+{
+  "CropFrameRegression": {
+    "checks": 159,
+    "phoneTested": false
+  },
+  "S1MotionRegression": {
+    "oldBodyPeak": 0.353572786,
+    "newBodyPeak": 1.178575993,
+    "oldRelativePeak": 1.853087306,
+    "newRelativePeak": 5.580279827,
+    "normalizedTrajectoryError": 0.168311132,
+    "settled": true,
+    "phoneTested": false
+  },
+  "ResponseRegression": {
+    "assertions": 10132,
+    "legacyChestPeak": 0.5796626,
+    "enhancedChestPeak": 1.8530873,
+    "legacyHairPeak": 0.8895876,
+    "enhancedHairPeak": 3.1968012,
+    "hairYPeak": 0.7069767,
+    "depthPeak": 1.0788829,
+    "oldVisibleRight": 868.8,
+    "newVisibleRight": 1069.046,
+    "phoneTested": false
+  }
+}

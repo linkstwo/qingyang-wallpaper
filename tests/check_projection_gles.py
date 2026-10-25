@@ -24,7 +24,7 @@ attr2=g.gl('glVertexAttrib2f',None,g.U,g.F,g.F)
 script="""import {depthAt,deformPoint} from './character-prototype/preview/structure.mjs';
 import {contactPin} from './character-prototype/preview/contact-rig.mjs';
 const out=[];for(const vx of [-1,-.5,0,.5,1])for(const vy of [-1,0,1])
-for(const moving of [0,1,2,3])for(const spatial of [false,true])for(const [x,y] of [[400,333],[815,528],[575,785],[1010,870],[205,1190],[430,200],[815,575],[815,800],[815,1010],[600,1086],[350,1175],[880,800],[760,1000],[200,260],[244,465],[246.046875,486.4375],[271.5,497.75],[263.015625,463.8125],[210,500],[290,500],[244,550],[244,630],[244,650],[244,660]]){
+for(const moving of [0,1,2,3])for(const spatial of [false,true])for(const [x,y] of [[550,305],[940,490],[725,755],[985,1090],[330,990],[350,1005],[397,550],[590,535],[635,920],[1060,950],[370,500],[410,600]]){
  const depth=Math.fround(depthAt(x,y)),pin=Math.fround(contactPin(x,y));const body=moving>1?[6,6]:(moving?[2,-1]:[0,0]),chest=moving>1?[11.9,11.9,10.2]:(moving?[4,-3,2]:[0,0,0]),hair=moving>1?[21,moving===2?10.5:-10.5]:(moving?[5,2]:[0,0]);
  out.push({x,y,depth,pin,vx,vy,body,chest,hair,spatial,q:deformPoint(x,y,depth,[vx,vy],body,chest,hair,1.45,pin,spatial)});
 }console.log(JSON.stringify(out));"""

@@ -20,7 +20,7 @@ assert E.eglInitialize(display,C.byref(major),C.byref(minor)), 'EGL initializati
 assert E.eglBindAPI(0x30A0)
 config=P();count=I()
 assert E.eglChooseConfig(display,attrs(0x3040,4,0x3033,1,0x3024,8,0x3023,8,0x3022,8,0x3038),C.byref(config),1,C.byref(count)) and count.value
-W,H=540,1200
+W,H=540,1176
 context=E.eglCreateContext(display,config,None,attrs(0x3098,2,0x3038))
 surface=E.eglCreatePbufferSurface(display,config,attrs(0x3057,W,0x3056,H,0x3038))
 assert context and surface and E.eglMakeCurrent(display,surface,surface,context)
@@ -57,7 +57,7 @@ def u(name,*values):
  if len(values)==3:uniform3f(location,*values)
  elif len(values)==2:uniform2f(location,*values)
  else:uniform1f(location,values[0])
-u('size',1086,1448);uniform1i(locations['texture'],0);uniform1i(locations['mask'],1)
+u('size',1152,1536);uniform1i(locations['texture'],0);uniform1i(locations['mask'],1)
 textures={}
 for name in ['original.png','background.png','mask.png']:
  texture=U();genTexture(1,C.byref(texture));bindTexture(0x0DE1,texture)
@@ -67,7 +67,7 @@ for name in ['original.png','background.png','mask.png']:
 activeTexture(0x84C1);bindTexture(0x0DE1,textures['mask.png']);activeTexture(0x84C0)
 def buffer(data):
  ident=U();genBuffer(1,C.byref(ident));bindBuffer(0x8892,ident);bufferData(0x8892,len(data),data,0x88E4);return ident
-quad_values=[0,0,1086,0,0,1448,0,1448,1086,0,1086,1448]
+quad_values=[0,0,1152,0,0,1536,0,1536,1152,0,1152,1536]
 quad_raw=bytes((F*len(quad_values))(*quad_values));quad=buffer(quad_raw)
 mesh_raw=(assets/'character_mesh.bin').read_bytes();mesh=buffer(mesh_raw);pins=buffer((assets/'character_pins.bin').read_bytes());depths=buffer((assets/'character_depth.bin').read_bytes());fg_raw=(assets/'foreground_mesh.bin').read_bytes();fg=buffer(fg_raw)
 viewport(0,0,W,H);enable(0x0BE2);blend(0x0302,0x0303);enableAttr(a)
@@ -109,7 +109,7 @@ if __name__=='__main__':
   box=(int(x+x1*k),int(y+y1*k),int(x+x2*k),int(y+y2*k))
   return sum(ImageStat.Stat(ImageChops.difference(a.crop(box).convert('RGB'),b.crop(box).convert('RGB'))).mean)/3
  covered=render(fill_override=1)
- face=region_diff(covered,hair,(365,300,450,380));contact=region_diff(covered,hair,(250,910,280,940));tip=region_diff(covered,hair,(200,390,270,490))
+ face=region_diff(covered,hair,(520,270,580,320));contact=region_diff(covered,hair,(315,980,345,1000));tip=region_diff(covered,hair,(445,550,510,640))
  assert face<.3,('face moved with hair',face)
  assert contact<.3,('contact moved with hair',contact)
  assert tip>.5,('no visible strand movement',tip)

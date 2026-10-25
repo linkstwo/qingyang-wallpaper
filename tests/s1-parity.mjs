@@ -16,6 +16,6 @@ for(const lively of [false,true]){
 }
 for(const [w,h] of [[1080,2400],[1260,2800],[1080,1920]]){
  const frame=cropMapping(w,h,cropPreset(w,h,0));
- for(const [x,y] of [[815,430],[170,1170],[1005,1030]])assert.ok(frame.x+x*frame.scale>=0&&frame.x+x*frame.scale<=w&&frame.y+y*frame.scale>=0&&frame.y+y*frame.scale<=h);
+ for(const [x,y] of [[940,490],[350,1005],[985,1090]])assert.ok(frame.x+x*frame.scale>=0&&frame.x+x*frame.scale<=w&&frame.y+y*frame.scale>=0&&frame.y+y*frame.scale<=h);
 }
 console.log('PASS live crop presets keep shoulder, forearm and waist in frame');

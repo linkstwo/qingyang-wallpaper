@@ -1,0 +1,8 @@
+{
+  "subject": "reading-v2",
+  "cases": 54,
+  "triangles": 884736,
+  "minSignedAreaRatio": 0.1728305934569194,
+  "maxContactError": 0,
+  "phoneTested": false
+}

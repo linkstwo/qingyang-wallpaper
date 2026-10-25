@@ -6,121 +6,60 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
-
-import java.util.Locale;
-
+import android.view.Choreographer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-/** 应用内预览：与壁纸共享 SceneRenderer/Physics，系统实际锁屏仍需独立验收。 */
+/** Frozen editing renders only changes; live motion follows vsync and sleeps when settled. */
 final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer {
-    private static final String TAG = "QingyangPreview";
-    private static final long STEP_NANOS = 8333333L;
-    private static final float STEP_SECONDS = 0.008333334f;
-
-    private final Physics physics = new Physics();
+    interface Listener { void ready(String error); }
+    private final Physics physics=new Physics();
+    private final Handler main=new Handler(Looper.getMainLooper());
     private final SensorFeed feed;
+    private final Choreographer choreographer;
     private SceneRenderer scene;
-    private long lastNanos;
-    private long accumulator;
-    private long frames;
-    private long windowStart;
-    private long lastLog;
-    private int fps;
-    private String error = "";
+    private Listener listener;
+    private long lastNanos,accumulator;
+    private boolean started,scheduled;
+    private volatile boolean freezeMotion,animating;
     private volatile CropFrame cropOverride;
-    private volatile boolean freezeMotion;
-
-    void crop(CropFrame frame) { cropOverride=frame; }
-    void freezeMotion(boolean value) { freezeMotion=value; queueEvent(() -> physics.reset()); }
-
-    PreviewView(Context context) {
-        super(context);
-        setEGLContextClientVersion(2);
-        setRenderer(this);
-        setRenderMode(RENDERMODE_CONTINUOUSLY);
-        feed = new SensorFeed(context, new Handler(Looper.getMainLooper()));
+    private volatile String error="";
+    private final Choreographer.FrameCallback tick=new Choreographer.FrameCallback(){
+        @Override public void doFrame(long time){scheduled=false;if(!started||freezeMotion)return;requestRender();schedule(animating?0:100);}
+    };
+    PreviewView(Context context){
+        super(context);choreographer=Choreographer.getInstance();
+        feed=new SensorFeed(context,main);feed.wake=()->wake();
+        setEGLContextClientVersion(2);setPreserveEGLContextOnPause(true);
+        setRenderer(this);setRenderMode(RENDERMODE_WHEN_DIRTY);
     }
-
-    void start() {
-        lastNanos = accumulator = 0L;
-        onResume();
-        feed.start();
+    void listener(Listener value){listener=value;}
+    void crop(CropFrame frame){cropOverride=frame;requestRender();}
+    void freezeMotion(boolean value){
+        if(freezeMotion==value)return;freezeMotion=value;
+        queueEvent(()->{physics.reset();lastNanos=accumulator=0;animating=false;});
+        if(value){feed.stop();cancelTick();}else if(started){feed.start();wake();}
+        requestRender();
     }
-
-    void stop() {
-        feed.stop();
-        onPause();
-        physics.reset();
+    void start(){if(started)return;started=true;onResume();queueEvent(()->{physics.reset();lastNanos=accumulator=0;});if(!freezeMotion){feed.start();wake();}requestRender();}
+    void stop(){if(!started)return;started=false;cancelTick();feed.stop();onPause();}
+    void recalibrate(){feed.calibrate();queueEvent(()->{physics.reset();lastNanos=accumulator=0;});requestRender();wake();}
+    private void wake(){if(!started||freezeMotion)return;cancelTick();schedule(0);}
+    private void schedule(long delay){if(scheduled||!started||freezeMotion)return;scheduled=true;choreographer.postFrameCallbackDelayed(tick,delay);}
+    private void cancelTick(){choreographer.removeFrameCallback(tick);scheduled=false;}
+    String stats(){return error.isEmpty()?feed.state():"渲染错误："+error;}
+    @Override public void onSurfaceCreated(GL10 gl,EGLConfig config){if(scene!=null)scene.abandonGlResources();scene=null;lastNanos=accumulator=0;}
+    @Override public void onSurfaceChanged(GL10 gl,int width,int height){
+        try{if(scene==null){scene=new SceneRenderer(getContext());scene.phonePreview(true);scene.create(width,height);}else scene.resize(width,height);error="";}
+        catch(Exception failure){error=String.valueOf(failure.getMessage());Log.e("QingyangPreview","预览加载失败",failure);}
+        final String result=error;main.post(()->{if(listener!=null)listener.ready(result);});
     }
-
-    void recalibrate() {
-        feed.calibrate();
-        queueEvent(() -> { physics.reset(); lastNanos = accumulator = 0L; });
-    }
-
-    String stats() {
-        if (!error.isEmpty()) {
-            return "渲染错误：" + error;
-        }
-        return String.format(Locale.US, "%s\n%s\n%d fps · %d 个三角形", feed.state(), physics.snapshot(), fps,
-                scene == null ? 0 : scene.characterTriangles());
-    }
-
-    @Override
-    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        if (scene != null) scene.abandonGlResources();
-        scene = null;
-        lastNanos = accumulator = 0L;
-        // Recreate GPU resources for each new context, after dimensions are known.
-    }
-
-    @Override
-    public void onSurfaceChanged(GL10 gl, int width, int height) {
-        try {
-            if (scene == null) {
-                scene = new SceneRenderer(getContext());
-                scene.phonePreview(true);
-                scene.create(width, height);
-                Log.i(TAG, "渲染器就绪 tiles=" + scene.characterTriangles() + " size=" + width + "x" + height);
-            } else {
-                scene.resize(width, height);
-            }
-            error = "";
-        } catch (Exception failure) {
-            error = String.valueOf(failure.getMessage());
-            Log.e(TAG, "渲染器创建失败", failure);
-        }
-    }
-
-    @Override
-    public void onDrawFrame(GL10 gl) {
-        if (scene == null || !scene.isReady()) {
-            return;
-        }
-        final long now = SystemClock.elapsedRealtimeNanos();
-        if (lastNanos == 0L) {
-            lastNanos = now;
-        }
-        accumulator += Math.min(now - lastNanos, 100000000L);
-        lastNanos = now;
-        feed.decayStale();
-        while (accumulator >= STEP_NANOS) {
-            if(!freezeMotion) physics.step(STEP_SECONDS, feed.motion());
-            accumulator -= STEP_NANOS;
-        }
-        scene.cropOverride(cropOverride);
-        scene.draw(physics);
-        frames++;
-        final long nowMillis = now / 1000000L;
-        if (nowMillis - windowStart >= 1000L) {
-            fps = (int) Math.round(frames * 1000.0d / Math.max(1L, nowMillis - windowStart));
-            frames = 0;
-            windowStart = nowMillis;
-        }
-        if (nowMillis - lastLog >= 900L) {
-            lastLog = nowMillis;
-            Log.i(TAG, String.format(Locale.US, "fps=%d %s | %s | %s", fps, physics.snapshot(), feed.state(), feed.motionSnapshot()));
-        }
+    @Override public void onDrawFrame(GL10 gl){
+        if(scene==null||!scene.isReady())return;
+        long now=SystemClock.elapsedRealtimeNanos();if(lastNanos==0)lastNanos=now;
+        accumulator+=Math.min(Math.max(0,now-lastNanos),100000000L);lastNanos=now;
+        if(!freezeMotion)feed.decayStale();
+        while(accumulator>=8333333L){if(!freezeMotion)physics.step(.008333334f,feed.motion());accumulator-=8333333L;}
+        scene.cropOverride(cropOverride);scene.draw(physics);animating=physics.moving();
     }
 }
