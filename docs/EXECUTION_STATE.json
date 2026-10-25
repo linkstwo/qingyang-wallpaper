@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S1",
   "status": "in_progress",
-  "scopeOfThisRun": "Recovered/committed new reading-pose geometry, crop and compact UI; validated current source, built and original-key signed0.5.8/17, published and independently verified anonymous GitHub download. S1 remains in progress; native phone feedback and continuous side/back work remain pending.",
+  "scopeOfThisRun": "Address user-reported unnatural chest deformation and residual left contour in0.5.8, then proceed directly into S2 structure work without another user confirmation.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -47,10 +47,9 @@
     "Published the exact signed0.5.8 APK to GitHub Releases without rebuilding; runner independently verified original certificate and anonymous public download with matching SHA256."
   ],
   "next": [
-    "User tests0.5.8 full-screen crop/save/reopen, chest placement and Q-elastic feel on the actual lockscreen; fix concrete feedback without reverting to the old pose.",
-    "Independently continue remaining S1: map reliable head/neck/shoulder/arm/waist correspondences across the ten original views, document pose/lighting mismatches and credible side/back texture regions. Do not treat static back references as live integration.",
-    "Demonstrate and verify a bounded continuous surface reveal/occlusion feasibility case; record actual texture sources and limits, then advance to S2 when S1 dependencies are satisfied.",
-    "Keep the original release certificate and existing project; commit coherent work promptly and report actual work/current S-stage/unfinished items/blockers/next action after every run."
+    "Reproduce and fix chest/left-contour defects with actual production-render comparisons; preserve original RGB/identity and Q-elastic solver.",
+    "After fixing these basics, proceed directly into S2 connected surface/scene/contact structure; keep uncompleted S1 registration/native acceptance explicitly pending.",
+    "Checkpoint coherent work immediately and at most every30minutes of active development; continue without asking for stage-transition confirmation."
   ],
   "stages": {
     "S1": "in_progress",
@@ -237,5 +236,27 @@
     "sha256": "3a7361cbb34b9765ed83eac8a5ff9281668f60ad39837adcf5c15fbeb701ff4c",
     "anonymousDownloadVerified": true,
     "workflowRun": 40173213599
-  }
+  },
+  "workSession": {
+    "startedAt": "2026-10-25T14:37:20.835157+00:00",
+    "lastCheckpointAt": "2026-10-25T14:38:11.169334+00:00",
+    "checkpointIntervalMinutes": 30,
+    "mode": "active_development",
+    "userAuthorisedContinuousS2": true,
+    "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created."
+  },
+  "userReportedIssues": [
+    {
+      "id": "chest_deformation_058",
+      "reportedIn": "0.5.8",
+      "status": "open",
+      "description": "User reports chest deformation looks unnatural; inspect shape/weight attachments and preserve Q-elastic response."
+    },
+    {
+      "id": "left_outline_058",
+      "reportedIn": "0.5.8",
+      "status": "open",
+      "description": "User reports residual curved original contour/seam on the left; inspect matte alignment, background removal and material deformation."
+    }
+  ]
 }

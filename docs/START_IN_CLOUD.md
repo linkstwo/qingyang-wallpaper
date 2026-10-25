@@ -23,3 +23,7 @@
 签名/版本/产物哈希见[签名记录](../validation/build-0.5.8-signed.json)。历史0.5.7仍在Releases可回退。
 
 [下载0.5.8原签名APK](https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.8/qingyang-0.5.8.apk)（云端匿名下载及SHA-256核对通过；GitHub发布后移除一次性发布流程）。
+
+## 当前连续开发授权
+
+用户反馈0.5.8胸部不自然、左侧有原轮廓曲线残留。先修这两项，然后直接推进S2，不在阶段交界停下来等确认。保留Q弹。每个连贯改动及时提交，持续开发最长30分钟一次源码/资产/验证/状态检查点。S1其余配准/真机验收仍按事实保留，不能为进入S2虚报完成。
