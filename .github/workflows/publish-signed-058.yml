@@ -1,0 +1,49 @@
+name: Publish verified signed 0.5.8
+on:
+  push:
+    branches: [feature/cloud-framing-response]
+    paths: [.github/workflows/publish-signed-058.yml]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      APK_SHA256: a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7
+      CERT_SHA256: 0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab
+    steps:
+      - name: Retrieve already signed APK
+        run: |
+          gh api repos/${{ github.repository }}/git/blobs/b3fcb1dc193d21d9cf45078db31ddd7d3882b2a6 --jq .content | base64 --decode > qingyang-0.5.8.apk
+          echo "$APK_SHA256  qingyang-0.5.8.apk" | sha256sum --check
+      - name: Independently verify original release certificate
+        run: |
+          signer=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)
+          "$signer" verify --verbose --print-certs qingyang-0.5.8.apk | tee verification.txt
+          grep -F "Signer #1 certificate SHA-256 digest: $CERT_SHA256" verification.txt
+      - name: Publish existing bytes
+        run: |
+          cat > release-notes.md <<'NOTES'
+          新阅读照片与胸部全屏居中构图；保持Q弹，重新适配新姿势的遮罩、深度、手臂及接触约束。主界面以人物预览为主，取景面板默认收起，冻结编辑按需重绘。
+          
+          使用原发布密钥，0.5.8 / versionCode17，可覆盖升级。已验证构建、资产、签名、完整性及云端GLES/几何；手机手势、OEM锁屏裁切和实际流畅度仍待体验。当前S1，连续侧背/多角度纹理尚未完成。
+          
+          SHA-256: a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7
+          NOTES
+          if gh release view v0.5.8 --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            mkdir existing
+            if gh release download v0.5.8 --repo "${{ github.repository }}" --pattern qingyang-0.5.8.apk --dir existing; then
+              echo "$APK_SHA256  existing/qingyang-0.5.8.apk" | sha256sum --check
+            else
+              gh release upload v0.5.8 qingyang-0.5.8.apk --repo "${{ github.repository }}"
+            fi
+          else
+            gh release create v0.5.8 qingyang-0.5.8.apk --repo "${{ github.repository }}" --target 2a277fdead480d1be0c1957dd448160839416516 --title "轻漾 0.5.8 · 新图与取景体验" --notes-file release-notes.md
+          fi
+      - name: Verify anonymous public download
+        run: |
+          curl -fL --retry 4 --retry-delay 2 --max-time 120 "https://github.com/${{ github.repository }}/releases/download/v0.5.8/qingyang-0.5.8.apk" -o anonymous.apk
+          echo "$APK_SHA256  anonymous.apk" | sha256sum --check
+          echo ANONYMOUS_RELEASE_DOWNLOAD_SHA256_OK
