@@ -90,9 +90,10 @@ public final class ResponseRegression {
         Framing lowered=new Framing(1260,2800,true,90,10);
         check(lowered.y>=280f-.01f, "top margin must reserve room for a compositor centre crop");
         check(lowered.y+333f*lowered.scale>2800*.1f, "face must remain below the simulated 25% crop edge");
-        // The source back contour x=1010 stays visible through a 25% centre crop.
+        // The larger 0.5.6 composition reserves an explicitly simulated 8% zoom.
         float back = wide.x + 1010f * wide.scale;
-        check(back < 1260*.9f && back > 1260*.5f, "back contour must have compositor crop margin");
+        float zoomedBack = (back-630f)*StudyFraming.RESERVE_ZOOM+630f;
+        check(zoomedBack < 1260-27f && back > 1260*.5f, "back contour must keep the declared 8% zoom reserve");
         Physics translation = new Physics(); MotionInput shove = new MotionInput(); shove.ax = 5f;
         for(int n=0;n<30;n++) translation.step(1f/120f,shove);
         check(translation.chestPx < -.1f && translation.bodyPx < 0, "translation must drive inertia opposite the applied acceleration");

@@ -1,7 +1,7 @@
 """Render production GLSL/assets on a surfaceless EGL pbuffer. Not a phone test."""
 from pathlib import Path
 import ctypes as C
-import json, math, os
+import json, math, os, subprocess
 from PIL import Image, ImageChops, ImageStat
 os.environ.setdefault('EGL_PLATFORM','surfaceless')
 os.environ.setdefault('LIBGL_ALWAYS_SOFTWARE','1')
@@ -71,11 +71,14 @@ quad_values=[0,0,1086,0,0,1448,0,1448,1086,0,1086,1448]
 quad_raw=bytes((F*len(quad_values))(*quad_values));quad=buffer(quad_raw)
 mesh_raw=(assets/'character_mesh.bin').read_bytes();mesh=buffer(mesh_raw);pins=buffer((assets/'character_pins.bin').read_bytes());depths=buffer((assets/'character_depth.bin').read_bytes());fg_raw=(assets/'foreground_mesh.bin').read_bytes();fg=buffer(fg_raw)
 viewport(0,0,W,H);enable(0x0BE2);blend(0x0302,0x0303);enableAttr(a)
+_frames={}
 def frame(wider,size_percent=90,top_percent=10):
- cover=max(W/1086,H/1448);scale=min(cover,W/1086*size_percent/100) if wider else cover
- x=W*.5-590*scale if wider else (W-1086*scale)*.5
- y=min(H-1448*scale,H*top_percent/100) if wider and H>=1448*scale else (H-1448*scale)*.5
- return scale,x,y,min(1.45,cover/scale)
+ key=(wider,size_percent,top_percent)
+ if key not in _frames:
+  script="import {framing} from './character-prototype/preview/response.mjs';console.log(JSON.stringify(framing(...JSON.parse(process.argv[1]))));"
+  q=json.loads(subprocess.check_output(['node','--input-type=module','-e',script,json.dumps([W,H,wider,size_percent,top_percent])],cwd=ROOT,text=True))
+  _frames[key]=(q['scale'],q['x'],q['y'],q['motionGain'])
+ return _frames[key]
 def transform(mapping):
  scale,x,y,gain=mapping;u('ndcScale',2*scale/W,-2*scale/H);u('ndcOffset',2*x/W-1,1-2*y/H)
 def layer(b,count,texture,number,mask_mode,pinned=False):

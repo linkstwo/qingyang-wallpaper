@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S1",
   "status": "in_progress",
-  "scopeOfThisRun": "S1 framing subtask: source-pixel inspection of two repository images; independent framing geometry and comparison lab implemented. No production application changes.",
+  "scopeOfThisRun": "Cloud 0.5.6 Android packaging: subject framing integrated, fullscreen fixed-view study added, release APK built; original-key signing still blocked.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -19,13 +19,18 @@
     "Recorded authorization for region extraction/direct use and promoted simultaneous shoulder/back visibility to first acceptance target",
     "Inspected complete pixels of original main and back reference; main only has a narrow back-side strip",
     "Implemented region-aware framing study and a three-panel original-image comparison tool",
-    "Ran the module and regression body in V8: 72 cases / 403 checks; Node/browser/Android not run"
+    "Ran the module and regression body in V8: 72 cases / 403 checks; Node/browser/Android not run",
+    "Retrieved 10-PNG original-angle archive and verified all sizes/hashes against its README",
+    "Integrated subject-region framing in Android and JS, preserving a hair safety region",
+    "Added fullscreen front/back static composition study; packaged the existing back reference without reusing the front-view deformation mask",
+    "Built 0.5.6/15 release; verified ZIP, alignment, manifest, study DEX and exact back asset",
+    "Passed 10132 Java assertions and JS parity, 52 lifecycle checks, 72 framing cases/439 checks, 2880 GPU landmarks and GLES face/contact/hair checks"
   ],
   "next": [
-    "Run node tests/framing-study-regression.mjs and serve the repository-root comparison page in a usable environment",
-    "Visually inspect same-aspect three-panel crops, correct manual ROIs and capture actual composition evidence",
-    "Download/review/deduplicate the multiview overview and 13 candidate records; select a better shoulder/back source if available",
-    "Only after visual acceptance proceed to registration/geometry; do not replace original.png while keeping the old mask/weights"
+    "Restore the current authenticated cloud bridge route and obtain the existing signing handoff; do not generate a new key",
+    "Sign the exact 0.5.6 artifact with original certificate, independently verify and deliver installable APK",
+    "On phone compare dynamic front composition and fullscreen static back candidate; keep actual lockscreen visibility pending",
+    "Review the ten retrieved original images and register compatible view/region correspondences before continuous-view work"
   ],
   "stages": {
     "S1": "in_progress",
@@ -39,12 +44,12 @@
   },
   "blocked": [
     {
-      "task": "Source import, browser preview, actual rendered composition and Android integration",
-      "reason": "Execution environment became unavailable during this run; no working shell/browser runtime."
+      "task": "Original release signing",
+      "reason": "Cloud bridge tool endpoint returns404; root webpage is online but login-protected. No original private key in current runtime."
     },
     {
-      "task": "Optional dsh collaboration",
-      "reason": "Cloud bridge status returned historical ngrok404; no task was sent."
+      "task": "Browser DOM/layout test",
+      "reason": "Local browser executable absent, official download returned HTML rather than a ZIP; separate browser could not reach loopback server. GLES rendering completed instead."
     }
   ],
   "pendingPhoneChecks": [
@@ -71,7 +76,12 @@
     "validation/framing-study.json",
     "character-prototype/preview/framing-study.mjs",
     "character-prototype/preview/framing-lab.html",
-    "tests/framing-study-regression.mjs"
+    "tests/framing-study-regression.mjs",
+    "validation/build-0.5.6.json",
+    "validation/build-0.5.6.properties",
+    "validation/framing-0.5.6.json",
+    "docs/CLOUD_RESULT-0.5.6-FRAMING.md",
+    "references/multiview-archive-manifest.json"
   ],
   "priorityAcceptance": "Keep the character large and the composition filled while showing a clear shoulder line and a meaningful back region simultaneously in the default screen view. Validate before claiming framing resolved.",
   "assetAuthorization": {
@@ -87,6 +97,12 @@
     "candidateRecords": 13,
     "overviewLocated": true,
     "independentAnglesConfirmed": false,
-    "pixelReviewAndImportComplete": false
-  }
+    "pixelReviewAndImportComplete": false,
+    "archiveRetrieved": true,
+    "archiveLibraryId": "libfile_87b01f83278c8191a58ee9ac01bf06d4",
+    "archiveManifest": "references/multiview-archive-manifest.json",
+    "archiveFileCount": 10
+  },
+  "currentCandidateVersion": "0.5.6",
+  "currentCandidateVersionCode": 15
 }

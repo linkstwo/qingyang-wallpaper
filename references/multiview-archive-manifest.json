@@ -1,0 +1,109 @@
+{
+  "archiveLibraryId": "libfile_87b01f83278c8191a58ee9ac01bf06d4",
+  "originalsRetrieved": 10,
+  "hashesMatchArchiveReadme": true,
+  "uniqueSha256": 10,
+  "files": [
+    {
+      "name": "工业车间里的专注侧影.png",
+      "sha256": "5baff644ac4e5196168c2bbb2d4d3812764bc0db3cfd24bebd52ecd8c9a8077c",
+      "bytes": 2140580,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    },
+    {
+      "name": "阳光下的湿衣工坊蓝图.png",
+      "sha256": "e8d6510203e63c94c4a6940f028a15597a81dd6c865432cf15bc91e9bec9a871",
+      "bytes": 2308162,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    },
+    {
+      "name": "阳光下的工业车间肖像.png",
+      "sha256": "c5fd811ba75236e10246c7cd02ddecd453e056e30f0c9affd3292d4070b72bc6",
+      "bytes": 2334710,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    },
+    {
+      "name": "阳光下的车间蓝图少女.png",
+      "sha256": "7b8a75b5a9550f0b773382238b54438feb04e458e62a33452451a5973b3f358e",
+      "bytes": 2237936,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    },
+    {
+      "name": "工业车间里的蓝图专注者.png",
+      "sha256": "5cc55c781dbd36100fd671c7408d61d323c35a6fce79b729da9d758baa30d252",
+      "bytes": 2284834,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    },
+    {
+      "name": "汗湿图纸与工业车间的专注时刻.png",
+      "sha256": "56a79d4fa430d24396d3413c2f444e10e224d2e196fae9b87c72f9f1b5ddfeea",
+      "bytes": 2332211,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    },
+    {
+      "name": "工业车间里的蓝图时光.png",
+      "sha256": "23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16",
+      "bytes": 2312520,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    },
+    {
+      "name": "工业车间暖光下的湿润肖像.png",
+      "sha256": "61acbf261df619af6f091fa4b35228f5c0fa6fa7227ec57b41eee369731a75a5",
+      "bytes": 2280115,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    },
+    {
+      "name": "阳光车间中的湿发女孩.png",
+      "sha256": "c1bb079e677a00e35c87a311d7a1bb27ed42a352248f7ad73346a43f3ef8eb4c",
+      "bytes": 2278631,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    },
+    {
+      "name": "阳光下的车间绘图者.png",
+      "sha256": "64eedd7b69fd75381f46a1f2ebd72957a5eef59ad28bfa686ba2158083e57608",
+      "bytes": 2334916,
+      "size": [
+        1086,
+        1448
+      ],
+      "pixelReviewComplete": false
+    }
+  ],
+  "registeredMultiview": false
+}

@@ -8,9 +8,11 @@ final class SceneSettings {
     private final SharedPreferences preferences;
     SceneSettings(Context context) {
         preferences = context.getSharedPreferences("scene", Context.MODE_PRIVATE);
-        if (preferences.getInt("framingRevision", 0) < 1) {
-            // One-time migration: an old saved close-up must not hide the new safe framing.
-            preferences.edit().putBoolean("wider", true).putInt("framingRevision", 1).apply();
+        if (preferences.getInt("framingRevision", 0) < 2) {
+            // Activate the new subject fit once; the old size slider had a different basis.
+            // Keep the user's vertical placement and all physics/view preferences.
+            preferences.edit().putBoolean("wider", true).putInt("sizePercent", 90)
+                    .putInt("framingRevision", 2).apply();
         }
     }
     boolean wider() { return preferences.getBoolean("wider", true); }

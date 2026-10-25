@@ -24,15 +24,12 @@ final class Framing {
     Framing(int width, int height, boolean wider, int sizePercent, int topPercent) {
         float w = Math.max(1, width), h = Math.max(1, height);
         float cover = Math.max(w / 1086f, h / 1448f);
-        // Reserve real room at the back, including a modest compositor centre crop.
-        // The full source width is the reference, rather than the old 850px crop.
-        scale = wider ? Math.min(cover, w / 1086f * MathX.clamp(sizePercent, 65, 125) / 100f) : cover;
-        x = wider ? w * 0.5f - 590f * scale : (w - 1086f * scale) * 0.5f;
-        float centeredY = (h - 1448f * scale) * 0.5f;
-        // Reserve top room for compositor zoom as well as horizontal back margin.
-        y = wider && centeredY >= 0f
-                ? Math.min(h - 1448f * scale, h * MathX.clamp(topPercent, 0, 20) / 100f)
-                : centeredY;
+        // Preserve the annotated head/shoulder/back-side region instead of shrinking
+        // the full image width. This can reveal only surfaces in the original view.
+        StudyFraming subject = StudyFraming.fit(width, height, false, sizePercent, topPercent);
+        scale = wider ? subject.scale : cover;
+        x = wider ? subject.x : (w - 1086f * scale) * 0.5f;
+        y = wider ? subject.y : (h - 1448f * scale) * 0.5f;
         // Screen-space inertia stays legible when the composition pulls back.
         motionGain = Math.min(1.45f, cover / scale);
     }

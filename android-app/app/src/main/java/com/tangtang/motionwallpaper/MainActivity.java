@@ -43,22 +43,22 @@ public final class MainActivity extends Activity {
         root.addView(preview, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
 
         Button framing = new Button(this);
-        framing.setText(sceneSettings.wider() ? "构图：舒展肩背 · 点此切近景" : "构图：近景 · 点此看更多肩背");
+        framing.setText(sceneSettings.wider() ? "构图：主体优先 · 点此切近景" : "构图：近景 · 点此保留肩背侧缘");
         framing.setOnClickListener(v -> {
             sceneSettings.wider(!sceneSettings.wider());
-            framing.setText(sceneSettings.wider() ? "构图：舒展肩背 · 点此切近景" : "构图：近景 · 点此看更多肩背");
+            framing.setText(sceneSettings.wider() ? "构图：主体优先 · 点此切近景" : "构图：近景 · 点此保留肩背侧缘");
         });
         root.addView(framing);
 
         TextView sizeLabel = new TextView(this);
         sizeLabel.setTextColor(Color.parseColor("#cfe6e0"));
         sizeLabel.setPadding(dp(14), dp(4), dp(14), 0);
-        sizeLabel.setText("人物大小 " + sceneSettings.sizePercent() + "% · 锁屏仍裁剪就向左调小");
+        sizeLabel.setText("人物大小 " + sceneSettings.sizePercent() + "% · 调整人物占屏大小");
         root.addView(sizeLabel);
         SeekBar size = new SeekBar(this);
         size.setMax(60);
         size.setProgress(sceneSettings.sizePercent() - 65);
-        size.setContentDescription("人物大小，65%到125%，锁屏裁剪时调小");
+        size.setContentDescription("人物大小，65%到125%");
         size.setPadding(dp(14), 0, dp(14), 0);
         size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
@@ -66,8 +66,8 @@ public final class MainActivity extends Activity {
                 sceneSettings.sizePercent(progress + 65);
                 // Editing this slider is an explicit request for the wider composition.
                 sceneSettings.wider(true);
-                framing.setText("构图：舒展肩背 · 点此切近景");
-                sizeLabel.setText("人物大小 " + sceneSettings.sizePercent() + "% · 锁屏仍裁剪就向左调小");
+                framing.setText("构图：主体优先 · 点此切近景");
+                sizeLabel.setText("人物大小 " + sceneSettings.sizePercent() + "% · 调整人物占屏大小");
             }
             public void onStartTrackingTouch(SeekBar bar) {}
             public void onStopTrackingTouch(SeekBar bar) {}
@@ -86,7 +86,7 @@ public final class MainActivity extends Activity {
             public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
                 if (!fromUser) return;
                 sceneSettings.topPercent(progress); sceneSettings.wider(true);
-                framing.setText("构图：舒展肩背 · 点此切近景");
+                framing.setText("构图：主体优先 · 点此切近景");
                 topLabel.setText("上下位置 " + progress + "% · 头部被裁时向右下移");
             }
             public void onStartTrackingTouch(SeekBar bar) {}
@@ -103,12 +103,17 @@ public final class MainActivity extends Activity {
         root.addView(structure);
 
         TextView hint = new TextView(this);
-        hint.setText("轻漾 0.5.5 · 预览按手机比例显示。大小会立即保存到壁纸。\n缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
-                + "系统可能额外放大；先调小人物留出肩背，再点【设为动态壁纸】进入系统选择器，按系统提供的选项应用。");
+        hint.setText("轻漾 0.5.6 · 主体优先构图已用于动态壁纸，大小与位置会保存。\n"
+                + "【全屏肩背构图对照】可查看前侧与背向参考；背向图目前是静态对照。");
         hint.setTextColor(Color.parseColor("#cfe6e0"));
         hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13.0f);
         hint.setPadding(dp(14), dp(10), dp(14), dp(4));
         root.addView(hint);
+
+        Button study = new Button(this);
+        study.setText("全屏肩背构图对照");
+        study.setOnClickListener(v -> startActivity(new Intent(this, FramingStudyActivity.class)));
+        root.addView(study);
 
         status = new TextView(this);
         status.setTextColor(Color.parseColor("#8fbdb2"));

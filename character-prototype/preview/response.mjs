@@ -1,4 +1,5 @@
 import {Spring, clamp} from './rig.mjs';
+import {fitRegions,STUDIES} from './framing-study.mjs';
 const spring=(frequency,damping,limit)=>new Spring({frequency,damping,limit});
 export class Response {
   constructor(enhanced=true){
@@ -39,7 +40,14 @@ export class Response {
   }
 }
 export function framing(width,height,wider=true,sizePercent=90,topPercent=10){
-  const w=Math.max(1,width),h=Math.max(1,height),cover=Math.max(w/1086,h/1448),scale=wider?Math.min(cover,w/1086*clamp(sizePercent,65,125)/100):cover;
-  return {scale,x:wider?w*.5-590*scale:(w-1086*scale)*.5,y:wider&&h>=1448*scale?Math.min(h-1448*scale,h*clamp(topPercent,0,20)/100):(h-1448*scale)*.5,motionGain:Math.min(1.45,cover/scale)};
+  const w=Math.max(1,width),h=Math.max(1,height),cover=Math.max(w/1086,h/1448);
+  if(!wider)return {scale:cover,x:(w-1086*cover)*.5,y:(h-1448*cover)*.5,motionGain:1};
+  const base=fitRegions(w,h,STUDIES[0].regions,{topFraction:clamp(topPercent,0,20)/100});
+  const scale=Math.min(cover,base.scale*clamp(sizePercent,65,125)/90);
+  const [left,top,right,bottom]=base.bounds,inset=base.inset,z=base.reserveZoom;
+  const minY=h*.5+(inset-h*.5)/z-top*scale,maxY=h*.5+(h-inset-h*.5)/z-bottom*scale;
+  let y=h*clamp(topPercent,0,20)/100;
+  if(minY<=maxY)y=clamp(y,minY,maxY);
+  return {scale,x:w*.5-(left+right)*.5*scale,y,motionGain:Math.min(1.45,cover/scale)};
 }
 export {hairWeight} from './structure.mjs';

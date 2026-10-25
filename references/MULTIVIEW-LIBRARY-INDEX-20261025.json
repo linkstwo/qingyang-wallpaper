@@ -173,5 +173,15 @@
     "Region extraction/cropping",
     "Region combination after identity/pose/geometry checks"
   ],
-  "priority": "Large-character saturated framing with simultaneous shoulder and back visibility."
+  "priority": "Large-character saturated framing with simultaneous shoulder and back visibility.",
+  "archive": {
+    "library_file_id": "libfile_87b01f83278c8191a58ee9ac01bf06d4",
+    "name": "车间角色_多角度原图10张.zip",
+    "retrieved": true,
+    "originalPngCount": 10,
+    "hashAndSizeVerified": true,
+    "pixelReviewAllComplete": false,
+    "registeredMultiview": false,
+    "manifest": "references/multiview-archive-manifest.json"
+  }
 }

@@ -1,0 +1,47 @@
+{
+  "version": "0.5.6",
+  "cases": 72,
+  "assertions": 439,
+  "hairSafetyRegionAdded": true,
+  "baselineImageHeightFraction": 0.54,
+  "candidates": [
+    {
+      "id": "main",
+      "frame": {
+        "scale": 1.1512717537349395,
+        "x": -150.7630522409637,
+        "y": 120,
+        "bounds": [
+          185,
+          20,
+          1015,
+          1040
+        ],
+        "inset": 23.999999975999998,
+        "reserveZoom": 1.08
+      },
+      "imageHeightFraction": 0.6946006247534134
+    },
+    {
+      "id": "back",
+      "frame": {
+        "scale": 1.472350624961479,
+        "x": -139.4898134197226,
+        "y": 120,
+        "bounds": [
+          137,
+          15,
+          786,
+          1000
+        ],
+        "inset": 23.999999975999998,
+        "reserveZoom": 1.08
+      },
+      "imageHeightFraction": 0.8883182103934257
+    }
+  ],
+  "glesRendered": true,
+  "phoneTested": false,
+  "browserDomTested": false,
+  "reserveZoomIsSimulated": true
+}

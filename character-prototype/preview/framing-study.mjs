@@ -6,6 +6,7 @@ export const STUDIES = [
     limitation:'原图只记录窄背侧，裁切不会补出被遮挡的背部。',
     regions:[
       {id:'head',label:'头部',box:[270,20,780,445]},
+      {id:'hair',label:'发梢安全区域',box:[185,245,315,665]},
       {id:'face',label:'脸',box:[350,255,520,430]},
       {id:'shoulder',label:'近侧肩',box:[730,400,923,635]},
       {id:'back',label:'背侧窄条',box:[920,620,1015,1040]}

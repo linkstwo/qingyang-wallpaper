@@ -11,6 +11,12 @@ val signingProperties = Properties().apply {
     }
 }
 
+// Copy one existing reference into generated assets without duplicating source PNGs in Git.
+val prepareFramingAssets by tasks.registering(Copy::class) {
+    from(rootProject.file("../references/originals/back-reference.png"))
+    into(layout.buildDirectory.dir("generated/framingAssets"))
+}
+
 android {
     namespace = "com.tangtang.motionwallpaper"
     compileSdk = 34
@@ -19,8 +25,8 @@ android {
         applicationId = "com.tangtang.motionwallpaper"
         minSdk = 28
         targetSdk = 34
-        versionCode = 14
-        versionName = "0.5.5"
+        versionCode = 15
+        versionName = "0.5.6"
     }
 
     signingConfigs {
@@ -48,4 +54,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    sourceSets.getByName("main").assets.srcDir(layout.buildDirectory.dir("generated/framingAssets"))
 }
+
+tasks.named("preBuild").configure { dependsOn(prepareFramingAssets) }
