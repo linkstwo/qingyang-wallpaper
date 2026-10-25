@@ -1,11 +1,13 @@
 # 跨平台构建与验证
 
+最新0.5.5已实际构建未签名release，产物校验和本机原签名步骤见[APK交接](APK-0.5.5-SIGNING.md)。
+
 ## 环境
 
 - JDK 17；Gradle 8.7（本工程附wrapper）；Android Gradle Plugin 8.5.0。
 - Android SDK platform android-34、build-tools 34.0.0。设置 ANDROID_HOME 或 ANDROID_SDK_ROOT 指向自己的SDK，不能沿用本机D盘/C盘路径。
 - Node.js 20+（不需要npm install）；Python 3.12（基础校验只用标准库，GLES图像检查另需Pillow/Mesa，视频另需ffmpeg）。
-- 首次使用wrapper需要从Gradle官方源下载8.7；首次构建需要google()/Maven仓库。缓存不完整时不要使用 --offline。本地已有缓存可离线构建。
+- 首次使用wrapper需要从Gradle官方源下载8.7；首次构建需要google()/Maven仓库。缓存不完整时不要使用 --offline。若环境通过HTTPS代理联网，Java/Gradle不会自动使用HTTPS_PROXY；需给启动器和org.gradle.jvmargs中的工作JVM设置相应http/https代理主机与端口，并校验官方分发校验和。不要将代理凭据写入仓库。本地已有缓存可离线构建。
 
 ## Linux / 云端
 
