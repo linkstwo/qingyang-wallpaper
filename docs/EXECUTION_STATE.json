@@ -8,9 +8,9 @@
   "baselineHandoffCommit": "dac79d8c0ba078aacd565c6c1627e59b74e8f9fa",
   "baselineVersion": "0.5.5",
   "baselineVersionCode": 14,
-  "currentStage": "S1",
+  "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "Address user-reported unnatural chest deformation and residual left contour in0.5.8, then proceed directly into S2 structure work without another user confirmation.",
+  "scopeOfThisRun": "0.5.8 visual repair is checkpointed; directly entered S2 under user authorisation. Implement calibrated scene/contact projection and inferred closed structural proxies; hidden materials and native visual acceptance stay pending.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -45,16 +45,18 @@
     "Restored compact preview-first home/editor UI, explicit source-centre action, draft save/cancel and demand-driven/vsync preview rendering; not yet native-phone tested.",
     "Recovered0.5.8 new-pose assets/crop in e58414b and UI/checks in2a277fd; verified source RGB copies and15 assets/four copy pairs,159 crop/settings checks,10132 response assertions,52 lifecycle checks, Java/JS solver parity,1440 GLES landmarks and884736 triangle cases. Built release with vitalLint, original-key signed and independently verified version/certificate/ZIP/alignment/assets/DEX and negative unsigned/tampered cases. Signed APK saved with Library id libfile_cc0dc13811c48191b49b6f58131caa01; actual phone/native behaviour remains pending.",
     "Published the exact signed0.5.8 APK to GitHub Releases without rebuilding; runner independently verified original certificate and anonymous public download with matching SHA256.",
-    "Reproduced0.5.8 chest/left-edge defect; separated full motion coverage from source erasure, and replaced single broad chest field with two smooth material lobes and neckline/ribcage taper. Current CPU/GLES/triangle checks passed; visual fix still requires user acceptance."
+    "Reproduced0.5.8 chest/left-edge defect; separated full motion coverage from source erasure, and replaced single broad chest field with two smooth material lobes and neckline/ribcage taper. Current CPU/GLES/triangle checks passed; visual fix still requires user acceptance.",
+    "Entered S2 after checkpoint041b653: added calibrated source/world camera model, shared support-depth convention and closed head-neck-torso/arm thickness proxy exporter. These are inferred geometry/debug assets, not textured multiview completion.",
+    "S2 first structural checkpoint:550 vertices/1088 faces in3 closed parts,7291 scene checks passed; neutral calibrated projection error<2e-13 source pixels, connected-edge winding checks passed,340 vertices explicitly untextured. Production camera integration remains next."
   ],
   "next": [
-    "Proceed directly into S2 calibrated scene/contact projection and connected thickness proxies; keep the user feedback pending phone confirmation.",
-    "After fixing these basics, proceed directly into S2 connected surface/scene/contact structure; keep uncompleted S1 registration/native acceptance explicitly pending.",
-    "Checkpoint coherent work immediately and at most every30minutes of active development; continue without asking for stage-transition confirmation."
+    "Integrate calibrated S2 scene projection in CPU/GLSL; source-material hand/arm constraints must remain attached while camera projection moves their screen positions.",
+    "Validate neutral identity, support-plane contact, mesh safety and actual GLES output; retain Q-elastic solver and contour fix.",
+    "Continue side/back mapping and textured visibility only when source credibility is established; keep S2 incomplete until structural requirements are satisfied."
   ],
   "stages": {
     "S1": "in_progress",
-    "S2": "not_started",
+    "S2": "in_progress",
     "S3": "not_started",
     "S4": "not_started",
     "S5": "not_started",
@@ -110,7 +112,11 @@
     "docs/S1-READING-0.5.8.md",
     "validation/reading-subject-0.5.8.json",
     "validation/s1-basics-0.5.8.json",
-    "validation/build-0.5.8-signed.json"
+    "validation/build-0.5.8-signed.json",
+    "docs/CONTOUR-FIX-20261025.md",
+    "docs/S2-STRUCTURE-RESULT.md",
+    "validation/contour-fix.json",
+    "validation/s2-scene-model.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -240,7 +246,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-25T14:37:20.835157+00:00",
-    "lastCheckpointAt": "2026-10-25T14:49:43.494170+00:00",
+    "lastCheckpointAt": "2026-10-25T14:55:35.762918+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,
