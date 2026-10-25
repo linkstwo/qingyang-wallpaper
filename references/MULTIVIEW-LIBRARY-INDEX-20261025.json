@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "discoveredAt": "2026-10-25",
+  "discovery": "Library date-filtered listing, 2026-10-23 to 2026-10-24; keyword search returned no results, listing exposed candidates.",
+  "status": "metadata_located_not_pixel_reviewed_or_imported",
+  "originalRepositoryImagesAlreadyPresent": 4,
+  "additionalUniqueAngleCount": null,
+  "warning": "Candidate records can overlap existing originals or differ in pose/identity. Count is not the number of usable independent views. Do not claim all fetched or suitable.",
+  "overviews": [
+    {
+      "name": "车间角色_多角度参考总览.jpg",
+      "library_file_id": "libfile_81972e2f2d348191bd75119412b72357",
+      "file_id": "file_0000000039f481f595be6db094a3971f",
+      "size_bytes": 506436,
+      "width": 1190,
+      "height": 2222,
+      "textAndMetadataRead": true,
+      "pixelsInspected": false
+    }
+  ],
+  "candidates": [
+    {
+      "name": "暖光下的静谧绘图时光.png",
+      "library_file_id": "libfile_e4bdea014eec8191a6093743e6f6346b",
+      "file_id": "file_00000000c94881f5b8b96fe9f3ccd41c",
+      "size_bytes": 2124283,
+      "created_at": "2026-10-23T02:38:56.842579+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "工作室里的沉思时光.png",
+      "library_file_id": "libfile_67e02a34e48081918aa2b8e7766ede40",
+      "file_id": "file_000000001efc81f596ea4dc16fe87d5e",
+      "size_bytes": 2164356,
+      "created_at": "2026-10-23T02:40:18.330646+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "车间光影下的蓝图少女.png",
+      "library_file_id": "libfile_8a8b828ba2f48191b78c5197c2ace4b4",
+      "file_id": "file_00000000f4ac81f5983c6f25c3fc9922",
+      "size_bytes": 2233137,
+      "created_at": "2026-10-23T02:45:08.368727+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "汗湿图纸与工业车间的专注时刻.png",
+      "library_file_id": "libfile_fd3d5b1a29ec819188ebf90254ee2471",
+      "file_id": "file_000000009f3481f8a03fe4525ffb0940",
+      "size_bytes": 2332211,
+      "created_at": "2026-10-23T02:48:58.303377+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "阳光下的车间蓝图少女.png",
+      "library_file_id": "libfile_2afcc1b689c88191a59ce6a42ff46158",
+      "file_id": "file_00000000a87081f5a3aa4edb3fa6f2c9",
+      "size_bytes": 2237936,
+      "created_at": "2026-10-23T02:51:23.805156+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "工业车间里的蓝图专注者.png",
+      "library_file_id": "libfile_07716b8ccf788191a5c58ee2d4a2b1ef",
+      "file_id": "file_0000000013e481f5be1fec4ad7159ba8",
+      "size_bytes": 2284834,
+      "created_at": "2026-10-23T13:53:53.268650+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "工业车间里的蓝图时光.png",
+      "library_file_id": "libfile_794e4356250081919261b29d97ed3232",
+      "file_id": "file_00000000cc9c81f58d067dfe60c9b71a",
+      "size_bytes": 2312520,
+      "created_at": "2026-10-23T13:57:08.013563+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "工业车间里的专注侧影.png",
+      "library_file_id": "libfile_ec7d08df3a7c8191b71407a6fb0005ce",
+      "file_id": "file_00000000c1e081fb883baa01281a099f",
+      "size_bytes": 2140580,
+      "created_at": "2026-10-23T13:57:08.629274+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "阳光下的湿衣工坊蓝图.png",
+      "library_file_id": "libfile_74a89a371d708191b8fc327d9d4ec0b1",
+      "file_id": "file_0000000012f8823099a84c69814a3d2e",
+      "size_bytes": 2308162,
+      "created_at": "2026-10-23T14:02:22.370458+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "阳光下的车间绘图者.png",
+      "library_file_id": "libfile_2ba257ee47188191941f49ce1ad1ae61",
+      "file_id": "file_0000000064ec81f5aafafde956c667ee",
+      "size_bytes": 2334916,
+      "created_at": "2026-10-23T14:11:19.447439+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "阳光下的工业车间肖像.png",
+      "library_file_id": "libfile_fb16f47671d88191b2c4604670dc157a",
+      "file_id": "file_000000009a4881fb87392351b2fc839d",
+      "size_bytes": 2334710,
+      "created_at": "2026-10-23T14:42:48.297988+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "工业车间暖光下的湿润肖像.png",
+      "library_file_id": "libfile_04ed2a1983888191b5905b91d83a046b",
+      "file_id": "file_00000000621081f59d135f8126c73611",
+      "size_bytes": 2280115,
+      "created_at": "2026-10-23T14:51:23.021891+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    },
+    {
+      "name": "阳光车间中的湿发女孩.png",
+      "library_file_id": "libfile_52628c8ac074819182d856673ce9c744",
+      "file_id": "file_0000000038f88230b8acc70a8263851f",
+      "size_bytes": 2278631,
+      "created_at": "2026-10-23T14:56:20.721708+00:00",
+      "pixelReview": "pending",
+      "sha256": null,
+      "angleLabel": null,
+      "usableRegions": []
+    }
+  ],
+  "materialization": {
+    "attempted": true,
+    "completed": false,
+    "reason": "Library download helper could not access prepare_materialize in this local runtime. Preserve exact identities; use a supported authenticated transfer route in a later capable run. No file bytes were inspected or imported."
+  },
+  "authorizedUses": [
+    "Direct use when compatible",
+    "Region extraction/cropping",
+    "Region combination after identity/pose/geometry checks"
+  ],
+  "priority": "Large-character saturated framing with simultaneous shoulder and back visibility."
+}

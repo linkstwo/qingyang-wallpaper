@@ -14,12 +14,14 @@
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
-    "Detailed S1-S8 continuation plan and common prompt saved"
+    "Detailed S1-S8 continuation plan and common prompt saved",
+    "Located multiview overview and 13 workshop-related candidate image records; pixel review and import remain pending",
+    "Recorded authorization for region extraction/direct use and promoted simultaneous shoulder/back visibility to first acceptance target"
   ],
   "next": [
-    "Execute S1 asset inventory and annotated cross-view comparison",
-    "Record reliable and inferred correspondences and pose differences",
-    "Create bounded continuous surface-reveal feasibility experiment, then select incremental geometry approach"
+    "Review located multiview overview and candidate images; perform pixel inspection and deduplication",
+    "Create large-character full-screen composition candidates showing shoulder and back simultaneously; compare with 0.5.5",
+    "Mark useful body regions and source correspondences, then continue the bounded geometry/texture feasibility experiment"
   ],
   "stages": {
     "S1": "not_started",
@@ -51,5 +53,21 @@
     "validation/hair-safety.json",
     "validation/hair-safety-scan.jpg",
     "validation/build-0.5.5-signed.json"
-  ]
+  ],
+  "priorityAcceptance": "Keep the character large and the composition filled while showing a clear shoulder line and a meaningful back region simultaneously in the default screen view. Validate before claiming framing resolved.",
+  "assetAuthorization": {
+    "locateAcrossLibraryAndKnownConversations": true,
+    "moreThanFourProvided": true,
+    "countUnconfirmed": true,
+    "allowRegionExtractionCroppingAndCombination": true,
+    "allowDirectUse": true,
+    "preserveIdentityAndPoseConsistency": true
+  },
+  "assetInventory": {
+    "index": "references/MULTIVIEW-LIBRARY-INDEX-20261025.json",
+    "candidateRecords": 13,
+    "overviewLocated": true,
+    "independentAnglesConfirmed": false,
+    "pixelReviewAndImportComplete": false
+  }
 }
