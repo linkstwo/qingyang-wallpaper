@@ -82,8 +82,8 @@ for (const name of ['original.png', 'mask.png', 'background.png']) {
 for (const name of ['scene.vert', 'scene.frag']) output(name, fs.readFileSync(path.join(PREVIEW, name)));
 
 // 独立复核：安卓端会用它校验的关键接触点
-const fixed = [['paper', 120, 1010], ['paper edge', 300, 1100], ['far fingers', 170, 920], ['far palm', 260, 930], ['near fingers', 205, 1190], ['near palm', 310, 1190], ['seated support', 500, 1400]];
-const free = [['face', 430, 340], ['shoulder', 815, 528], ['torso', 700, 780], ['elbow', 815, 1010]];
+const fixed=[['paper',100,1000],['holding hand',330,990],['seated support',500,1450]];
+const free=[['face',550,305],['shoulder',940,490],['torso',795,800],['elbow',635,920]];
 report.contactRecheck = [...fixed, ...free].map(([name, x, y]) => ({ name, pin: contactPin(x, y) }));
 report.contactRecheckPassed = report.contactRecheck.every(({ name, pin }) => fixed.some(([n]) => n === name) ? pin > 0.9999 : pin < 0.001);
 

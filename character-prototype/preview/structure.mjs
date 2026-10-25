@@ -1,161 +1,24 @@
-// Source-pixel depth proxy, manually fitted to the existing main view.
-// Side/back references guide volume only: no registered multiview reconstruction.
-export const structure = {
-  version:4, source:[1086,1448], units:'source pixels; positive depth towards viewer',
-  pivot:[620,1100], cameraDistance:2200, yawRadians:.14, pitchRadians:.07,
-  headPlate:{anchor:[430,330],depth:116,rigidThroughY:395,neckEndsY:565},
-  hairEnvelope:{width:56,rootStart:285,rootEnd:465,releaseStart:480,releaseEnd:650},
-  armSupport:{shoulder:[815,575],elbow:[815,1010],wrist:[350,1175],upperRadius:48,foreRadius:42,feather:36},
-  references:['main-front-three-quarter.png','side-reference.png','back-reference.png'],
-  limitation:'Bounded main-view depth proxy. Hidden surfaces and 360-degree viewing are not reconstructed.'
-};
+import {subject as S} from './subject.mjs';
+export const structure={version:5,source:S.canvas,pivot:[790,1110],cameraDistance:2300,yawRadians:.14,pitchRadians:.07,headPlate:S.head,armSupport:S.arm,hairEnvelope:S.hair,references:['main-reading-v2.png','side-reference.png','back-reference.png'],limitation:S.limitation};
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
-const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
-const bell=(x,y,cx,cy,rx,ry)=>Math.exp(-2*(((x-cx)/rx)**2+((y-cy)/ry)**2));
-export function depthAt(x,y){
-  // A broad head plate keeps the eyes/glasses together. Rounded torso/shoulder
-  // and clothed chest volumes supply differential parallax below the neck.
-  const head=1-smooth(350,510,y);
-  const torso=85*bell(x,y,735,820,340,460);
-  const shoulder=95*bell(x,y,815,565,180,220);
-  const chest=105*bell(x,y,575,785,170,210);
-  const arm=65*bell(x,y,800,985,160,300);
-  const body=Math.pow(torso**4+shoulder**4+chest**4+arm**4,.25);
-  return head*(110+12*bell(x,y,400,340,150,140))+(1-head)*body;
-}
-export function depthWeights(vertices){
-  const values=new Float32Array(vertices.length/2);
-  for(let i=0;i<values.length;i++)values[i]=depthAt(vertices[2*i],vertices[2*i+1]);
-  return values;
-}
-function surfaceDelta(x,y,depth,viewX,viewY){
-  const [px,py]=structure.pivot,dx=x-px,dy=y-py;
-  const yaw=clamp(viewX,-1,1)*structure.yawRadians,pitch=clamp(viewY,-1,1)*structure.pitchRadians;
-  const cy=Math.cos(yaw),sy=Math.sin(yaw),cx=Math.cos(pitch),sx=Math.sin(pitch);
-  const rx=cy*dx+sy*depth,rz=-sy*dx+cy*depth,ry=cx*dy-sx*rz,z=sx*dy+cx*rz;
-  const d=structure.cameraDistance,k=d/(d-z),k0=d/(d-depth),free=smooth(0,45,depth);
-  const tx=rx*k-dx*k0,ty=ry*k-dy*k0;
-  return [tx/Math.sqrt(1+tx*tx/576)*free,ty/Math.sqrt(1+ty*ty/400)*free];
-}
-
-// Weak-perspective head plate: preserve facial distances, blend only through neck.
-// Orientation is extracted from a projected vertical axis, never tuned per eye/vertex.
-export const headWeight=(y)=>1-smooth(395,565,y);
-function rotateVector(x,y,z,view){
-  const yaw=clamp(view[0],-1,1)*structure.yawRadians,pitch=clamp(view[1],-1,1)*structure.pitchRadians;
-  const cy=Math.cos(yaw),sy=Math.sin(yaw),cx=Math.cos(pitch),sx=Math.sin(pitch);
-  const rx=cy*x+sy*z,rz=-sy*x+cy*z;
-  return [rx,cx*y-sx*rz,sx*y+cx*rz];
-}
-const perspective=p=>{const k=structure.cameraDistance/(structure.cameraDistance-p[2]);return [p[0]*k,p[1]*k];};
-function headDelta(x,y,view){
-  const {anchor:[hx,hy],depth}=structure.headPlate;
-  const r=[hx-structure.pivot[0],hy-structure.pivot[1],depth];
-  const a=perspective(rotateVector(...r,view)),b=perspective(rotateVector(r[0],r[1]+100,r[2],view));
-  const angle=Math.atan2(-(b[0]-a[0]),b[1]-a[1]),c=Math.cos(angle),s=Math.sin(angle);
-  const dx=x-hx,dy=y-hy,t=surfaceDelta(hx,hy,depth,...view);
-  return [t[0]+c*dx-s*dy-dx,t[1]+s*dx+c*dy-dy];
-}
-function projectSurfacePoint(x,y,depth,viewX,viewY,pin=0){
-  const h=headWeight(y),a=surfaceDelta(x,y,depth,viewX,viewY),b=headDelta(x,y,[viewX,viewY]);
-  return [x+((1-h)*a[0]+h*b[0])*(1-pin),y+((1-h)*a[1]+h*b[1])*(1-pin)];
-}
-
-// A free tip must not be abruptly re-pinned below the visible strand.
-// Broader transverse support and a 170px release keep the displacement gradient
-// safe at the existing spring limits without changing its centreline amplitude.
-export function hairWeight(x,y){
-  const {width,rootStart,rootEnd,releaseStart,releaseEnd}=structure.hairEnvelope;
-  const t=clamp((y-275)/205,0,1),strand=(x-(191+53*t))/width;
-  return Math.exp(-2*strand*strand)*smooth(rootStart,rootEnd,y)*(1-smooth(releaseStart,releaseEnd,y));
-}
-
-// CPU reference of the shared vertex shader, for geometry/GPU regression and tooling.
-function deformSurfacePoint(x,y,depth,view,body,chest,hair,gain,pin=0,spatial=true){
-  const q=spatial?projectSurfacePoint(x,y,depth,...view,pin):[x,y];
-  const head=1-smooth(340,495,y),neck=bell(x,y,630,410,220,180),torso=bell(x,y,721,789,310,430);
-  const tissue=bell(x,y,577,785,165,205),tip=hairWeight(x,y);
-  const weight=.32+.68*torso+.22*neck+.3*head;
-  const dx=(body[0]*weight+chest[0]*tissue+hair[0]*tip)*gain;
-  const dy=(body[1]*weight+chest[1]*tissue+hair[1]*tip)*gain;
-  let ix=dx,iy=dy;
-  if(spatial){
-    const yaw=clamp(view[0],-1,1)*structure.yawRadians,pitch=clamp(view[1],-1,1)*structure.pitchRadians;
-    const cy=Math.cos(yaw),sy=Math.sin(yaw),cx=Math.cos(pitch),sx=Math.sin(pitch);
-    const rotate=(x,y,z)=>{const rx=cy*x+sy*z,rz=-sy*x+cy*z;return [rx,cx*y-sx*rz,sx*y+cx*rz];};
-    const project=p=>{const k=structure.cameraDistance/(structure.cameraDistance-p[2]);return [p[0]*k,p[1]*k];};
-    const r=[x-structure.pivot[0],y-structure.pivot[1],depth];
-    const before=project(rotate(...r)),after=project(rotate(r[0]+dx,r[1]+dy,r[2]+(chest[2]||0)*tissue*gain));
-    ix=after[0]-before[0];iy=after[1]-before[1];
-  }
-  const h=headWeight(y),{anchor:[hx,hy],depth:hd}=structure.headPlate;
-  const hw=.32+.68*bell(hx,hy,721,789,310,430)+.22*bell(hx,hy,630,410,220,180)+.3*(1-smooth(340,495,hy));
-  let hi=[body[0]*hw*gain,body[1]*hw*gain];
-  if(spatial){
-    const r=[hx-structure.pivot[0],hy-structure.pivot[1],hd];
-    const a=perspective(rotateVector(...r,view)),b=perspective(rotateVector(r[0]+hi[0],r[1]+hi[1],r[2],view));
-    hi=[b[0]-a[0],b[1]-a[1]];
-  }
-  let hairDelta=[hair[0]*tip*gain,hair[1]*tip*gain];
-  if(spatial){
-    const r=[x-structure.pivot[0],y-structure.pivot[1],depth];
-    const a=perspective(rotateVector(...r,view)),b=perspective(rotateVector(r[0]+hairDelta[0],r[1]+hairDelta[1],r[2],view));
-    hairDelta=[b[0]-a[0],b[1]-a[1]];
-  }
-  // Hair overlays the common skull motion, with a continuous neck blend.
-  ix=ix*(1-h)+(hi[0]+hairDelta[0])*h;
-  iy=iy*(1-h)+(hi[1]+hairDelta[1])*h;
-  return [q[0]+ix*(1-pin),q[1]+iy*(1-pin)];
-}
-
-// Screen-space two-link support proxy. It preserves the projected bone lengths;
-// it does not reconstruct a 3D skeleton or create hidden arm texture.
-const sub=(a,b)=>[a[0]-b[0],a[1]-b[1]];
-const distance=(a,b)=>Math.hypot(...sub(a,b));
-export function solveArm(shoulder){
-  const {shoulder:s,elbow:e,wrist:w}=structure.armSupport;
-  if(shoulder[0]===s[0]&&shoulder[1]===s[1])return {shoulder,elbow:e,wrist:w,reachable:true};
-  const upper=distance(s,e),fore=distance(e,w),v=sub(w,shoulder),d=Math.hypot(...v);
-  // Existing bounded projection stays reachable; clamp only guards roundoff/extremes.
-  const reach=clamp(d,Math.abs(upper-fore)+1e-4,upper+fore-1e-4);
-  const u=[v[0]/d,v[1]/d],along=(upper*upper-fore*fore+reach*reach)/(2*reach);
-  const height=Math.sqrt(Math.max(0,upper*upper-along*along));
-  const elbow=[shoulder[0]+u[0]*along+u[1]*height,shoulder[1]+u[1]*along-u[0]*height];
-  return {shoulder,elbow,wrist:w,reachable:d>=Math.abs(upper-fore)&&d<=upper+fore};
-}
-function segmentWeight(p,a,b,r){
-  const v=sub(b,a),d=sub(p,a),length2=v[0]*v[0]+v[1]*v[1];
-  const t=clamp((v[0]*d[0]+v[1]*d[1])/length2,0,1);
-  return 1-smooth(r,r+structure.armSupport.feather,Math.hypot(d[0]-t*v[0],d[1]-t*v[1]));
-}
-export function armWeights(x,y){
-  const {shoulder:s,elbow:e,wrist:w,upperRadius,foreRadius}=structure.armSupport;
-  const upper=segmentWeight([x,y],s,e,upperRadius),fore=segmentWeight([x,y],e,w,foreRadius);
-  return [upper,fore,Math.max(upper,fore)];
-}
-function segmentTransform(p,a,b,qa,qb){
-  if(a[0]===qa[0]&&a[1]===qa[1]&&b[0]===qb[0]&&b[1]===qb[1])return p;
-  const v=sub(b,a),qv=sub(qb,qa),d=sub(p,a),den=Math.hypot(...v)*Math.hypot(...qv);
-  const c=(v[0]*qv[0]+v[1]*qv[1])/den,s=(v[0]*qv[1]-v[1]*qv[0])/den;
-  return [qa[0]+c*d[0]-s*d[1],qa[1]+s*d[0]+c*d[1]];
-}
-function supportPoint(x,y,raw,shoulder,pin){
-  const [u,f,weight]=armWeights(x,y);
-  let out=raw;
-  if(weight>0){
-    const {shoulder:s,elbow:e,wrist:w}=structure.armSupport,pose=solveArm(shoulder);
-    const a=segmentTransform([x,y],s,e,pose.shoulder,pose.elbow),b=segmentTransform([x,y],e,w,pose.elbow,pose.wrist);
-    const target=[a[0]+(b[0]-a[0])*f/(u+f),a[1]+(b[1]-a[1])*f/(u+f)];
-    out=[raw[0]+(target[0]-raw[0])*weight,raw[1]+(target[1]-raw[1])*weight];
-  }
-  return [x+(out[0]-x)*(1-pin),y+(out[1]-y)*(1-pin)];
-}
-export function projectPoint(x,y,depth,vx,vy,pin=0){
-  const [sx,sy]=structure.armSupport.shoulder;
-  return supportPoint(x,y,projectSurfacePoint(x,y,depth,vx,vy),projectSurfacePoint(sx,sy,depthAt(sx,sy),vx,vy),pin);
-}
-export function deformPoint(x,y,depth,view,body,chest,hair,gain,pin=0,spatial=true){
-  const [sx,sy]=structure.armSupport.shoulder;
-  const shoulder=deformSurfacePoint(sx,sy,depthAt(sx,sy),view,body,[0,0,0],[0,0],gain,0,spatial);
-  return supportPoint(x,y,deformSurfacePoint(x,y,depth,view,body,chest,hair,gain,0,spatial),shoulder,pin);
-}
+export const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
+const bell=(x,y,c,r)=>Math.exp(-2*(((x-c[0])/r[0])**2+((y-c[1])/r[1])**2));
+export const headWeight=y=>1-smooth(S.head.rigidThroughY,S.head.neckEndsY,y);
+export function depthAt(x,y){const h=1-smooth(380,550,y);const a=[85*bell(x,y,[795,840],[340,460]),95*bell(x,y,[940,490],[180,230]),105*bell(x,y,S.chest.center,S.chest.radius),65*bell(x,y,[1060,950],[150,350])];return h*(110+12*bell(x,y,[550,305],[150,140]))+(1-h)*Math.pow(a.reduce((v,n)=>v+n**4,0),.25);}
+export function depthWeights(v){return Float32Array.from({length:v.length/2},(_,i)=>depthAt(v[i*2],v[i*2+1]));}
+export function hairWeight(x,y){const h=S.hair,t=clamp((y-h.rootY)/(h.tipY-h.rootY),0,1),d=(x-(h.rootX+(h.tipX-h.rootX)*t))/h.width;return Math.exp(-2*d*d)*smooth(h.rootY,h.tipY,y)*(1-smooth(h.tipY,h.releaseY,y));}
+function rotate(r,v){const a=clamp(v[0],-1,1)*structure.yawRadians,b=clamp(v[1],-1,1)*structure.pitchRadians,c=Math.cos(a),s=Math.sin(a),cx=Math.cos(b),sx=Math.sin(b),x=c*r[0]+s*r[2],z=-s*r[0]+c*r[2];return [x,cx*r[1]-sx*z,sx*r[1]+cx*z];}
+function perspective(p){const k=structure.cameraDistance/(structure.cameraDistance-p[2]);return [p[0]*k,p[1]*k];}
+function base(x,y,z){return [x-structure.pivot[0],y-structure.pivot[1],z];}
+function delta(x,y,z,v,d){const r=base(x,y,z),a=perspective(rotate(r,v)),b=perspective(rotate(r.map((q,i)=>q+(d[i]||0)),v));return [b[0]-a[0],b[1]-a[1]];}
+function bounded(x,y,z,v){const r=base(x,y,z),a=perspective(rotate(r,v)),b=perspective(r),f=smooth(0,45,z);return a.map((q,i)=>{const d=q-b[i];return d/Math.sqrt(1+d*d/[576,400][i])*f;});}
+function headDelta(x,y,v){const [hx,hy]=S.head.anchor,z=S.head.depth,r=base(hx,hy,z),a=perspective(rotate(r,v)),b=perspective(rotate([r[0],r[1]+100,r[2]],v)),angle=Math.atan2(-(b[0]-a[0]),b[1]-a[1]),c=Math.cos(angle),s=Math.sin(angle),dx=x-hx,dy=y-hy,t=bounded(hx,hy,z,v);return [t[0]+c*dx-s*dy-dx,t[1]+s*dx+c*dy-dy];}
+const bodyWeight=(x,y)=>.32+.68*bell(x,y,S.torso.center,S.torso.radius)+.22*bell(x,y,S.neck.center,S.neck.radius);
+function freePoint(x,y,z,view,body,chest,hair,gain,spatial){const hw=headWeight(y),t=spatial?bounded(x,y,z,view):[0,0],ht=spatial?headDelta(x,y,view):[0,0],cw=bell(x,y,S.chest.center,S.chest.radius),hairW=hairWeight(x,y),w=bodyWeight(x,y)+.3*(1-smooth(360,520,y));let d=[(body[0]*w+chest[0]*cw+hair[0]*hairW)*gain,(body[1]*w+chest[1]*cw+hair[1]*hairW)*gain,(chest[2]||0)*cw*gain];if(spatial)d=delta(x,y,z,view,d);const [hx,hy]=S.head.anchor,bw=bodyWeight(hx,hy)+.3;let hd=[body[0]*bw*gain,body[1]*bw*gain],hairD=[hair[0]*hairW*gain,hair[1]*hairW*gain];if(spatial){hd=delta(hx,hy,S.head.depth,view,[...hd,0]);hairD=delta(x,y,z,view,[...hairD,0]);}return [x+t[0]*(1-hw)+ht[0]*hw+d[0]*(1-hw)+(hd[0]+hairD[0])*hw,y+t[1]*(1-hw)+ht[1]*hw+d[1]*(1-hw)+(hd[1]+hairD[1])*hw];}
+const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+export function solveArm(shoulder){const {shoulder:s,elbow:e,wrist:w}=S.arm;if(shoulder[0]===s[0]&&shoulder[1]===s[1])return {shoulder,elbow:e,wrist:w,reachable:true};const u=distance(s,e),f=distance(e,w),dx=w[0]-shoulder[0],dy=w[1]-shoulder[1],d=Math.hypot(dx,dy),reach=clamp(d,Math.abs(u-f)+.0001,u+f-.0001),along=(u*u-f*f+reach*reach)/(2*reach),height=Math.sqrt(Math.max(0,u*u-along*along));return {shoulder,elbow:[shoulder[0]+dx/d*along+dy/d*height,shoulder[1]+dy/d*along-dx/d*height],wrist:w,reachable:d>=Math.abs(u-f)&&d<=u+f};}
+function segmentWeight(x,y,a,b,r){const vx=b[0]-a[0],vy=b[1]-a[1],dx=x-a[0],dy=y-a[1],t=clamp((dx*vx+dy*vy)/(vx*vx+vy*vy),0,1);return 1-smooth(r,r+S.arm.feather,Math.hypot(dx-t*vx,dy-t*vy));}
+export function armWeights(x,y){const a=S.arm,u=segmentWeight(x,y,a.shoulder,a.elbow,a.upperRadius),f=segmentWeight(x,y,a.elbow,a.wrist,a.foreRadius);return [u,f,Math.max(u,f)*smooth(...S.arm.visibleY,y)];}
+function segmentTransform(p,a,b,qa,qb){const vx=b[0]-a[0],vy=b[1]-a[1],qx=qb[0]-qa[0],qy=qb[1]-qa[1],dx=p[0]-a[0],dy=p[1]-a[1],den=Math.hypot(vx,vy)*Math.hypot(qx,qy),c=(vx*qx+vy*qy)/den,s=(vx*qy-vy*qx)/den;return [qa[0]+c*dx-s*dy,qa[1]+s*dx+c*dy];}
+export function deformPoint(x,y,z,view,body,chest,hair,gain,pin=0,spatial=true){let q=freePoint(x,y,z,view,body,chest,hair,gain,spatial);const [u,f,w]=armWeights(x,y);if(w>0){const a=S.arm,s=freePoint(...a.shoulder,depthAt(...a.shoulder),view,body,[0,0,0],[0,0],gain,spatial),pose=solveArm(s),p=[x,y],qa=segmentTransform(p,a.shoulder,a.elbow,s,pose.elbow),qb=segmentTransform(p,a.elbow,a.wrist,pose.elbow,a.wrist);q=q.map((v,i)=>v+(qa[i]+(qb[i]-qa[i])*f/(u+f)-v)*w);}return [x+(q[0]-x)*(1-pin),y+(q[1]-y)*(1-pin)];}
+export const projectPoint=(x,y,z,vx,vy,pin=0)=>deformPoint(x,y,z,[vx,vy],[0,0],[0,0,0],[0,0],1,pin,true);

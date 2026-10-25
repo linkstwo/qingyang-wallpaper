@@ -2,7 +2,8 @@ package com.tangtang.motionwallpaper;
 
 /** Immutable source-pixel composition. Shared by editor, preview and live wallpaper. */
 final class CropFrame {
-    static final float WIDTH = 1086f, HEIGHT = 1448f;
+    static final float WIDTH = 1152f, HEIGHT = 1536f;
+    static final float FOCUS_X = 725f, FOCUS_Y = 755f;
     static final float MIN_ZOOM = .45f, MAX_ZOOM = 3.5f;
     final float zoom, focusX, focusY;
 
@@ -18,20 +19,16 @@ final class CropFrame {
 
     static CropFrame preset(int width,int height,int mode) {
         float w=Math.max(1,width),h=Math.max(1,height);
-        // Mode0 includes the actual shoulder, both forearms, waist and hair.
-        float left=mode==0?120:0, right=mode==0?1038:WIDTH;
-        float top=0, bottom=mode==0?1265:HEIGHT;
-        float scale;
-        if(mode==2) scale=Math.max(w/WIDTH,h/HEIGHT);
-        else scale=Math.min((w*(mode==0?.88f:.94f))/(right-left),(h*.9f)/(bottom-top));
-        float x=w*.5f-(left+right)*.5f*scale;
-        float y=mode==2?(h-HEIGHT*scale)*.5f:Math.min(h*.07f,(h-(bottom-top)*scale)*.5f);
-        return fromPixels(width,height,scale,x,y);
+        // Focus is the complete screen centre, including the lower environment.
+        float desired=mode==1?1.10f:mode==2?1.48f:1.28f;
+        float z=Math.max(minZoom(width,height),desired);
+        if(mode!=2) z=Math.max(minZoom(width,height),Math.min(z,h*.92f*WIDTH/(w*1390f)));
+        return new CropFrame(z,FOCUS_X,FOCUS_Y).bounded(width,height);
     }
 
     static CropFrame fromPixels(int width,int height,float scale,float x,float y) {
         float w=Math.max(1,width),h=Math.max(1,height);
-        float z=finiteClamp(scale*WIDTH/w,MIN_ZOOM,MAX_ZOOM,1f);
+        float z=finiteClamp(scale*WIDTH/w,minZoom(width,height),MAX_ZOOM,1f);
         float s=w/WIDTH*z;
         return new CropFrame(z,(w*.5f-x)/s,(h*.5f-y)/s).bounded(width,height);
     }
@@ -41,17 +38,21 @@ final class CropFrame {
                 ||!Float.isFinite(newY)||!Float.isFinite(ratio)||ratio<=0) return this;
         float oldScale=scale(width);
         float sx=(oldX-x(width))/oldScale,sy=(oldY-y(width,height))/oldScale;
-        float z=finiteClamp(zoom*ratio,MIN_ZOOM,MAX_ZOOM,zoom),s=Math.max(1,width)/WIDTH*z;
+        float z=finiteClamp(zoom*ratio,minZoom(width,height),MAX_ZOOM,zoom),s=Math.max(1,width)/WIDTH*z;
         return fromPixels(width,height,s,newX-sx*s,newY-sy*s);
     }
 
     CropFrame bounded(int width,int height) {
-        float w=Math.max(1,width),h=Math.max(1,height),s=scale(width);
+        float w=Math.max(1,width),h=Math.max(1,height);
+        if(zoom<minZoom(width,height))return new CropFrame(minZoom(width,height),focusX,focusY).bounded(width,height);
+        float s=scale(width);
         // Keep part of the source on screen, but allow background around a small portrait.
         float x=finiteClamp(x(width),w*.15f-WIDTH*s,w*.85f,0);
         float y=finiteClamp(y(width,height),h*.12f-HEIGHT*s,h*.88f,0);
         return new CropFrame(zoom,(w*.5f-x)/s,(h*.5f-y)/s);
     }
+
+    static float minZoom(int width,int height) { return Math.min(MAX_ZOOM,Math.max(MIN_ZOOM,.6f*Math.max(1,height)*WIDTH/(Math.max(1,width)*HEIGHT))); }
 
     String encode() { return Float.toString(zoom)+","+focusX+","+focusY; }
     static CropFrame decode(String value) {

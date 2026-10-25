@@ -38,8 +38,8 @@
     },
     {
       "path": "character-prototype/preview/background.png",
-      "bytes": 2095777,
-      "sha256": "0286d772a001f9b908692f691641889e54ec27e26ebe83e4c2d51b9bf944e317",
+      "bytes": 2542130,
+      "sha256": "aa5a1a522533693b401d9c148b45786163631a376bb4958d8ea7a1c5aeb9e84d",
       "dimensions": [
         1086,
         1448
@@ -47,26 +47,26 @@
     },
     {
       "path": "character-prototype/preview/mask.png",
-      "bytes": 949379,
-      "sha256": "627fdc83355ae1a952e8e9ad194abaafb9cb11c207b739e9794cdd5ca97e5789",
+      "bytes": 13778,
+      "sha256": "3aa183680248c42981b86ece3432ca49220d8b3c6b5e87c07453442b1ff204a8",
       "dimensions": [
-        1086,
-        1448
+        1152,
+        1536
       ]
     },
     {
       "path": "character-prototype/preview/original.png",
-      "bytes": 3149695,
-      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "bytes": 302522,
+      "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
       "dimensions": [
-        1086,
-        1448
+        1152,
+        1536
       ]
     },
     {
       "path": "android-app/app/src/main/assets/background.png",
-      "bytes": 2095777,
-      "sha256": "0286d772a001f9b908692f691641889e54ec27e26ebe83e4c2d51b9bf944e317",
+      "bytes": 2542130,
+      "sha256": "aa5a1a522533693b401d9c148b45786163631a376bb4958d8ea7a1c5aeb9e84d",
       "dimensions": [
         1086,
         1448
@@ -75,40 +75,54 @@
     {
       "path": "android-app/app/src/main/assets/character_mesh.bin",
       "bytes": 393216,
-      "sha256": "c527def9574b7b2d456f7052b86e17a4ab49e9d980719c1b3e4ede12613fbe04"
+      "sha256": "52680135e5a9e070e6277c66a8e04fcfdd7e12646d20a46aa5fab194a19f573c"
     },
     {
       "path": "android-app/app/src/main/assets/character_pins.bin",
       "bytes": 196608,
-      "sha256": "16eb1ee449b422dfca32dec08ffb9f048eb16c2ce07a8557e262ea1c1b7fefbd"
+      "sha256": "e9ee4e9a6b0475004ecab56f524378019038714dacb3f1ed64efad439cfcc7aa"
     },
     {
       "path": "android-app/app/src/main/assets/foreground_mesh.bin",
-      "bytes": 1704,
-      "sha256": "013bf3671344d6bdd047920853baefafbdee3bc794a530e882c88dc8a699b9e4"
+      "bytes": 3936,
+      "sha256": "06ed4ff9c5ea6d5e87e25bb7a28a2721b935d609eabfc047e5381ba50c2f55f4"
     },
     {
       "path": "android-app/app/src/main/assets/mask.png",
-      "bytes": 949379,
-      "sha256": "627fdc83355ae1a952e8e9ad194abaafb9cb11c207b739e9794cdd5ca97e5789",
+      "bytes": 13778,
+      "sha256": "3aa183680248c42981b86ece3432ca49220d8b3c6b5e87c07453442b1ff204a8",
       "dimensions": [
-        1086,
-        1448
+        1152,
+        1536
       ]
     },
     {
       "path": "android-app/app/src/main/assets/original.png",
-      "bytes": 3149695,
-      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "bytes": 302522,
+      "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
       "dimensions": [
-        1086,
-        1448
+        1152,
+        1536
       ]
+    },
+    {
+      "path": "references/originals/main-reading-v2.png",
+      "bytes": 302522,
+      "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+      "dimensions": [
+        1152,
+        1536
+      ]
+    },
+    {
+      "path": "android-app/app/src/main/assets/character_depth.bin",
+      "bytes": 196608,
+      "sha256": "d6f4aa47413aab5149f504a76d55d7bee825d754185a44475be5a4dea1a6ca83"
     }
   ],
   "identicalCopies": [
     [
-      "references/originals/main-front-three-quarter.png",
+      "references/originals/main-reading-v2.png",
       "character-prototype/preview/original.png"
     ],
     [
@@ -123,5 +137,7 @@
       "character-prototype/preview/background.png",
       "android-app/app/src/main/assets/background.png"
     ]
-  ]
+  ],
+  "revisionNote": "0.5.8: user authorised the new reading pose. Four historical originals stay unchanged; source RGB copied exactly. Rebuild matte/contacts/depth/mesh for this pose; generated empty workshop plate from the interrupted run recovered byte-for-byte. No signing secrets are included.",
+  "sourceEncodingNote": "The authorised upload is named1000030775.png but contains JPEG bytes. Source/reference/runtime copies preserve the exact original encoding and bytes; header verification supports both PNG and JPEG."
 }

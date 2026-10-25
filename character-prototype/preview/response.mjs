@@ -57,7 +57,7 @@ export function legacyFraming(width,height,wider=true,sizePercent=90,topPercent=
   return {scale,x:w*.5-(left+right)*.5*scale,y,motionGain:Math.min(1.45,cover/scale)};
 }
 export function framing(width,height,wider=true,sizePercent=90,topPercent=10,manual=null){
-  if(!wider)return legacyFraming(width,height,false);
+  if(!wider){const scale=Math.max(width/1152,height/1536);return {scale,x:(width-1152*scale)*.5,y:(height-1536*scale)*.5,motionGain:1};}
   return cropMapping(width,height,manual||cropPreset(width,height,0));
 }
 export {hairWeight} from './structure.mjs';

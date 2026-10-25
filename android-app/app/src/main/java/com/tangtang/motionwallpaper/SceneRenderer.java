@@ -22,9 +22,10 @@ import java.nio.FloatBuffer;
  * character-prototype/preview/app.mjs；网格来自 MeshAssets（由样片真源码导出）。
  */
 final class SceneRenderer {
-    static final int SOURCE_WIDTH = 1086;
-    static final int SOURCE_HEIGHT = 1448;
+    static final int SOURCE_WIDTH = 1152;
+    static final int SOURCE_HEIGHT = 1536;
 
+    private float backdropScaleX,backdropScaleY,backdropOffsetX,backdropOffsetY;
     private final Context context;
     private final SceneSettings settings;
     private boolean wider;
@@ -174,16 +175,24 @@ final class SceneRenderer {
                         xOffset, yOffset, xPixels, yPixels);
         viewportX = viewport[0]; viewportY = viewport[1];
         viewportWidth = viewport[2]; viewportHeight = viewport[3];
-        CropFrame frame = cropOverride!=null?cropOverride:settings.frame(viewportWidth,viewportHeight);
+        float backdrop=Math.max(viewportWidth/(float)SOURCE_WIDTH,viewportHeight/(float)SOURCE_HEIGHT);
+        backdropScaleX=2f*backdrop/viewportWidth;backdropScaleY=-2f*backdrop/viewportHeight;
+        backdropOffsetX=-SOURCE_WIDTH*backdrop/viewportWidth;backdropOffsetY=SOURCE_HEIGHT*backdrop/viewportHeight;
+        updateCrop();
+        GLES20.glViewport(viewportX, surfaceHeight - viewportY - viewportHeight, viewportWidth, viewportHeight);
+    }
+
+    // A gesture changes transforms only; never query the display or rebuild assets here.
+    private void updateCrop() {
+        CropFrame frame = (cropOverride!=null?cropOverride:settings.frame(viewportWidth,viewportHeight)).bounded(viewportWidth,viewportHeight);
         currentCrop=frame;
         renderedOverride=cropOverride; cropRevision=settings.cropRevision();
         ndcScaleX = 2f * frame.scale(viewportWidth) / viewportWidth;
         ndcScaleY = -2f * frame.scale(viewportWidth) / viewportHeight;
         ndcOffsetX = 2f * frame.x(viewportWidth) / viewportWidth - 1f;
         ndcOffsetY = 1f - 2f * frame.y(viewportWidth,viewportHeight) / viewportHeight;
-        float cover=Math.max(viewportWidth/1086f,viewportHeight/1448f);
+        float cover=Math.max(viewportWidth/(float)SOURCE_WIDTH,viewportHeight/(float)SOURCE_HEIGHT);
         motionGain = Math.min(1.45f,cover/frame.scale(viewportWidth));
-        GLES20.glViewport(viewportX, surfaceHeight - viewportY - viewportHeight, viewportWidth, viewportHeight);
     }
 
     void draw(Physics physics) {
@@ -191,7 +200,7 @@ final class SceneRenderer {
             return;
         }
         physics.lively(settings.lively());
-        if (renderedOverride!=cropOverride || cropRevision!=settings.cropRevision()) resize(surfaceWidth, surfaceHeight);
+        if (renderedOverride!=cropOverride || cropRevision!=settings.cropRevision()) updateCrop();
         // Always fill the old silhouette. A motion-dependent cover made it flash at rest.
         final float cover = 1f;
         GLES20.glUseProgram(program);
@@ -211,9 +220,8 @@ final class SceneRenderer {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
         {
-            Framing backdrop = new Framing(viewportWidth, viewportHeight, false);
-            GLES20.glUniform2f(uNdcScale, 2f * backdrop.scale / viewportWidth, -2f * backdrop.scale / viewportHeight);
-            GLES20.glUniform2f(uNdcOffset, 2f * backdrop.x / viewportWidth - 1f, 1f - 2f * backdrop.y / viewportHeight);
+            GLES20.glUniform2f(uNdcScale,backdropScaleX,backdropScaleY);
+            GLES20.glUniform2f(uNdcOffset,backdropOffsetX,backdropOffsetY);
             drawLayer(quadBuffer, quadCount, texBackground, -1f, 0f, false);
             GLES20.glUniform2f(uNdcScale, ndcScaleX, ndcScaleY);
             GLES20.glUniform2f(uNdcOffset, ndcOffsetX, ndcOffsetY);
@@ -310,8 +318,10 @@ final class SceneRenderer {
         if (bitmap == null) {
             throw new IOException("素材解码失败：" + name);
         }
-        if (bitmap.getWidth() != SOURCE_WIDTH || bitmap.getHeight() != SOURCE_HEIGHT) {
-            throw new IOException(name + " 尺寸与网格画布不一致：" + bitmap.getWidth() + "x" + bitmap.getHeight());
+        if (!name.equals("background.png") && (bitmap.getWidth() != SOURCE_WIDTH || bitmap.getHeight() != SOURCE_HEIGHT)) {
+            String detail=name + " 尺寸与网格画布不一致：" + bitmap.getWidth() + "x" + bitmap.getHeight();
+            bitmap.recycle();
+            throw new IOException(detail);
         }
         int[] ids = new int[1];
         GLES20.glGenTextures(1, ids, 0);

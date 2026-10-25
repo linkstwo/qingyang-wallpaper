@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S1",
   "status": "in_progress",
-  "scopeOfThisRun": "Persist the user's new reading-photo, full-screen chest-centred composition, Q-elastic motion and UI/performance requirements; record interrupted 0.5.8 recovery and original-key-only signing blocker. Cloud-only: user shut down the bridge.",
+  "scopeOfThisRun": "Recover new reading-pose assets and full-screen chest-centred crop; restore UI/performance, validate, rebuild0.5.8/17 and original-key sign/deliver.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -40,11 +40,12 @@
     "Built0.5.7/16 release offline including vital Lint; signed with original certificate and verified new editor DEX, assets unchanged, ZIP/alignment/manifest and negative signature cases",
     "Cloud published the exact original-key signed0.5.7 APK without rebuilding; anonymous public release download independently completed with matching SHA256",
     "Persisted latest user authorisation: new reading image, full-screen chest-centred large composition, minimum60% source-picture height only as fallback, Q-elastic motion retained, UI/interaction/performance improvements and original-key APK delivery.",
-    "Recorded interrupted0.5.8 work as recovery_required rather than a delivered release; on reconnection the working directory was not recovered and branch application baseline remained0.5.7."
+    "Recorded interrupted0.5.8 work as recovery_required rather than a delivered release; on reconnection the working directory was not recovered and branch application baseline remained0.5.7.",
+    "Uploaded original keystore received and certificate verified against the prior release; private file remains outside the repository. Recovered reading-v2 source and empty workshop plate, regenerated new-pose geometry/matte/depth/contacts and chest-centred crop. UI recovery and fresh final validation still pending."
   ],
   "next": [
     "Read docs/CURRENT_HANDOFF-0.5.8.md before any older preserve-main-photo instruction; the user has now authorised the new reading image.",
-    "Restore or reconstruct the interrupted0.5.8 application/asset changes from the durable0.5.7 branch; commit coherent source/asset checkpoints promptly, before long validation or artifact transfer.",
+    "Finish restoring preview-first UI/editor and demand-driven preview rendering; then rerun new-pose safety/response/GLES checks and build release before original-key signing.",
     "Rebuild new-pose matte, depth/mesh, head/hair/torso-relative elastic fields, arm and paper contacts; retain the user's Q-elastic response. Do not merely swap or resize the texture.",
     "Implement and validate large chest-centred full-lockscreen framing plus compact preview-first UI and responsive crop editing; minimise lower fill while preserving useful character regions.",
     "Rerun final export consistency, response/lifecycle, crop/save, CPU/GLES and mesh safety checks after recovery; rebuild unsigned release0.5.8/17. Earlier transient results do not validate recovered/final files.",
@@ -65,10 +66,6 @@
     {
       "task": "Remaining phone/native verification",
       "reason": "No connected phone was used. Selected local desktop environment detached after build/sign/desktop WebGL verification; native touch/OEM crop/upgrade/long tests remain pending."
-    },
-    {
-      "task": "0.5.8 original-key signing",
-      "reason": "User has shut down the bridge and explicitly requires pure-cloud operation. Filename/path, password, alias and certificate were supplied, but the keystore file bytes are not accessible in the cloud. User is looking for the original file; never generate/replace the release key."
     }
   ],
   "pendingPhoneChecks": [
@@ -176,11 +173,13 @@
     "recoveryRequired": true,
     "durableApplicationBaseline": "e76a8fa9755f2fa4deb703920c43e7cf91593e9c",
     "lastVerifiedBranchHeadBeforeThisHandoff": "602a4923c4b10f962804fe2daf9f707cc7aff2a6",
-    "applicationChangesCommitted": false,
+    "applicationChangesCommitted": true,
     "installableApkDelivered": false,
     "finalBuildVerified": false,
     "sourceImageLibraryId": "libfile_4f121f15747c8191ae4e79700c7fd655",
-    "sourceImageName": "1000030775.png"
+    "sourceImageName": "1000030775.png",
+    "signingKeyCertificateVerified": true,
+    "recoveredAssetsAndCrop": true
   },
   "recovery": {
     "required": true,

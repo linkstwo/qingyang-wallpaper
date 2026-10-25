@@ -8,11 +8,13 @@ final class SceneSettings {
     private final SharedPreferences preferences;
     SceneSettings(Context context) {
         preferences = context.getSharedPreferences("scene", Context.MODE_PRIVATE);
-        if (preferences.getInt("framingRevision", 0) < 3) {
+        if (preferences.getInt("framingRevision", 0) < 4) {
             // Activate the new subject fit once; the old size slider had a different basis.
             // Keep the user's vertical placement and all physics/view preferences.
-            preferences.edit().putBoolean("wider", true).putInt("sizePercent", 90)
-                    .putString("manualFrame", "").putInt("framingRevision", 3).apply();
+            preferences.edit().putString("legacyFrame057",preferences.getString("manualFrame",""))
+                    .putBoolean("wider", true).putInt("sizePercent", 90)
+                    .putString("manualFrame", "").putInt("framingRevision", 4)
+                    .putInt("cropRevision",cropRevision()+1).apply();
         }
     }
     boolean wider() { return preferences.getBoolean("wider", true); }

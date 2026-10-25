@@ -12,8 +12,23 @@ for item in manifest['files']:
     assert len(data) == item['bytes'], f"Size mismatch: {item['path']}"
     assert hashlib.sha256(data).hexdigest() == item['sha256'], f"Hash mismatch: {item['path']}"
     if 'dimensions' in item:
-        assert data[:8] == b'\x89PNG\r\n\x1a\n', str(path)
-        assert list(struct.unpack('>II', data[16:24])) == item['dimensions'], str(path)
+        if data[:8] == b'\x89PNG\r\n\x1a\n':
+            dimensions=list(struct.unpack('>II',data[16:24]))
+        elif data[:2] == b'\xff\xd8':
+            # The uploaded photo has a .png name but genuine JPEG bytes; preserve it exactly.
+            pos=2;dimensions=None
+            while pos<len(data):
+                if data[pos]!=255:pos+=1;continue
+                while pos<len(data) and data[pos]==255:pos+=1
+                marker=data[pos];pos+=1
+                if marker in (216,217) or 208<=marker<=215:continue
+                length=int.from_bytes(data[pos:pos+2],'big')
+                if marker in (192,193,194,195,197,198,199,201,202,203,205,206,207):
+                    dimensions=[int.from_bytes(data[pos+5:pos+7],'big'),int.from_bytes(data[pos+3:pos+5],'big')];break
+                pos+=length
+            assert dimensions is not None, str(path)
+        else:raise AssertionError('Unsupported image header: '+str(path))
+        assert dimensions == item['dimensions'], str(path)
 for pair in manifest['identicalCopies']:
     a, b = (ROOT / part for part in pair)
     assert a.read_bytes() == b.read_bytes(), f'Copies diverged: {pair}'
