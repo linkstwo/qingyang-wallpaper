@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-10-25",
-  "timezone": "Asia/Singapore",
+  "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
   "baselineApplicationCommit": "bc5205a3e2a7d8565257a08a659585a821b9e791",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S1",
   "status": "in_progress",
-  "scopeOfThisRun": "S1 basics per clarified request: preserve current main photo, let user choose lockscreen crop via full-screen pinch/pan/save, improve bounded torso-relative elastic motion; defer other-angle texture integration and continuous view.",
+  "scopeOfThisRun": "Persist the user's new reading-photo, full-screen chest-centred composition, Q-elastic motion and UI/performance requirements; record interrupted 0.5.8 recovery and original-key-only signing blocker. Cloud-only: user shut down the bridge.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -38,12 +38,18 @@
     "Passed163 crop/settings checks,10132 existing response assertions,52 lifecycle checks, full old/new Java/JS trajectory parity max error<0.000002 and combined-force displacement bounds",
     "Viewed actual local Edge WebGL four-way composition/motion render; this is desktop rendering, not native Android UI",
     "Built0.5.7/16 release offline including vital Lint; signed with original certificate and verified new editor DEX, assets unchanged, ZIP/alignment/manifest and negative signature cases",
-    "Cloud published the exact original-key signed0.5.7 APK without rebuilding; anonymous public release download independently completed with matching SHA256"
+    "Cloud published the exact original-key signed0.5.7 APK without rebuilding; anonymous public release download independently completed with matching SHA256",
+    "Persisted latest user authorisation: new reading image, full-screen chest-centred large composition, minimum60% source-picture height only as fallback, Q-elastic motion retained, UI/interaction/performance improvements and original-key APK delivery.",
+    "Recorded interrupted0.5.8 work as recovery_required rather than a delivered release; on reconnection the working directory was not recovered and branch application baseline remained0.5.7."
   ],
   "next": [
-    "User checks fullscreen pinch/pan/save and actual lockscreen shoulder/forearm/waist crop; native touch and OEM crop still pending",
-    "Adjust only concrete crop or motion feedback, preserving current main view",
-    "After basic framing/response acceptance, resume ten-image registration and continuous side/back surface research"
+    "Read docs/CURRENT_HANDOFF-0.5.8.md before any older preserve-main-photo instruction; the user has now authorised the new reading image.",
+    "Restore or reconstruct the interrupted0.5.8 application/asset changes from the durable0.5.7 branch; commit coherent source/asset checkpoints promptly, before long validation or artifact transfer.",
+    "Rebuild new-pose matte, depth/mesh, head/hair/torso-relative elastic fields, arm and paper contacts; retain the user's Q-elastic response. Do not merely swap or resize the texture.",
+    "Implement and validate large chest-centred full-lockscreen framing plus compact preview-first UI and responsive crop editing; minimise lower fill while preserving useful character regions.",
+    "Rerun final export consistency, response/lifecycle, crop/save, CPU/GLES and mesh safety checks after recovery; rebuild unsigned release0.5.8/17. Earlier transient results do not validate recovered/final files.",
+    "Sign only with the original keystore once its bytes are available; independently verify certificate/version/integrity and deliver a downloadable installable APK. Do not query or depend on the shut-down bridge.",
+    "After this candidate and concrete user feedback, resume the remaining S1 material registration/continuous visibility feasibility, then S2-S8 according to dependencies. Missing key blocks signing, not independent development."
   ],
   "stages": {
     "S1": "in_progress",
@@ -59,6 +65,10 @@
     {
       "task": "Remaining phone/native verification",
       "reason": "No connected phone was used. Selected local desktop environment detached after build/sign/desktop WebGL verification; native touch/OEM crop/upgrade/long tests remain pending."
+    },
+    {
+      "task": "0.5.8 original-key signing",
+      "reason": "User has shut down the bridge and explicitly requires pure-cloud operation. Filename/path, password, alias and certificate were supplied, but the keystore file bytes are not accessible in the cloud. User is looking for the original file; never generate/replace the release key."
     }
   ],
   "pendingPhoneChecks": [
@@ -69,11 +79,13 @@
   ],
   "automation": {
     "created": false,
-    "reason": "No refresh date/time supplied; account quota refresh cannot be detected; background execution/write capability must be confirmed.",
+    "reason": "User reports existing scheduled continuations and requires explicit S-stage/progress handoffs. This run did not inspect, create or modify automations.",
     "timingModeWhenScheduled": "exact_schedule",
     "schedule": null,
     "timezone": "Asia/Singapore",
-    "prompt": "docs/STAGED_CONTINUATION_PROMPT.md"
+    "prompt": "docs/STAGED_CONTINUATION_PROMPT.md",
+    "externalSchedulesReportedByUser": true,
+    "notInspectedOrModifiedThisRun": true
   },
   "evidencePaths": [
     "docs/CLOUD_RESULT-0.5.5-HAIR.md",
@@ -96,9 +108,10 @@
     "validation/s1-basics-0.5.7.json",
     "validation/s1-visual-0.5.7.html",
     "validation/build-0.5.7-signed.json",
-    "https://github.com/linkstwo/qingyang-wallpaper/actions/runs/40173213599"
+    "https://github.com/linkstwo/qingyang-wallpaper/actions/runs/40173213599",
+    "docs/CURRENT_HANDOFF-0.5.8.md"
   ],
-  "priorityAcceptance": "Current clarified S1: preserve the main photo; allow the user to choose a sufficiently large lockscreen composition showing shoulder, forearm and waist using fullscreen pinch/pan, save and reopen consistently. Actual OEM crop requires phone validation.",
+  "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
     "locateAcrossLibraryAndKnownConversations": true,
     "moreThanFourProvided": true,
@@ -135,7 +148,7 @@
   },
   "s1Basics": {
     "status": "awaiting_phone",
-    "preserveMainPhoto": true,
+    "preserveMainPhoto": false,
     "manualCropImplemented": true,
     "offlineVerified": true,
     "nativeTouchTested": false,
@@ -143,7 +156,8 @@
     "postponed": [
       "Other-angle photos participating dynamically",
       "Continuous multi-angle visibility/occlusion"
-    ]
+    ],
+    "note": "Existing0.5.7 implementation/evidence remains historical. Latest user authorises replacement with the new reading image;0.5.8 adaptation needs recovery and fresh verification."
   },
   "release": {
     "tag": "v0.5.7",
@@ -153,5 +167,47 @@
     "sha256": "3a7361cbb34b9765ed83eac8a5ff9281668f60ad39837adcf5c15fbeb701ff4c",
     "anonymousDownloadVerified": true,
     "workflowRun": 40173213599
+  },
+  "userRequirementsDocument": "docs/CURRENT_HANDOFF-0.5.8.md",
+  "targetCandidate": {
+    "versionName": "0.5.8",
+    "versionCode": 17,
+    "status": "in_progress",
+    "recoveryRequired": true,
+    "durableApplicationBaseline": "e76a8fa9755f2fa4deb703920c43e7cf91593e9c",
+    "lastVerifiedBranchHeadBeforeThisHandoff": "602a4923c4b10f962804fe2daf9f707cc7aff2a6",
+    "applicationChangesCommitted": false,
+    "installableApkDelivered": false,
+    "finalBuildVerified": false,
+    "sourceImageLibraryId": "libfile_4f121f15747c8191ae4e79700c7fd655",
+    "sourceImageName": "1000030775.png"
+  },
+  "recovery": {
+    "required": true,
+    "reason": "After the user interrupted/reconnected, the previous working directory and in-memory transfer state were not recovered.0.5.8 code/assets were not committed to the branch; no durable0.5.8 APK was delivered.",
+    "previousTransientResults": "A release build and later updated new-pose/GLES/mesh checks were observed in the interrupted run, but final changes were not rebuilt/saved together. These are historical observations only; rerun after recovery.",
+    "independentWorkMayProceed": true
+  },
+  "runtimePolicy": {
+    "mode": "cloud_only",
+    "bridgeEnabled": false,
+    "doNotRecheckBridge": true,
+    "originalSigningIdentityOnly": true
+  },
+  "reportingContract": {
+    "requiredAfterEveryRun": true,
+    "fields": [
+      "实际完成内容及提交/产物",
+      "当前S阶段和真实状态",
+      "未完成项",
+      "阻塞及所需材料",
+      "下一条可执行动作"
+    ],
+    "rules": [
+      "Build success is not signature/installability or phone acceptance.",
+      "No stage completion from an uncommitted transient result.",
+      "Commit each coherent source/asset checkpoint promptly; report partial work honestly.",
+      "Read latest branch HEAD, START_IN_CLOUD and EXECUTION_STATE before scheduled continuation."
+    ]
   }
 }
