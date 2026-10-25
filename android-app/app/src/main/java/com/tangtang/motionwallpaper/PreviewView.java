@@ -28,6 +28,11 @@ final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer 
     private long lastLog;
     private int fps;
     private String error = "";
+    private volatile CropFrame cropOverride;
+    private volatile boolean freezeMotion;
+
+    void crop(CropFrame frame) { cropOverride=frame; }
+    void freezeMotion(boolean value) { freezeMotion=value; queueEvent(() -> physics.reset()); }
 
     PreviewView(Context context) {
         super(context);
@@ -101,9 +106,10 @@ final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer 
         lastNanos = now;
         feed.decayStale();
         while (accumulator >= STEP_NANOS) {
-            physics.step(STEP_SECONDS, feed.motion());
+            if(!freezeMotion) physics.step(STEP_SECONDS, feed.motion());
             accumulator -= STEP_NANOS;
         }
+        scene.cropOverride(cropOverride);
         scene.draw(physics);
         frames++;
         final long nowMillis = now / 1000000L;

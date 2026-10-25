@@ -34,6 +34,10 @@ final class SceneRenderer {
     private float xOffset = 0.5f, yOffset = 0.5f;
     private int xPixels, yPixels;
     private float motionGain = 1f;
+    private CropFrame cropOverride;
+    private CropFrame renderedOverride;
+    private int cropRevision;
+    private CropFrame currentCrop;
     private MeshAssets meshes;
     private int program;
     private int aSource;
@@ -76,6 +80,7 @@ final class SceneRenderer {
     }
 
     void phonePreview(boolean value) { phonePreview = value; }
+    void cropOverride(CropFrame value) { cropOverride=value; }
 
     void offsets(float x, float y, int px, int py) {
         xOffset = x; yOffset = y; xPixels = px; yPixels = py;
@@ -83,7 +88,7 @@ final class SceneRenderer {
 
     String framingSnapshot() {
         return "surface=" + surfaceWidth + "x" + surfaceHeight + " visible=" + viewportX + "," + viewportY
-                + ":" + viewportWidth + "x" + viewportHeight + " size=" + sizePercent + "% top=" + topPercent + "% wide=" + wider;
+                + ":" + viewportWidth + "x" + viewportHeight + " crop=" + (currentCrop==null?"pending":currentCrop.encode());
     }
 
     boolean isReady() {
@@ -169,12 +174,15 @@ final class SceneRenderer {
                         xOffset, yOffset, xPixels, yPixels);
         viewportX = viewport[0]; viewportY = viewport[1];
         viewportWidth = viewport[2]; viewportHeight = viewport[3];
-        Framing frame = new Framing(viewportWidth, viewportHeight, wider, sizePercent, topPercent);
-        ndcScaleX = 2f * frame.scale / viewportWidth;
-        ndcScaleY = -2f * frame.scale / viewportHeight;
-        ndcOffsetX = 2f * frame.x / viewportWidth - 1f;
-        ndcOffsetY = 1f - 2f * frame.y / viewportHeight;
-        motionGain = frame.motionGain;
+        CropFrame frame = cropOverride!=null?cropOverride:settings.frame(viewportWidth,viewportHeight);
+        currentCrop=frame;
+        renderedOverride=cropOverride; cropRevision=settings.cropRevision();
+        ndcScaleX = 2f * frame.scale(viewportWidth) / viewportWidth;
+        ndcScaleY = -2f * frame.scale(viewportWidth) / viewportHeight;
+        ndcOffsetX = 2f * frame.x(viewportWidth) / viewportWidth - 1f;
+        ndcOffsetY = 1f - 2f * frame.y(viewportWidth,viewportHeight) / viewportHeight;
+        float cover=Math.max(viewportWidth/1086f,viewportHeight/1448f);
+        motionGain = Math.min(1.45f,cover/frame.scale(viewportWidth));
         GLES20.glViewport(viewportX, surfaceHeight - viewportY - viewportHeight, viewportWidth, viewportHeight);
     }
 
@@ -182,7 +190,8 @@ final class SceneRenderer {
         if (!ready) {
             return;
         }
-        if (wider != settings.wider() || sizePercent != settings.sizePercent() || topPercent != settings.topPercent()) resize(surfaceWidth, surfaceHeight);
+        physics.lively(settings.lively());
+        if (renderedOverride!=cropOverride || cropRevision!=settings.cropRevision()) resize(surfaceWidth, surfaceHeight);
         // Always fill the old silhouette. A motion-dependent cover made it flash at rest.
         final float cover = 1f;
         GLES20.glUseProgram(program);
@@ -193,7 +202,7 @@ final class SceneRenderer {
         GLES20.glUniform1f(uMotionGain, motionGain);
         GLES20.glUniform1f(uTipMode, 1f);
         GLES20.glUniform1f(uStructureMode, settings.structure() ? 1f : 0f);
-        GLES20.glUniform1f(uSoftFrame, wider ? 1f : 0f);
+        GLES20.glUniform1f(uSoftFrame, 1f);
         GLES20.glUniform1f(uCover, cover);
         GLES20.glUniform2f(uNdcScale, ndcScaleX, ndcScaleY);
         GLES20.glUniform2f(uNdcOffset, ndcOffsetX, ndcOffsetY);
@@ -201,7 +210,7 @@ final class SceneRenderer {
         GLES20.glClearColor(0.06f, 0.09f, 0.12f, 1.0f);
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
-        if (wider) {
+        {
             Framing backdrop = new Framing(viewportWidth, viewportHeight, false);
             GLES20.glUniform2f(uNdcScale, 2f * backdrop.scale / viewportWidth, -2f * backdrop.scale / viewportHeight);
             GLES20.glUniform2f(uNdcOffset, 2f * backdrop.x / viewportWidth - 1f, 1f - 2f * backdrop.y / viewportHeight);

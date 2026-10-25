@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S1",
   "status": "in_progress",
-  "scopeOfThisRun": "Reuse the exact cloud-built 0.5.6 artifact, sign with the original release key, independently verify and save installable APK; application source unchanged.",
+  "scopeOfThisRun": "S1 basics per clarified request: preserve current main photo, let user choose lockscreen crop via full-screen pinch/pan/save, improve bounded torso-relative elastic motion; defer other-angle texture integration and continuous view.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -29,11 +29,20 @@
     "Reused exact Library unsigned0.5.6 artifact (SHA2568107bd2d...90da6); no rebuild",
     "Signed0.5.6/15 with original key; certificate and actualv3-only scheme match0.5.5; verified manifest/alignment/CRC and all18 entry contents unchanged",
     "Negative validation: unsigned APK and deliberately modified signed APK are rejected",
-    "Saved original-key signed APK to Library: libfile_7cf285975d448191b54ad985b60b4a0a"
+    "Saved original-key signed APK to Library: libfile_7cf285975d448191b54ad985b60b4a0a",
+    "User clarified priority: preserve current main photo; shoulder, arm and waist visibility should be controlled with manual lockscreen zoom/framing",
+    "Implemented full-screen live crop editor with45–350% pinch zoom, horizontal/vertical drag, named presets, draft/cancel/save, old0.5.6 hold comparison and motion preview",
+    "App preview and live wallpaper resolve the same immutable source-pixel crop; crop persists and is observed by live engines",
+    "Simplified main UI to enlarge preview and provide direct crop/response controls",
+    "Implemented bounded torso-acceleration coupling with old0.5.6 response selectable; deterministic peak body0.354→1.179 and relative response1.853→5.580 source pixels",
+    "Passed163 crop/settings checks,10132 existing response assertions,52 lifecycle checks, full old/new Java/JS trajectory parity max error<0.000002 and combined-force displacement bounds",
+    "Viewed actual local Edge WebGL four-way composition/motion render; this is desktop rendering, not native Android UI",
+    "Built0.5.7/16 release offline including vital Lint; signed with original certificate and verified new editor DEX, assets unchanged, ZIP/alignment/manifest and negative signature cases"
   ],
   "next": [
-    "On phone compare dynamic front composition and fullscreen static back candidate; keep actual lockscreen visibility pending",
-    "Review the ten retrieved original images and register compatible view/region correspondences before continuous-view work"
+    "User checks fullscreen pinch/pan/save and actual lockscreen shoulder/forearm/waist crop; native touch and OEM crop still pending",
+    "Adjust only concrete crop or motion feedback, preserving current main view",
+    "After basic framing/response acceptance, resume ten-image registration and continuous side/back surface research"
   ],
   "stages": {
     "S1": "in_progress",
@@ -52,11 +61,10 @@
     }
   ],
   "pendingPhoneChecks": [
-    "Simultaneous shoulder/back visibility in an accepted default composition (unresolved)",
-    "Actual lockscreen crop/window measurements",
-    "Full lifecycle and upgrade validation",
-    "Subjective coupled-physics acceptance",
-    "Performance, battery and thermal tests"
+    "Native fullscreen gesture handling, save/cancel/reopen and system settings entry",
+    "Saved crop's actual lockscreen shoulder/forearm/waist visibility, including OEM additional crop/zoom",
+    "Subjective original/obvious response comparison",
+    "Full lifecycle/upgrade/performance/battery/thermal"
   ],
   "automation": {
     "created": false,
@@ -82,9 +90,13 @@
     "docs/CLOUD_RESULT-0.5.6-FRAMING.md",
     "references/multiview-archive-manifest.json",
     "validation/build-0.5.6-signed.json",
-    "docs/APK-0.5.6-SIGNED.md"
+    "docs/APK-0.5.6-SIGNED.md",
+    "docs/S1-BASICS-0.5.7.md",
+    "validation/s1-basics-0.5.7.json",
+    "validation/s1-visual-0.5.7.html",
+    "validation/build-0.5.7-signed.json"
   ],
-  "priorityAcceptance": "Keep the character large and the composition filled while showing a clear shoulder line and a meaningful back region simultaneously in the default screen view. Validate before claiming framing resolved.",
+  "priorityAcceptance": "Current clarified S1: preserve the main photo; allow the user to choose a sufficiently large lockscreen composition showing shoulder, forearm and waist using fullscreen pinch/pan, save and reopen consistently. Actual OEM crop requires phone validation.",
   "assetAuthorization": {
     "locateAcrossLibraryAndKnownConversations": true,
     "moreThanFourProvided": true,
@@ -104,18 +116,30 @@
     "archiveManifest": "references/multiview-archive-manifest.json",
     "archiveFileCount": 10
   },
-  "currentCandidateVersion": "0.5.6",
-  "currentCandidateVersionCode": 15,
+  "currentCandidateVersion": "0.5.7",
+  "currentCandidateVersionCode": 16,
   "signing": {
     "status": "complete",
     "verified": true,
-    "applicationCommit": "faee587cead9a9508be1d2f493801a0a23653be6",
-    "rebuilt": false,
+    "versionName": "0.5.7",
+    "versionCode": 16,
+    "sha256": "3a7361cbb34b9765ed83eac8a5ff9281668f60ad39837adcf5c15fbeb701ff4c",
+    "apkBytes": 9618657,
     "certificateSha256": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
-    "sha256": "8168d498ddb86fcad98441d103c765785c59fcbb0abe94bf724e669e917c3c71",
-    "apkBytes": 9602273,
-    "libraryFileId": "libfile_7cf285975d448191b54ad985b60b4a0a",
-    "report": "validation/build-0.5.6-signed.json",
+    "report": "validation/build-0.5.7-signed.json",
+    "libraryFileId": "libfile_89dd6e001fcc8191b7b32459c71ef6c0",
     "phoneInstallTested": false
+  },
+  "s1Basics": {
+    "status": "awaiting_phone",
+    "preserveMainPhoto": true,
+    "manualCropImplemented": true,
+    "offlineVerified": true,
+    "nativeTouchTested": false,
+    "desktopWebglViewed": true,
+    "postponed": [
+      "Other-angle photos participating dynamically",
+      "Continuous multi-angle visibility/occlusion"
+    ]
   }
 }

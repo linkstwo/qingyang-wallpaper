@@ -1,9 +1,11 @@
 import {makeMesh,clamp,demoInput} from './rig.mjs';
-import {Response,framing} from './response.mjs';
+import {Response,framing as currentFraming,legacyFraming} from './response.mjs';
 import {contactWeights} from './contact-rig.mjs';
 import {depthWeights} from './structure.mjs';
 const canvas=document.querySelector('#scene'),stage=document.querySelector('#stage'),phase=document.querySelector('#phase'),stats=document.querySelector('#stats');
 const query=new URLSearchParams(location.search);
+const framing=query.has('baseline056')?legacyFraming:currentFraming;
+const lively=!(query.has('baseline056')||query.has('motion056'));
 try { await start(); } catch(error) {phase.classList.add('error');phase.textContent='加载失败：'+error.message;console.error(error);}
 async function start(){
   const config=await fetch('./mesh.json').then(r=>{if(!r.ok)throw Error('网格文件不可读');return r.json();});
@@ -37,7 +39,7 @@ async function start(){
   new ResizeObserver(resize).observe(stage);resize();
   const composition=document.querySelector('#composition'),response=document.querySelector('#response');
   composition.value=query.get('composition')||'wide';response.value=query.get('response')||'elastic';
-  let model=new Response(response.value!=='legacy'),target={x:0,y:0},view=model.view;
+  let model=new Response(response.value!=='legacy',lively),target={x:0,y:0},view=model.view;
   let visualValues=model.values,last=performance.now(),startDemo=null,fpsTime=last,frames=0,fps=0,paused=false,accumulator=0,gyroDemo=false;
   const frameStatus={triangles:character.count/3,loaded:true,mode:'idle',desktopOnly:true};
   document.body.dataset.ready='true';document.body.dataset.triangles=String(character.count/3);
@@ -45,15 +47,16 @@ async function start(){
   document.querySelector('#reset').onclick=reset;
   document.querySelector('#demo').onclick=()=>{reset();startDemo=performance.now();};
   document.querySelector('#gyro').onclick=()=>{reset();gyroDemo=true;startDemo=performance.now();};
-  response.onchange=()=>{model=new Response(response.value!=='legacy');reset();};
+  response.onchange=()=>{model=new Response(response.value!=='legacy',lively);reset();};
   const getInput=t=>gyroDemo?{x:0,y:0,alphaY:t<2?35*Math.sin(t*2*Math.PI*3):0,alphaX:t<2?20*Math.sin(t*2*Math.PI*2.2):0,phase:t<2?'只转动输入 · 观看角度保持正中':'停止转动 · 等待余振衰减',done:t>7}:demoInput(t);
   function pointer(e){if(startDemo!==null)return;const r=stage.getBoundingClientRect();target={x:clamp((e.clientX-r.left)/r.width*2-1,-1,1),y:clamp((e.clientY-r.top)/r.height*2-1,-1,1)};phase.textContent='手动预览 · 保持指针位置即可保持当前转向';}
   stage.addEventListener('pointermove',pointer);stage.addEventListener('pointerdown',pointer);
   document.addEventListener('visibilitychange',()=>{paused=document.hidden;last=performance.now();accumulator=0;if(paused)reset();});
   if(query.has('demo'))startDemo=performance.now();
-  const fixed=query.has('frame')?Math.max(0,Number(query.get('frame'))):null;
+  const fixed=query.has('gyroFrame')?Math.max(0,Number(query.get('gyroFrame'))):query.has('frame')?Math.max(0,Number(query.get('frame'))):null;
+  gyroDemo=query.has('gyroFrame');
   const physics=(dt,input=target)=>{model.step(dt,input);view=model.view;visualValues=model.values;};
-  if(fixed!==null){for(let t=0;t<fixed;t+=1/120)physics(1/120,demoInput(t));phase.textContent=demoInput(fixed).phase;}
+  if(fixed!==null){for(let t=0;t<fixed;t+=1/120)physics(1/120,getInput(t));phase.textContent=getInput(fixed).phase;}
   const transform=frame=>{gl.uniform2f(U.ndcScale,2*frame.scale/canvas.width,-2*frame.scale/canvas.height);gl.uniform2f(U.ndcOffset,2*frame.x/canvas.width-1,1-2*frame.y/canvas.height);};
   window.qingyang={model:()=>model,reset,setInput:input=>{startDemo=null;target=input;},advance:(seconds,input)=>{for(let t=0;t<seconds-1e-8;t+=1/120)physics(1/120,input);},hairWeight:null};
   function render(now){

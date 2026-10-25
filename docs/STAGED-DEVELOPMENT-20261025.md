@@ -199,3 +199,7 @@ docs/EXECUTION_STATE.json记录stage、status、done、next、blocked、pendingP
 每一阶段的结果页记录实际改动、输入、命令/环境、结果、未验和下一条具体动作。大视频/临时缓存不入Git；源码与必要小型证据入现有分支，确保云端下次可取。
 状态可用not_started / in_progress / offline_verified / awaiting_phone / blocked / complete；不能因自动任务被触发就改为complete。
 定时任务统一提示见STAGED_CONTINUATION_PROMPT.md；一次任务不强行写死阶段编号。
+
+## 2026-10-25当前执行优先级修订
+
+用户本轮明确先完成基础，再考虑其他角度图动态参与和手机慢转连续换面；随后澄清希望保留主图，通过适当缩放露出肩、胳膊、腰，允许自己选择锁屏实际内容范围。本轮S1基础子任务因此为全屏手动取景/保存一致性及可直接比较的相对回弹。旧“明确背部区域”目标保留为后续素材/结构任务，不能声称通过主图缩放已补全。0.5.7离线实现/验证完成，原生手势与OEM锁屏仍awaiting_phone；S1全阶段未完成，S2—S8不因此打勾。

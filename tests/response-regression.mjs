@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
-import {Response,framing,hairWeight} from '../character-prototype/preview/response.mjs';
+import {Response,legacyFraming as framing,hairWeight} from '../character-prototype/preview/response.mjs';
 const java=JSON.parse(process.argv[2]);
 for(const enhanced of [false,true]){
-  const model=new Response(enhanced);let chest=0,hair=0,hy=0;
+  const model=new Response(enhanced,false);let chest=0,hair=0,hy=0;
   for(let n=0;n<7*120;n++){
     const t=n/120;model.step(1/120,{alphaY:t<2?35*Math.sin(t*Math.PI*6):0,alphaX:t<2?20*Math.sin(t*Math.PI*4.4):0});
     chest=Math.max(chest,Math.abs(model.values[2]));hair=Math.max(hair,Math.abs(model.values[4]));hy=Math.max(hy,Math.abs(model.values[5]));

@@ -7,8 +7,11 @@ package com.tangtang.motionwallpaper;
  */
 final class Physics {
     private final boolean enhanced;
-    Physics() { this(true); }
-    Physics(boolean enhanced) { this.enhanced = enhanced; }
+    private boolean lively;
+    Physics() { this(true,true); }
+    Physics(boolean enhanced) { this(enhanced,false); }
+    Physics(boolean enhanced,boolean lively) { this.enhanced = enhanced; this.lively=lively; }
+    void lively(boolean value) { if(lively!=value){lively=value;reset();} }
     private static final float BODY_PIXELS = 5.0f;
     private static final float CHEST_PIXELS = 7.0f;
     private static final float HAIR_PIXELS = 10.0f;
@@ -20,6 +23,8 @@ final class Physics {
     private final Spring chestX = new Spring(2.6f, 0.43f, 1.4f);
     private final Spring chestZ = new Spring(3.1f, 0.54f, 1.2f);
     private final Spring chestY = new Spring(2.8f, 0.48f, 1.4f);
+    private final Spring coupledChestX = new Spring(2.3f, .34f, 1.4f);
+    private final Spring coupledChestY = new Spring(2.55f, .38f, 1.4f);
     private final Spring hairX = new Spring(1.7f, 0.58f, 1.5f);
 
     private final Spring legacyChestX = new Spring(3.2f, 0.50f, 1.4f);
@@ -51,6 +56,7 @@ final class Physics {
         chestY.reset(); chestZ.reset();
         hairX.reset();
         legacyChestX.reset(); legacyChestY.reset(); tipX.reset(); tipY.reset();
+        coupledChestX.reset();coupledChestY.reset();
         viewX = viewY = targetX = targetY = prevVx = prevVy = 0.0f;
         driveX = driveY = driveZ = 0f;
         bodyPx = bodyPy = chestPx = chestPy = chestPz = hairPx = hairPy = 0.0f;
@@ -98,9 +104,17 @@ final class Physics {
             driveY = MathX.mix(driveY, 6f * (float) Math.tanh(fy / 6f), dt, 0.045f);
             driveZ = MathX.mix(driveZ, 6f * (float)Math.tanh(-motion.az * 0.6f / 6f), dt, 0.045f);
             float cz = chestZ.step(driveZ * 22f, dt);
-            float bx = bodyX.step(driveX * 9f, dt), by = bodyY.step(driveY * 9f, dt);
-            float cx = chestX.step(driveX * 20f + bx * 18f, dt);
-            float cy = chestY.step(driveY * 20f + by * 18f, dt);
+            float oldBodyVx=bodyX.velocity(),oldBodyVy=bodyY.velocity();
+            float bx = bodyX.step(driveX * (lively?30f:9f), dt);
+            float by = bodyY.step(driveY * (lively?30f:9f), dt);
+            // Relative tissue inertia includes the torso's own acceleration.
+            // Displacement limits stay inside the previously scanned material bounds.
+            float parentAx=(bodyX.velocity()-oldBodyVx)/dt*BODY_PIXELS;
+            float parentAy=(bodyY.velocity()-oldBodyVy)/dt*BODY_PIXELS;
+            float cx = lively?coupledChestX.step(driveX*45f-parentAx*.045f,dt)
+                    :chestX.step(driveX*20f+bx*18f,dt);
+            float cy = lively?coupledChestY.step(driveY*45f-parentAy*.045f,dt)
+                    :chestY.step(driveY*20f+by*18f,dt);
             float hx = tipX.step(driveX * 12f + bx * 10f, dt);
             float hy = tipY.step(driveY * 8f + by * 8f, dt);
             bodyPx = bx * BODY_PIXELS; bodyPy = by * BODY_PIXELS;
@@ -135,8 +149,8 @@ final class Physics {
         return Math.abs(viewX - targetX) + Math.abs(viewY - targetY) > 0.002f
                 || Math.abs(driveX) + Math.abs(driveY) + Math.abs(driveZ) > 0.01f
                 || unsettled(bodyX) || unsettled(bodyY)
-                || unsettled(enhanced ? chestX : legacyChestX)
-                || unsettled(enhanced ? chestY : legacyChestY) || (enhanced && unsettled(chestZ))
+                || unsettled(enhanced ? (lively?coupledChestX:chestX) : legacyChestX)
+                || unsettled(enhanced ? (lively?coupledChestY:chestY) : legacyChestY) || (enhanced && unsettled(chestZ))
                 || unsettled(enhanced ? tipX : hairX) || (enhanced && unsettled(tipY));
     }
 

@@ -25,8 +25,8 @@ android {
         applicationId = "com.tangtang.motionwallpaper"
         minSdk = 28
         targetSdk = 34
-        versionCode = 15
-        versionName = "0.5.6"
+        versionCode = 16
+        versionName = "0.5.7"
     }
 
     signingConfigs {
