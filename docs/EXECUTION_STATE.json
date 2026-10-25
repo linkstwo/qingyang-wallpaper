@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S1",
   "status": "in_progress",
-  "scopeOfThisRun": "Recover new reading-pose assets and full-screen chest-centred crop; restore UI/performance, validate, rebuild0.5.8/17 and original-key sign/deliver.",
+  "scopeOfThisRun": "Recovered/committed new reading-pose geometry, crop and compact UI; validated current source, built and original-key signed0.5.8/17, published and independently verified anonymous GitHub download. S1 remains in progress; native phone feedback and continuous side/back work remain pending.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -42,16 +42,15 @@
     "Persisted latest user authorisation: new reading image, full-screen chest-centred large composition, minimum60% source-picture height only as fallback, Q-elastic motion retained, UI/interaction/performance improvements and original-key APK delivery.",
     "Recorded interrupted0.5.8 work as recovery_required rather than a delivered release; on reconnection the working directory was not recovered and branch application baseline remained0.5.7.",
     "Uploaded original keystore received and certificate verified against the prior release; private file remains outside the repository. Recovered reading-v2 source and empty workshop plate, regenerated new-pose geometry/matte/depth/contacts and chest-centred crop. UI recovery and fresh final validation still pending.",
-    "Restored compact preview-first home/editor UI, explicit source-centre action, draft save/cancel and demand-driven/vsync preview rendering; not yet native-phone tested."
+    "Restored compact preview-first home/editor UI, explicit source-centre action, draft save/cancel and demand-driven/vsync preview rendering; not yet native-phone tested.",
+    "Recovered0.5.8 new-pose assets/crop in e58414b and UI/checks in2a277fd; verified source RGB copies and15 assets/four copy pairs,159 crop/settings checks,10132 response assertions,52 lifecycle checks, Java/JS solver parity,1440 GLES landmarks and884736 triangle cases. Built release with vitalLint, original-key signed and independently verified version/certificate/ZIP/alignment/assets/DEX and negative unsigned/tampered cases. Signed APK saved with Library id libfile_cc0dc13811c48191b49b6f58131caa01; actual phone/native behaviour remains pending.",
+    "Published the exact signed0.5.8 APK to GitHub Releases without rebuilding; runner independently verified original certificate and anonymous public download with matching SHA256."
   ],
   "next": [
-    "Read docs/CURRENT_HANDOFF-0.5.8.md before any older preserve-main-photo instruction; the user has now authorised the new reading image.",
-    "Run fresh crop/settings, response/lifecycle, CPU/GLES projection and mesh safety checks, then release build and original-key sign/verify/deliver.",
-    "Rebuild new-pose matte, depth/mesh, head/hair/torso-relative elastic fields, arm and paper contacts; retain the user's Q-elastic response. Do not merely swap or resize the texture.",
-    "Implement and validate large chest-centred full-lockscreen framing plus compact preview-first UI and responsive crop editing; minimise lower fill while preserving useful character regions.",
-    "Rerun final export consistency, response/lifecycle, crop/save, CPU/GLES and mesh safety checks after recovery; rebuild unsigned release0.5.8/17. Earlier transient results do not validate recovered/final files.",
-    "Sign only with the original keystore once its bytes are available; independently verify certificate/version/integrity and deliver a downloadable installable APK. Do not query or depend on the shut-down bridge.",
-    "After this candidate and concrete user feedback, resume the remaining S1 material registration/continuous visibility feasibility, then S2-S8 according to dependencies. Missing key blocks signing, not independent development."
+    "User tests0.5.8 full-screen crop/save/reopen, chest placement and Q-elastic feel on the actual lockscreen; fix concrete feedback without reverting to the old pose.",
+    "Independently continue remaining S1: map reliable head/neck/shoulder/arm/waist correspondences across the ten original views, document pose/lighting mismatches and credible side/back texture regions. Do not treat static back references as live integration.",
+    "Demonstrate and verify a bounded continuous surface reveal/occlusion feasibility case; record actual texture sources and limits, then advance to S2 when S1 dependencies are satisfied.",
+    "Keep the original release certificate and existing project; commit coherent work promptly and report actual work/current S-stage/unfinished items/blockers/next action after every run."
   ],
   "stages": {
     "S1": "in_progress",
@@ -66,7 +65,7 @@
   "blocked": [
     {
       "task": "Remaining phone/native verification",
-      "reason": "No connected phone was used. Selected local desktop environment detached after build/sign/desktop WebGL verification; native touch/OEM crop/upgrade/long tests remain pending."
+      "reason": "No connected phone was used. Native touch, OEM lockscreen crop, upgrade, subjective Q-elastic feel and sustained performance/battery remain unverified; this does not block independent S1 multiview registration/visibility research."
     }
   ],
   "pendingPhoneChecks": [
@@ -107,7 +106,11 @@
     "validation/s1-visual-0.5.7.html",
     "validation/build-0.5.7-signed.json",
     "https://github.com/linkstwo/qingyang-wallpaper/actions/runs/40173213599",
-    "docs/CURRENT_HANDOFF-0.5.8.md"
+    "docs/CURRENT_HANDOFF-0.5.8.md",
+    "docs/S1-READING-0.5.8.md",
+    "validation/reading-subject-0.5.8.json",
+    "validation/s1-basics-0.5.8.json",
+    "validation/build-0.5.8-signed.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -129,20 +132,20 @@
     "archiveManifest": "references/multiview-archive-manifest.json",
     "archiveFileCount": 10
   },
-  "currentCandidateVersion": "0.5.7",
-  "currentCandidateVersionCode": 16,
+  "currentCandidateVersion": "0.5.8",
+  "currentCandidateVersionCode": 17,
   "signing": {
     "status": "complete",
     "verified": true,
-    "versionName": "0.5.7",
-    "versionCode": 16,
-    "sha256": "3a7361cbb34b9765ed83eac8a5ff9281668f60ad39837adcf5c15fbeb701ff4c",
-    "apkBytes": 9618657,
+    "versionName": "0.5.8",
+    "versionCode": 17,
+    "sha256": "a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7",
+    "apkBytes": 6284513,
     "certificateSha256": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
-    "report": "validation/build-0.5.7-signed.json",
-    "libraryFileId": "libfile_89dd6e001fcc8191b7b32459c71ef6c0",
+    "report": "validation/build-0.5.8-signed.json",
+    "libraryFileId": "libfile_cc0dc13811c48191b49b6f58131caa01",
     "phoneInstallTested": false,
-    "applicationCommit": "e76a8fa9755f2fa4deb703920c43e7cf91593e9c"
+    "applicationCommit": "2a277fdead480d1be0c1957dd448160839416516"
   },
   "s1Basics": {
     "status": "awaiting_phone",
@@ -155,40 +158,54 @@
       "Other-angle photos participating dynamically",
       "Continuous multi-angle visibility/occlusion"
     ],
-    "note": "Existing0.5.7 implementation/evidence remains historical. Latest user authorises replacement with the new reading image;0.5.8 adaptation needs recovery and fresh verification."
+    "note": "0.5.8 new reading-pose framing/UI adaptation is signed and offline verified. Subjective/native acceptance remains pending; continuous side/back texture participation is still unfinished.",
+    "newReadingPhoto": true,
+    "desktopGlesViewed": true
   },
   "release": {
-    "tag": "v0.5.7",
-    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.7",
-    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.7/qingyang-0.5.7.apk",
-    "assetId": 674397263,
-    "sha256": "3a7361cbb34b9765ed83eac8a5ff9281668f60ad39837adcf5c15fbeb701ff4c",
+    "tag": "v0.5.8",
+    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.8",
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.8/qingyang-0.5.8.apk",
+    "assetId": 675252073,
+    "sha256": "a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7",
     "anonymousDownloadVerified": true,
-    "workflowRun": 40173213599
+    "workflowRun": 40202295263,
+    "workflowJob": 121195829689
   },
   "userRequirementsDocument": "docs/CURRENT_HANDOFF-0.5.8.md",
   "targetCandidate": {
     "versionName": "0.5.8",
     "versionCode": 17,
-    "status": "in_progress",
+    "status": "awaiting_phone",
     "recoveryRequired": false,
     "durableApplicationBaseline": "e76a8fa9755f2fa4deb703920c43e7cf91593e9c",
     "lastVerifiedBranchHeadBeforeThisHandoff": "602a4923c4b10f962804fe2daf9f707cc7aff2a6",
     "applicationChangesCommitted": true,
-    "installableApkDelivered": false,
-    "finalBuildVerified": false,
+    "installableApkDelivered": true,
+    "finalBuildVerified": true,
     "sourceImageLibraryId": "libfile_4f121f15747c8191ae4e79700c7fd655",
     "sourceImageName": "1000030775.png",
     "signingKeyCertificateVerified": true,
     "recoveredAssetsAndCrop": true,
-    "uiRecovered": true
+    "uiRecovered": true,
+    "applicationCommit": "2a277fdead480d1be0c1957dd448160839416516",
+    "sha256": "a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7",
+    "apkBytes": 6284513,
+    "signingVerified": true,
+    "libraryFileId": "libfile_cc0dc13811c48191b49b6f58131caa01",
+    "publicDownloadVerified": true,
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.8/qingyang-0.5.8.apk"
   },
   "recovery": {
     "required": false,
     "reason": "After the user interrupted/reconnected, the previous working directory and in-memory transfer state were not recovered.0.5.8 code/assets were not committed to the branch; no durable0.5.8 APK was delivered.",
     "previousTransientResults": "A release build and later updated new-pose/GLES/mesh checks were observed in the interrupted run, but final changes were not rebuilt/saved together. These are historical observations only; rerun after recovery.",
     "independentWorkMayProceed": true,
-    "note": "New-pose assets/crop recovered and committed; preview-first UI/editor and demand-driven preview now restored. Fresh final validation, release build/signature and delivery remain pending."
+    "note": "Recovered code/assets and reran final checks; release has now been rebuilt and original-key signed. Earlier transient evidence is no longer used as current validation.",
+    "resolvedByCommits": [
+      "e58414befe7dc99471c1f1af79173fe7b44e3c1d",
+      "2a277fdead480d1be0c1957dd448160839416516"
+    ]
   },
   "runtimePolicy": {
     "mode": "cloud_only",
@@ -211,5 +228,14 @@
       "Commit each coherent source/asset checkpoint promptly; report partial work honestly.",
       "Read latest branch HEAD, START_IN_CLOUD and EXECUTION_STATE before scheduled continuation."
     ]
+  },
+  "previousRelease": {
+    "tag": "v0.5.7",
+    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.7",
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.7/qingyang-0.5.7.apk",
+    "assetId": 674397263,
+    "sha256": "3a7361cbb34b9765ed83eac8a5ff9281668f60ad39837adcf5c15fbeb701ff4c",
+    "anonymousDownloadVerified": true,
+    "workflowRun": 40173213599
   }
 }

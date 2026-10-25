@@ -32,5 +32,15 @@
   "build": "Gradle8.7 / AGP8.5.0 / JDK17 / Android34; assembleRelease including vitalLint passed",
   "stage": "S1",
   "nativeTouchAndOemCropTested": false,
-  "libraryFileId": "libfile_cc0dc13811c48191b49b6f58131caa01"
+  "libraryFileId": "libfile_cc0dc13811c48191b49b6f58131caa01",
+  "release": {
+    "tag": "v0.5.8",
+    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.8",
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.8/qingyang-0.5.8.apk",
+    "assetId": 675252073,
+    "sha256": "a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7",
+    "anonymousDownloadVerified": true,
+    "workflowRun": 40202295263,
+    "workflowJob": 121195829689
+  }
 }
