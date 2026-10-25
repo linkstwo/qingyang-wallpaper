@@ -1,0 +1,99 @@
+{
+  "runtime": "JavaScript V8 via functions.exec; no external executor",
+  "cases": 72,
+  "assertions": 403,
+  "dimensions": [
+    [
+      1080,
+      2400
+    ],
+    [
+      1260,
+      2800
+    ],
+    [
+      1440,
+      3200
+    ],
+    [
+      1080,
+      2340
+    ],
+    [
+      1080,
+      2520
+    ],
+    [
+      1080,
+      1920
+    ],
+    [
+      1440,
+      2560
+    ],
+    [
+      360,
+      800
+    ],
+    [
+      320,
+      568
+    ]
+  ],
+  "compositorZooms": [
+    1,
+    1.02,
+    1.04,
+    1.08
+  ],
+  "baselineSourceProjectedHeightFraction": 0.54,
+  "candidates": [
+    {
+      "id": "main",
+      "frame": {
+        "scale": 1.2826249068456375,
+        "x": -284.08650264832204,
+        "y": 120,
+        "bounds": [
+          270,
+          20,
+          1015,
+          1040
+        ],
+        "inset": 23.999999975999998,
+        "reserveZoom": 1.08
+      },
+      "sourceProjectedHeightFraction": 0.7738503604635346,
+      "relativeScaleTo055": 1.4330562230806196,
+      "roiBased": true,
+      "anatomicalVisibilityVerified": false
+    },
+    {
+      "id": "back",
+      "frame": {
+        "scale": 1.472350624961479,
+        "x": -139.4898134197226,
+        "y": 120,
+        "bounds": [
+          137,
+          15,
+          786,
+          1000
+        ],
+        "inset": 23.999999975999998,
+        "reserveZoom": 1.08
+      },
+      "sourceProjectedHeightFraction": 0.8883182103934257,
+      "relativeScaleTo055": 1.6450337229507883,
+      "roiBased": true,
+      "anatomicalVisibilityVerified": false
+    }
+  ],
+  "limitations": [
+    "Annotations are approximate, not segmentation",
+    "Height fraction measures source image, not character area",
+    "Centred zoom is a simulated stress assumption, not measured OEM behaviour",
+    "No image render/browser/Android build or phone verification in current disconnected environment",
+    "Back candidate is a separate static source view; not multiview interpolation"
+  ]
+}

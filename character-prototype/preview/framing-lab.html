@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>轻漾 · 肩背构图试验</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:24px;background:#101514;color:#ecf0e9;font:15px/1.6 system-ui,sans-serif}
+main{max-width:1120px;margin:auto}h1{font-size:24px;font-weight:600;margin:0 0 8px}p{max-width:900px}
+.controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin:20px 0}
+label{display:flex;align-items:center;gap:8px;flex-wrap:wrap}select,input,button{font:inherit}select{padding:6px;background:#202a26;color:inherit;border:1px solid #688071;border-radius:6px}
+input[type=range]{width:160px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+article{min-width:0}h2{font-size:17px;font-weight:600;margin:0 0 6px}.phone{width:100%;max-width:340px;margin:auto;background:#242925;border-radius:16px;overflow:hidden}
+svg{display:block;width:100%;height:100%}.metric{font-variant-numeric:tabular-nums}.small{font-size:13px;color:#b9c8be}
+.problem{color:#ffbe9a}.okay{color:#b8e3c7}a{color:#b8e3c7}.note{padding-top:18px}
+@media(max-width:420px){body{padding:14px}.grid{grid-template-columns:1fr}}
+</style>
+<main>
+<h1>肩背同屏，先看真实裁切</h1>
+<p>同一屏幕尺寸，直接显示现有原图。左侧复现0.5.5默认映射；中间保留原主图；右侧使用原有背向参考。右侧是另一个固定起始视角，尚未接入动态壁纸。</p>
+<div class="controls">
+<label>屏幕比例<select id="aspect"><option value="1080,2400">9:20</option><option value="1080,2340">约9:19.5</option><option value="1080,2520">9:21</option><option value="1080,1920">9:16</option></select></label>
+<label>模拟居中放大 <output id="zoomValue">1.00×</output><input id="zoom" aria-label="模拟居中放大" type="range" min="100" max="116" value="100"></label>
+<label><input id="showRegions" type="checkbox">显示人工目标框</label>
+</div>
+<div id="warning" class="small" aria-live="polite"></div>
+<div class="grid">
+<article><h2>0.5.5 · 原图宽度优先</h2><div id="old" class="phone"></div><div id="oldMetric" class="metric"></div><p class="small">保留了整张图的宽度，但人物明显缩小。实际系统裁剪仍取决于手机。</p></article>
+<article><h2>主图 · 按目标区域定位</h2><div id="main" class="phone"></div><div id="mainMetric" class="metric"></div><p class="small">更大地保住脸、肩和背侧。原图只有窄背侧，重新裁切不能补出被遮挡的背部。</p></article>
+<article><h2>背向参考 · 肩背同屏候选</h2><div id="back" class="phone"></div><div id="backMetric" class="metric"></div><p class="small">原图确实包含肩线和上背。脸为侧脸，姿势及网格尚未与现有动态版本配准。</p></article>
+</div>
+<p id="loadStatus" class="small" role="status">等待原图加载…</p>
+<p class="small note">人工目标框只用于裁切检查，不代表人体分割或手机验收。候选预留8%居中放大，实际系统缩放未测。上方百分比指整张原图的投影高度，不是人物占屏面积。</p>
+</main>
+<script type="module">
+import {SOURCE,STUDIES,baseline055,fitRegions,regionContained,projectedHeightFraction} from './framing-study.mjs';
+const root=document.querySelector('main'),$=id=>document.getElementById(id);
+const SVG='http://www.w3.org/2000/svg';
+const node=(name,attrs={})=>{const n=document.createElementNS(SVG,name);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));return n;};
+let dimensions=[1080,2400],zoom=1,boxes=false,loads=0;
+function render(id,study,frame){
+ const [w,h]=dimensions,host=$(id),svg=node('svg',{viewBox:'0 0 '+w+' '+h,role:'img','aria-label':study.label});
+ host.style.aspectRatio=w+'/'+h;host.replaceChildren(svg);
+ const g=node('g',{transform:'translate('+w/2+' '+h/2+') scale('+zoom+') translate('+(-w/2)+' '+(-h/2)+')'});
+ svg.append(g);
+ const cover=Math.max(w/SOURCE.width,h/SOURCE.height);
+ g.append(node('image',{href:'../../android-app/app/src/main/assets/background.png',x:(w-SOURCE.width*cover)/2,y:(h-SOURCE.height*cover)/2,width:SOURCE.width*cover,height:SOURCE.height*cover}));
+ const image=node('image',{href:'../../references/originals/'+study.image,x:frame.x,y:frame.y,width:SOURCE.width*frame.scale,height:SOURCE.height*frame.scale});
+ image.addEventListener('load',()=>{loads++;$('loadStatus').textContent='原图已加载。这里只改变观察窗口，没有改写图片。';});
+ image.addEventListener('error',()=>{$('loadStatus').textContent='原图未能加载：请通过现有项目本地预览服务打开此页。';$('loadStatus').classList.add('problem');});
+ g.append(image);
+ if(boxes)for(const r of study.regions){const b=r.box;
+  g.append(node('rect',{x:b[0]*frame.scale+frame.x,y:b[1]*frame.scale+frame.y,width:(b[2]-b[0])*frame.scale,height:(b[3]-b[1])*frame.scale,fill:'none',stroke:r.id==='back'?'#ffce88':'#9de0bb','stroke-width':3}));
+ }
+ const okay=study.regions.every(r=>regionContained(r.box,frame,w,h,zoom));
+ const metric=$(id+'Metric');
+ metric.textContent='初始原图投影高度 '+Math.round(projectedHeightFraction(frame,h)*100)+'% · '+(okay?'目标框在屏内':'有目标框被裁');
+ metric.className='metric '+(okay?'okay':'problem');
+}
+function draw(){
+ const [w,h]=dimensions;loads=0;
+ render('old',STUDIES[0],baseline055(w,h));
+ for(const s of STUDIES)render(s.id,s,fitRegions(w,h,s.regions));
+ $('warning').textContent=zoom>1.08?'当前放大超出候选的8%预留范围；查看目标框是否被裁。':'放大只是一种模拟，不是对当前手机系统行为的测量。';
+}
+$('aspect').addEventListener('change',e=>{dimensions=e.target.value.split(',').map(Number);draw();});
+$('zoom').addEventListener('input',e=>{zoom=Number(e.target.value)/100;$('zoomValue').value=zoom.toFixed(2)+'×';draw();});
+$('showRegions').addEventListener('change',e=>{boxes=e.target.checked;draw();});
+draw();
+</script>
+</html>

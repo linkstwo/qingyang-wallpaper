@@ -9,22 +9,26 @@
   "baselineVersion": "0.5.5",
   "baselineVersionCode": 14,
   "currentStage": "S1",
-  "status": "not_started",
-  "scopeOfThisRun": "Planning and handoff documentation only; no application implementation.",
+  "status": "in_progress",
+  "scopeOfThisRun": "S1 framing subtask: source-pixel inspection of two repository images; independent framing geometry and comparison lab implemented. No production application changes.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
     "Detailed S1-S8 continuation plan and common prompt saved",
     "Located multiview overview and 13 workshop-related candidate image records; pixel review and import remain pending",
-    "Recorded authorization for region extraction/direct use and promoted simultaneous shoulder/back visibility to first acceptance target"
+    "Recorded authorization for region extraction/direct use and promoted simultaneous shoulder/back visibility to first acceptance target",
+    "Inspected complete pixels of original main and back reference; main only has a narrow back-side strip",
+    "Implemented region-aware framing study and a three-panel original-image comparison tool",
+    "Ran the module and regression body in V8: 72 cases / 403 checks; Node/browser/Android not run"
   ],
   "next": [
-    "Review located multiview overview and candidate images; perform pixel inspection and deduplication",
-    "Create large-character full-screen composition candidates showing shoulder and back simultaneously; compare with 0.5.5",
-    "Mark useful body regions and source correspondences, then continue the bounded geometry/texture feasibility experiment"
+    "Run node tests/framing-study-regression.mjs and serve the repository-root comparison page in a usable environment",
+    "Visually inspect same-aspect three-panel crops, correct manual ROIs and capture actual composition evidence",
+    "Download/review/deduplicate the multiview overview and 13 candidate records; select a better shoulder/back source if available",
+    "Only after visual acceptance proceed to registration/geometry; do not replace original.png while keeping the old mask/weights"
   ],
   "stages": {
-    "S1": "not_started",
+    "S1": "in_progress",
     "S2": "not_started",
     "S3": "not_started",
     "S4": "not_started",
@@ -33,8 +37,18 @@
     "S7": "not_started",
     "S8": "not_started"
   },
-  "blocked": [],
+  "blocked": [
+    {
+      "task": "Source import, browser preview, actual rendered composition and Android integration",
+      "reason": "Execution environment became unavailable during this run; no working shell/browser runtime."
+    },
+    {
+      "task": "Optional dsh collaboration",
+      "reason": "Cloud bridge status returned historical ngrok404; no task was sent."
+    }
+  ],
   "pendingPhoneChecks": [
+    "Simultaneous shoulder/back visibility in an accepted default composition (unresolved)",
     "Actual lockscreen crop/window measurements",
     "Full lifecycle and upgrade validation",
     "Subjective coupled-physics acceptance",
@@ -52,7 +66,12 @@
     "docs/CLOUD_RESULT-0.5.5-HAIR.md",
     "validation/hair-safety.json",
     "validation/hair-safety-scan.jpg",
-    "validation/build-0.5.5-signed.json"
+    "validation/build-0.5.5-signed.json",
+    "docs/S1-FRAMING-RESULT-20261025.md",
+    "validation/framing-study.json",
+    "character-prototype/preview/framing-study.mjs",
+    "character-prototype/preview/framing-lab.html",
+    "tests/framing-study-regression.mjs"
   ],
   "priorityAcceptance": "Keep the character large and the composition filled while showing a clear shoulder line and a meaningful back region simultaneously in the default screen view. Validate before claiming framing resolved.",
   "assetAuthorization": {
