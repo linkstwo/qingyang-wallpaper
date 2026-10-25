@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-25",
+  "timezone": "Asia/Singapore",
+  "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
+  "branch": "feature/cloud-framing-response",
+  "baselineApplicationCommit": "bc5205a3e2a7d8565257a08a659585a821b9e791",
+  "baselineHandoffCommit": "dac79d8c0ba078aacd565c6c1627e59b74e8f9fa",
+  "baselineVersion": "0.5.5",
+  "baselineVersionCode": 14,
+  "currentStage": "S1",
+  "status": "not_started",
+  "scopeOfThisRun": "Planning and handoff documentation only; no application implementation.",
+  "done": [
+    "0.5.5 signed with existing release certificate and verified",
+    "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
+    "Detailed S1-S8 continuation plan and common prompt saved"
+  ],
+  "next": [
+    "Execute S1 asset inventory and annotated cross-view comparison",
+    "Record reliable and inferred correspondences and pose differences",
+    "Create bounded continuous surface-reveal feasibility experiment, then select incremental geometry approach"
+  ],
+  "stages": {
+    "S1": "not_started",
+    "S2": "not_started",
+    "S3": "not_started",
+    "S4": "not_started",
+    "S5": "not_started",
+    "S6": "not_started",
+    "S7": "not_started",
+    "S8": "not_started"
+  },
+  "blocked": [],
+  "pendingPhoneChecks": [
+    "Actual lockscreen crop/window measurements",
+    "Full lifecycle and upgrade validation",
+    "Subjective coupled-physics acceptance",
+    "Performance, battery and thermal tests"
+  ],
+  "automation": {
+    "created": false,
+    "reason": "No refresh date/time supplied; account quota refresh cannot be detected; background execution/write capability must be confirmed.",
+    "timingModeWhenScheduled": "exact_schedule",
+    "schedule": null,
+    "timezone": "Asia/Singapore",
+    "prompt": "docs/STAGED_CONTINUATION_PROMPT.md"
+  },
+  "evidencePaths": [
+    "docs/CLOUD_RESULT-0.5.5-HAIR.md",
+    "validation/hair-safety.json",
+    "validation/hair-safety-scan.jpg",
+    "validation/build-0.5.5-signed.json"
+  ]
+}
