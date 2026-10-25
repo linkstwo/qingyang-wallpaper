@@ -27,7 +27,7 @@
     }
   ],
   "structure": {
-    "version": 2,
+    "version": 3,
     "source": [
       1086,
       1448
@@ -48,6 +48,23 @@
       "depth": 116,
       "rigidThroughY": 395,
       "neckEndsY": 565
+    },
+    "armSupport": {
+      "shoulder": [
+        815,
+        575
+      ],
+      "elbow": [
+        815,
+        1010
+      ],
+      "wrist": [
+        350,
+        1175
+      ],
+      "upperRadius": 48,
+      "foreRadius": 42,
+      "feather": 36
     },
     "references": [
       "main-front-three-quarter.png",

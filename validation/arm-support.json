@@ -1,0 +1,11 @@
+{
+  "cases": 450,
+  "maxBoneError": 2.8421709430404007e-13,
+  "baselineBoneError": 14.128270033116166,
+  "maxWristDrift": 4.099037227506403e-13,
+  "maxNeutralError": 0,
+  "maxTissueLeak": 0,
+  "baselineTissueLeak": 0.4359722524303534,
+  "unreachable": 0,
+  "phoneTested": false
+}

@@ -36,6 +36,44 @@ precision highp float;
     vec2 d=p-anchor;
     return boundedTurn(anchor,116.0)+vec2(c*d.x-s*d.y,s*d.x+c*d.y)-d;
   }
+  // Image-space shoulder/elbow/wrist chain, fixed to the existing hand contact.
+  float segmentWeight(vec2 p,vec2 a,vec2 b,float radius){
+    vec2 v=b-a,d=p-a;
+    float t=clamp(dot(v,d)/dot(v,v),0.0,1.0);
+    return 1.0-smoothstep(radius,radius+36.0,length(d-t*v));
+  }
+  vec2 supportElbow(vec2 shoulder){
+    vec2 sourceS=vec2(815.0,575.0),sourceE=vec2(815.0,1010.0),wrist=vec2(350.0,1175.0);
+    if(all(equal(shoulder,sourceS)))return sourceE;
+    float upper=length(sourceE-sourceS),fore=length(wrist-sourceE);
+    vec2 v=wrist-shoulder;
+    float d=length(v),reach=clamp(d,abs(upper-fore)+0.0001,upper+fore-0.0001);
+    vec2 axis=v/d;
+    float along=(upper*upper-fore*fore+reach*reach)/(2.0*reach);
+    float height=sqrt(max(0.0,upper*upper-along*along));
+    return shoulder+axis*along+vec2(axis.y,-axis.x)*height;
+  }
+  vec2 segmentTransform(vec2 p,vec2 a,vec2 b,vec2 qa,vec2 qb){
+    if(all(equal(a,qa))&&all(equal(b,qb)))return p;
+    vec2 v=b-a,qv=qb-qa,d=p-a;
+    float den=length(v)*length(qv),c=dot(v,qv)/den,s=(v.x*qv.y-v.y*qv.x)/den;
+    return qa+vec2(c*d.x-s*d.y,s*d.x+c*d.y);
+  }
+  vec2 supportedArm(vec2 p,vec2 raw){
+    vec2 a=vec2(815.0,575.0),b=vec2(815.0,1010.0),c=vec2(350.0,1175.0);
+    float upper=segmentWeight(p,a,b,48.0),fore=segmentWeight(p,b,c,42.0),weight=max(upper,fore);
+    if(weight<=0.0)return raw;
+    float depth=95.61511749010519;
+    float bodyWeight=.32+.68*bell(a,vec2(721.0,789.0),vec2(310.0,430.0))
+      +.22*bell(a,vec2(630.0,410.0),vec2(220.0,180.0));
+    vec2 inertia=u_body*bodyWeight*u_motionGain;
+    vec2 shoulder=a+boundedTurn(a,depth)*u_structureMode
+      +mix(inertia,projectInertia(a,depth,vec3(inertia,0.0)),u_structureMode);
+    vec2 elbow=supportElbow(shoulder);
+    vec2 qa=segmentTransform(p,a,b,shoulder,elbow),qb=segmentTransform(p,b,c,elbow,c);
+    vec2 target=qa+(qb-qa)*fore/(upper+fore);
+    return raw+(target-raw)*weight;
+  }
   void main(){
     vec2 p=a_source, q=p;
     v_uv=p/u_size;
@@ -74,7 +112,7 @@ precision highp float;
       vec2 hairSpatial=projectInertia(p,a_depth,vec3(hairLocal,0.0));
       movement=mix(movement,mix(headInertia,headSpatial,u_structureMode)
         +mix(hairLocal,hairSpatial,u_structureMode),headRigid);
-      q+=(turn+movement)*active;
+      q+= (supportedArm(p,p+turn+movement)-p)*active;
     }
     else if(u_layer>2.5){} // Paper/workbench stay with their pinned contacts.
     gl_Position=vec4(q.x*u_ndcScale.x+u_ndcOffset.x,q.y*u_ndcScale.y+u_ndcOffset.y,0.0,1.0);

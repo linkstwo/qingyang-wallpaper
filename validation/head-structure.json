@@ -3,6 +3,6 @@
   "baselineDistanceError": 8.970172669504421,
   "maxDistanceError": 9.947598300641403e-14,
   "maxNeutralError": 0,
-  "maxBoundaryJump": 0.00020855657227129707,
+  "maxBoundaryJump": 0.00020468289767936148,
   "phoneTested": false
 }

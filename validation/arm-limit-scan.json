@@ -1,0 +1,35 @@
+{
+  "allMeshHardLimitPassed": false,
+  "knownLimitation": "Inherited loose hair tip fold at simultaneous spring hard limits; pending repair, not phone evidence.",
+  "results": [
+    {
+      "name": "baseline",
+      "cases": 24,
+      "minArea": -0.5378271841465964,
+      "minArmArea": 0.779259620875677,
+      "worst": {
+        "x": 246.046875,
+        "y": 486.4375,
+        "vx": 1,
+        "vy": -1,
+        "sx": 1,
+        "sy": 1
+      }
+    },
+    {
+      "name": "current",
+      "cases": 24,
+      "minArea": -0.5378271841465964,
+      "minArmArea": 0.2682411232666754,
+      "worst": {
+        "x": 246.046875,
+        "y": 486.4375,
+        "vx": 1,
+        "vy": -1,
+        "sx": 1,
+        "sy": 1
+      }
+    }
+  ],
+  "phoneTested": false
+}

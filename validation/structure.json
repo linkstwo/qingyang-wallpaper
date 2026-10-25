@@ -3,15 +3,15 @@
   "vertices": 49152,
   "depthMin": 0.00017840771761257201,
   "depthMax": 121.94358825683594,
-  "minAreaRatio": 0.7543245865401437,
-  "maxAreaRatio": 1.2377999163752165,
+  "minAreaRatio": 0.49683091520356426,
+  "maxAreaRatio": 1.4769534305508012,
   "maxTravel": 21.571455259918093,
   "pinnedError": 0,
   "minCoupledAreaRatio": 0.24471854126704204,
   "maxCoupledAreaRatio": 2.065600216787503,
   "phoneTested": false,
   "structure": {
-    "version": 2,
+    "version": 3,
     "source": [
       1086,
       1448
@@ -32,6 +32,23 @@
       "depth": 116,
       "rigidThroughY": 395,
       "neckEndsY": 565
+    },
+    "armSupport": {
+      "shoulder": [
+        815,
+        575
+      ],
+      "elbow": [
+        815,
+        1010
+      ],
+      "wrist": [
+        350,
+        1175
+      ],
+      "upperRadius": 48,
+      "foreRadius": 42,
+      "feather": 36
     },
     "references": [
       "main-front-three-quarter.png",
