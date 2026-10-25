@@ -1,0 +1,50 @@
+{
+  "versionName": "0.5.6",
+  "versionCode": 15,
+  "packageName": "com.tangtang.motionwallpaper",
+  "applicationCommit": "faee587cead9a9508be1d2f493801a0a23653be6",
+  "unsignedLibraryId": "libfile_b308f5fe2be48191961c5a7991dd8fe8",
+  "unsignedSha256": "8107bd2dc59d9f7b329fb6ac27e84cc56cf6e335b11b4ec53d33551dfc190da6",
+  "signedSha256": "8168d498ddb86fcad98441d103c765785c59fcbb0abe94bf724e669e917c3c71",
+  "apkBytes": 9602273,
+  "releaseCertificateSha256": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
+  "originalKeySha256": "1c2a3e271290832bec47c0850354af9c0714dbe095ba86325812085d49638244",
+  "originalKeyUnchanged": true,
+  "rebuilt": false,
+  "signed": true,
+  "signatureVerified": true,
+  "signatureSchemes": {
+    "v1": false,
+    "v2": false,
+    "v3": true,
+    "v4": false
+  },
+  "certificateMatchesInstalledSeries": true,
+  "comparedToVersion": "0.5.5/14",
+  "manifestVerified": true,
+  "minSdk": 28,
+  "debuggable": false,
+  "zipCRC": true,
+  "zipalign4": true,
+  "allZipEntriesUnchanged": true,
+  "zipEntriesCompared": 18,
+  "backReferenceSha256": "8bd1d23c05f72f3a48d3585184a635242d5c5a7cbe5070d2b7d9e0f61ce50574",
+  "studyActivityInDex": true,
+  "negativeTests": {
+    "unsignedRejected": true,
+    "tamperedSignedApkRejected": true
+  },
+  "phoneTested": false,
+  "installUpgradeTested": false,
+  "runtimeUiTested": false,
+  "upgradeCompatibility": "Expected from same package/certificate and versionCode14->15; not installed on a device.",
+  "unresolved": [
+    "Simultaneous shoulder/back default composition",
+    "Continuous multi-angle view",
+    "Phone lifecycle/performance/battery/thermal"
+  ],
+  "verifiedAt": "2026-10-25",
+  "timezone": "Asia/Singapore",
+  "signedLibraryId": "libfile_7cf285975d448191b54ad985b60b4a0a",
+  "signedFileName": "qingyang-0.5.6.apk"
+}

@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S1",
   "status": "in_progress",
-  "scopeOfThisRun": "Cloud 0.5.6 Android packaging: subject framing integrated, fullscreen fixed-view study added, release APK built; original-key signing still blocked.",
+  "scopeOfThisRun": "Reuse the exact cloud-built 0.5.6 artifact, sign with the original release key, independently verify and save installable APK; application source unchanged.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -24,11 +24,14 @@
     "Integrated subject-region framing in Android and JS, preserving a hair safety region",
     "Added fullscreen front/back static composition study; packaged the existing back reference without reusing the front-view deformation mask",
     "Built 0.5.6/15 release; verified ZIP, alignment, manifest, study DEX and exact back asset",
-    "Passed 10132 Java assertions and JS parity, 52 lifecycle checks, 72 framing cases/439 checks, 2880 GPU landmarks and GLES face/contact/hair checks"
+    "Passed 10132 Java assertions and JS parity, 52 lifecycle checks, 72 framing cases/439 checks, 2880 GPU landmarks and GLES face/contact/hair checks",
+    "Rechecked current Codex AI bridge successfully and read signing handoff1865/1868; previous404 is no longer the current blocker",
+    "Reused exact Library unsigned0.5.6 artifact (SHA2568107bd2d...90da6); no rebuild",
+    "Signed0.5.6/15 with original key; certificate and actualv3-only scheme match0.5.5; verified manifest/alignment/CRC and all18 entry contents unchanged",
+    "Negative validation: unsigned APK and deliberately modified signed APK are rejected",
+    "Saved original-key signed APK to Library: libfile_7cf285975d448191b54ad985b60b4a0a"
   ],
   "next": [
-    "Restore the current authenticated cloud bridge route and obtain the existing signing handoff; do not generate a new key",
-    "Sign the exact 0.5.6 artifact with original certificate, independently verify and deliver installable APK",
     "On phone compare dynamic front composition and fullscreen static back candidate; keep actual lockscreen visibility pending",
     "Review the ten retrieved original images and register compatible view/region correspondences before continuous-view work"
   ],
@@ -43,10 +46,6 @@
     "S8": "not_started"
   },
   "blocked": [
-    {
-      "task": "Original release signing",
-      "reason": "Cloud bridge tool endpoint returns404; root webpage is online but login-protected. No original private key in current runtime."
-    },
     {
       "task": "Browser DOM/layout test",
       "reason": "Local browser executable absent, official download returned HTML rather than a ZIP; separate browser could not reach loopback server. GLES rendering completed instead."
@@ -81,7 +80,9 @@
     "validation/build-0.5.6.properties",
     "validation/framing-0.5.6.json",
     "docs/CLOUD_RESULT-0.5.6-FRAMING.md",
-    "references/multiview-archive-manifest.json"
+    "references/multiview-archive-manifest.json",
+    "validation/build-0.5.6-signed.json",
+    "docs/APK-0.5.6-SIGNED.md"
   ],
   "priorityAcceptance": "Keep the character large and the composition filled while showing a clear shoulder line and a meaningful back region simultaneously in the default screen view. Validate before claiming framing resolved.",
   "assetAuthorization": {
@@ -104,5 +105,17 @@
     "archiveFileCount": 10
   },
   "currentCandidateVersion": "0.5.6",
-  "currentCandidateVersionCode": 15
+  "currentCandidateVersionCode": 15,
+  "signing": {
+    "status": "complete",
+    "verified": true,
+    "applicationCommit": "faee587cead9a9508be1d2f493801a0a23653be6",
+    "rebuilt": false,
+    "certificateSha256": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
+    "sha256": "8168d498ddb86fcad98441d103c765785c59fcbb0abe94bf724e669e917c3c71",
+    "apkBytes": 9602273,
+    "libraryFileId": "libfile_7cf285975d448191b54ad985b60b4a0a",
+    "report": "validation/build-0.5.6-signed.json",
+    "phoneInstallTested": false
+  }
 }
