@@ -44,10 +44,11 @@
     "Uploaded original keystore received and certificate verified against the prior release; private file remains outside the repository. Recovered reading-v2 source and empty workshop plate, regenerated new-pose geometry/matte/depth/contacts and chest-centred crop. UI recovery and fresh final validation still pending.",
     "Restored compact preview-first home/editor UI, explicit source-centre action, draft save/cancel and demand-driven/vsync preview rendering; not yet native-phone tested.",
     "Recovered0.5.8 new-pose assets/crop in e58414b and UI/checks in2a277fd; verified source RGB copies and15 assets/four copy pairs,159 crop/settings checks,10132 response assertions,52 lifecycle checks, Java/JS solver parity,1440 GLES landmarks and884736 triangle cases. Built release with vitalLint, original-key signed and independently verified version/certificate/ZIP/alignment/assets/DEX and negative unsigned/tampered cases. Signed APK saved with Library id libfile_cc0dc13811c48191b49b6f58131caa01; actual phone/native behaviour remains pending.",
-    "Published the exact signed0.5.8 APK to GitHub Releases without rebuilding; runner independently verified original certificate and anonymous public download with matching SHA256."
+    "Published the exact signed0.5.8 APK to GitHub Releases without rebuilding; runner independently verified original certificate and anonymous public download with matching SHA256.",
+    "Reproduced0.5.8 chest/left-edge defect; separated full motion coverage from source erasure, and replaced single broad chest field with two smooth material lobes and neckline/ribcage taper. Current CPU/GLES/triangle checks passed; visual fix still requires user acceptance."
   ],
   "next": [
-    "Reproduce and fix chest/left-contour defects with actual production-render comparisons; preserve original RGB/identity and Q-elastic solver.",
+    "Proceed directly into S2 calibrated scene/contact projection and connected thickness proxies; keep the user feedback pending phone confirmation.",
     "After fixing these basics, proceed directly into S2 connected surface/scene/contact structure; keep uncompleted S1 registration/native acceptance explicitly pending.",
     "Checkpoint coherent work immediately and at most every30minutes of active development; continue without asking for stage-transition confirmation."
   ],
@@ -239,7 +240,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-25T14:37:20.835157+00:00",
-    "lastCheckpointAt": "2026-10-25T14:38:11.169334+00:00",
+    "lastCheckpointAt": "2026-10-25T14:49:43.494170+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,
@@ -249,13 +250,13 @@
     {
       "id": "chest_deformation_058",
       "reportedIn": "0.5.8",
-      "status": "open",
+      "status": "offline_fix_awaiting_phone",
       "description": "User reports chest deformation looks unnatural; inspect shape/weight attachments and preserve Q-elastic response."
     },
     {
       "id": "left_outline_058",
       "reportedIn": "0.5.8",
-      "status": "open",
+      "status": "offline_fix_awaiting_phone",
       "description": "User reports residual curved original contour/seam on the left; inspect matte alignment, background removal and material deformation."
     }
   ]

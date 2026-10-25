@@ -47,8 +47,8 @@
     },
     {
       "path": "character-prototype/preview/mask.png",
-      "bytes": 13778,
-      "sha256": "3aa183680248c42981b86ece3432ca49220d8b3c6b5e87c07453442b1ff204a8",
+      "bytes": 15793,
+      "sha256": "b975fbdfdfe34bcec730fa5ccf9a91fd4d5c0b74cd8ddecb97810b1f5dbcc43d",
       "dimensions": [
         1152,
         1536
@@ -89,8 +89,8 @@
     },
     {
       "path": "android-app/app/src/main/assets/mask.png",
-      "bytes": 13778,
-      "sha256": "3aa183680248c42981b86ece3432ca49220d8b3c6b5e87c07453442b1ff204a8",
+      "bytes": 15793,
+      "sha256": "b975fbdfdfe34bcec730fa5ccf9a91fd4d5c0b74cd8ddecb97810b1f5dbcc43d",
       "dimensions": [
         1152,
         1536
@@ -138,6 +138,6 @@
       "android-app/app/src/main/assets/background.png"
     ]
   ],
-  "revisionNote": "0.5.8: user authorised the new reading pose. Four historical originals stay unchanged; source RGB copied exactly. Rebuild matte/contacts/depth/mesh for this pose; generated empty workshop plate from the interrupted run recovered byte-for-byte. No signing secrets are included.",
+  "revisionNote": "Post0.5.8 feedback: motion coverage R includes antialiased pale cloth; conservative source erasure G stays inside opaque R to avoid a neutral dark ring. Separate material lobes taper at neckline/ribcage; original source bytes and spring solver unchanged.",
   "sourceEncodingNote": "The authorised upload is named1000030775.png but contains JPEG bytes. Source/reference/runtime copies preserve the exact original encoding and bytes; header verification supports both PNG and JPEG."
 }

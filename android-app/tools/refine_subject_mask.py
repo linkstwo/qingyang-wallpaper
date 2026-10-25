@@ -17,4 +17,11 @@ mask[1410:,:]=cv2.GC_FGD;cv2.setRNGSeed(58)
 cv2.grabCut(cv2.cvtColor(rgb,cv2.COLOR_RGB2BGR),mask,None,np.zeros((1,65)),np.zeros((1,65)),5,cv2.GC_INIT_WITH_MASK)
 matte=np.where((mask==cv2.GC_FGD)|(mask==cv2.GC_PR_FGD),255,0).astype(np.uint8)
 matte=cv2.morphologyEx(matte,cv2.MORPH_CLOSE,np.ones((3,3),np.uint8));cv2.fillPoly(matte,[np.array(s['hair']['outline'],np.int32)],255)
-Image.fromarray(matte).convert('RGB').save(P/'mask.png');print('Aligned motion matte saved; original RGB unchanged.')
+# Colour cut misses the antialiased pale cloth edge. Include its full coverage.
+coverage=cv2.dilate(matte,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(9,9)))
+# Erasure covers the original pale edge but stays inside fully opaque motion coverage.
+# This removes the old curve without exposing a dark ring at the neutral pose.
+erase=cv2.dilate(matte,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5)))
+mask_rgb=np.dstack([coverage,erase,coverage])
+Image.fromarray(mask_rgb).save(P/'mask.png')
+print('Motion coverage R and conservative source erasure G saved; original RGB unchanged.')

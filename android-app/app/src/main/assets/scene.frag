@@ -13,7 +13,7 @@ void main(){
     alpha=texture2D(u_mask,v_uv).r;
     if(u_maskMode>1.5){
       // Aligned matte edge: dilation previously produced dark outlines at rest.
-      alpha*=u_cover;
+      alpha=texture2D(u_mask,v_uv).g*u_cover;
     }
   } else if(u_softFrame>0.5){
     float edge=min(min(v_uv.x,1.0-v_uv.x),min(v_uv.y,1.0-v_uv.y));

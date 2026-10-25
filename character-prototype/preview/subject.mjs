@@ -5,7 +5,7 @@ export const subject={
  paper:[[44,763],[284,947],[367,1022],[435,1125],[570,1264],[360,1216],[193,1183],[23,1168],[0,1044],[0,938]],
  contacts:[{name:'blueprint',feather:28,outline:[[44,763],[284,947],[367,1022],[435,1125],[570,1264],[360,1216],[193,1183],[23,1168],[0,1044],[0,938]]},{name:'holding-hand',feather:40,outline:[[277,970],[314,951],[354,951],[383,966],[381,1002],[352,1032],[319,1038],[287,1011]]}],
  head:{anchor:[550,305],depth:116,rigidThroughY:420,neckEndsY:590},
- chest:{center:[725,755],radius:[190,210]},torso:{center:[795,800],radius:[320,430]},neck:{center:[731,416],radius:[220,180]},
+ chest:{center:[725,755],radius:[190,210],farCenter:[602,729],farRadius:[120,165],nearCenter:[766,772],nearRadius:[165,190],attachY:[490,635],releaseY:[965,1125]},torso:{center:[795,800],radius:[320,430]},neck:{center:[731,416],radius:[220,180]},
  hair:{rootY:330,tipY:590,rootX:350,tipX:480,width:50,releaseY:730,outline:[[329,320],[359,320],[392,385],[428,440],[461,490],[486,535],[509,587],[500,640],[474,667],[451,624],[453,578],[420,540],[389,484],[362,424],[343,373]]},
  arm:{shoulder:[590,535],elbow:[635,920],wrist:[350,1005],upperRadius:36,foreRadius:33,feather:100,visibleY:[820,910]},fixedSeat:[1270,1410],
  limitation:'Bounded main-view 2.5D proxy; side/back reference textures are not registered yet.'
