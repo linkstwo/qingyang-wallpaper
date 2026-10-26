@@ -1,21 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "manual-plugin-s2-20261026-0329",
-  "fence": 3,
-  "status": "released",
-  "startedAt": "2026-10-26T03:29:23.035343Z",
-  "heartbeatAt": "2026-10-26T04:16:02.772754Z",
-  "expiresAt": "2026-10-26T04:16:02.772754Z",
-  "baseHead": "e24ed3cb95405cb2f76e84a2685c6c661d352287",
-  "checkpoint": {
-    "baseHead": "075c39c9bcef2a2d37c7fa44354a51b34b57977e",
-    "createdAt": "2026-10-26T04:15:11.000899+00:00",
-    "sourceDigest": "e6e4500315360248b81225cb0ef38a2fdc4efeb654652a8f810673d8bacc40ff",
-    "stage": "S2",
-    "next": [
-      "Locate/correct the16 neutral joint-edge pixel differences in the combined scene; retain strict seam acceptance as false until resolved.",
-      "Replace provisional back chart association with semantically matched shoulder/neck/back observations, refine local geometry and source seams before Android integration or a new candidate."
-    ]
-  },
-  "reason": "Checkpoint saved; no worker implied after final reply."
+  "owner": "manual-plugin-s2-20261026-0650",
+  "fence": 4,
+  "status": "running",
+  "startedAt": "2026-10-26T06:50:20.554212Z",
+  "heartbeatAt": "2026-10-26T06:50:20.554212Z",
+  "expiresAt": "2026-10-26T07:05:20.554212Z",
+  "baseHead": "415bacf1bda178adaac88efb907a73879790cfbf"
 }
