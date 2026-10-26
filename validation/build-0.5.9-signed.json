@@ -24,5 +24,15 @@
     "Unobserved body under paper not completed",
     "Native lockscreen and subjective feel remain untested"
   ],
-  "libraryFileId": "libfile_582f73752c608191b0709b0362de9f4c"
+  "libraryFileId": "libfile_582f73752c608191b0709b0362de9f4c",
+  "release": {
+    "tag": "v0.5.9",
+    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.9",
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.9/qingyang-0.5.9.apk",
+    "assetId": 676671394,
+    "sha256": "e64dc0f67e0c5323e44adff9bd253dce94d112ed21d66731d136f927da6e8eac",
+    "anonymousDownloadVerified": true,
+    "workflowRun": 40255607657,
+    "prerelease": true
+  }
 }

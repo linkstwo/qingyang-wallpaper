@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "S2 layered paper/body topology and shared camera/depth integration; preserve Q solver, original RGB and pure cloud execution.",
+  "scopeOfThisRun": "Delivered0.5.9/18 with0.5.8 contour/chest fixes and S2 layered scene/contact/depth integration. S2 remains in_progress; follow-on work is durable but not claimed to run continuously after turn end.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -51,11 +51,12 @@
     "Recovered calibrated CPU/GLSL scene projection after transient directory cleanup; world paper plane and material-space support constraints integrated. Reran7295 scene checks and884736 triangle cases; min area ratio0.20528, support contact error0. Production yaw/pitch bounded to±0.04/0.02rad pending occlusion topology split. No new APK built.",
     "S2 layered topology: subtract observed paper polygon from character geometry; body18089 triangles, paper164. Body contact/depth no longer follows paper feather; wrist depth transitions over forearm. Reproduced old area ratio-1.073 at0.14/0.07rad, new0.1664; neutral coverage area error0.00049pixel². Production range remains bounded; hidden under-paper body texture remains missing.",
     "S2 depth integration: real camera depth in production GLSL,16-bit depth requested in both native surfaces, LEQUAL on body/paper and transparent-mask discard. Five actual GLES occlusion cases passed across both draw orders;1440 GPU landmarks/222 contour pixels/52 lifecycle/10132 response checks and Java-JS parity passed. Restored9 structural debug renders; those wider untextured views are diagnostic only.",
-    "Built0.5.9/18 including vitalLint; original-key signed v3-only, verified original certificate/version/ZIP/alignment/18 assets/DEX and negative unsigned/tampered cases. Saved exact signed APK; public download publishing next."
+    "Built0.5.9/18 including vitalLint; original-key signed v3-only, verified original certificate/version/ZIP/alignment/18 assets/DEX and negative unsigned/tampered cases. Saved exact signed APK; public download publishing next.",
+    "0.5.9 original-key candidate publicly released. GitHub runner independently reverified original certificate and exact APK digest, then anonymously downloaded public asset and checked SHA256; workflow40255607657 succeeded. APK safely persisted before transient workspace cleanup."
   ],
   "next": [
-    "Prepare original-key next candidate with chest/contour repair and bounded S2 projection/topology/depth changes; verify build/signature/download.",
-    "Continue joint-connected local structure and hidden-material credibility; side/back textures still not registered and S2 remains incomplete."
+    "Continue S2 joint-connected local structures and credible hidden-body/side-back material mapping; retain bounded production camera until source coverage is proven.",
+    "Use phone feedback on chest/left edge and existing locked-screen framing when supplied; offline checks do not substitute for visual/native acceptance."
   ],
   "stages": {
     "S1": "in_progress",
@@ -147,20 +148,38 @@
     "archiveManifest": "references/multiview-archive-manifest.json",
     "archiveFileCount": 10
   },
-  "currentCandidateVersion": "0.5.8",
-  "currentCandidateVersionCode": 17,
+  "currentCandidateVersion": "0.5.9",
+  "currentCandidateVersionCode": 18,
   "signing": {
+    "versionName": "0.5.9",
+    "versionCode": 18,
+    "package": "com.tangtang.motionwallpaper",
+    "applicationCommit": "cfdf79642e01580d6310438af4020639a3f1aa61",
+    "verifiedAt": "2026-10-26T01:41:47.228824+00:00",
+    "sha256": "e64dc0f67e0c5323e44adff9bd253dce94d112ed21d66731d136f927da6e8eac",
+    "apkBytes": 6330059,
+    "unsignedSha256": "511b23f65b6f0987cb81fa939d2ba6bb8c4938ed82c3fa525e2743a37efd86f7",
+    "sourceFingerprint": "589e8750f7dcb2da3f43f35b8a1e7c0ec921556c9e6512cee667f4114c3d183f",
+    "certificateSha256": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
+    "signatureScheme": "v3-only, minSdk28",
+    "zipCrcVerified": true,
+    "zipAlignmentVerified": true,
+    "assetsByteCompared": 18,
+    "releaseNotDebug": true,
+    "unsignedRejected": true,
+    "tamperedRejected": true,
+    "phoneInstallTested": false,
+    "stage": "S2",
+    "stageStatus": "in_progress",
+    "limitations": [
+      "Hidden side/back textures not registered",
+      "Unobserved body under paper not completed",
+      "Native lockscreen and subjective feel remain untested"
+    ],
+    "libraryFileId": "libfile_582f73752c608191b0709b0362de9f4c",
     "status": "complete",
     "verified": true,
-    "versionName": "0.5.8",
-    "versionCode": 17,
-    "sha256": "a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7",
-    "apkBytes": 6284513,
-    "certificateSha256": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
-    "report": "validation/build-0.5.8-signed.json",
-    "libraryFileId": "libfile_cc0dc13811c48191b49b6f58131caa01",
-    "phoneInstallTested": false,
-    "applicationCommit": "2a277fdead480d1be0c1957dd448160839416516"
+    "report": "validation/build-0.5.9-signed.json"
   },
   "s1Basics": {
     "status": "awaiting_phone",
@@ -178,22 +197,22 @@
     "desktopGlesViewed": true
   },
   "release": {
-    "tag": "v0.5.8",
-    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.8",
-    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.8/qingyang-0.5.8.apk",
-    "assetId": 675252073,
-    "sha256": "a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7",
+    "tag": "v0.5.9",
+    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.9",
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.9/qingyang-0.5.9.apk",
+    "assetId": 676671394,
+    "sha256": "e64dc0f67e0c5323e44adff9bd253dce94d112ed21d66731d136f927da6e8eac",
     "anonymousDownloadVerified": true,
-    "workflowRun": 40202295263,
-    "workflowJob": 121195829689
+    "workflowRun": 40255607657,
+    "prerelease": true
   },
   "userRequirementsDocument": "docs/CURRENT_HANDOFF-0.5.8.md",
   "targetCandidate": {
     "versionName": "0.5.9",
     "versionCode": 18,
-    "status": "signed_awaiting_public_download",
+    "status": "awaiting_phone",
     "applicationChangesCommitted": true,
-    "installableApkDelivered": false,
+    "installableApkDelivered": true,
     "finalBuildVerified": true,
     "signingVerified": true,
     "sourceImageLibraryId": "libfile_4f121f15747c8191ae4e79700c7fd655",
@@ -201,7 +220,9 @@
     "applicationCommit": "cfdf79642e01580d6310438af4020639a3f1aa61",
     "libraryFileId": "libfile_582f73752c608191b0709b0362de9f4c",
     "sha256": "e64dc0f67e0c5323e44adff9bd253dce94d112ed21d66731d136f927da6e8eac",
-    "apkBytes": 6330059
+    "apkBytes": 6330059,
+    "publicDownloadVerified": true,
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.9/qingyang-0.5.9.apk"
   },
   "recovery": {
     "required": false,
@@ -233,23 +254,25 @@
       "Build success is not signature/installability or phone acceptance.",
       "No stage completion from an uncommitted transient result.",
       "Commit each coherent source/asset checkpoint promptly; report partial work honestly.",
-      "Read latest branch HEAD, START_IN_CLOUD and EXECUTION_STATE before scheduled continuation."
+      "Read latest branch HEAD, START_IN_CLOUD and EXECUTION_STATE before scheduled continuation.",
+      "Never imply uninterrupted background coding after a final reply; report real checkpoint, deliver produced APK promptly, and resume from committed state after platform interruptions."
     ]
   },
   "previousRelease": {
-    "tag": "v0.5.7",
-    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.7",
-    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.7/qingyang-0.5.7.apk",
-    "assetId": 674397263,
-    "sha256": "3a7361cbb34b9765ed83eac8a5ff9281668f60ad39837adcf5c15fbeb701ff4c",
+    "tag": "v0.5.8",
+    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.8",
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.8/qingyang-0.5.8.apk",
+    "assetId": 675252073,
+    "sha256": "a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7",
     "anonymousDownloadVerified": true,
-    "workflowRun": 40173213599
+    "workflowRun": 40202295263,
+    "workflowJob": 121195829689
   },
   "workSession": {
     "startedAt": "2026-10-26T01:31:42.036130+00:00",
-    "lastCheckpointAt": "2026-10-26T01:43:25.263691+00:00",
+    "lastCheckpointAt": "2026-10-26T02:38:44.776Z",
     "checkpointIntervalMinutes": 30,
-    "mode": "active_development",
+    "mode": "checkpointed",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Transient directory was removed; restored from21b4df8. Do not imply uninterrupted background execution."
