@@ -30,7 +30,7 @@ final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer 
     PreviewView(Context context){
         super(context);choreographer=Choreographer.getInstance();
         feed=new SensorFeed(context,main);feed.wake=()->wake();
-        setEGLContextClientVersion(2);setPreserveEGLContextOnPause(true);
+        setEGLContextClientVersion(2);setEGLConfigChooser(8,8,8,8,16,0);setPreserveEGLContextOnPause(true);
         setRenderer(this);setRenderMode(RENDERMODE_WHEN_DIRTY);
     }
     void listener(Listener value){listener=value;}

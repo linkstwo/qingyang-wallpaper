@@ -20,7 +20,7 @@ async function start(){
   const uniform=name=>gl.getUniformLocation(program,name),pos=gl.getAttribLocation(program,'a_source'),pin=gl.getAttribLocation(program,'a_pin'),depth=gl.getAttribLocation(program,'a_depth');
   const U=Object.fromEntries(['size','view','body','chest','hair','layer','texture','mask','maskMode','cover','ndcScale','ndcOffset','motionGain','tipMode','softFrame','structureMode'].map(n=>[n,uniform('u_'+n)]));
   gl.uniform2f(U.size,W,H);gl.uniform1i(U.texture,0);gl.uniform1i(U.mask,1);gl.enableVertexAttribArray(pos);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
-  const texture=async name=>{const img=new Image();img.src=name;await img.decode();if(img.width!==W||img.height!==H)throw Error('素材尺寸未对齐');const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);return tex;};
+  const texture=async name=>{const img=new Image();img.src=name;await img.decode();if(name!==config.background&&(img.width!==W||img.height!==H))throw Error('素材尺寸未对齐');const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);return tex;};
   const original=await texture(config.texture),background=await texture(config.background),mask=await texture('mask.png');
   gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,mask);gl.activeTexture(gl.TEXTURE0);
   const buffer=data=>{const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);return {b,count:data.length/2};};
@@ -65,13 +65,13 @@ async function start(){
     if(!paused){
       if(fixed===null){accumulator+=dt;while(accumulator>=1/120){if(startDemo!==null){const d=getInput((now-startDemo)/1000-accumulator);target=d;phase.textContent=d.phase;if(d.done)startDemo=null;}physics(1/120);accumulator-=1/120;}}
       gl.uniform2f(U.view,view.x,view.y);gl.uniform2f(U.body,visualValues[0],visualValues[1]);gl.uniform3f(U.chest,visualValues[2],visualValues[3],visualValues[6]);gl.uniform2f(U.hair,visualValues[4],visualValues[5]);gl.uniform1f(U.cover,1);
-      gl.clearColor(0.1,0.1,0.1,1);gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.clearColor(0.1,0.1,0.1,1);gl.disable(gl.DEPTH_TEST);gl.depthMask(true);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
       const wider=composition.value==='wide',frame=framing(canvas.width,canvas.height,wider,Number(document.querySelector('#size').value),Number(document.querySelector('#top').value));
       gl.uniform1f(U.motionGain,frame.motionGain);gl.uniform1f(U.tipMode,response.value==='legacy'?0:1);gl.uniform1f(U.softFrame,wider?1:0);gl.uniform1f(U.structureMode,document.querySelector('#structure').checked?1:0);
       if(wider){transform(framing(canvas.width,canvas.height,false));draw(quad,background,-1);}
       transform(frame);
       document.body.dataset.framing=JSON.stringify(frame);
-      draw(quad,original,0);draw(quad,background,0,2);draw(character,original,1,1);draw(foreground,original,3);
+      draw(quad,original,0);draw(quad,background,0,2);gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);draw(character,original,1,1);draw(foreground,original,3);
       frames++;if(now-fpsTime>=600){fps=Math.round(frames*1000/(now-fpsTime));frames=0;fpsTime=now;}
       stats.textContent=`桌面 ${fps||'—'} fps · ${frameStatus.triangles} 个三角形\n视角 ${view.x.toFixed(3)}, ${view.y.toFixed(3)}\n胸部回弹 ${visualValues[2].toFixed(2)}, ${visualValues[3].toFixed(2)} px`;
       document.body.dataset.view=JSON.stringify(view);document.body.dataset.physics=JSON.stringify(visualValues.map(v=>+v.toFixed(5)));document.body.dataset.fps=String(fps);

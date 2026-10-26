@@ -19,7 +19,7 @@ display=E.eglGetDisplay(None);major=I();minor=I()
 assert E.eglInitialize(display,C.byref(major),C.byref(minor)), 'EGL initialization'
 assert E.eglBindAPI(0x30A0)
 config=P();count=I()
-assert E.eglChooseConfig(display,attrs(0x3040,4,0x3033,1,0x3024,8,0x3023,8,0x3022,8,0x3038),C.byref(config),1,C.byref(count)) and count.value
+assert E.eglChooseConfig(display,attrs(0x3040,4,0x3033,1,0x3024,8,0x3023,8,0x3022,8,0x3025,16,0x3038),C.byref(config),1,C.byref(count)) and count.value
 W,H=540,1176
 context=E.eglCreateContext(display,config,None,attrs(0x3098,2,0x3038))
 surface=E.eglCreatePbufferSurface(display,config,attrs(0x3057,W,0x3056,H,0x3038))
@@ -39,6 +39,7 @@ genTexture=gl('glGenTextures',None,I,C.POINTER(U));bindTexture=gl('glBindTexture
 texImage=gl('glTexImage2D',None,U,I,I,I,I,I,U,U,P)
 viewport=gl('glViewport',None,I,I,I,I);enable=gl('glEnable',None,U);blend=gl('glBlendFunc',None,U,U);clearColor=gl('glClearColor',None,F,F,F,F);clear=gl('glClear',None,U);drawArrays=gl('glDrawArrays',None,U,I,I)
 readPixels=gl('glReadPixels',None,I,I,I,I,U,U,P);error=gl('glGetError',U);finish=gl('glFinish',None)
+disable=gl('glDisable',None,U);depthFunc=gl('glDepthFunc',None,U);depthMask=gl('glDepthMask',None,C.c_ubyte)
 getString=gl('glGetString',C.c_char_p,U)
 program=createProgram()
 assets=ROOT/'android-app/app/src/main/assets'
@@ -92,10 +93,10 @@ def layer(b,count,texture,number,mask_mode,pinned=False):
 def render(wider=True,view=(0,0),body=(0,0),chest=(0,0),hair=(0,0),enhanced=True,fill_override=None,structure=True,size_percent=90):
  mapping=frame(wider,size_percent);u('structureMode',int(structure));u('view',*view);u('body',*body);u('chest',*(tuple(chest) if len(chest)==3 else (*chest,0)));u('hair',*hair);u('motionGain',mapping[3]);u('tipMode',int(enhanced));u('softFrame',int(wider))
  u('cover',1 if fill_override is None else fill_override)
- clearColor(.06,.09,.12,1);clear(0x4000)
+ disable(0x0B71);depthMask(1);clearColor(.06,.09,.12,1);clear(0x4000|0x0100)
  if wider:
   transform(frame(False));layer(quad,6,'background.png',-1,0)
- transform(mapping);layer(quad,6,'original.png',0,0);layer(quad,6,'background.png',0,2);layer(mesh,len(mesh_raw)//8,'original.png',1,1,True);layer(fg,len(fg_raw)//8,'original.png',3,0)
+ transform(mapping);layer(quad,6,'original.png',0,0);layer(quad,6,'background.png',0,2);enable(0x0B71);depthFunc(0x0203);layer(mesh,len(mesh_raw)//8,'original.png',1,1,True);layer(fg,len(fg_raw)//8,'original.png',3,0)
  finish();assert error()==0,'GPU draw error'
  pixels=(C.c_ubyte*(W*H*4))();readPixels(0,0,W,H,0x1908,0x1401,pixels)
  return Image.frombytes('RGBA',(W,H),bytes(pixels)).transpose(Image.Transpose.FLIP_TOP_BOTTOM)

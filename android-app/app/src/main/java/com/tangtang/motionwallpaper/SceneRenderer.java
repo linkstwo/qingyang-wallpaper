@@ -217,7 +217,9 @@ final class SceneRenderer {
         GLES20.glUniform2f(uNdcOffset, ndcOffsetX, ndcOffsetY);
 
         GLES20.glClearColor(0.06f, 0.09f, 0.12f, 1.0f);
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+        GLES20.glDisable(GLES20.GL_DEPTH_TEST);
+        GLES20.glDepthMask(true);
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
         {
             GLES20.glUniform2f(uNdcScale,backdropScaleX,backdropScaleY);
@@ -228,6 +230,8 @@ final class SceneRenderer {
         }
         drawLayer(quadBuffer, quadCount, texOriginal, 0.0f, 0.0f, false);
         drawLayer(quadBuffer, quadCount, texBackground, 0.0f, 2.0f, false);
+        GLES20.glEnable(GLES20.GL_DEPTH_TEST);
+        GLES20.glDepthFunc(GLES20.GL_LEQUAL);
         drawLayer(characterBuffer, characterCount, texOriginal, 1.0f, 1.0f, true);
         drawLayer(foregroundBuffer, foregroundCount, texOriginal, 3.0f, 0.0f, false);
         drawnFrames++;

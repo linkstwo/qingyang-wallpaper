@@ -24,5 +24,6 @@ void main(){
     alpha*=smoothstep(0.0,0.025,v_uv.y);
     alpha*=1.0-smoothstep(0.94,1.0,v_uv.y);
   }
+  if(alpha<0.005)discard; // Transparent matte pixels must not occlude the paper.
   gl_FragColor=vec4(rgb,alpha);
 }

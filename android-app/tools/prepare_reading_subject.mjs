@@ -27,13 +27,13 @@ float segmentWeight(vec2 p,vec2 a,vec2 b,float radius){vec2 v=b-a,d=p-a;float t=
 vec2 supportElbow(vec2 s){vec2 a=${v(a.shoulder)},b=${v(a.elbow)},c=${v(a.wrist)};if(all(equal(a,s)))return b;float upper=length(b-a),fore=length(c-b);vec2 d=c-s;float len=length(d),reach=clamp(len,abs(upper-fore)+.0001,upper+fore-.0001),along=(upper*upper-fore*fore+reach*reach)/(2.0*reach),height=sqrt(max(0.0,upper*upper-along*along));vec2 axis=d/len;return s+axis*along+vec2(axis.y,-axis.x)*height;}
 vec2 segmentTransform(vec2 p,vec2 a,vec2 b,vec2 qa,vec2 qb){vec2 v=b-a,q=qb-qa,d=p-a;float den=length(v)*length(q),c=dot(v,q)/den,s=(v.x*q.y-v.y*q.x)/den;return qa+vec2(c*d.x-s*d.y,s*d.x+c*d.y);}
 vec2 supportedArm(vec2 p,vec2 raw){vec2 a=${v(a.shoulder)},b=${v(a.elbow)},c=${v(a.wrist)};float upper=segmentWeight(p,a,b,${number(a.upperRadius)}),fore=segmentWeight(p,b,c,${number(a.foreRadius)}),w=max(upper,fore)*smoothstep(${number(a.visibleY[0])},${number(a.visibleY[1])},p.y);if(w<=0.0)return raw;vec2 shoulder=materialPoint(a,vec3(0.0),vec2(0.0)),elbow=supportElbow(shoulder),qa=segmentTransform(p,a,b,shoulder,elbow),qb=segmentTransform(p,b,c,elbow,c);return mix(raw,qa+(qb-qa)*fore/(upper+fore),w);}
-void main(){vec2 p=a_source,q=p;float clipW=1.0,sourceW=1.0;
+void main(){vec2 p=a_source,q=p;float clipW=1.0,sourceW=1.0,sceneDepth=0.0;
  if(u_layer<-.5){}
- else if(u_layer<.5){vec3 projected=projectSource(p,0.0,0.0);q=mix(p,projected.xy,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);}
- else if(u_layer<1.5){vec2 material=mix(p,supportedArm(p,materialPoint(p,u_chest,u_hair)),1.0-a_pin);sourceW=mix(1.0,(${number(M.cameraDistance)}-a_depth)/${number(M.cameraDistance)},u_structureMode);float h=headWeight(p),dz=u_chest.z*chestWeight(p)*u_motionGain*(1.0-a_pin)*(1.0-h);vec3 projected=projectSource(material,a_depth,dz);vec2 target=mix(projected.xy,rigidHeadCamera(material),h);q=mix(material,target,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);}
- else if(u_layer>2.5){sourceW=mix(1.0,(${number(M.cameraDistance)}-supportDepth(p))/${number(M.cameraDistance)},u_structureMode);vec3 projected=projectSource(p,supportDepth(p),0.0);q=mix(p,projected.xy,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);}
+ else if(u_layer<.5){vec3 projected=projectSource(p,0.0,0.0);q=mix(p,projected.xy,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);sceneDepth=(1.0-projected.z)*${number(M.cameraDistance)}*u_structureMode;}
+ else if(u_layer<1.5){vec2 material=mix(p,supportedArm(p,materialPoint(p,u_chest,u_hair)),1.0-a_pin);sourceW=mix(1.0,(${number(M.cameraDistance)}-a_depth)/${number(M.cameraDistance)},u_structureMode);float h=headWeight(p),dz=u_chest.z*chestWeight(p)*u_motionGain*(1.0-a_pin)*(1.0-h);vec3 projected=projectSource(material,a_depth,dz);vec2 target=mix(projected.xy,rigidHeadCamera(material),h);q=mix(material,target,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);sceneDepth=(1.0-projected.z)*${number(M.cameraDistance)}*u_structureMode;}
+ else if(u_layer>2.5){sourceW=mix(1.0,(${number(M.cameraDistance)}-supportDepth(p))/${number(M.cameraDistance)},u_structureMode);vec3 projected=projectSource(p,supportDepth(p),0.0);q=mix(p,projected.xy,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);sceneDepth=(1.0-projected.z)*${number(M.cameraDistance)}*u_structureMode;}
  v_sourceUv=vec3((p/u_size)*sourceW,sourceW);
- gl_Position=vec4((q*u_ndcScale+u_ndcOffset)*clipW,0.0,clipW);
+ gl_Position=vec4((q*u_ndcScale+u_ndcOffset)*clipW,-sceneDepth/1000.0*clipW,clipW);
 }
 `;
 fs.writeFileSync(new URL('scene.vert',out),shader);
