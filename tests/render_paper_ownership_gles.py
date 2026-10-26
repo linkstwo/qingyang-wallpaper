@@ -4,6 +4,9 @@ from pathlib import Path
 import numpy as np
 from PIL import Image,ImageDraw
 import render_gles as g
+bodyPose=json.loads(os.environ.get('PAPER_BODY_POSE','{}'))
+assert isinstance(bodyPose,dict) and set(bodyPose)<=set(['yaw','pitch','roll'])
+assert all(isinstance(v,(int,float)) and math.isfinite(v) and abs(v)<=.08 for v in bodyPose.values())
 module='./character-prototype/preview/observed-scene.mjs'
 baseline=os.environ.get('PAPER_BASELINE_REF')
 if baseline:
@@ -11,7 +14,7 @@ if baseline:
  assert re.fullmatch('[0-9a-f]{40}',baseline)
  old=subprocess.check_output(['git','show',baseline+':character-prototype/preview/observed-scene.mjs'],cwd=g.ROOT,text=True)
  tmp=tempfile.NamedTemporaryFile(mode='w',suffix='.mjs',prefix='.paper-baseline-',dir=g.ROOT/'character-prototype/preview',delete=False);tmp.write(old);tmp.close();module=Path(tmp.name).as_uri()
-script="""import {buildObservedScene} from 'MODULE';import {poseUniforms} from './character-prototype/preview/structural-pose.mjs';console.log(JSON.stringify({scene:buildObservedScene({forearmVolume:process.env.PAPER_FOREARM_VOLUME==='1',paperPartition:process.env.PAPER_PARTITION==='1',paperLapContact:process.env.PAPER_LAP_CONTACT==='1',paperExteriorTrim:process.env.PAPER_EXTERIOR_TRIM==='1'}),bones:poseUniforms().map(x=>Array.from(x))}));"""
+script="""import {buildObservedScene} from 'MODULE';import {poseUniforms} from './character-prototype/preview/structural-pose.mjs';console.log(JSON.stringify({scene:buildObservedScene({seatSupport:process.env.PAPER_SEAT_SUPPORT==='1',forearmVolume:process.env.PAPER_FOREARM_VOLUME==='1',paperPartition:process.env.PAPER_PARTITION==='1',paperLapContact:process.env.PAPER_LAP_CONTACT==='1',paperExteriorTrim:process.env.PAPER_EXTERIOR_TRIM==='1'}),bones:poseUniforms(JSON.parse(process.env.PAPER_BODY_POSE||'{}')).map(x=>Array.from(x))}));"""
 script=script.replace('MODULE',module)
 data=json.loads(subprocess.check_output(['node','--input-type=module','-e',script],cwd=g.ROOT,text=True))
 if baseline:Path(tmp.name).unlink()
@@ -45,8 +48,8 @@ for angle in [-20,-2.2918,0,2.2918,20]:
  im=render(camera=(math.radians(angle),0));frames.append(im)
 canvas=Image.new('RGB',(540*5,1206),(18,24,32));d=ImageDraw.Draw(canvas)
 for i,(angle,im) in enumerate(zip([-20,-2.2918,0,2.2918,20],frames)):
- canvas.paste(im,(i*540,30));d.text((i*540+8,8),f'yaw {angle} / zero body / no rear',fill='white')
+ canvas.paste(im,(i*540,30));d.text((i*540+8,8),f'yaw {angle} / body {bodyPose} / no rear',fill='white')
 name=os.environ.get('PAPER_REPORT','paper-ownership-before')
 canvas.save(g.ROOT/'validation'/f'{name}.jpg',quality=90)
-result={'forearmVolume':os.environ.get('PAPER_FOREARM_VOLUME')=='1','renderer':g.getString(0x1F01).decode(),'angles':[-20,-2.2918,0,2.2918,20],'rear':False,'bodyPose':[0,0,0],'paperPartition':os.environ.get('PAPER_PARTITION')=='1','baselineRef':baseline,'paperLapContact':os.environ.get('PAPER_LAP_CONTACT')=='1','paperExteriorTrim':os.environ.get('PAPER_EXTERIOR_TRIM')=='1','image':f'validation/{name}.jpg','phoneTested':False}
+result={'seatSupport':os.environ.get('PAPER_SEAT_SUPPORT')=='1','forearmVolume':os.environ.get('PAPER_FOREARM_VOLUME')=='1','renderer':g.getString(0x1F01).decode(),'angles':[-20,-2.2918,0,2.2918,20],'rear':False,'bodyPose':bodyPose,'paperPartition':os.environ.get('PAPER_PARTITION')=='1','baselineRef':baseline,'paperLapContact':os.environ.get('PAPER_LAP_CONTACT')=='1','paperExteriorTrim':os.environ.get('PAPER_EXTERIOR_TRIM')=='1','image':f'validation/{name}.jpg','phoneTested':False}
 (g.ROOT/'validation'/f'{name}.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

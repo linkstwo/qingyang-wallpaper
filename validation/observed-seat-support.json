@@ -1,0 +1,22 @@
+{
+  "rows": [
+    {
+      "forearmVolume": false,
+      "seatVertices": 3885,
+      "oldMaxMotion": 56.8943707462233,
+      "newMaxMotion": 0,
+      "freeTorso": 816
+    },
+    {
+      "forearmVolume": true,
+      "seatVertices": 4789,
+      "oldMaxMotion": 56.8943707462233,
+      "newMaxMotion": 0,
+      "freeTorso": 2046
+    }
+  ],
+  "candidateOnly": true,
+  "sourceRgbUnchanged": true,
+  "wholeT03Accepted": false,
+  "phoneTested": false
+}

@@ -1,0 +1,24 @@
+{
+  "cases": [
+    {
+      "forearmVolume": false,
+      "paperTrim": false,
+      "seatSupport": true,
+      "width": 697,
+      "height": 620,
+      "nonzero": 104422
+    },
+    {
+      "forearmVolume": true,
+      "paperTrim": false,
+      "seatSupport": true,
+      "width": 697,
+      "height": 620,
+      "nonzero": 103855
+    }
+  ],
+  "pageErrors": [],
+  "realWebgl": true,
+  "visualAcceptance": false,
+  "phoneTested": false
+}

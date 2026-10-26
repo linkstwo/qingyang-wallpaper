@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import {buildObservedScene} from '../character-prototype/preview/observed-scene.mjs';
 import {poseConnectedProxy} from '../character-prototype/preview/structural-pose.mjs';
-const scene=buildObservedScene({forearmVolume:process.env.PAPER_FOREARM_VOLUME==='1',paperPartition:true,paperLapContact:true,paperExteriorTrim:process.env.PAPER_EXTERIOR_TRIM!=='0'});
+const scene=buildObservedScene({seatSupport:process.env.PAPER_SEAT_SUPPORT==='1',forearmVolume:process.env.PAPER_FOREARM_VOLUME==='1',paperPartition:true,paperLapContact:true,paperExteriorTrim:process.env.PAPER_EXTERIOR_TRIM!=='0'});
 const area=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
 const matte=process.env.PAPER_MATTE_BYTES?fs.readFileSync(process.env.PAPER_MATTE_BYTES):null;if(matte&&matte.length!==1152*1536)throw Error('wrong source matte dimensions');
 const inMatte=p=>matte[Math.max(0,Math.min(1535,Math.round(p[1])))*1152+Math.max(0,Math.min(1151,Math.round(p[0])))]>=254;
@@ -23,7 +23,7 @@ for(const yaw of [-.34906585,-.04,0,.04,.34906585])for(const sign of [-1,0,1]){
   rows.push({camera,bodyYaw:bodySign*.059,bodyRoll:bodySign*.034,minAreaRatio,flipped,tested,worst});
  }
 }
-const report={forearmVolume:process.env.PAPER_FOREARM_VOLUME==='1',paperExteriorTrim:process.env.PAPER_EXTERIOR_TRIM!=='0',rows,hasFailures:rows.some(r=>r.flipped>0),scanIncludesMaskedOutGeometry:!matte,maskVisibilityAcceptance:false,matteFilter:matte?"all three vertices and centroid nearest matte>=254; not a raster self-occlusion proof":null,wholeT03Accepted:false,productionUsed:false,phoneTested:false};
+const report={seatSupport:process.env.PAPER_SEAT_SUPPORT==='1',forearmVolume:process.env.PAPER_FOREARM_VOLUME==='1',paperExteriorTrim:process.env.PAPER_EXTERIOR_TRIM!=='0',rows,hasFailures:rows.some(r=>r.flipped>0),scanIncludesMaskedOutGeometry:!matte,maskVisibilityAcceptance:false,matteFilter:matte?"all three vertices and centroid nearest matte>=254; not a raster self-occlusion proof":null,wholeT03Accepted:false,productionUsed:false,phoneTested:false};
 fs.writeFileSync(new URL('../validation/'+(process.env.PAPER_SCAN_REPORT|| (matte?'paper-contact-visible-pose-scan.json':'paper-contact-pose-scan.json')),import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({rows:rows.length,failedRows:rows.filter(r=>r.flipped>0).length,worst:rows.reduce((a,b)=>a.minAreaRatio<b.minAreaRatio?a:b)}));
 
 process.exitCode=report.hasFailures?1:0;

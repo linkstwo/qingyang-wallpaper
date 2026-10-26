@@ -8,7 +8,7 @@ for(const p of paperLapContactChain)assert.equal(paperLapContactWeight(...p),1);
 for(const p of [[100,806],[500,800],[800,900],[350,990]])assert.equal(paperLapContactWeight(...p),0,'upper paper/fingers/torso must not be welded to lap');
 const collars=paperExteriorCollars();assert.equal(collars.length,9);assert(!collars.some(p=>p[0]===paperSourcePartition.outline[8]),'lower lap edge is not discarded background');
 const rows=[];for(const forearmVolume of [false,true]){
-const s=buildObservedScene({forearmVolume,paperPartition:true,paperLapContact:true,paperExteriorTrim:true});
+const s=buildObservedScene({forearmVolume,paperPartition:true,paperLapContact:true,paperExteriorTrim:process.env.PAPER_CONTACT_NOTCH!=='1'});
 let projectionError=0,contactDepthError=0,pinnedMotion=0,contactVertices=0;
 const posed=poseConnectedProxy(s.body,{yaw:.059,roll:.034});
 for(let i=0;i<s.body.vertices;i++){
@@ -22,6 +22,6 @@ const paperBySource=new Map();for(let i=0;i<s.paper.vertices;i++){const key=s.pa
 let sharedContacts=0,maxSharedGap=0;
 for(let i=0;i<s.body.vertices;i++){const uv=s.body.uv.slice(i*2,i*2+2),paper=paperBySource.get(uv.join(','));if(paper&&paperLapContactWeight(uv[0]*1152,uv[1]*1536)>1-1e-10){sharedContacts++;for(let k=0;k<3;k++)maxSharedGap=Math.max(maxSharedGap,Math.abs(paper[k]-s.body.positions[i*3+k]));}}
 assert(sharedContacts>20);assert(maxSharedGap<1e-5);
-rows.push({forearmVolume,lostSourceArea,sharedContacts,maxSharedGap,contactVertices,projectionError,contactDepthError,pinnedMotion,upperOcclusionNotWelded:true,exteriorCollars:collars.length,depthInferred:true,productionUsed:false,phoneTested:false,wholeT03Accepted:false});}
+rows.push({notched:process.env.PAPER_CONTACT_NOTCH==='1',forearmVolume,lostSourceArea,sharedContacts,maxSharedGap,contactVertices,projectionError,contactDepthError,pinnedMotion,upperOcclusionNotWelded:true,exteriorCollars:collars.length,depthInferred:true,productionUsed:false,phoneTested:false,wholeT03Accepted:false});}
 const report={rows,productionUsed:false,wholeT03Accepted:false};
-fs.writeFileSync(new URL('../validation/paper-contact-regression.json',import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+fs.writeFileSync(new URL('../validation/'+(process.env.PAPER_CONTACT_NOTCH==='1'?'paper-notch-contact-regression.json':'paper-contact-regression.json'),import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
