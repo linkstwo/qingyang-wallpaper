@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T07:14:03.999507+00:00",
+  "updatedAt": "2026-10-26T07:22:01.259503+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -61,11 +61,12 @@
     "Reviewed all10 archived whole images and verified bytes/hashes:4 exact-pixel equivalents to existing Git references,6 additional compositions with pose/clothing differences. Registered reading-v2 to front-variant in2D with53 integer-grid subject patch matches(35 fit/18 heldout); different back/side/front-three-quarter poses rejected by this2D gate. Production RGB unchanged. Provisional back chart covers3335 vertices/6445 triangles; real GLES depth/cull reveal uses back-source pixels on rear surface across five camera angles. Mapping remains uncalibrated/confidence0 with visible stretch, so not production-ready or S3-complete.",
     "S2 nonlocal intersection scan:25 sampled supported poses,303642 broad/narrow candidate pairs,zero crossing intersections;5 positive/negative/coplanar fixtures pass. This is sampled geometry evidence, not swept continuous collision detection. Added interactive structural/material lab with camera/body separation,5 debug modes,draggable source rails and source-hash-bound local draft persistence. Desktop WebGL exercised real pixels,drag/save/reset/restore/reload,wrong-source rejection,animation and412px viewport with zero console errors/external requests. Corrected rear UV horizontal orientation and excluded arm pixels from candidate torso source. Provisional camera fit still fails:held-out RMS26.27/max52.44source pixels,confidence0. No new APK.",
     "Combined existing reading photograph surface(54267 vertices), world paper(3018) and carved rear proxy in one desktop diagnostic scene. Reused source-world bone weights; homogeneous source UV neutral test against flat source has mean RGB error0.000228 and0pixels over2. Removed obvious rear-cap intrusion into front arm, bound rear mask in homogeneous source coordinates. Browser rear-on/off neutral comparison retains16pixels over2(max26); strict equality is NOT accepted, despite bounded regression passing. Back view actually adds71717 changed pixels. Original RGB, production camera and Q solver remain unchanged. Re-downloaded public0.5.9 and matched exact signed SHA256e64dc0f...da6e8eac.",
-    "Fence4 fixed2 source T-junctions:18095 triangles,9313 source vertices,zero unmatched interior edges,source area drift0.0000292pixel². These were real topology defects but did not explain all16 neutral differences. Native GPU readback confirmed the difference was present before browser composition; coverage/depth prepass alone did not resolve it. Explicit single-sample scene framebuffer plus2x supersampled presentation preserves smooth edges and now gives exact rear-on/off equality:all channels zero difference in697x620 GPU readback and screenshots. Strict zero-difference assertions restored; photographic front/rear registration remains pending. Research pipeline only, no phone performance claim or new APK."
+    "Fence4 fixed2 source T-junctions:18095 triangles,9313 source vertices,zero unmatched interior edges,source area drift0.0000292pixel². These were real topology defects but did not explain all16 neutral differences. Native GPU readback confirmed the difference was present before browser composition; coverage/depth prepass alone did not resolve it. Explicit single-sample scene framebuffer plus2x supersampled presentation preserves smooth edges and now gives exact rear-on/off equality:all channels zero difference in697x620 GPU readback and screenshots. Strict zero-difference assertions restored; photographic front/rear registration remains pending. Research pipeline only, no phone performance claim or new APK.",
+    "Fence4 continued without stopping after neutral-fix checkpoint: expanded provisional back source chart through observed nape/shoulder region(y415–520), now3712 candidate vertices/7163 triangles. Source rail interpolation is shape-preserving C1 cubic;2943 checks show no interval overshoot,exact control points,min100px rail width,max finite-difference derivative jump0.000049. Draft version2 rejects legacy/folded/degenerate source charts and retains source identity/confidence0. Actual GLES rear-source reveal passed; calibrated-camera fit still rejects with held-out RMS25.81/max51.96px. Exact neutral framebuffer/screenshot equality remains0; Android inputs and APK unchanged."
   ],
   "next": [
-    "Extend region-specific observed source association through neck/shoulder into upper back, retaining unverified confidence0 and verifying UV/geometry seams.",
-    "Inspect/source-label local material orientation and pose mismatch, then prepare production-safe integration only after actual acceptance evidence."
+    "Fit source-constrained front depth on the connected structure and examine front/rear geometry continuity without changing original photo RGB.",
+    "Build region/source provenance and visibility gates for neck/shoulder/back; do not promote provisional chart to production confidence."
   ],
   "stages": {
     "S1": "in_progress",
@@ -158,7 +159,8 @@
     "validation/s2-combined-front.jpg",
     "validation/s2-combined-side.jpg",
     "validation/s2-front-rear-seam-acceptance.json",
-    "validation/s2-conforming-front.json"
+    "validation/s2-conforming-front.json",
+    "validation/s2-monotone-chart.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -311,7 +313,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T07:14:03.999507+00:00",
+    "lastCheckpointAt": "2026-10-26T07:22:01.259503+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,

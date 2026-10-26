@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0650",
+  "fence": 4,
+  "baseHead": "9fe317e18a1496bab648e7032f4456da5c834636",
+  "createdAt": "2026-10-26T07:22:02.983359+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/material-chart.mjs",
+      "bytes": 4238,
+      "sha256": "c8e6d782da24486811ec58214fda1d267f8588bb92baab8310945f15a8e9e137"
+    },
+    {
+      "path": "character-prototype/preview/monotone-curve.mjs",
+      "bytes": 1054,
+      "sha256": "0e492151c870c8d1b2959179c1d99badebe573371105afd6cebadd24649d3f16"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 18194,
+      "sha256": "4fd0810369304fb694019bbee815a134755beb12c574d2436b8f1c94f87278e9"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 28364,
+      "sha256": "6eca5b0dc4c697c4ca606499968860926ab37ae55d79e63b4401488eaef6c6ae"
+    },
+    {
+      "path": "docs/S2-MATERIAL-REGISTRATION.md",
+      "bytes": 6766,
+      "sha256": "837a584ba909bf9b6f182aa84e983bc8322f789bdf29b6e93c5846f8692a7e1c"
+    },
+    {
+      "path": "tests/monotone-chart-regression.mjs",
+      "bytes": 1859,
+      "sha256": "78b64ffc7019ca06665f88b8d37dd8e83a1d272c5fbabb8b7568c61d32d0fcf5"
+    },
+    {
+      "path": "tests/structural-lab-browser.mjs",
+      "bytes": 8255,
+      "sha256": "a33f1486abde160126c2e22526c30461742af10e02ca449ad0939857608d0696"
+    },
+    {
+      "path": "validation/s2-back-camera-fit.jpg",
+      "bytes": 105098,
+      "sha256": "23f1bb4a1973fbead9b71112fcd6857845f9fbcfac456f8684b5bc77ba4139e5"
+    },
+    {
+      "path": "validation/s2-back-camera-fit.json",
+      "bytes": 6590,
+      "sha256": "66a45e2b0a098e4d9de9aa1aef46b5dcfec23d2664af227216b61b33a23e5841"
+    },
+    {
+      "path": "validation/s2-back-chart-gles.jpg",
+      "bytes": 54694,
+      "sha256": "21e55e29215b972fa38f9648c88287fb09c4d0bdb9331ebb2bf2d26c2a198abf"
+    },
+    {
+      "path": "validation/s2-back-chart-gles.json",
+      "bytes": 499,
+      "sha256": "460913d383e16ac9ea3bce26793922d57acc20b4daf6052f3023da8ffd59746d"
+    },
+    {
+      "path": "validation/s2-back-chart.json",
+      "bytes": 181,
+      "sha256": "570a1fcd4c0f05651a64f7b6b7f3873ddabe328635b08f62af30150f9bb350ff"
+    },
+    {
+      "path": "validation/s2-combined-side.jpg",
+      "bytes": 17762,
+      "sha256": "6c31b2d761d773b469f925116c4d7c04a12420ea42c6a1e27a2294e482e6e5c4"
+    },
+    {
+      "path": "validation/s2-monotone-chart.json",
+      "bytes": 221,
+      "sha256": "608fb5abaf4f3e9bae02f15a4a6d7958f1f5ecd3a24b269f196678b99cf604bd"
+    },
+    {
+      "path": "validation/s2-structural-lab-browser.json",
+      "bytes": 3165,
+      "sha256": "743b5bc55edd0585d890530de27fcf31786a457bd81e5c531101a0d4665cc89c"
+    },
+    {
+      "path": "validation/s2-structural-lab.jpg",
+      "bytes": 124342,
+      "sha256": "4a85d8ec97c8db47b7ada371c7135cdbb75d6a46f17512d52c6917820ad71c52"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/monotone-chart-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/material-chart-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_material_chart_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python scripts/fit_back_camera.py (production rejected)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/structural-lab-browser.mjs <Chrome134> strict neutral equality",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Native Android/new APK/phone acceptance",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Fit source-constrained front depth on the connected structure and examine front/rear geometry continuity without changing original photo RGB.",
+    "Build region/source provenance and visibility gates for neck/shoulder/back; do not promote provisional chart to production confidence."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "35a646c7116d30e05097827518280d8300917d95f1717933ea58866d0988e2be"
+}

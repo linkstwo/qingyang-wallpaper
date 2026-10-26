@@ -1,0 +1,9 @@
+{
+  "checks": 2943,
+  "maxSourceRailDerivativeJump": 0.000048570939270575764,
+  "minSourceRailWidth": 100,
+  "neckToBackC1Rails": true,
+  "legacyDraftRejected": true,
+  "productionConfidence": 0,
+  "phoneTested": false
+}

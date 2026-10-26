@@ -23,9 +23,9 @@
   "neutralFrontPixelExact": true,
   "neutralGate": "native framebuffer comparison; photographic seam acceptance remains pending",
   "backRearDifference": {
-    "mean": 17.00628412081222,
+    "mean": 16.951833292132296,
     "pixelsOver2": 71678,
-    "maxError": 226,
+    "maxError": 225,
     "changedLocations": [
       [
         529,

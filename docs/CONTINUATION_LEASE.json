@@ -4,17 +4,17 @@
   "fence": 4,
   "status": "running",
   "startedAt": "2026-10-26T06:50:20.554212Z",
-  "heartbeatAt": "2026-10-26T07:21:54.002136Z",
-  "expiresAt": "2026-10-26T07:36:54.002136Z",
+  "heartbeatAt": "2026-10-26T07:22:02.983359Z",
+  "expiresAt": "2026-10-26T07:37:02.983359Z",
   "baseHead": "415bacf1bda178adaac88efb907a73879790cfbf",
   "checkpoint": {
-    "baseHead": "d3c26aa756ce6387c0c3c4bfc9a626504c23ecd4",
-    "createdAt": "2026-10-26T07:14:05.707489+00:00",
-    "sourceDigest": "fbac740bcac67d4256af3d79b3e6b063ecc2618e6793f0c7b23e8ce0fe5dd3e0",
+    "baseHead": "9fe317e18a1496bab648e7032f4456da5c834636",
+    "createdAt": "2026-10-26T07:22:02.983359+00:00",
+    "sourceDigest": "35a646c7116d30e05097827518280d8300917d95f1717933ea58866d0988e2be",
     "stage": "S2",
     "next": [
-      "Extend region-specific observed source association through neck/shoulder into upper back, retaining unverified confidence0 and verifying UV/geometry seams.",
-      "Inspect/source-label local material orientation and pose mismatch, then prepare production-safe integration only after actual acceptance evidence."
+      "Fit source-constrained front depth on the connected structure and examine front/rear geometry continuity without changing original photo RGB.",
+      "Build region/source provenance and visibility gates for neck/shoulder/back; do not promote provisional chart to production confidence."
     ]
   }
 }

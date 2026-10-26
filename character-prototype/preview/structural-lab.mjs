@@ -1,8 +1,8 @@
 import {buildConnectedProxy} from './connected-proxy.mjs';
 import {poseConnectedProxy,poseUniforms,geometricNormals} from './structural-pose.mjs';
-import {backChart,buildBackChart,validateBackChart} from './material-chart.mjs';
+import {backChart,buildBackChart,validateBackChart,sampleBackRails} from './material-chart.mjs';
 import {buildObservedScene,rearProxyIndices} from './observed-scene.mjs';
-const $=id=>document.getElementById(id),canvas=$('scene'),gl=canvas.getContext('webgl',{alpha:false,depth:true,antialias:true}),source=$('source'),ctx=source.getContext('2d'),clone=x=>JSON.parse(JSON.stringify(x)),KEY='qingyang-back-chart-v1';
+const $=id=>document.getElementById(id),canvas=$('scene'),gl=canvas.getContext('webgl',{alpha:false,depth:true,antialias:true}),source=$('source'),ctx=source.getContext('2d'),clone=x=>JSON.parse(JSON.stringify(x)),KEY='qingyang-back-chart-v2';
 let draft=clone(backChart),model,program,tex,image,normalBuffer,uvBuffer,candidateBuffer,matrices,animate=false,raf=0,ready=false,sourceHash='',drag=null,failed=false;
 let surfaceProgram,mainTexture,maskTexture,proxyIndex,rearIndex,rearCount;const proxyAttributes=[],surfaces=[];let activeAttributes=proxyAttributes;
 let sceneTarget,presentProgram,presentBuffer;
@@ -22,7 +22,7 @@ function observedPass(coverage=false){gl.useProgram(surfaceProgram);poseUniforms
 function updateBuffer(buffer,array){gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,array instanceof Float32Array?array:new Float32Array(array),gl.DYNAMIC_DRAW);}
 function pose(){if(!model)return;const input={yaw:Number($('body').value)*Math.PI/180,roll:Number($('roll').value)*Math.PI/180};matrices=poseUniforms(input);updateBuffer(normalBuffer,geometricNormals(poseConnectedProxy(model,input).positions,model.indices));request();}
 function mapping(){if(!ready)return;const chart=buildBackChart(model,draft);updateBuffer(uvBuffer,chart.uv);updateBuffer(candidateBuffer,chart.candidate);$('json').value=JSON.stringify({sourceSha256:sourceHash,chart:draft},null,2);drawSource();request();}
-function drawSource(){ctx.clearRect(0,0,source.width,source.height);ctx.drawImage(image,0,0,source.width,source.height);for(const [i,row] of draft.rows.entries()){ctx.strokeStyle='#a6f0dc';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(...row.left.map(x=>x*.5));ctx.lineTo(...row.right.map(x=>x*.5));ctx.stroke();for(const side of ['left','right']){const [x,y]=row[side].map(v=>v*.5);ctx.fillStyle=side==='left'?'#ffb4d8':'#73f4d3';ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();ctx.fillStyle='#10212b';ctx.fillText(String(i+1),x-3,y+3);}}}
+function drawSource(){ctx.clearRect(0,0,source.width,source.height);ctx.drawImage(image,0,0,source.width,source.height);for(let side=0;side<2;side++){ctx.strokeStyle=side?'#73f4d3':'#ffb4d8';ctx.lineWidth=1.5;ctx.beginPath();for(let i=0;i<=100;i++){const y=draft.rows[0].y+(draft.rows.at(-1).y-draft.rows[0].y)*i/100,p=sampleBackRails(y,draft)[side].map(x=>x*.5);if(i)ctx.lineTo(...p);else ctx.moveTo(...p);}ctx.stroke();}for(const [i,row] of draft.rows.entries()){ctx.strokeStyle='#a6f0dc';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(...row.left.map(x=>x*.5));ctx.lineTo(...row.right.map(x=>x*.5));ctx.stroke();for(const side of ['left','right']){const [x,y]=row[side].map(v=>v*.5);ctx.fillStyle=side==='left'?'#ffb4d8':'#73f4d3';ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();ctx.fillStyle='#10212b';ctx.fillText(String(i+1),x-3,y+3);}}}
 function request(){if(ready&&!raf&&!failed)raf=requestAnimationFrame(render);}
 function render(time){raf=0;if(!ready||document.hidden||failed)return;
  const probe=captureWaiters[0],options=probe?.options||{};
