@@ -1,10 +1,11 @@
 {
   "schemaVersion": 1,
-  "owner": "codex-night-20261027-0720",
-  "fence": 14,
+  "owner": "codex-night-20261027-0753-android",
+  "fence": 1,
   "status": "running",
-  "startedAt": "2026-10-26T23:21:30.731176Z",
-  "heartbeatAt": "2026-10-26T23:51:29.813455Z",
-  "expiresAt": "2026-10-27T00:06:29.813455Z",
-  "baseHead": "ccc9e59f9d48b7f0995cfee470aafda1709fe6fa"
+  "startedAt": "2026-10-26T23:56:00Z",
+  "heartbeatAt": "2026-10-26T23:56:00Z",
+  "expiresAt": "2026-10-27T00:11:00Z",
+  "baseHead": "9a24a706dbe5b22bfa6f37a5571527c0fd0b2d7b",
+  "scope": "Independent T15 Android lifecycle branch; mainline fence14 left untouched"
 }
