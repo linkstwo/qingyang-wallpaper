@@ -18,3 +18,9 @@ Exit0 verified; exit1 validation failure; exit2 incomplete without original byte
 Mutation coverage includes changed donor identity, fractional/out-of-bounds crop, invented angles, components-as-views, unaccepted confidence changes, altered hash, mirror declaration, and actual mirrored pixels with a recomputed valid output SHA. The last case proves a self-consistent manifest hash alone cannot legitimise incorrect source pixels.
 
 Next: extend source provenance to workbench draft imports, which currently save an image URL/hash without binding crop origins, then audit matching import rejection paths. Main worker can selectively cherry-pick implementation/test/report files, excluding this branch's lease. No branch merge into main is authorised.
+
+## Reproducible crop exporter
+
+Added `prepare_shoulder_components.py SOURCE --check`: decodes and compares existing pixels without rewriting source, outputs, or manifest. Normal generation is byte-exact with the committed two components on this environment. Donor hash/dimension rejection uses explicit exceptions rather than `assert`, so `python -O` cannot bypass identity protection and overwrite crops from a different picture. All candidate outputs are prepared in memory before writing. Six reproducibility/negative checks passed including a corrupt output, original-byte preservation and wrong donor rejection both normally and under optimisation.
+
+`python3 tests/shoulder-component-reproducibility.py /path/to/工业车间里的蓝图时光.png`
