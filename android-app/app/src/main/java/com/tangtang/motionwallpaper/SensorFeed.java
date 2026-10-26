@@ -108,7 +108,10 @@ final class SensorFeed implements SensorEventListener {
             return;
         }
         // A delayed batch from this session must not re-establish a stale pose.
-        if (SystemClock.elapsedRealtimeNanos() - event.timestamp > 500000000L) return;
+        final long receivedAt = SystemClock.elapsedRealtimeNanos();
+        // A corrupt/future timestamp otherwise poisons monotonic stream stamps:
+        // real samples are then ignored and age() can never clear the impulse.
+        if (event.timestamp > receivedAt || receivedAt - event.timestamp > 500000000L) return;
         final long now = SystemClock.elapsedRealtime();
         if (now - lastRotation > 300L) {
             lastRotation = now;

@@ -39,6 +39,23 @@ public final class SensorQueueRegression {
         event(delayed,1,3_100_000_000L,8,0,0);
         event(delayed,1,4_020_000_000L,0,9.80665f,0);
         check(delayed.motion().tiltX==0 && delayed.motion().tiltY==0,"old delayed batch within this session must not set a stale baseline");
+        // A future timestamp must not poison per-stream monotonic stamps.
+        SensorFeed future=start(5_000_000_000L);
+        android.hardware.SensorEvent bad=new android.hardware.SensorEvent();
+        bad.sensor=new Sensor(Sensor.TYPE_ACCELEROMETER);bad.timestamp=Long.MAX_VALUE;
+        bad.values=new float[]{8,0,0};future.onSensorChanged(bad);
+        event(future,1,5_020_000_000L,0,9.80665f,0);
+        event(future,1,5_040_000_000L,1,9.80665f,0);
+        check(future.motion().ax>0,"future accelerometer timestamp must not lock out real subsequent input");
+        SensorFeed futureGyro=start(6_000_000_000L);
+        bad.sensor=new Sensor(Sensor.TYPE_GYROSCOPE);bad.timestamp=Long.MAX_VALUE;
+        bad.values=new float[]{0,8,0};futureGyro.onSensorChanged(bad);
+        check(!futureGyro.motion().excited(),"future gyro must not create an immortal impulse");
+        event(futureGyro,4,6_020_000_000L,0,0,0);
+        event(futureGyro,4,6_040_000_000L,0,3,0);
+        check(futureGyro.motion().alphaY>0,"future gyro timestamp must not lock out subsequent events");
+        SystemClock.nanos=6_400_000_000L;futureGyro.decayStale();
+        check(!futureGyro.motion().excited(),"post-recovery motion must still decay");
         System.out.println("{\"assertions\":"+checks+",\"productionSensorFeed\":true,\"phoneTested\":false}");
     }
 }

@@ -1,0 +1,37 @@
+{
+  "owner": "codex-night-source-audit-20261027-0221",
+  "fence": 1,
+  "head": "eda34211ac4099511400bcc18d80e94fd6581276",
+  "now": "2026-10-26T18:28:40.066285+00:00",
+  "tasks": [
+    "T19",
+    "T01"
+  ],
+  "accepted": false,
+  "tests": [
+    {
+      "command": "baseline future timestamp queue",
+      "status": "expected_failure",
+      "exitCode": 1
+    },
+    {
+      "command": "12 queue +16263 trajectory assertions",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Java/JS response 10132 assertions",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": "Check lifecycle and failed registration recovery; source crop generator is reproducible",
+  "files": {
+    "android-app/app/src/main/java/com/tangtang/motionwallpaper/SensorFeed.java": "6e5f646b5be980bc4ec7e99e333bda8e95cb3be5aed9adb11a4e1945f1efe93d",
+    "tests/SensorQueueRegression.java": "2aab736790af69ccbf0fa4f12757277f092fe03e050e56df980af7b80a7ed059",
+    "validation/sensor-queue-regression.json": "5e6c5461669cd61d6ac76a59e470e6799be5d804662e797c49261132d66564e6",
+    "validation/sensor-trajectory-regression.json": "b16d2c8887bfde3e41a6c3706dabbb0899919d9ea666400ef1683781ff99a7ed",
+    "docs/T19-FUTURE-SENSOR-TIMESTAMP-20261027.md": "21d5481b06c9cbf3a7f797a4f67befa8df5793555d12cc29739b792fa955cf02",
+    "docs/CONTINUATION_LEASE.json": "b8718ded5f457fc8d61cfba26de88f552b678a66026e9c31c78477cdfe77a383"
+  }
+}
