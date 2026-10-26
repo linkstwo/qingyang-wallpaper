@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0650",
+  "fence": 4,
+  "baseHead": "236349b4496f326e48432e286c29fd43541b884d",
+  "createdAt": "2026-10-26T08:02:06.455Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 30871,
+      "sha256": "e49500c62328de134d6410dc1bb0e782d847b14eed78236c1f60354a99eb4fa3"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 5172,
+      "sha256": "b850c5ccf41f3d3c1c345cebd67667e0a32a71b9b4db0dc58e4d2e2426ab803a"
+    },
+    {
+      "path": "docs/continuation/recovery/20261026-fence4-environment-interruption.json",
+      "bytes": 2881,
+      "sha256": "54bd7c58640d62ce0b3667daa78e1f8f7756ba00fd2dc97357d5ece607dd5128"
+    },
+    {
+      "path": "docs/continuation/recovery/20261026-fence4-front-fit.patch",
+      "bytes": 11047,
+      "sha256": "2457dd08c4085bf18bbf2afb0ecff1ab63b339c941f6e299c2f8ade7f2ad4b90"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/projected-surface-regression.mjs after applying recovered text",
+      "status": "not_run"
+    },
+    {
+      "command": "node tests/front-fit-regression.mjs after applying recovered text",
+      "status": "not_run"
+    },
+    {
+      "command": "New APK/native phone acceptance",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Restore a working executor and clone the latest branch; inspect/claim a new lease before edits.",
+    "Review/apply the recovered patch, then rerun node tests/projected-surface-regression.mjs and node tests/front-fit-regression.mjs."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "0e3a627835c0a2e93bf00a32c6bf8c10cba907045a2b28fb2411eb97ac610cd2",
+  "helperExecuted": false,
+  "note": "Python executor unavailable. SHA256 calculated in orchestration JS and verified against empty,abc,and one-million-a standard fixtures; historical local results are kept separately and do not validate this recovery patch."
+}
