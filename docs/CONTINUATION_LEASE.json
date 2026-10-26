@@ -4,8 +4,8 @@
   "fence": 11,
   "status": "running",
   "startedAt": "2026-10-26T17:20:10.367673Z",
-  "heartbeatAt": "2026-10-26T17:34:30.000Z",
-  "expiresAt": "2026-10-26T17:49:30.000Z",
+  "heartbeatAt": "2026-10-26T17:39:45.000Z",
+  "expiresAt": "2026-10-26T17:54:45.000Z",
   "baseHead": "cd3eb09072b7351a33e98aa89e9f4fd17406f032",
   "checkpoint": {
     "baseHead": "8944d098ecaf5cda5294799f88aca26a305cdc2e",
