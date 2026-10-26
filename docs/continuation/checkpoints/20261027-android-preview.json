@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0753-android",
+  "fence": 1,
+  "baseHead": "5222911190d0267c9e06f57d242fc7f34170b0be",
+  "createdAt": "2026-10-26T23:57:02Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/PreviewView.java",
+      "bytes": 5607,
+      "sha256": "a69a34e050815a113e1be3c0c9801d57aca33ef8e7643070c6a815a73d7e87a6"
+    },
+    {
+      "path": "docs/continuation/ANDROID-INDEPENDENT-20261027.md",
+      "bytes": 1095,
+      "sha256": "afd4fa4ac21fe175a62bfac4f706e513384b95627b83a78c43629e9ca8288302"
+    },
+    {
+      "path": "tests/PreviewLifecycleRegression.java",
+      "bytes": 3142,
+      "sha256": "615a56e10daf99d4a093c55e765641d54a6ccff251e2f0a348889131533564b2"
+    },
+    {
+      "path": "tests/run_preview_lifecycle.py",
+      "bytes": 4435,
+      "sha256": "d200dfccc17bf3e3c4f660e1a41eb64f228b88e6df1edb0562fc59d4cc099c8a"
+    },
+    {
+      "path": "validation/preview-lifecycle-regression.json",
+      "bytes": 92,
+      "sha256": "768ab0430b05f2bb4823a0e908f70a270f4d1f66bb9480818740faf35f4c7558"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python tests/run_preview_lifecycle.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_preview_lifecycle.py --baseline",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "python tests/run_lifecycle.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_sensor_feed.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Fix RenderLoop Surface sensor/physics ownership"
+  ],
+  "phoneTested": false,
+  "sourceDigest": "c1489b6cd246dcff716c2f861c2fbc961635b37a20f18312f6ff0f7db2b536e1"
+}
