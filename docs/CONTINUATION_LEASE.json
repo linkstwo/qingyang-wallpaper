@@ -2,9 +2,20 @@
   "schemaVersion": 1,
   "owner": "codex-task-audit-1793020900109",
   "fence": 8,
-  "status": "running",
+  "status": "released",
   "startedAt": "2026-10-26T13:21:40.109000Z",
-  "heartbeatAt": "2026-10-26T13:21:40.109000Z",
-  "expiresAt": "2026-10-26T13:36:40.109000Z",
-  "baseHead": "2573551f5b48d958737ca2028a4dfdc15ae52d26"
+  "heartbeatAt": "2026-10-26T13:25:24.833000Z",
+  "expiresAt": "2026-10-26T13:25:24.833000Z",
+  "baseHead": "2573551f5b48d958737ca2028a4dfdc15ae52d26",
+  "checkpoint": {
+    "baseHead": "1bef9e4e974fc1686c056bdabe160b466ab04293",
+    "createdAt": "2026-10-26T13:24:17.631Z",
+    "sourceDigest": "17731163157d781e7e36837c77f43bf83b337d2188f40ffd7ae0ae50eed913e3",
+    "stage": "S2",
+    "next": [
+      "T01 review corrected observed landmarks.",
+      "T03 fix paper seam, T04 connect shoulder/back geometry."
+    ]
+  },
+  "reason": "Requested task inventory and existing-results Git archival completed. No application development or new schedule started."
 }

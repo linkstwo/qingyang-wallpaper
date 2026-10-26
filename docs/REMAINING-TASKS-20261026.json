@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-26T13:23:36.771773Z",
+  "repository": "linkstwo/qingyang-wallpaper",
+  "branch": "feature/cloud-framing-response",
+  "auditedSourceHead": "2573551f5b48d958737ca2028a4dfdc15ae52d26",
+  "goal": "较大且饱满的阅读人物；可信肩背随手机转动连续显露；身体有支撑、局部相对滞后回弹；Android锁屏稳定且功耗可接受。",
+  "countingRule": "20个尚未整体验收的剩余工作包；允许复用已完成子实现。不是20次对话或工时预测。原S1-S8计划70个细项不等于剩余70项；不按提交/测试条数算完成度。",
+  "originalPlanItemsByStage": {
+    "S1": 8,
+    "S2": 9,
+    "S3": 10,
+    "S4": 9,
+    "S5": 10,
+    "S6": 9,
+    "S7": 8,
+    "S8": 7
+  },
+  "originalPlanItemsTotal": 70,
+  "remainingPackages": 20,
+  "remainingPackagesByStage": {
+    "S1": 2,
+    "S2": 3,
+    "S3": 3,
+    "S4": 2,
+    "S5": 3,
+    "S6": 3,
+    "S7": 3,
+    "S8": 1
+  },
+  "acceptedWholeStages": 0,
+  "nextPriority": [
+    "T01",
+    "T03",
+    "T04"
+  ],
+  "userVisibleNextMilestone": "正确来源的肩背小范围连续显露、纸面不裂，并保留当前主图外观；未通过不升S3。",
+  "phoneAcceptancePending": true,
+  "backgroundDevelopmentActive": false,
+  "tasks": [
+    {
+      "id": "T01",
+      "stage": "S1",
+      "task": "确认可用素材与部位对应",
+      "acceptance": "在正确原图上标出可见肩颈/肩带/躯干，区分姿态差异、遮挡和推断；审核豆包修正版",
+      "currentEvidence": "已有素材与候选点；未完成对应审核",
+      "owner": "Codex审核，豆包整理",
+      "dependsOn": [],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T02",
+      "stage": "S1",
+      "task": "冻结目标构图与可行范围",
+      "acceptance": "同屏人物足够大，保留脸/肩/腰并出现明确肩背区域；有来源、窗口和连续揭示图示",
+      "currentEvidence": "取景工具已有；肩背目标未通过",
+      "owner": "Codex",
+      "dependsOn": [
+        "T01"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T03",
+      "stage": "S2",
+      "task": "修复纸面与人体支撑接缝",
+      "acceptance": "约定有限角度与身体姿态中，纸面无分离长条/三角裂口，手纸接触仍成立",
+      "currentEvidence": "正负20度实测仍有缺口",
+      "owner": "Codex",
+      "dependsOn": [],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T04",
+      "stage": "S2",
+      "task": "连接肩颈、躯干、手臂与背面",
+      "acceptance": "新表面有连续结构和明确连接；近远臂按各自姿态处理，禁止镜像整图冒充",
+      "currentEvidence": "有推断代理和前臂实验；完整连接未通过",
+      "owner": "Codex",
+      "dependsOn": [
+        "T01"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T05",
+      "stage": "S2",
+      "task": "通过完整结构与姿态检查",
+      "acceptance": "主视角外观保留，支持范围内无翻折/自交/断裂，接触约束及CPU/GLSL一致",
+      "currentEvidence": "局部扫描通过；整幅前景姿态仍有失败项",
+      "owner": "Codex，豆包跑限定扫描",
+      "dependsOn": [
+        "T03",
+        "T04"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T06",
+      "stage": "S3",
+      "task": "把侧背素材贴到正确表面",
+      "acceptance": "每块新纹理有正确源图/区域/表面/可用角度，完成局部姿态校正和缺口记录",
+      "currentEvidence": "工作台能画背图，但拉伸且可信度0",
+      "owner": "Codex，豆包准备素材",
+      "dependsOn": [
+        "T01",
+        "T04"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T07",
+      "stage": "S3",
+      "task": "处理遮挡、发丝与材料过渡",
+      "acceptance": "手臂/躯干/肩背/头发/纸面前后关系正确，色调和衣纹连续，设备能力可用",
+      "currentEvidence": "待可信纹理与连接完成",
+      "owner": "Codex",
+      "dependsOn": [
+        "T05",
+        "T06"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T08",
+      "stage": "S3",
+      "task": "冻结连续视角可展示范围",
+      "acceptance": "慢转、保持和反向都有来源可追踪的新增表面，无整图跳变/拉长/空洞",
+      "currentEvidence": "当前候选未通过；不承诺360度",
+      "owner": "Codex，豆包整理对照",
+      "dependsOn": [
+        "T07"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T09",
+      "stage": "S4",
+      "task": "确定满屏默认构图与窗口适配",
+      "acceptance": "多种竖屏和系统裁剪下主体大、胸部居中，脸肩腰连贯，少填充；保留手动取景",
+      "currentEvidence": "已有取景/UI；最终侧背构图和手机裁剪待验",
+      "owner": "Codex",
+      "dependsOn": [
+        "T02",
+        "T08"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T10",
+      "stage": "S4",
+      "task": "标定手机转动到观察方向",
+      "acceptance": "相机和身体动作分开；慢转保持不回弹错位，方向/归中/死区/边界一致",
+      "currentEvidence": "已有传感器与小角度路径；最终映射未验",
+      "owner": "Codex",
+      "dependsOn": [
+        "T08"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T11",
+      "stage": "S5",
+      "task": "完成身体整体惯性与支撑运动",
+      "acceptance": "相机、躯干和柔性运动可分开对照；身体有小幅惯性且支撑不漂移",
+      "currentEvidence": "已有骨架和支撑基础；最终联动未验",
+      "owner": "Codex",
+      "dependsOn": [
+        "T05"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T12",
+      "stage": "S5",
+      "task": "完成相对躯干的局部滞后回弹",
+      "acceptance": "保留已有Q弹，胸部相对身体明显滞后/超越/回弹，背部不一起鼓动，附着自然",
+      "currentEvidence": "已有求解器与渐进附着；最终观感待验",
+      "owner": "Codex",
+      "dependsOn": [
+        "T11",
+        "T07"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T13",
+      "stage": "S5",
+      "task": "通过变帧率、碰撞和组合输入检查",
+      "acceptance": "30/60/120及异常dt有界，无穿插/翻折，停止收敛，脸/发根/手纸稳定",
+      "currentEvidence": "已有旧回归；完整新范围未验",
+      "owner": "Codex，豆包跑回放",
+      "dependsOn": [
+        "T10",
+        "T12"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T14",
+      "stage": "S6",
+      "task": "把新结构纹理物理接进Android",
+      "acceptance": "真实APK包含新的资产和统一版本数据，Java/JS/GLSL结果可核对，保留回退",
+      "currentEvidence": "0.5.9不包含后续全部研究成果",
+      "owner": "Codex",
+      "dependsOn": [
+        "T09",
+        "T10",
+        "T13"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T15",
+      "stage": "S6",
+      "task": "验证真实壁纸生命周期与资源",
+      "acceptance": "Surface/双Engine/上下文丢失/暂停恢复一致；不可见停止工作，恢复无旧冲量",
+      "currentEvidence": "旧路径有修复和离线检查；新完整组合未验",
+      "owner": "Codex",
+      "dependsOn": [
+        "T14"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T16",
+      "stage": "S6",
+      "task": "构建原签名完整候选并交付",
+      "acceptance": "源码/资产/APK绑定，原证书、版本、完整性和下载核对通过；提供最短验收步骤",
+      "currentEvidence": "当前最新可安装包0.5.9/18；无本轮新包",
+      "owner": "Codex，豆包整理清单",
+      "dependsOn": [
+        "T14",
+        "T15"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T17",
+      "stage": "S7",
+      "task": "完成手机效果验收与反馈修正",
+      "acceptance": "目标手机锁屏构图、慢转保持、快晃反向、停止、熄屏唤醒和主观手感通过",
+      "currentEvidence": "无本轮手机验收",
+      "owner": "Codex修正，用户最终观感",
+      "dependsOn": [
+        "T16"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T18",
+      "stage": "S7",
+      "task": "测量并优化性能功耗温升",
+      "acceptance": "真实设备记录帧耗时、CPU/GPU/内存/耗电/温升；按瓶颈优化并定默认档位",
+      "currentEvidence": "离线/GLES证据不能代替手机数据",
+      "owner": "Codex，豆包整理测量",
+      "dependsOn": [
+        "T16"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T19",
+      "stage": "S7",
+      "task": "完成长期与异常情况稳定性验收",
+      "acceptance": "亮灭屏/双引擎/升级/参数迁移/传感器缺失/漂移/低帧率均有结果及问题闭环",
+      "currentEvidence": "历史局部检查已有；完整候选长测未做",
+      "owner": "Codex，豆包跑明确检查",
+      "dependsOn": [
+        "T17",
+        "T18"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    },
+    {
+      "id": "T20",
+      "stage": "S8",
+      "task": "整理稳定版与可复现交付",
+      "acceptance": "最终APK/源码/来源/支持角度/默认参数/回退与构建签名说明齐全，所有完成声明有证据",
+      "currentEvidence": "已有签名和Git交付基础；最终稳定版待验",
+      "owner": "Codex，豆包整理文档",
+      "dependsOn": [
+        "T19"
+      ],
+      "status": "unaccepted",
+      "accepted": false
+    }
+  ]
+}

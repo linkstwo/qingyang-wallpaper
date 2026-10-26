@@ -1,0 +1,32 @@
+{
+  "archivedAt": "2026-10-26T13:23:36.771773Z",
+  "readOnlyHelperSnapshots": true,
+  "sourceDirectory": "D:\\QingyangRouteReview-20261026\\doubao",
+  "files": [
+    {
+      "path": "parts-ui-check.md",
+      "sha256": "5f36eaa4b1878190804cd5af7be55bbb38ddedd8c18caf66e10e2f08da7ccec1",
+      "bytes": 1485
+    },
+    {
+      "path": "next-low-level-tasks.md",
+      "sha256": "476457fb72661960da913c45f280112b55e30ff84619583a30a5e0f836d447fa",
+      "bytes": 956
+    },
+    {
+      "path": "shoulder-landmark-candidates.md",
+      "sha256": "6d689dc1aa672e09cc7e8d7f6d0b548ea5b3a5c73f42c6168c4a9fb0415fd81a",
+      "bytes": 2933
+    },
+    {
+      "path": "asset-inventory-full.csv",
+      "sha256": "8dec5de18ad9ba7989402b80c3d3ffc40efd8b554e927463547996cf68c74fdd",
+      "bytes": 3642
+    },
+    {
+      "path": "diff-1946.md",
+      "sha256": "3355ccaa1cf62af43c13aee02d435d387eeba8f259402dca7527b954307ef3a9",
+      "bytes": 971
+    }
+  ]
+}

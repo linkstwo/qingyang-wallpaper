@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T13:15:12.120773+00:00",
+  "updatedAt": "2026-10-26T13:23:36.771773Z",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -73,10 +73,11 @@
     "Observed +/-20,90,180 degree trial renders: paper splits at bounded angles and shoulder/back stretches at extremes. Candidate rejected for continuous-view acceptance; confidence remains0.",
     "Added stable-workbench link to parts-fit; actual browser round trip passed. Negative gain import showed fold rejection restores slider and exported JSON to prior valid gain0.",
     "Delegated asset inventory, attribute-slot repair, static checks and next low-complexity task list to Doubao; new shoulder landmark candidate task2003 dispatched, not yet accepted.",
-    "Doubao2007 landmark draft rejected: old main image and unsupported cross-image correspondence; task2008 requests exact source identity and visible-only observations. No candidate landmark entered model."
+    "Doubao2007 landmark draft rejected: old main image and unsupported cross-image correspondence; task2008 requests exact source identity and visible-only observations. No candidate landmark entered model.",
+    "Status audit: verified prior GitHub checkpoint2573551, regrouped remaining acceptance into20 packages and archived five Doubao text/data outputs with exact byte hashes; newer2009/2012 points received but not accepted. No app changes."
   ],
   "next": [
-    "Review corrected Doubao2008 visible landmarks using docs/SOURCE-CORRESPONDENCE-CONTRACT-20261026.md; do not use rejected2007 coordinates.",
+    "T01: review Doubao2009/2012 corrected observations against exact source pixels; archival does not accept their coordinates.",
     "Solve bounded-angle paper/front depth seam and shoulder/back connection with explicit shared boundaries; use independent observed landmarks, not manual rail fit RMS as ground truth.",
     "Use the MLS authoring page only for local source correspondence; exported JSON is not yet consumed by backChart or Android. S1/S2 remain incomplete."
   ],
@@ -339,17 +340,17 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T12:46:07.573Z",
+    "lastCheckpointAt": "2026-10-26T13:23:36.771773Z",
     "checkpointIntervalMinutes": 30,
-    "mode": "active_development",
+    "mode": "status_audit",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Original uncommitted files survived; both regressions rerun successfully after recovery.",
     "owner": "codex-lightweight-parts-1793017723001",
     "fence": 7,
-    "latestSourceCheckpoint": "4be1b385ba41bbd33b840ee913b38cc74e0bb53f",
+    "latestSourceCheckpoint": "f334f04ed1342f0d7ddd100eb8c5b5f499db730d",
     "userRequestedDoNotStop": true,
-    "stopReason": null,
+    "stopReason": "Task inventory and existing-results Git preservation requested; application development not started by this status turn.",
     "backgroundWorkerActive": false
   },
   "userReportedIssues": [
@@ -435,5 +436,26 @@
     "newApkBuilt": false,
     "resolvedAt": "2026-10-26T08:35:22.121667+00:00",
     "originalFilesSurvived": true
+  },
+  "taskLedger": {
+    "path": "docs/REMAINING-TASKS-20261026.json",
+    "summary": "docs/REMAINING-TASKS-20261026.md",
+    "remainingUnacceptedPackages": 20,
+    "countsByStage": {
+      "S1": 2,
+      "S2": 3,
+      "S3": 3,
+      "S4": 2,
+      "S5": 3,
+      "S6": 3,
+      "S7": 3,
+      "S8": 1
+    },
+    "nextPriority": [
+      "T01",
+      "T03",
+      "T04"
+    ],
+    "countIsNotEffortPercentage": true
   }
 }
