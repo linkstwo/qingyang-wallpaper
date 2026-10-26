@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T04:16:01.551087+00:00",
+  "updatedAt": "2026-10-26T07:14:03.999507+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "Manual installed-plugin continuation fence3: four coherent S2 research source milestones, exported GLES skin, full source review/partial back chart, nonlocal collision scan, interactive calibration lab and combined observed-front/paper/rear scene. Published0.5.9 unchanged; no hidden-surface production acceptance.",
+  "scopeOfThisRun": "User explicitly requested uninterrupted continuation. Fence4 active: conforming front topology and exact neutral rear-shell protection verified; continue shoulder/neck/back source connection without stopping at this checkpoint.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -60,11 +60,12 @@
     "S2 export v3 includes world-space six-bone matrix convention and explicit support-pin buffer. Actual GLES2 consumed exported f32 skin/support/position bytes:27 poses,1557306 component probes,max world error0.000350 source pixels. Six posed depth/cull views rendered using recomputed geometric normals;192250 topology checks and1038096 posed triangles still pass. No hidden texture claim or APK version change.",
     "Reviewed all10 archived whole images and verified bytes/hashes:4 exact-pixel equivalents to existing Git references,6 additional compositions with pose/clothing differences. Registered reading-v2 to front-variant in2D with53 integer-grid subject patch matches(35 fit/18 heldout); different back/side/front-three-quarter poses rejected by this2D gate. Production RGB unchanged. Provisional back chart covers3335 vertices/6445 triangles; real GLES depth/cull reveal uses back-source pixels on rear surface across five camera angles. Mapping remains uncalibrated/confidence0 with visible stretch, so not production-ready or S3-complete.",
     "S2 nonlocal intersection scan:25 sampled supported poses,303642 broad/narrow candidate pairs,zero crossing intersections;5 positive/negative/coplanar fixtures pass. This is sampled geometry evidence, not swept continuous collision detection. Added interactive structural/material lab with camera/body separation,5 debug modes,draggable source rails and source-hash-bound local draft persistence. Desktop WebGL exercised real pixels,drag/save/reset/restore/reload,wrong-source rejection,animation and412px viewport with zero console errors/external requests. Corrected rear UV horizontal orientation and excluded arm pixels from candidate torso source. Provisional camera fit still fails:held-out RMS26.27/max52.44source pixels,confidence0. No new APK.",
-    "Combined existing reading photograph surface(54267 vertices), world paper(3018) and carved rear proxy in one desktop diagnostic scene. Reused source-world bone weights; homogeneous source UV neutral test against flat source has mean RGB error0.000228 and0pixels over2. Removed obvious rear-cap intrusion into front arm, bound rear mask in homogeneous source coordinates. Browser rear-on/off neutral comparison retains16pixels over2(max26); strict equality is NOT accepted, despite bounded regression passing. Back view actually adds71717 changed pixels. Original RGB, production camera and Q solver remain unchanged. Re-downloaded public0.5.9 and matched exact signed SHA256e64dc0f...da6e8eac."
+    "Combined existing reading photograph surface(54267 vertices), world paper(3018) and carved rear proxy in one desktop diagnostic scene. Reused source-world bone weights; homogeneous source UV neutral test against flat source has mean RGB error0.000228 and0pixels over2. Removed obvious rear-cap intrusion into front arm, bound rear mask in homogeneous source coordinates. Browser rear-on/off neutral comparison retains16pixels over2(max26); strict equality is NOT accepted, despite bounded regression passing. Back view actually adds71717 changed pixels. Original RGB, production camera and Q solver remain unchanged. Re-downloaded public0.5.9 and matched exact signed SHA256e64dc0f...da6e8eac.",
+    "Fence4 fixed2 source T-junctions:18095 triangles,9313 source vertices,zero unmatched interior edges,source area drift0.0000292pixel². These were real topology defects but did not explain all16 neutral differences. Native GPU readback confirmed the difference was present before browser composition; coverage/depth prepass alone did not resolve it. Explicit single-sample scene framebuffer plus2x supersampled presentation preserves smooth edges and now gives exact rear-on/off equality:all channels zero difference in697x620 GPU readback and screenshots. Strict zero-difference assertions restored; photographic front/rear registration remains pending. Research pipeline only, no phone performance claim or new APK."
   ],
   "next": [
-    "Locate/correct the16 neutral joint-edge pixel differences in the combined scene; retain strict seam acceptance as false until resolved.",
-    "Replace provisional back chart association with semantically matched shoulder/neck/back observations, refine local geometry and source seams before Android integration or a new candidate."
+    "Extend region-specific observed source association through neck/shoulder into upper back, retaining unverified confidence0 and verifying UV/geometry seams.",
+    "Inspect/source-label local material orientation and pose mismatch, then prepare production-safe integration only after actual acceptance evidence."
   ],
   "stages": {
     "S1": "in_progress",
@@ -156,7 +157,8 @@
     "validation/s2-observed-scene-gles.jpg",
     "validation/s2-combined-front.jpg",
     "validation/s2-combined-side.jpg",
-    "validation/s2-front-rear-seam-acceptance.json"
+    "validation/s2-front-rear-seam-acceptance.json",
+    "validation/s2-conforming-front.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -309,16 +311,17 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T04:16:01.551087+00:00",
+    "lastCheckpointAt": "2026-10-26T07:14:03.999507+00:00",
     "checkpointIntervalMinutes": 30,
-    "mode": "checkpointed",
+    "mode": "active_development",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Transient directory was removed; restored from21b4df8. Do not imply uninterrupted background execution.",
-    "owner": "manual-plugin-s2-20261026-0329",
-    "fence": 3,
+    "owner": "manual-plugin-s2-20261026-0650",
+    "fence": 4,
     "latestSourceCheckpoint": "dfae2a69febdd558e159745585559f909ad6edd4",
-    "stopReason": "Controlled checkpoint after four source milestones; remaining seam/source registration and native acceptance are not complete. No continuing background worker claimed."
+    "stopReason": null,
+    "userRequestedDoNotStop": true
   },
   "userReportedIssues": [
     {

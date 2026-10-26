@@ -1,15 +1,16 @@
 {
-  "status": "not_accepted",
-  "strictNeutralEquality": false,
-  "neutralMeanRgbRearOnOff": 0.00041201037187979154,
-  "pixelsOver2": 16,
-  "maxChannelDifference": 26,
+  "status": "partial_offline_verified",
+  "strictNeutralEquality": true,
+  "neutralMeanRgbRearOnOff": 0,
+  "pixelsOver2": 0,
+  "maxChannelDifference": 0,
   "frontRearWelded": false,
   "backCameraCalibrated": false,
   "hiddenProductionConfidence": 0,
   "phoneTested": false,
   "next": [
-    "Fix joint-edge coverage/depth difference before production.",
-    "Register shoulder/neck/back source correspondence; current source poses differ."
-  ]
+    "Register shoulder/neck/back source correspondence.",
+    "Join observed front to inferred rear geometry; neutral pixel protection is only one acceptance item."
+  ],
+  "renderer": "single-sample scene FBO,2x supersampled presentation"
 }

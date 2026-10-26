@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+import {conformSourceMesh} from '../character-prototype/preview/conforming-mesh.mjs';import {makeLayeredCharacterMesh} from '../character-prototype/preview/layered-mesh.mjs';import {subject} from '../character-prototype/preview/subject.mjs';
+const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+const area=mesh=>{let s=0;for(let i=0;i<mesh.length;i+=6)s+=Math.abs(cross(Array.from(mesh.slice(i,i+2)),Array.from(mesh.slice(i+2,i+4)),Array.from(mesh.slice(i+4,i+6))))/2;return s;};
+const fixture=new Float32Array([0,0,2,0,0,2,2,0,2,2,1,1,1,1,2,2,0,2]),f=conformSourceMesh(fixture);assert.equal(f.report.splitEdges,1);assert.equal(area(f.source),4);
+function edges(mesh){const result=new Map();for(let i=0;i<mesh.indices.length;i+=3)for(let k=0;k<3;k++){const a=mesh.indices[i+k],b=mesh.indices[i+(k+1)%3],key=Math.min(a,b)+','+Math.max(a,b),entry=result.get(key)||{a,b,count:0};entry.count++;result.set(key,entry);}return [...result.values()];}
+for(const e of edges(f)){assert(e.count<=2);if(e.count===1){const a=f.positions.slice(e.a*2,e.a*2+2),b=f.positions.slice(e.b*2,e.b*2+2);assert([0,1].some(k=>(a[k]===0&&b[k]===0)||(a[k]===2&&b[k]===2)),'fixture has no internal unmatched edge');}}
+const old=makeLayeredCharacterMesh(),m=conformSourceMesh(old),bounds=[[0,0],[1152,0],[1152,1536],[0,1536]],segments=[...bounds.map((a,i)=>[a,bounds[(i+1)%4]]),...subject.paper.map((a,i)=>[a,subject.paper[(i+1)%subject.paper.length]])];
+const distance=(p,a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy)));return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy);};
+let unmatchedInternal=0,boundary=0;for(const e of edges(m)){assert(e.count<=2,'no nonmanifold source edge');if(e.count===1){boundary++;const a=m.positions.slice(e.a*2,e.a*2+2),b=m.positions.slice(e.b*2,e.b*2+2);if(!segments.some(([p,q])=>distance(a,p,q)<.0003&&distance(b,p,q)<.0003))unmatchedInternal++;}}
+const areaDrift=Math.abs(area(old)-area(m.source));assert(areaDrift<.2);assert.equal(unmatchedInternal,0,'all open edges must belong to actual rectangle/paper boundary');
+const r={fixtureSplitEdges:f.report.splitEdges,...m.report,boundaryEdges:boundary,unmatchedInternalEdges:unmatchedInternal,sourceAreaDrift:areaDrift,productionUsed:false,phoneTested:false};fs.writeFileSync(new URL('../validation/s2-conforming-front.json',import.meta.url),JSON.stringify(r,null,2)+'\n');console.log(JSON.stringify(r));

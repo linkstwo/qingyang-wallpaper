@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0650",
+  "fence": 4,
+  "baseHead": "d3c26aa756ce6387c0c3c4bfc9a626504c23ecd4",
+  "createdAt": "2026-10-26T07:14:05.707489+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/conforming-mesh.mjs",
+      "bytes": 2757,
+      "sha256": "3f54c920531fea1bfd3678aab952f5a1f7dc82fdd62687af798bed2b5eb050ae"
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 2299,
+      "sha256": "2efaddd7ec7fab1251a8fe9efd292815716668250b15463236c7f3689c9fc214"
+    },
+    {
+      "path": "character-prototype/preview/observed-surface.frag",
+      "bytes": 306,
+      "sha256": "ef92d12572ea0d292adb30d1ca80698ee3af123fa56d2af776bc4b712f02b4bd"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 17876,
+      "sha256": "a78f754523bedff869c7f2d7cfd2fb732ca8a706cc9b84a2d85edd85dbae05a5"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 27660,
+      "sha256": "c4fdeb08b14122e8b0e2b9814681c93e85a75466b064d8b0ad639ed196100d91"
+    },
+    {
+      "path": "docs/S2-MATERIAL-REGISTRATION.md",
+      "bytes": 5644,
+      "sha256": "95c8783944762a464aa0c189232e0528894e4853d73516a0011a3a22eba5591b"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 4089,
+      "sha256": "8aa1308df502410a3c21c2c9b3a4a2df15fad90faa3f321532733fdca576db4e"
+    },
+    {
+      "path": "tests/conforming-mesh-regression.mjs",
+      "bytes": 2502,
+      "sha256": "01cfbef47552fe7c822f53534362971bf65beefdb518b463bf168de5a294f8b7"
+    },
+    {
+      "path": "tests/structural-lab-browser.mjs",
+      "bytes": 8255,
+      "sha256": "cef2c9c755fd1f1e2d68b10d2aaa2fb9f11521225930d1475a2418cc46633f6c"
+    },
+    {
+      "path": "validation/s2-combined-front.jpg",
+      "bytes": 57823,
+      "sha256": "1169d2c2fbce9c89f2bd9ae1a794d28c0cb1bddb41c75527f3da221d42c3f317"
+    },
+    {
+      "path": "validation/s2-combined-side.jpg",
+      "bytes": 17740,
+      "sha256": "223a0f19d68c04c2e256774ec0519a5f1442517eddc6ef05998afd0b3f2f505c"
+    },
+    {
+      "path": "validation/s2-conforming-front.json",
+      "bytes": 334,
+      "sha256": "95bc5da82edb91df31dace0dd1985228ff224921186f5d215cde9888512a9454"
+    },
+    {
+      "path": "validation/s2-front-rear-seam-acceptance.json",
+      "bytes": 529,
+      "sha256": "4f6d8e382ba016931f23c183a89ae5cdeec8c8852a8e8db579a980dba893612c"
+    },
+    {
+      "path": "validation/s2-observed-scene.json",
+      "bytes": 228,
+      "sha256": "c4592ecc57acf53b5ca53ef6c3715cc5a3910148671dd60e7f53803276c7136c"
+    },
+    {
+      "path": "validation/s2-structural-lab-browser.json",
+      "bytes": 3164,
+      "sha256": "484597ea44db9c266b39c751e333543c291f211b374d21672f6e145d38e6a503"
+    },
+    {
+      "path": "validation/s2-structural-lab.jpg",
+      "bytes": 123125,
+      "sha256": "b0a83363752c52ab42036ebd4d6a5b1d3be73622608b388ab8951e7dd98f95b3"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/conforming-mesh-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/observed-scene-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_observed_scene_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/structural-lab-browser.mjs <Chrome134> strict framebuffer/screenshot equality",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Android/native phone/performance/new APK",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Extend region-specific observed source association through neck/shoulder into upper back, retaining unverified confidence0 and verifying UV/geometry seams.",
+    "Inspect/source-label local material orientation and pose mismatch, then prepare production-safe integration only after actual acceptance evidence."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "fbac740bcac67d4256af3d79b3e6b063ecc2618e6793f0c7b23e8ce0fe5dd3e0"
+}

@@ -4,7 +4,17 @@
   "fence": 4,
   "status": "running",
   "startedAt": "2026-10-26T06:50:20.554212Z",
-  "heartbeatAt": "2026-10-26T07:10:18.054941Z",
-  "expiresAt": "2026-10-26T07:25:18.054941Z",
-  "baseHead": "415bacf1bda178adaac88efb907a73879790cfbf"
+  "heartbeatAt": "2026-10-26T07:14:05.707489Z",
+  "expiresAt": "2026-10-26T07:29:05.707489Z",
+  "baseHead": "415bacf1bda178adaac88efb907a73879790cfbf",
+  "checkpoint": {
+    "baseHead": "d3c26aa756ce6387c0c3c4bfc9a626504c23ecd4",
+    "createdAt": "2026-10-26T07:14:05.707489+00:00",
+    "sourceDigest": "fbac740bcac67d4256af3d79b3e6b063ecc2618e6793f0c7b23e8ce0fe5dd3e0",
+    "stage": "S2",
+    "next": [
+      "Extend region-specific observed source association through neck/shoulder into upper back, retaining unverified confidence0 and verifying UV/geometry seams.",
+      "Inspect/source-label local material orientation and pose mismatch, then prepare production-safe integration only after actual acceptance evidence."
+    ]
+  }
 }
