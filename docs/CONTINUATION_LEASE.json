@@ -1,21 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "manual-plugin-s2-20261026-0303",
-  "fence": 2,
-  "status": "released",
-  "startedAt": "2026-10-26T03:02:30.379715Z",
-  "heartbeatAt": "2026-10-26T03:22:17.756000Z",
-  "expiresAt": "2026-10-26T03:22:17.756000Z",
-  "baseHead": "1f816184fd64a615b7eff0eefe20a9ab3427305e",
-  "checkpoint": {
-    "baseHead": "eafd936e1430269e3ccefbf05bb03819460fc698",
-    "createdAt": "2026-10-26T03:22:17.756Z",
-    "sourceDigest": "544acc08d19d7de2da107761b4f1dc4dce63d14f2e198eb9317aace525233226",
-    "stage": "S2",
-    "next": [
-      "Continue S2 actual posed-geometry debug rendering and verify exported skin weights/pose parity.",
-      "Register credible observed sources before texturing hidden body/side/back or enlarging production camera."
-    ]
-  },
-  "reason": "Checkpoint saved; controlled stop."
+  "owner": "manual-plugin-s2-20261026-0329",
+  "fence": 3,
+  "status": "running",
+  "startedAt": "2026-10-26T03:29:23.035343Z",
+  "heartbeatAt": "2026-10-26T03:29:23.035343Z",
+  "expiresAt": "2026-10-26T03:44:23.035343Z",
+  "baseHead": "e24ed3cb95405cb2f76e84a2685c6c661d352287"
 }
