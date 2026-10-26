@@ -1,11 +1,17 @@
 {
   "schemaVersion": 1,
-  "owner": "codex-input-isolated-20261027-0147",
-  "fence": 1,
+  "owner": "codex-night-20261027-0120",
+  "fence": 11,
   "status": "running",
-  "startedAt": "2026-10-26T17:48:45.120265Z",
-  "heartbeatAt": "2026-10-26T17:54:28.565751Z",
-  "expiresAt": "2026-10-26T18:09:28.565751Z",
-  "baseHead": "17b7e3451a667b82859366555d8d5d123e005c09",
-  "scope": "Independent branch only: T10/T13 input, no main development lease takeover"
+  "startedAt": "2026-10-26T17:20:10.367673Z",
+  "heartbeatAt": "2026-10-26T17:45:29.000Z",
+  "expiresAt": "2026-10-26T18:00:29.000Z",
+  "baseHead": "cd3eb09072b7351a33e98aa89e9f4fd17406f032",
+  "checkpoint": {
+    "baseHead": "8944d098ecaf5cda5294799f88aca26a305cdc2e",
+    "createdAt": "2026-10-26T17:29:46.215560+00:00",
+    "sourceDigest": "7695191d4fbeb0f2cf37218578b8f1577ceeab9a9010c3332335c4399d9d7946",
+    "stage": "S2",
+    "next": "T03 residual thin-strip source ray inspection; T01 component review of six archive compositions"
+  }
 }

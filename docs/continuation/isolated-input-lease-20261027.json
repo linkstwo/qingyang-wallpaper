@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-input-isolated-20261027-0147",
+  "fence": 1,
+  "status": "released",
+  "startedAt": "2026-10-26T17:48:45.120265Z",
+  "heartbeatAt": "2026-10-26T17:58:08.888328+00:00",
+  "expiresAt": "2026-10-26T17:58:08.888328+00:00",
+  "baseHead": "17b7e3451a667b82859366555d8d5d123e005c09",
+  "scope": "Independent branch only: T10/T13 input, no main development lease takeover",
+  "reason": "Input patch verified; main lease released and latest-head recovery follows"
+}
