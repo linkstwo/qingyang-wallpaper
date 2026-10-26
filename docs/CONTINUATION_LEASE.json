@@ -1,21 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "codex-workshare-audit-1793021247857",
-  "fence": 9,
-  "status": "released",
-  "startedAt": "2026-10-26T13:27:27.857000Z",
-  "heartbeatAt": "2026-10-26T13:29:10.544000Z",
-  "expiresAt": "2026-10-26T13:29:10.544000Z",
-  "baseHead": "cb25d9e62430fac745ab6893d807ac45de922d56",
-  "checkpoint": {
-    "baseHead": "416050ffb18f064771204ced921fa341168a427e",
-    "createdAt": "2026-10-26T13:29:09.893Z",
-    "sourceDigest": "515c089157fd1ca161d597b50631236ec6e65a59194d1153e48c982a99853d3c",
-    "stage": "S2",
-    "next": [
-      "Apply roughly50/50 actual-workload delegation for T01/T03/T04.",
-      "Ordinary reviews owned by Doubao; core direction and critical acceptance by Codex."
-    ]
-  },
-  "reason": "User-requested task inventory, Git archival and supplemental workload split recorded; application remains S2."
+  "owner": "codex-gradual-seam-1793021652301",
+  "fence": 10,
+  "status": "running",
+  "startedAt": "2026-10-26T13:34:12.301000Z",
+  "heartbeatAt": "2026-10-26T13:34:12.301000Z",
+  "expiresAt": "2026-10-26T13:49:12.301000Z",
+  "baseHead": "0c6077ca9e9a645e1b95d34e84147b5a48d144ad"
 }
