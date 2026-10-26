@@ -27,3 +27,4 @@ export function poseConnectedProxy(model,input={}){
 }
 // Column-major GLES2 mat4s, world-space rest -> posed world. No hidden parent transforms.
 export function poseUniforms(input={}){return structuralPose(input).matrices.map(m=>new Float32Array([...m.cols[0],0,...m.cols[1],0,...m.cols[2],0,...m.translation,1]));}
+export function geometricNormals(positions,indices){const out=new Float32Array(positions.length);for(let i=0;i<indices.length;i+=3){const ids=indices.slice(i,i+3),p=ids.map(j=>positions.slice(j*3,j*3+3)),n=cross(sub(p[1],p[0]),sub(p[2],p[0]));for(const j of ids)for(let k=0;k<3;k++)out[j*3+k]+=n[k];}for(let i=0;i<out.length;i+=3){const length=Math.hypot(out[i],out[i+1],out[i+2]);if(length<1e-20)throw Error('Degenerate structural normal');for(let k=0;k<3;k++)out[i+k]/=length;}return out;}

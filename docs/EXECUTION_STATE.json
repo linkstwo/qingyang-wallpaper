@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T03:45:55.789690+00:00",
+  "updatedAt": "2026-10-26T03:58:17.686141+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -58,11 +58,12 @@
     "First real S2 continuation under plugin fence2: built one welded inferred torso/arm surface from smooth-union field,19226 vertices/38448 faces,one component,zero boundary edges,Euler2;192250 assertions passed. Exportv2 includes six-bone hierarchy and normalised weights. New unregistered surfaces have confidence0; published0.5.9 unchanged.",
     "S2 supported skeletal motion: separate torso/camera/spring inputs, six-bone skin, observed far wrist fixed to paper, unobserved cropped near wrist free.27 pose combinations/1038096 triangle cases passed; min area ratio0.709, normal alignment0.9566, wrist/pinned-surface error0, bone length error<3e-13. Neutral mesh exact; production camera and spring solver unchanged.",
     "S2 export v3 includes world-space six-bone matrix convention and explicit support-pin buffer. Actual GLES2 consumed exported f32 skin/support/position bytes:27 poses,1557306 component probes,max world error0.000350 source pixels. Six posed depth/cull views rendered using recomputed geometric normals;192250 topology checks and1038096 posed triangles still pass. No hidden texture claim or APK version change.",
-    "Reviewed all10 archived whole images and verified bytes/hashes:4 exact-pixel equivalents to existing Git references,6 additional compositions with pose/clothing differences. Registered reading-v2 to front-variant in2D with53 integer-grid subject patch matches(35 fit/18 heldout); different back/side/front-three-quarter poses rejected by this2D gate. Production RGB unchanged. Provisional back chart covers3335 vertices/6445 triangles; real GLES depth/cull reveal uses back-source pixels on rear surface across five camera angles. Mapping remains uncalibrated/confidence0 with visible stretch, so not production-ready or S3-complete."
+    "Reviewed all10 archived whole images and verified bytes/hashes:4 exact-pixel equivalents to existing Git references,6 additional compositions with pose/clothing differences. Registered reading-v2 to front-variant in2D with53 integer-grid subject patch matches(35 fit/18 heldout); different back/side/front-three-quarter poses rejected by this2D gate. Production RGB unchanged. Provisional back chart covers3335 vertices/6445 triangles; real GLES depth/cull reveal uses back-source pixels on rear surface across five camera angles. Mapping remains uncalibrated/confidence0 with visible stretch, so not production-ready or S3-complete.",
+    "S2 nonlocal intersection scan:25 sampled supported poses,303642 broad/narrow candidate pairs,zero crossing intersections;5 positive/negative/coplanar fixtures pass. This is sampled geometry evidence, not swept continuous collision detection. Added interactive structural/material lab with camera/body separation,5 debug modes,draggable source rails and source-hash-bound local draft persistence. Desktop WebGL exercised real pixels,drag/save/reset/restore/reload,wrong-source rejection,animation and412px viewport with zero console errors/external requests. Corrected rear UV horizontal orientation and excluded arm pixels from candidate torso source. Provisional camera fit still fails:held-out RMS26.27/max52.44source pixels,confidence0. No new APK."
   ],
   "next": [
-    "Scan continuous supported poses for nonlocal triangle intersections, not just area/orientation; preserve observed wrist support.",
-    "Calibrate/refine torso-back chart and shoulder/neck seams before promoting any patch to production confidence; current prototype visibly stretches."
+    "Join observed front-photo surface, paper and inferred rear proxy in one diagnostic scene; verify neutral source preservation and expose depth/matte conflicts before production.",
+    "Use the interactive source chart and correspondence evidence to refine shoulder/neck seam and local geometry; provisional back camera fit is not production-accepted."
   ],
   "stages": {
     "S1": "in_progress",
@@ -142,7 +143,13 @@
     "validation/s1-source-registration-negatives.json",
     "validation/s2-back-chart.json",
     "validation/s2-back-chart-gles.json",
-    "validation/s2-back-chart-gles.jpg"
+    "validation/s2-back-chart-gles.jpg",
+    "validation/s2-self-intersections.json",
+    "validation/s2-back-camera-fit.json",
+    "validation/s2-back-camera-fit.jpg",
+    "character-prototype/preview/structural-lab.html",
+    "validation/s2-structural-lab-browser.json",
+    "validation/s2-structural-lab.jpg"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -291,7 +298,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T03:45:55.789690+00:00",
+    "lastCheckpointAt": "2026-10-26T03:58:17.686141+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,

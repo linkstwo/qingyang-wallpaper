@@ -1,0 +1,16 @@
+{
+  "desktopBrowser": "134.0.6998.35",
+  "webglRendered": true,
+  "viewsDistinct": true,
+  "modes": 5,
+  "bodyMotionRendered": true,
+  "sourceRailDrag": true,
+  "draftSaveResetRestoreReload": true,
+  "wrongSourceDraftRejected": true,
+  "animationStartStop": true,
+  "mobileViewportNoOverflow": true,
+  "externalRequests": 0,
+  "consoleErrors": [],
+  "productionConfidence": 0,
+  "phoneTested": false
+}

@@ -9,3 +9,11 @@ material-chart.mjs建立了背部局部候选UV。3335顶点、6445完整三角�
 实际渲染validation/s2-back-chart-gles.jpg显示身体比例/衣纹仍拉伸、肩颈接缝未配准；此图是失败边界与实现证据，不是可安装效果或用户验收。手机未验、生产视角及0.5.9 APK不变，S1/S2仍in_progress、S3未完成。下一步补非局部自交检查，并细化相机/局部截面与背部UV的共同标定。
 
 复现：python scripts/register_source_images.py；python tests/source-registration-regression.py；node tests/material-chart-regression.mjs；python tests/render_material_chart_gles.py。档案核对另加--archive指向已解压原档案，路径不用入仓。
+
+## 非局部自交与可交互工作台
+
+25个往返轨迹/边界采样姿态，303642对非共享顶点候选三角形，双向线段-三角形和共面二维分离轴检查没有相交。5个穿插/不相交/共面夹具通过。只证明采样状态，不是扫掠式连续碰撞检测，也不含身体与纸张碰撞验收。
+
+工作台character-prototype/preview/structural-lab.html由同一结构/蒙皮/来源图构成，可独立转相机、动身体、看5个模式，拖动来源图的局部配准点。草稿绑定原图SHA256，保存/恢复均保持confidence0，不修改生产配置；错误原图、篡改可信度、折返行、无效坐标被拒绝。桌面Chrome134/WebGL真实执行了显示/拖动/草稿跨刷新/错误来源拒绝/动画/412px布局检查，零console错误、零外部请求。照片和求解器未改，手机未验。
+
+背部UV修正了观察方向造成的横向反转，取样轨道收至背部内区，避免把近臂映到躯干。对手工轨道的单相机拟合仍不合格：留出RMS26.27/max52.44源图像素。目标轨道本身是推断关联，低残差也不能独立证明摄影三维精度；结果明确不进入生产。下一步合并原有前景/纸面与后表面的同场景调试，定位实际遮罩、深度和接缝问题。

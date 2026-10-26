@@ -1,0 +1,30 @@
+// Real desktop WebGL interaction regression. Not Android/OEM acceptance.
+import assert from 'node:assert/strict';import fs from 'node:fs/promises';import path from 'node:path';import http from 'node:http';import crypto from 'node:crypto';
+import {createRequire} from 'node:module';const {chromium}=createRequire(import.meta.url)('playwright');
+const root=path.resolve(import.meta.dirname,'..'),errors=[],requests=[];
+const types={'.html':'text/html','.mjs':'text/javascript','.vert':'text/plain','.png':'image/png','.json':'application/json'};
+const server=http.createServer(async(req,res)=>{try{const rel=decodeURIComponent(new URL(req.url,'http://localhost').pathname).slice(1),p=path.resolve(root,rel);if(!p.startsWith(root+path.sep)){res.writeHead(403).end();return;}const data=await fs.readFile(p);res.writeHead(200,{'Content-Type':types[path.extname(p)]||'application/octet-stream'}).end(data);}catch{res.writeHead(404).end();}});
+await new Promise(r=>server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${server.address().port}`;
+let browser;
+try{
+ browser=await chromium.launch({executablePath:process.argv[2]||undefined,headless:true,args:['--no-sandbox','--disable-background-networking','--disable-component-update','--disable-sync','--no-first-run','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+ const page=await browser.newPage({viewport:{width:1360,height:1060}});page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+ await page.route('**/*',route=>{const u=new URL(route.request().url());requests.push(u.origin);if(u.origin!==base)return route.abort();return route.continue();});
+ await page.goto(base+'/character-prototype/preview/structural-lab.html');await page.waitForFunction(()=>document.body.dataset.ready,{timeout:30000});assert.equal(await page.getAttribute('body','data-ready'),'true',await page.locator('#error').textContent());
+ const imageHash=async()=>crypto.createHash('sha256').update(await page.locator('#scene').screenshot()).digest('hex');
+ const neutral=await imageHash();await page.click('#back');await page.waitForTimeout(70);const back=await imageHash();assert.notEqual(neutral,back,'back view changes actual WebGL pixels');
+ for(const mode of ['region','normal','depth','support','photo']){await page.selectOption('#mode',mode);await page.waitForTimeout(40);assert.equal(await page.locator('#error').textContent(),'');}
+ await page.locator('#body').fill('2.7');await page.locator('#body').dispatchEvent('input');await page.waitForTimeout(50);assert.notEqual(await imageHash(),back,'supported body motion changes actual pixels');
+ const initial=JSON.parse(await page.locator('#json').inputValue()),box=await page.locator('#source').boundingBox(),p=initial.chart.rows[0].left;
+ const x=box.x+p[0]/1086*box.width,y=box.y+p[1]/1448*box.height;await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+12,y+8,{steps:4});await page.mouse.up();
+ const changed=JSON.parse(await page.locator('#json').inputValue());assert.notDeepEqual(changed.chart.rows,initial.chart.rows);assert.equal(changed.chart.confidence,0);
+ await page.click('#save');await page.click('#reset');assert.deepEqual(JSON.parse(await page.locator('#json').inputValue()).chart.rows,initial.chart.rows);await page.click('#restore');assert.deepEqual(JSON.parse(await page.locator('#json').inputValue()).chart.rows,changed.chart.rows);
+ await page.reload();await page.waitForFunction(()=>document.body.dataset.ready==='true');await page.click('#restore');assert.deepEqual(JSON.parse(await page.locator('#json').inputValue()).chart.rows,changed.chart.rows,'draft persists across reload');
+ await page.evaluate(()=>localStorage.setItem('qingyang-back-chart-v1',JSON.stringify({sourceSha256:'wrong-source',chart:{confidence:1}})));await page.click('#restore');assert.match(await page.locator('#draftStatus').textContent(),/没有与当前原图一致/);
+ await page.click('#motion');assert.equal(await page.getAttribute('#motion','aria-pressed'),'true');await page.waitForTimeout(100);await page.click('#motion');assert.equal(await page.getAttribute('#motion','aria-pressed'),'false');
+ await page.click('#reset');await page.click('#back');await page.screenshot({path:path.join(root,'validation/s2-structural-lab.jpg'),type:'jpeg',quality:85,fullPage:true});
+ await page.setViewportSize({width:412,height:915});await page.waitForTimeout(60);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'no horizontal overflow on phone-size viewport');
+ assert.deepEqual(errors,[]);assert(requests.every(origin=>origin===base));
+ const report={desktopBrowser:await browser.version(),webglRendered:true,viewsDistinct:true,modes:5,bodyMotionRendered:true,sourceRailDrag:true,draftSaveResetRestoreReload:true,wrongSourceDraftRejected:true,animationStartStop:true,mobileViewportNoOverflow:true,externalRequests:0,consoleErrors:errors,productionConfidence:0,phoneTested:false};
+ await fs.writeFile(path.join(root,'validation/s2-structural-lab-browser.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+}finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
