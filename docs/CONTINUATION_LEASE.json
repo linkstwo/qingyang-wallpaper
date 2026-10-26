@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "owner": "plugin-setup-0.1.0",
+  "fence": 1,
+  "status": "released",
+  "startedAt": "2026-10-26T02:56:09.199032+00:00",
+  "heartbeatAt": "2026-10-26T02:56:09.199032+00:00",
+  "expiresAt": "2026-10-26T02:56:09.199032+00:00",
+  "reason": "Initialise cooperation protocol; no active development claimed."
+}

@@ -1,0 +1,24 @@
+{
+  "checks": 34,
+  "abruptExitRecovery": true,
+  "scratchLossRecovery": true,
+  "staleWriterRejected": true,
+  "actualGitConcurrentPushRejected": true,
+  "scheduleWindowHonoured": true,
+  "credentialPathsRejected": true,
+  "liveSchedulerWakeTested": false,
+  "phoneTested": false,
+  "independentForwardUse": {
+    "completed": true,
+    "scenario": "Read supplied skill, recover isolated fixture with legacy active state, implement requested clamp, verify13 cases, non-force push receipt and release. No network or real project mutations.",
+    "fixtureCommits": [
+      "5c7e5ee852645868336d491d29012318137a7aa4",
+      "ae2e7259c2536c2b8519cbacaf6f768cc45bc226",
+      "1e6e18962b8246d0db31e8006f945373729d1ad2"
+    ],
+    "finalLeaseStatus": "released",
+    "sourceDigest": "c030f0c2995437b5692a35bcea2d2fa7e856be9be771e50930d75fbd12869b5a"
+  },
+  "savedSkillsVerified": 2,
+  "savedHelperBytesMatch": true
+}
