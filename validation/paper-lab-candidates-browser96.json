@@ -22,7 +22,12 @@
   "ownership": {
     "greenMain": 153862,
     "bluePaper": 14221,
-    "whiteCoverage": 167453
+    "whiteCoverage": 167453,
+    "sourceProbeHits": 1,
+    "sourceProbePose": {
+      "yaw": 0.05759586531581287,
+      "roll": 0
+    }
   },
   "pageErrors": [],
   "realWebgl": true,

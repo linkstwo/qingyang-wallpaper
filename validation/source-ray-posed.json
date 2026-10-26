@@ -1,0 +1,9 @@
+{
+  "mixedDepthCases": 4,
+  "posedSourceRecovery": true,
+  "matteDiscardBoundaryTested": true,
+  "bilinearClampTested": true,
+  "negativeStalePoseControl": true,
+  "actualRasterVisibilityAccepted": false,
+  "phoneTested": false
+}
