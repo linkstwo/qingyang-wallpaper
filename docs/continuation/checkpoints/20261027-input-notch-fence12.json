@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-recovery-20261027-0157",
+  "fence": 12,
+  "baseHead": "ecb245bf20069012f231892c9d203279ece54e9a",
+  "createdAt": "2026-10-26T18:01:49.801775Z",
+  "stage": "S2",
+  "next": "Compare source-matte-visible notch failures with fixed-seat support candidate; keep T03/T05 open",
+  "files": [
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SensorFeed.java",
+      "sha256": "2156a4f69e6a4a0f640c65c8fc22e957f297e134af1dea43f6b808084a5b440e",
+      "bytes": 7697
+    },
+    {
+      "path": "character-prototype/preview/forearm-surface.mjs",
+      "sha256": "c9ace5ab0182308017c1b5d014de02ddd0351ac8518d8be8c0890ad4407f887b",
+      "bytes": 3109
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "sha256": "7b0153f14e3cf11060e2cfd2d0e7b6425dbd0191ae6c006c00792b6006671988",
+      "bytes": 5862
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "sha256": "dd04c3423da1587c67113f7f4dadf68895c2156fd35f776c4247283bd5513a2d",
+      "bytes": 2947
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "sha256": "afe9f2f2e3cef8832ad68688de6ae15a3c76f5e1f1374083b927432bdac012cc",
+      "bytes": 4579
+    },
+    {
+      "path": "tests/run_sensor_feed.py",
+      "sha256": "646c4d8eaca31198971e1080fd9aea5bcb030eceacc8efa1aca6a27bc1ae53f8",
+      "bytes": 4219
+    },
+    {
+      "path": "tests/SensorQueueRegression.java",
+      "sha256": "54b5c3898ce427b5020232a6c38378b23ae75e5e1dcad578a8e39ce359e5c7cc",
+      "bytes": 3067
+    },
+    {
+      "path": "tests/SensorTrajectoryRegression.java",
+      "sha256": "c86f6e9e55e13db12be3a7d9787173241a7c02af5b69c03959b8a2cbc61c3b2d",
+      "bytes": 3361
+    },
+    {
+      "path": "tests/scan_masked_projection.mjs",
+      "sha256": "17e9385e79655d9e9818da7e9ee8e9ef134fb04e826243dbcaa12f6888dd7dd8",
+      "bytes": 3734
+    },
+    {
+      "path": "validation/sensor-queue-regression.json",
+      "sha256": "f457a34467ee4fac66b1bfd537ea97094949d77acfa0249193354b917b3f4dbd",
+      "bytes": 65
+    },
+    {
+      "path": "validation/sensor-trajectory-regression.json",
+      "sha256": "b16d2c8887bfde3e41a6c3706dabbb0899919d9ea666400ef1683781ff99a7ed",
+      "bytes": 169
+    },
+    {
+      "path": "validation/paper-notch-candidate.json",
+      "sha256": "792cee1ec98d84b165aaf70d1fce66d9fece12fd19ac0b35c1a3d262682f03b5",
+      "bytes": 359
+    },
+    {
+      "path": "validation/paper-notch-visible-pose-scan.json",
+      "sha256": "7597201bb88ec4989441fa73c68f9beee6d29d6b4e9a3537754406bbb3bcb244",
+      "bytes": 21623
+    },
+    {
+      "path": "validation/paper-notch-forearm-candidate.json",
+      "sha256": "6724e58708646ba297296e6322ed402bca2b94e7804420d5665fea1c1290d972",
+      "bytes": 392
+    },
+    {
+      "path": "validation/paper-notch-forearm-visible-pose-scan.json",
+      "sha256": "133b56f8cd5fee668741db0c1b012927ae51609f3fdede1334cadadc6c09c434",
+      "bytes": 22579
+    },
+    {
+      "path": "validation/s2-paper-source-partition.json",
+      "sha256": "9febb1ef721d182125965b850e6f32ad2daeef48cdb1c336f513c4baf43bf8e9",
+      "bytes": 930
+    },
+    {
+      "path": "validation/masked-projection-audit-20261027.json",
+      "sha256": "c2dd7bfcd45c501ff108a50e4dcb356319efcc9b24f7280dccb6f528185fe49d",
+      "bytes": 5514
+    },
+    {
+      "path": "docs/INPUT-QUEUE-20261027.md",
+      "sha256": "9681ec4930b53e876d10e66155021e9d016018f34a6902ae177b07d4516eda2b",
+      "bytes": 2054
+    },
+    {
+      "path": "docs/MASKED-PROJECTION-AUDIT-20261027.md",
+      "sha256": "79aa8af2a864b45c96d3e8a57227bd334990f4fa7b065b9df6ef0c9b4a942f5b",
+      "bytes": 1086
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE12.md",
+      "sha256": "486c9644764971c4b2fd96ce264e0f36f653e54a0ebc1abe64481b901f23bd04",
+      "bytes": 2117
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "sha256": "de81962900d763d42b6d812d04e5d161cf8d28222b0f8898bc412777181abffe",
+      "bytes": 36612
+    },
+    {
+      "path": "validation/paper-notch-candidate.jpg",
+      "sha256": "c36000332ebab0bc334e501d4d70a8b9afd9978ddaba8fbd705b43cb9c5dafcf",
+      "bytes": 431743
+    },
+    {
+      "path": "validation/paper-notch-forearm-candidate.jpg",
+      "sha256": "24266ecbc5572153554a3529b347e8a6c732a4d3a1b36c9319d5830cf52baa8e",
+      "bytes": 433205
+    }
+  ],
+  "tests": [
+    {
+      "command": "python3 tests/run_sensor_feed.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-source-partition-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-contact-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "PAPER_MATTE_BYTES=<raw> PAPER_EXTERIOR_TRIM=0 node tests/paper-contact-pose-scan.mjs",
+      "status": "failed_25_of_45",
+      "exitCode": 1
+    },
+    {
+      "command": "PAPER_FOREARM_VOLUME=1 <same visible scan>",
+      "status": "failed_25_of_45",
+      "exitCode": 1
+    },
+    {
+      "command": "PAPER_PARTITION=1 PAPER_LAP_CONTACT=1 <GLES both forearm modes>",
+      "status": "completed_visual_not_accepted",
+      "exitCode": 0
+    }
+  ],
+  "sourceDigest": "18df6211cbac34ef2a7edb4c3bfd29b7933264511f9381adb296687cfe986607"
+}

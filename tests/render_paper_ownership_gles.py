@@ -11,7 +11,7 @@ if baseline:
  assert re.fullmatch('[0-9a-f]{40}',baseline)
  old=subprocess.check_output(['git','show',baseline+':character-prototype/preview/observed-scene.mjs'],cwd=g.ROOT,text=True)
  tmp=tempfile.NamedTemporaryFile(mode='w',suffix='.mjs',prefix='.paper-baseline-',dir=g.ROOT/'character-prototype/preview',delete=False);tmp.write(old);tmp.close();module=Path(tmp.name).as_uri()
-script="""import {buildObservedScene} from 'MODULE';import {poseUniforms} from './character-prototype/preview/structural-pose.mjs';console.log(JSON.stringify({scene:buildObservedScene({paperPartition:process.env.PAPER_PARTITION==='1',paperLapContact:process.env.PAPER_LAP_CONTACT==='1',paperExteriorTrim:process.env.PAPER_EXTERIOR_TRIM==='1'}),bones:poseUniforms().map(x=>Array.from(x))}));"""
+script="""import {buildObservedScene} from 'MODULE';import {poseUniforms} from './character-prototype/preview/structural-pose.mjs';console.log(JSON.stringify({scene:buildObservedScene({forearmVolume:process.env.PAPER_FOREARM_VOLUME==='1',paperPartition:process.env.PAPER_PARTITION==='1',paperLapContact:process.env.PAPER_LAP_CONTACT==='1',paperExteriorTrim:process.env.PAPER_EXTERIOR_TRIM==='1'}),bones:poseUniforms().map(x=>Array.from(x))}));"""
 script=script.replace('MODULE',module)
 data=json.loads(subprocess.check_output(['node','--input-type=module','-e',script],cwd=g.ROOT,text=True))
 if baseline:Path(tmp.name).unlink()
@@ -48,5 +48,5 @@ for i,(angle,im) in enumerate(zip([-20,-2.2918,0,2.2918,20],frames)):
  canvas.paste(im,(i*540,30));d.text((i*540+8,8),f'yaw {angle} / zero body / no rear',fill='white')
 name=os.environ.get('PAPER_REPORT','paper-ownership-before')
 canvas.save(g.ROOT/'validation'/f'{name}.jpg',quality=90)
-result={'renderer':g.getString(0x1F01).decode(),'angles':[-20,-2.2918,0,2.2918,20],'rear':False,'bodyPose':[0,0,0],'paperPartition':os.environ.get('PAPER_PARTITION')=='1','baselineRef':baseline,'paperLapContact':os.environ.get('PAPER_LAP_CONTACT')=='1','paperExteriorTrim':os.environ.get('PAPER_EXTERIOR_TRIM')=='1','image':f'validation/{name}.jpg','phoneTested':False}
+result={'forearmVolume':os.environ.get('PAPER_FOREARM_VOLUME')=='1','renderer':g.getString(0x1F01).decode(),'angles':[-20,-2.2918,0,2.2918,20],'rear':False,'bodyPose':[0,0,0],'paperPartition':os.environ.get('PAPER_PARTITION')=='1','baselineRef':baseline,'paperLapContact':os.environ.get('PAPER_LAP_CONTACT')=='1','paperExteriorTrim':os.environ.get('PAPER_EXTERIOR_TRIM')=='1','image':f'validation/{name}.jpg','phoneTested':False}
 (g.ROOT/'validation'/f'{name}.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

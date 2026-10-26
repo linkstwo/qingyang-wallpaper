@@ -1,0 +1,22 @@
+{
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "angles": [
+    -20,
+    -2.2918,
+    0,
+    2.2918,
+    20
+  ],
+  "rear": false,
+  "bodyPose": [
+    0,
+    0,
+    0
+  ],
+  "paperPartition": true,
+  "baselineRef": null,
+  "paperLapContact": true,
+  "paperExteriorTrim": false,
+  "image": "validation/paper-notch-candidate.jpg",
+  "phoneTested": false
+}

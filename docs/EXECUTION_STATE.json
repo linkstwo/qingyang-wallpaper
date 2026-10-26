@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T17:52:02.616273+00:00",
+  "updatedAt": "2026-10-26T18:01:49.801775Z",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -79,9 +79,8 @@
     "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle."
   ],
   "next": [
-    "Read docs/RESUME-20261027-FENCE11.md; verify newly added notched paper complement, whose final three-tool validation was aborted.",
-    "Keep all experimental paths disabled in production; solve visible full-front pose failures and occluded body textures.",
-    "T01 same-facing shoulder/back crop is wired to parts-fit; validate source correspondences before T04 integration."
+    "Compare source-matte-visible notch failures with fixed-seat support candidate; keep T03/T05 open",
+    "Continue T01/T04 same-facing shoulder/back source registration"
   ],
   "stages": {
     "S1": "in_progress",
@@ -342,16 +341,16 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T14:04:39.205Z",
+    "lastCheckpointAt": "2026-10-26T18:01:49.801775Z",
     "checkpointIntervalMinutes": 30,
-    "mode": "stopped",
+    "mode": "active_development",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Original uncommitted files survived; both regressions rerun successfully after recovery.",
-    "owner": "codex-gradual-seam-1793021652301",
-    "fence": 10,
+    "owner": "codex-night-recovery-20261027-0157",
+    "fence": 12,
     "latestSourceCheckpoint": "f334f04ed1342f0d7ddd100eb8c5b5f499db730d",
-    "userRequestedDoNotStop": false,
+    "userRequestedDoNotStop": true,
     "stopReason": "User explicitly requested closeout and a saved restart point.",
     "backgroundWorkerActive": false
   },
@@ -476,13 +475,13 @@
     "resizedSameViewIsNotNewAngle": true,
     "avoidInventedYawNumbers": true
   },
-  "latestResume": "docs/RESUME-20261026-FENCE10.md",
+  "latestResume": "docs/RESUME-20261027-FENCE12.md",
   "stopRequested": false,
   "nightRun20261027": {
-    "owner": "codex-night-20261027-0120",
-    "fence": 11,
+    "owner": "codex-night-recovery-20261027-0157",
+    "fence": 12,
     "bridge": "404 SSE endpoint, independent cloud work continuing",
-    "latestCheckpoint": "docs/RESUME-20261027-FENCE11.md",
+    "latestCheckpoint": "docs/RESUME-20261027-FENCE12.md",
     "tasksAccepted": [],
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
