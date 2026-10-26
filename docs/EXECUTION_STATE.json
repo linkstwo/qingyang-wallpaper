@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "Resume S2 from durable21b4df8 after transient cleanup; recover and checkpoint calibrated production projection/contact mapping. Large-angle occlusion topology and new APK remain pending.",
+  "scopeOfThisRun": "S2 layered paper/body topology and shared camera/depth integration; preserve Q solver, original RGB and pure cloud execution.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -48,12 +48,13 @@
     "Reproduced0.5.8 chest/left-edge defect; separated full motion coverage from source erasure, and replaced single broad chest field with two smooth material lobes and neckline/ribcage taper. Current CPU/GLES/triangle checks passed; visual fix still requires user acceptance.",
     "Entered S2 after checkpoint041b653: added calibrated source/world camera model, shared support-depth convention and closed head-neck-torso/arm thickness proxy exporter. These are inferred geometry/debug assets, not textured multiview completion.",
     "S2 first structural checkpoint:550 vertices/1088 faces in3 closed parts,7291 scene checks passed; neutral calibrated projection error<2e-13 source pixels, connected-edge winding checks passed,340 vertices explicitly untextured. Production camera integration remains next.",
-    "Recovered calibrated CPU/GLSL scene projection after transient directory cleanup; world paper plane and material-space support constraints integrated. Reran7295 scene checks and884736 triangle cases; min area ratio0.20528, support contact error0. Production yaw/pitch bounded to±0.04/0.02rad pending occlusion topology split. No new APK built."
+    "Recovered calibrated CPU/GLSL scene projection after transient directory cleanup; world paper plane and material-space support constraints integrated. Reran7295 scene checks and884736 triangle cases; min area ratio0.20528, support contact error0. Production yaw/pitch bounded to±0.04/0.02rad pending occlusion topology split. No new APK built.",
+    "S2 layered topology: subtract observed paper polygon from character geometry; body18089 triangles, paper164. Body contact/depth no longer follows paper feather; wrist depth transitions over forearm. Reproduced old area ratio-1.073 at0.14/0.07rad, new0.1664; neutral coverage area error0.00049pixel². Production range remains bounded; hidden under-paper body texture remains missing."
   ],
   "next": [
-    "Split paper/character occlusion-boundary topology before enlarging the physical camera range.",
-    "Restore scene geometry debug renders (parts/normals/depth) and rerun production CPU/GLES/contour tests.",
-    "Complete structural connections and credible side/back source registration; keep S2 incomplete; build/sign next meaningful candidate with original key."
+    "Add true depth ordering for separated paper/body and transparent-mask discard in shared GLES path; request16-bit depth for app and wallpaper surfaces.",
+    "Restore structural parts/normals/depth debug renders and test contact/occlusion rendering.",
+    "Validate source identity and Q solver regression; complete structural attachments/hidden-source mapping before claiming S2 complete or side/back view."
   ],
   "stages": {
     "S1": "in_progress",
@@ -69,10 +70,6 @@
     {
       "task": "Remaining phone/native verification",
       "reason": "No connected phone was used. Native touch, OEM lockscreen crop, upgrade, subjective Q-elastic feel and sustained performance/battery remain unverified; this does not block independent S1 multiview registration/visibility research."
-    },
-    {
-      "task": "Large-angle physical camera on current front mesh",
-      "reason": "Depth changes at paper/character occlusion seams fold continuous triangles; production angle is bounded while independent layered topology work proceeds."
     }
   ],
   "pendingPhoneChecks": [
@@ -121,7 +118,8 @@
     "docs/CONTOUR-FIX-20261025.md",
     "docs/S2-STRUCTURE-RESULT.md",
     "validation/contour-fix.json",
-    "validation/s2-scene-model.json"
+    "validation/s2-scene-model.json",
+    "validation/s2-layered-scene.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -250,8 +248,8 @@
     "workflowRun": 40173213599
   },
   "workSession": {
-    "startedAt": "2026-10-26T01:23:16.954419+00:00",
-    "lastCheckpointAt": "2026-10-26T01:23:16.954419+00:00",
+    "startedAt": "2026-10-26T01:31:42.036130+00:00",
+    "lastCheckpointAt": "2026-10-26T01:31:42.036130+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,
@@ -287,8 +285,9 @@
       0.02
     ],
     "remaining": [
-      "split occlusion topology",
-      "restore range/debug artifacts",
+      "actual depth ordering",
+      "restore structural debug",
+      "hidden under-paper/side-back material",
       "subjective phone acceptance"
     ]
   }

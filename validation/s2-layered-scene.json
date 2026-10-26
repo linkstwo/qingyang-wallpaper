@@ -1,0 +1,106 @@
+{
+  "topologyVersion": 2,
+  "characterTriangles": 18089,
+  "paperArea": 127398.5,
+  "neutralCoverageAreaError": 0.00048781558871269226,
+  "minSourceTriangleArea": 0.000020101666450500488,
+  "oldContinuousAtYaw014": {
+    "minSignedAreaRatio": -1.073114035468742,
+    "worst": {
+      "point": [
+        603,
+        1260
+      ],
+      "view": [
+        1,
+        1
+      ],
+      "sign": -1
+    },
+    "triangleCases": 442368
+  },
+  "ranges": [
+    {
+      "yaw": 0.04,
+      "pitch": 0.02,
+      "layered": {
+        "minSignedAreaRatio": 0.2052839892110482,
+        "worst": {
+          "point": [
+            495,
+            588
+          ],
+          "view": [
+            -1,
+            1
+          ],
+          "sign": 1
+        },
+        "triangleCases": 488403
+      }
+    },
+    {
+      "yaw": 0.08,
+      "pitch": 0.04,
+      "layered": {
+        "minSignedAreaRatio": 0.1894403996372016,
+        "worst": {
+          "point": [
+            495,
+            588
+          ],
+          "view": [
+            -1,
+            1
+          ],
+          "sign": 1
+        },
+        "triangleCases": 488403
+      }
+    },
+    {
+      "yaw": 0.14,
+      "pitch": 0.07,
+      "layered": {
+        "minSignedAreaRatio": 0.16639635522588012,
+        "worst": {
+          "point": [
+            495,
+            588
+          ],
+          "view": [
+            -1,
+            1
+          ],
+          "sign": 1
+        },
+        "triangleCases": 488403
+      }
+    },
+    {
+      "yaw": 0.2,
+      "pitch": 0.1,
+      "layered": {
+        "minSignedAreaRatio": 0.029585313678389343,
+        "worst": {
+          "point": [
+            73.05986022949219,
+            577.4131469726562
+          ],
+          "view": [
+            -1,
+            1
+          ],
+          "sign": -1
+        },
+        "triangleCases": 488403
+      }
+    }
+  ],
+  "productionViewRadians": [
+    0.04,
+    0.02
+  ],
+  "hiddenBodyUnderPaperReady": false,
+  "phoneTested": false
+}

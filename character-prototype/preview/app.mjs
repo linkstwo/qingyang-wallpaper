@@ -1,6 +1,7 @@
+import {makeLayeredCharacterMesh} from './layered-mesh.mjs';
 import {makeMesh,clamp,demoInput} from './rig.mjs';
 import {Response,framing as currentFraming,legacyFraming} from './response.mjs';
-import {contactWeights} from './contact-rig.mjs';
+import {bodyContactWeights as contactWeights} from './contact-rig.mjs';
 import {depthWeights} from './structure.mjs';
 const canvas=document.querySelector('#scene'),stage=document.querySelector('#stage'),phase=document.querySelector('#phase'),stats=document.querySelector('#stats');
 const query=new URLSearchParams(location.search);
@@ -26,7 +27,7 @@ async function start(){
   const quad=buffer(new Float32Array([0,0,W,0,0,H,0,H,W,0,W,H]));
   // The generated mask supplies detailed hair and limb boundaries; all RGB is
   // sampled from the untouched source image, not a regenerated character.
-  const characterData=makeMesh([[0,0],[W,0],[W,H],[0,H]],[],config.limits.triangleEdgePixels),character=buffer(characterData);
+  const characterData=makeLayeredCharacterMesh(config.limits.triangleEdgePixels),character=buffer(characterData);
   const pins=buffer(contactWeights(characterData)),depths=buffer(depthWeights(characterData));
   const foreground=buffer(makeMesh(config.foregroundOutline,[],80));
   const draw=(mesh,tex,layer,maskMode=0)=>{

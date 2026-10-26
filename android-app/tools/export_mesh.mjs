@@ -4,9 +4,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import {makeLayeredCharacterMesh,layeredMeshVersion} from '../../character-prototype/preview/layered-mesh.mjs';
 import { makeMesh } from '../../character-prototype/preview/rig.mjs';
 import { structure, depthWeights } from '../../character-prototype/preview/structure.mjs';
-import { contactWeights, contactPin } from '../../character-prototype/preview/contact-rig.mjs';
+import { bodyContactWeights, contactPin } from '../../character-prototype/preview/contact-rig.mjs';
 
 const PREVIEW = fileURLToPath(new URL('../../character-prototype/preview/', import.meta.url));
 const OUT = fileURLToPath(new URL('../app/src/main/assets/', import.meta.url));
@@ -24,8 +25,8 @@ function output(name, bytes) {
 const config = JSON.parse(fs.readFileSync(path.join(PREVIEW, 'mesh.json'), 'utf8'));
 const [W, H] = config.canvas;
 
-const character = makeMesh([[0, 0], [W, 0], [W, H], [0, H]], [], config.limits.triangleEdgePixels);
-const pins = contactWeights(character);
+const character = makeLayeredCharacterMesh(config.limits.triangleEdgePixels);
+const pins = bodyContactWeights(character);
 const foreground = makeMesh(config.foregroundOutline, [], 80);
 
 const sha = (buf) => crypto.createHash('sha256').update(buf).digest('hex').toUpperCase();
@@ -46,6 +47,8 @@ const report = {
     writeBin('foreground_mesh.bin', foreground),
   ],
   structure,
+  topologyVersion:layeredMeshVersion,
+  topologyNote:"Observed paper polygon removed from character triangles; only hand/seat depths attach body to support.",
   counts: {
     characterTriangles: character.length / 6,
     characterVertices: character.length / 2,

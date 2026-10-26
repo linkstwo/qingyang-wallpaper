@@ -10,12 +10,12 @@ import java.nio.FloatBuffer;
 
 /**
  * 网格资产。这些 .bin 由 tools/export_mesh.mjs 用样片真源码
- * （preview/rig.mjs 的 makeMesh + contact-rig.mjs 的 contactWeights）导出，
+ * （preview/layered-mesh.mjs + contact-rig.mjs 的 bodyContactWeights）导出，
  * 所以安卓端的三角化结果与浏览器里通过验收的那套逐字节一致，不在手机端重算。
  */
 final class MeshAssets {
     /** 与样片一致的必需三角数，用来在加载阶段就发现资产被换过。 */
-    static final int EXPECTED_CHARACTER_TRIANGLES = 16384;
+    static final int EXPECTED_CHARACTER_TRIANGLES = 18089;
 
     final FloatBuffer characterMesh;
     final FloatBuffer characterPins;

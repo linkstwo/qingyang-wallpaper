@@ -7,18 +7,18 @@
   "bins": [
     {
       "name": "character_mesh.bin",
-      "bytes": 393216,
-      "sha256": "52680135E5A9E070E6277C66A8E04FCFDD7E12646D20A46AA5FAB194A19F573C"
+      "bytes": 434136,
+      "sha256": "CEAEEF7A416A88C4C4291A76575DA0B3429BEF38DB992064873AFB4189DA70C1"
     },
     {
       "name": "character_pins.bin",
-      "bytes": 196608,
-      "sha256": "E9EE4E9A6B0475004ECAB56F524378019038714DACB3F1ED64EFAD439CFCC7AA"
+      "bytes": 217068,
+      "sha256": "0321B96E7C866A7912F0478FE780613C1ED991045793D6F48E796AA5A380F4A7"
     },
     {
       "name": "character_depth.bin",
-      "bytes": 196608,
-      "sha256": "8109915C42AD390425E8CDCE7CBD49B3B35EBFD968849E87988B61113BE03E50"
+      "bytes": 217068,
+      "sha256": "5A4A0CAF072C50BCE906930F015322ABFBD65CB2C3C26E5B816EFF8C5EAA0229"
     },
     {
       "name": "foreground_mesh.bin",
@@ -146,9 +146,11 @@
     ],
     "limitation": "Bounded main-view 2.5D proxy; side/back reference textures are not registered yet."
   },
+  "topologyVersion": 2,
+  "topologyNote": "Observed paper polygon removed from character triangles; only hand/seat depths attach body to support.",
   "counts": {
-    "characterTriangles": 16384,
-    "characterVertices": 49152,
+    "characterTriangles": 18089,
+    "characterVertices": 54267,
     "foregroundTriangles": 164,
     "foregroundVertices": 492
   },
@@ -179,7 +181,7 @@
   "pins": {
     "min": 0,
     "max": 1,
-    "pinnedCount": 8968
+    "pinnedCount": 5806
   },
   "images": [
     {

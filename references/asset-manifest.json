@@ -74,13 +74,13 @@
     },
     {
       "path": "android-app/app/src/main/assets/character_mesh.bin",
-      "bytes": 393216,
-      "sha256": "52680135e5a9e070e6277c66a8e04fcfdd7e12646d20a46aa5fab194a19f573c"
+      "bytes": 434136,
+      "sha256": "ceaeef7a416a88c4c4291a76575da0b3429bef38db992064873afb4189da70c1"
     },
     {
       "path": "android-app/app/src/main/assets/character_pins.bin",
-      "bytes": 196608,
-      "sha256": "e9ee4e9a6b0475004ecab56f524378019038714dacb3f1ed64efad439cfcc7aa"
+      "bytes": 217068,
+      "sha256": "0321b96e7c866a7912f0478fe780613c1ed991045793d6f48e796aa5a380f4a7"
     },
     {
       "path": "android-app/app/src/main/assets/foreground_mesh.bin",
@@ -116,8 +116,8 @@
     },
     {
       "path": "android-app/app/src/main/assets/character_depth.bin",
-      "bytes": 196608,
-      "sha256": "8109915c42ad390425e8cdce7cbd49b3b35ebfd968849e87988b61113be03e50"
+      "bytes": 217068,
+      "sha256": "5a4a0caf072c50bce906930f015322abfbd65cb2c3c26e5b816eff8c5eaa0229"
     },
     {
       "path": "android-app/app/src/main/assets/scene_confidence.bin",

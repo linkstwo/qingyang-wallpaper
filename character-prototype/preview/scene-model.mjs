@@ -1,7 +1,7 @@
 // Calibrated source-pixel camera and connected inferred thickness proxies for S2.
 // Main-view UV is observed. Hidden surfaces are explicitly untextured until S3.
 import {subject} from './subject.mjs';
-import {contactPin} from './contact-rig.mjs';
+import {bodySupportDepthWeight} from './contact-rig.mjs';
 // Production angle is bounded by the current front/paper occlusion seam.
 // Wider structural debug views do not establish trusted textured views.
 export const sceneModel={version:1,units:'source pixels, +Z toward viewer',pivot:[790,1110],cameraDistance:2300,yawRadians:.04,pitchRadians:.02,
@@ -24,7 +24,7 @@ export const sceneModel={version:1,units:'source pixels, +Z toward viewer',pivot
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
 export function supportDepth(x,y){const s=smooth(...sceneModel.seat.transition,y),d=sceneModel.cameraDistance,p=sceneModel.paper,refWorldY=(p.referenceY-sceneModel.pivot[1])*(d-p.depth)/d,intercept=p.depth-p.slopeY*refWorldY,sourceY=y-sceneModel.pivot[1],paper=(intercept+p.slopeY*sourceY)/(1+p.slopeY*sourceY/d);return paper*(1-s)+sceneModel.seat.depth*s;}
-export function materialDepthAt(x,y,shapeDepth){const pin=contactPin(x,y);return shapeDepth*(1-pin)+supportDepth(x,y)*pin;}
+export function materialDepthAt(x,y,shapeDepth){const pin=bodySupportDepthWeight(x,y);return shapeDepth*(1-pin)+supportDepth(x,y)*pin;}
 export function unprojectSource(x,y,z){const k=(sceneModel.cameraDistance-z)/sceneModel.cameraDistance;return [(x-sceneModel.pivot[0])*k,(y-sceneModel.pivot[1])*k,z];}
 export function rotateScene(p,view){const a=clamp(view[0],-1,1)*sceneModel.yawRadians,b=clamp(view[1],-1,1)*sceneModel.pitchRadians,c=Math.cos(a),s=Math.sin(a),cx=Math.cos(b),sx=Math.sin(b),x=c*p[0]+s*p[2],z=-s*p[0]+c*p[2];return [x,cx*p[1]-sx*z,sx*p[1]+cx*z];}
 export function projectWorld(p,view=[0,0]){const q=rotateScene(p,view),w=(sceneModel.cameraDistance-q[2])/sceneModel.cameraDistance;return [q[0]/w+sceneModel.pivot[0],q[1]/w+sceneModel.pivot[1],w];}

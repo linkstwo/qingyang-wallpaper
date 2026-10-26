@@ -24,3 +24,11 @@ export function contactWeights(vertices){
   for(let i=0;i<weights.length;i++)weights[i]=contactPin(vertices[i*2],vertices[i*2+1]);
   return weights;
 }
+
+// Paper is now a distinct scene layer. Only observed hand/seat contacts constrain body material.
+export function bodyContactPin(x,y){let pin=smooth(...subject.fixedSeat,y);for(const r of contacts)if(r.name!=='blueprint')pin=Math.max(pin,polygonPin(x,y,r.outline,r.feather));return pin;}
+export function bodyContactWeights(v){return Float32Array.from({length:v.length/2},(_,i)=>bodyContactPin(v[i*2],v[i*2+1]));}
+
+// Depth approaches the paper across the forearm, with a wider geometric transition
+// than the motion pin. This avoids turning the wrist attachment into a depth cliff.
+export function bodySupportDepthWeight(x,y){let pin=smooth(...subject.fixedSeat,y);for(const r of contacts)if(r.name!=='blueprint')pin=Math.max(pin,polygonPin(x,y,r.outline,120));return pin;}

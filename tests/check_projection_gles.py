@@ -22,7 +22,7 @@ attrs={name:g.getAttrib(program,('a_'+name).encode()) for name in ['source','pin
 for index in attrs.values():g.disableAttr(index)
 attr2=g.gl('glVertexAttrib2f',None,g.U,g.F,g.F)
 script="""import {depthAt,deformPoint} from './character-prototype/preview/structure.mjs';
-import {contactPin} from './character-prototype/preview/contact-rig.mjs';
+import {bodyContactPin as contactPin} from './character-prototype/preview/contact-rig.mjs';
 const out=[];for(const vx of [-1,-.5,0,.5,1])for(const vy of [-1,0,1])
 for(const moving of [0,1,2,3])for(const spatial of [false,true])for(const [x,y] of [[550,305],[940,490],[725,755],[985,1090],[330,990],[350,1005],[397,550],[590,535],[635,920],[1060,950],[370,500],[410,600]]){
  const depth=Math.fround(depthAt(x,y)),pin=Math.fround(contactPin(x,y));const body=moving>1?[6,6]:(moving?[2,-1]:[0,0]),chest=moving>1?[11.9,11.9,10.2]:(moving?[4,-3,2]:[0,0,0]),hair=moving>1?[21,moving===2?10.5:-10.5]:(moving?[5,2]:[0,0]);

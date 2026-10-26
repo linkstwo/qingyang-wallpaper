@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';import fs from 'node:fs';
 import {sceneModel,unprojectSource,projectSource,projectWorld,supportDepth,materialDepthAt,buildThicknessProxy} from '../character-prototype/preview/scene-model.mjs';
 let checks=0;const check=(v,m)=>{assert(v,m);checks++;};let neutralError=0;
 for(let x=0;x<=1152;x+=64)for(let y=0;y<=1536;y+=64)for(const z of [-100,0,40,116,230]){const q=projectWorld(unprojectSource(x,y,z));neutralError=Math.max(neutralError,Math.hypot(q[0]-x,q[1]-y));check(neutralError<1e-9,'calibrated neutral projection');}
-for(const p of [[330,990],[100,1000],[500,1450]]){check(Math.abs(materialDepthAt(...p,70)-supportDepth(...p))<1e-9,'supported material shares support depth');const q=projectSource(...p,supportDepth(...p),[.8,-.3]);check(Math.hypot(q[0]-p[0],q[1]-p[1])>1e-4,'camera moves supported contact on screen');}
+for(const p of [[330,990],[500,1450]]){check(Math.abs(materialDepthAt(...p,70)-supportDepth(...p))<1e-9,'supported material shares support depth');const q=projectSource(...p,supportDepth(...p),[.8,-.3]);check(Math.hypot(q[0]-p[0],q[1]-p[1])>1e-4,'camera moves supported contact on screen');}
 // All observed paper points share a plane in calibrated world space.
 const refWorld=unprojectSource(330,1000,180),intercept=180-sceneModel.paper.slopeY*refWorld[1];
 for(const p of [[50,800],[300,1000],[500,1200],[1000,900]]){const w=unprojectSource(...p,supportDepth(...p));check(Math.abs(w[2]-sceneModel.paper.slopeY*w[1]-intercept)<1e-10,'paper is a world plane');}
