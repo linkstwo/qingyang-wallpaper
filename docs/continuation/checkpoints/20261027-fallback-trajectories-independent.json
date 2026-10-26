@@ -1,0 +1,25 @@
+{
+  "owner": "codex-night-source-audit-20261027-0221",
+  "fence": 1,
+  "head": "b76b2c7165995680c2f4d8662af2a6a9f6edf134",
+  "now": "2026-10-26T18:33:08.711769+00:00",
+  "tasks": [
+    "T10",
+    "T19"
+  ],
+  "accepted": false,
+  "tests": [
+    {
+      "command": "production SensorFeed 17queue/32617trajectory assertions",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": "Selectively port independent candidate after active main lease; exclude independent lease/state. Then device lockscreen/fallback latency checks when available",
+  "files": {
+    "tests/SensorTrajectoryRegression.java": "504b8e5f59de4d7554f34588107e331bbb74e0d31e89a925ad060b0b6a3ab702",
+    "validation/sensor-trajectory-regression.json": "941a786214d638d722a1e5a948b3dffdc7e047e7ccd52398f18ec2f790a9187e",
+    "docs/T19-FUTURE-SENSOR-TIMESTAMP-20261027.md": "83373db35ef893b14777b8ad87a32d7e550f91ded144d94d8b910889538c3da2",
+    "docs/CONTINUATION_LEASE.json": "b60ebf4919e17e049d8ed3383816c0834be140bced3ec2d33f2bdcc4506f4796"
+  }
+}
