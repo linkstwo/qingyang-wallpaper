@@ -4,7 +4,7 @@
   "fence": 14,
   "status": "running",
   "startedAt": "2026-10-26T23:21:30.731176Z",
-  "heartbeatAt": "2026-10-26T23:25:38.774041Z",
-  "expiresAt": "2026-10-26T23:40:38.774041Z",
+  "heartbeatAt": "2026-10-26T23:28:00.169060Z",
+  "expiresAt": "2026-10-26T23:43:00.169060Z",
   "baseHead": "ccc9e59f9d48b7f0995cfee470aafda1709fe6fa"
 }

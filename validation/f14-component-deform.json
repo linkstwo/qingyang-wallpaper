@@ -1,0 +1,18 @@
+{
+  "seamEdges": 51,
+  "naiveIndependentSeamGap": 24.000000000000227,
+  "gains": [
+    0,
+    0.25,
+    0.55,
+    1
+  ],
+  "minimumAreaRatio": 0.9305929802557636,
+  "sharedVertices": true,
+  "foldNegativeRejected": true,
+  "sourceUvExact": true,
+  "registeredToMain": false,
+  "selfIntersectionChecked": false,
+  "wholeT04Accepted": false,
+  "phoneTested": false
+}

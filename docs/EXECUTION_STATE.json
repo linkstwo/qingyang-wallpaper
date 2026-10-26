@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T23:25:07.948969+00:00",
+  "updatedAt": "2026-10-26T23:27:52.205186+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "T03 under-hand workshop-background attribution and gated trim; continuing actual development",
+  "scopeOfThisRun": "T03 source background trim and T04 shared donor component deformation",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -481,6 +481,6 @@
     "tasksAccepted": [],
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
-    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f14-under-hand.json"
+    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f14-component-deform.json"
   }
 }
