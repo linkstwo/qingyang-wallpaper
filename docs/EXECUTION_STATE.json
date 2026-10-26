@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "Delivered0.5.9/18 with0.5.8 contour/chest fixes and S2 layered scene/contact/depth integration. S2 remains in_progress; follow-on work is durable but not claimed to run continuously after turn end.",
+  "scopeOfThisRun": "Finalise first private plugin with actual availability verification, then continue S2 local joint structure work under fenced lease. Existing expired schedule was not extended.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -271,13 +271,15 @@
     "workflowJob": 121195829689
   },
   "workSession": {
-    "startedAt": "2026-10-26T01:31:42.036130+00:00",
-    "lastCheckpointAt": "2026-10-26T02:59:45.301546+00:00",
+    "startedAt": "2026-10-26T03:03:30.412248+00:00",
+    "lastCheckpointAt": "2026-10-26T03:07:11.871Z",
     "checkpointIntervalMinutes": 30,
-    "mode": "checkpointed",
+    "mode": "active_development",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
-    "latestRecovery": "Transient directory was removed; restored from21b4df8. Do not imply uninterrupted background execution."
+    "latestRecovery": "Transient directory was removed; restored from21b4df8. Do not imply uninterrupted background execution.",
+    "owner": "manual-plugin-s2-20261026-0303",
+    "fence": 2
   },
   "userReportedIssues": [
     {
@@ -317,7 +319,7 @@
   "continuationPlugin": {
     "name": "qingyang-continuation",
     "version": "0.1.0",
-    "status": "created_private",
+    "status": "available_in_current_session",
     "sourcePath": "scripts/qingyang-continuation",
     "coordinationLease": "docs/CONTINUATION_LEASE.json",
     "leaseSeconds": 900,
@@ -330,6 +332,17 @@
     "pluginUrl": "https://chatgpt.com/plugins/plugins_6adec1953d848191a234b8dd2641dec1",
     "releaseId": "pluginrel_6adec196125481919b98a7461e06c9a7",
     "savedComponentsVerified": 2,
-    "savedHelperBytesVerified": true
+    "savedHelperBytesVerified": true,
+    "skillsAvailable": [
+      "qingyang-continuation:qingyang-continue",
+      "qingyang-continuation:qingyang-status"
+    ],
+    "automationBinding": {
+      "status": "blocked_expired_schedule",
+      "taskId": "6ade002b6e5881918933ae9b74b2a918",
+      "message": "Task scheduling wasn't completed. Choose a time in the future.",
+      "scheduleChanged": false,
+      "promptSaved": "docs/CONTINUATION_SCHEDULE_PROMPT-0.1.0.md"
+    }
   }
 }

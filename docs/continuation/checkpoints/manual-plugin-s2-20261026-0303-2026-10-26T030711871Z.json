@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0303",
+  "fence": 2,
+  "baseHead": "930bf21c413e0e29b5b6e4671e34573ff88a8840",
+  "createdAt": "2026-10-26T03:07:11.871Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "docs/CONTINUATION_SCHEDULE_PROMPT-0.1.0.md",
+      "bytes": 6779,
+      "sha256": "38aa55623ec3d746aeddec4ea40856228d9cd511da3db376856ac142c96c7572"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 21632,
+      "sha256": "45d507a18d46d6a44cf6ca4b44f9e1c4db18c97d9b2f3bcfcae284cbeac29b26"
+    },
+    {
+      "path": "docs/PLUGIN-CONTINUATION-0.1.0.md",
+      "bytes": 2313,
+      "sha256": "26f4ac140edfefe3d739fe49eb18ca2eeaaaa2f4e14f8639fc54c197d21e8124"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python3 tests/plugin-continuation-regression.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Continue S2 joint-connected local structures and credible hidden-body/side-back material mapping; retain bounded production camera until source coverage is proven.",
+    "Use phone feedback on chest/left edge and existing locked-screen framing when supplied; offline checks do not substitute for visual/native acceptance."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "3658f7604c18e6e64d270d3c7e5d2ce0e07453358ac476b8fea35f281307b760"
+}
