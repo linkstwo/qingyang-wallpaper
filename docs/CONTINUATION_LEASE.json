@@ -2,19 +2,20 @@
   "schemaVersion": 1,
   "owner": "codex-lightweight-parts-1793017723001",
   "fence": 7,
-  "status": "running",
+  "status": "released",
   "startedAt": "2026-10-26T12:28:43.001000Z",
-  "heartbeatAt": "2026-10-26T13:11:24.781000Z",
-  "expiresAt": "2026-10-26T13:26:24.781000Z",
+  "heartbeatAt": "2026-10-26T13:15:35.476000Z",
+  "expiresAt": "2026-10-26T13:15:35.476000Z",
   "baseHead": "aac18bc6b78e8eea39166ad7263297a46d8625cb",
   "checkpoint": {
-    "baseHead": "5b933474ae506ebb6aeec66ef11d09fa19da06d2",
-    "createdAt": "2026-10-26T13:11:08.699Z",
-    "sourceDigest": "8617dc3fcbe6db941f3f48fc384570b81dcd8852b0178b3b256c22d60fd6bf58",
+    "baseHead": "f334f04ed1342f0d7ddd100eb8c5b5f499db730d",
+    "createdAt": "2026-10-26T13:15:34.858Z",
+    "sourceDigest": "7739ee4403d79cd093325caf26c26a911722ca439ac0360d6c878a72e938ef13",
     "stage": "S2",
     "next": [
-      "Review Doubao visible shoulder landmarks and pose differences.",
-      "Resolve paper/front seam and shoulder/back shared boundaries; do not promote rejected side trial."
+      "Review corrected Doubao2008 observations using exact source identities.",
+      "Resolve bounded paper/front seam and shoulder/back shared boundaries."
     ]
-  }
+  },
+  "reason": "Scoped lightweight authoring-tool acceptance and Doubao candidate review completed; S1/S2 remain in progress. No background development promised."
 }

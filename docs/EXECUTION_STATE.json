@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T13:10:38.270229Z",
+  "updatedAt": "2026-10-26T13:15:12.120773+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -72,10 +72,11 @@
     "Reviewed Doubao 1946/1996 side-material candidate in isolated trial: module scope repaired; eight active attribute locations0-7 verified on16-slot browser; stable renderer untouched.",
     "Observed +/-20,90,180 degree trial renders: paper splits at bounded angles and shoulder/back stretches at extremes. Candidate rejected for continuous-view acceptance; confidence remains0.",
     "Added stable-workbench link to parts-fit; actual browser round trip passed. Negative gain import showed fold rejection restores slider and exported JSON to prior valid gain0.",
-    "Delegated asset inventory, attribute-slot repair, static checks and next low-complexity task list to Doubao; new shoulder landmark candidate task2003 dispatched, not yet accepted."
+    "Delegated asset inventory, attribute-slot repair, static checks and next low-complexity task list to Doubao; new shoulder landmark candidate task2003 dispatched, not yet accepted.",
+    "Doubao2007 landmark draft rejected: old main image and unsupported cross-image correspondence; task2008 requests exact source identity and visible-only observations. No candidate landmark entered model."
   ],
   "next": [
-    "Review Doubao shoulder-landmark-candidates.md against actual original pixels; main near arm hangs down while side near arm bends forward, so mirrored whole-side sampling cannot establish shared limb correspondence.",
+    "Review corrected Doubao2008 visible landmarks using docs/SOURCE-CORRESPONDENCE-CONTRACT-20261026.md; do not use rejected2007 coordinates.",
     "Solve bounded-angle paper/front depth seam and shoulder/back connection with explicit shared boundaries; use independent observed landmarks, not manual rail fit RMS as ground truth.",
     "Use the MLS authoring page only for local source correspondence; exported JSON is not yet consumed by backChart or Android. S1/S2 remain incomplete."
   ],
