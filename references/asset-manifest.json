@@ -117,7 +117,37 @@
     {
       "path": "android-app/app/src/main/assets/character_depth.bin",
       "bytes": 196608,
-      "sha256": "d6f4aa47413aab5149f504a76d55d7bee825d754185a44475be5a4dea1a6ca83"
+      "sha256": "8109915c42ad390425e8cdce7cbd49b3b35ebfd968849e87988b61113be03e50"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_confidence.bin",
+      "bytes": 2200,
+      "sha256": "e869aaa4312deae6c20618d176758af507f2e7108e7be5ca0bf177fcd8226aed"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_indices.bin",
+      "bytes": 6528,
+      "sha256": "4e7b27ced5cb4f8341fc99fa290c0c97f6c58e50b5c6611a016ba0f77c34f96e"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_normals.bin",
+      "bytes": 6600,
+      "sha256": "cdaab0ddff532743e29a3b07da50765a1a2ae88712f95717754b8e6a614e7878"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_positions.bin",
+      "bytes": 6600,
+      "sha256": "469baef1b6960f4bfe1501a857febe1a5cd21adf362e4b387e0c65ebf7f07187"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_regions.bin",
+      "bytes": 2200,
+      "sha256": "57b8d1f7502e35042000f4411d80b4d0c23d3b7856fcc5bdae2ac3fc2c2553e7"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_uv.bin",
+      "bytes": 4400,
+      "sha256": "560c7cc734802e3e13ffd95dd1ed0a39b99daa009fbe9950d72ff5c71d88d17f"
     }
   ],
   "identicalCopies": [

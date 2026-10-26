@@ -18,7 +18,7 @@
     {
       "name": "character_depth.bin",
       "bytes": 196608,
-      "sha256": "D6F4AA47413AAB5149F504A76D55D7BEE825D754185A44475BE5A4DEA1A6CA83"
+      "sha256": "8109915C42AD390425E8CDCE7CBD49B3B35EBFD968849E87988B61113BE03E50"
     },
     {
       "name": "foreground_mesh.bin",
@@ -27,7 +27,7 @@
     }
   ],
   "structure": {
-    "version": 5,
+    "version": 6,
     "source": [
       1152,
       1536
@@ -37,8 +37,8 @@
       1110
     ],
     "cameraDistance": 2300,
-    "yawRadians": 0.14,
-    "pitchRadians": 0.07,
+    "yawRadians": 0.04,
+    "pitchRadians": 0.02,
     "headPlate": {
       "anchor": [
         550,

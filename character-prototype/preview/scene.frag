@@ -1,9 +1,10 @@
 precision highp float;
-varying vec2 v_uv;
+varying vec3 v_sourceUv;
 uniform sampler2D u_texture,u_mask;
 uniform float u_maskMode,u_cover,u_layer,u_softFrame;
 uniform vec2 u_size;
 void main(){
+  vec2 v_uv=v_sourceUv.xy/v_sourceUv.z;
   vec3 rgb=texture2D(u_texture,v_uv).rgb;
   float alpha=1.0;
   if(u_layer< -0.5){

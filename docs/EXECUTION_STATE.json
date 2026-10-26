@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-25",
+  "updatedAt": "2026-10-26",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "0.5.8 visual repair is checkpointed; directly entered S2 under user authorisation. Implement calibrated scene/contact projection and inferred closed structural proxies; hidden materials and native visual acceptance stay pending.",
+  "scopeOfThisRun": "Resume S2 from durable21b4df8 after transient cleanup; recover and checkpoint calibrated production projection/contact mapping. Large-angle occlusion topology and new APK remain pending.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -47,12 +47,13 @@
     "Published the exact signed0.5.8 APK to GitHub Releases without rebuilding; runner independently verified original certificate and anonymous public download with matching SHA256.",
     "Reproduced0.5.8 chest/left-edge defect; separated full motion coverage from source erasure, and replaced single broad chest field with two smooth material lobes and neckline/ribcage taper. Current CPU/GLES/triangle checks passed; visual fix still requires user acceptance.",
     "Entered S2 after checkpoint041b653: added calibrated source/world camera model, shared support-depth convention and closed head-neck-torso/arm thickness proxy exporter. These are inferred geometry/debug assets, not textured multiview completion.",
-    "S2 first structural checkpoint:550 vertices/1088 faces in3 closed parts,7291 scene checks passed; neutral calibrated projection error<2e-13 source pixels, connected-edge winding checks passed,340 vertices explicitly untextured. Production camera integration remains next."
+    "S2 first structural checkpoint:550 vertices/1088 faces in3 closed parts,7291 scene checks passed; neutral calibrated projection error<2e-13 source pixels, connected-edge winding checks passed,340 vertices explicitly untextured. Production camera integration remains next.",
+    "Recovered calibrated CPU/GLSL scene projection after transient directory cleanup; world paper plane and material-space support constraints integrated. Reran7295 scene checks and884736 triangle cases; min area ratio0.20528, support contact error0. Production yaw/pitch bounded to±0.04/0.02rad pending occlusion topology split. No new APK built."
   ],
   "next": [
-    "Integrate calibrated S2 scene projection in CPU/GLSL; source-material hand/arm constraints must remain attached while camera projection moves their screen positions.",
-    "Validate neutral identity, support-plane contact, mesh safety and actual GLES output; retain Q-elastic solver and contour fix.",
-    "Continue side/back mapping and textured visibility only when source credibility is established; keep S2 incomplete until structural requirements are satisfied."
+    "Split paper/character occlusion-boundary topology before enlarging the physical camera range.",
+    "Restore scene geometry debug renders (parts/normals/depth) and rerun production CPU/GLES/contour tests.",
+    "Complete structural connections and credible side/back source registration; keep S2 incomplete; build/sign next meaningful candidate with original key."
   ],
   "stages": {
     "S1": "in_progress",
@@ -68,6 +69,10 @@
     {
       "task": "Remaining phone/native verification",
       "reason": "No connected phone was used. Native touch, OEM lockscreen crop, upgrade, subjective Q-elastic feel and sustained performance/battery remain unverified; this does not block independent S1 multiview registration/visibility research."
+    },
+    {
+      "task": "Large-angle physical camera on current front mesh",
+      "reason": "Depth changes at paper/character occlusion seams fold continuous triangles; production angle is bounded while independent layered topology work proceeds."
     }
   ],
   "pendingPhoneChecks": [
@@ -245,12 +250,13 @@
     "workflowRun": 40173213599
   },
   "workSession": {
-    "startedAt": "2026-10-25T14:37:20.835157+00:00",
-    "lastCheckpointAt": "2026-10-25T14:55:35.762918+00:00",
+    "startedAt": "2026-10-26T01:23:16.954419+00:00",
+    "lastCheckpointAt": "2026-10-26T01:23:16.954419+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,
-    "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created."
+    "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
+    "latestRecovery": "Transient directory was removed; restored from21b4df8. Do not imply uninterrupted background execution."
   },
   "userReportedIssues": [
     {
@@ -265,5 +271,25 @@
       "status": "offline_fix_awaiting_phone",
       "description": "User reports residual curved original contour/seam on the left; inspect matte alignment, background removal and material deformation."
     }
-  ]
+  ],
+  "s2Recovery": {
+    "observedAt": "2026-10-26T01:23:16.954419+00:00",
+    "baseline": "21b4df8a1c988b06c95e2f38987a5d24fb8d5ebf",
+    "lostUncommittedWork": [
+      "production camera integration",
+      "range scan script/results",
+      "geometry GLES debug script/render"
+    ],
+    "cameraRecovered": true,
+    "newApkBuilt": false,
+    "productionAngleRadians": [
+      0.04,
+      0.02
+    ],
+    "remaining": [
+      "split occlusion topology",
+      "restore range/debug artifacts",
+      "subjective phone acceptance"
+    ]
+  }
 }

@@ -2,7 +2,9 @@
 // Main-view UV is observed. Hidden surfaces are explicitly untextured until S3.
 import {subject} from './subject.mjs';
 import {contactPin} from './contact-rig.mjs';
-export const sceneModel={version:1,units:'source pixels, +Z toward viewer',pivot:[790,1110],cameraDistance:2300,yawRadians:.14,pitchRadians:.07,
+// Production angle is bounded by the current front/paper occlusion seam.
+// Wider structural debug views do not establish trusted textured views.
+export const sceneModel={version:1,units:'source pixels, +Z toward viewer',pivot:[790,1110],cameraDistance:2300,yawRadians:.04,pitchRadians:.02,
  paper:{sourceAnchor:[330,990],depth:180,slopeY:.12,referenceY:1000},seat:{sourceAnchor:[500,1450],depth:40,transition:[1270,1410]},
  sections:[
  {y:12,cx:585,rx:160,cz:35,rz:75,region:'head'},
@@ -21,7 +23,7 @@ export const sceneModel={version:1,units:'source pixels, +Z toward viewer',pivot
  limitations:['Cross-sections/thickness are inferred proxies, not a reconstructed body.','Hidden side/back UV confidence is zero; do not sample a stretched main photo there.','Parts overlap at attachment regions but are not welded into one manifold.']};
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
-export function supportDepth(x,y){const s=smooth(...sceneModel.seat.transition,y),paper=sceneModel.paper.depth+sceneModel.paper.slopeY*(y-sceneModel.paper.referenceY);return paper*(1-s)+sceneModel.seat.depth*s;}
+export function supportDepth(x,y){const s=smooth(...sceneModel.seat.transition,y),d=sceneModel.cameraDistance,p=sceneModel.paper,refWorldY=(p.referenceY-sceneModel.pivot[1])*(d-p.depth)/d,intercept=p.depth-p.slopeY*refWorldY,sourceY=y-sceneModel.pivot[1],paper=(intercept+p.slopeY*sourceY)/(1+p.slopeY*sourceY/d);return paper*(1-s)+sceneModel.seat.depth*s;}
 export function materialDepthAt(x,y,shapeDepth){const pin=contactPin(x,y);return shapeDepth*(1-pin)+supportDepth(x,y)*pin;}
 export function unprojectSource(x,y,z){const k=(sceneModel.cameraDistance-z)/sceneModel.cameraDistance;return [(x-sceneModel.pivot[0])*k,(y-sceneModel.pivot[1])*k,z];}
 export function rotateScene(p,view){const a=clamp(view[0],-1,1)*sceneModel.yawRadians,b=clamp(view[1],-1,1)*sceneModel.pitchRadians,c=Math.cos(a),s=Math.sin(a),cx=Math.cos(b),sx=Math.sin(b),x=c*p[0]+s*p[2],z=-s*p[0]+c*p[2];return [x,cx*p[1]-sx*z,sx*p[1]+cx*z];}

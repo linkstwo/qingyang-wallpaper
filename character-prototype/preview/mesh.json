@@ -445,5 +445,6 @@
     "hairPixels": 10,
     "triangleEdgePixels": 27
   },
-  "subjectId": "reading-v2"
+  "subjectId": "reading-v2",
+  "sceneVersion": 1
 }
