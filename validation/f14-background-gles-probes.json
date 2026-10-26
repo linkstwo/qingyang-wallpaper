@@ -1,0 +1,42 @@
+{
+  "actualGles": true,
+  "rows": [
+    {
+      "cameraYawDegrees": 0,
+      "pixel": [
+        244,
+        749
+      ],
+      "actual": [
+        242,
+        178,
+        25
+      ],
+      "expected": [
+        242,
+        178,
+        26
+      ]
+    },
+    {
+      "cameraYawDegrees": 20,
+      "pixel": [
+        225,
+        747
+      ],
+      "actual": [
+        25,
+        102,
+        255
+      ],
+      "expected": [
+        26,
+        102,
+        255
+      ]
+    }
+  ],
+  "observedBackgroundBehindPaper": true,
+  "hiddenTextureAdded": false,
+  "phoneTested": false
+}

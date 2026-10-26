@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T22:30:45.116543+00:00",
+  "updatedAt": "2026-10-26T23:47:13.824842+00:00",
   "repository": "linkstwo/qingyang-wallpaper",
   "branch": "feature/cloud-framing-response",
   "auditedSourceHead": "2573551f5b48d958737ca2028a4dfdc15ae52d26",
@@ -53,6 +53,12 @@
       "fence12Evidence": {
         "resume": "docs/RESUME-20261027-FENCE12.md",
         "wholeTaskAccepted": false
+      },
+      "fence14Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE14.md",
+        "wholeTaskAccepted": false,
+        "sourceCheckpoint": "d5cf0f012e9cd046986453d242b3f2dac87983ee",
+        "summary": "Verified near/down source cutouts and rejected false homologous skin candidate."
       }
     },
     {
@@ -85,6 +91,12 @@
       "fence12Evidence": {
         "resume": "docs/RESUME-20261027-FENCE12.md",
         "wholeTaskAccepted": false
+      },
+      "fence14Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE14.md",
+        "wholeTaskAccepted": false,
+        "sourceCheckpoint": "d5cf0f012e9cd046986453d242b3f2dac87983ee",
+        "summary": "Under-hand background traced/trimmed; optional separate observed background plane; diagnostic flips and disocclusion remain."
       }
     },
     {
@@ -104,6 +116,12 @@
       "fence12Evidence": {
         "resume": "docs/RESUME-20261027-FENCE12.md",
         "wholeTaskAccepted": false
+      },
+      "fence14Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE14.md",
+        "wholeTaskAccepted": false,
+        "sourceCheckpoint": "d5cf0f012e9cd046986453d242b3f2dac87983ee",
+        "summary": "Shared MLS component topology and tool; real alpha seam corrected; not registered to main."
       }
     },
     {
@@ -124,6 +142,12 @@
       "fence12Evidence": {
         "resume": "docs/RESUME-20261027-FENCE12.md",
         "wholeTaskAccepted": false
+      },
+      "fence14Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE14.md",
+        "wholeTaskAccepted": false,
+        "sourceCheckpoint": "d5cf0f012e9cd046986453d242b3f2dac87983ee",
+        "summary": "Donor-plane overlap/fold gates and negative controls; whole-body 3D/phone unaccepted."
       }
     },
     {
