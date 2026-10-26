@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "scene": {
     "version": 1,
     "units": "source pixels, +Z toward viewer",
@@ -250,6 +250,14 @@
   ],
   "vertices": 19226,
   "triangles": 38448,
+  "layout": {
+    "positions": "float32 xyz",
+    "normals": "float32 xyz",
+    "skin": "float32 head,torso,far-upper,far-fore,near-upper,near-fore",
+    "support": "float32 rest-position pin in [0,1]",
+    "indices": "uint16 triangles",
+    "matrices": "six column-major mat4, world rest to world pose"
+  },
   "bins": [
     {
       "name": "scene_positions.bin",
@@ -280,6 +288,11 @@
       "name": "scene_skin.bin",
       "bytes": 461424,
       "sha256": "b7cad8ff1952a0dfda53d9c8c48b129acd0da0c08961e6806b35c877d5a99666"
+    },
+    {
+      "name": "scene_support.bin",
+      "bytes": 76904,
+      "sha256": "219d4f3ad6a8a55858aa4df0af1c1e6ab0f4e7a7f37a1565a54626d0c0a65653"
     },
     {
       "name": "scene_indices.bin",

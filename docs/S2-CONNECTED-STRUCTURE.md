@@ -13,3 +13,9 @@ step18时19226顶点/38448三角形，单连通分量、边界边0、每边两�
 新增structural-pose.mjs，躯干围绕腰部枢轴作有界运动。远臂由实测纸面腕锚和两段长度约束求肘；近臂腕部在图外且未观测，不伪造固定接触。六骨蒙皮共享同一焊接顶点，持纸手表面采用支撑权重。头部权重在刚性区域独立归一，弹簧与镜头模型未改。
 
 27个组合/1038096三角形通过：最小面积比0.7091、最小法线点积0.9566，腕锚及固定表面误差0，骨长误差小于3e-13；中性网格逐值相同。仍是结构准备，未替换生产照片或发布新APK。下一项为实际姿态渲染/导出权重核对与材料配准。
+
+## 导出与实际GPU蒙皮节点
+
+导出v3新增scene_support.bin与列主序六矩阵约定；生产照片与相机范围未改。structural-skin.vert在GLES2使用两个权重attribute和显式腕部支撑权重。CPU与GPU从不同通路读取同一结构，27姿态、1557306个分量的最大误差0.000350源图像素；6幅左右视角实际渲染见validation/s2-posed-gles.jpg。光照法线按变形后焊接三角形重新计算，避免直接混合静态法线遗漏权重梯度。
+
+运行node android-app/tools/export_scene.mjs --check、node tests/structural-pose-regression.mjs、node tests/connected-proxy-regression.mjs、python tests/render_structural_pose_gles.py全部通过。支撑手误差0、1038096三角形无翻折。此为结构调试，隐藏纹理仍未注册，手机未验，0.5.9 APK未改变。

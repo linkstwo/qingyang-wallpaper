@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-10-26T03:36:06.695314+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "Private continuation plugin0.1.0 delivered and available in this chat; real manual continuation verified by two S2 source milestones. Existing expired schedule binding was rejected and remains pending; no autonomous wake-up claimed.",
+  "scopeOfThisRun": "Manual continuation using installed plugin fence3: exported support pins, GLES2 six-bone skin parity and posed structural renders; source registration follows.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -56,11 +56,12 @@
     "Created first continuation plugin source: two skills, expiring fenced coordination and source-digest receipts.34 local regressions include abrupt exit/scratch loss recovery and actual concurrent non-force Git push rejection. Package/private save and schedule prompt binding are next; S2 application source unchanged.",
     "Saved private continuation plugin0.1.0 to account, re-read both skills and helper byte-for-byte. Independent fresh-agent fixture completed13 zoom cases, pushed claim/checkpoint/release to isolated bare origin and verified restored source evidence. No real scheduler wake tested; original time window unchanged.",
     "First real S2 continuation under plugin fence2: built one welded inferred torso/arm surface from smooth-union field,19226 vertices/38448 faces,one component,zero boundary edges,Euler2;192250 assertions passed. Exportv2 includes six-bone hierarchy and normalised weights. New unregistered surfaces have confidence0; published0.5.9 unchanged.",
-    "S2 supported skeletal motion: separate torso/camera/spring inputs, six-bone skin, observed far wrist fixed to paper, unobserved cropped near wrist free.27 pose combinations/1038096 triangle cases passed; min area ratio0.709, normal alignment0.9566, wrist/pinned-surface error0, bone length error<3e-13. Neutral mesh exact; production camera and spring solver unchanged."
+    "S2 supported skeletal motion: separate torso/camera/spring inputs, six-bone skin, observed far wrist fixed to paper, unobserved cropped near wrist free.27 pose combinations/1038096 triangle cases passed; min area ratio0.709, normal alignment0.9566, wrist/pinned-surface error0, bone length error<3e-13. Neutral mesh exact; production camera and spring solver unchanged.",
+    "S2 export v3 includes world-space six-bone matrix convention and explicit support-pin buffer. Actual GLES2 consumed exported f32 skin/support/position bytes:27 poses,1557306 component probes,max world error0.000350 source pixels. Six posed depth/cull views rendered using recomputed geometric normals;192250 topology checks and1038096 posed triangles still pass. No hidden texture claim or APK version change."
   ],
   "next": [
-    "Continue S2 actual posed-geometry debug rendering and verify exported skin weights/pose parity.",
-    "Register credible observed sources before texturing hidden body/side/back or enlarging production camera."
+    "Review and register observed shoulder/back source regions with explicit per-region pose limits; reject incompatible arm/head/garment mappings.",
+    "Validate correspondence and source visibility before any hidden-surface texture confidence or production camera expansion."
   ],
   "stages": {
     "S1": "in_progress",
@@ -133,7 +134,9 @@
     "validation/build-0.5.9-signed.json",
     "docs/S2-CONNECTED-STRUCTURE.md",
     "validation/s2-connected-proxy.json",
-    "validation/s2-structural-pose.json"
+    "validation/s2-structural-pose.json",
+    "validation/s2-posed-gles.json",
+    "validation/s2-posed-gles.jpg"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -277,14 +280,14 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T03:22:17.756Z",
+    "lastCheckpointAt": "2026-10-26T03:36:06.695314+00:00",
     "checkpointIntervalMinutes": 30,
-    "mode": "checkpointed",
+    "mode": "active_development",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Transient directory was removed; restored from21b4df8. Do not imply uninterrupted background execution.",
-    "owner": "manual-plugin-s2-20261026-0303",
-    "fence": 2
+    "owner": "manual-plugin-s2-20261026-0329",
+    "fence": 3
   },
   "userReportedIssues": [
     {

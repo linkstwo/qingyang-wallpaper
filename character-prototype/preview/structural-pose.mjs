@@ -21,7 +21,9 @@ export function structuralPose(input={}){
 export function poseConnectedProxy(model,input={}){
  const pose=structuralPose(input);if(pose.rest)return {positions:model.positions.slice(),pose,maxPinnedError:0};const positions=[],hand=subject.contacts.find(r=>r.name==='holding-hand');let maxPinnedError=0;
  for(let i=0;i<model.positions.length/3;i++){const p=model.positions.slice(i*3,i*3+3),q=[0,0,0];for(let b=0;b<6;b++){const w=model.skinWeights[i*6+b];if(w){const x=apply(pose.matrices[b],p);for(let k=0;k<3;k++)q[k]+=x[k]*w;}}
-  const source=projectWorld(p),pin=polygonPin(...source.slice(0,2),hand.outline,hand.feather),out=q.map((v,k)=>v*(1-pin)+p[k]*pin);if(pin===1)maxPinnedError=Math.max(maxPinnedError,norm(sub(out,p)));positions.push(...out);
+  const source=projectWorld(p),pin=model.supportWeights?.[i]??polygonPin(...source.slice(0,2),hand.outline,hand.feather),out=q.map((v,k)=>v*(1-pin)+p[k]*pin);if(pin===1)maxPinnedError=Math.max(maxPinnedError,norm(sub(out,p)));positions.push(...out);
  }
  return {positions,pose,maxPinnedError};
 }
+// Column-major GLES2 mat4s, world-space rest -> posed world. No hidden parent transforms.
+export function poseUniforms(input={}){return structuralPose(input).matrices.map(m=>new Float32Array([...m.cols[0],0,...m.cols[1],0,...m.cols[2],0,...m.translation,1]));}
