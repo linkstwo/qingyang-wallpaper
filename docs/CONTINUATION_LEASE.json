@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "owner": "codex-night-recovery-20261027-0157",
   "fence": 12,
-  "status": "running",
+  "status": "released",
   "startedAt": "2026-10-26T17:58:26.591877Z",
-  "heartbeatAt": "2026-10-26T18:51:58.161493+00:00",
-  "expiresAt": "2026-10-26T19:06:58.161493+00:00",
-  "baseHead": "d7c8205b9cf0224615322d4667e6d35c43d5c27e"
+  "heartbeatAt": "2026-10-26T19:04:50Z",
+  "expiresAt": "2026-10-26T19:04:50Z",
+  "baseHead": "d7c8205b9cf0224615322d4667e6d35c43d5c27e",
+  "reason": "Selected execution environment reported unavailable during final zero-body probe checkpoint; local work could not be read, recovery facts preserved remotely."
 }
-

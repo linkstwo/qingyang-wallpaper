@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T18:26:17.323856+00:00",
+  "updatedAt": "2026-10-26T19:04:50Z",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -79,8 +79,10 @@
     "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle."
   ],
   "next": [
-    "Source ownership/depth coverage debug for remaining paper-hidden gap; sampled no-flip is not visual acceptance",
-    "Refine split donor neck/shoulder correspondence; no whole reflected patch"
+    "Recover fresh execution environment; re-read latest remote HEAD, lease and this JSON.",
+    "If old local files survive compare against remote before reuse. Otherwise apply reconstructed appends only after review; rerun unit and browser audits.",
+    "Remaining T03 gap is not accepted; keep all inferred cloth reconstruction confidence0. A proposed cloth patch was NOT implemented.",
+    "Continue T01/T04 component alignment and actual material/geometry supply, preserve original source and signing identity."
   ],
   "stages": {
     "S1": "in_progress",
@@ -341,9 +343,9 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T18:26:17.323856+00:00",
+    "lastCheckpointAt": "2026-10-26T19:04:50Z",
     "checkpointIntervalMinutes": 30,
-    "mode": "active_development",
+    "mode": "stopped_environment_unavailable",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Original uncommitted files survived; both regressions rerun successfully after recovery.",
@@ -351,7 +353,7 @@
     "fence": 12,
     "latestSourceCheckpoint": "f334f04ed1342f0d7ddd100eb8c5b5f499db730d",
     "userRequestedDoNotStop": true,
-    "stopReason": "User explicitly requested closeout and a saved restart point.",
+    "stopReason": "Actual selected environment unavailable; remote recovery and lease release saved.",
     "backgroundWorkerActive": false
   },
   "userReportedIssues": [
@@ -427,16 +429,12 @@
     ]
   },
   "runtimeInterruption": {
-    "observedAt": "2026-10-26T08:02:06.455Z",
-    "environmentStatus": "recovered",
-    "transportError": "exec-server transport closed",
-    "report": "docs/continuation/recovery/20261026-fence4-environment-interruption.json",
-    "recoveryPatch": "docs/continuation/recovery/20261026-fence4-front-fit.patch",
-    "recoveredTextNeedsRevalidation": false,
-    "lastValidatedApplicationSource": "4be1b385ba41bbd33b840ee913b38cc74e0bb53f",
+    "observedAt": "2026-10-26T19:04:50Z",
+    "environmentStatus": "unavailable",
+    "report": "docs/continuation/recovery/20261027-fence12-environment-unavailable.json",
+    "lastValidatedApplicationSource": "a39f9eecd4768ce949e174446948a6048c0188e5",
     "newApkBuilt": false,
-    "resolvedAt": "2026-10-26T08:35:22.121667+00:00",
-    "originalFilesSurvived": true
+    "recoveredTextNeedsRevalidation": true
   },
   "taskLedger": {
     "path": "docs/REMAINING-TASKS-20261026.json",
@@ -481,10 +479,10 @@
     "owner": "codex-night-recovery-20261027-0157",
     "fence": 12,
     "bridge": "404 SSE endpoint, independent cloud work continuing",
-    "latestCheckpoint": "docs/RESUME-20261027-FENCE12.md",
+    "latestCheckpoint": "docs/continuation/recovery/20261027-fence12-environment-unavailable.json",
     "tasksAccepted": [],
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
-    "terminationObserved": "functions.exec returned aborted by user during notch validation"
+    "terminationObserved": "Selected environment unavailable during unsaved final checkpoint; recovery record persisted with connector."
   }
 }
