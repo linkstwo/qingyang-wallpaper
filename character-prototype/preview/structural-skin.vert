@@ -25,5 +25,5 @@ void main(){
  if(u_mode>.5)v_color=n*.5+.5;
  if(u_mode>1.5)v_color=mix(vec3(.15,.3,.7),vec3(1.0,.85,.2),clamp((p.z+500.0)/1000.0,0.0,1.0));
  if(u_mode>2.5)v_color=mix(vec3(.7,.14,.5),vec3(.1,1.0,.8),a_support);
- gl_Position=vec4((q*vec2(2.0/1600.0,-2.0/1740.0)+vec2(-.72,.92))*w,-p.z/1000.0*w,w);
+ gl_Position=vec4((q*vec2(2.0/1600.0,-2.0/1740.0)+vec2(-.72,.92))*w,(4250.0-14.0*p.z)/17250.0,w);
 }

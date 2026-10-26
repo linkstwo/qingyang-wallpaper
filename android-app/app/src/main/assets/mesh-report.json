@@ -27,7 +27,7 @@
     }
   ],
   "structure": {
-    "version": 7,
+    "version": 8,
     "source": [
       1152,
       1536
@@ -37,6 +37,15 @@
       1110
     ],
     "cameraDistance": 2300,
+    "depthClip": {
+      "nearWorldZ": 1000,
+      "farWorldZ": -2000,
+      "numerator": [
+        4250,
+        -14
+      ],
+      "denominator": 17250
+    },
     "yawRadians": 0.04,
     "pitchRadians": 0.02,
     "headPlate": {

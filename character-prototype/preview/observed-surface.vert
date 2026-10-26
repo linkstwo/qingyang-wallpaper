@@ -11,5 +11,5 @@ void main(){
  // Homogeneous source UV preserves the source projection at neutral, including
  // interior pixels of triangles whose vertices have different depths.
  float restW=(2300.0-a_position.z)/2300.0;v_sourceUv=vec3(a_uv*restW,restW);
- gl_Position=vec4((q*vec2(2.0/1600.0,-2.0/1740.0)+vec2(-.72,.92))*w,-p.z/1000.0*w,w);
+ gl_Position=vec4((q*vec2(2.0/1600.0,-2.0/1740.0)+vec2(-.72,.92))*w,(4250.0-14.0*p.z)/17250.0,w);
 }

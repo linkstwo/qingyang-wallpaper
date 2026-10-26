@@ -9,7 +9,7 @@ void main(){float c=cos(u_yaw),s=sin(u_yaw);vec3 p=vec3(c*a_position.x+s*a_posit
 float w=(2300.0-p.z)/2300.0;vec2 q=p.xy/w+vec2(790.0,1110.0);
 vec3 color=a_region<1.5?vec3(.24,.68,.9):(a_region<2.5?vec3(.95,.65,.2):vec3(.4,.85,.4));if(a_confidence<.01)color=mix(color,vec3(.9,.16,.65),.7);
 v_color=color*(.4+.6*max(0.0,dot(n,normalize(vec3(-.4,-.6,1.0)))));if(u_mode>.5)v_color=n*.5+.5;if(u_mode>1.5)v_color=mix(vec3(.15,.3,.7),vec3(1.0,.85,.2),clamp((p.z+500.0)/1000.0,0.0,1.0));
-gl_Position=vec4((q*vec2(2.0/1600.0,-2.0/1740.0)+vec2(-.72,.92))*w,-p.z/1000.0*w,w);}'''
+gl_Position=vec4((q*vec2(2.0/1600.0,-2.0/1740.0)+vec2(-.72,.92))*w,(4250.0-14.0*p.z)/17250.0,w);}'''
 fragment='precision highp float;varying vec3 v_color;void main(){gl_FragColor=vec4(v_color,1.0);}'
 program=g.createProgram()
 for source,kind in [(vertex,0x8B31),(fragment,0x8B30)]:

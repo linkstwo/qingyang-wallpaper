@@ -11,7 +11,7 @@ function present(width,height){gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewpo
 const captureWaiters=[];
 // Read before browser composition/rescaling; screenshots are visual evidence,
 // while this is the renderer's native framebuffer for numerical comparisons.
-export function captureFrame(options={}){return new Promise((resolve,reject)=>{if(!ready||failed||document.hidden)return reject(new Error('Structural renderer is not ready/visible'));if(Object.entries(options).some(([k,v])=>!['observed','rear','coverage'].includes(k)||typeof v!=='boolean'))return reject(new Error('Invalid capture options'));captureWaiters.push({resolve,reject,options:{...options}});request();});}
+export function captureFrame(options={}){return new Promise((resolve,reject)=>{if(!ready||failed||document.hidden)return reject(new Error('Structural renderer is not ready/visible'));if(Object.entries(options).some(([k,v])=>!['observed','rear','coverage','direct'].includes(k)||typeof v!=='boolean'))return reject(new Error('Invalid capture options'));captureWaiters.push({resolve,reject,options:{...options}});request();});}
 function fail(error){failed=true;cancelAnimationFrame(raf);for(const waiter of captureWaiters.splice(0))waiter.reject(error);$('error').textContent=String(error.stack||error);$('status').textContent='工作台加载失败';document.body.dataset.ready='error';}
 window.addEventListener('error',e=>fail(e.error||e.message));window.addEventListener('unhandledrejection',e=>fail(e.reason));
 function shader(kind,text){const s=gl.createShader(kind);gl.shaderSource(s,text);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;}
@@ -27,7 +27,7 @@ function request(){if(ready&&!raf&&!failed)raf=requestAnimationFrame(render);}
 function render(time){raf=0;if(!ready||document.hidden||failed)return;
  const probe=captureWaiters[0],options=probe?.options||{};
  if(animate){$('camera').value=String(Math.round(Math.sin(time/5000)*180));values();}
- const ratio=Math.min(devicePixelRatio||1,1.5),w=Math.max(1,Math.round(canvas.clientWidth*ratio)),h=Math.max(1,Math.round(canvas.clientHeight*ratio));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}ensureTarget(w,h);gl.clearColor(...(options.coverage?[0,0,0,1]:[.05,.075,.115,1]));gl.depthMask(true);gl.depthFunc(gl.LESS);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+ const ratio=Math.min(devicePixelRatio||1,1.5),w=Math.max(1,Math.round(canvas.clientWidth*ratio)),h=Math.max(1,Math.round(canvas.clientHeight*ratio));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}if(options.direct){gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,w,h);}else ensureTarget(w,h);gl.clearColor(...(options.coverage?[0,0,0,1]:[.05,.075,.115,1]));gl.depthMask(true);gl.depthFunc(gl.LESS);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
  const mode=$('mode').value,joined=$('observed').checked&&mode==='photo',observed=joined&&(options.observed??true),rear=options.rear??$('rear').checked;
  // Establish observed cutout coverage before inferred geometry. A later LEQUAL
  // colour pass cannot lose multisample edge coverage to the rear diagnostic shell.
@@ -36,8 +36,8 @@ function render(time){raf=0;if(!ready||document.hidden||failed)return;
  poseUniformsFor(program);bindAttributes(proxyAttributes);gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,tex);gl.disable(gl.BLEND);
  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,joined?rearIndex:proxyIndex);gl.uniform1f(gl.getUniformLocation(program,'u_joined'),joined?1:0);gl.uniform1f(gl.getUniformLocation(program,'u_debug'),options.coverage?1:0);gl.uniform1f(gl.getUniformLocation(program,'u_mode'),({region:0,normal:1,depth:2,support:3})[mode]||0);gl.uniform1f(gl.getUniformLocation(program,'u_photo'),mode==='photo'?1:0);if(!joined||rear)gl.drawElements(gl.TRIANGLES,joined?rearCount:model.indices.length,gl.UNSIGNED_SHORT,0);
  if(observed){gl.depthFunc(gl.LEQUAL);gl.depthMask(false);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);observedPass(options.coverage);gl.depthMask(true);gl.depthFunc(gl.LESS);}
- present(w,h);const error=gl.getError();if(error!==gl.NO_ERROR)return fail(new Error('WebGL error '+error));
- if(probe){const pixels=new Uint8Array(w*h*4);gl.readPixels(0,0,w,h,gl.RGBA,gl.UNSIGNED_BYTE,pixels);const frame={width:w,height:h,pixels,antialias:gl.getContextAttributes().antialias,sceneSamples:1,supersample:sceneTarget.factor};captureWaiters.shift().resolve(frame);}
+ if(!options.direct)present(w,h);const error=gl.getError();if(error!==gl.NO_ERROR)return fail(new Error('WebGL error '+error));
+ if(probe){const pixels=new Uint8Array(w*h*4);gl.readPixels(0,0,w,h,gl.RGBA,gl.UNSIGNED_BYTE,pixels);const frame={width:w,height:h,pixels,antialias:gl.getContextAttributes().antialias,sceneSamples:options.direct?gl.getParameter(gl.SAMPLES):1,supersample:options.direct?1:sceneTarget.factor};captureWaiters.shift().resolve(frame);}
  document.body.dataset.ready='true';if(animate||probe||captureWaiters.length)request();
 }
 function values(){for(const [id,out] of [['camera','cameraValue'],['pitch','pitchValue'],['body','bodyValue'],['roll','rollValue']])$(out).value=$(id).value+'°';}

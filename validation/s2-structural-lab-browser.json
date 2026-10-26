@@ -14,6 +14,12 @@
     "pixelsOver2": 0,
     "maxError": 0
   },
+  "directFramebuffer": {
+    "sceneSamples": 4,
+    "supersample": 1,
+    "pixelsOver2": 16,
+    "maxError": 26
+  },
   "neutralRearDifference": {
     "mean": 0,
     "pixelsOver2": 0,

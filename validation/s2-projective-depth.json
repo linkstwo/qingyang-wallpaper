@@ -1,0 +1,69 @@
+{
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "cases": {
+    "correct": [
+      {
+        "view": [
+          -1,
+          -1
+        ],
+        "pixels": 276651,
+        "maxWindowDepthError": 2.384185933124172e-07,
+        "meanWindowDepthError": 4.581515793427359e-08
+      },
+      {
+        "view": [
+          0,
+          0
+        ],
+        "pixels": 276966,
+        "maxWindowDepthError": 1.192092966562086e-07,
+        "meanWindowDepthError": 1.9366356531293032e-08
+      },
+      {
+        "view": [
+          1,
+          1
+        ],
+        "pixels": 276617,
+        "maxWindowDepthError": 2.384185933124172e-07,
+        "meanWindowDepthError": 4.459515509887124e-08
+      }
+    ],
+    "old_quadratic": [
+      {
+        "view": [
+          -1,
+          -1
+        ],
+        "pixels": 276651,
+        "maxWindowDepthError": 0.00038027765633330546,
+        "meanWindowDepthError": 0.0001891811110766912
+      },
+      {
+        "view": [
+          0,
+          0
+        ],
+        "pixels": 276966,
+        "maxWindowDepthError": 0.0005410909975225309,
+        "meanWindowDepthError": 0.0003624768219182616
+      },
+      {
+        "view": [
+          1,
+          1
+        ],
+        "pixels": 276617,
+        "maxWindowDepthError": 0.0012986660777727366,
+        "meanWindowDepthError": 0.000708997353704751
+      }
+    ]
+  },
+  "maxCorrectWindowDepthError": 2.384185933124172e-07,
+  "maxOldWindowDepthError": 0.0012986660777727366,
+  "oldQuadraticRejected": true,
+  "worldNearZ": 1000,
+  "worldFarZ": -2000,
+  "phoneTested": false
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T07:22:01.259503+00:00",
+  "updatedAt": "2026-10-26T07:38:00.533063+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -62,11 +62,12 @@
     "S2 nonlocal intersection scan:25 sampled supported poses,303642 broad/narrow candidate pairs,zero crossing intersections;5 positive/negative/coplanar fixtures pass. This is sampled geometry evidence, not swept continuous collision detection. Added interactive structural/material lab with camera/body separation,5 debug modes,draggable source rails and source-hash-bound local draft persistence. Desktop WebGL exercised real pixels,drag/save/reset/restore/reload,wrong-source rejection,animation and412px viewport with zero console errors/external requests. Corrected rear UV horizontal orientation and excluded arm pixels from candidate torso source. Provisional camera fit still fails:held-out RMS26.27/max52.44source pixels,confidence0. No new APK.",
     "Combined existing reading photograph surface(54267 vertices), world paper(3018) and carved rear proxy in one desktop diagnostic scene. Reused source-world bone weights; homogeneous source UV neutral test against flat source has mean RGB error0.000228 and0pixels over2. Removed obvious rear-cap intrusion into front arm, bound rear mask in homogeneous source coordinates. Browser rear-on/off neutral comparison retains16pixels over2(max26); strict equality is NOT accepted, despite bounded regression passing. Back view actually adds71717 changed pixels. Original RGB, production camera and Q solver remain unchanged. Re-downloaded public0.5.9 and matched exact signed SHA256e64dc0f...da6e8eac.",
     "Fence4 fixed2 source T-junctions:18095 triangles,9313 source vertices,zero unmatched interior edges,source area drift0.0000292pixel². These were real topology defects but did not explain all16 neutral differences. Native GPU readback confirmed the difference was present before browser composition; coverage/depth prepass alone did not resolve it. Explicit single-sample scene framebuffer plus2x supersampled presentation preserves smooth edges and now gives exact rear-on/off equality:all channels zero difference in697x620 GPU readback and screenshots. Strict zero-difference assertions restored; photographic front/rear registration remains pending. Research pipeline only, no phone performance claim or new APK.",
-    "Fence4 continued without stopping after neutral-fix checkpoint: expanded provisional back source chart through observed nape/shoulder region(y415–520), now3712 candidate vertices/7163 triangles. Source rail interpolation is shape-preserving C1 cubic;2943 checks show no interval overshoot,exact control points,min100px rail width,max finite-difference derivative jump0.000049. Draft version2 rejects legacy/folded/degenerate source charts and retains source identity/confidence0. Actual GLES rear-source reveal passed; calibrated-camera fit still rejects with held-out RMS25.81/max51.96px. Exact neutral framebuffer/screenshot equality remains0; Android inputs and APK unchanged."
+    "Fence4 continued without stopping after neutral-fix checkpoint: expanded provisional back source chart through observed nape/shoulder region(y415–520), now3712 candidate vertices/7163 triangles. Source rail interpolation is shape-preserving C1 cubic;2943 checks show no interval overshoot,exact control points,min100px rail width,max finite-difference derivative jump0.000049. Draft version2 rejects legacy/folded/degenerate source charts and retains source identity/confidence0. Actual GLES rear-source reveal passed; calibrated-camera fit still rejects with held-out RMS25.81/max51.96px. Exact neutral framebuffer/screenshot equality remains0; Android inputs and APK unchanged.",
+    "Fence4 found and fixed a distinct production GLSL depth bug: old clipZ multiplied by clipW again, so a single world plane changed depth with mesh tessellation. Shared scene.vert and structural/observed debug shaders now use affine homogeneous clipZ with near world+1000/far-2000; source camera XY, RGB, pose and Q solver unchanged. Actual GLES coarse/fine plane control:correct max window-depth discrepancy2.3842e-7 versus old0.00129867; old expression is a required failing control. Passed5 depth-order cases/both draw orders,1440 GPU landmarks,face/contact/hair render,7293 scene checks,layered scans,asset/export checks and52 lifecycle assertions. Browser default offscreen path remains exact0; direct4xMSAA still reproduces16 residuals, so these are recorded as separate issues rather than attributing that residual to this projection fix. No new APK yet."
   ],
   "next": [
-    "Fit source-constrained front depth on the connected structure and examine front/rear geometry continuity without changing original photo RGB.",
-    "Build region/source provenance and visibility gates for neck/shoulder/back; do not promote provisional chart to production confidence."
+    "Continue source-constrained connected front/rear geometry and regional source provenance; protect strict neutral RGB equality.",
+    "Inspect the reference-backed nape/shoulder bridge in actual rendered poses and restrict unsupported material/view ranges before Android candidate integration."
   ],
   "stages": {
     "S1": "in_progress",
@@ -160,7 +161,8 @@
     "validation/s2-combined-side.jpg",
     "validation/s2-front-rear-seam-acceptance.json",
     "validation/s2-conforming-front.json",
-    "validation/s2-monotone-chart.json"
+    "validation/s2-monotone-chart.json",
+    "validation/s2-projective-depth.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -313,7 +315,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T07:22:01.259503+00:00",
+    "lastCheckpointAt": "2026-10-26T07:38:00.533063+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,

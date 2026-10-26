@@ -1,6 +1,6 @@
 import {subject as S} from './subject.mjs';
 import {sceneModel,materialDepthAt,projectSource,rigidHeadCamera} from './scene-model.mjs';
-export const structure={version:7,source:S.canvas,pivot:sceneModel.pivot,cameraDistance:sceneModel.cameraDistance,yawRadians:sceneModel.yawRadians,pitchRadians:sceneModel.pitchRadians,headPlate:S.head,armSupport:S.arm,hairEnvelope:S.hair,references:['main-reading-v2.png','side-reference.png','back-reference.png'],limitation:S.limitation};
+export const structure={version:8,source:S.canvas,pivot:sceneModel.pivot,cameraDistance:sceneModel.cameraDistance,depthClip:sceneModel.depthClip,yawRadians:sceneModel.yawRadians,pitchRadians:sceneModel.pitchRadians,headPlate:S.head,armSupport:S.arm,hairEnvelope:S.hair,references:['main-reading-v2.png','side-reference.png','back-reference.png'],limitation:S.limitation};
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 export const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
 const bell=(x,y,c,r)=>Math.exp(-2*(((x-c[0])/r[0])**2+((y-c[1])/r[1])**2));

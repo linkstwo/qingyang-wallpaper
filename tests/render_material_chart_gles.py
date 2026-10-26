@@ -12,7 +12,7 @@ uniform float u_yaw;varying vec2 v_uv;varying float v_candidate;
 void main(){float c=cos(u_yaw),s=sin(u_yaw);vec3 p=vec3(c*a_position.x+s*a_position.z,a_position.y,-s*a_position.x+c*a_position.z);
 float w=(2300.0-p.z)/2300.0;vec2 q=p.xy/w+vec2(790.0,1110.0);
 v_uv=a_uv;v_candidate=a_candidate;
-gl_Position=vec4((q*vec2(2.0/1600.0,-2.0/1740.0)+vec2(-.72,.92))*w,-p.z/1000.0*w,w);}'''
+gl_Position=vec4((q*vec2(2.0/1600.0,-2.0/1740.0)+vec2(-.72,.92))*w,(4250.0-14.0*p.z)/17250.0,w);}'''
 fragment='''precision highp float;uniform sampler2D u_source;uniform float u_mask;
 varying vec2 v_uv;varying float v_candidate;
 void main(){vec3 color=vec3(.6,.12,.43);if(v_candidate>.999){color=texture2D(u_source,v_uv).rgb;if(u_mask>.5)color=vec3(0,1,1);}gl_FragColor=vec4(color,1);}'''

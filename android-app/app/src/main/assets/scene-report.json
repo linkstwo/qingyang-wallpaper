@@ -1,7 +1,7 @@
 {
   "version": 3,
   "scene": {
-    "version": 1,
+    "version": 2,
     "units": "source pixels, +Z toward viewer",
     "pivot": [
       790,
@@ -10,6 +10,15 @@
     "cameraDistance": 2300,
     "yawRadians": 0.04,
     "pitchRadians": 0.02,
+    "depthClip": {
+      "nearWorldZ": 1000,
+      "farWorldZ": -2000,
+      "numerator": [
+        4250,
+        -14
+      ],
+      "denominator": 17250
+    },
     "paper": {
       "sourceAnchor": [
         330,

@@ -27,5 +27,5 @@ void main(){vec2 p=a_source,q=p;float clipW=1.0,sourceW=1.0,sceneDepth=0.0;
  else if(u_layer<1.5){vec2 material=mix(p,supportedArm(p,materialPoint(p,u_chest,u_hair)),1.0-a_pin);sourceW=mix(1.0,(2300.0-a_depth)/2300.0,u_structureMode);float h=headWeight(p),dz=u_chest.z*chestWeight(p)*u_motionGain*(1.0-a_pin)*(1.0-h);vec3 projected=projectSource(material,a_depth,dz);vec2 target=mix(projected.xy,rigidHeadCamera(material),h);q=mix(material,target,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);sceneDepth=(1.0-projected.z)*2300.0*u_structureMode;}
  else if(u_layer>2.5){sourceW=mix(1.0,(2300.0-supportDepth(p))/2300.0,u_structureMode);vec3 projected=projectSource(p,supportDepth(p),0.0);q=mix(p,projected.xy,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);sceneDepth=(1.0-projected.z)*2300.0*u_structureMode;}
  v_sourceUv=vec3((p/u_size)*sourceW,sourceW);
- gl_Position=vec4((q*u_ndcScale+u_ndcOffset)*clipW,-sceneDepth/1000.0*clipW,clipW);
+ gl_Position=vec4((q*u_ndcScale+u_ndcOffset)*clipW,(4250.0-14.0*sceneDepth)/17250.0,clipW);
 }

@@ -4,17 +4,17 @@
   "fence": 4,
   "status": "running",
   "startedAt": "2026-10-26T06:50:20.554212Z",
-  "heartbeatAt": "2026-10-26T07:36:52.386559Z",
-  "expiresAt": "2026-10-26T07:51:52.386559Z",
+  "heartbeatAt": "2026-10-26T07:38:02.122306Z",
+  "expiresAt": "2026-10-26T07:53:02.122306Z",
   "baseHead": "415bacf1bda178adaac88efb907a73879790cfbf",
   "checkpoint": {
-    "baseHead": "9fe317e18a1496bab648e7032f4456da5c834636",
-    "createdAt": "2026-10-26T07:22:02.983359+00:00",
-    "sourceDigest": "35a646c7116d30e05097827518280d8300917d95f1717933ea58866d0988e2be",
+    "baseHead": "1d7073730cfeb64d544d2ca859ea84857b50d10a",
+    "createdAt": "2026-10-26T07:38:02.122306+00:00",
+    "sourceDigest": "1498142894cd3ac3faa6884acfce1b0aee0400f3022028dd0a779e7cff232eb9",
     "stage": "S2",
     "next": [
-      "Fit source-constrained front depth on the connected structure and examine front/rear geometry continuity without changing original photo RGB.",
-      "Build region/source provenance and visibility gates for neck/shoulder/back; do not promote provisional chart to production confidence."
+      "Continue source-constrained connected front/rear geometry and regional source provenance; protect strict neutral RGB equality.",
+      "Inspect the reference-backed nape/shoulder bridge in actual rendered poses and restrict unsupported material/view ranges before Android candidate integration."
     ]
   }
 }
