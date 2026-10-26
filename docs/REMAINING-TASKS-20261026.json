@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T18:26:17.323856+00:00",
+  "updatedAt": "2026-10-26T22:22:35.141934+00:00",
   "repository": "linkstwo/qingyang-wallpaper",
   "branch": "feature/cloud-framing-response",
   "auditedSourceHead": "2573551f5b48d958737ca2028a4dfdc15ae52d26",
@@ -75,7 +75,7 @@
       "stage": "S2",
       "task": "修复纸面与人体支撑接缝",
       "acceptance": "约定有限角度与身体姿态中，纸面无分离长条/三角裂口，手纸接触仍成立",
-      "currentEvidence": "Observed upper-rim split strip removed in GLES; shared lap contact errors <1e-9. Occluded body gap remains, visible pose scan44/45 failures; notched complement WIP validation aborted.",
+      "currentEvidence": "Optional right-cloth contact fixes three reproducible zero-body -20deg gap probes using unchanged observed UV. 243 production-range pose/camera samples per arm mode pass; diagnostic flips and upper gaps remain. Full task unaccepted.",
       "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
       "dependsOn": [],
       "status": "unaccepted",

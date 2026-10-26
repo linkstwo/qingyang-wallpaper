@@ -18,14 +18,19 @@ export function paperAssignmentOutline(padding=4){
  });
 }
 
+// The lower-right chain from (480,1137) also borders visible trouser cloth.
+// Starting at index8 omitted three supported segments and opened a wedge
+// when looking from the left. Indices1..4 remain occlusion, not contact.
 // Observed lower paper edge rests over the lap. Only this contact chain may
 // share geometry with cloth. Upper/right edges occlude unseen body and must
 // remain separate; this does not supply any hidden texture.
 export const paperLapContactChain=paperSourcePartition.outline.slice(8,17);
-export function paperLapContactWeight(x,y,width=48){
+export const paperRightClothContactChain=paperSourcePartition.outline.slice(5,9);
+export function paperLapContactWeight(x,y,width=48,{includeRightCloth=false}={}){
+ const chain=includeRightCloth?paperSourcePartition.outline.slice(5,17):paperLapContactChain;
  let distance=Infinity;
- for(let i=1;i<paperLapContactChain.length;i++){
-  const a=paperLapContactChain[i-1],b=paperLapContactChain[i],dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(y-a[1])*dy)/(dx*dx+dy*dy)));
+ for(let i=1;i<chain.length;i++){
+  const a=chain[i-1],b=chain[i],dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(y-a[1])*dy)/(dx*dx+dy*dy)));
   distance=Math.min(distance,Math.hypot(x-a[0]-t*dx,y-a[1]-t*dy));
  }
  const t=Math.max(0,Math.min(1,distance/width));return 1-t*t*(3-2*t);
