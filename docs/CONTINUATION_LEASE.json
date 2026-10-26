@@ -1,18 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "codex-night-20261027-0120",
-  "fence": 11,
-  "status": "released",
-  "startedAt": "2026-10-26T17:20:10.367673Z",
-  "heartbeatAt": "2026-10-26T17:54:40.954384Z",
-  "expiresAt": "2026-10-26T17:54:40.954384Z",
-  "baseHead": "cd3eb09072b7351a33e98aa89e9f4fd17406f032",
-  "checkpoint": {
-    "baseHead": "17b7e3451a667b82859366555d8d5d123e005c09",
-    "createdAt": "2026-10-26T17:53:54.989235+00:00",
-    "sourceDigest": "c909005e7ac16209b6820bbeeede985edbd6ea30b41fd2185ee9b82b6c9e59ba",
-    "stage": "S2",
-    "next": "Read RESUME-20261027-FENCE11.md; rerun interrupted notched paper complement validations; existing visible pose scan44/45 failures."
-  },
-  "reason": "Tool invocation aborted by user; verified checkpoint and explicit WIP saved, no background development."
+  "owner": "codex-night-recovery-20261027-0157",
+  "fence": 12,
+  "status": "running",
+  "startedAt": "2026-10-26T17:58:26.591877Z",
+  "heartbeatAt": "2026-10-26T17:58:26.591877Z",
+  "expiresAt": "2026-10-26T18:13:26.591877Z",
+  "baseHead": "d7c8205b9cf0224615322d4667e6d35c43d5c27e"
 }
