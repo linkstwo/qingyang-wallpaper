@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T17:52:02.620789+00:00",
+  "updatedAt": "2026-10-26T18:26:17.323856+00:00",
   "repository": "linkstwo/qingyang-wallpaper",
   "branch": "feature/cloud-framing-response",
   "auditedSourceHead": "2573551f5b48d958737ca2028a4dfdc15ae52d26",
@@ -49,7 +49,11 @@
       "status": "unaccepted",
       "accepted": false,
       "doubaoResponsibilities": "源身份/哈希/尺寸全量审核、点位偏差和遮挡记录；不自行确立跨姿态对应",
-      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
     },
     {
       "id": "T02",
@@ -77,7 +81,11 @@
       "status": "unaccepted",
       "accepted": false,
       "doubaoResponsibilities": "复现有限角度纸面缺口、定位边界/绑定问题，提交独占候选补丁及对照",
-      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
     },
     {
       "id": "T04",
@@ -92,7 +100,11 @@
       "status": "unaccepted",
       "accepted": false,
       "doubaoResponsibilities": "按接口处理局部网格导出、边界索引/邻接数据与限定实现",
-      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
     },
     {
       "id": "T05",
@@ -108,7 +120,11 @@
       "status": "unaccepted",
       "accepted": false,
       "doubaoResponsibilities": "独立负责普通/中等结构审核、回归和负例报告，核心失败即时上报",
-      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
     },
     {
       "id": "T06",
@@ -186,7 +202,11 @@
       "status": "unaccepted",
       "accepted": false,
       "doubaoResponsibilities": "传感器轨迹、方向/归中边界用例与限定输入辅助实现",
-      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
     },
     {
       "id": "T11",
@@ -233,7 +253,11 @@
       "status": "unaccepted",
       "accepted": false,
       "doubaoResponsibilities": "独立负责变帧率/异常输入/普通碰撞回归及证据",
-      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
     },
     {
       "id": "T14",
@@ -265,7 +289,11 @@
       "status": "unaccepted",
       "accepted": false,
       "doubaoResponsibilities": "独立负责中等生命周期/资源审核和明确复现问题的小修",
-      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
     },
     {
       "id": "T16",

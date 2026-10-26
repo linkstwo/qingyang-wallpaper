@@ -1,0 +1,26 @@
+{
+  "cases": [
+    {
+      "lapContactWidth": 96,
+      "forearmVolume": false,
+      "paperTrim": false,
+      "seatSupport": true,
+      "width": 697,
+      "height": 620,
+      "nonzero": 104545
+    },
+    {
+      "lapContactWidth": 96,
+      "forearmVolume": true,
+      "paperTrim": false,
+      "seatSupport": true,
+      "width": 697,
+      "height": 620,
+      "nonzero": 103977
+    }
+  ],
+  "pageErrors": [],
+  "realWebgl": true,
+  "visualAcceptance": false,
+  "phoneTested": false
+}

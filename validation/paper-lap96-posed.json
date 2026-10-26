@@ -1,0 +1,24 @@
+{
+  "lapContactWidth": 96.0,
+  "seatSupport": true,
+  "forearmVolume": false,
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "angles": [
+    -20,
+    -2.2918,
+    0,
+    2.2918,
+    20
+  ],
+  "rear": false,
+  "bodyPose": {
+    "yaw": 0.059,
+    "roll": 0.034
+  },
+  "paperPartition": true,
+  "baselineRef": null,
+  "paperLapContact": true,
+  "paperExteriorTrim": false,
+  "image": "validation/paper-lap96-posed.jpg",
+  "phoneTested": false
+}

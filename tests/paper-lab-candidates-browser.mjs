@@ -10,17 +10,17 @@ try{
  const base='http://127.0.0.1:'+server.address().port;await page.route('**/*',r=>new URL(r.request().url()).origin===base?r.continue():r.abort());
  await page.goto(base+'/character-prototype/preview/structural-lab.html');await page.waitForFunction(()=>document.body.dataset.ready==='true');
  for(const id of ['paperPartition','paperContact','paperTrim','seatSupport'])assert.equal(await page.locator('#'+id).isChecked(),false);
- await page.locator('#rear').uncheck();await page.locator('#paperPartition').check();await page.locator('#paperContact').check();
+ await page.locator('#lapWidth').selectOption(process.env.PAPER_LAP_WIDTH||'48');await page.locator('#rear').uncheck();await page.locator('#paperPartition').check();await page.locator('#paperContact').check();
  for(const volume of [false,true]){
   if(volume)await page.locator('#forearmVolume').check();
   await page.locator('#seatSupport').check();
   await page.locator('#body').fill('3.3');await page.locator('#body').dispatchEvent('input');
   await page.locator('#camera').fill('-20');await page.locator('#camera').dispatchEvent('input');
   const frame=await page.evaluate(async()=>{const {captureFrame}=await import(document.querySelector('script[type="module"]').src);const f=await captureFrame();let nonzero=0;for(let i=0;i<f.pixels.length;i+=4)if(f.pixels[i]>50||f.pixels[i+1]>50||f.pixels[i+2]>50)nonzero++;return {width:f.width,height:f.height,nonzero};});
-  assert(frame.nonzero>1000,'actual framebuffer must contain rendered character');cases.push({forearmVolume:volume,paperTrim:false,seatSupport:true,...frame});
-  await page.screenshot({type:'jpeg',quality:84,path:path.join(root,'validation',`paper-lab-candidate-${volume?'forearm':'plain'}.jpg`)});
+  assert(frame.nonzero>1000,'actual framebuffer must contain rendered character');cases.push({lapContactWidth:Number(process.env.PAPER_LAP_WIDTH||48),forearmVolume:volume,paperTrim:false,seatSupport:true,...frame});
+  await page.screenshot({type:'jpeg',quality:84,path:path.join(root,'validation',`paper-lab-candidate-${volume?'forearm':'plain'}-lap${process.env.PAPER_LAP_WIDTH||48}.jpg`)});
   await page.locator('#seatSupport').uncheck();
  }
  await page.locator('#paperTrim').check();assert.equal(await page.locator('#paperTrim').isChecked(),true);
- assert.deepEqual(errors,[]);await fs.writeFile(path.join(root,'validation/paper-lab-candidates-browser.json'),JSON.stringify({cases,pageErrors:errors,realWebgl:true,visualAcceptance:false,phoneTested:false},null,2)+'\n');console.log(JSON.stringify({cases,pageErrors:errors}));
+ assert.deepEqual(errors,[]);await fs.writeFile(path.join(root,'validation/paper-lab-candidates-browser'+(process.env.PAPER_LAP_WIDTH||'48')+'.json'),JSON.stringify({cases,pageErrors:errors,realWebgl:true,visualAcceptance:false,phoneTested:false},null,2)+'\n');console.log(JSON.stringify({cases,pageErrors:errors}));
 }catch(e){console.error(JSON.stringify({pageErrors:errors,cases,message:e.message}));throw e;}finally{await browser?.close();await new Promise(r=>server.close(r));}
