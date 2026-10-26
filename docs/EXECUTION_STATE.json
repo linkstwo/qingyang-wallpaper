@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T22:34:58Z",
+  "updatedAt": "2026-10-26T23:25:07.948969+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "T03 source-observed right-cloth contact correction and continued component development",
+  "scopeOfThisRun": "T03 under-hand workshop-background attribution and gated trim; continuing actual development",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -79,8 +79,8 @@
     "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle."
   ],
   "next": [
-    "Refine nape/strap/shoulder homologous landmarks; use shared donor junction as source topology, not accepted main registration.",
-    "Trace upper right paper occlusion and distinguish workshop background from missing body."
+    "Review conservative background border, independent background depth and remaining occluded areas; T03 unaccepted.",
+    "Continue component correspondence T01/T04."
   ],
   "stages": {
     "S1": "in_progress",
@@ -472,17 +472,15 @@
     "resizedSameViewIsNotNewAngle": true,
     "avoidInventedYawNumbers": true
   },
-  "latestResume": "docs/RESUME-20261027-FENCE13.md",
+  "latestResume": "docs/RESUME-20261027-FENCE14.md",
   "stopRequested": false,
   "nightRun20261027": {
-    "owner": "codex-night-20261027-0618",
-    "fence": 13,
-    "bridge": "Delegation attempted; SSE endpoint404. Independent cloud implementation continues.",
+    "owner": "codex-night-20261027-0720",
+    "fence": 14,
+    "bridge": "Scoped Doubao delegation attempted; SSE404; cloud work continued.",
     "tasksAccepted": [],
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
-    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f13-junction.json",
-    "sourceCheckpoint": "288ef133ee327b9a32da6192763df879acaffa84",
-    "terminationObserved": "Invocation ended before the authorised 10:00 end. Continuous-until-window requirement was not fulfilled. No observed quota or platform failure is claimed."
+    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f14-under-hand.json"
   }
 }

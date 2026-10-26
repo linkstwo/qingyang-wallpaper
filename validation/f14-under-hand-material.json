@@ -1,0 +1,118 @@
+{
+  "rows": [
+    {
+      "forearmVolume": false,
+      "source": [
+        470,
+        1040
+      ],
+      "before": {
+        "paper": false,
+        "triangle": 12682,
+        "source": [
+          470,
+          1040
+        ],
+        "ndcDepth": 0.1897207010139379,
+        "sourceAlpha": 1
+      },
+      "afterHits": 0
+    },
+    {
+      "forearmVolume": false,
+      "source": [
+        500,
+        1040
+      ],
+      "before": {
+        "paper": false,
+        "triangle": 12500,
+        "source": [
+          499.9999999999999,
+          1040
+        ],
+        "ndcDepth": 0.22411271701712399,
+        "sourceAlpha": 1
+      },
+      "afterHits": 0
+    },
+    {
+      "forearmVolume": false,
+      "source": [
+        550,
+        1020
+      ],
+      "before": {
+        "paper": false,
+        "triangle": 12492,
+        "source": [
+          550.0000000000001,
+          1019.9999999999998
+        ],
+        "ndcDepth": 0.23062285473584435,
+        "sourceAlpha": 1
+      },
+      "afterHits": 0
+    },
+    {
+      "forearmVolume": true,
+      "source": [
+        470,
+        1040
+      ],
+      "before": {
+        "paper": false,
+        "triangle": 22038,
+        "source": [
+          470.00000000000006,
+          1040
+        ],
+        "ndcDepth": 0.18938330401748923,
+        "sourceAlpha": 1
+      },
+      "afterHits": 0
+    },
+    {
+      "forearmVolume": true,
+      "source": [
+        500,
+        1040
+      ],
+      "before": {
+        "paper": false,
+        "triangle": 21559,
+        "source": [
+          499.99999999999994,
+          1040
+        ],
+        "ndcDepth": 0.22433142607175088,
+        "sourceAlpha": 1
+      },
+      "afterHits": 0
+    },
+    {
+      "forearmVolume": true,
+      "source": [
+        550,
+        1020
+      ],
+      "before": {
+        "paper": false,
+        "triangle": 21535,
+        "source": [
+          550.0000000000001,
+          1019.9999999999998
+        ],
+        "ndcDepth": 0.23062285473584435,
+        "sourceAlpha": 1
+      },
+      "afterHits": 0
+    }
+  ],
+  "expectedArea": 10859.430558877066,
+  "defaultEnabled": false,
+  "sourceClassification": "manual conservative visible-background polygon",
+  "hiddenTextureAdded": false,
+  "wholeT03Accepted": false,
+  "phoneTested": false
+}
