@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T04:15:09.447459+00:00",
+  "updatedAt": "2026-10-26T04:16:01.551087+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -309,14 +309,16 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T04:15:09.447459+00:00",
+    "lastCheckpointAt": "2026-10-26T04:16:01.551087+00:00",
     "checkpointIntervalMinutes": 30,
-    "mode": "active_development",
+    "mode": "checkpointed",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Transient directory was removed; restored from21b4df8. Do not imply uninterrupted background execution.",
     "owner": "manual-plugin-s2-20261026-0329",
-    "fence": 3
+    "fence": 3,
+    "latestSourceCheckpoint": "dfae2a69febdd558e159745585559f909ad6edd4",
+    "stopReason": "Controlled checkpoint after four source milestones; remaining seam/source registration and native acceptance are not complete. No continuing background worker claimed."
   },
   "userReportedIssues": [
     {
