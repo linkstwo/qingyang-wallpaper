@@ -1,0 +1,83 @@
+{
+  "source": "observed front body, not rear proxy",
+  "lapContactWidth": 96,
+  "seatSupport": true,
+  "matteFilter": "all source vertices and centroid>=254, source area>=0.01px\u00b2; not raster visibility",
+  "neighbours": "rest positions rounded to 1e-7 world units share indices; adjacent triangles excluded",
+  "fixtures": 5,
+  "frames": [
+    {
+      "forearmVolume": false,
+      "input": {},
+      "testedTriangles": 10251,
+      "candidatePairs": 2151,
+      "intersections": 0,
+      "examples": [],
+      "elapsedSeconds": 1.719214297999315
+    },
+    {
+      "forearmVolume": false,
+      "input": {
+        "yaw": -0.059,
+        "pitch": -0.04,
+        "roll": 0.034
+      },
+      "testedTriangles": 10251,
+      "candidatePairs": 1329,
+      "intersections": 0,
+      "examples": [],
+      "elapsedSeconds": 1.255162780000319
+    },
+    {
+      "forearmVolume": false,
+      "input": {
+        "yaw": 0.059,
+        "pitch": 0.04,
+        "roll": -0.034
+      },
+      "testedTriangles": 10251,
+      "candidatePairs": 1432,
+      "intersections": 0,
+      "examples": [],
+      "elapsedSeconds": 0.7120531049995407
+    },
+    {
+      "forearmVolume": true,
+      "input": {},
+      "testedTriangles": 20436,
+      "candidatePairs": 6951,
+      "intersections": 0,
+      "examples": [],
+      "elapsedSeconds": 1.6239042569995945
+    },
+    {
+      "forearmVolume": true,
+      "input": {
+        "yaw": -0.059,
+        "pitch": -0.04,
+        "roll": 0.034
+      },
+      "testedTriangles": 20436,
+      "candidatePairs": 5957,
+      "intersections": 0,
+      "examples": [],
+      "elapsedSeconds": 0.9530467320000753
+    },
+    {
+      "forearmVolume": true,
+      "input": {
+        "yaw": 0.059,
+        "pitch": 0.04,
+        "roll": -0.034
+      },
+      "testedTriangles": 20436,
+      "candidatePairs": 6182,
+      "intersections": 0,
+      "examples": [],
+      "elapsedSeconds": 0.8549582719997488
+    }
+  ],
+  "continuousCollisionDetection": false,
+  "wholeT05Accepted": false,
+  "phoneTested": false
+}

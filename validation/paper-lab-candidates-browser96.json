@@ -19,6 +19,11 @@
       "nonzero": 103977
     }
   ],
+  "ownership": {
+    "greenMain": 153862,
+    "bluePaper": 14221,
+    "whiteCoverage": 167453
+  },
   "pageErrors": [],
   "realWebgl": true,
   "visualAcceptance": false,

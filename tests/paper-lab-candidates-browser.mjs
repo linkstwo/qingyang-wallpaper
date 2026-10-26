@@ -21,6 +21,9 @@ try{
   await page.screenshot({type:'jpeg',quality:84,path:path.join(root,'validation',`paper-lab-candidate-${volume?'forearm':'plain'}-lap${process.env.PAPER_LAP_WIDTH||48}.jpg`)});
   await page.locator('#seatSupport').uncheck();
  }
+ await page.locator('#sourceOwnership').check();
+ const ownership=await page.evaluate(async()=>{const {captureFrame}=await import(document.querySelector('script[type="module"]').src);const frame=await captureFrame();let green=0,blue=0;for(let i=0;i<frame.pixels.length;i+=4){const [r,g,b]=frame.pixels.slice(i,i+3);if(g>150&&r<80&&b<100)green++;if(b>180&&r<80&&g>70&&g<140)blue++;}const coverage=await captureFrame({coverage:true});let white=0;for(let i=0;i<coverage.pixels.length;i+=4)if(coverage.pixels[i]>250&&coverage.pixels[i+1]>250&&coverage.pixels[i+2]>250)white++;return {greenMain:green,bluePaper:blue,whiteCoverage:white};});
+ assert(ownership.greenMain>1000&&ownership.bluePaper>1000&&ownership.whiteCoverage>1000);await page.screenshot({type:'jpeg',quality:84,path:path.join(root,'validation/paper-source-ownership-browser.jpg')});await page.locator('#sourceOwnership').uncheck();
  await page.locator('#paperTrim').check();assert.equal(await page.locator('#paperTrim').isChecked(),true);
- assert.deepEqual(errors,[]);await fs.writeFile(path.join(root,'validation/paper-lab-candidates-browser'+(process.env.PAPER_LAP_WIDTH||'48')+'.json'),JSON.stringify({cases,pageErrors:errors,realWebgl:true,visualAcceptance:false,phoneTested:false},null,2)+'\n');console.log(JSON.stringify({cases,pageErrors:errors}));
+ assert.deepEqual(errors,[]);await fs.writeFile(path.join(root,'validation/paper-lab-candidates-browser'+(process.env.PAPER_LAP_WIDTH||'48')+'.json'),JSON.stringify({cases,ownership,pageErrors:errors,realWebgl:true,visualAcceptance:false,phoneTested:false},null,2)+'\n');console.log(JSON.stringify({cases,ownership,pageErrors:errors}));
 }catch(e){console.error(JSON.stringify({pageErrors:errors,cases,message:e.message}));throw e;}finally{await browser?.close();await new Promise(r=>server.close(r));}
