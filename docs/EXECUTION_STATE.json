@@ -50,7 +50,8 @@
     "S2 first structural checkpoint:550 vertices/1088 faces in3 closed parts,7291 scene checks passed; neutral calibrated projection error<2e-13 source pixels, connected-edge winding checks passed,340 vertices explicitly untextured. Production camera integration remains next.",
     "Recovered calibrated CPU/GLSL scene projection after transient directory cleanup; world paper plane and material-space support constraints integrated. Reran7295 scene checks and884736 triangle cases; min area ratio0.20528, support contact error0. Production yaw/pitch bounded to±0.04/0.02rad pending occlusion topology split. No new APK built.",
     "S2 layered topology: subtract observed paper polygon from character geometry; body18089 triangles, paper164. Body contact/depth no longer follows paper feather; wrist depth transitions over forearm. Reproduced old area ratio-1.073 at0.14/0.07rad, new0.1664; neutral coverage area error0.00049pixel². Production range remains bounded; hidden under-paper body texture remains missing.",
-    "S2 depth integration: real camera depth in production GLSL,16-bit depth requested in both native surfaces, LEQUAL on body/paper and transparent-mask discard. Five actual GLES occlusion cases passed across both draw orders;1440 GPU landmarks/222 contour pixels/52 lifecycle/10132 response checks and Java-JS parity passed. Restored9 structural debug renders; those wider untextured views are diagnostic only."
+    "S2 depth integration: real camera depth in production GLSL,16-bit depth requested in both native surfaces, LEQUAL on body/paper and transparent-mask discard. Five actual GLES occlusion cases passed across both draw orders;1440 GPU landmarks/222 contour pixels/52 lifecycle/10132 response checks and Java-JS parity passed. Restored9 structural debug renders; those wider untextured views are diagnostic only.",
+    "Built0.5.9/18 including vitalLint; original-key signed v3-only, verified original certificate/version/ZIP/alignment/18 assets/DEX and negative unsigned/tampered cases. Saved exact signed APK; public download publishing next."
   ],
   "next": [
     "Prepare original-key next candidate with chest/contour repair and bounded S2 projection/topology/depth changes; verify build/signature/download.",
@@ -123,7 +124,8 @@
     "validation/s2-depth-order-gles.json",
     "validation/s2-structure-gles.json",
     "validation/s2-structure-gles.jpg",
-    "validation/reading-subject-0.5.9.json"
+    "validation/reading-subject-0.5.9.json",
+    "validation/build-0.5.9-signed.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -189,13 +191,17 @@
   "targetCandidate": {
     "versionName": "0.5.9",
     "versionCode": 18,
-    "status": "building",
-    "applicationChangesCommitted": false,
+    "status": "signed_awaiting_public_download",
+    "applicationChangesCommitted": true,
     "installableApkDelivered": false,
-    "finalBuildVerified": false,
-    "signingVerified": false,
+    "finalBuildVerified": true,
+    "signingVerified": true,
     "sourceImageLibraryId": "libfile_4f121f15747c8191ae4e79700c7fd655",
-    "recoveryRequired": false
+    "recoveryRequired": false,
+    "applicationCommit": "cfdf79642e01580d6310438af4020639a3f1aa61",
+    "libraryFileId": "libfile_582f73752c608191b0709b0362de9f4c",
+    "sha256": "e64dc0f67e0c5323e44adff9bd253dce94d112ed21d66731d136f927da6e8eac",
+    "apkBytes": 6330059
   },
   "recovery": {
     "required": false,
@@ -241,7 +247,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T01:31:42.036130+00:00",
-    "lastCheckpointAt": "2026-10-26T01:38:37.667296+00:00",
+    "lastCheckpointAt": "2026-10-26T01:43:25.263691+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,
