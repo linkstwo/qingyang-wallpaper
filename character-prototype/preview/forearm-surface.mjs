@@ -18,7 +18,7 @@ export function forearmSurfaceDepth(x,y){
 }
 export const segmentedFrontDepthAt=(x,y)=>insideForearm(x,y)?forearmSurfaceDepth(x,y):depthAt(x,y);
 export function buildForearmSourcePieces({paperOutline=subject.paper,additionalPaperOutlines=[],paperNotch=false}={}){
- const base=paperNotch&&additionalPaperOutlines.length===0?makePaperNotchedCharacterMesh(paperOutline):makeLayeredCharacterMesh(27,paperOutline,additionalPaperOutlines),bodySource=subtractPolygon(base,forearmOutline);let armSource=subtractPolygon(makeMesh(forearmOutline,[],12),paperOutline);for(const outline of additionalPaperOutlines)armSource=subtractPolygon(armSource,outline);const joined=new Float32Array(bodySource.length+armSource.length);joined.set(bodySource);joined.set(armSource,bodySource.length);
+ let base=paperNotch?makePaperNotchedCharacterMesh(paperOutline):makeLayeredCharacterMesh(27,paperOutline,additionalPaperOutlines);if(paperNotch)for(const outline of additionalPaperOutlines)base=subtractPolygon(base,outline);const bodySource=subtractPolygon(base,forearmOutline);let armSource=subtractPolygon(makeMesh(forearmOutline,[],12),paperOutline);for(const outline of additionalPaperOutlines)armSource=subtractPolygon(armSource,outline);const joined=new Float32Array(bodySource.length+armSource.length);joined.set(bodySource);joined.set(armSource,bodySource.length);
  // Weld source coordinates jointly, while retaining distinct material/depth
  // labels. Independent subdivisions otherwise leave unmatched boundary points.
  const shared=improveSourceTriangles(conformSourceMesh(joined,{triangleGroups:Array(bodySource.length/6).fill(0).concat(Array(armSource.length/6).fill(1))}));

@@ -44,3 +44,7 @@ export function paperExteriorCollars(){
   const j=(i+1)%inner.length;return [inner[i],inner[j],outer[j],outer[i]];
  });
 }
+
+// Actual workshop background left of the lower paper edge, not body/paper.
+// The lower contour is manually observed, with a few-pixel boundary uncertainty.
+export const paperLeftBackgroundOutline=[[0,951],[20,988],[35,1035],[40,1070],[48,1115],[57,1158],[52,1171],[0,1180]];

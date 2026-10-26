@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "independentDonorViews": 1,
+  "newCameraAnglesClaimed": 0,
+  "components": [
+    {
+      "id": "side-b-nape-shoulder-cutout",
+      "path": "references/derived/side-b-nape-shoulder-cutout.png",
+      "sha256": "93dd07941d15f80fb0acc24ed4a541bebe06dbb57e03bb49536b072b824b9548",
+      "cropPath": "references/derived/side-b-nape-shoulder.png",
+      "cropSha256": "cc21d3541f50fb452dc0daa9abbbedd5b47e16e47650fb3a31531291b6e83d7e",
+      "originalSourceSha256": "23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16",
+      "originalCropRect": [
+        650,
+        300,
+        900,
+        500
+      ],
+      "size": [
+        250,
+        200
+      ],
+      "alphaPolygonLocal": [
+        [
+          8,
+          65
+        ],
+        [
+          58,
+          52
+        ],
+        [
+          91,
+          53
+        ],
+        [
+          126,
+          75
+        ],
+        [
+          160,
+          90
+        ],
+        [
+          187,
+          110
+        ],
+        [
+          211,
+          139
+        ],
+        [
+          235,
+          177
+        ],
+        [
+          242,
+          199
+        ],
+        [
+          8,
+          199
+        ]
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "opaquePixels": 26331,
+      "rgbExactIncludingTransparentPixels": true,
+      "boundary": "conservative manual subset; omitted uncertain skin/hair collar",
+      "acceptedCrossViewRegistration": false,
+      "confidence": 0
+    },
+    {
+      "id": "side-b-upper-arm-cutout",
+      "path": "references/derived/side-b-upper-arm-cutout.png",
+      "sha256": "0542f125803496833627a3817999906f7b3c0b3a8f190f0f807662152e3b3f59",
+      "cropPath": "references/derived/side-b-upper-arm.png",
+      "cropSha256": "63bde24e89142a2ff67a0bb7b743040b29bd87b6ae9e6fecdd42552e835cf014",
+      "originalSourceSha256": "23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16",
+      "originalCropRect": [
+        790,
+        410,
+        945,
+        640
+      ],
+      "size": [
+        155,
+        230
+      ],
+      "alphaPolygonLocal": [
+        [
+          0,
+          2
+        ],
+        [
+          35,
+          2
+        ],
+        [
+          62,
+          17
+        ],
+        [
+          87,
+          44
+        ],
+        [
+          103,
+          78
+        ],
+        [
+          117,
+          117
+        ],
+        [
+          130,
+          161
+        ],
+        [
+          142,
+          205
+        ],
+        [
+          148,
+          229
+        ],
+        [
+          0,
+          229
+        ]
+      ],
+      "alphaValues": [
+        0,
+        255
+      ],
+      "opaquePixels": 25473,
+      "rgbExactIncludingTransparentPixels": true,
+      "boundary": "conservative manual subset; omitted uncertain skin/hair collar",
+      "acceptedCrossViewRegistration": false,
+      "confidence": 0
+    }
+  ],
+  "limitations": [
+    "Only observed visible skin/strap pixels, no inferred hidden texture.",
+    "Cutout boundary is conservative and not a final segmentation.",
+    "Pose/shoulder joins remain unaccepted; not production assets."
+  ]
+}

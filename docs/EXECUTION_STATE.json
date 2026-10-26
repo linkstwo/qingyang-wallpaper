@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T22:22:35.141934+00:00",
+  "updatedAt": "2026-10-26T22:30:45.116543+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -79,8 +79,8 @@
     "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle."
   ],
   "next": [
-    "Continue source ownership at upper gap; keep right-cloth contact optional due diagnostic-angle flips.",
-    "T01/T04 local shoulder components correspondence and interface constraints."
+    "T03 trace upper paper-right original background/body ownership, keep candidates default off.",
+    "T01/T04 refine independent nape/arm landmarks then explicit component-to-main registration, never accept two-anchor fit as validation."
   ],
   "stages": {
     "S1": "in_progress",
@@ -341,7 +341,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T22:22:35.141934+00:00",
+    "lastCheckpointAt": "2026-10-26T22:30:45.116543+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,
@@ -349,7 +349,7 @@
     "latestRecovery": "Original uncommitted files survived; both regressions rerun successfully after recovery.",
     "owner": "codex-night-20261027-0618",
     "fence": 13,
-    "latestSourceCheckpoint": "f334f04ed1342f0d7ddd100eb8c5b5f499db730d",
+    "latestSourceCheckpoint": "7967547bd5b3d009db961bf594510e5a00754458",
     "userRequestedDoNotStop": true,
     "stopReason": null,
     "backgroundWorkerActive": false
@@ -481,6 +481,6 @@
     "tasksAccepted": [],
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
-    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f13-right-cloth.json"
+    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f13-components-background.json"
   }
 }

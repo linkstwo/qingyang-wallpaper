@@ -1,0 +1,1322 @@
+{
+  "paperBackgroundTrim": true,
+  "paperRightClothContact": true,
+  "lapContactWidth": 96,
+  "seatSupport": true,
+  "forearmVolume": false,
+  "paperExteriorTrim": false,
+  "rows": [
+    {
+      "camera": [
+        -0.34906585,
+        -0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": -0.4655564880658782,
+      "flipped": 39,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            8.218018531799316,
+            1178.57763671875
+          ],
+          [
+            5,
+            1179.625
+          ],
+          [
+            5.227504253387451,
+            1179.09521484375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.34906585,
+        -0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": -0.15518421091736984,
+      "flipped": 26,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            13.07529354095459,
+            1177.7369384765625
+          ],
+          [
+            7.5,
+            1184.25
+          ],
+          [
+            12.021944046020508,
+            1177.9193115234375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.34906585,
+        -0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": -0.09587049941534494,
+      "flipped": 1,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            474,
+            1123.625
+          ],
+          [
+            480,
+            1137
+          ],
+          [
+            472.75,
+            1122.25
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.34906585,
+        0
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": -0.44438240059262824,
+      "flipped": 37,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            8.218018531799316,
+            1178.57763671875
+          ],
+          [
+            5,
+            1179.625
+          ],
+          [
+            5.227504253387451,
+            1179.09521484375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.34906585,
+        0
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": -0.1362357139809179,
+      "flipped": 24,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            13.07529354095459,
+            1177.7369384765625
+          ],
+          [
+            7.5,
+            1184.25
+          ],
+          [
+            12.021944046020508,
+            1177.9193115234375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.34906585,
+        0
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": -0.09339972157081561,
+      "flipped": 1,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            474,
+            1123.625
+          ],
+          [
+            480,
+            1137
+          ],
+          [
+            472.75,
+            1122.25
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.34906585,
+        0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": -0.4233682811192801,
+      "flipped": 37,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            8.218018531799316,
+            1178.57763671875
+          ],
+          [
+            5,
+            1179.625
+          ],
+          [
+            5.227504253387451,
+            1179.09521484375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.34906585,
+        0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": -0.11750639312079153,
+      "flipped": 20,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            13.07529354095459,
+            1177.7369384765625
+          ],
+          [
+            7.5,
+            1184.25
+          ],
+          [
+            12.021944046020508,
+            1177.9193115234375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.34906585,
+        0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": -0.09104925596781166,
+      "flipped": 1,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            474,
+            1123.625
+          ],
+          [
+            480,
+            1137
+          ],
+          [
+            472.75,
+            1122.25
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.04,
+        -0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": 0.5528489670207242,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            0,
+            1180
+          ],
+          [
+            4.757604598999023,
+            1179.176513671875
+          ],
+          [
+            5,
+            1179.625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.04,
+        -0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": 0.8093867060135043,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            18.75,
+            1179.75
+          ],
+          [
+            13.07529354095459,
+            1177.7369384765625
+          ],
+          [
+            14.875621795654297,
+            1177.4254150390625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.04,
+        -0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": 0.5352298875336534,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            432,
+            1030
+          ],
+          [
+            438,
+            1043.375
+          ],
+          [
+            441.5,
+            1054
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.04,
+        0
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": 0.5826020842450645,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            0,
+            1180
+          ],
+          [
+            4.757604598999023,
+            1179.176513671875
+          ],
+          [
+            5,
+            1179.625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.04,
+        0
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": 0.8394709313772324,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            13.07529354095459,
+            1177.7369384765625
+          ],
+          [
+            7.5,
+            1184.25
+          ],
+          [
+            12.021944046020508,
+            1177.9193115234375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.04,
+        0
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": 0.5620700459596861,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            432,
+            1030
+          ],
+          [
+            438,
+            1043.375
+          ],
+          [
+            441.5,
+            1054
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.04,
+        0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": 0.6117657497108101,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            0,
+            1180
+          ],
+          [
+            4.757604598999023,
+            1179.176513671875
+          ],
+          [
+            5,
+            1179.625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.04,
+        0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": 0.8651628199075962,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            8.218018531799316,
+            1178.57763671875
+          ],
+          [
+            5,
+            1179.625
+          ],
+          [
+            5.227504253387451,
+            1179.09521484375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        -0.04,
+        0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": 0.5885187497569893,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            432,
+            1030
+          ],
+          [
+            438,
+            1043.375
+          ],
+          [
+            441.5,
+            1054
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0,
+        -0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": 0.7180959931622024,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            0,
+            1180
+          ],
+          [
+            4.757604598999023,
+            1179.176513671875
+          ],
+          [
+            5,
+            1179.625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0,
+        -0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": 0.9280643012566125,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            243.46875,
+            1204.6875
+          ],
+          [
+            260,
+            1204.5
+          ],
+          [
+            244.046875,
+            1210.78125
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0,
+        -0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": 0.5506973766935581,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            141.00135803222656,
+            1211.8525390625
+          ],
+          [
+            139.34222412109375,
+            1208.7830810546875
+          ],
+          [
+            140.765625,
+            1199.34375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0,
+        0
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": 0.7160481136937916,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            471.4375,
+            930.3125
+          ],
+          [
+            454.96875,
+            929.90625
+          ],
+          [
+            470.671875,
+            918.515625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0,
+        0
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": 0.9999999999972983,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            53.3776969909668,
+            1182.0216064453125
+          ],
+          [
+            52.90657424926758,
+            1183.6920166015625
+          ],
+          [
+            53.363929748535156,
+            1181.911376953125
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0,
+        0
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": 0.5948325826181236,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            432,
+            1030
+          ],
+          [
+            438,
+            1043.375
+          ],
+          [
+            441.5,
+            1054
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0,
+        0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": 0.6875005046578881,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            471.4375,
+            930.3125
+          ],
+          [
+            454.96875,
+            929.90625
+          ],
+          [
+            470.671875,
+            918.515625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0,
+        0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": 0.9386750530461704,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            487.75,
+            1103.3125
+          ],
+          [
+            483.1536865234375,
+            1096.377197265625
+          ],
+          [
+            491.5600280761719,
+            1094.9222412109375
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0,
+        0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": 0.6217188702108494,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            432,
+            1030
+          ],
+          [
+            438,
+            1043.375
+          ],
+          [
+            441.5,
+            1054
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.04,
+        -0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": 0.6654244528289569,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            471.4375,
+            930.3125
+          ],
+          [
+            454.96875,
+            929.90625
+          ],
+          [
+            470.671875,
+            918.515625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.04,
+        -0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": 0.8459834260317768,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            610.46875,
+            1285.03125
+          ],
+          [
+            601.6875,
+            1277.25
+          ],
+          [
+            607.5625,
+            1264.3125
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.04,
+        -0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": 0.5492038725879732,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            243.46875,
+            1204.6875
+          ],
+          [
+            226.9375,
+            1204.875
+          ],
+          [
+            234.625,
+            1198.6875
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.04,
+        0
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": 0.6367565260809849,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            471.4375,
+            930.3125
+          ],
+          [
+            454.96875,
+            929.90625
+          ],
+          [
+            470.671875,
+            918.515625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.04,
+        0
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": 0.8567213231329602,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            441.5,
+            1054
+          ],
+          [
+            450,
+            1070.125
+          ],
+          [
+            451,
+            1078
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.04,
+        0
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": 0.6049851292434079,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            243.46875,
+            1204.6875
+          ],
+          [
+            226.9375,
+            1204.875
+          ],
+          [
+            234.625,
+            1198.6875
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.04,
+        0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": 0.6081391996655837,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            471.4375,
+            930.3125
+          ],
+          [
+            454.96875,
+            929.90625
+          ],
+          [
+            470.671875,
+            918.515625
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.04,
+        0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": 0.844149799454491,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            441.5,
+            1054
+          ],
+          [
+            450,
+            1070.125
+          ],
+          [
+            451,
+            1078
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.04,
+        0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": 0.6547322218631662,
+      "flipped": 0,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            432,
+            1030
+          ],
+          [
+            438,
+            1043.375
+          ],
+          [
+            441.5,
+            1054
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.34906585,
+        -0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": -0.8766410060419305,
+      "flipped": 35,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            441.5,
+            1054
+          ],
+          [
+            450,
+            1070.125
+          ],
+          [
+            451,
+            1078
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.34906585,
+        -0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": -0.427524511536537,
+      "flipped": 23,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            441.5,
+            1054
+          ],
+          [
+            450,
+            1070.125
+          ],
+          [
+            451,
+            1078
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.34906585,
+        -0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": -0.34427798414498545,
+      "flipped": 27,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            610.46875,
+            1285.03125
+          ],
+          [
+            601.6875,
+            1277.25
+          ],
+          [
+            607.5625,
+            1264.3125
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.34906585,
+        0
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": -0.8946738233627326,
+      "flipped": 47,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            441.5,
+            1054
+          ],
+          [
+            450,
+            1070.125
+          ],
+          [
+            451,
+            1078
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.34906585,
+        0
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": -0.44040593160961494,
+      "flipped": 25,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            441.5,
+            1054
+          ],
+          [
+            450,
+            1070.125
+          ],
+          [
+            451,
+            1078
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.34906585,
+        0
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": -0.32520646928586905,
+      "flipped": 27,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            610.46875,
+            1285.03125
+          ],
+          [
+            601.6875,
+            1277.25
+          ],
+          [
+            607.5625,
+            1264.3125
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.34906585,
+        0.02
+      ],
+      "bodyYaw": -0.059,
+      "bodyPitch": 0,
+      "bodyRoll": -0.034,
+      "minAreaRatio": -0.911899337790223,
+      "flipped": 58,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            441.5,
+            1054
+          ],
+          [
+            450,
+            1070.125
+          ],
+          [
+            451,
+            1078
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.34906585,
+        0.02
+      ],
+      "bodyYaw": 0,
+      "bodyPitch": 0,
+      "bodyRoll": 0,
+      "minAreaRatio": -0.45278231821979337,
+      "flipped": 30,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            441.5,
+            1054
+          ],
+          [
+            450,
+            1070.125
+          ],
+          [
+            451,
+            1078
+          ]
+        ]
+      }
+    },
+    {
+      "camera": [
+        0.34906585,
+        0.02
+      ],
+      "bodyYaw": 0.059,
+      "bodyPitch": 0,
+      "bodyRoll": 0.034,
+      "minAreaRatio": -0.3057389408987903,
+      "flipped": 26,
+      "tested": 12824,
+      "worst": {
+        "paper": false,
+        "source": [
+          [
+            610.46875,
+            1285.03125
+          ],
+          [
+            601.6875,
+            1277.25
+          ],
+          [
+            607.5625,
+            1264.3125
+          ]
+        ]
+      }
+    }
+  ],
+  "hasFailures": true,
+  "scanIncludesMaskedOutGeometry": false,
+  "maskVisibilityAcceptance": false,
+  "matteFilter": "all three vertices and centroid nearest matte>=254; not a raster self-occlusion proof",
+  "wholeT03Accepted": false,
+  "productionUsed": false,
+  "phoneTested": false
+}

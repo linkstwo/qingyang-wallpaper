@@ -1,0 +1,34 @@
+{
+  "rows": [
+    {
+      "path": "references/derived/side-b-nape-shoulder-cutout.png",
+      "rgbExact": true,
+      "opaqueSkinControl": [
+        150,
+        160
+      ],
+      "transparentBackgroundControl": [
+        220,
+        20
+      ],
+      "wrongBytesRejected": true,
+      "opaquePixels": 26331
+    },
+    {
+      "path": "references/derived/side-b-upper-arm-cutout.png",
+      "rgbExact": true,
+      "opaqueSkinControl": [
+        60,
+        140
+      ],
+      "transparentBackgroundControl": [
+        150,
+        30
+      ],
+      "wrongBytesRejected": true,
+      "opaquePixels": 25473
+    }
+  ],
+  "registeredToMain": false,
+  "phoneTested": false
+}

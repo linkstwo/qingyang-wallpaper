@@ -1,0 +1,87 @@
+{
+  "rows": [
+    {
+      "forearmVolume": false,
+      "pixel": [
+        70.5,
+        780.5
+      ],
+      "misclassifiedSource": [
+        23.452668447144,
+        1088.0334210793574
+      ],
+      "afterHits": 0,
+      "removedSourceArea": 8154.999245884595
+    },
+    {
+      "forearmVolume": false,
+      "pixel": [
+        70.5,
+        800.5
+      ],
+      "misclassifiedSource": [
+        11.681963564232687,
+        1114.2629416763673
+      ],
+      "afterHits": 0,
+      "removedSourceArea": 8154.999245884595
+    },
+    {
+      "forearmVolume": false,
+      "pixel": [
+        80.5,
+        820.5
+      ],
+      "misclassifiedSource": [
+        16.019369229439054,
+        1140.5475331420619
+      ],
+      "afterHits": 0,
+      "removedSourceArea": 8154.999245884595
+    },
+    {
+      "forearmVolume": true,
+      "pixel": [
+        70.5,
+        780.5
+      ],
+      "misclassifiedSource": [
+        23.77593304568009,
+        1088.0328426981998
+      ],
+      "afterHits": 0,
+      "removedSourceArea": 8154.999477694044
+    },
+    {
+      "forearmVolume": true,
+      "pixel": [
+        70.5,
+        800.5
+      ],
+      "misclassifiedSource": [
+        11.681963564232687,
+        1114.2629416763673
+      ],
+      "afterHits": 0,
+      "removedSourceArea": 8154.999477694044
+    },
+    {
+      "forearmVolume": true,
+      "pixel": [
+        80.5,
+        820.5
+      ],
+      "misclassifiedSource": [
+        16.019369229439054,
+        1140.5475331420619
+      ],
+      "afterHits": 0,
+      "removedSourceArea": 8154.999477694044
+    }
+  ],
+  "declaredBackgroundArea": 8155,
+  "materialClassification": "manual source observation; approximate boundary",
+  "newHiddenTexture": false,
+  "wholeT03Accepted": false,
+  "phoneTested": false
+}

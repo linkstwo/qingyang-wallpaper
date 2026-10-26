@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0618",
+  "fence": 13,
+  "baseHead": "f1a4f2d1699e48c5e8239f066b4d808f19ba32b1",
+  "createdAt": "2026-10-26T22:31:04.847061+00:00",
+  "stage": "S2",
+  "tasksAccepted": [],
+  "next": [
+    "Upper gap material classification and local component-to-main registration"
+  ],
+  "files": [
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "sha256": "53edc25618bdcdb0fb80fed94121d0c4ed09f836582dbb0f1388c393bbce877f",
+      "bytes": 6562
+    },
+    {
+      "path": "character-prototype/preview/forearm-surface.mjs",
+      "sha256": "93527b048b32d8fd0d3cfdb117c1373cac39dcf0feae404d987a9f53768e9b9d",
+      "bytes": 3171
+    },
+    {
+      "path": "character-prototype/preview/paper-source-partition.mjs",
+      "sha256": "66333be56a309d5a9d569513c9502fd6ddd0f84ab21271224de2365867e8b6e8",
+      "bytes": 3844
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "sha256": "6f9db1e880036c91ae1377195d829c5601d293dc8e80ee9af46996e9cfe65bf2",
+      "bytes": 5424
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "sha256": "fe3b80570458d2aaf402221e673a881b736db05641f25b8c36a0b33f7da3ba8d",
+      "bytes": 22579
+    },
+    {
+      "path": "character-prototype/preview/parts-sources.mjs",
+      "sha256": "013d9b1f3be556c5fd08181c745bc242501801b6aa9a351bcddfed124c0e8c8d",
+      "bytes": 1904
+    },
+    {
+      "path": "character-prototype/preview/parts-fit.mjs",
+      "sha256": "af7f277dbacf4e1d7562548f99e33bfff3d8d8e4e312008db2d7eb9f590399fc",
+      "bytes": 8182
+    },
+    {
+      "path": "character-prototype/preview/parts-fit.html",
+      "sha256": "ed554b436865c200ab8090202638baa53c6d75ca74f8d6e5853af86d5fac3892",
+      "bytes": 4814
+    },
+    {
+      "path": "character-prototype/preview/parts-raster.mjs",
+      "sha256": "ca1cb540ea2c8d3aa56fb7e04e8d960edc3bdf74e0917876cdb3f472e87e18c0",
+      "bytes": 2788
+    },
+    {
+      "path": "scripts/prepare_component_cutouts.py",
+      "sha256": "1933af1ac39beef20870afade68493b24b0e849f4295f4fc0035be2759601b62",
+      "bytes": 2308
+    },
+    {
+      "path": "tests/component-cutout-regression.py",
+      "sha256": "20dea4e3c5456323c54d4bcc4d78c804e9f338c495049526d3c63cc707037d6d",
+      "bytes": 1275
+    },
+    {
+      "path": "tests/parts-alpha-gles.py",
+      "sha256": "a03b50326dcc6e39fadc58a62b85ee0e2433f9c6defc4fb95e19c04837e9796b",
+      "bytes": 2630
+    },
+    {
+      "path": "tests/paper-background-material-regression.mjs",
+      "sha256": "69342f1ef75c71eb769cf8ce7add3b73368c8aa397f60944f903cb08df4c5cff",
+      "bytes": 2938
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "sha256": "1fbb44a4843f7cc63095c10b872f53215bd9d92d4582fd08532b44a39b43b413",
+      "bytes": 3711
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "sha256": "40166e946bdd550df0ba89dd569f5471380340d0a0af6791b57b2a93ca7f7700",
+      "bytes": 5482
+    },
+    {
+      "path": "references/derived/side-b-cutout-manifest.json",
+      "sha256": "b21962b1d7fd4e6625eeea7a12c6317b8d16f66db5ff62b391d664e2c3067306",
+      "bytes": 3142
+    },
+    {
+      "path": "references/derived/side-b-nape-shoulder-cutout.png",
+      "sha256": "93dd07941d15f80fb0acc24ed4a541bebe06dbb57e03bb49536b072b824b9548",
+      "bytes": 94182
+    },
+    {
+      "path": "references/derived/side-b-upper-arm-cutout.png",
+      "sha256": "0542f125803496833627a3817999906f7b3c0b3a8f190f0f807662152e3b3f59",
+      "bytes": 59129
+    },
+    {
+      "path": "validation/f13-component-cutouts.json",
+      "sha256": "835f4787a210ce5e346ea137c16402d277117fcf6bfeb02819005533e11ed23f",
+      "bytes": 673
+    },
+    {
+      "path": "validation/f13-component-cutouts.jpg",
+      "sha256": "b6183ec755f206c60b87c86061493311d8e76ead4f6e2e529bec058f5ac2ff2d",
+      "bytes": 35419
+    },
+    {
+      "path": "validation/f13-parts-alpha-gles.json",
+      "sha256": "e254c837709e89ea26e28e876b92a3e4a3a9c90c6e04a76901c80e454d381637",
+      "bytes": 318
+    },
+    {
+      "path": "validation/f13-background-material.json",
+      "sha256": "ecc9e630b5f817e37742dde94b96419c7bdca86998f8ce4f2646497d8c526946",
+      "bytes": 1761
+    },
+    {
+      "path": "validation/f13-background-shard-detail.jpg",
+      "sha256": "06cd518a77f5160f3080939b3ff69b4727b80da01c815d21ca8880675f43b0c2",
+      "bytes": 56431
+    },
+    {
+      "path": "validation/f13-bg-production.json.gz",
+      "sha256": "ac258e2d971c57aa74b605e2236757bccb1cae70957f206f774ae6d49a9d8936",
+      "bytes": 6336
+    },
+    {
+      "path": "validation/f13-bg-production-forearm.json.gz",
+      "sha256": "ac7e64bbb3369524ca5da9dbdfddd15df30f82abbaacae108facaf9ebfe7b287",
+      "bytes": 6702
+    },
+    {
+      "path": "validation/f13-bg-diagnostic.json",
+      "sha256": "b903114aa06871146dfc07ecf2019b71a2d32420c6258425f17a06e84e1c668d",
+      "bytes": 23328
+    },
+    {
+      "path": "validation/f13-background-trim.json",
+      "sha256": "135f93c1789d51ec5cb7dc62c905ba1169d87399e78786990affa91b52b6e704",
+      "bytes": 475
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "sha256": "ae630e75133cd02cbcad1ff018a1c0d72be5239bcf9ea7faf8da4b9f2a8f89a4",
+      "bytes": 36356
+    },
+    {
+      "path": "docs/REMAINING-TASKS-20261026.json",
+      "sha256": "ba0bd43ebe77def75d7066b0dda83f92db5bf2729872981d215eb4605dffa8ef",
+      "bytes": 19040
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE13.md",
+      "sha256": "c0d1369a7accbe1bf338f882fd06e3cb2d13f5420d21fb0524a10620d579f67a",
+      "bytes": 3739
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "sha256": "9ea85edd988580150d7edc96940bd3b95bf9be19295f22d4048942132bc60d1c",
+      "bytes": 8858
+    }
+  ],
+  "tests": [
+    {
+      "command": "paper-background-material-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "component-cutout-regression.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "parts-alpha-gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "parts-warp-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "243 production samples per forearm mode",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "newApk": false,
+  "phoneTested": false,
+  "sourceDigest": "774f6cd0b0bfd7ad8391e07bf884caf35117343b2726972b634e310d88b04794"
+}

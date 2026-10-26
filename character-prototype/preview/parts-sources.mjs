@@ -9,3 +9,11 @@ regions.sideBNape={arm:[.02,.02,.96,.96],shoulder:[.02,.02,.96,.96],torso:[.02,.
 sources.sideBUpperArm='../../references/derived/side-b-upper-arm.png';
 expectedSourceHashes.sideBUpperArm='63bde24e89142a2ff67a0bb7b743040b29bd87b6ae9e6fecdd42552e835cf014';
 regions.sideBUpperArm={arm:[.02,.02,.96,.96],shoulder:[.02,.02,.96,.96],torso:[.02,.02,.96,.96]};
+
+sources.sideBNapeCutout='../../references/derived/side-b-nape-shoulder-cutout.png';
+expectedSourceHashes.sideBNapeCutout='93dd07941d15f80fb0acc24ed4a541bebe06dbb57e03bb49536b072b824b9548';
+regions.sideBNapeCutout={arm:[.02,.02,.96,.96],shoulder:[.02,.02,.96,.96],torso:[.02,.02,.96,.96]};
+
+sources.sideBUpperArmCutout='../../references/derived/side-b-upper-arm-cutout.png';
+expectedSourceHashes.sideBUpperArmCutout='0542f125803496833627a3817999906f7b3c0b3a8f190f0f807662152e3b3f59';
+regions.sideBUpperArmCutout={arm:[.02,.02,.96,.96],shoulder:[.02,.02,.96,.96],torso:[.02,.02,.96,.96]};
