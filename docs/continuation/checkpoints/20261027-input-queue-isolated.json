@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "cd169fd34df40419dff17177299b90015676246a",
+  "createdAt": "2026-10-26T17:51:31.623773Z",
+  "owner": "codex-input-isolated-20261027-0147",
+  "fence": 1,
+  "stage": "S2",
+  "next": "Replay full sensor trajectories, then safe cherry-pick without isolated lease",
+  "files": [
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SensorFeed.java",
+      "sha256": "1d049fdd5147e9de0793f54f601ed02c3282bdbc3491df6eacf8f2cf77a307c3",
+      "bytes": 7529
+    },
+    {
+      "path": "tests/run_sensor_feed.py",
+      "sha256": "1be3b992418b4864e77302672c2ac7a1e5ccdb75162392f0b21c767abe49e6b2",
+      "bytes": 3772
+    },
+    {
+      "path": "tests/SensorQueueRegression.java",
+      "sha256": "e253b91f2295e2a649f37f0ee90c0a74f8238a651d629f66f1dc16a89a69e76b",
+      "bytes": 2676
+    },
+    {
+      "path": "validation/sensor-queue-regression.json",
+      "sha256": "d3847e45bf189ef5adcb9dbc197b8586ab24dadda8f0013adddab92cd7588d04",
+      "bytes": 65
+    },
+    {
+      "path": "docs/INPUT-QUEUE-20261027.md",
+      "sha256": "4b96e589383a6bad271d93cabf1b178673952a5058e9f0af33059228d6ffa3f3",
+      "bytes": 1061
+    }
+  ],
+  "tests": [
+    {
+      "command": "python3 tests/run_sensor_feed.py --baseline",
+      "status": "expected_failure",
+      "exitCode": 1
+    },
+    {
+      "command": "python3 tests/run_sensor_feed.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python3 tests/run_response.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "sourceDigest": "0683f81967136ebf1c93e50e721db19ae23ca739d48e90b9e0aeb9047d3d5d87"
+}

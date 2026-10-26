@@ -35,6 +35,7 @@ final class SensorFeed implements SensorEventListener {
     private long lastEvent;
     private long lastRotation;
     private long accelStamp;
+    private long calibrationStamp;
     private String warning = "";
 
     SensorFeed(Context context, Handler handler) {
@@ -83,6 +84,9 @@ final class SensorFeed implements SensorEventListener {
     }
 
     void calibrate() {
+        // Sensor callbacks can remain queued across stop/start or recenter.
+        // Their timestamps share elapsedRealtimeNanos: never use old data as a new baseline.
+        calibrationStamp = SystemClock.elapsedRealtimeNanos();
         motion.reset();
         gravityReady = false;
         accelStamp = 0L;
@@ -94,7 +98,7 @@ final class SensorFeed implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (!active || event.values.length < 3) {
+        if (!active || event.values.length < 3 || event.timestamp <= calibrationStamp) {
             return;
         }
         final float x = event.values[0];
@@ -113,6 +117,10 @@ final class SensorFeed implements SensorEventListener {
                 motion.rotation(rotation);
             }
         }
+        // Rotation may have recalibrated while handling this queued event.
+        if (event.timestamp <= calibrationStamp) return;
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER
+                && event.timestamp <= accelStamp) return;
         count++;
         lastEvent = now;
         boolean poseChanged = false;
