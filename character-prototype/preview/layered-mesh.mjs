@@ -25,3 +25,15 @@ export function subtractPolygon(mesh,outline){
 }
 export function makeLayeredCharacterMesh(edge=27,paperOutline=subject.paper,additionalPaperOutlines=[]){const [w,h]=subject.canvas;let mesh=subtractPolygon(makeMesh([[0,0],[w,0],[w,h],[0,h]],[],edge),paperOutline);for(const outline of additionalPaperOutlines)mesh=subtractPolygon(mesh,outline);return mesh;}
 export const layeredMeshVersion=2;
+
+// Research path: paper touches the left canvas boundary, so its complement is
+// one concave polygon. Triangulate it directly instead of subtracting every
+// earcut triangle in turn and creating almost-collinear clipping fragments.
+export function makePaperNotchedCharacterMesh(outline,edge=27){
+ const [w,h]=subject.canvas,left=outline.map((p,i)=>({p,i})).filter(v=>Math.abs(v.p[0])<1e-8);
+ if(left.length!==2)throw Error('Notch requires exactly two observed left-boundary contacts');
+ const low=left.reduce((a,b)=>a.p[1]>b.p[1]?a:b),high=left.find(v=>v!==low),path=[];
+ let i=low.i;for(let n=0;n<=outline.length;n++){path.push(outline[i]);if(i===high.i)break;i=(i+outline.length-1)%outline.length;}
+ if(path.length!==outline.length)throw Error('Paper boundary must have one left edge and one interior path');
+ return makeMesh([[0,0],[w,0],[w,h],[0,h],...path],[],edge);
+}

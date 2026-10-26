@@ -1,0 +1,128 @@
+{
+  "archiveLibraryId": "libfile_87b01f83278c8191a58ee9ac01bf06d4",
+  "sourceHashesVerified": true,
+  "derivedFromOverview": false,
+  "rows": [
+    {
+      "source": "\u5de5\u4e1a\u8f66\u95f4\u91cc\u7684\u4e13\u6ce8\u4fa7\u5f71.png",
+      "sourceSha256": "5baff644ac4e5196168c2bbb2d4d3812764bc0db3cfd24bebd52ecd8c9a8077c",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "opposite-facing profile",
+      "componentDecision": "shoulder/back reference only; arm reaches forward; no whole-image mirror registration",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    },
+    {
+      "source": "\u9633\u5149\u4e0b\u7684\u6e7f\u8863\u5de5\u574a\u84dd\u56fe.png",
+      "sourceSha256": "e8d6510203e63c94c4a6940f028a15597a81dd6c865432cf15bc91e9bec9a871",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "rear three-quarter",
+      "componentDecision": "clear nape/scapula/back; shoulder pitch and supported arm differ; requires local registration",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    },
+    {
+      "source": "\u9633\u5149\u4e0b\u7684\u5de5\u4e1a\u8f66\u95f4\u8096\u50cf.png",
+      "sourceSha256": "c5fd811ba75236e10246c7cd02ddecd453e056e30f0c9affd3292d4070b72bc6",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "front leaning toward camera",
+      "componentDecision": "face raised; both arms support table; no direct rear material",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    },
+    {
+      "source": "\u9633\u5149\u4e0b\u7684\u8f66\u95f4\u84dd\u56fe\u5c11\u5973.png",
+      "sourceSha256": "7b8a75b5a9550f0b773382238b54438feb04e458e62a33452451a5973b3f358e",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "main same-composition family",
+      "componentDecision": "same composition as current main after resampling; no new angle",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    },
+    {
+      "source": "\u5de5\u4e1a\u8f66\u95f4\u91cc\u7684\u84dd\u56fe\u4e13\u6ce8\u8005.png",
+      "sourceSha256": "5cc55c781dbd36100fd671c7408d61d323c35a6fce79b729da9d758baa30d252",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "opposite-facing front three-quarter",
+      "componentDecision": "old main; both arms forward; no direct current near-arm backside",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    },
+    {
+      "source": "\u6c57\u6e7f\u56fe\u7eb8\u4e0e\u5de5\u4e1a\u8f66\u95f4\u7684\u4e13\u6ce8\u65f6\u523b.png",
+      "sourceSha256": "56a79d4fa430d24396d3413c2f444e10e224d2e196fae9b87c72f9f1b5ddfeea",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "same-facing front three-quarter",
+      "componentDecision": "closest overall pose; local head/strap/waist differ; no calibrated angular increment",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    },
+    {
+      "source": "\u5de5\u4e1a\u8f66\u95f4\u91cc\u7684\u84dd\u56fe\u65f6\u5149.png",
+      "sourceSha256": "23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "same-facing side three-quarter",
+      "componentDecision": "priority shoulder/nape/back strip donor; near elbow bent forward, so whole arm cannot substitute for downward supported arm",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    },
+    {
+      "source": "\u5de5\u4e1a\u8f66\u95f4\u6696\u5149\u4e0b\u7684\u6e7f\u6da6\u8096\u50cf.png",
+      "sourceSha256": "61acbf261df619af6f091fa4b35228f5c0fa6fa7227ec57b41eee369731a75a5",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "low viewpoint front",
+      "componentDecision": "neck extended, top cropped up, abdomen exposed; no direct back region",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    },
+    {
+      "source": "\u9633\u5149\u8f66\u95f4\u4e2d\u7684\u6e7f\u53d1\u5973\u5b69.png",
+      "sourceSha256": "c1bb079e677a00e35c87a311d7a1bb27ed42a352248f7ad73346a43f3ef8eb4c",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "low viewpoint front alternative",
+      "componentDecision": "shorts differ from current trousers; exclude lower body material",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    },
+    {
+      "source": "\u9633\u5149\u4e0b\u7684\u8f66\u95f4\u7ed8\u56fe\u8005.png",
+      "sourceSha256": "64eedd7b69fd75381f46a1f2ebd72957a5eef59ad28bfa686ba2158083e57608",
+      "size": [
+        1086,
+        1448
+      ],
+      "visibleOrientation": "high viewpoint front",
+      "componentDecision": "both hands forward on paper, head down; no rear shoulder visible",
+      "angularCalibration": null,
+      "acceptedCrossViewCorrespondence": false
+    }
+  ],
+  "allCorrespondencesAccepted": false
+}

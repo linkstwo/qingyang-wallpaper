@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "sourceLibraryArchive": "libfile_87b01f83278c8191a58ee9ac01bf06d4",
+  "sourceFile": "工业车间里的蓝图时光.png",
+  "sourceSha256": "23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16",
+  "sourceSize": [
+    1086,
+    1448
+  ],
+  "cropRect": [
+    610,
+    390,
+    1050,
+    1140
+  ],
+  "output": "references/derived/side-b-shoulder-back.png",
+  "outputSha256": "75d3831e06d808247e386b8dfbdec5dcad190225c66c51bb47bbab8be5a56e56",
+  "outputSize": [
+    440,
+    750
+  ],
+  "resampled": false,
+  "mirrored": false,
+  "rgbExact": true,
+  "confidence": 0,
+  "use": "Same-facing shoulder/nape/torso authoring candidate; near arm bends forward and is not the current supported arm backside.",
+  "continuousViewAccepted": false
+}

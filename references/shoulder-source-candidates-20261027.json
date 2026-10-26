@@ -1,0 +1,58 @@
+{
+  "main": {
+    "path": "references/originals/main-reading-v2.png",
+    "points": {
+      "frameRightStrapAtShoulder": [
+        905,
+        431
+      ],
+      "frameRightNeckBase": [
+        865,
+        392
+      ],
+      "frameRightEarVisibleCenter": [
+        703,
+        255
+      ],
+      "upperShoulderSkinCandidate": [
+        1005,
+        463
+      ]
+    },
+    "size": [
+      1152,
+      1536
+    ],
+    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+    "observationErrorPixels": 30,
+    "crossImageCorrespondenceAccepted": false
+  },
+  "sideB": {
+    "path": "\u5de5\u4e1a\u8f66\u95f4\u91cc\u7684\u84dd\u56fe\u65f6\u5149.png (in source archive)",
+    "points": {
+      "frameRightStrapAtShoulder": [
+        791,
+        418
+      ],
+      "frameRightNeckBase": [
+        747,
+        390
+      ],
+      "frameRightEarVisibleCenter": [
+        575,
+        250
+      ],
+      "upperShoulderSkinCandidate": [
+        835,
+        468
+      ]
+    },
+    "size": [
+      1086,
+      1448
+    ],
+    "sha256": "23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16",
+    "observationErrorPixels": 30,
+    "crossImageCorrespondenceAccepted": false
+  }
+}

@@ -1,6 +1,22 @@
 {
   "recoveredPaperPixels": [
     [
+      100,
+      798
+    ],
+    [
+      134,
+      823
+    ],
+    [
+      179,
+      858
+    ],
+    [
+      224,
+      891
+    ],
+    [
       2,
       880
     ],
@@ -25,18 +41,18 @@
   "rows": [
     {
       "forearmVolume": false,
-      "bodyVertices": 68850,
-      "paperVertices": 4239,
-      "sourceAreaError": -0.001443964894860983,
-      "maxNeutralProjectionError": 2.2737367544323206e-13,
+      "bodyVertices": 68622,
+      "paperVertices": 4275,
+      "sourceAreaError": -0.0026776627637445927,
+      "maxNeutralProjectionError": 2.3437142008433856e-13,
       "paperMotion": 0
     },
     {
       "forearmVolume": true,
-      "bodyVertices": 113487,
-      "paperVertices": 4239,
-      "sourceAreaError": -0.0016422627959400415,
-      "maxNeutralProjectionError": 2.2737367544323206e-13,
+      "bodyVertices": 111429,
+      "paperVertices": 4275,
+      "sourceAreaError": -0.0029540795367211103,
+      "maxNeutralProjectionError": 2.3437142008433856e-13,
       "paperMotion": 0
     }
   ],

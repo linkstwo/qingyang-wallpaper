@@ -1,9 +1,9 @@
 // Observed visible paper silhouette in the current reading photo. Research only.
 // This separates source materials; it does not reconstruct the body behind paper.
 export const paperSourcePartition={
- version:1,source:'references/originals/main-reading-v2.png',size:[1152,1536],
+ version:2,source:'references/originals/main-reading-v2.png',size:[1152,1536],
  sourceSha256:'cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411',
- outline:[[44,763],[299,958],[335,1005],[432,1030],[451,1078],[480,1137],[508,1195],[535,1233],[565,1260],[463,1251],[420,1231],[346,1199],[279,1167],[255,1157],[192,1168],[136,1168],[57,1158],[48,1115],[40,1070],[35,1035],[20,988],[0,951],[0,846],[23,803]],
+ outline:[[49,755],[299,945],[335,1005],[432,1030],[451,1078],[480,1137],[508,1195],[535,1233],[565,1260],[463,1251],[420,1231],[346,1199],[279,1167],[255,1157],[192,1168],[136,1168],[57,1158],[48,1115],[40,1070],[35,1035],[20,988],[0,951],[0,846],[23,803]],
  inferredSegments:[{from:1,to:3,reason:'Paper upper edge partly occluded by holding fingers; hand remains at the supported plane, not an independently observed hidden paper edge.'}],
  limitations:['Outline manually observed with approximate pixel precision.','Paper folds are not reconstructed; the supported plane remains inferred.','Source original, production mask, paper polygon and Android assets are unchanged.']
 };

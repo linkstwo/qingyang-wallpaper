@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0120",
+  "fence": 11,
+  "baseHead": "17b7e3451a667b82859366555d8d5d123e005c09",
+  "createdAt": "2026-10-26T17:53:54.989235+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/layered-mesh.mjs",
+      "bytes": 3010,
+      "sha256": "5248aa3763d62a61aa8b28a24d5f310ce4296018e460d5d4b928a7f9fe89ddb1"
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 5816,
+      "sha256": "51920077acebb0248e5345ca4499c5148a0f64d0270b64665cd6dfd3693bf843"
+    },
+    {
+      "path": "character-prototype/preview/observed-source-ray.mjs",
+      "bytes": 1452,
+      "sha256": "1ef95758ab43d622c63116164061cb4d6731cea5d1e36ebc6b0728b18fc0e598"
+    },
+    {
+      "path": "character-prototype/preview/paper-source-partition.mjs",
+      "bytes": 3181,
+      "sha256": "61326c48e6e54fa1352c573428ac23eb0d93b8bd60906d39e0f99d017eca8054"
+    },
+    {
+      "path": "character-prototype/preview/parts-fit.html",
+      "bytes": 4534,
+      "sha256": "a6ec41225afd75ba0019c87312f481438ffbef488c8b9d655fe263c2a2ea471b"
+    },
+    {
+      "path": "character-prototype/preview/parts-fit.mjs",
+      "bytes": 7982,
+      "sha256": "95ee5906ef4b68b34f50ed6b94a701a843841b4918f24427d1a725c1226df206"
+    },
+    {
+      "path": "character-prototype/preview/parts-sources.mjs",
+      "bytes": 697,
+      "sha256": "dea22d673b4b32d336066be165f21fae2d7b95966c31bddac2ef28051430df76"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36803,
+      "sha256": "19f026ab630932220f4c65af6a2391ded2adb1a05e9362a8075e9caff67477f6"
+    },
+    {
+      "path": "docs/REMAINING-TASKS-20261026.json",
+      "bytes": 17887,
+      "sha256": "8f9c540c8d3e94457d0babb790467e87689ca622d8ad5fea704485d7101d6b0d"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE11.md",
+      "bytes": 3679,
+      "sha256": "cceb285e6021d26f018dea931db92ad952f432ca6a858c7cb702cece5132e4c3"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 7874,
+      "sha256": "50e99f31548e9d6ae0b2bcc4d25d698af97746ef89689bc3ffd9e352101fb599"
+    },
+    {
+      "path": "docs/T01-COMPONENT-SOURCES-20261027.md",
+      "bytes": 2611,
+      "sha256": "bfda7eebb3f08ba8d15d353c27c469bcf97a36cf366c4e932f1d6f25a5cf9226"
+    },
+    {
+      "path": "docs/T03-PAPER-OWNERSHIP-20261027.md",
+      "bytes": 4529,
+      "sha256": "d97429e1f00452ccec48e58e5aae33ed0da1d199a272db7ce6742de9ff6a9e96"
+    },
+    {
+      "path": "references/component-source-review-20261027.json",
+      "bytes": 5086,
+      "sha256": "58a4c214887f7ea5f901a5899ee3cd2ea7ae5d560985a7dbbe74e050e1d6a482"
+    },
+    {
+      "path": "references/derived/side-b-shoulder-back.json",
+      "bytes": 766,
+      "sha256": "c4dad6920683f72be21349f5e0256101e3ebc42d82a069e9206655f9c2d905e4"
+    },
+    {
+      "path": "references/derived/side-b-shoulder-back.png",
+      "bytes": 469438,
+      "sha256": "75d3831e06d808247e386b8dfbdec5dcad190225c66c51bb47bbab8be5a56e56"
+    },
+    {
+      "path": "references/shoulder-source-candidates-20261027.json",
+      "bytes": 1209,
+      "sha256": "a5c0247abeeab96b25a702353af30eadc5b9a684badbf0687da3ecc5aff52ea7"
+    },
+    {
+      "path": "tests/observed-source-ray-regression.mjs",
+      "bytes": 1348,
+      "sha256": "49806c9cfe5adf84195db2773a0e60f58b1746aee918b2dbf6951eb03077084f"
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "bytes": 2841,
+      "sha256": "02eec136210d1bcea4c35048703a06dfdefb15817e73b5379e80ed838f56009a"
+    },
+    {
+      "path": "tests/paper-contact-regression.mjs",
+      "bytes": 2988,
+      "sha256": "875b051b4bda76db933326228ab5343c4a2af5a63804334d24829124f4cc09de"
+    },
+    {
+      "path": "tests/paper-source-partition-regression.mjs",
+      "bytes": 2863,
+      "sha256": "8cd1748a0f7bed7efa9966890e8270472571e6867df8ff60d051dba9782a4805"
+    },
+    {
+      "path": "validation/paper-contact-pose-scan.json",
+      "bytes": 24386,
+      "sha256": "8b2459ad236a88ee411ab27047a0860a75f4636d7caaaad3085639a390520d37"
+    },
+    {
+      "path": "validation/paper-contact-regression.json",
+      "bytes": 1122,
+      "sha256": "6e235f11722ae214012cd9b36e60cf4c783b794bc81d71ea1f2267cf6a70ed93"
+    },
+    {
+      "path": "validation/paper-contact-visible-pose-scan.json",
+      "bytes": 24492,
+      "sha256": "09e28bdc7b179b3de8532dab1c7d4b2f16ec7d8458758996e5b8c3823591d100"
+    },
+    {
+      "path": "validation/paper-residual-source-rays.json",
+      "bytes": 2589,
+      "sha256": "a9d8c922859c382d217ec3f9b881db3b7649392016da090b9fc84bc8dbeb6e4c"
+    },
+    {
+      "path": "validation/paper-upper-edge-comparison.jpg",
+      "bytes": 88288,
+      "sha256": "4896e69343bf6a937c1e095814e322a9c47cc42bdaf9c6ba64f400967d78369a"
+    },
+    {
+      "path": "validation/s2-paper-source-partition.json",
+      "bytes": 951,
+      "sha256": "2dd2480aa0038ff664782d055c31e360db40cdf794bfe8dfb619ac2ac7d301d1"
+    },
+    {
+      "path": "validation/t01-shoulder-candidates.jpg",
+      "bytes": 79979,
+      "sha256": "8c14461cd6d1195af0e66be7de250b99f85f7897e9172e48213eb687e2805acc"
+    },
+    {
+      "path": "validation/t01-ten-source-review.jpg",
+      "bytes": 179597,
+      "sha256": "954e4a960142842926d5b7992361ac9d58fc1cef69aabf292e8805164d4b0f8b"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/paper-contact-regression.mjs (before final notch WIP)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/observed-source-ray-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/parts-warp-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "PAPER_MATTE_BYTES=<raw> node tests/paper-contact-pose-scan.mjs (pre-notch)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "Final notched complement regression/GLES calls: tool returned aborted by user",
+      "status": "not_run"
+    }
+  ],
+  "next": "Read RESUME-20261027-FENCE11.md; rerun interrupted notched paper complement validations; existing visible pose scan44/45 failures.",
+  "phoneTested": false,
+  "sourceDigest": "c909005e7ac16209b6820bbeeede985edbd6ea30b41fd2185ee9b82b6c9e59ba"
+}

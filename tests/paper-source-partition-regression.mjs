@@ -10,7 +10,7 @@ const source=fs.readFileSync(new URL('../'+chart.source,import.meta.url));
 const {createHash}=await import('node:crypto');assert.equal(createHash('sha256').update(source).digest('hex'),chart.sourceSha256);
 // These are independently selected source pixels on the white paper rim which
 // the old polygon assigned to the body. The old polygon is a failing control.
-const recovered=[[2,880],[4,910],[12,840],[30,800],[410,1045]];
+const recovered=[[100,798],[134,823],[179,858],[224,891],[2,880],[4,910],[12,840],[30,800],[410,1045]];
 for(const p of recovered){assert(inside(...p,chart.outline),`new partition contains observed paper ${p}`);assert(!inside(...p,subject.paper),`old partition reproduces missed paper ${p}`);}
 const area=s=>{let a=0;for(let i=0;i<s.uv.length;i+=6){const p=s.uv.slice(i,i+6);a+=Math.abs((p[2]-p[0])*(p[5]-p[1])-(p[3]-p[1])*(p[4]-p[0]))*1152*1536/2;}return a;};
 const rows=[];for(const forearmVolume of [false,true]){
