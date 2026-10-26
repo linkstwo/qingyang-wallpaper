@@ -12,7 +12,10 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": [
+        "references/originals/side-reference.png"
+      ]
     },
     {
       "name": "阳光下的湿衣工坊蓝图.png",
@@ -22,7 +25,10 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": [
+        "references/originals/back-reference.png"
+      ]
     },
     {
       "name": "阳光下的工业车间肖像.png",
@@ -32,7 +38,8 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": []
     },
     {
       "name": "阳光下的车间蓝图少女.png",
@@ -42,7 +49,10 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": [
+        "references/originals/front-variant.png"
+      ]
     },
     {
       "name": "工业车间里的蓝图专注者.png",
@@ -52,7 +62,10 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": [
+        "references/originals/main-front-three-quarter.png"
+      ]
     },
     {
       "name": "汗湿图纸与工业车间的专注时刻.png",
@@ -62,7 +75,8 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": []
     },
     {
       "name": "工业车间里的蓝图时光.png",
@@ -72,7 +86,8 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": []
     },
     {
       "name": "工业车间暖光下的湿润肖像.png",
@@ -82,7 +97,8 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": []
     },
     {
       "name": "阳光车间中的湿发女孩.png",
@@ -92,7 +108,8 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": []
     },
     {
       "name": "阳光下的车间绘图者.png",
@@ -102,8 +119,13 @@
         1086,
         1448
       ],
-      "pixelReviewComplete": false
+      "pixelReviewComplete": true,
+      "exactPixelEquivalentPaths": []
     }
   ],
-  "registeredMultiview": false
+  "registeredMultiview": false,
+  "pixelReviewComplete": true,
+  "exactPixelEquivalentsInGit": 4,
+  "additionalCompositions": 6,
+  "reviewNote": "All10 whole images reviewed. Six extra compositions vary head, arm, body orientation or clothing; archive count is not calibrated viewpoint count."
 }

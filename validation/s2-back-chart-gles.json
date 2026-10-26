@@ -1,0 +1,26 @@
+{
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "source": "references/originals/back-reference.png",
+  "yawRadians": [
+    0,
+    0.8,
+    1.6,
+    2.4,
+    3.141592653589793
+  ],
+  "visibleCandidateSourcePixels": [
+    0,
+    5,
+    6725,
+    36648,
+    48205
+  ],
+  "rearPatchHiddenAtNeutral": true,
+  "depthTested": true,
+  "wholeImageCrossfade": false,
+  "uvAttachedToSurface": true,
+  "cameraCalibrated": false,
+  "productionConfidence": 0,
+  "debugOnly": true,
+  "phoneTested": false
+}

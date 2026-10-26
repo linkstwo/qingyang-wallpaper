@@ -1,0 +1,29 @@
+{
+  "sameCompositionAccepted2d": true,
+  "crossPoseRejected": [
+    {
+      "status": "rejected",
+      "reference": "back-reference.png",
+      "matches": 0,
+      "reason": "Fewer than30 same-composition subject patch matches. This does not establish a cross-view mapping.",
+      "hiddenTextureReady": false
+    },
+    {
+      "status": "rejected",
+      "reference": "side-reference.png",
+      "matches": 0,
+      "reason": "Fewer than30 same-composition subject patch matches. This does not establish a cross-view mapping.",
+      "hiddenTextureReady": false
+    },
+    {
+      "status": "rejected",
+      "reference": "main-front-three-quarter.png",
+      "matches": 1,
+      "reason": "Fewer than30 same-composition subject patch matches. This does not establish a cross-view mapping.",
+      "hiddenTextureReady": false
+    }
+  ],
+  "originalHashesUnchanged": true,
+  "matchingPrecisionPixels": 1,
+  "hiddenTextureReady": false
+}

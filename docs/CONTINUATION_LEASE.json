@@ -4,17 +4,17 @@
   "fence": 3,
   "status": "running",
   "startedAt": "2026-10-26T03:29:23.035343Z",
-  "heartbeatAt": "2026-10-26T03:39:52.037373Z",
-  "expiresAt": "2026-10-26T03:54:52.037373Z",
+  "heartbeatAt": "2026-10-26T03:45:57.060475Z",
+  "expiresAt": "2026-10-26T04:00:57.060475Z",
   "baseHead": "e24ed3cb95405cb2f76e84a2685c6c661d352287",
   "checkpoint": {
-    "baseHead": "9f6363a4a570da686ff53982c26922678d072cc1",
-    "createdAt": "2026-10-26T03:36:46.408337+00:00",
-    "sourceDigest": "5e9d1f196d633cceaeed049f31e7a883ead66a40ed71bca39f694b8c2eea37be",
+    "baseHead": "c68c2e0e7b5c29c1052e83669275e773fe8612ee",
+    "createdAt": "2026-10-26T03:45:57.060475+00:00",
+    "sourceDigest": "1d15bf508a4dfb984ed8348a0a8d4a15ba1ff536c694f6df8e283cbba9f99407",
     "stage": "S2",
     "next": [
-      "Review and register observed shoulder/back source regions with explicit per-region pose limits; reject incompatible arm/head/garment mappings.",
-      "Validate correspondence and source visibility before any hidden-surface texture confidence or production camera expansion."
+      "Scan continuous supported poses for nonlocal triangle intersections, not just area/orientation; preserve observed wrist support.",
+      "Calibrate/refine torso-back chart and shoulder/neck seams before promoting any patch to production confidence; current prototype visibly stretches."
     ]
   }
 }

@@ -27,3 +27,5 @@
 首版源码在scripts/qingyang-continuation。继续开发用qingyang-continue，只查进度用qingyang-status。先执行占用有效期/CAS协议，避免旧in_progress记录永久阻止接续。插件只复用现有GitHub与定时能力；安装不等于后台守护进程，不证明任务仍运行。原有限排期不自动延长。测试与安装记录见PLUGIN-CONTINUATION-0.1.0.md。
 
 最新S2源码准备见[S2连续结构](S2-CONNECTED-STRUCTURE.md)：单体推断结构已闭合导出；所有新曲面纹理置信度0，0.5.9 APK未包含这些后续准备。支撑骨架运动与导出v3/GLES蒙皮已验证，6幅实际姿态图见validation/s2-posed-gles.jpg；接着做来源区域注册和可见性约束。
+
+最近原图复核/背部局部UV显露试验见[S2材料试验](S2-MATERIAL-REGISTRATION.md)。真实背图已在调试表面参与绘制，但明显拉伸、confidence0，禁止当作正式肩背完成；下一步连续姿态非局部自交与局部标定。

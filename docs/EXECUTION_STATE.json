@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T03:36:06.695314+00:00",
+  "updatedAt": "2026-10-26T03:45:55.789690+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -57,11 +57,12 @@
     "Saved private continuation plugin0.1.0 to account, re-read both skills and helper byte-for-byte. Independent fresh-agent fixture completed13 zoom cases, pushed claim/checkpoint/release to isolated bare origin and verified restored source evidence. No real scheduler wake tested; original time window unchanged.",
     "First real S2 continuation under plugin fence2: built one welded inferred torso/arm surface from smooth-union field,19226 vertices/38448 faces,one component,zero boundary edges,Euler2;192250 assertions passed. Exportv2 includes six-bone hierarchy and normalised weights. New unregistered surfaces have confidence0; published0.5.9 unchanged.",
     "S2 supported skeletal motion: separate torso/camera/spring inputs, six-bone skin, observed far wrist fixed to paper, unobserved cropped near wrist free.27 pose combinations/1038096 triangle cases passed; min area ratio0.709, normal alignment0.9566, wrist/pinned-surface error0, bone length error<3e-13. Neutral mesh exact; production camera and spring solver unchanged.",
-    "S2 export v3 includes world-space six-bone matrix convention and explicit support-pin buffer. Actual GLES2 consumed exported f32 skin/support/position bytes:27 poses,1557306 component probes,max world error0.000350 source pixels. Six posed depth/cull views rendered using recomputed geometric normals;192250 topology checks and1038096 posed triangles still pass. No hidden texture claim or APK version change."
+    "S2 export v3 includes world-space six-bone matrix convention and explicit support-pin buffer. Actual GLES2 consumed exported f32 skin/support/position bytes:27 poses,1557306 component probes,max world error0.000350 source pixels. Six posed depth/cull views rendered using recomputed geometric normals;192250 topology checks and1038096 posed triangles still pass. No hidden texture claim or APK version change.",
+    "Reviewed all10 archived whole images and verified bytes/hashes:4 exact-pixel equivalents to existing Git references,6 additional compositions with pose/clothing differences. Registered reading-v2 to front-variant in2D with53 integer-grid subject patch matches(35 fit/18 heldout); different back/side/front-three-quarter poses rejected by this2D gate. Production RGB unchanged. Provisional back chart covers3335 vertices/6445 triangles; real GLES depth/cull reveal uses back-source pixels on rear surface across five camera angles. Mapping remains uncalibrated/confidence0 with visible stretch, so not production-ready or S3-complete."
   ],
   "next": [
-    "Review and register observed shoulder/back source regions with explicit per-region pose limits; reject incompatible arm/head/garment mappings.",
-    "Validate correspondence and source visibility before any hidden-surface texture confidence or production camera expansion."
+    "Scan continuous supported poses for nonlocal triangle intersections, not just area/orientation; preserve observed wrist support.",
+    "Calibrate/refine torso-back chart and shoulder/neck seams before promoting any patch to production confidence; current prototype visibly stretches."
   ],
   "stages": {
     "S1": "in_progress",
@@ -136,7 +137,12 @@
     "validation/s2-connected-proxy.json",
     "validation/s2-structural-pose.json",
     "validation/s2-posed-gles.json",
-    "validation/s2-posed-gles.jpg"
+    "validation/s2-posed-gles.jpg",
+    "validation/s1-reading-source-registration.json",
+    "validation/s1-source-registration-negatives.json",
+    "validation/s2-back-chart.json",
+    "validation/s2-back-chart-gles.json",
+    "validation/s2-back-chart-gles.jpg"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -152,11 +158,16 @@
     "candidateRecords": 13,
     "overviewLocated": true,
     "independentAnglesConfirmed": false,
-    "pixelReviewAndImportComplete": false,
+    "pixelReviewAndImportComplete": true,
     "archiveRetrieved": true,
     "archiveLibraryId": "libfile_87b01f83278c8191a58ee9ac01bf06d4",
     "archiveManifest": "references/multiview-archive-manifest.json",
-    "archiveFileCount": 10
+    "archiveFileCount": 10,
+    "reviewedWholeImages": 10,
+    "exactExistingCompositions": 4,
+    "additionalCompositions": 6,
+    "reviewNote": "Four archived images exactly match existing Git originals; six additional compositions differ in pose/clothing. Shared reference registration does not prove calibrated multiview.",
+    "bytesLocation": "10-image archive remains in Library;4 exact equivalents already in Git; no duplicate binaries imported."
   },
   "currentCandidateVersion": "0.5.9",
   "currentCandidateVersionCode": 18,
@@ -280,7 +291,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T03:36:06.695314+00:00",
+    "lastCheckpointAt": "2026-10-26T03:45:55.789690+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,

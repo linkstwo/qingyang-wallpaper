@@ -1,0 +1,629 @@
+{
+  "schemaVersion": 1,
+  "status": "accepted_2d_only",
+  "kind": "same_composition_2d",
+  "current": {
+    "path": "references/originals/main-reading-v2.png",
+    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+    "size": [
+      1152,
+      1536
+    ]
+  },
+  "reference": {
+    "path": "references/originals/front-variant.png",
+    "sha256": "5c767d2a58335d2aef978f6ad35a7e556f6da3c96d1de2312cf863dd4f4967bc",
+    "size": [
+      1086,
+      1448
+    ]
+  },
+  "sourcePixelFromCurrentPixelAffine": [
+    [
+      0.942708333333333,
+      1.6341655998719886e-16,
+      -2.7007952506402993e-13
+    ],
+    [
+      -7.619054330602585e-16,
+      0.9427083333333338,
+      1.1043195988678225e-15
+    ]
+  ],
+  "matches": [
+    {
+      "current": [
+        350,
+        100
+      ],
+      "referenceScaled": [
+        350,
+        100
+      ],
+      "correlation": 0.9971698237279469
+    },
+    {
+      "current": [
+        425,
+        100
+      ],
+      "referenceScaled": [
+        425,
+        100
+      ],
+      "correlation": 0.9930206813045644
+    },
+    {
+      "current": [
+        350,
+        190
+      ],
+      "referenceScaled": [
+        350,
+        190
+      ],
+      "correlation": 0.99608602686019
+    },
+    {
+      "current": [
+        725,
+        190
+      ],
+      "referenceScaled": [
+        725,
+        190
+      ],
+      "correlation": 0.9861771052399848
+    },
+    {
+      "current": [
+        800,
+        190
+      ],
+      "referenceScaled": [
+        800,
+        190
+      ],
+      "correlation": 0.9928810600387443
+    },
+    {
+      "current": [
+        350,
+        280
+      ],
+      "referenceScaled": [
+        350,
+        280
+      ],
+      "correlation": 0.9952821588120793
+    },
+    {
+      "current": [
+        425,
+        280
+      ],
+      "referenceScaled": [
+        425,
+        280
+      ],
+      "correlation": 0.9879460224744848
+    },
+    {
+      "current": [
+        500,
+        280
+      ],
+      "referenceScaled": [
+        500,
+        280
+      ],
+      "correlation": 0.9874650636866477
+    },
+    {
+      "current": [
+        575,
+        280
+      ],
+      "referenceScaled": [
+        575,
+        280
+      ],
+      "correlation": 0.9824221600975555
+    },
+    {
+      "current": [
+        650,
+        280
+      ],
+      "referenceScaled": [
+        650,
+        280
+      ],
+      "correlation": 0.9906912445136444
+    },
+    {
+      "current": [
+        725,
+        280
+      ],
+      "referenceScaled": [
+        725,
+        280
+      ],
+      "correlation": 0.9971143839012648
+    },
+    {
+      "current": [
+        650,
+        370
+      ],
+      "referenceScaled": [
+        650,
+        370
+      ],
+      "correlation": 0.9900335667643935
+    },
+    {
+      "current": [
+        800,
+        370
+      ],
+      "referenceScaled": [
+        800,
+        370
+      ],
+      "correlation": 0.9849437386868728
+    },
+    {
+      "current": [
+        650,
+        460
+      ],
+      "referenceScaled": [
+        650,
+        460
+      ],
+      "correlation": 0.9970620619436673
+    },
+    {
+      "current": [
+        875,
+        460
+      ],
+      "referenceScaled": [
+        875,
+        460
+      ],
+      "correlation": 0.9695391795709899
+    },
+    {
+      "current": [
+        950,
+        460
+      ],
+      "referenceScaled": [
+        950,
+        460
+      ],
+      "correlation": 0.9980012729094762
+    },
+    {
+      "current": [
+        650,
+        550
+      ],
+      "referenceScaled": [
+        650,
+        550
+      ],
+      "correlation": 0.9963251218708845
+    },
+    {
+      "current": [
+        725,
+        550
+      ],
+      "referenceScaled": [
+        725,
+        550
+      ],
+      "correlation": 0.9957835382097762
+    },
+    {
+      "current": [
+        875,
+        550
+      ],
+      "referenceScaled": [
+        875,
+        550
+      ],
+      "correlation": 0.9972326157565968
+    },
+    {
+      "current": [
+        575,
+        640
+      ],
+      "referenceScaled": [
+        575,
+        640
+      ],
+      "correlation": 0.9979615126110166
+    },
+    {
+      "current": [
+        650,
+        640
+      ],
+      "referenceScaled": [
+        650,
+        640
+      ],
+      "correlation": 0.9900720622771741
+    },
+    {
+      "current": [
+        725,
+        640
+      ],
+      "referenceScaled": [
+        725,
+        640
+      ],
+      "correlation": 0.9935083291482985
+    },
+    {
+      "current": [
+        800,
+        640
+      ],
+      "referenceScaled": [
+        800,
+        640
+      ],
+      "correlation": 0.9891804179308393
+    },
+    {
+      "current": [
+        575,
+        730
+      ],
+      "referenceScaled": [
+        575,
+        730
+      ],
+      "correlation": 0.9965277596014112
+    },
+    {
+      "current": [
+        725,
+        730
+      ],
+      "referenceScaled": [
+        725,
+        730
+      ],
+      "correlation": 0.9942956126574997
+    },
+    {
+      "current": [
+        950,
+        730
+      ],
+      "referenceScaled": [
+        950,
+        730
+      ],
+      "correlation": 0.9988928568468658
+    },
+    {
+      "current": [
+        575,
+        820
+      ],
+      "referenceScaled": [
+        575,
+        820
+      ],
+      "correlation": 0.9839257118071209
+    },
+    {
+      "current": [
+        650,
+        820
+      ],
+      "referenceScaled": [
+        650,
+        820
+      ],
+      "correlation": 0.9957876017280142
+    },
+    {
+      "current": [
+        725,
+        820
+      ],
+      "referenceScaled": [
+        725,
+        820
+      ],
+      "correlation": 0.9846976313075955
+    },
+    {
+      "current": [
+        875,
+        820
+      ],
+      "referenceScaled": [
+        875,
+        820
+      ],
+      "correlation": 0.9811408029347812
+    },
+    {
+      "current": [
+        950,
+        820
+      ],
+      "referenceScaled": [
+        950,
+        820
+      ],
+      "correlation": 0.9966688997596522
+    },
+    {
+      "current": [
+        575,
+        910
+      ],
+      "referenceScaled": [
+        575,
+        910
+      ],
+      "correlation": 0.9855506112188112
+    },
+    {
+      "current": [
+        650,
+        910
+      ],
+      "referenceScaled": [
+        650,
+        910
+      ],
+      "correlation": 0.9883322425487217
+    },
+    {
+      "current": [
+        500,
+        1000
+      ],
+      "referenceScaled": [
+        500,
+        1000
+      ],
+      "correlation": 0.9993632180557869
+    },
+    {
+      "current": [
+        575,
+        1000
+      ],
+      "referenceScaled": [
+        575,
+        1000
+      ],
+      "correlation": 0.998141807204084
+    },
+    {
+      "current": [
+        650,
+        1000
+      ],
+      "referenceScaled": [
+        650,
+        1000
+      ],
+      "correlation": 0.998335116088942
+    },
+    {
+      "current": [
+        800,
+        1000
+      ],
+      "referenceScaled": [
+        800,
+        1000
+      ],
+      "correlation": 0.9940863595514329
+    },
+    {
+      "current": [
+        950,
+        1000
+      ],
+      "referenceScaled": [
+        950,
+        1000
+      ],
+      "correlation": 0.9931300322346566
+    },
+    {
+      "current": [
+        500,
+        1090
+      ],
+      "referenceScaled": [
+        500,
+        1090
+      ],
+      "correlation": 0.9992632967866335
+    },
+    {
+      "current": [
+        575,
+        1090
+      ],
+      "referenceScaled": [
+        575,
+        1090
+      ],
+      "correlation": 0.9992786971525058
+    },
+    {
+      "current": [
+        650,
+        1090
+      ],
+      "referenceScaled": [
+        650,
+        1090
+      ],
+      "correlation": 0.9931887367067871
+    },
+    {
+      "current": [
+        875,
+        1090
+      ],
+      "referenceScaled": [
+        875,
+        1090
+      ],
+      "correlation": 0.9990517211488872
+    },
+    {
+      "current": [
+        950,
+        1090
+      ],
+      "referenceScaled": [
+        950,
+        1090
+      ],
+      "correlation": 0.9979628938535742
+    },
+    {
+      "current": [
+        1025,
+        1090
+      ],
+      "referenceScaled": [
+        1025,
+        1090
+      ],
+      "correlation": 0.997040953019313
+    },
+    {
+      "current": [
+        650,
+        1180
+      ],
+      "referenceScaled": [
+        650,
+        1180
+      ],
+      "correlation": 0.9779873394672368
+    },
+    {
+      "current": [
+        1025,
+        1180
+      ],
+      "referenceScaled": [
+        1025,
+        1180
+      ],
+      "correlation": 0.9980988047140967
+    },
+    {
+      "current": [
+        350,
+        1270
+      ],
+      "referenceScaled": [
+        350,
+        1270
+      ],
+      "correlation": 0.9987341867168025
+    },
+    {
+      "current": [
+        425,
+        1270
+      ],
+      "referenceScaled": [
+        425,
+        1270
+      ],
+      "correlation": 0.9988902380895347
+    },
+    {
+      "current": [
+        500,
+        1270
+      ],
+      "referenceScaled": [
+        500,
+        1270
+      ],
+      "correlation": 0.9996854337843166
+    },
+    {
+      "current": [
+        650,
+        1270
+      ],
+      "referenceScaled": [
+        650,
+        1270
+      ],
+      "correlation": 0.9973684314358368
+    },
+    {
+      "current": [
+        1025,
+        1270
+      ],
+      "referenceScaled": [
+        1025,
+        1270
+      ],
+      "correlation": 0.9966193015980013
+    },
+    {
+      "current": [
+        1025,
+        1360
+      ],
+      "referenceScaled": [
+        1025,
+        1360
+      ],
+      "correlation": 0.9967457846123795
+    },
+    {
+      "current": [
+        1025,
+        1450
+      ],
+      "referenceScaled": [
+        1025,
+        1450
+      ],
+      "correlation": 0.9968880666880585
+    }
+  ],
+  "trainPoints": 35,
+  "heldOutPoints": 18,
+  "heldOutMaxErrorCurrentPixels": 8.038873388460929e-13,
+  "heldOutMeanErrorCurrentPixels": 5.369178244681253e-13,
+  "matchingResolutionPixels": 1,
+  "precisionNote": "Residual measures the integer patch grid fit, not subpixel localisation accuracy or 3D reconstruction.",
+  "rgbMeanDifferenceResized": 1.5099581494743441,
+  "crossView3dRegistered": false,
+  "hiddenTextureReady": false,
+  "productionSourceChanged": false,
+  "phoneTested": false
+}
