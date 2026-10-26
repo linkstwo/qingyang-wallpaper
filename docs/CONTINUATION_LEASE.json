@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "plugin-setup-0.1.0",
-  "fence": 1,
-  "status": "released",
-  "startedAt": "2026-10-26T02:56:09.199032+00:00",
-  "heartbeatAt": "2026-10-26T02:56:09.199032+00:00",
-  "expiresAt": "2026-10-26T02:56:09.199032+00:00",
-  "reason": "Initialise cooperation protocol; no active development claimed."
+  "owner": "manual-plugin-s2-20261026-0303",
+  "fence": 2,
+  "status": "running",
+  "startedAt": "2026-10-26T03:02:30.379715Z",
+  "heartbeatAt": "2026-10-26T03:02:30.379715Z",
+  "expiresAt": "2026-10-26T03:17:30.379715Z",
+  "baseHead": "1f816184fd64a615b7eff0eefe20a9ab3427305e"
 }
