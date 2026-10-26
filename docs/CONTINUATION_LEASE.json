@@ -10,7 +10,7 @@
   "checkpoint": {
     "baseHead": "568cf289d2bd2fe981917d23d13f323233ec414c",
     "createdAt": "2026-10-26T14:05:34.077679Z",
-    "sourceDigest": "6c4044e01056e59936304bf5e73b1f4b231883bbc8c8ea4d51c6a9163a39b1ca",
+    "sourceDigest": "4c03b7f570365b85bc6dca59f5a37e6da833b97c411c7c714e3920b786102108",
     "stage": "S2",
     "next": "Read docs/RESUME-20261026-FENCE10.md; inspect remaining paper/body source ownership before geometry edits."
   },

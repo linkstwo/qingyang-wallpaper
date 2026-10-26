@@ -8,8 +8,8 @@
   "files": [
     {
       "path": "character-prototype\\preview\\forearm-surface.mjs",
-      "bytes": 2998,
-      "sha256": "fef73c1f08bf68f9f4c097c45c463a9950553b17d4ec52451aec9be9c51f40e3"
+      "bytes": 2971,
+      "sha256": "02c29598f00a0c0aac630b154bc1589a403f801b8ec0cce95af74c28d0fcddf0"
     },
     {
       "path": "character-prototype\\preview\\layered-mesh.mjs",
@@ -18,8 +18,8 @@
     },
     {
       "path": "character-prototype\\preview\\observed-scene.mjs",
-      "bytes": 3663,
-      "sha256": "5c821ff849aa8b9df652b39f9757d7876c2af59b72dc4767f056a08716f93c9f"
+      "bytes": 3642,
+      "sha256": "64b0779feabc76bc0a69333b0195364600bbfd29a0cfb2e3d70e73ace2de3a81"
     },
     {
       "path": "character-prototype\\preview\\paper-source-partition.mjs",
@@ -28,18 +28,18 @@
     },
     {
       "path": "character-prototype\\preview\\structural-lab.html",
-      "bytes": 4597,
-      "sha256": "a7c3ceb8560e5129cfb9d35d904352cb991000ceef18e8cf56bdfed4b6453c6c"
+      "bytes": 4584,
+      "sha256": "22b6fdf25f326459f636af013d7a146765cb3bc5b3e6649870a0b378a373e47b"
     },
     {
       "path": "character-prototype\\preview\\structural-lab.mjs",
-      "bytes": 19860,
-      "sha256": "6934a1bcd0b5ed7c1f633b2ec8480c9d45968dc80a4390e73bc98ecb8974c79e"
+      "bytes": 19778,
+      "sha256": "6beedf872a153aceaf9f797359b68f66bcf9dc1f4c463687439a083ec421856d"
     },
     {
       "path": "docs\\EXECUTION_STATE.json",
-      "bytes": 36870,
-      "sha256": "17dbd414ea402d97b1e453cab7ccc5fd52b0e4d4ae0a8f15ecc4058971ffde47"
+      "bytes": 36390,
+      "sha256": "8023d2c8580e5f9b1ee4582d1cf37474af0e58e969306cb453431f2b13ea93e6"
     },
     {
       "path": "docs\\RESUME-20261026-FENCE10.md",
@@ -48,8 +48,8 @@
     },
     {
       "path": "docs\\START_IN_CLOUD.md",
-      "bytes": 7609,
-      "sha256": "4bf13e1625c433eab179b36298739fe5d92efdf695d50935601192e1a420da48"
+      "bytes": 7554,
+      "sha256": "de6f7475dc11598894c0080a7e5f7393721a46d355ec501edcd2d8406a827590"
     },
     {
       "path": "docs\\collaboration\\doubao-fence10-20261026\\README.md",
@@ -129,5 +129,6 @@
   ],
   "next": "Read docs/RESUME-20261026-FENCE10.md; inspect remaining paper/body source ownership before geometry edits.",
   "phoneTested": false,
-  "sourceDigest": "6c4044e01056e59936304bf5e73b1f4b231883bbc8c8ea4d51c6a9163a39b1ca"
+  "sourceDigest": "4c03b7f570365b85bc6dca59f5a37e6da833b97c411c7c714e3920b786102108",
+  "textEncoding": "UTF-8 without BOM, normalized LF as uploaded to GitHub; binary bytes unchanged."
 }
