@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T13:23:36.771773Z",
+  "updatedAt": "2026-10-26T13:28:41.883107Z",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -74,7 +74,8 @@
     "Added stable-workbench link to parts-fit; actual browser round trip passed. Negative gain import showed fold rejection restores slider and exported JSON to prior valid gain0.",
     "Delegated asset inventory, attribute-slot repair, static checks and next low-complexity task list to Doubao; new shoulder landmark candidate task2003 dispatched, not yet accepted.",
     "Doubao2007 landmark draft rejected: old main image and unsupported cross-image correspondence; task2008 requests exact source identity and visible-only observations. No candidate landmark entered model.",
-    "Status audit: verified prior GitHub checkpoint2573551, regrouped remaining acceptance into20 packages and archived five Doubao text/data outputs with exact byte hashes; newer2009/2012 points received but not accepted. No app changes."
+    "Status audit: verified prior GitHub checkpoint2573551, regrouped remaining acceptance into20 packages and archived five Doubao text/data outputs with exact byte hashes; newer2009/2012 points received but not accepted. No app changes.",
+    "Applied user supplemental roughly50/50 actual-workload policy: delegate ordinary/medium reviews and scoped medium implementations; Codex samples ordinary evidence and owns core choices/critical acceptance. Per-task delegable scope recorded for all20 packages."
   ],
   "next": [
     "T01: review Doubao2009/2012 corrected observations against exact source pixels; archival does not accept their coordinates.",
@@ -457,5 +458,14 @@
       "T04"
     ],
     "countIsNotEffortPercentage": true
+  },
+  "collaborationPolicy": {
+    "targetByActualWorkload": {
+      "codex": 0.5,
+      "doubao": 0.5
+    },
+    "basis": "User supplemental instruction, relayed from side conversation during this audit",
+    "rule": "Aim for roughly equal substantive workload, not equal task count; actual shares not measured yet. Delegate ordinary and medium reviews and scoped medium implementation.",
+    "review": "Doubao owns ordinary reviews to explicit criteria; Codex samples necessary evidence rather than repeating all work. Codex owns core technical choices and critical geometry/visual/phone-result acceptance."
   }
 }
