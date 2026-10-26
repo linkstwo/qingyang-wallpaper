@@ -5,14 +5,15 @@ import numpy as np
 from PIL import Image,ImageDraw
 import render_gles as g
 subprocess.run(['node','tests/component-deform-regression.mjs'],cwd=g.ROOT,check=True)
-mesh=json.loads(Path('/tmp/f14-component-warp.json').read_text());parts=json.loads((g.ROOT/'references/derived/side-b-cutout-manifest.json').read_text())['components']
+near=os.environ.get('COMPONENT_DONOR')=='nearDown';suffix='-near-down' if near else '';prefix='near-down' if near else 'side-b'
+mesh=json.loads(Path('/tmp/f14-component-warp'+suffix+'.json').read_text());parts=json.loads((g.ROOT/('references/derived/'+prefix+'-cutout-manifest.json')).read_text())['components']
 p=g.createProgram()
 shaders=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {componentVertexShader,componentFragmentShader} from './character-prototype/preview/component-raster.mjs';console.log(JSON.stringify([componentVertexShader,componentFragmentShader]));"],cwd=g.ROOT,text=True))
 vs,frag=[s.encode() for s in shaders]
 for src,kind in [(vs,0x8B31),(frag,0x8B30)]:
  s=g.createShader(kind);raw=C.c_char_p(src);g.shaderSource(s,1,C.byref(raw),None);g.compileShader(s);ok=g.I();g.getShader(s,0x8B81,C.byref(ok));assert ok.value;g.attach(p,s)
 g.link(p);ok=g.I();g.getProgram(p,0x8B82,C.byref(ok));assert ok.value;g.use(p)
-g.gl('glUniform4f',None,g.I,g.F,g.F,g.F,g.F)(g.getUniform(p,b'u_crop'),640,295,330,360);g.viewport(0,0,540,588);g.disable(0x0B71);g.enable(0x0BE2);g.blend(1,0x0303);g.activeTexture(0x84C0);g.uniform1i(g.getUniform(p,b'u_image'),0)
+g.gl('glUniform4f',None,g.I,g.F,g.F,g.F,g.F)(g.getUniform(p,b'u_crop'),*([790,380,240,660] if near else [640,295,330,360]));g.viewport(0,0,540,588);g.disable(0x0B71);g.enable(0x0BE2);g.blend(1,0x0303);g.activeTexture(0x84C0);g.uniform1i(g.getUniform(p,b'u_image'),0)
 textures=[]
 for part in parts:
  t=g.U();g.genTexture(1,C.byref(t));g.bindTexture(0x0DE1,t)
@@ -34,5 +35,5 @@ for field in ['sourcePositions','targetSourcePositions']:
  g.finish();assert g.error()==0;raw=(C.c_ubyte*(540*588*4))();g.readPixels(0,0,540,588,0x1908,0x1401,raw);frames.append(Image.frombytes('RGBA',(540,588),bytes(raw)).transpose(Image.Transpose.FLIP_TOP_BOTTOM).convert('RGB'))
 out=Image.new('RGB',(1080,618),(18,24,32));d=ImageDraw.Draw(out)
 for i,(label,im) in enumerate(zip(['Same donor shared rest topology','Shared MLS gain55%, UV unchanged'],frames)):out.paste(im,(i*540,30));d.text((i*540+10,8),label,fill='white')
-out.save(g.ROOT/'validation/f14-component-deform-gles.jpg',quality=92)
-(g.ROOT/'validation/f14-component-deform-gles.json').write_text(json.dumps({'renderer':g.getString(0x1F01).decode(),'actualGles':True,'image':'validation/f14-component-deform-gles.jpg','gain':.55,'sameDonorOnly':True,'registeredToMain':False,'visualSeamAcceptance':False,'phoneTested':False},indent=2)+'\n');print('Actual GLES shared donor junction rendered; no main/phone acceptance')
+out.save(g.ROOT/('validation/f14-component-deform-gles'+suffix+'.jpg'),quality=92)
+(g.ROOT/('validation/f14-component-deform-gles'+suffix+'.json')).write_text(json.dumps({'renderer':g.getString(0x1F01).decode(),'actualGles':True,'image':('validation/f14-component-deform-gles'+suffix+'.jpg'),'gain':.55,'sameDonorOnly':True,'registeredToMain':False,'visualSeamAcceptance':False,'phoneTested':False},indent=2)+'\n');print('Actual GLES shared donor junction rendered; no main/phone acceptance')

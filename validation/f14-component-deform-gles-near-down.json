@@ -1,0 +1,10 @@
+{
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "actualGles": true,
+  "image": "validation/f14-component-deform-gles-near-down.jpg",
+  "gain": 0.55,
+  "sameDonorOnly": true,
+  "registeredToMain": false,
+  "visualSeamAcceptance": false,
+  "phoneTested": false
+}

@@ -1,0 +1,35 @@
+{
+  "rows": [
+    {
+      "id": "near-down-shoulder",
+      "rgbExactIncludingTransparentPixels": true,
+      "opaquePixels": 28155,
+      "sourceCrop": [
+        800,
+        390,
+        1010,
+        710
+      ]
+    },
+    {
+      "id": "near-down-upper-arm",
+      "rgbExactIncludingTransparentPixels": true,
+      "opaquePixels": 33619,
+      "sourceCrop": [
+        890,
+        580,
+        1020,
+        1030
+      ]
+    }
+  ],
+  "sourceSha256": "56a79d4fa430d24396d3413c2f444e10e224d2e196fae9b87c72f9f1b5ddfeea",
+  "sourceSize": [
+    1086,
+    1448
+  ],
+  "tamperNegative": true,
+  "newCameraAnglesClaimed": 0,
+  "registeredToMain": false,
+  "phoneTested": false
+}
