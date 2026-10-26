@@ -92,7 +92,7 @@
       "stage": "S2",
       "task": "连接肩颈、躯干、手臂与背面",
       "acceptance": "新表面有连续结构和明确连接；近远臂按各自姿态处理，禁止镜像整图冒充",
-      "currentEvidence": "有推断代理和前臂实验；完整连接未通过",
+      "currentEvidence": "Same-donor nape/arm junction implemented: 51 shared material edges, observed source UV exact, overlap removed, 10464 source coverage samples agree. Not registered to current main pose, no whole-task acceptance.",
       "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
       "dependsOn": [
         "T01"

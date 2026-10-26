@@ -1,0 +1,17 @@
+{
+  "gridSamples": 10464,
+  "naiveOverlapSamples": 700,
+  "vertices": 928,
+  "triangles": 1750,
+  "sharedSeamEdges": 51,
+  "maxUvSourceError": 0,
+  "overlapOwnership": [
+    1
+  ],
+  "wrongDonorRejected": true,
+  "sharedCurvedLift": true,
+  "depthInferred": true,
+  "registeredToMain": false,
+  "wholeT04Accepted": false,
+  "phoneTested": false
+}

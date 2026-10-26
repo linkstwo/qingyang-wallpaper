@@ -79,8 +79,8 @@
     "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle."
   ],
   "next": [
-    "T03 trace upper paper-right original background/body ownership, keep candidates default off.",
-    "T01/T04 refine independent nape/arm landmarks then explicit component-to-main registration, never accept two-anchor fit as validation."
+    "Refine nape/strap/shoulder homologous landmarks; use shared donor junction as source topology, not accepted main registration.",
+    "Trace upper right paper occlusion and distinguish workshop background from missing body."
   ],
   "stages": {
     "S1": "in_progress",
@@ -349,7 +349,7 @@
     "latestRecovery": "Original uncommitted files survived; both regressions rerun successfully after recovery.",
     "owner": "codex-night-20261027-0618",
     "fence": 13,
-    "latestSourceCheckpoint": "7967547bd5b3d009db961bf594510e5a00754458",
+    "latestSourceCheckpoint": "bb4e34a111b3ec4542220aa64c7b304824feee85",
     "userRequestedDoNotStop": true,
     "stopReason": null,
     "backgroundWorkerActive": false
@@ -481,6 +481,6 @@
     "tasksAccepted": [],
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
-    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f13-components-background.json"
+    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f13-junction.json"
   }
 }
