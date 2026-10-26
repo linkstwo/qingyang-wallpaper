@@ -4,17 +4,17 @@
   "fence": 2,
   "status": "running",
   "startedAt": "2026-10-26T03:02:30.379715Z",
-  "heartbeatAt": "2026-10-26T03:07:11.871000Z",
-  "expiresAt": "2026-10-26T03:22:11.871000Z",
+  "heartbeatAt": "2026-10-26T03:14:31.106000Z",
+  "expiresAt": "2026-10-26T03:29:31.106000Z",
   "baseHead": "1f816184fd64a615b7eff0eefe20a9ab3427305e",
   "checkpoint": {
-    "baseHead": "930bf21c413e0e29b5b6e4671e34573ff88a8840",
-    "createdAt": "2026-10-26T03:07:11.871Z",
-    "sourceDigest": "3658f7604c18e6e64d270d3c7e5d2ce0e07453358ac476b8fea35f281307b760",
+    "baseHead": "3cf1e6b819d13a1f394ba1a255fc62491194102a",
+    "createdAt": "2026-10-26T03:14:31.106Z",
+    "sourceDigest": "33b18832565b84a8ae24623a149d954902948b2f79f072cee017c2420d2a1937",
     "stage": "S2",
     "next": [
-      "Continue S2 joint-connected local structures and credible hidden-body/side-back material mapping; retain bounded production camera until source coverage is proven.",
-      "Use phone feedback on chest/left edge and existing locked-screen framing when supplied; offline checks do not substitute for visual/native acceptance."
+      "Implement supported skeletal motion for the joined proxy; fixed observed paper wrist, free unobserved near wrist, test shape/contact bounds.",
+      "Continue source registration and hidden-material credibility before textured side/back or widening production view."
     ]
   }
 }

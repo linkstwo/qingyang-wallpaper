@@ -121,33 +121,38 @@
     },
     {
       "path": "android-app/app/src/main/assets/scene_confidence.bin",
-      "bytes": 2200,
-      "sha256": "e869aaa4312deae6c20618d176758af507f2e7108e7be5ca0bf177fcd8226aed"
+      "bytes": 76904,
+      "sha256": "f24da5d640df31c51ef97a37d4e5e6b0e436087868c3c5b1ca0da4510c3ff264"
     },
     {
       "path": "android-app/app/src/main/assets/scene_indices.bin",
-      "bytes": 6528,
-      "sha256": "4e7b27ced5cb4f8341fc99fa290c0c97f6c58e50b5c6611a016ba0f77c34f96e"
+      "bytes": 230688,
+      "sha256": "b19a3995393c7a2d7af35a44dd54e8038be71c7b69020a4c58e6189ded8a63ef"
     },
     {
       "path": "android-app/app/src/main/assets/scene_normals.bin",
-      "bytes": 6600,
-      "sha256": "cdaab0ddff532743e29a3b07da50765a1a2ae88712f95717754b8e6a614e7878"
+      "bytes": 230712,
+      "sha256": "e6537a731351055a10e4115e53e0c3b076ad5198630a55552378ab7dd702595f"
     },
     {
       "path": "android-app/app/src/main/assets/scene_positions.bin",
-      "bytes": 6600,
-      "sha256": "469baef1b6960f4bfe1501a857febe1a5cd21adf362e4b387e0c65ebf7f07187"
+      "bytes": 230712,
+      "sha256": "34553e1575a606663e8424a2d83d72ab9176bd858110184f9816d76c83b8b895"
     },
     {
       "path": "android-app/app/src/main/assets/scene_regions.bin",
-      "bytes": 2200,
-      "sha256": "57b8d1f7502e35042000f4411d80b4d0c23d3b7856fcc5bdae2ac3fc2c2553e7"
+      "bytes": 76904,
+      "sha256": "ac5bcaaaa9346717fcd95f457936c7e656db492f3cf11d51a83f833a4d90e8b7"
     },
     {
       "path": "android-app/app/src/main/assets/scene_uv.bin",
-      "bytes": 4400,
-      "sha256": "560c7cc734802e3e13ffd95dd1ed0a39b99daa009fbe9950d72ff5c71d88d17f"
+      "bytes": 153808,
+      "sha256": "582ad596c2d713da5baf601fc8e4a20cd5dd9f227ffba511ca7767e7ffd69fc3"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_skin.bin",
+      "bytes": 461424,
+      "sha256": "4dcab355f5d1fb999653592148410f7cf766b05f26a49cbb480092ad835dcec8"
     }
   ],
   "identicalCopies": [
