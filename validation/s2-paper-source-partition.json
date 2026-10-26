@@ -25,17 +25,17 @@
   "rows": [
     {
       "forearmVolume": false,
-      "bodyVertices": 77202,
-      "paperVertices": 6057,
-      "sourceAreaError": 0.0029397413600236177,
+      "bodyVertices": 68850,
+      "paperVertices": 4239,
+      "sourceAreaError": -0.001443964894860983,
       "maxNeutralProjectionError": 2.2737367544323206e-13,
       "paperMotion": 0
     },
     {
       "forearmVolume": true,
-      "bodyVertices": 120531,
-      "paperVertices": 6057,
-      "sourceAreaError": 0.0026247361674904823,
+      "bodyVertices": 113487,
+      "paperVertices": 4239,
+      "sourceAreaError": -0.0016422627959400415,
       "maxNeutralProjectionError": 2.2737367544323206e-13,
       "paperMotion": 0
     }

@@ -17,3 +17,25 @@ export function paperAssignmentOutline(padding=4){
   return q.map((x,k)=>Math.max(0,Math.min(paperSourcePartition.size[k],x)));
  });
 }
+
+// Observed lower paper edge rests over the lap. Only this contact chain may
+// share geometry with cloth. Upper/right edges occlude unseen body and must
+// remain separate; this does not supply any hidden texture.
+export const paperLapContactChain=paperSourcePartition.outline.slice(8,17);
+export function paperLapContactWeight(x,y,width=48){
+ let distance=Infinity;
+ for(let i=1;i<paperLapContactChain.length;i++){
+  const a=paperLapContactChain[i-1],b=paperLapContactChain[i],dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(y-a[1])*dy)/(dx*dx+dy*dy)));
+  distance=Math.min(distance,Math.hypot(x-a[0]-t*dx,y-a[1]-t*dy));
+ }
+ const t=Math.max(0,Math.min(1,distance/width));return 1-t*t*(3-2*t);
+}
+
+// Only external paper edges adjoin scene background. The holding fingers and
+// lower lap edge are deliberately excluded from this discarded matte collar.
+export function paperExteriorCollars(){
+ const inner=paperSourcePartition.outline,outer=paperAssignmentOutline(4);
+ return [0,...Array.from({length:8},(_,i)=>16+i)].map(i=>{
+  const j=(i+1)%inner.length;return [inner[i],inner[j],outer[j],outer[i]];
+ });
+}

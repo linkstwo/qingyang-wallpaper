@@ -4,7 +4,14 @@
   "fence": 11,
   "status": "running",
   "startedAt": "2026-10-26T17:20:10.367673Z",
-  "heartbeatAt": "2026-10-26T17:24:17.614331+00:00",
-  "expiresAt": "2026-10-26T17:39:17.614331+00:00",
-  "baseHead": "cd3eb09072b7351a33e98aa89e9f4fd17406f032"
+  "heartbeatAt": "2026-10-26T17:29:46.215560Z",
+  "expiresAt": "2026-10-26T17:44:46.215560Z",
+  "baseHead": "cd3eb09072b7351a33e98aa89e9f4fd17406f032",
+  "checkpoint": {
+    "baseHead": "8944d098ecaf5cda5294799f88aca26a305cdc2e",
+    "createdAt": "2026-10-26T17:29:46.215560+00:00",
+    "sourceDigest": "7695191d4fbeb0f2cf37218578b8f1577ceeab9a9010c3332335c4399d9d7946",
+    "stage": "S2",
+    "next": "T03 residual thin-strip source ray inspection; T01 component review of six archive compositions"
+  }
 }

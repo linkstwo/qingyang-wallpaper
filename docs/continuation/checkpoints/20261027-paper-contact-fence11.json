@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0120",
+  "fence": 11,
+  "baseHead": "8944d098ecaf5cda5294799f88aca26a305cdc2e",
+  "createdAt": "2026-10-26T17:29:46.215560+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 3953,
+      "sha256": "2a24874d19653ee709ac772eac70cf8d94a157f721de3cede23e661121f3f152"
+    },
+    {
+      "path": "character-prototype/preview/paper-source-partition.mjs",
+      "bytes": 3181,
+      "sha256": "9260f915c641087465df911ffe6c86d60f61d8b07d4d5f57df805b4cd745d751"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "bytes": 4683,
+      "sha256": "5cea4c388c96d9324f061e669020c79d25cb23f87b1821db6cdf667fb188a40c"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 20037,
+      "sha256": "2e5802804a388927bec0f088f96270924e3a74c9eaaeca80a78dce8c1e0d1a1d"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36533,
+      "sha256": "83742daa1b2dd1c34487da6632083010d78a9441ec835449ac516fbd115bf941"
+    },
+    {
+      "path": "docs/T03-PAPER-OWNERSHIP-20261027.md",
+      "bytes": 2265,
+      "sha256": "07151beaaf35e97a63d3804849098e8b6c4972aa051709f2a05fc2818a8b6db5"
+    },
+    {
+      "path": "tests/paper-contact-regression.mjs",
+      "bytes": 2082,
+      "sha256": "0e115fb43c7f9fc267683a2d87db4739c22083e5200114c0c44ebf50c283f95e"
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "bytes": 4466,
+      "sha256": "41dfe6ed4435aefeb15b913ffab51e5d440aaa996a702bdfafbc7c97a78d448b"
+    },
+    {
+      "path": "validation/paper-contact-regression.json",
+      "bytes": 325,
+      "sha256": "7e135dd9fbd9d7a08ece14906aaf2866fdfed248188f8678b3a2b3724c0d03e0"
+    },
+    {
+      "path": "validation/paper-exterior-trim.jpg",
+      "bytes": 88278,
+      "sha256": "338b8edc7d6c5ae0c77c0e83560abbfabf5338446ea24ea73f6fce9f843f43ac"
+    },
+    {
+      "path": "validation/paper-exterior-trim.json",
+      "bytes": 356,
+      "sha256": "11dc50a931be3330534ea472823db48ac69bae6bbaf55c3f27f017d53893b0b0"
+    },
+    {
+      "path": "validation/paper-lap-contact.jpg",
+      "bytes": 88253,
+      "sha256": "b4ecbc8f75cc868c7d4762b231d589f411610b6fba5f9fbc36fe3a6e85390221"
+    },
+    {
+      "path": "validation/paper-ownership-before.jpg",
+      "bytes": 87970,
+      "sha256": "8e6fda8e25286d233c2aeedb9a5effa818e35f7807b8b194a23ff0f46f888f60"
+    },
+    {
+      "path": "validation/paper-ownership-exact.jpg",
+      "bytes": 88479,
+      "sha256": "18c86584be591df8e9ba4163cf5a28bf5fd58d417f404ade34045667785a87a6"
+    },
+    {
+      "path": "validation/s2-paper-source-partition.json",
+      "bytes": 814,
+      "sha256": "0cf77b932b88346795f6b0da58d845ef9d99beda38661bb9962580d51fcc6c8b"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/paper-contact-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-source-partition-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "PAPER_PARTITION=1 PAPER_LAP_CONTACT=1 PAPER_EXTERIOR_TRIM=1 python3 tests/render_paper_ownership_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": "T03 residual thin-strip source ray inspection; T01 component review of six archive compositions",
+  "phoneTested": false,
+  "sourceDigest": "7695191d4fbeb0f2cf37218578b8f1577ceeab9a9010c3332335c4399d9d7946"
+}

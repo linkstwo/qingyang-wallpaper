@@ -1,0 +1,12 @@
+{
+  "contactVertices": 333,
+  "projectionError": 2.2737367544323206e-13,
+  "contactDepthError": 9.320899607700994e-10,
+  "pinnedMotion": 9.850964488578029e-11,
+  "upperOcclusionNotWelded": true,
+  "exteriorCollars": 9,
+  "depthInferred": true,
+  "productionUsed": false,
+  "phoneTested": false,
+  "wholeT03Accepted": false
+}

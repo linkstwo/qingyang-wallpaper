@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T14:04:39.205Z",
+  "updatedAt": "2026-10-26T17:28:23.263576+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "User-requested closeout: optional paper source partition preserved, remaining visual failures explicit; no new APK.",
+  "scopeOfThisRun": "T03 exact observed paper ownership and optional lap contact/exterior trim; T01 archive source review follows.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -79,9 +79,8 @@
     "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle."
   ],
   "next": [
-    "Read docs/RESUME-20261026-FENCE10.md and latest remote HEAD; claim fresh lease before new edits.",
-    "T03: reproduce negative-angle paper/body opening with zero body pose/rear off; inspect source/background/occluded-body ownership before modifying geometry.",
-    "T01/T04: organize adjacent-angle, similar-pose references per body part; Doubao handles scoped ordinary/medium work, Codex critical geometry/visual acceptance."
+    "T03 trace residual thin strip back to original source pixels; upper occluded body still missing, do not weld it to paper.",
+    "T01 inspect six remaining archive compositions by body component; no fabricated angular calibration."
   ],
   "stages": {
     "S1": "in_progress",
@@ -476,5 +475,15 @@
     "resizedSameViewIsNotNewAngle": true,
     "avoidInventedYawNumbers": true
   },
-  "latestResume": "docs/RESUME-20261026-FENCE10.md"
+  "latestResume": "docs/RESUME-20261026-FENCE10.md",
+  "stopRequested": false,
+  "nightRun20261027": {
+    "owner": "codex-night-20261027-0120",
+    "fence": 11,
+    "bridge": "404 SSE endpoint, independent cloud work continuing",
+    "latestCheckpoint": "docs/T03-PAPER-OWNERSHIP-20261027.md",
+    "tasksAccepted": [],
+    "apkChanged": false,
+    "backgroundDevelopmentActive": false
+  }
 }
