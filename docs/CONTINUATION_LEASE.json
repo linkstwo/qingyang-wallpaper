@@ -1,22 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "manual-plugin-s2-20261026-0833",
-  "fence": 6,
-  "status": "released",
-  "startedAt": "2026-10-26T08:34:20.771982Z",
-  "heartbeatAt": "2026-10-26T09:01:31.462493Z",
-  "expiresAt": "2026-10-26T09:01:31.462493Z",
-  "baseHead": "50037becc75ece605d5c84d22f4b7fe2db5b5434",
-  "checkpoint": {
-    "baseHead": "2365f12e77578625b64cbefea7ad514cfa388ba4",
-    "createdAt": "2026-10-26T09:01:03.386877+00:00",
-    "sourceDigest": "73475eed0256fc68ab84e859f306821dea87eb403994a3d3e2e1dc14d871797e",
-    "stage": "S2",
-    "next": [
-      "Read latest HEAD and claim a fresh lease before further edits.",
-      "Separate paper-edge background/source material binding near(243,900); full-front skeletal acceptance remains false.",
-      "Continue shoulder/nape/back material continuity after source/pose constraints; confidence0 until calibration passes."
-    ]
-  },
-  "reason": "User requested immediate manual close; source/checkpoint saved; execution ended, no background worker."
+  "owner": "codex-lightweight-parts-1793017723001",
+  "fence": 7,
+  "status": "running",
+  "startedAt": "2026-10-26T12:28:43.001000Z",
+  "heartbeatAt": "2026-10-26T12:28:43.001000Z",
+  "expiresAt": "2026-10-26T12:43:43.001000Z",
+  "baseHead": "aac18bc6b78e8eea39166ad7263297a46d8625cb"
 }
