@@ -1,21 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "codex-task-audit-1793020900109",
-  "fence": 8,
-  "status": "released",
-  "startedAt": "2026-10-26T13:21:40.109000Z",
-  "heartbeatAt": "2026-10-26T13:25:24.833000Z",
-  "expiresAt": "2026-10-26T13:25:24.833000Z",
-  "baseHead": "2573551f5b48d958737ca2028a4dfdc15ae52d26",
-  "checkpoint": {
-    "baseHead": "1bef9e4e974fc1686c056bdabe160b466ab04293",
-    "createdAt": "2026-10-26T13:24:17.631Z",
-    "sourceDigest": "17731163157d781e7e36837c77f43bf83b337d2188f40ffd7ae0ae50eed913e3",
-    "stage": "S2",
-    "next": [
-      "T01 review corrected observed landmarks.",
-      "T03 fix paper seam, T04 connect shoulder/back geometry."
-    ]
-  },
-  "reason": "Requested task inventory and existing-results Git archival completed. No application development or new schedule started."
+  "owner": "codex-workshare-audit-1793021247857",
+  "fence": 9,
+  "status": "running",
+  "startedAt": "2026-10-26T13:27:27.857000Z",
+  "heartbeatAt": "2026-10-26T13:27:27.857000Z",
+  "expiresAt": "2026-10-26T13:42:27.857000Z",
+  "baseHead": "cb25d9e62430fac745ab6893d807ac45de922d56"
 }
