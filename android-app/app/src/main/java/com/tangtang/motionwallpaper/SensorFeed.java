@@ -107,6 +107,8 @@ final class SensorFeed implements SensorEventListener {
         if (!MathX.valid(x, y, z)) {
             return;
         }
+        // A delayed batch from this session must not re-establish a stale pose.
+        if (SystemClock.elapsedRealtimeNanos() - event.timestamp > 500000000L) return;
         final long now = SystemClock.elapsedRealtime();
         if (now - lastRotation > 300L) {
             lastRotation = now;

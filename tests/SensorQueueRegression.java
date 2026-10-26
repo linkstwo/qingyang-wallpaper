@@ -6,6 +6,7 @@ public final class SensorQueueRegression {
     static int checks;
     static void check(boolean b,String s){checks++;if(!b)throw new AssertionError(s);}
     static void event(SensorFeed f,int type,long t,float x,float y,float z){
+        SystemClock.nanos=Math.max(SystemClock.nanos,t);
         SensorEvent e=new SensorEvent();e.sensor=new Sensor(type);e.timestamp=t;e.values=new float[]{x,y,z};f.onSensorChanged(e);
     }
     static SensorFeed start(long t){SystemClock.nanos=t;SensorFeed f=new SensorFeed(new android.content.Context(),new android.os.Handler());f.start();return f;}
@@ -33,6 +34,11 @@ public final class SensorQueueRegression {
         event(f,4,2_120_000_000L,0,0,0);event(f,4,2_140_000_000L,0,3,0);
         check(f.motion().alphaY>0,"new real gyro motion must still excite the solver");
         SystemClock.nanos=2_400_000_000L;f.decayStale();check(!f.motion().excited(),"stale motion must decay");
+        SensorFeed delayed=start(3_000_000_000L);
+        SystemClock.nanos=4_000_000_000L;
+        event(delayed,1,3_100_000_000L,8,0,0);
+        event(delayed,1,4_020_000_000L,0,9.80665f,0);
+        check(delayed.motion().tiltX==0 && delayed.motion().tiltY==0,"old delayed batch within this session must not set a stale baseline");
         System.out.println("{\"assertions\":"+checks+",\"productionSensorFeed\":true,\"phoneTested\":false}");
     }
 }

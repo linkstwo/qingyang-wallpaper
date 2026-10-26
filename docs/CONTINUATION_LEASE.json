@@ -4,8 +4,8 @@
   "fence": 1,
   "status": "running",
   "startedAt": "2026-10-26T17:48:45.120265Z",
-  "heartbeatAt": "2026-10-26T17:51:31.623773Z",
-  "expiresAt": "2026-10-26T18:06:31.623773Z",
+  "heartbeatAt": "2026-10-26T17:54:28.565751Z",
+  "expiresAt": "2026-10-26T18:09:28.565751Z",
   "baseHead": "17b7e3451a667b82859366555d8d5d123e005c09",
   "scope": "Independent branch only: T10/T13 input, no main development lease takeover"
 }

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-input-isolated-20261027-0147",
+  "fence": 1,
+  "baseHead": "ff0675a005913f879440c5c06dd8a48df0c6e7ae",
+  "createdAt": "2026-10-26T17:54:28.565751Z",
+  "stage": "S2",
+  "next": "Selective input patch integration under main lease; never merge isolated lease",
+  "files": [
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SensorFeed.java",
+      "sha256": "2156a4f69e6a4a0f640c65c8fc22e957f297e134af1dea43f6b808084a5b440e",
+      "bytes": 7697
+    },
+    {
+      "path": "tests/run_sensor_feed.py",
+      "sha256": "646c4d8eaca31198971e1080fd9aea5bcb030eceacc8efa1aca6a27bc1ae53f8",
+      "bytes": 4219
+    },
+    {
+      "path": "tests/SensorQueueRegression.java",
+      "sha256": "54b5c3898ce427b5020232a6c38378b23ae75e5e1dcad578a8e39ce359e5c7cc",
+      "bytes": 3067
+    },
+    {
+      "path": "tests/SensorTrajectoryRegression.java",
+      "sha256": "c86f6e9e55e13db12be3a7d9787173241a7c02af5b69c03959b8a2cbc61c3b2d",
+      "bytes": 3361
+    },
+    {
+      "path": "validation/sensor-queue-regression.json",
+      "sha256": "f457a34467ee4fac66b1bfd537ea97094949d77acfa0249193354b917b3f4dbd",
+      "bytes": 65
+    },
+    {
+      "path": "validation/sensor-trajectory-regression.json",
+      "sha256": "b16d2c8887bfde3e41a6c3706dabbb0899919d9ea666400ef1683781ff99a7ed",
+      "bytes": 169
+    },
+    {
+      "path": "docs/INPUT-QUEUE-20261027.md",
+      "sha256": "9681ec4930b53e876d10e66155021e9d016018f34a6902ae177b07d4516eda2b",
+      "bytes": 2054
+    }
+  ],
+  "tests": [
+    {
+      "command": "python3 tests/run_sensor_feed.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python3 tests/run_lifecycle.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "tasksAccepted": [],
+  "phoneTested": false,
+  "sourceDigest": "b623d4bd399b691169060382456a2326de687949dac10dffe0264ec6f94e9d0f"
+}
