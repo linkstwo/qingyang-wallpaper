@@ -1,0 +1,29 @@
+{
+  "owner": "codex-night-source-audit-20261027-0221",
+  "fence": 1,
+  "branch": "automation/source-audit-20261027",
+  "head": "cd90c778afe61dff9a638f200f73202912412fdf",
+  "now": "2026-10-26T18:25:08.958449+00:00",
+  "task": "T01",
+  "accepted": false,
+  "tests": [
+    {
+      "command": "full archive audit",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "11 integrity mutation cases",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": "Bind workbench imported drafts to donor component identities",
+  "files": {
+    "scripts/verify_component_sources.py": "0dd5d7a4a35e97831a8007ab9f35b0e98b84f01ef6fec88da36759dfec97026f",
+    "tests/component-source-integrity.py": "286901502eaf87f0d81e5ad587b4251541bc1edb26413da0e9d76ee3b940e301",
+    "validation/component-source-integrity.json": "c0f0f8c52d7c0938ca8d98b1bb41d69e6d4b043cace6d2b815c831937460b937",
+    "docs/T01-SOURCE-INTEGRITY-20261027.md": "0cdb0fb65958c5581fc95786bd01a94466181f1f80a242ff95b105308981dd51",
+    "docs/CONTINUATION_LEASE.json": "7e9d89072e9985392f2b07e03f55240942498a892ea0721626051e25bef3f980"
+  }
+}

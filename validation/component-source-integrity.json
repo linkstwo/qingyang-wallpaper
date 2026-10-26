@@ -1,0 +1,37 @@
+{
+  "status": "verified",
+  "verifiedOriginals": [
+    "工业车间里的专注侧影.png",
+    "阳光下的湿衣工坊蓝图.png",
+    "阳光下的工业车间肖像.png",
+    "阳光下的车间蓝图少女.png",
+    "工业车间里的蓝图专注者.png",
+    "汗湿图纸与工业车间的专注时刻.png",
+    "工业车间里的蓝图时光.png",
+    "工业车间暖光下的湿润肖像.png",
+    "阳光车间中的湿发女孩.png",
+    "阳光下的车间绘图者.png"
+  ],
+  "missingOriginals": [],
+  "crops": [
+    {
+      "id": "side-b-nape-shoulder",
+      "outputBytesVerified": true,
+      "sourcePixelsVerified": true
+    },
+    {
+      "id": "side-b-upper-arm",
+      "outputBytesVerified": true,
+      "sourcePixelsVerified": true
+    },
+    {
+      "id": "side-b-shoulder-back",
+      "outputBytesVerified": true,
+      "sourcePixelsVerified": true
+    }
+  ],
+  "errors": [],
+  "anatomicalCorrespondenceAccepted": false,
+  "continuousViewAccepted": false,
+  "newCameraAnglesClaimed": 0
+}
