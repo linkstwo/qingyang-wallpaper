@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-10-26T22:34:58Z",
+  "sourceHead": "288ef133ee327b9a32da6192763df879acaffa84",
+  "owner": "codex-night-20261027-0618",
+  "fence": 13,
+  "sourceCommits": [
+    "7967547bd5b3d009db961bf594510e5a00754458",
+    "bb4e34a111b3ec4542220aa64c7b304824feee85",
+    "288ef133ee327b9a32da6192763df879acaffa84"
+  ],
+  "tasksAccepted": [],
+  "latestApk": "0.5.9/18",
+  "newApkBuilt": false,
+  "continuousUntilWindowEndFulfilled": false,
+  "backgroundDevelopmentActive": false,
+  "next": [
+    "Refine nape/strap/shoulder homologous landmarks; use shared donor junction as source topology, not accepted main registration.",
+    "Trace upper right paper occlusion and distinguish workshop background from missing body."
+  ],
+  "limitations": [
+    "T03 upper gaps and diagnostic-angle flips remain; candidate flags default off.",
+    "Donor junction is not registered to main pose or integrated into Android.",
+    "Bridge delegation404; no browser executable, Android SDK/cache or local signing configuration available. Independent source work was performed."
+  ]
+}

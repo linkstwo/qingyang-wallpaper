@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T22:30:45.116543+00:00",
+  "updatedAt": "2026-10-26T22:34:58Z",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -341,17 +341,17 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T22:30:45.116543+00:00",
+    "lastCheckpointAt": "2026-10-26T22:34:58Z",
     "checkpointIntervalMinutes": 30,
-    "mode": "active_development",
+    "mode": "stopped_checkpoint",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Original uncommitted files survived; both regressions rerun successfully after recovery.",
     "owner": "codex-night-20261027-0618",
     "fence": 13,
-    "latestSourceCheckpoint": "bb4e34a111b3ec4542220aa64c7b304824feee85",
+    "latestSourceCheckpoint": "288ef133ee327b9a32da6192763df879acaffa84",
     "userRequestedDoNotStop": true,
-    "stopReason": null,
+    "stopReason": "Invocation ended before the authorised 10:00 end. Continuous-until-window requirement was not fulfilled. No observed quota or platform failure is claimed.",
     "backgroundWorkerActive": false
   },
   "userReportedIssues": [
@@ -481,6 +481,8 @@
     "tasksAccepted": [],
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
-    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f13-junction.json"
+    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f13-junction.json",
+    "sourceCheckpoint": "288ef133ee327b9a32da6192763df879acaffa84",
+    "terminationObserved": "Invocation ended before the authorised 10:00 end. Continuous-until-window requirement was not fulfilled. No observed quota or platform failure is claimed."
   }
 }

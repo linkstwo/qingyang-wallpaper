@@ -2,9 +2,10 @@
   "schemaVersion": 1,
   "owner": "codex-night-20261027-0618",
   "fence": 13,
-  "status": "running",
+  "status": "released",
   "startedAt": "2026-10-26T22:18:55Z",
-  "heartbeatAt": "2026-10-26T22:34:15Z",
-  "expiresAt": "2026-10-26T22:49:15.000Z",
-  "baseHead": "d6a4b081d226cd5ee881ebd320c8a7bccb5ec12a"
+  "heartbeatAt": "2026-10-26T22:34:58Z",
+  "expiresAt": "2026-10-26T22:34:58Z",
+  "baseHead": "d6a4b081d226cd5ee881ebd320c8a7bccb5ec12a",
+  "reason": "Three implementation checkpoints saved and read back; invocation ended early, no background development. Next authorised run may claim immediately."
 }
