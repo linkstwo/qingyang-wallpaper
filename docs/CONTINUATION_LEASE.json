@@ -1,10 +1,18 @@
 {
   "schemaVersion": 1,
-  "owner": "codex-night-recovery-20261027-0157",
-  "fence": 12,
+  "owner": "codex-night-source-audit-20261027-0221",
+  "fence": 1,
   "status": "running",
-  "startedAt": "2026-10-26T17:58:26.591877Z",
-  "heartbeatAt": "2026-10-26T18:20:19.373260+00:00",
-  "expiresAt": "2026-10-26T18:35:19.373260+00:00",
-  "baseHead": "d7c8205b9cf0224615322d4667e6d35c43d5c27e"
+  "startedAt": "2026-10-26T18:23:14.521632+00:00",
+  "heartbeatAt": "2026-10-26T18:23:14.521632+00:00",
+  "expiresAt": "2026-10-26T18:38:14.521632+00:00",
+  "baseHead": "5c3bf05c8c2921f4030f0eafd329b914645702fb",
+  "branch": "automation/source-audit-20261027",
+  "scope": [
+    "scripts/verify_component_sources.py",
+    "tests/component-source-integrity.py",
+    "validation/component-source-integrity.json",
+    "docs/T01-SOURCE-INTEGRITY-20261027.md"
+  ],
+  "note": "Independent branch. Main fence12 untouched. Bundled helper refuses non-default branch, equivalent JSON protocol used."
 }
