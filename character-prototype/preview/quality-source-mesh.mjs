@@ -10,6 +10,7 @@ export function improveSourceTriangles(mesh,{maxPasses=32}={}){
   let changed=0;const touched=new Set();
   for(const pair of edges.values()){
    if(pair.length!==2)continue;const [u,v]=pair;if(touched.has(u.face)||touched.has(v.face)||u.a!==v.b||u.b!==v.a)continue;
+   if(mesh.triangleGroups&&mesh.triangleGroups[u.face]!==mesh.triangleGroups[v.face])continue;
    const A=[u.c,u.a,v.c],B=[u.c,v.c,u.b],sign=Math.sign(area(...faces[u.face]));if(area(...A)*sign<=1e-8||area(...B)*sign<=1e-8)continue;
    if(Math.min(quality(A),quality(B))<=Math.min(quality(faces[u.face]),quality(faces[v.face]))*1.001)continue;
    faces[u.face]=A;faces[v.face]=B;touched.add(u.face);touched.add(v.face);changed++;flips++;

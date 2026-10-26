@@ -4,18 +4,18 @@
   "fence": 6,
   "status": "running",
   "startedAt": "2026-10-26T08:34:20.771982Z",
-  "heartbeatAt": "2026-10-26T08:56:30.406537Z",
-  "expiresAt": "2026-10-26T09:11:30.406537Z",
+  "heartbeatAt": "2026-10-26T09:01:03.386877Z",
+  "expiresAt": "2026-10-26T09:16:03.386877Z",
   "baseHead": "50037becc75ece605d5c84d22f4b7fe2db5b5434",
   "checkpoint": {
-    "baseHead": "44dd66b01f81c50971ec4a65e49577e1fbe05f22",
-    "createdAt": "2026-10-26T08:53:34.076053+00:00",
-    "sourceDigest": "7551c3e4ec113d9f054533c2a87d3e5bfc807c575a349233bc2d15b5663785ea",
+    "baseHead": "2365f12e77578625b64cbefea7ad514cfa388ba4",
+    "createdAt": "2026-10-26T09:01:03.386877+00:00",
+    "sourceDigest": "73475eed0256fc68ab84e859f306821dea87eb403994a3d3e2e1dc14d871797e",
     "stage": "S2",
     "next": [
-      "Fix source sampling/raster coverage at the optional forearm split; preserve strict neutral image acceptance.",
-      "Constrain observed front pose near paper/hand; full-front skeletal scan remains not accepted.",
-      "Continue source-registered shoulder/nape/back material continuity, confidence0 until calibration passes."
+      "Read latest HEAD and claim a fresh lease before further edits.",
+      "Separate paper-edge background/source material binding near(243,900); full-front skeletal acceptance remains false.",
+      "Continue shoulder/nape/back material continuity after source/pose constraints; confidence0 until calibration passes."
     ]
   }
 }

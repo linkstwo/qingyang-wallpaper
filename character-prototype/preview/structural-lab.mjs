@@ -29,6 +29,7 @@ function render(time){raf=0;if(!ready||document.hidden||failed)return;
  const probe=captureWaiters[0],options=probe?.options||{};
  if(animate){$('camera').value=String(Math.round(Math.sin(time/5000)*180));values();}
  const ratio=Math.min(devicePixelRatio||1,1.5),w=Math.max(1,Math.round(canvas.clientWidth*ratio)),h=Math.max(1,Math.round(canvas.clientHeight*ratio));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}if(options.direct){gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,w,h);}else ensureTarget(w,h);gl.clearColor(...(options.coverage?[0,0,0,1]:[.05,.075,.115,1]));gl.depthMask(true);gl.depthFunc(gl.LESS);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+ gl.useProgram(surfaceProgram);gl.uniform1f(gl.getUniformLocation(surfaceProgram,'u_neutralProjection'),['camera','pitch','body','roll'].every(id=>Number($(id).value)===0)?1:0);gl.uniform2f(gl.getUniformLocation(surfaceProgram,'u_viewport'),options.direct?w:sceneTarget.width,options.direct?h:sceneTarget.height);
  const mode=$('mode').value,joined=$('observed').checked&&mode==='photo',observed=joined&&(options.observed??true),rear=options.rear??$('rear').checked;
  // Establish observed cutout coverage before inferred geometry. A later LEQUAL
  // colour pass cannot lose multisample edge coverage to the rear diagnostic shell.

@@ -18,6 +18,10 @@ export function forearmSurfaceDepth(x,y){
 }
 export const segmentedFrontDepthAt=(x,y)=>insideForearm(x,y)?forearmSurfaceDepth(x,y):depthAt(x,y);
 export function buildForearmSourcePieces(){
- const base=makeLayeredCharacterMesh(),body=improveSourceTriangles(conformSourceMesh(subtractPolygon(base,forearmOutline))),arm=improveSourceTriangles(conformSourceMesh(subtractPolygon(makeMesh(forearmOutline,[],12),subject.paper)));
- return {body,arm,source:'references/originals/main-reading-v2.png',depthInferred:true,productionUsed:false};
+ const base=makeLayeredCharacterMesh(),bodySource=subtractPolygon(base,forearmOutline),armSource=subtractPolygon(makeMesh(forearmOutline,[],12),subject.paper),joined=new Float32Array(bodySource.length+armSource.length);joined.set(bodySource);joined.set(armSource,bodySource.length);
+ // Weld source coordinates jointly, while retaining distinct material/depth
+ // labels. Independent subdivisions otherwise leave unmatched boundary points.
+ const shared=improveSourceTriangles(conformSourceMesh(joined,{triangleGroups:Array(bodySource.length/6).fill(0).concat(Array(armSource.length/6).fill(1))}));
+ function piece(group){const indices=[];for(let i=0;i<shared.triangleGroups.length;i++)if(shared.triangleGroups[i]===group)indices.push(...shared.indices.slice(i*3,i*3+3));return {positions:shared.positions,indices,source:new Float32Array(indices.flatMap(i=>shared.positions.slice(i*2,i*2+2))),report:{...shared.report,triangles:indices.length/3}};}
+ return {body:piece(0),arm:piece(1),shared,source:'references/originals/main-reading-v2.png',depthInferred:true,productionUsed:false};
 }

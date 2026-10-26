@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T08:52:58.804753+00:00",
+  "updatedAt": "2026-10-26T09:00:56.403659+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "Resume actual continuous S2 development with validated surviving front-fit files; correct local inferred forearm volume next.",
+  "scopeOfThisRun": "User-requested manual close after source-ray neutral equality and shared source boundaries were verified. S2 remains incomplete.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -66,12 +66,13 @@
     "Fence4 found and fixed a distinct production GLSL depth bug: old clipZ multiplied by clipW again, so a single world plane changed depth with mesh tessellation. Shared scene.vert and structural/observed debug shaders now use affine homogeneous clipZ with near world+1000/far-2000; source camera XY, RGB, pose and Q solver unchanged. Actual GLES coarse/fine plane control:correct max window-depth discrepancy2.3842e-7 versus old0.00129867; old expression is a required failing control. Passed5 depth-order cases/both draw orders,1440 GPU landmarks,face/contact/hair render,7293 scene checks,layered scans,asset/export checks and52 lifecycle assertions. Browser default offscreen path remains exact0; direct4xMSAA still reproduces16 residuals, so these are recorded as separate issues rather than attributing that residual to this projection fix. No new APK yet.",
     "Fence4 continued until actual executor failure. Before shutdown, constrained front-fit and independent3D ray regressions passed locally:8484 fitted vertices,RMS63.13->58.35,1038096 posed triangle cases,min rest area ratio0.468/min posed0.709,pinned error0;91 ray samples agreed within8.53e-13. Filesystem then became inaccessible; source edits were reconstructed as a recovery patch, explicitly not revalidated. Previously validated production-depth/neutral/nape milestones remain durable.",
     "Recovered original front-fit/ray source files without applying reconstructed patch; reran 91 independent ray samples and 1,038,096 posed triangle cases. Fit remains research-only with hidden confidence0, RMS63.13->58.35 and source projection error<2.3e-13. Actual photo review places worst residual on visible forearm; old depth field lacks its local thickness.",
-    "Fence6 traced visible forearm boundary and rejected direct single-sheet lift with a reproducing negative control. Separate source pieces plus legal edge flips pass 2,486,781 material/camera triangle cases, min0.2433, neutral projection<2.3e-13 and source area drift0.00050px\u00b2. Actual browser experiment changes oblique pixels with rear-on/off neutral equality0, but new-versus-old neutral has29 pixels>2/max51; full-front large skeletal pose also has a negative area ratio. Experiment is optional/default-off, no production depth change. Corrected occluded elbow observation flag. Generator now preserves shared homogeneous-depth fix and supports read-only --check."
+    "Fence6 traced visible forearm boundary and rejected direct single-sheet lift with a reproducing negative control. Separate source pieces plus legal edge flips pass 2,486,781 material/camera triangle cases, min0.2433, neutral projection<2.3e-13 and source area drift0.00050px\u00b2. Actual browser experiment changes oblique pixels with rear-on/off neutral equality0, but new-versus-old neutral has29 pixels>2/max51; full-front large skeletal pose also has a negative area ratio. Experiment is optional/default-off, no production depth change. Corrected occluded elbow observation flag. Generator now preserves shared homogeneous-depth fix and supports read-only --check.",
+    "Fence6 final: jointly conformed source coordinates with preserved material labels and boundary-constrained edge flips; source area drift-0.000196px\u00b2,2,527,038 material/camera cases passed. Calibrated rest source-ray sampling removes interpolation rounding; browser strict experimental-versus-baseline neutral screenshot and rear-on/off framebuffer both max0. New forearm skeletal min ratio0.742/pin error0; whole foreground remains not accepted with paper/background boundary fold-0.1248. User requested immediate manual close."
   ],
   "next": [
-    "Fix source sampling/raster coverage at the optional forearm split; preserve strict neutral image acceptance.",
-    "Constrain observed front pose near paper/hand; full-front skeletal scan remains not accepted.",
-    "Continue source-registered shoulder/nape/back material continuity, confidence0 until calibration passes."
+    "Read latest HEAD and claim a fresh lease before further edits.",
+    "Separate paper-edge background/source material binding near(243,900); full-front skeletal acceptance remains false.",
+    "Continue shoulder/nape/back material continuity after source/pose constraints; confidence0 until calibration passes."
   ],
   "stages": {
     "S1": "in_progress",
@@ -328,16 +329,18 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T08:52:58.804753+00:00",
+    "lastCheckpointAt": "2026-10-26T09:00:56.403659+00:00",
     "checkpointIntervalMinutes": 30,
-    "mode": "active",
+    "mode": "ended_user_requested",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Original uncommitted files survived; both regressions rerun successfully after recovery.",
     "owner": "manual-plugin-s2-20261026-0833",
     "fence": 6,
     "latestSourceCheckpoint": "4be1b385ba41bbd33b840ee913b38cc74e0bb53f",
-    "userRequestedDoNotStop": true
+    "userRequestedDoNotStop": true,
+    "stopReason": "User explicitly requested rapid manual close.",
+    "backgroundWorkerActive": false
   },
   "userReportedIssues": [
     {

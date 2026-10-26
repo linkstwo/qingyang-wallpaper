@@ -2,9 +2,9 @@
   "poses": 9,
   "cameraViews": 5,
   "minAreaRatio": -0.12475751133732269,
-  "minForearmAreaRatio": 0.7786182066800164,
+  "minForearmAreaRatio": 0.742005862087507,
   "fullFrontAccepted": false,
-  "triangleCases": 1381545,
+  "triangleCases": 1403910,
   "maxPinnedError": 0,
   "worst": {
     "source": [

@@ -1,8 +1,9 @@
 {
   "source": "references/originals/main-reading-v2.png",
-  "bodyTriangles": 29287,
-  "forearmTriangles": 1414,
-  "areaError": 0.0004973635077476501,
+  "nonmanifoldEdges": 0,
+  "bodyTriangles": 29473,
+  "forearmTriangles": 1725,
+  "areaError": -0.00019615236669778824,
   "maxProjectionError": 2.2737367544323206e-13,
   "ranges": [
     {
@@ -115,7 +116,7 @@
     }
   ],
   "minAreaRatio": 0.24332734988418966,
-  "triangleCases": 2486781,
+  "triangleCases": 2527038,
   "depthAtResidualBefore": 22.172133758368407,
   "depthAtResidualAfter": 180.14460660336255,
   "depthInferred": true,
