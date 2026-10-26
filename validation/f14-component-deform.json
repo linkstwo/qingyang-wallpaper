@@ -12,7 +12,7 @@
   "foldNegativeRejected": true,
   "sourceUvExact": true,
   "registeredToMain": false,
-  "selfIntersectionChecked": false,
+  "selfIntersectionChecked": true,
   "wholeT04Accepted": false,
   "phoneTested": false
 }

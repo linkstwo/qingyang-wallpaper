@@ -1,0 +1,22 @@
+import {makeComponentRaster} from './component-raster.mjs';
+import {buildComponentJunction} from './component-junction.mjs';
+import {deformComponentJunction} from './component-deform.mjs';
+const $=id=>document.getElementById(id),before=$('before'),after=$('after'),crop=[640,295,330,360];
+const initial=()=>[{id:'nape',source:[700,380],target:[700,380]},{id:'shoulder',source:[800,450],target:[800,450]},{id:'elbow',source:[900,600],target:[900,600]},{id:'root',source:[660,500],target:[660,500]}];
+let handles=initial(),mesh,warped,images,size,drag,raster,ready=false;
+function status(s,error=false){$('status').textContent=s;$('status').classList.toggle('error',error);}
+const screen=p=>[(p[0]-crop[0])/crop[2]*540,(p[1]-crop[1])/crop[3]*590];
+const source=e=>{const r=after.getBoundingClientRect();return [crop[0]+(e.clientX-r.left)/r.width*crop[2],crop[1]+(e.clientY-r.top)/r.height*crop[3]];};
+// One GLES raster per material, with a shared vertex field, avoids per-triangle Canvas seams.
+function paint(canvas,target){const ctx=canvas.getContext('2d');ctx.clearRect(0,0,540,590);ctx.drawImage(raster.draw(mesh,target),0,0);
+ if($('mesh').checked){ctx.strokeStyle='#afe6b740';ctx.lineWidth=.6;for(let i=0;i<mesh.indices.length;i+=3){ctx.beginPath();mesh.indices.slice(i,i+3).map(id=>screen(target.slice(id*2,id*2+2))).forEach((p,j)=>j?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.stroke();}}
+ if(canvas===after)for(const h of handles){const p=screen(h.source.map((v,k)=>v+(h.target[k]-v)*Number($('gain').value)/100));ctx.beginPath();ctx.arc(...p,8,0,Math.PI*2);ctx.fillStyle='#a6edbf';ctx.fill();ctx.fillStyle='#efffea';ctx.fillText(h.id,p[0]+11,p[1]);}
+}
+function refresh(){const candidate=deformComponentJunction(mesh,handles,{size,gain:Number($('gain').value)/100});warped=candidate;paint(before,mesh.sourcePositions);paint(after,warped.targetSourcePositions);$('gainText').textContent=$('gain').value+'%';status('共享边保持 · 最小面积比 '+candidate.deformation.minimumAreaRatio.toFixed(3)+' · 仅供图调整');}
+after.addEventListener('pointerdown',e=>{if(!ready)return;const p=source(e),gain=Number($('gain').value)/100;if(gain===0)return;drag=handles.map((h,i)=>({i,d:Math.hypot(...h.source.map((v,k)=>v+(h.target[k]-v)*gain-p[k]))})).sort((a,b)=>a.d-b.d)[0];if(drag.d>12){drag=null;return;}after.setPointerCapture(e.pointerId);});
+after.addEventListener('pointermove',e=>{if(!drag||!ready)return;const old=handles[drag.i].target.slice(),p=source(e),gain=Number($('gain').value)/100;if(gain<=0)return;handles[drag.i].target=p.map((v,k)=>Math.max(0,Math.min(size[k],handles[drag.i].source[k]+(v-handles[drag.i].source[k])/gain)));try{refresh();}catch(error){handles[drag.i].target=old;status(error.message,true);}});
+for(const name of ['pointerup','pointercancel','lostpointercapture'])after.addEventListener(name,()=>drag=null);
+$('reset').onclick=()=>{if(ready){handles=initial();refresh();}};$('mesh').onchange=()=>{if(ready)refresh();};$('gain').oninput=()=>{if(!ready)return;const old=warped.deformation.gain;try{refresh();}catch(e){$('gain').value=String(old*100);status(e.message,true);}};
+$('export').onclick=()=>{if(!ready)return;const data={...warped,acceptance:'donor_authoring_only_not_main_or_phone_verified'},url=URL.createObjectURL(new Blob([JSON.stringify(data)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='qingyang-shared-components.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+async function load(){const manifest=await (await fetch('../../references/derived/side-b-cutout-manifest.json')).json(),identity=await(await fetch('../../references/derived/side-b-shoulder-back.json')).json();size=identity.sourceSize;images=await Promise.all(manifest.components.map(async c=>{const r=await fetch('../../'+c.path);if(!r.ok)throw Error('裁片读取失败');const bytes=await r.arrayBuffer(),sha=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');if(sha!==c.sha256||c.originalSourceSha256!==identity.sourceSha256)throw Error('供图身份校验失败');const url=URL.createObjectURL(new Blob([bytes])),im=new Image();try{im.src=url;await im.decode();}finally{URL.revokeObjectURL(url);}if(im.width!==c.size[0]||im.height!==c.size[1])throw Error('裁片尺寸不匹配');return im;}));mesh=buildComponentJunction(manifest.components);raster=makeComponentRaster(images,{crop});ready=true;refresh();document.body.dataset.ready='true';}
+load().catch(e=>{status(e.message,true);document.body.dataset.ready='error';});

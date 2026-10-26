@@ -7,12 +7,12 @@ import render_gles as g
 subprocess.run(['node','tests/component-deform-regression.mjs'],cwd=g.ROOT,check=True)
 mesh=json.loads(Path('/tmp/f14-component-warp.json').read_text());parts=json.loads((g.ROOT/'references/derived/side-b-cutout-manifest.json').read_text())['components']
 p=g.createProgram()
-vs=b'attribute vec2 a_position,a_uv; varying vec2 v_uv; void main(){ v_uv=a_uv; gl_Position=vec4((a_position-vec2(640.,295.))/vec2(330.,360.)*vec2(2.,-2.)+vec2(-1.,1.),0.,1.); }'
-frag=b'precision mediump float; varying vec2 v_uv; uniform sampler2D u_image; void main(){gl_FragColor=texture2D(u_image,v_uv);}'
+shaders=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {componentVertexShader,componentFragmentShader} from './character-prototype/preview/component-raster.mjs';console.log(JSON.stringify([componentVertexShader,componentFragmentShader]));"],cwd=g.ROOT,text=True))
+vs,frag=[s.encode() for s in shaders]
 for src,kind in [(vs,0x8B31),(frag,0x8B30)]:
  s=g.createShader(kind);raw=C.c_char_p(src);g.shaderSource(s,1,C.byref(raw),None);g.compileShader(s);ok=g.I();g.getShader(s,0x8B81,C.byref(ok));assert ok.value;g.attach(p,s)
 g.link(p);ok=g.I();g.getProgram(p,0x8B82,C.byref(ok));assert ok.value;g.use(p)
-g.viewport(0,0,540,588);g.disable(0x0B71);g.enable(0x0BE2);g.blend(1,0x0303);g.activeTexture(0x84C0);g.uniform1i(g.getUniform(p,b'u_image'),0)
+g.gl('glUniform4f',None,g.I,g.F,g.F,g.F,g.F)(g.getUniform(p,b'u_crop'),640,295,330,360);g.viewport(0,0,540,588);g.disable(0x0B71);g.enable(0x0BE2);g.blend(1,0x0303);g.activeTexture(0x84C0);g.uniform1i(g.getUniform(p,b'u_image'),0)
 textures=[]
 for part in parts:
  t=g.U();g.genTexture(1,C.byref(t));g.bindTexture(0x0DE1,t)

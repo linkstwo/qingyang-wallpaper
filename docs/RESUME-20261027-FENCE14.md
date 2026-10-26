@@ -21,3 +21,13 @@ T01—T20未新增整体验收，最新APK仍0.5.9/18。手机不可访问。下
 实际负例：两个各自合法的平移场使同一接缝分离24px；共享字段的51条共边在0/25/55/100%强度逐项共用顶点，最小三角面积比0.93059。反射翻折、重复点、NaN索引/强度均拒绝。尚未检查全局自交，不承诺其通过。
 
 运行node tests/component-deform-regression.mjs与python tests/render_component_junction_gles.py均通过；实际GLES原图/55%形变对照已看，见validation/f14-component-deform-gles.jpg。裁片下边仍有保守矩形截断，不是完整人体，更未与阅读主图对应。新能力尚未接入交互UI/Android。T04仍未验收；下一步将共享形变数据接入部件工具并保留显式的供图/主图对应审核边界。
+
+## 继续T04/T05与工具接入
+
+新增component-collision.mjs：二维供图平面三角重叠检查，覆盖远处片区互穿/包含/重复面；合法共边与点接触不误判。deformComponentJunction已加入此门槛。新增全局负例：两个三角形保持局部面积不变却完全重合，新门槛拒绝。这里的平面检查不等于完整人体三维自交。此前“尚未检查全局自交”仅描述前一提交；现在供图平面重叠已检查，人体3D仍未验。
+
+component-fit.html/.mjs已接入共同控制点拖动、强度/网格/重置与数据导出，入口在parts-fit.html。裁片逐字节SHA与原供图身份/尺寸加载校验。新component-raster.mjs用共享顶点、两材料真实WebGL绘制并预乘过滤，避免每三角Canvas剪切接缝。GLES夹具直接读取该模块导出的顶点/片元shader再编译渲染，并非另抄shader替身。
+
+node tests/component-collision-regression.mjs、component-deform-regression.mjs、python tests/render_component_junction_gles.py通过；两个新UI模块node --check通过。当前无本地浏览器可执行文件，页面指针/导出交互尚未实测，不能声称浏览器或手机通过。供图大小改为从已保存身份清单读真实1086×1448，未沿用测试默认大小。
+
+下一步：完成共享工具交互实测或独立核心几何任务；接着在正确主图像素上标定局部解剖对应，不把供图共同形变算阅读主图肩背连续完成。

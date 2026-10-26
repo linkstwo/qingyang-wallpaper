@@ -5,5 +5,5 @@
 <div class="panels"><figure><figcaption>原图<span>拖动编号点，选择作用位置</span></figcaption><canvas id="before" aria-label="原图与控制点"></canvas></figure><figure><figcaption>调整结果<span>拖动编号点，改变部件形状</span></figcaption><canvas id="after" aria-label="部件变形结果"></canvas></figure></div>
 <section class="actions"><button id="demo">试一次小幅调整</button><button id="compare">按住看原图</button><button id="reset">重置此部件</button><button id="save" class="primary">保存草稿</button><button id="restore">恢复草稿</button><button id="export">导出配准数据</button><button id="import">导入数据</button><input id="file" type="file" accept="application/json,.json"></section>
 <p id="status" class="status" role="status">正在读取本地素材…</p><p class="note">用于素材制作的局部形变。当前预览保留选区内的背景；输出用于进一步配准，尚未接入手机壁纸，也不会补出被遮住的侧背。切换部件或素材会放弃未保存调整，请先保存草稿。</p>
-<details><summary>数据与来源</summary><p class="note">浮点 MLS 相似变形；参考 <a href="https://github.com/Jarvis73/Moving-Least-Squares" target="_blank" rel="noreferrer">开源实现</a>，本页不加载任何外部脚本或模型。原图只读；草稿绑定原图哈希。</p><pre id="data"></pre></details>
+<p><a href="component-fit.html">颈肩与上臂共边调整</a> · 同一供图共享控制点，保留连接。</p><details><summary>数据与来源</summary><p class="note">浮点 MLS 相似变形；参考 <a href="https://github.com/Jarvis73/Moving-Least-Squares" target="_blank" rel="noreferrer">开源实现</a>，本页不加载任何外部脚本或模型。原图只读；草稿绑定原图哈希。</p><pre id="data"></pre></details>
 </main><script type="module" src="parts-fit.mjs"></script></body></html>
