@@ -10,7 +10,7 @@
     "main": -2620,
     "sideB": 968
   },
-  "rejectionReason": "Candidate neck/strap/shoulder triplet reverses orientation; a single affine patch would reflect/fold. Refine correspondence or split patches before import.",
+  "rejectionReason": "These proposed point pairs reverse orientation and are rejected as a single affine correspondence. Smooth-skin candidates are not verified homologous anatomy; this does not prove the physical shoulder must fold.",
   "source": "references/derived/side-b-shoulder-back.png",
   "sourceSha256": "75d3831e06d808247e386b8dfbdec5dcad190225c66c51bb47bbab8be5a56e56",
   "target": "references/originals/main-reading-v2.png",
@@ -90,6 +90,30 @@
     }
   },
   "observationErrorPerImagePixels": 30,
+  "pointReview": {
+    "reviewedSourceCrops": {
+      "main": [
+        550,
+        300,
+        1100,
+        900
+      ],
+      "sideB": [
+        650,
+        300,
+        900,
+        500
+      ]
+    },
+    "observedIssue": "upperShoulderSkinCandidate is a smooth-skin sample at different silhouette-relative locations; it is not an identified homologous anatomical vertex.",
+    "rejectedAsCorrespondence": [
+      "upperShoulderSkinCandidate"
+    ],
+    "neckAndStrapStatus": "local authoring candidates only; clothing and view dependent",
+    "consequence": "Opposite orientation of the old three-point sample does not establish an unavoidable physical fold; it establishes that those three proposed correspondences must not be used as one affine patch.",
+    "confidence": 0,
+    "crossImageCorrespondenceAccepted": false
+  },
   "confidence": 0,
   "accepted": false,
   "limitations": [

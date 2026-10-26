@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "9bd19dceb8b4c2d3e0166212255356cca46be7ed",
+  "createdAt": "2026-10-26T23:35:27.095798Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36388,
+      "sha256": "6a84db66903f6ea1409045a00d526369f9b12a3e9652266be71703bde0f34801"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 5511,
+      "sha256": "a4bad5a38d4cef6c92ec248841039e9fce6737a2175a356a25f21ffc5e58d292"
+    },
+    {
+      "path": "references/derived/shoulder-side-b-similarity-candidate.json",
+      "bytes": 3656,
+      "sha256": "19406ceb4b016571344da039a9816e4ef7a75efac76d6cb288daf28f8a654f04"
+    },
+    {
+      "path": "references/shoulder-source-candidates-20261027.json",
+      "bytes": 2022,
+      "sha256": "9c8aa420cb680c3d5cdda3b04ae6b0125007bd7ce70ca43ec639f8366cfb5190"
+    },
+    {
+      "path": "scripts/fit_shoulder_candidate.py",
+      "bytes": 3457,
+      "sha256": "21e5246a2341319bd718a8b164a449d6ebf95c8ca44b2f84d876ec1ebb485bbc"
+    },
+    {
+      "path": "tests/component-fit-interaction.mjs",
+      "bytes": 4007,
+      "sha256": "4c762181dd2802d9a6061cd8f89ef6cc2dc6c59018c27ac09fa1933789d41f7a"
+    },
+    {
+      "path": "validation/f14-shoulder-correspondence-review.jpg",
+      "bytes": 97495,
+      "sha256": "e50930000ebc4f56f8d55c891b7d5efa5d8369ec32653c5157b8ebb7d888fb9d"
+    },
+    {
+      "path": "validation/f14-under-hand-diagnostic.json",
+      "bytes": 23816,
+      "sha256": "10159a2e512033fdbc96a179ab45d76060294394bed5eea76ea24b9e1eb43abc"
+    },
+    {
+      "path": "validation/f14-under-hand-production-forearm.json",
+      "bytes": 128062,
+      "sha256": "078b55b0c5fc03d555dface40e9200dcb4b368a0e83ab6e62009c28fa8849986"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/component-fit-interaction.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "CORRUPT_COMPONENT=1 node tests/component-fit-interaction.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python scripts/fit_shoulder_candidate.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-contact-pose-scan.mjs (243 production forearm poses)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-contact-pose-scan.mjs (45 diagnostic poses)",
+      "status": "failed",
+      "exitCode": 1
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "43ae6dce4262d68cc43ea8eb8e5f51211e4210466a65d0995e5c5a58f64a3433"
+}

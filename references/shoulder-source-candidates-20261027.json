@@ -28,7 +28,7 @@
     "crossImageCorrespondenceAccepted": false
   },
   "sideB": {
-    "path": "\u5de5\u4e1a\u8f66\u95f4\u91cc\u7684\u84dd\u56fe\u65f6\u5149.png (in source archive)",
+    "path": "工业车间里的蓝图时光.png (in source archive)",
     "points": {
       "frameRightStrapAtShoulder": [
         791,
@@ -53,6 +53,30 @@
     ],
     "sha256": "23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16",
     "observationErrorPixels": 30,
+    "crossImageCorrespondenceAccepted": false
+  },
+  "fence14PixelReview": {
+    "reviewedSourceCrops": {
+      "main": [
+        550,
+        300,
+        1100,
+        900
+      ],
+      "sideB": [
+        650,
+        300,
+        900,
+        500
+      ]
+    },
+    "observedIssue": "upperShoulderSkinCandidate is a smooth-skin sample at different silhouette-relative locations; it is not an identified homologous anatomical vertex.",
+    "rejectedAsCorrespondence": [
+      "upperShoulderSkinCandidate"
+    ],
+    "neckAndStrapStatus": "local authoring candidates only; clothing and view dependent",
+    "consequence": "Opposite orientation of the old three-point sample does not establish an unavoidable physical fold; it establishes that those three proposed correspondences must not be used as one affine patch.",
+    "confidence": 0,
     "crossImageCorrespondenceAccepted": false
   }
 }
