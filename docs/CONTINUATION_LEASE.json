@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "manual-plugin-s2-20261026-0803",
-  "fence": 5,
+  "owner": "manual-plugin-s2-20261026-0833",
+  "fence": 6,
   "status": "running",
-  "startedAt": "2026-10-26T08:03:10.517816Z",
-  "heartbeatAt": "2026-10-26T08:03:10.517816Z",
-  "expiresAt": "2026-10-26T08:18:10.517816Z",
-  "baseHead": "cf40b93080349c8f8e99d903a68404a30054fe30"
+  "startedAt": "2026-10-26T08:34:20.771982Z",
+  "heartbeatAt": "2026-10-26T08:34:20.771982Z",
+  "expiresAt": "2026-10-26T08:49:20.771982Z",
+  "baseHead": "50037becc75ece605d5c84d22f4b7fe2db5b5434"
 }
