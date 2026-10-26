@@ -4,7 +4,17 @@
   "fence": 6,
   "status": "running",
   "startedAt": "2026-10-26T08:34:20.771982Z",
-  "heartbeatAt": "2026-10-26T08:34:20.771982Z",
-  "expiresAt": "2026-10-26T08:49:20.771982Z",
-  "baseHead": "50037becc75ece605d5c84d22f4b7fe2db5b5434"
+  "heartbeatAt": "2026-10-26T08:35:23.289884Z",
+  "expiresAt": "2026-10-26T08:50:23.289884Z",
+  "baseHead": "50037becc75ece605d5c84d22f4b7fe2db5b5434",
+  "checkpoint": {
+    "baseHead": "a6f1a75a79b25962ed721dc7cb7009e53e74c5bb",
+    "createdAt": "2026-10-26T08:35:23.289884+00:00",
+    "sourceDigest": "ebd14d89596be4c22bc42733891967e5a53f69830eb74dda10a1f5be106b20e2",
+    "stage": "S2",
+    "next": [
+      "Align the inferred front depth field with the visible forearm while preserving supported hand and original source RGB.",
+      "Validate source projection, triangle ranges and GLES occlusion; then continue connected front/back registration."
+    ]
+  }
 }

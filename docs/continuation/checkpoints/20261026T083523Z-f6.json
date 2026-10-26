@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0833",
+  "fence": 6,
+  "baseHead": "a6f1a75a79b25962ed721dc7cb7009e53e74c5bb",
+  "createdAt": "2026-10-26T08:35:23.289884+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/front-fit.mjs",
+      "bytes": 4983,
+      "sha256": "81653710a2463dd3b9e0d65a0e095fd16ce40cbc4a84f32dd877800c30f156dc"
+    },
+    {
+      "path": "character-prototype/preview/projected-surface.mjs",
+      "bytes": 1457,
+      "sha256": "0e505b85f06f20f842a1610fb5546a9808ad788f0c640d7b039347f57e50330d"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 31043,
+      "sha256": "d77fa2b68f705c9b9a55a8a6abae5a3e7a6a1b2146f368483045092aa5a9627f"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 5457,
+      "sha256": "c286c93fac2635d67a777ac51c83bf3bff4e0ccf9c891ec8a3d17a4976609e28"
+    },
+    {
+      "path": "tests/front-fit-regression.mjs",
+      "bytes": 2036,
+      "sha256": "e5c0e1defb0700e68acc4d8353ceeae902031afd133490f5dbd39bfbca3ab491"
+    },
+    {
+      "path": "tests/projected-surface-regression.mjs",
+      "bytes": 2068,
+      "sha256": "3d534403a9f6bec0f9dfc2db1854b7ef2290347481c1e61022ab03b36e76c801"
+    },
+    {
+      "path": "validation/s2-front-fit.json",
+      "bytes": 834,
+      "sha256": "b0ef8fa9bee17f83addc490bcb8fa54a4f7b2e12be5ef32833163ec392e618d5"
+    },
+    {
+      "path": "validation/s2-projected-surface.json",
+      "bytes": 206,
+      "sha256": "598841382e42291ac1b95ddfce3a6cfddb6a18d3dd166bb861717f108ed1cd81"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/projected-surface-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/front-fit-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Align the inferred front depth field with the visible forearm while preserving supported hand and original source RGB.",
+    "Validate source projection, triangle ranges and GLES occlusion; then continue connected front/back registration."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "ebd14d89596be4c22bc42733891967e5a53f69830eb74dda10a1f5be106b20e2"
+}
