@@ -1,21 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "manual-plugin-s2-20261026-0650",
-  "fence": 4,
-  "status": "released",
-  "startedAt": "2026-10-26T06:50:20.554212Z",
-  "heartbeatAt": "2026-10-26T08:02:06.455Z",
-  "expiresAt": "2026-10-26T08:02:06.455Z",
-  "baseHead": "415bacf1bda178adaac88efb907a73879790cfbf",
-  "checkpoint": {
-    "baseHead": "236349b4496f326e48432e286c29fd43541b884d",
-    "createdAt": "2026-10-26T08:02:06.455Z",
-    "sourceDigest": "0e3a627835c0a2e93bf00a32c6bf8c10cba907045a2b28fb2411eb97ac610cd2",
-    "stage": "S2",
-    "next": [
-      "Restore a working executor and clone the latest branch; inspect/claim a new lease before edits.",
-      "Review/apply the recovered patch, then rerun node tests/projected-surface-regression.mjs and node tests/front-fit-regression.mjs."
-    ]
-  },
-  "reason": "Actual execution environment unavailable / exec-server transport closed; recovery patch saved pending revalidation."
+  "owner": "manual-plugin-s2-20261026-0803",
+  "fence": 5,
+  "status": "running",
+  "startedAt": "2026-10-26T08:03:10.517816Z",
+  "heartbeatAt": "2026-10-26T08:03:10.517816Z",
+  "expiresAt": "2026-10-26T08:18:10.517816Z",
+  "baseHead": "cf40b93080349c8f8e99d903a68404a30054fe30"
 }
