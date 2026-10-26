@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T09:00:56.403659+00:00",
+  "updatedAt": "2026-10-26T12:46:07.573Z",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "User-requested manual close after source-ray neutral equality and shared source boundaries were verified. S2 remains incomplete.",
+  "scopeOfThisRun": "User-authorised lightweight GitHub helper integration and Doubao collaboration; no engine replacement or large downloads.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -31,10 +31,10 @@
     "Negative validation: unsigned APK and deliberately modified signed APK are rejected",
     "Saved original-key signed APK to Library: libfile_7cf285975d448191b54ad985b60b4a0a",
     "User clarified priority: preserve current main photo; shoulder, arm and waist visibility should be controlled with manual lockscreen zoom/framing",
-    "Implemented full-screen live crop editor with45\u2013350% pinch zoom, horizontal/vertical drag, named presets, draft/cancel/save, old0.5.6 hold comparison and motion preview",
+    "Implemented full-screen live crop editor with45–350% pinch zoom, horizontal/vertical drag, named presets, draft/cancel/save, old0.5.6 hold comparison and motion preview",
     "App preview and live wallpaper resolve the same immutable source-pixel crop; crop persists and is observed by live engines",
     "Simplified main UI to enlarge preview and provide direct crop/response controls",
-    "Implemented bounded torso-acceleration coupling with old0.5.6 response selectable; deterministic peak body0.354\u21921.179 and relative response1.853\u21925.580 source pixels",
+    "Implemented bounded torso-acceleration coupling with old0.5.6 response selectable; deterministic peak body0.354→1.179 and relative response1.853→5.580 source pixels",
     "Passed163 crop/settings checks,10132 existing response assertions,52 lifecycle checks, full old/new Java/JS trajectory parity max error<0.000002 and combined-force displacement bounds",
     "Viewed actual local Edge WebGL four-way composition/motion render; this is desktop rendering, not native Android UI",
     "Built0.5.7/16 release offline including vital Lint; signed with original certificate and verified new editor DEX, assets unchanged, ZIP/alignment/manifest and negative signature cases",
@@ -48,8 +48,8 @@
     "Reproduced0.5.8 chest/left-edge defect; separated full motion coverage from source erasure, and replaced single broad chest field with two smooth material lobes and neckline/ribcage taper. Current CPU/GLES/triangle checks passed; visual fix still requires user acceptance.",
     "Entered S2 after checkpoint041b653: added calibrated source/world camera model, shared support-depth convention and closed head-neck-torso/arm thickness proxy exporter. These are inferred geometry/debug assets, not textured multiview completion.",
     "S2 first structural checkpoint:550 vertices/1088 faces in3 closed parts,7291 scene checks passed; neutral calibrated projection error<2e-13 source pixels, connected-edge winding checks passed,340 vertices explicitly untextured. Production camera integration remains next.",
-    "Recovered calibrated CPU/GLSL scene projection after transient directory cleanup; world paper plane and material-space support constraints integrated. Reran7295 scene checks and884736 triangle cases; min area ratio0.20528, support contact error0. Production yaw/pitch bounded to\u00b10.04/0.02rad pending occlusion topology split. No new APK built.",
-    "S2 layered topology: subtract observed paper polygon from character geometry; body18089 triangles, paper164. Body contact/depth no longer follows paper feather; wrist depth transitions over forearm. Reproduced old area ratio-1.073 at0.14/0.07rad, new0.1664; neutral coverage area error0.00049pixel\u00b2. Production range remains bounded; hidden under-paper body texture remains missing.",
+    "Recovered calibrated CPU/GLSL scene projection after transient directory cleanup; world paper plane and material-space support constraints integrated. Reran7295 scene checks and884736 triangle cases; min area ratio0.20528, support contact error0. Production yaw/pitch bounded to±0.04/0.02rad pending occlusion topology split. No new APK built.",
+    "S2 layered topology: subtract observed paper polygon from character geometry; body18089 triangles, paper164. Body contact/depth no longer follows paper feather; wrist depth transitions over forearm. Reproduced old area ratio-1.073 at0.14/0.07rad, new0.1664; neutral coverage area error0.00049pixel². Production range remains bounded; hidden under-paper body texture remains missing.",
     "S2 depth integration: real camera depth in production GLSL,16-bit depth requested in both native surfaces, LEQUAL on body/paper and transparent-mask discard. Five actual GLES occlusion cases passed across both draw orders;1440 GPU landmarks/222 contour pixels/52 lifecycle/10132 response checks and Java-JS parity passed. Restored9 structural debug renders; those wider untextured views are diagnostic only.",
     "Built0.5.9/18 including vitalLint; original-key signed v3-only, verified original certificate/version/ZIP/alignment/18 assets/DEX and negative unsigned/tampered cases. Saved exact signed APK; public download publishing next.",
     "0.5.9 original-key candidate publicly released. GitHub runner independently reverified original certificate and exact APK digest, then anonymously downloaded public asset and checked SHA256; workflow40255607657 succeeded. APK safely persisted before transient workspace cleanup.",
@@ -61,18 +61,19 @@
     "Reviewed all10 archived whole images and verified bytes/hashes:4 exact-pixel equivalents to existing Git references,6 additional compositions with pose/clothing differences. Registered reading-v2 to front-variant in2D with53 integer-grid subject patch matches(35 fit/18 heldout); different back/side/front-three-quarter poses rejected by this2D gate. Production RGB unchanged. Provisional back chart covers3335 vertices/6445 triangles; real GLES depth/cull reveal uses back-source pixels on rear surface across five camera angles. Mapping remains uncalibrated/confidence0 with visible stretch, so not production-ready or S3-complete.",
     "S2 nonlocal intersection scan:25 sampled supported poses,303642 broad/narrow candidate pairs,zero crossing intersections;5 positive/negative/coplanar fixtures pass. This is sampled geometry evidence, not swept continuous collision detection. Added interactive structural/material lab with camera/body separation,5 debug modes,draggable source rails and source-hash-bound local draft persistence. Desktop WebGL exercised real pixels,drag/save/reset/restore/reload,wrong-source rejection,animation and412px viewport with zero console errors/external requests. Corrected rear UV horizontal orientation and excluded arm pixels from candidate torso source. Provisional camera fit still fails:held-out RMS26.27/max52.44source pixels,confidence0. No new APK.",
     "Combined existing reading photograph surface(54267 vertices), world paper(3018) and carved rear proxy in one desktop diagnostic scene. Reused source-world bone weights; homogeneous source UV neutral test against flat source has mean RGB error0.000228 and0pixels over2. Removed obvious rear-cap intrusion into front arm, bound rear mask in homogeneous source coordinates. Browser rear-on/off neutral comparison retains16pixels over2(max26); strict equality is NOT accepted, despite bounded regression passing. Back view actually adds71717 changed pixels. Original RGB, production camera and Q solver remain unchanged. Re-downloaded public0.5.9 and matched exact signed SHA256e64dc0f...da6e8eac.",
-    "Fence4 fixed2 source T-junctions:18095 triangles,9313 source vertices,zero unmatched interior edges,source area drift0.0000292pixel\u00b2. These were real topology defects but did not explain all16 neutral differences. Native GPU readback confirmed the difference was present before browser composition; coverage/depth prepass alone did not resolve it. Explicit single-sample scene framebuffer plus2x supersampled presentation preserves smooth edges and now gives exact rear-on/off equality:all channels zero difference in697x620 GPU readback and screenshots. Strict zero-difference assertions restored; photographic front/rear registration remains pending. Research pipeline only, no phone performance claim or new APK.",
-    "Fence4 continued without stopping after neutral-fix checkpoint: expanded provisional back source chart through observed nape/shoulder region(y415\u2013520), now3712 candidate vertices/7163 triangles. Source rail interpolation is shape-preserving C1 cubic;2943 checks show no interval overshoot,exact control points,min100px rail width,max finite-difference derivative jump0.000049. Draft version2 rejects legacy/folded/degenerate source charts and retains source identity/confidence0. Actual GLES rear-source reveal passed; calibrated-camera fit still rejects with held-out RMS25.81/max51.96px. Exact neutral framebuffer/screenshot equality remains0; Android inputs and APK unchanged.",
+    "Fence4 fixed2 source T-junctions:18095 triangles,9313 source vertices,zero unmatched interior edges,source area drift0.0000292pixel². These were real topology defects but did not explain all16 neutral differences. Native GPU readback confirmed the difference was present before browser composition; coverage/depth prepass alone did not resolve it. Explicit single-sample scene framebuffer plus2x supersampled presentation preserves smooth edges and now gives exact rear-on/off equality:all channels zero difference in697x620 GPU readback and screenshots. Strict zero-difference assertions restored; photographic front/rear registration remains pending. Research pipeline only, no phone performance claim or new APK.",
+    "Fence4 continued without stopping after neutral-fix checkpoint: expanded provisional back source chart through observed nape/shoulder region(y415–520), now3712 candidate vertices/7163 triangles. Source rail interpolation is shape-preserving C1 cubic;2943 checks show no interval overshoot,exact control points,min100px rail width,max finite-difference derivative jump0.000049. Draft version2 rejects legacy/folded/degenerate source charts and retains source identity/confidence0. Actual GLES rear-source reveal passed; calibrated-camera fit still rejects with held-out RMS25.81/max51.96px. Exact neutral framebuffer/screenshot equality remains0; Android inputs and APK unchanged.",
     "Fence4 found and fixed a distinct production GLSL depth bug: old clipZ multiplied by clipW again, so a single world plane changed depth with mesh tessellation. Shared scene.vert and structural/observed debug shaders now use affine homogeneous clipZ with near world+1000/far-2000; source camera XY, RGB, pose and Q solver unchanged. Actual GLES coarse/fine plane control:correct max window-depth discrepancy2.3842e-7 versus old0.00129867; old expression is a required failing control. Passed5 depth-order cases/both draw orders,1440 GPU landmarks,face/contact/hair render,7293 scene checks,layered scans,asset/export checks and52 lifecycle assertions. Browser default offscreen path remains exact0; direct4xMSAA still reproduces16 residuals, so these are recorded as separate issues rather than attributing that residual to this projection fix. No new APK yet.",
     "Fence4 continued until actual executor failure. Before shutdown, constrained front-fit and independent3D ray regressions passed locally:8484 fitted vertices,RMS63.13->58.35,1038096 posed triangle cases,min rest area ratio0.468/min posed0.709,pinned error0;91 ray samples agreed within8.53e-13. Filesystem then became inaccessible; source edits were reconstructed as a recovery patch, explicitly not revalidated. Previously validated production-depth/neutral/nape milestones remain durable.",
     "Recovered original front-fit/ray source files without applying reconstructed patch; reran 91 independent ray samples and 1,038,096 posed triangle cases. Fit remains research-only with hidden confidence0, RMS63.13->58.35 and source projection error<2.3e-13. Actual photo review places worst residual on visible forearm; old depth field lacks its local thickness.",
-    "Fence6 traced visible forearm boundary and rejected direct single-sheet lift with a reproducing negative control. Separate source pieces plus legal edge flips pass 2,486,781 material/camera triangle cases, min0.2433, neutral projection<2.3e-13 and source area drift0.00050px\u00b2. Actual browser experiment changes oblique pixels with rear-on/off neutral equality0, but new-versus-old neutral has29 pixels>2/max51; full-front large skeletal pose also has a negative area ratio. Experiment is optional/default-off, no production depth change. Corrected occluded elbow observation flag. Generator now preserves shared homogeneous-depth fix and supports read-only --check.",
-    "Fence6 final: jointly conformed source coordinates with preserved material labels and boundary-constrained edge flips; source area drift-0.000196px\u00b2,2,527,038 material/camera cases passed. Calibrated rest source-ray sampling removes interpolation rounding; browser strict experimental-versus-baseline neutral screenshot and rear-on/off framebuffer both max0. New forearm skeletal min ratio0.742/pin error0; whole foreground remains not accepted with paper/background boundary fold-0.1248. User requested immediate manual close."
+    "Fence6 traced visible forearm boundary and rejected direct single-sheet lift with a reproducing negative control. Separate source pieces plus legal edge flips pass 2,486,781 material/camera triangle cases, min0.2433, neutral projection<2.3e-13 and source area drift0.00050px². Actual browser experiment changes oblique pixels with rear-on/off neutral equality0, but new-versus-old neutral has29 pixels>2/max51; full-front large skeletal pose also has a negative area ratio. Experiment is optional/default-off, no production depth change. Corrected occluded elbow observation flag. Generator now preserves shared homogeneous-depth fix and supports read-only --check.",
+    "Fence6 final: jointly conformed source coordinates with preserved material labels and boundary-constrained edge flips; source area drift-0.000196px²,2,527,038 material/camera cases passed. Calibrated rest source-ray sampling removes interpolation rounding; browser strict experimental-versus-baseline neutral screenshot and rear-on/off framebuffer both max0. New forearm skeletal min ratio0.742/pin error0; whole foreground remains not accepted with paper/background boundary fold-0.1248. User requested immediate manual close.",
+    "Fence7 added actual browser-operated MLS parts authoring tool using existing images: floating JS similarity deformation, fixed boundary/fold rejection, source-hash-bound drafts, saved gain and JSON import/export. 1678 coordinate checks passed; actual reading/side image, drag,55% save/reload/restore/export/import and wrong-source rejection checked in Codex browser; no phone or efficiency gain claim."
   ],
   "next": [
-    "Read latest HEAD and claim a fresh lease before further edits.",
-    "Separate paper-edge background/source material binding near(243,900); full-front skeletal acceptance remains false.",
-    "Continue shoulder/nape/back material continuity after source/pose constraints; confidence0 until calibration passes."
+    "Review Doubao candidate-1946 attribute-slot patch in an isolated browser; retain old production source.",
+    "Use authoring controls on one independently observed shoulder correspondence; exported JSON is not yet backChart or Android data.",
+    "Continue paper-edge foreground/material binding and shoulder/back continuity; S1/S2 remain incomplete."
   ],
   "stages": {
     "S1": "in_progress",
@@ -176,7 +177,10 @@
     "validation/s2-forearm-surface.json",
     "validation/s2-forearm-pose.json",
     "validation/s2-forearm-negative-control.json",
-    "validation/s2-forearm-source-boundary.jpg"
+    "validation/s2-forearm-source-boundary.jpg",
+    "docs/PARTS-AUTHORING-20261026.md",
+    "validation/parts-fit-browser.json",
+    "validation/parts-fit-side-browser.jpg"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -296,18 +300,19 @@
   },
   "runtimePolicy": {
     "mode": "cloud_only",
-    "bridgeEnabled": false,
-    "doNotRecheckBridge": true,
-    "originalSigningIdentityOnly": true
+    "bridgeEnabled": true,
+    "doNotRecheckBridge": false,
+    "originalSigningIdentityOnly": true,
+    "note": "Latest user explicitly restored Codex-to-Doubao bridge delegation; preserve no-large-download constraint."
   },
   "reportingContract": {
     "requiredAfterEveryRun": true,
     "fields": [
-      "\u5b9e\u9645\u5b8c\u6210\u5185\u5bb9\u53ca\u63d0\u4ea4/\u4ea7\u7269",
-      "\u5f53\u524dS\u9636\u6bb5\u548c\u771f\u5b9e\u72b6\u6001",
-      "\u672a\u5b8c\u6210\u9879",
-      "\u963b\u585e\u53ca\u6240\u9700\u6750\u6599",
-      "\u4e0b\u4e00\u6761\u53ef\u6267\u884c\u52a8\u4f5c"
+      "实际完成内容及提交/产物",
+      "当前S阶段和真实状态",
+      "未完成项",
+      "阻塞及所需材料",
+      "下一条可执行动作"
     ],
     "rules": [
       "Build success is not signature/installability or phone acceptance.",
@@ -329,17 +334,17 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T09:00:56.403659+00:00",
+    "lastCheckpointAt": "2026-10-26T12:46:07.573Z",
     "checkpointIntervalMinutes": 30,
-    "mode": "ended_user_requested",
+    "mode": "active_development",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Original uncommitted files survived; both regressions rerun successfully after recovery.",
-    "owner": "manual-plugin-s2-20261026-0833",
-    "fence": 6,
+    "owner": "codex-lightweight-parts-1793017723001",
+    "fence": 7,
     "latestSourceCheckpoint": "4be1b385ba41bbd33b840ee913b38cc74e0bb53f",
     "userRequestedDoNotStop": true,
-    "stopReason": "User explicitly requested rapid manual close.",
+    "stopReason": null,
     "backgroundWorkerActive": false
   },
   "userReportedIssues": [
