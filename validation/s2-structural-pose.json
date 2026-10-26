@@ -1,0 +1,13 @@
+{
+  "cases": 27,
+  "triangleCases": 1038096,
+  "minAreaRatio": 0.7090678446608442,
+  "minNormalDot": 0.9566137715073076,
+  "maxWristError": 0,
+  "maxLengthError": 2.2737367544323206e-13,
+  "maxPinnedSurfaceError": 0,
+  "zeroPoseExact": true,
+  "nearWristFreeBecauseUnobserved": true,
+  "cameraAndSpringSolverChanged": false,
+  "phoneTested": false
+}

@@ -55,10 +55,11 @@
     "0.5.9 original-key candidate publicly released. GitHub runner independently reverified original certificate and exact APK digest, then anonymously downloaded public asset and checked SHA256; workflow40255607657 succeeded. APK safely persisted before transient workspace cleanup.",
     "Created first continuation plugin source: two skills, expiring fenced coordination and source-digest receipts.34 local regressions include abrupt exit/scratch loss recovery and actual concurrent non-force Git push rejection. Package/private save and schedule prompt binding are next; S2 application source unchanged.",
     "Saved private continuation plugin0.1.0 to account, re-read both skills and helper byte-for-byte. Independent fresh-agent fixture completed13 zoom cases, pushed claim/checkpoint/release to isolated bare origin and verified restored source evidence. No real scheduler wake tested; original time window unchanged.",
-    "First real S2 continuation under plugin fence2: built one welded inferred torso/arm surface from smooth-union field,19226 vertices/38448 faces,one component,zero boundary edges,Euler2;192250 assertions passed. Exportv2 includes six-bone hierarchy and normalised weights. New unregistered surfaces have confidence0; published0.5.9 unchanged."
+    "First real S2 continuation under plugin fence2: built one welded inferred torso/arm surface from smooth-union field,19226 vertices/38448 faces,one component,zero boundary edges,Euler2;192250 assertions passed. Exportv2 includes six-bone hierarchy and normalised weights. New unregistered surfaces have confidence0; published0.5.9 unchanged.",
+    "S2 supported skeletal motion: separate torso/camera/spring inputs, six-bone skin, observed far wrist fixed to paper, unobserved cropped near wrist free.27 pose combinations/1038096 triangle cases passed; min area ratio0.709, normal alignment0.9566, wrist/pinned-surface error0, bone length error<3e-13. Neutral mesh exact; production camera and spring solver unchanged."
   ],
   "next": [
-    "Implement supported skeletal motion for the joined proxy; fixed observed paper wrist, free unobserved near wrist, test shape/contact bounds.",
+    "Add actual posed-geometry debug rendering and verify exported skin weights/pose parity.",
     "Continue source registration and hidden-material credibility before textured side/back or widening production view."
   ],
   "stages": {
@@ -131,7 +132,8 @@
     "validation/reading-subject-0.5.9.json",
     "validation/build-0.5.9-signed.json",
     "docs/S2-CONNECTED-STRUCTURE.md",
-    "validation/s2-connected-proxy.json"
+    "validation/s2-connected-proxy.json",
+    "validation/s2-structural-pose.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -275,7 +277,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T03:14:31.106Z",
+    "lastCheckpointAt": "2026-10-26T03:20:15.444Z",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,

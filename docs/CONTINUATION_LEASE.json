@@ -4,16 +4,16 @@
   "fence": 2,
   "status": "running",
   "startedAt": "2026-10-26T03:02:30.379715Z",
-  "heartbeatAt": "2026-10-26T03:14:31.106000Z",
-  "expiresAt": "2026-10-26T03:29:31.106000Z",
+  "heartbeatAt": "2026-10-26T03:20:15.444000Z",
+  "expiresAt": "2026-10-26T03:35:15.444000Z",
   "baseHead": "1f816184fd64a615b7eff0eefe20a9ab3427305e",
   "checkpoint": {
-    "baseHead": "3cf1e6b819d13a1f394ba1a255fc62491194102a",
-    "createdAt": "2026-10-26T03:14:31.106Z",
-    "sourceDigest": "33b18832565b84a8ae24623a149d954902948b2f79f072cee017c2420d2a1937",
+    "baseHead": "053b565747bed720e76c14b033c97c36d78644ab",
+    "createdAt": "2026-10-26T03:20:15.444Z",
+    "sourceDigest": "3bf828045dd247fc8053db2f55335d023b24ea68c05ac74cd6354505b2ec89eb",
     "stage": "S2",
     "next": [
-      "Implement supported skeletal motion for the joined proxy; fixed observed paper wrist, free unobserved near wrist, test shape/contact bounds.",
+      "Add actual posed-geometry debug rendering and verify exported skin weights/pose parity.",
       "Continue source registration and hidden-material credibility before textured side/back or widening production view."
     ]
   }
