@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T23:51:17.202591+00:00",
+  "updatedAt": "2026-10-26T23:53:56.075995+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -481,6 +481,6 @@
     "tasksAccepted": [],
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
-    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f14-aspect-surface.json"
+    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f14-surface-gles.json"
   }
 }

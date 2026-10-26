@@ -1,0 +1,12 @@
+{
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "actualGles": true,
+  "neutralPlanarMaxChannelError": 0,
+  "neutralInteriorPixels": 43117,
+  "depthInferred": true,
+  "hiddenTextureAdded": false,
+  "registeredToMain": false,
+  "cameraCalibrated": false,
+  "wholeT04Accepted": false,
+  "phoneTested": false
+}

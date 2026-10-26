@@ -1,5 +1,6 @@
 {
   "maxNeutralError": 5.684341886080802e-14,
+  "legacyProductionFlips": 1,
   "vertices": 1434,
   "rows": [
     {
