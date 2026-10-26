@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "independentSourceViews": 1,
+  "newCameraAnglesClaimed": 0,
+  "components": [
+    {
+      "id": "side-b-nape-shoulder",
+      "path": "references/derived/side-b-nape-shoulder.png",
+      "sourceFile": "工业车间里的蓝图时光.png",
+      "sourceSha256": "23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16",
+      "cropRect": [
+        650,
+        300,
+        900,
+        500
+      ],
+      "size": [
+        250,
+        200
+      ],
+      "outputSha256": "cc21d3541f50fb452dc0daa9abbbedd5b47e16e47650fb3a31531291b6e83d7e",
+      "rgbExact": true,
+      "resampled": false,
+      "mirrored": false,
+      "confidence": 0,
+      "registrationAccepted": false,
+      "use": "nape/strap local authoring; contains background and hair, no accepted cross-view registration"
+    },
+    {
+      "id": "side-b-upper-arm",
+      "path": "references/derived/side-b-upper-arm.png",
+      "sourceFile": "工业车间里的蓝图时光.png",
+      "sourceSha256": "23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16",
+      "cropRect": [
+        790,
+        410,
+        945,
+        640
+      ],
+      "size": [
+        155,
+        230
+      ],
+      "outputSha256": "63bde24e89142a2ff67a0bb7b743040b29bd87b6ae9e6fecdd42552e835cf014",
+      "rgbExact": true,
+      "resampled": false,
+      "mirrored": false,
+      "confidence": 0,
+      "registrationAccepted": false,
+      "use": "bent-arm upper shoulder cap; pose differs, never transfer as the supported arm"
+    }
+  ],
+  "reason": "Neck/strap/outer-shoulder candidate triangle reverses orientation; split authoring patches before trying local corrections."
+}

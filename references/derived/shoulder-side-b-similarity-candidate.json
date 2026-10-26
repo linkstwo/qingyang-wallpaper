@@ -1,5 +1,16 @@
 {
   "version": 1,
+  "singleAffinePatchAllowed": false,
+  "orientationTriplet": [
+    "frameRightNeckBase",
+    "frameRightStrapAtShoulder",
+    "upperShoulderSkinCandidate"
+  ],
+  "signedDoubleAreaPixels": {
+    "main": -2620,
+    "sideB": 968
+  },
+  "rejectionReason": "Candidate neck/strap/shoulder triplet reverses orientation; a single affine patch would reflect/fold. Refine correspondence or split patches before import.",
   "source": "references/derived/side-b-shoulder-back.png",
   "sourceSha256": "75d3831e06d808247e386b8dfbdec5dcad190225c66c51bb47bbab8be5a56e56",
   "target": "references/originals/main-reading-v2.png",

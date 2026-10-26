@@ -1,0 +1,30 @@
+{
+  "cases": [
+    {
+      "source": "sideBNape",
+      "size": [
+        250,
+        200
+      ],
+      "sourceSha256": "cc21d3541f50fb452dc0daa9abbbedd5b47e16e47650fb3a31531291b6e83d7e",
+      "minimumAreaRatio": 0.6475100262170816,
+      "savedRestored": true,
+      "confidence": 0
+    },
+    {
+      "source": "sideBUpperArm",
+      "size": [
+        155,
+        230
+      ],
+      "sourceSha256": "63bde24e89142a2ff67a0bb7b743040b29bd87b6ae9e6fecdd42552e835cf014",
+      "minimumAreaRatio": 0.674291122572237,
+      "savedRestored": true,
+      "confidence": 0
+    }
+  ],
+  "pageErrors": [],
+  "oneDonorView": true,
+  "continuousViewAccepted": false,
+  "phoneTested": false
+}
