@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "owner": "manual-plugin-s2-20261026-0833",
   "fence": 6,
-  "status": "running",
+  "status": "released",
   "startedAt": "2026-10-26T08:34:20.771982Z",
-  "heartbeatAt": "2026-10-26T09:01:03.386877Z",
-  "expiresAt": "2026-10-26T09:16:03.386877Z",
+  "heartbeatAt": "2026-10-26T09:01:31.462493Z",
+  "expiresAt": "2026-10-26T09:01:31.462493Z",
   "baseHead": "50037becc75ece605d5c84d22f4b7fe2db5b5434",
   "checkpoint": {
     "baseHead": "2365f12e77578625b64cbefea7ad514cfa388ba4",
@@ -17,5 +17,6 @@
       "Separate paper-edge background/source material binding near(243,900); full-front skeletal acceptance remains false.",
       "Continue shoulder/nape/back material continuity after source/pose constraints; confidence0 until calibration passes."
     ]
-  }
+  },
+  "reason": "User requested immediate manual close; source/checkpoint saved; execution ended, no background worker."
 }
