@@ -1,0 +1,46 @@
+{
+  "recoveredPaperPixels": [
+    [
+      2,
+      880
+    ],
+    [
+      4,
+      910
+    ],
+    [
+      12,
+      840
+    ],
+    [
+      30,
+      800
+    ],
+    [
+      410,
+      1045
+    ]
+  ],
+  "oldOutlineFailsSelectedPixels": true,
+  "rows": [
+    {
+      "forearmVolume": false,
+      "bodyVertices": 77202,
+      "paperVertices": 6057,
+      "sourceAreaError": 0.0029397413600236177,
+      "maxNeutralProjectionError": 2.2737367544323206e-13,
+      "paperMotion": 0
+    },
+    {
+      "forearmVolume": true,
+      "bodyVertices": 120531,
+      "paperVertices": 6057,
+      "sourceAreaError": 0.0026247361674904823,
+      "maxNeutralProjectionError": 2.2737367544323206e-13,
+      "paperMotion": 0
+    }
+  ],
+  "productionUsed": false,
+  "phoneTested": false,
+  "continuousShoulderBackAccepted": false
+}

@@ -1,7 +1,7 @@
 import {buildConnectedProxy} from './connected-proxy.mjs';
 import {poseConnectedProxy,poseUniforms,geometricNormals} from './structural-pose.mjs';
 import {backChart,buildBackChart,validateBackChart,sampleBackRails} from './material-chart.mjs';
-import {buildObservedScene,rearProxyIndices} from './observed-scene.mjs';
+import {buildObservedScene,rearProxyIndices} from './observed-scene.mjs?paper=10b';
 import {segmentedFrontDepthAt} from './forearm-surface.mjs';
 const $=id=>document.getElementById(id),canvas=$('scene'),gl=canvas.getContext('webgl',{alpha:false,depth:true,antialias:true}),source=$('source'),ctx=source.getContext('2d'),clone=x=>JSON.parse(JSON.stringify(x)),KEY='qingyang-back-chart-v2';
 let draft=clone(backChart),model,program,tex,image,normalBuffer,uvBuffer,candidateBuffer,matrices,animate=false,raf=0,ready=false,sourceHash='',drag=null,failed=false;
@@ -61,7 +61,8 @@ function setObservedSurfaces(scene){
  for(const s of surfaces)for(const a of s.attributes)gl.deleteBuffer(a.b);surfaces.length=0;gl.useProgram(surfaceProgram);
  for(const s of [scene.body,scene.paper]){activeAttributes=[];for(const [name,array,width,stride,offset] of [['a_position',s.positions,3,0,0],['a_uv',s.uv,2,0,0],['a_weights0',s.skinWeights,4,24,0],['a_weights1',s.skinWeights,2,24,16],['a_support',s.supportWeights,1,0,0]])attribute(name,array,width,stride,offset,surfaceProgram);surfaces.push({attributes:activeAttributes,vertices:s.vertices,paper:s.paper});}activeAttributes=proxyAttributes;
 }
-$('forearmVolume').addEventListener('change',()=>{if(!ready)return;const enabled=$('forearmVolume').checked,scene=buildObservedScene({forearmVolume:enabled});setObservedSurfaces(scene);const rear=enabled?rearProxyIndices(model,2,segmentedFrontDepthAt):rearProxyIndices(model);rearCount=rear.length;gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,rearIndex);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,rear,gl.STATIC_DRAW);$('status').textContent=enabled?'前臂独立表面 · 推断厚度 · 未接入手机壁纸':'原有主图/纸面 · 肩背接缝仍待完成';request();});
+function updateObservedExperiment(){if(!ready)return;const enabled=$('forearmVolume').checked,paperPartition=$('paperPartition').checked,scene=buildObservedScene({forearmVolume:enabled,paperPartition});setObservedSurfaces(scene);const rear=enabled?rearProxyIndices(model,2,segmentedFrontDepthAt):rearProxyIndices(model);rearCount=rear.length;gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,rearIndex);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,rear,gl.STATIC_DRAW);$('status').textContent=paperPartition?'纸面/邻接支撑来源分区 · 折叠/隐藏身体仍未重建':enabled?'前臂独立表面 · 推断厚度 · 未接入手机壁纸':'原有主图/纸面 · 肩背接缝仍待完成';request();}
+$('forearmVolume').addEventListener('change',updateObservedExperiment);$('paperPartition').addEventListener('change',updateObservedExperiment);
 async function init(){if(!gl)throw Error('此浏览器无法创建WebGL');if(gl.getParameter(gl.MAX_VERTEX_ATTRIBS)<8)throw Error('需要8个顶点属性');
  model=buildConnectedProxy();let vertex=await (await fetch('./structural-skin.vert')).text();vertex=vertex.replace('void main(){','attribute vec2 a_uv;attribute float a_candidate;varying vec2 v_uv;varying vec3 v_mainUv;varying float v_candidate;\nvoid main(){v_uv=a_uv;v_candidate=a_candidate;float restW=(2300.0-a_position.z)/2300.0;v_mainUv=vec3((a_position.xy/restW+vec2(790.0,1110.0))/vec2(1152.0,1536.0)*restW,restW);');
  const fragment='precision highp float;uniform sampler2D u_source,u_mainMask;uniform float u_photo,u_joined,u_debug;varying vec3 v_color;varying vec2 v_uv;varying vec3 v_mainUv;varying float v_candidate;void main(){if(u_joined>.5&&texture2D(u_mainMask,v_mainUv.xy/v_mainUv.z).r<.9999)discard;vec3 c=v_color;if(u_photo>.5&&v_candidate>.999)c=texture2D(u_source,v_uv).rgb;gl_FragColor=vec4(u_debug>.5?vec3(1):c,1);}';

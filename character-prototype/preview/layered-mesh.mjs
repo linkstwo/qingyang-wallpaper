@@ -23,5 +23,5 @@ export function subtractPolygon(mesh,outline){
  for(const p of pieces){if(Math.sign(area(p))!==orientation)p.reverse();for(let k=1;k<p.length-1;k++){const tri=[p[0],p[k],p[k+1]];if(Math.abs(area(tri))>1e-6)result.push(...tri.flat());}}}
  return new Float32Array(result);
 }
-export function makeLayeredCharacterMesh(edge=27){const [w,h]=subject.canvas;return subtractPolygon(makeMesh([[0,0],[w,0],[w,h],[0,h]],[],edge),subject.paper);}
+export function makeLayeredCharacterMesh(edge=27,paperOutline=subject.paper,additionalPaperOutlines=[]){const [w,h]=subject.canvas;let mesh=subtractPolygon(makeMesh([[0,0],[w,0],[w,h],[0,h]],[],edge),paperOutline);for(const outline of additionalPaperOutlines)mesh=subtractPolygon(mesh,outline);return mesh;}
 export const layeredMeshVersion=2;
