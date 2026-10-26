@@ -30,6 +30,36 @@
       "sourcePixelsVerified": true
     }
   ],
+  "pixelEquivalents": [
+    {
+      "path": "references/originals/side-reference.png",
+      "source": "工业车间里的专注侧影.png",
+      "sourcePixelsVerified": true,
+      "gitSha256": "a516ad4653775d3295434602371861f7ed1ea822454dedd810cf1dabd0d620d3",
+      "bytesEqualToArchive": false
+    },
+    {
+      "path": "references/originals/back-reference.png",
+      "source": "阳光下的湿衣工坊蓝图.png",
+      "sourcePixelsVerified": true,
+      "gitSha256": "8bd1d23c05f72f3a48d3585184a635242d5c5a7cbe5070d2b7d9e0f61ce50574",
+      "bytesEqualToArchive": false
+    },
+    {
+      "path": "references/originals/front-variant.png",
+      "source": "阳光下的车间蓝图少女.png",
+      "sourcePixelsVerified": true,
+      "gitSha256": "5c767d2a58335d2aef978f6ad35a7e556f6da3c96d1de2312cf863dd4f4967bc",
+      "bytesEqualToArchive": false
+    },
+    {
+      "path": "references/originals/main-front-three-quarter.png",
+      "source": "工业车间里的蓝图专注者.png",
+      "sourcePixelsVerified": true,
+      "gitSha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "bytesEqualToArchive": false
+    }
+  ],
   "errors": [],
   "anatomicalCorrespondenceAccepted": false,
   "continuousViewAccepted": false,

@@ -1,0 +1,36 @@
+{
+  "owner": "codex-night-source-audit-20261027-0221",
+  "fence": 1,
+  "head": "4d019eba85fa17132e9f0a2df9c35eef8eda631a",
+  "now": "2026-10-26T18:36:55.745174+00:00",
+  "task": "T01",
+  "accepted": false,
+  "tests": [
+    {
+      "command": "full10 ZIP source+3crop+4Git equivalent audit",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "7 reproducible generator cases",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "5 ZIP negative cases",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": "Finish new one-pixel equivalent mutation test; source integrity does not establish shoulder correspondence",
+  "files": {
+    "scripts/verify_component_sources.py": "acef51c8150421d4ee0bb1c72f89b129012053fd4b40476f31fc720782cb1a6b",
+    "scripts/prepare_shoulder_components.py": "bbfaa3ac77befc3687c95b8cd34ea74913d246ce02fc52e09312f9608be10fc9",
+    "tests/shoulder-component-reproducibility.py": "03d08c7a16e64d13c72a7fa27343e5b365776a904d1a18d35a83a5523b8b0c3a",
+    "tests/component-source-integrity.py": "9bdb5363a88fa37963b10100fda1fc97e44e990532e38a8773669d13eb4961af",
+    "tests/component-source-zip.py": "3047240f865747c689049c291d486b9130ba4d6ee4b97f3d368d08172aae830a",
+    "validation/component-source-integrity.json": "5674887f1f432da284509d049c0d73a8b18af0476e97122ac810ca08250cd6e8",
+    "docs/T01-SOURCE-INTEGRITY-20261027.md": "8fff0f123664873f49001d2d61013579d83fb08ddcda3b7c2fd36ef677191add",
+    "docs/CONTINUATION_LEASE.json": "b14f47326ba83ab84495a4a12f8ffb5cd0e625d200f2bfcf9a38e9ef438611a9"
+  }
+}

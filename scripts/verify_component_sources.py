@@ -3,6 +3,8 @@ from pathlib import Path
 import argparse
 import hashlib
 import json
+import io
+import zipfile
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +26,18 @@ def audit(root=ROOT, archive=None):
     inventory = json.loads((root / 'references/multiview-archive-manifest.json').read_text())
     review = json.loads((root / 'references/component-source-review-20261027.json').read_text())
     errors, missing, verified, images = [], [], [], {}
+    # Read expected members in memory: no archive extraction or path writes.
+    archive_bytes = {}
+    if archive is not None and Path(archive).is_file():
+        with zipfile.ZipFile(archive) as bundle:
+            for item in inventory['files']:
+                matches = [i for i in bundle.infolist() if i.filename == item['name']]
+                if not matches:
+                    continue
+                if len(matches) != 1 or matches[0].file_size != item['bytes']:
+                    errors.append(item['name'] + ': duplicate ZIP entry or unexpected decompressed size')
+                    continue
+                archive_bytes[item['name']] = bundle.read(matches[0])
     rows = {r['source']: r for r in review['rows']}
     if len(rows) != len(review['rows']):
         errors.append('duplicate review source')
@@ -37,23 +51,44 @@ def audit(root=ROOT, archive=None):
             errors.append(f'{name}: review identity/size mismatch')
         if row.get('acceptedCrossViewCorrespondence') is not False or row.get('angularCalibration') is not None:
             errors.append(f'{name}: unvalidated correspondence or angular calibration claim')
-        # Pixel-equivalent resampled Git files are deliberately NOT byte-identical originals.
+        # Re-encoded pixel-equivalent Git files are not byte-identical archive originals.
         if archive is None:
             missing.append(name)
             continue
-        path = inside(Path(archive), name)
-        if not path.is_file():
+        if Path(archive).is_file():
+            raw = archive_bytes.get(name)
+        else:
+            path = inside(Path(archive), name)
+            raw = path.read_bytes() if path.is_file() else None
+        if raw is None:
             missing.append(name)
             continue
-        if sha(path) != digest or path.stat().st_size != item['bytes']:
+        if hashlib.sha256(raw).hexdigest() != digest or len(raw) != item['bytes']:
             errors.append(f'{name}: original byte identity mismatch')
             continue
-        with Image.open(path) as im:
+        with Image.open(io.BytesIO(raw)) as im:
             if list(im.size) != item['size']:
                 errors.append(f'{name}: original dimensions mismatch')
                 continue
             images[name] = im.convert('RGB').copy()
         verified.append(name)
+    equivalents = []
+    for item in inventory['files']:
+        for name in item.get('exactPixelEquivalentPaths', []):
+            path = inside(root, name)
+            result = dict(path=name, source=item['name'], sourcePixelsVerified=False)
+            equivalents.append(result)
+            if not path.is_file():
+                errors.append(name + ': declared pixel equivalent missing')
+                continue
+            result['gitSha256'] = sha(path)
+            result['bytesEqualToArchive'] = result['gitSha256'] == item['sha256']
+            with Image.open(path) as im:
+                donor = images.get(item['name'])
+                if donor is not None:
+                    result['sourcePixelsVerified'] = im.size == donor.size and im.convert('RGB').tobytes() == donor.tobytes()
+                    if not result['sourcePixelsVerified']:
+                        errors.append(name + ': declared pixel equivalent differs from original')
     manifest = json.loads((root / 'references/derived/side-b-component-manifest.json').read_text())
     broad = json.loads((root / 'references/derived/side-b-shoulder-back.json').read_text())
     crops = manifest['components'] + [dict(id='side-b-shoulder-back', path=broad['output'],
@@ -103,14 +138,14 @@ def audit(root=ROOT, archive=None):
                     errors.append(f'{label}: RGB differs from declared original crop')
     complete = not errors and not missing and all(c['sourcePixelsVerified'] for c in results)
     return dict(status='failed' if errors else 'verified' if complete else 'incomplete',
-        verifiedOriginals=verified, missingOriginals=missing, crops=results, errors=errors,
+        verifiedOriginals=verified, missingOriginals=missing, crops=results, pixelEquivalents=equivalents, errors=errors,
         anatomicalCorrespondenceAccepted=False, continuousViewAccepted=False,
         newCameraAnglesClaimed=0)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--archive', type=Path, help='Directory containing the ten exact archive originals')
+    parser.add_argument('--archive', type=Path, help='Directory or ZIP containing the ten exact archive originals')
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
     result = audit(archive=args.archive)

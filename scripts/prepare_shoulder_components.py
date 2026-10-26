@@ -8,6 +8,7 @@ import json
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED = '23a8985745ee4fb33a22f6a210eb6cc0f8a3c52224fcb7c577ff66b601063b16'
+SOURCE_NAME = '工业车间里的蓝图时光.png'
 PATCHES = [
     ('side-b-nape-shoulder', (650, 300, 900, 500),
      'nape/strap local authoring; contains background and hair, no accepted cross-view registration'),
@@ -47,7 +48,7 @@ def prepare(source, check=False, root=ROOT):
             crop.save(stream, format='PNG')
             data = stream.getvalue()
             pending.append((path, data))
-        rows.append(dict(id=name, path=str(path.relative_to(root)), sourceFile=source.name,
+        rows.append(dict(id=name, path=str(path.relative_to(root)), sourceFile=SOURCE_NAME,
             sourceSha256=EXPECTED, cropRect=list(box), size=list(crop.size),
             outputSha256=hashlib.sha256(data).hexdigest(), rgbExact=True, resampled=False,
             mirrored=False, confidence=0, registrationAccepted=False, use=use))

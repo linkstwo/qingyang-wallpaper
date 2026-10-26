@@ -4,8 +4,8 @@
   "fence": 1,
   "status": "running",
   "startedAt": "2026-10-26T18:23:14.521632+00:00",
-  "heartbeatAt": "2026-10-26T18:33:08.711769+00:00",
-  "expiresAt": "2026-10-26T18:48:08.711769+00:00",
+  "heartbeatAt": "2026-10-26T18:36:55.745174+00:00",
+  "expiresAt": "2026-10-26T18:51:55.745174+00:00",
   "baseHead": "5c3bf05c8c2921f4030f0eafd329b914645702fb",
   "branch": "automation/source-audit-20261027",
   "scope": [

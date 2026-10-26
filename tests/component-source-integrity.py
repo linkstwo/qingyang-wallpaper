@@ -52,6 +52,17 @@ with tempfile.TemporaryDirectory() as temp:
     print('mirrored pixels with recomputed valid hash: rejected')
     shutil.copy2(ROOT / crop['path'], path)
     manifest_path.write_text(original)
+    equivalent = root / 'references/originals/side-reference.png'
+    with Image.open(equivalent) as im:
+        changed = im.convert('RGB')
+        pixel = changed.getpixel((10, 10))
+        changed.putpixel((10, 10), (pixel[0]^1, pixel[1], pixel[2]))
+        changed.save(equivalent)
+    result = audit(root, args.archive)
+    assert any('declared pixel equivalent differs' in e for e in result['errors'])
+    count += 1
+    print('one-pixel corruption of Git equivalent: rejected')
+    shutil.copy2(ROOT / 'references/originals/side-reference.png', equivalent)
     partial = audit(root)
     assert partial['status'] == 'incomplete' and len(partial['missingOriginals']) == 10
     assert not any(c['sourcePixelsVerified'] for c in partial['crops'])

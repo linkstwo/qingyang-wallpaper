@@ -24,6 +24,10 @@ with tempfile.TemporaryDirectory() as temp:
     generated = prepare(args.source, root=root)
     assert generated['components'] == json.loads((ROOT / 'references/derived/side-b-component-manifest.json').read_text())['components']
     assert hashes(root) == before, 'reproduction altered exact asset or manifest bytes'
+    renamed = root / 'download-renamed.png'
+    shutil.copy2(args.source, renamed)
+    assert prepare(renamed, root=root) == generated, 'filesystem rename must not alter source identity'
+    assert hashes(root) == before
     record = generated['components'][0]
     path = root / record['path']
     path.write_bytes(b'broken PNG')
@@ -39,5 +43,5 @@ with tempfile.TemporaryDirectory() as temp:
                               str(ROOT / 'references/originals/main-reading-v2.png')], capture_output=True, text=True)
         assert run.returncode != 0 and 'Wrong donor source' in run.stderr
         assert hashes(ROOT) == before
-print(json.dumps(dict(status='passed', checks=6, originalBytesUnchanged=True,
+print(json.dumps(dict(status='passed', checks=7, originalBytesUnchanged=True,
     decodedPixelCheck=True, reproductionByteExact=True, optimizedPythonRejectsWrongDonor=True)))
