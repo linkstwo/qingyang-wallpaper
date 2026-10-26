@@ -21,6 +21,16 @@ try{
 
  function difference(a,b){assert.equal(a.data.length,b.data.length);let sum=0,changed=0,maxError=0;const changedLocations=[];for(let i=0;i<a.data.length;i+=4){let max=0;for(let k=0;k<3;k++){const e=Math.abs(a.data[i+k]-b.data[i+k]);sum+=e;max=Math.max(max,e);}maxError=Math.max(maxError,max);if(max>2){changed++;if(changedLocations.length<40)changedLocations.push([i/4%a.width,Math.floor(i/4/a.width),max]);}}return {mean:sum/(a.width*a.height*3),pixelsOver2:changed,maxError,changedLocations};}
  const neutralImage=await pixels(),neutral=await imageHash();await page.uncheck('#rear');await page.waitForTimeout(50);const neutralRearDifference=difference(neutralImage,await pixels());assert.equal(neutralRearDifference.maxError,0,'rear shell must not change any neutral screenshot channel');await page.check('#rear');
+ const forearmBefore=await pixels();await page.check('#forearmVolume');
+ const forearmNeutralDifference=difference(forearmBefore,await pixels());
+ const forearmFramebuffer=await page.evaluate(async()=>{const {captureFrame}=await import('./structural-lab.mjs'),a=await captureFrame({rear:true}),b=await captureFrame({rear:false});let maxError=0,pixelsOver2=0;for(let i=0;i<a.pixels.length;i+=4){let d=0;for(let k=0;k<3;k++)d=Math.max(d,Math.abs(a.pixels[i+k]-b.pixels[i+k]));maxError=Math.max(maxError,d);if(d>2)pixelsOver2++;}return {maxError,pixelsOver2};});
+ assert.equal(forearmFramebuffer.maxError,0,'segmented forearm rear-on/off neutral framebuffer');
+ await page.locator('#scene').screenshot({path:path.join(root,'validation/s2-forearm-front.jpg'),type:'jpeg',quality:93});
+ await page.locator('#camera').fill('8');await page.locator('#camera').dispatchEvent('input');const forearmYaw=await pixels();
+ await page.locator('#scene').screenshot({path:path.join(root,'validation/s2-forearm-yaw8.jpg'),type:'jpeg',quality:93});
+ await page.uncheck('#forearmVolume');const forearmYawDifference=difference(forearmYaw,await pixels());assert(forearmYawDifference.mean>.01,'local volume changes actual oblique pixels');
+ const forearmStudy={neutralDifference:forearmNeutralDifference,rearOnOff:forearmFramebuffer,obliqueDifference:forearmYawDifference,productionUsed:false};console.log(JSON.stringify({forearmStudy}));
+ await page.click('#front');
  await page.click('#back');await page.waitForTimeout(70);const back=await imageHash();assert.notEqual(neutral,back,'back view changes actual WebGL pixels');
  const backImage=await pixels();await page.uncheck('#rear');await page.waitForTimeout(50);const backRearDifference=difference(backImage,await pixels());assert(backRearDifference.mean>1,'rear proxy really participates in combined scene');await page.check('#rear');
  for(const mode of ['region','normal','depth','support','photo']){await page.selectOption('#mode',mode);await page.waitForTimeout(40);assert.equal(await page.locator('#error').textContent(),'');}
@@ -37,6 +47,6 @@ try{
  await page.click('#back');await page.screenshot({path:path.join(root,'validation/s2-structural-lab.jpg'),type:'jpeg',quality:85,fullPage:true});
  await page.setViewportSize({width:412,height:915});await page.waitForTimeout(60);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'no horizontal overflow on phone-size viewport');
  assert.deepEqual(errors,[]);assert(requests.every(origin=>origin===base));
- const report={desktopBrowser:await browser.version(),webglRendered:true,viewsDistinct:true,modes:5,bodyMotionRendered:true,observedFrontPaperRearCombined:true,neutralFramebuffer,directFramebuffer,neutralRearDifference,neutralFrontPixelExact:neutralFramebuffer.pixelsOver2===0,neutralGate:"native framebuffer comparison; photographic seam acceptance remains pending",backRearDifference,frontRearSeamAccepted:false,sourceRailDrag:true,draftSaveResetRestoreReload:true,wrongSourceDraftRejected:true,animationStartStop:true,mobileViewportNoOverflow:true,externalRequests:0,consoleErrors:errors,productionConfidence:0,phoneTested:false};
+ const report={forearmStudy,desktopBrowser:await browser.version(),webglRendered:true,viewsDistinct:true,modes:5,bodyMotionRendered:true,observedFrontPaperRearCombined:true,neutralFramebuffer,directFramebuffer,neutralRearDifference,neutralFrontPixelExact:neutralFramebuffer.pixelsOver2===0,neutralGate:"native framebuffer comparison; photographic seam acceptance remains pending",backRearDifference,frontRearSeamAccepted:false,sourceRailDrag:true,draftSaveResetRestoreReload:true,wrongSourceDraftRejected:true,animationStartStop:true,mobileViewportNoOverflow:true,externalRequests:0,consoleErrors:errors,productionConfidence:0,phoneTested:false};
  await fs.writeFile(path.join(root,'validation/s2-structural-lab-browser.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}

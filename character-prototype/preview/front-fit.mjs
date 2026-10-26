@@ -3,11 +3,11 @@
 import {projectWorld,unprojectSource} from './scene-model.mjs';import {depthAt,smooth} from './structure.mjs';import {subject} from './subject.mjs';import {geometricNormals} from './structural-pose.mjs';import {projectedSurface} from './projected-surface.mjs';
 function inside(x,y,poly){let yes=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;}
 const cross=(a,b,c)=>{const u=b.map((v,k)=>v-a[k]),v=c.map((x,k)=>x-a[k]);return [u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]];};
-export function fitObservedFront(model){
+export function fitObservedFront(model,{targetDepth=depthAt}={}){
  const rays=projectedSurface(model.positions,model.indices),positions=[],weights=[],observed=[],targets=[],deltas=[],constrained=new Set();let fitted=0,maxDisplacement=0,maxProjectionError=0,maxResidualBefore=0,maxResidualAfter=0,maxResidualPoint=null,passes=0;
  for(let i=0;i<model.positions.length/3;i++){
   const p=model.positions.slice(i*3,i*3+3),q=rays.projected[i],hit=rays.nearest(q[0],q[1]),sourceSeen=inside(q[0],q[1],subject.outline)&&(!inside(q[0],q[1],subject.paper)||model.supportWeights[i]>.99),gap=hit?Math.max(0,hit.z-p[2]):Infinity;
-  const weight=sourceSeen?(1-smooth(.1,4,gap))*smooth(.05,.5,model.normals[i*3+2]):0,target=depthAt(q[0],q[1]),delta=Math.max(-60,Math.min(60,target-p[2]))*weight,out=weight>0?unprojectSource(q[0],q[1],p[2]+delta):p;
+  const weight=sourceSeen?(1-smooth(.1,4,gap))*smooth(.05,.5,model.normals[i*3+2]):0,target=targetDepth(q[0],q[1]),delta=Math.max(-60,Math.min(60,target-p[2]))*weight,out=weight>0?unprojectSource(q[0],q[1],p[2]+delta):p;
   weights.push(weight);targets.push(target);deltas.push(Math.max(-60,Math.min(60,target-p[2])));observed.push(sourceSeen&&gap<.1?1:0);positions.push(...out);
  }
  const originalWeights=weights.slice(),depthMoves=deltas.map((d,i)=>d*weights[i]),edges=[],seen=new Set();

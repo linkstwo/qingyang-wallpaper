@@ -2,6 +2,8 @@
 import fs from 'node:fs';
 import {subject as S} from '../../character-prototype/preview/subject.mjs';
 import {sceneModel as M} from '../../character-prototype/preview/scene-model.mjs';
+const CHECK=process.argv.includes('--check');
+function output(name,content){const file=new URL(name,out);if(CHECK){if(!fs.existsSync(file)||fs.readFileSync(file,'utf8')!==content)throw Error('Stale generated source: '+name);}else fs.writeFileSync(file,content);}
 const out=new URL('../../character-prototype/preview/',import.meta.url),number=x=>Number.isInteger(x)?x.toFixed(1):String(x),v=a=>'vec2('+a.map(number).join(',')+')',a=S.arm,h=S.head,hair=S.hair;
 const refWorldY=(M.paper.referenceY-M.pivot[1])*(M.cameraDistance-M.paper.depth)/M.cameraDistance,paperIntercept=M.paper.depth-M.paper.slopeY*refWorldY;
 const shader=`precision highp float;
@@ -33,10 +35,10 @@ void main(){vec2 p=a_source,q=p;float clipW=1.0,sourceW=1.0,sceneDepth=0.0;
  else if(u_layer<1.5){vec2 material=mix(p,supportedArm(p,materialPoint(p,u_chest,u_hair)),1.0-a_pin);sourceW=mix(1.0,(${number(M.cameraDistance)}-a_depth)/${number(M.cameraDistance)},u_structureMode);float h=headWeight(p),dz=u_chest.z*chestWeight(p)*u_motionGain*(1.0-a_pin)*(1.0-h);vec3 projected=projectSource(material,a_depth,dz);vec2 target=mix(projected.xy,rigidHeadCamera(material),h);q=mix(material,target,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);sceneDepth=(1.0-projected.z)*${number(M.cameraDistance)}*u_structureMode;}
  else if(u_layer>2.5){sourceW=mix(1.0,(${number(M.cameraDistance)}-supportDepth(p))/${number(M.cameraDistance)},u_structureMode);vec3 projected=projectSource(p,supportDepth(p),0.0);q=mix(p,projected.xy,u_structureMode);clipW=mix(1.0,projected.z,u_structureMode);sceneDepth=(1.0-projected.z)*${number(M.cameraDistance)}*u_structureMode;}
  v_sourceUv=vec3((p/u_size)*sourceW,sourceW);
- gl_Position=vec4((q*u_ndcScale+u_ndcOffset)*clipW,-sceneDepth/1000.0*clipW,clipW);
+ gl_Position=vec4((q*u_ndcScale+u_ndcOffset)*clipW,(${number(M.depthClip.numerator[0])}${M.depthClip.numerator[1]<0?'-':'+'}${number(Math.abs(M.depthClip.numerator[1]))}*sceneDepth)/${number(M.depthClip.denominator)},clipW);
 }
 `;
-fs.writeFileSync(new URL('scene.vert',out),shader);
-const config=JSON.parse(fs.readFileSync(new URL('mesh.json',out)));Object.assign(config,{canvas:S.canvas,characterOutline:S.outline,holes:[],foregroundOutline:S.paper,pins:S.contacts,subjectId:S.id,sceneVersion:M.version});fs.writeFileSync(new URL('mesh.json',out),JSON.stringify(config,null,2)+'\n');
-const points=S.outline.map(p=>p.join(',')).join(' ');fs.writeFileSync(new URL('subject-mask.svg',out),`<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="1536" viewBox="0 0 1152 1536"><rect width="1152" height="1536" fill="black"/><polygon points="${points}" fill="white"/></svg>\n`);
-console.log('S2 calibrated scene shader and geometry generated.');
+output('scene.vert',shader);
+const config=JSON.parse(fs.readFileSync(new URL('mesh.json',out)));Object.assign(config,{canvas:S.canvas,characterOutline:S.outline,holes:[],foregroundOutline:S.paper,pins:S.contacts,subjectId:S.id,sceneVersion:M.version});output('mesh.json',JSON.stringify(config,null,2)+'\n');
+const points=S.outline.map(p=>p.join(',')).join(' ');output('subject-mask.svg',`<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="1536" viewBox="0 0 1152 1536"><rect width="1152" height="1536" fill="black"/><polygon points="${points}" fill="white"/></svg>\n`);
+console.log(CHECK?'PASS: generated shader/config/mask agree with current source.':'S2 calibrated scene shader and geometry generated.');

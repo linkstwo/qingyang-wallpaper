@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T08:35:22.121667+00:00",
+  "updatedAt": "2026-10-26T08:52:58.804753+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -65,11 +65,13 @@
     "Fence4 continued without stopping after neutral-fix checkpoint: expanded provisional back source chart through observed nape/shoulder region(y415\u2013520), now3712 candidate vertices/7163 triangles. Source rail interpolation is shape-preserving C1 cubic;2943 checks show no interval overshoot,exact control points,min100px rail width,max finite-difference derivative jump0.000049. Draft version2 rejects legacy/folded/degenerate source charts and retains source identity/confidence0. Actual GLES rear-source reveal passed; calibrated-camera fit still rejects with held-out RMS25.81/max51.96px. Exact neutral framebuffer/screenshot equality remains0; Android inputs and APK unchanged.",
     "Fence4 found and fixed a distinct production GLSL depth bug: old clipZ multiplied by clipW again, so a single world plane changed depth with mesh tessellation. Shared scene.vert and structural/observed debug shaders now use affine homogeneous clipZ with near world+1000/far-2000; source camera XY, RGB, pose and Q solver unchanged. Actual GLES coarse/fine plane control:correct max window-depth discrepancy2.3842e-7 versus old0.00129867; old expression is a required failing control. Passed5 depth-order cases/both draw orders,1440 GPU landmarks,face/contact/hair render,7293 scene checks,layered scans,asset/export checks and52 lifecycle assertions. Browser default offscreen path remains exact0; direct4xMSAA still reproduces16 residuals, so these are recorded as separate issues rather than attributing that residual to this projection fix. No new APK yet.",
     "Fence4 continued until actual executor failure. Before shutdown, constrained front-fit and independent3D ray regressions passed locally:8484 fitted vertices,RMS63.13->58.35,1038096 posed triangle cases,min rest area ratio0.468/min posed0.709,pinned error0;91 ray samples agreed within8.53e-13. Filesystem then became inaccessible; source edits were reconstructed as a recovery patch, explicitly not revalidated. Previously validated production-depth/neutral/nape milestones remain durable.",
-    "Recovered original front-fit/ray source files without applying reconstructed patch; reran 91 independent ray samples and 1,038,096 posed triangle cases. Fit remains research-only with hidden confidence0, RMS63.13->58.35 and source projection error<2.3e-13. Actual photo review places worst residual on visible forearm; old depth field lacks its local thickness."
+    "Recovered original front-fit/ray source files without applying reconstructed patch; reran 91 independent ray samples and 1,038,096 posed triangle cases. Fit remains research-only with hidden confidence0, RMS63.13->58.35 and source projection error<2.3e-13. Actual photo review places worst residual on visible forearm; old depth field lacks its local thickness.",
+    "Fence6 traced visible forearm boundary and rejected direct single-sheet lift with a reproducing negative control. Separate source pieces plus legal edge flips pass 2,486,781 material/camera triangle cases, min0.2433, neutral projection<2.3e-13 and source area drift0.00050px\u00b2. Actual browser experiment changes oblique pixels with rear-on/off neutral equality0, but new-versus-old neutral has29 pixels>2/max51; full-front large skeletal pose also has a negative area ratio. Experiment is optional/default-off, no production depth change. Corrected occluded elbow observation flag. Generator now preserves shared homogeneous-depth fix and supports read-only --check."
   ],
   "next": [
-    "Align the inferred front depth field with the visible forearm while preserving supported hand and original source RGB.",
-    "Validate source projection, triangle ranges and GLES occlusion; then continue connected front/back registration."
+    "Fix source sampling/raster coverage at the optional forearm split; preserve strict neutral image acceptance.",
+    "Constrain observed front pose near paper/hand; full-front skeletal scan remains not accepted.",
+    "Continue source-registered shoulder/nape/back material continuity, confidence0 until calibration passes."
   ],
   "stages": {
     "S1": "in_progress",
@@ -168,7 +170,12 @@
     "docs/continuation/recovery/20261026-fence4-environment-interruption.json",
     "docs/continuation/recovery/20261026-fence4-front-fit.patch",
     "validation/s2-front-fit.json",
-    "validation/s2-projected-surface.json"
+    "validation/s2-projected-surface.json",
+    "docs/S2-FOREARM-SURFACE.md",
+    "validation/s2-forearm-surface.json",
+    "validation/s2-forearm-pose.json",
+    "validation/s2-forearm-negative-control.json",
+    "validation/s2-forearm-source-boundary.jpg"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -321,7 +328,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T08:35:22.121667+00:00",
+    "lastCheckpointAt": "2026-10-26T08:52:58.804753+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active",
     "userAuthorisedContinuousS2": true,

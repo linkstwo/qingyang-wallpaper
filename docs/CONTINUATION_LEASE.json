@@ -4,17 +4,18 @@
   "fence": 6,
   "status": "running",
   "startedAt": "2026-10-26T08:34:20.771982Z",
-  "heartbeatAt": "2026-10-26T08:50:37.811592Z",
-  "expiresAt": "2026-10-26T09:05:37.811592Z",
+  "heartbeatAt": "2026-10-26T08:53:34.076053Z",
+  "expiresAt": "2026-10-26T09:08:34.076053Z",
   "baseHead": "50037becc75ece605d5c84d22f4b7fe2db5b5434",
   "checkpoint": {
-    "baseHead": "a6f1a75a79b25962ed721dc7cb7009e53e74c5bb",
-    "createdAt": "2026-10-26T08:35:23.289884+00:00",
-    "sourceDigest": "ebd14d89596be4c22bc42733891967e5a53f69830eb74dda10a1f5be106b20e2",
+    "baseHead": "44dd66b01f81c50971ec4a65e49577e1fbe05f22",
+    "createdAt": "2026-10-26T08:53:34.076053+00:00",
+    "sourceDigest": "7551c3e4ec113d9f054533c2a87d3e5bfc807c575a349233bc2d15b5663785ea",
     "stage": "S2",
     "next": [
-      "Align the inferred front depth field with the visible forearm while preserving supported hand and original source RGB.",
-      "Validate source projection, triangle ranges and GLES occlusion; then continue connected front/back registration."
+      "Fix source sampling/raster coverage at the optional forearm split; preserve strict neutral image acceptance.",
+      "Constrain observed front pose near paper/hand; full-front skeletal scan remains not accepted.",
+      "Continue source-registered shoulder/nape/back material continuity, confidence0 until calibration passes."
     ]
   }
 }

@@ -24,5 +24,5 @@ for(const yaw of [.04,.08,.14,.20]){sceneModel.yawRadians=yaw;sceneModel.pitchRa
 sceneModel.yawRadians=.14;sceneModel.pitchRadians=.07;const oldContinuous=scan(oldMesh,oldDepth,oldPins);assert(oldContinuous.minSignedAreaRatio<0,'must reproduce old occlusion fold');
 [sceneModel.yawRadians,sceneModel.pitchRadians]=original;
 assert(ranges[0].layered.minSignedAreaRatio>.15,'production range safe');
-assert(ranges.find(r=>r.yaw===.14).layered.minSignedAreaRatio>.15,'paper/forearm seam fold regression');
+assert(ranges.find(r=>r.yaw===.14).layered.minSignedAreaRatio>.15,'paper/forearm seam fold regression '+JSON.stringify(ranges));
 const result={topologyVersion:2,characterTriangles:mesh.length/6,paperArea:polyArea(subject.paper),neutralCoverageAreaError:observedArea-expectedArea,minSourceTriangleArea:minArea,oldContinuousAtYaw014:oldContinuous,ranges,productionViewRadians:original,hiddenBodyUnderPaperReady:false,phoneTested:false};fs.writeFileSync(new URL('../validation/s2-layered-scene.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

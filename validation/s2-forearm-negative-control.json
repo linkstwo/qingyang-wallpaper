@@ -1,0 +1,20 @@
+{
+  "expectedFailureReproduced": true,
+  "minAreaRatio": -0.005457510754496659,
+  "worst": [
+    [
+      513,
+      996
+    ],
+    [
+      504,
+      1008
+    ],
+    [
+      504,
+      984
+    ]
+  ],
+  "solutionRejected": true,
+  "productionUsed": false
+}

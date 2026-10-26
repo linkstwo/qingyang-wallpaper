@@ -18,7 +18,7 @@ export const sceneModel={version:2,units:'source pixels, +Z toward viewer',pivot
  {y:790,cx:755,rx:240,cz:45,rz:95,region:'torso'},
  {y:945,cx:790,rx:210,cz:40,rz:82,region:'torso'},
  {y:1100,cx:830,rx:180,cz:30,rz:60,region:'waist'}],
- arms:[{name:'far-arm',source:[[590,535],[635,920],[350,1005]],depths:[95,125,180.6],radii:[42,38,27],observed:[false,true,true]},
+ arms:[{name:'far-arm',source:[[590,535],[635,920],[350,1005]],depths:[95,125,180.6],radii:[42,38,27],observed:[false,false,true]},
  {name:'near-arm',source:[[940,490],[1085,1030],[1150,1490]],depths:[115,95,55],radii:[68,52,32],observed:[true,true,false]}],
  limitations:['Cross-sections/thickness are inferred proxies, not a reconstructed body.','Hidden side/back UV confidence is zero; do not sample a stretched main photo there.','Parts overlap at attachment regions but are not welded into one manifold.']};
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
