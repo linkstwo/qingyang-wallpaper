@@ -1,0 +1,31 @@
+{
+  "owner": "codex-night-source-audit-20261027-0221",
+  "fence": 1,
+  "head": "7eb0da6b3defe17b30cc8de8b1d4ac655765a788",
+  "now": "2026-10-26T18:38:13.578956+00:00",
+  "taskAcceptance": false,
+  "tests": {
+    "queueAssertions": 17,
+    "trajectoryAssertions": 32617,
+    "responseAssertions": 10132,
+    "lifecycleAssertions": 52,
+    "partsWarpAssertions": 1678,
+    "integrityMutationCases": 12,
+    "zipCases": 5,
+    "reproducibilityCases": 7,
+    "tenOriginalsVerified": true,
+    "threeCropsRGBExact": true,
+    "fourGitEquivalentsRGBExact": true,
+    "androidExportUnchanged": true
+  },
+  "next": [
+    "Current main owner can selectively port implementation/tests from PR2 after comparing latest sensor diffs; never port independent lease or stale execution state",
+    "Run host input regressions on the integrated main source; build original-key candidate only once eligible geometry/assets are accepted",
+    "Continue main lap96 paper/shoulder path from its own latest checkpoint; independent source integrity is not visual acceptance"
+  ],
+  "files": {
+    "docs/CONTINUATION_LEASE.json": "391b59553a42c2fae6f8548fc4ecc8685a0969a345aaf87b685043a5595a0879",
+    "docs/T01-SOURCE-INTEGRITY-20261027.md": "92a875587ff3350c43f20f7134de7a06eb060fb0d0dcc33f6364928447a8b05d",
+    "docs/INDEPENDENT-RESUME-20261027-0221.json": "a55dc492f095cf9bee050ce9c2fd5e78785e8bf44431919027d0a82eb75156a4"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "updatedAt": "2026-10-26T18:38:13.578956+00:00",
+  "branch": "automation/source-audit-20261027",
+  "baseHead": "5c3bf05c8c2921f4030f0eafd329b914645702fb",
+  "lastSavedHead": "7eb0da6b3defe17b30cc8de8b1d4ac655765a788",
+  "owner": "codex-night-source-audit-20261027-0221",
+  "fence": 1,
+  "status": "independent_candidates_saved",
+  "currentTasks": [
+    "T01",
+    "T10",
+    "T19"
+  ],
+  "wholeTaskAccepted": false,
+  "mainBranchWritten": false,
+  "checks": {
+    "queueAssertions": 17,
+    "trajectoryAssertions": 32617,
+    "responseAssertions": 10132,
+    "lifecycleAssertions": 52,
+    "partsWarpAssertions": 1678,
+    "integrityMutationCases": 12,
+    "zipCases": 5,
+    "reproducibilityCases": 7,
+    "tenOriginalsVerified": true,
+    "threeCropsRGBExact": true,
+    "fourGitEquivalentsRGBExact": true,
+    "androidExportUnchanged": true
+  },
+  "notVerified": [
+    "anatomical component registration",
+    "continuous shoulders/back",
+    "paper visual acceptance",
+    "new APK build/signature",
+    "phone lockscreen/latency/power"
+  ],
+  "blockers": {
+    "sharedGeometry": "Main fence12 actively renewing and writing its T03/T04 implementation; no competing edits applied",
+    "bridge": "Scoped Doubao message failed HTTP404",
+    "androidBuild": "SDK paths unset and Gradle cache absent; no large downloads undertaken",
+    "phone": "No device or subjective/power data"
+  },
+  "next": [
+    "Current main owner can selectively port implementation/tests from PR2 after comparing latest sensor diffs; never port independent lease or stale execution state",
+    "Run host input regressions on the integrated main source; build original-key candidate only once eligible geometry/assets are accepted",
+    "Continue main lap96 paper/shoulder path from its own latest checkpoint; independent source integrity is not visual acceptance"
+  ],
+  "review": "https://github.com/linkstwo/qingyang-wallpaper/pull/2"
+}

@@ -30,3 +30,5 @@ Added `prepare_shoulder_components.py SOURCE --check`: decodes and compares exis
 The same `--archive` argument now accepts the persisted original ZIP without extraction. Only ten expected member names and expected decompressed lengths are read; duplicate source entries are rejected instead of silently choosing one. Missing originals remain incomplete. Five ZIP cases passed, including duplicate members, altered content with unchanged length, wrong decompressed length and a traversal-named extra entry that was never extracted. Both directory and ZIP full audits pass.
 
 Generator source identity now follows its verified SHA and canonical archive name, not the local download filename. Renaming exact downloaded bytes still reproduces identical manifest/output bytes. Seven generation checks passed.
+
+Final full integrity mutation run:12 cases passed, including one changed pixel in a declared Git equivalent. ZIP5 and reproducibility7 passed. Source/crop verification does not complete T01 anatomical correspondence.
