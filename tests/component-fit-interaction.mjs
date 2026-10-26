@@ -13,7 +13,7 @@ assert.equal(document.body.dataset.ready,'true',elements.get('status').textConte
 const after=elements.get('after'),gain=elements.get('gain');
 async function exported(){elements.get('export').onclick();const item=downloads.at(-1);assert.equal(item.name,'qingyang-shared-components.json');return (await nativeFetch(item.url)).json();}
 const rest=await exported();assert.deepEqual(rest.sourcePositions,rest.targetSourcePositions);
-const pixel=([x,y])=>({clientX:(x-640)/330*540,clientY:(y-295)/360*590});
+const {fitComponentCrop}=await import('../character-prototype/preview/component-raster.mjs');const crop=fitComponentCrop([640,295,330,360],540,590);const pixel=([x,y])=>({clientX:(x-crop[0])/crop[2]*540,clientY:(y-crop[1])/crop[3]*590});
 after.emit('pointerdown',pixel([800,450]));after.emit('pointermove',pixel([806,453]));after.emit('pointerup');
 const moved=await exported();assert.notDeepEqual(moved.targetSourcePositions,rest.sourcePositions);assert.deepEqual(moved.sourcePositions,rest.sourcePositions);assert.deepEqual(moved.cornerUv,rest.cornerUv);assert.equal(moved.registeredToMain,false);assert(moved.deformation.selfIntersectionChecked);
 gain.value='0';gain.oninput();const zero=await exported();assert.deepEqual(zero.sourcePositions,zero.targetSourcePositions);after.emit('pointerdown',pixel([800,450]));after.emit('pointermove',pixel([900,550]));after.emit('pointerup');assert.deepEqual((await exported()).deformation.handles,zero.deformation.handles,'zero gain disables ambiguous dragging');

@@ -1,0 +1,116 @@
+{
+  "maxNeutralError": 5.684341886080802e-14,
+  "vertices": 1434,
+  "rows": [
+    {
+      "yaw": -0.34906585,
+      "pitch": -0.02,
+      "minAreaRatio": 0.5573662599134878,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": -0.34906585,
+      "pitch": 0,
+      "minAreaRatio": 0.5618769471078318,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": -0.34906585,
+      "pitch": 0.02,
+      "minAreaRatio": 0.566073348610698,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": -0.04,
+      "pitch": -0.02,
+      "minAreaRatio": 0.9492326141530699,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": -0.04,
+      "pitch": 0,
+      "minAreaRatio": 0.9536940949635584,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": -0.04,
+      "pitch": 0.02,
+      "minAreaRatio": 0.9551864832947365,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": 0,
+      "pitch": -0.02,
+      "minAreaRatio": 0.9841821466478688,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": 0,
+      "pitch": 0,
+      "minAreaRatio": 0.9999999999999545,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": 0,
+      "pitch": 0.02,
+      "minAreaRatio": 0.9891395928342905,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": 0.04,
+      "pitch": -0.02,
+      "minAreaRatio": 0.9500215252073025,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": 0.04,
+      "pitch": 0,
+      "minAreaRatio": 0.9515328891365205,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": 0.04,
+      "pitch": 0.02,
+      "minAreaRatio": 0.9437624510318674,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": 0.34906585,
+      "pitch": -0.02,
+      "minAreaRatio": 0.5391661673091778,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": 0.34906585,
+      "pitch": 0,
+      "minAreaRatio": 0.535447397126818,
+      "flipped": 0,
+      "overlaps": 0
+    },
+    {
+      "yaw": 0.34906585,
+      "pitch": 0.02,
+      "minAreaRatio": 0.5315201135719964,
+      "flipped": 0,
+      "overlaps": 0
+    }
+  ],
+  "depthInferred": true,
+  "hiddenTextureAdded": false,
+  "mainRegistrationAccepted": false,
+  "wholeT04Accepted": false,
+  "phoneTested": false
+}

@@ -2,6 +2,13 @@
   "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
   "actualGles": true,
   "image": "validation/f14-component-deform-gles-near-down.jpg",
+  "viewportCrop": [
+    606.9387755102041,
+    380,
+    606.1224489795918,
+    660
+  ],
+  "sourceAspectPreserved": true,
   "gain": 0.55,
   "sameDonorOnly": true,
   "registeredToMain": false,

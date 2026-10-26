@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "d6331873e4e790824105c8d7e890478b7ea965d0",
+  "createdAt": "2026-10-26T23:51:29.813455Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/component-fit.mjs",
+      "bytes": 5313,
+      "sha256": "8cd52255acbee856aaec747859a39d3b8df4795fd36cfde1ed6dbe5c3b62994e"
+    },
+    {
+      "path": "character-prototype/preview/component-raster.mjs",
+      "bytes": 3924,
+      "sha256": "cd893f6fc120f2db52731f1450920d6dd7f97f319fad45eead788a7120df0919"
+    },
+    {
+      "path": "character-prototype/preview/component-surface.mjs",
+      "bytes": 2488,
+      "sha256": "3dbe027a68ec118207c96a4680c28fecfa6dc48596e5712036f47a01cfd3ffaa"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36444,
+      "sha256": "2d78d9c5f1c9a20f428ef63d0f0a6f956d85e5c596645b925a191f0192b9e77c"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 10926,
+      "sha256": "5edcd24d663301378f341e145f45840c0f978584c12f2206905ef883cd0ba331"
+    },
+    {
+      "path": "tests/component-alpha-seam-gles.py",
+      "bytes": 2974,
+      "sha256": "d26ee0e62832da5d0cb5d58868f1690cb573b1a97636000075bfa53e60e914e5"
+    },
+    {
+      "path": "tests/component-fit-interaction.mjs",
+      "bytes": 4547,
+      "sha256": "bb9db6b0567e844ac8d0790424d9e7eca90b3687b5959852583b5a85974e6b44"
+    },
+    {
+      "path": "tests/component-surface-regression.mjs",
+      "bytes": 2831,
+      "sha256": "7359dfb2351b997845033759b90043ed75b144bd60fd399f4d183dda2dfdc390"
+    },
+    {
+      "path": "tests/component-viewport-regression.mjs",
+      "bytes": 960,
+      "sha256": "910f6d1d7363195382c12f606ba4c3836a5e28c8ff474b7b932dcdf4b3465301"
+    },
+    {
+      "path": "tests/render_component_junction_gles.py",
+      "bytes": 4085,
+      "sha256": "48996f48d5f8814a855d885cd8e6c7f639564936d46208b783a5b2addf980842"
+    },
+    {
+      "path": "validation/f14-component-alpha-seam.jpg",
+      "bytes": 37348,
+      "sha256": "c39d8f73167b40e9b6caa3606b25078c4def491fa5a1caeb6dca428657e05356"
+    },
+    {
+      "path": "validation/f14-component-alpha-seam.json",
+      "bytes": 316,
+      "sha256": "d283099a4ed2cf3cb194d4b4eaf7568b1c728289364b1dc05cc275de07dce8e4"
+    },
+    {
+      "path": "validation/f14-component-deform-gles-near-down.jpg",
+      "bytes": 36128,
+      "sha256": "ee2fda09d656ce5046674937548f99c859c755744fb35640bf38ec8b29ad1936"
+    },
+    {
+      "path": "validation/f14-component-deform-gles-near-down.json",
+      "bytes": 388,
+      "sha256": "e2c5f0c7f7a13c157c7128e03e728b34f5bcc4131d6115fb9ca9f3756da7f3d9"
+    },
+    {
+      "path": "validation/f14-component-surface.json",
+      "bytes": 2275,
+      "sha256": "ef50871b529c8ad05509c87ed139f14a3de68f72c9be276da09ed4ab8be75c97"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/component-viewport-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/component-fit-interaction.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/component-alpha-seam-gles.py (isotropic viewport)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/component-surface-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "037c55d43a9e7f40d064116743c0937f132fe94c817e73483d98a035007974a0"
+}

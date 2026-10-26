@@ -1,8 +1,8 @@
 {
   "sharedEdges": 38,
-  "interiorSeamPixelProbes": 91,
-  "legacyDarkenedPixels": 52,
-  "maxOriginalRgbSampleError": 0.9897959183672356,
+  "interiorSeamPixelProbes": 74,
+  "legacyDarkenedPixels": 37,
+  "maxOriginalRgbSampleError": 0.7959183673468715,
   "geometryOwnsCoverage": true,
   "rgbaSourceRgbPreserved": true,
   "actualGles": true,
