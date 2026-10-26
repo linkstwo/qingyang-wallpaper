@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T12:46:07.573Z",
+  "updatedAt": "2026-10-26T13:10:38.270229Z",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "User-authorised lightweight GitHub helper integration and Doubao collaboration; no engine replacement or large downloads.",
+  "scopeOfThisRun": "Completed lightweight authoring-tool acceptance and Doubao candidate review; wallpaper S1/S2 remain in progress, with explicit failed visual evidence.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -68,12 +68,16 @@
     "Recovered original front-fit/ray source files without applying reconstructed patch; reran 91 independent ray samples and 1,038,096 posed triangle cases. Fit remains research-only with hidden confidence0, RMS63.13->58.35 and source projection error<2.3e-13. Actual photo review places worst residual on visible forearm; old depth field lacks its local thickness.",
     "Fence6 traced visible forearm boundary and rejected direct single-sheet lift with a reproducing negative control. Separate source pieces plus legal edge flips pass 2,486,781 material/camera triangle cases, min0.2433, neutral projection<2.3e-13 and source area drift0.00050px². Actual browser experiment changes oblique pixels with rear-on/off neutral equality0, but new-versus-old neutral has29 pixels>2/max51; full-front large skeletal pose also has a negative area ratio. Experiment is optional/default-off, no production depth change. Corrected occluded elbow observation flag. Generator now preserves shared homogeneous-depth fix and supports read-only --check.",
     "Fence6 final: jointly conformed source coordinates with preserved material labels and boundary-constrained edge flips; source area drift-0.000196px²,2,527,038 material/camera cases passed. Calibrated rest source-ray sampling removes interpolation rounding; browser strict experimental-versus-baseline neutral screenshot and rear-on/off framebuffer both max0. New forearm skeletal min ratio0.742/pin error0; whole foreground remains not accepted with paper/background boundary fold-0.1248. User requested immediate manual close.",
-    "Fence7 added actual browser-operated MLS parts authoring tool using existing images: floating JS similarity deformation, fixed boundary/fold rejection, source-hash-bound drafts, saved gain and JSON import/export. 1678 coordinate checks passed; actual reading/side image, drag,55% save/reload/restore/export/import and wrong-source rejection checked in Codex browser; no phone or efficiency gain claim."
+    "Fence7 added actual browser-operated MLS parts authoring tool using existing images: floating JS similarity deformation, fixed boundary/fold rejection, source-hash-bound drafts, saved gain and JSON import/export. 1678 coordinate checks passed; actual reading/side image, drag,55% save/reload/restore/export/import and wrong-source rejection checked in Codex browser; no phone or efficiency gain claim.",
+    "Reviewed Doubao 1946/1996 side-material candidate in isolated trial: module scope repaired; eight active attribute locations0-7 verified on16-slot browser; stable renderer untouched.",
+    "Observed +/-20,90,180 degree trial renders: paper splits at bounded angles and shoulder/back stretches at extremes. Candidate rejected for continuous-view acceptance; confidence remains0.",
+    "Added stable-workbench link to parts-fit; actual browser round trip passed. Negative gain import showed fold rejection restores slider and exported JSON to prior valid gain0.",
+    "Delegated asset inventory, attribute-slot repair, static checks and next low-complexity task list to Doubao; new shoulder landmark candidate task2003 dispatched, not yet accepted."
   ],
   "next": [
-    "Review Doubao candidate-1946 attribute-slot patch in an isolated browser; retain old production source.",
-    "Use authoring controls on one independently observed shoulder correspondence; exported JSON is not yet backChart or Android data.",
-    "Continue paper-edge foreground/material binding and shoulder/back continuity; S1/S2 remain incomplete."
+    "Review Doubao shoulder-landmark-candidates.md against actual original pixels; main near arm hangs down while side near arm bends forward, so mirrored whole-side sampling cannot establish shared limb correspondence.",
+    "Solve bounded-angle paper/front depth seam and shoulder/back connection with explicit shared boundaries; use independent observed landmarks, not manual rail fit RMS as ground truth.",
+    "Use the MLS authoring page only for local source correspondence; exported JSON is not yet consumed by backChart or Android. S1/S2 remain incomplete."
   ],
   "stages": {
     "S1": "in_progress",

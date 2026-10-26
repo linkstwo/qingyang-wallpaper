@@ -3,11 +3,30 @@
   "image": "references/originals/main-reading-v2.png",
   "sourceSha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
   "actualBrowser": "Codex in-app browser",
-  "checked": ["actual image display", "example deformation", "pointer drag", "save 55% gain", "reload and restore gain", "JSON export", "file chooser JSON import", "wrong source hash rejected", "side source shoulder preview"],
+  "checked": [
+    "actual image display",
+    "example deformation",
+    "pointer drag",
+    "save 55% gain",
+    "reload and restore gain",
+    "JSON export",
+    "file chooser JSON import",
+    "wrong source hash rejected",
+    "side source shoulder preview"
+  ],
   "consoleWarningsOrErrors": 0,
   "phoneTested": false,
   "continuousBackAccepted": false,
   "speedupMeasured": false,
   "productionAssetsChanged": false,
-  "screenshot": "validation/parts-fit-side-browser.jpg"
+  "screenshot": "validation/parts-fit-side-browser.jpg",
+  "gainNegativeCase": {
+    "input": "mirrored target handles at gain0 (valid identity)",
+    "attemptedGain": 1,
+    "observedSliderGain": 0,
+    "observedJsonGain": 0,
+    "result": "fold rejected; last valid state kept",
+    "screenshotCaptured": false
+  },
+  "navigationRoundTrip": "parts-fit -> structural-lab -> parts-fit verified by actual browser link clicks"
 }

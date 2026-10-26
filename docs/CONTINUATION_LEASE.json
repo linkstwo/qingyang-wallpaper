@@ -4,18 +4,17 @@
   "fence": 7,
   "status": "running",
   "startedAt": "2026-10-26T12:28:43.001000Z",
-  "heartbeatAt": "2026-10-26T13:05:43.836000Z",
-  "expiresAt": "2026-10-26T13:20:43.836000Z",
+  "heartbeatAt": "2026-10-26T13:11:24.781000Z",
+  "expiresAt": "2026-10-26T13:26:24.781000Z",
   "baseHead": "aac18bc6b78e8eea39166ad7263297a46d8625cb",
   "checkpoint": {
-    "baseHead": "0a25ac0b90b38aeb13d92afe936c13dffb16e57a",
-    "createdAt": "2026-10-26T12:46:30.746Z",
-    "sourceDigest": "1535f0fb0b34a3e5fe2546519485edc4e3f389e6c855e0aa257fd622286006fa",
+    "baseHead": "5b933474ae506ebb6aeec66ef11d09fa19da06d2",
+    "createdAt": "2026-10-26T13:11:08.699Z",
+    "sourceDigest": "8617dc3fcbe6db941f3f48fc384570b81dcd8852b0178b3b256c22d60fd6bf58",
     "stage": "S2",
     "next": [
-      "Review Doubao candidate-1946 attribute-slot patch in an isolated browser; retain old production source.",
-      "Use authoring controls on one independently observed shoulder correspondence; exported JSON is not yet backChart or Android data.",
-      "Continue paper-edge foreground/material binding and shoulder/back continuity; S1/S2 remain incomplete."
+      "Review Doubao visible shoulder landmarks and pose differences.",
+      "Resolve paper/front seam and shoulder/back shared boundaries; do not promote rejected side trial."
     ]
   }
 }

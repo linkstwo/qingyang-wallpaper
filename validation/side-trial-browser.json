@@ -1,0 +1,43 @@
+{
+  "candidate": "Doubao 1946, 1996 eight-slot correction",
+  "applicationModified": false,
+  "phoneTested": false,
+  "acceptedAsContinuousSurface": false,
+  "browser": {
+    "maxVertexAttribs": 16,
+    "activeAttributes": 8,
+    "activeLocations": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "glWarningsOrErrors": 0,
+    "anglesObserved": [
+      0,
+      20,
+      -20,
+      90,
+      180
+    ]
+  },
+  "defects": [
+    "90 degree side remains a thin distorted surface with elongated strips",
+    "180 degree back shows stretched shoulder/neck correspondence, gaps and disconnected coloured regions",
+    "At +20/-20 degrees, the foreground paper separates into visible strips/triangular gaps; current paper/front depth seam remains unresolved."
+  ],
+  "decision": "Keep isolated trial only. Do not promote rails, mirror-sampled side or margin 4 into stable renderer.",
+  "scopeFix": "Side buffers are module-scoped, merged vec3 data uses eight attributes; disable actual supported slots. Browser rendering verified on 16-slot host only.",
+  "minimumDeviceLimit": "8 active attributes fits GLES2 minimum; actual eight-slot phone not tested.",
+  "evidence": [
+    "validation/side-trial-back-browser.jpg",
+    "validation/side-trial-side-browser.jpg",
+    "validation/side-trial-small-angle-browser.jpg"
+  ],
+  "sourceSha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+  "scopeWarning": "90/180 are diagnostic extremes, not a promised 360 degree product requirement; bounded +/-20 also fail paper continuity."
+}
