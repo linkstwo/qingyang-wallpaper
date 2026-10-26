@@ -29,3 +29,5 @@
 最新S2源码准备见[S2连续结构](S2-CONNECTED-STRUCTURE.md)：单体推断结构已闭合导出；所有新曲面纹理置信度0，0.5.9 APK未包含这些后续准备。支撑骨架运动与导出v3/GLES蒙皮已验证，6幅实际姿态图见validation/s2-posed-gles.jpg；接着做来源区域注册和可见性约束。
 
 最近原图复核/背部局部UV显露试验见[S2材料试验](S2-MATERIAL-REGISTRATION.md)。真实背图已在调试表面参与绘制，但明显拉伸、confidence0，禁止当作正式肩背完成；下一步连续姿态非局部自交与局部标定。
+
+最新工作台已合并主图前景/纸面/后代理；前景GLES中性像素对照通过，但合并后16个关节边界像素仍有差异，接缝验收not_accepted。先读S2-MATERIAL-REGISTRATION.md最后一节与s2-front-rear-seam-acceptance.json；不因有背部贴图就标S2/S3完成，0.5.9仍是最新安装包。

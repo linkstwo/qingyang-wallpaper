@@ -1,0 +1,15 @@
+{
+  "status": "not_accepted",
+  "strictNeutralEquality": false,
+  "neutralMeanRgbRearOnOff": 0.00041201037187979154,
+  "pixelsOver2": 16,
+  "maxChannelDifference": 26,
+  "frontRearWelded": false,
+  "backCameraCalibrated": false,
+  "hiddenProductionConfidence": 0,
+  "phoneTested": false,
+  "next": [
+    "Fix joint-edge coverage/depth difference before production.",
+    "Register shoulder/neck/back source correspondence; current source poses differ."
+  ]
+}

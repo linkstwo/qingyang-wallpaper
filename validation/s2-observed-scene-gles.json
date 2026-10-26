@@ -1,0 +1,11 @@
+{
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "neutralMeanRgbDifferenceFromFlatSource": 0.0002272822709330646,
+  "neutralPixelsDifferenceOver2": 0,
+  "perspectiveCorrectSourceUv": true,
+  "observedBodyAndPaperWorldScene": true,
+  "rearProxyIncludedInThisCheck": false,
+  "frontRearSeamAccepted": false,
+  "productionUsed": false,
+  "phoneTested": false
+}

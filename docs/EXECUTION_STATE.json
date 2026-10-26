@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T03:58:17.686141+00:00",
+  "updatedAt": "2026-10-26T04:15:09.447459+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "Manual continuation using installed plugin fence3: exported support pins, GLES2 six-bone skin parity and posed structural renders; source registration follows.",
+  "scopeOfThisRun": "Manual installed-plugin continuation fence3: four coherent S2 research source milestones, exported GLES skin, full source review/partial back chart, nonlocal collision scan, interactive calibration lab and combined observed-front/paper/rear scene. Published0.5.9 unchanged; no hidden-surface production acceptance.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -59,11 +59,12 @@
     "S2 supported skeletal motion: separate torso/camera/spring inputs, six-bone skin, observed far wrist fixed to paper, unobserved cropped near wrist free.27 pose combinations/1038096 triangle cases passed; min area ratio0.709, normal alignment0.9566, wrist/pinned-surface error0, bone length error<3e-13. Neutral mesh exact; production camera and spring solver unchanged.",
     "S2 export v3 includes world-space six-bone matrix convention and explicit support-pin buffer. Actual GLES2 consumed exported f32 skin/support/position bytes:27 poses,1557306 component probes,max world error0.000350 source pixels. Six posed depth/cull views rendered using recomputed geometric normals;192250 topology checks and1038096 posed triangles still pass. No hidden texture claim or APK version change.",
     "Reviewed all10 archived whole images and verified bytes/hashes:4 exact-pixel equivalents to existing Git references,6 additional compositions with pose/clothing differences. Registered reading-v2 to front-variant in2D with53 integer-grid subject patch matches(35 fit/18 heldout); different back/side/front-three-quarter poses rejected by this2D gate. Production RGB unchanged. Provisional back chart covers3335 vertices/6445 triangles; real GLES depth/cull reveal uses back-source pixels on rear surface across five camera angles. Mapping remains uncalibrated/confidence0 with visible stretch, so not production-ready or S3-complete.",
-    "S2 nonlocal intersection scan:25 sampled supported poses,303642 broad/narrow candidate pairs,zero crossing intersections;5 positive/negative/coplanar fixtures pass. This is sampled geometry evidence, not swept continuous collision detection. Added interactive structural/material lab with camera/body separation,5 debug modes,draggable source rails and source-hash-bound local draft persistence. Desktop WebGL exercised real pixels,drag/save/reset/restore/reload,wrong-source rejection,animation and412px viewport with zero console errors/external requests. Corrected rear UV horizontal orientation and excluded arm pixels from candidate torso source. Provisional camera fit still fails:held-out RMS26.27/max52.44source pixels,confidence0. No new APK."
+    "S2 nonlocal intersection scan:25 sampled supported poses,303642 broad/narrow candidate pairs,zero crossing intersections;5 positive/negative/coplanar fixtures pass. This is sampled geometry evidence, not swept continuous collision detection. Added interactive structural/material lab with camera/body separation,5 debug modes,draggable source rails and source-hash-bound local draft persistence. Desktop WebGL exercised real pixels,drag/save/reset/restore/reload,wrong-source rejection,animation and412px viewport with zero console errors/external requests. Corrected rear UV horizontal orientation and excluded arm pixels from candidate torso source. Provisional camera fit still fails:held-out RMS26.27/max52.44source pixels,confidence0. No new APK.",
+    "Combined existing reading photograph surface(54267 vertices), world paper(3018) and carved rear proxy in one desktop diagnostic scene. Reused source-world bone weights; homogeneous source UV neutral test against flat source has mean RGB error0.000228 and0pixels over2. Removed obvious rear-cap intrusion into front arm, bound rear mask in homogeneous source coordinates. Browser rear-on/off neutral comparison retains16pixels over2(max26); strict equality is NOT accepted, despite bounded regression passing. Back view actually adds71717 changed pixels. Original RGB, production camera and Q solver remain unchanged. Re-downloaded public0.5.9 and matched exact signed SHA256e64dc0f...da6e8eac."
   ],
   "next": [
-    "Join observed front-photo surface, paper and inferred rear proxy in one diagnostic scene; verify neutral source preservation and expose depth/matte conflicts before production.",
-    "Use the interactive source chart and correspondence evidence to refine shoulder/neck seam and local geometry; provisional back camera fit is not production-accepted."
+    "Locate/correct the16 neutral joint-edge pixel differences in the combined scene; retain strict seam acceptance as false until resolved.",
+    "Replace provisional back chart association with semantically matched shoulder/neck/back observations, refine local geometry and source seams before Android integration or a new candidate."
   ],
   "stages": {
     "S1": "in_progress",
@@ -149,7 +150,13 @@
     "validation/s2-back-camera-fit.jpg",
     "character-prototype/preview/structural-lab.html",
     "validation/s2-structural-lab-browser.json",
-    "validation/s2-structural-lab.jpg"
+    "validation/s2-structural-lab.jpg",
+    "validation/s2-observed-scene.json",
+    "validation/s2-observed-scene-gles.json",
+    "validation/s2-observed-scene-gles.jpg",
+    "validation/s2-combined-front.jpg",
+    "validation/s2-combined-side.jpg",
+    "validation/s2-front-rear-seam-acceptance.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -165,7 +172,7 @@
     "candidateRecords": 13,
     "overviewLocated": true,
     "independentAnglesConfirmed": false,
-    "pixelReviewAndImportComplete": true,
+    "pixelReviewAndImportComplete": false,
     "archiveRetrieved": true,
     "archiveLibraryId": "libfile_87b01f83278c8191a58ee9ac01bf06d4",
     "archiveManifest": "references/multiview-archive-manifest.json",
@@ -174,7 +181,9 @@
     "exactExistingCompositions": 4,
     "additionalCompositions": 6,
     "reviewNote": "Four archived images exactly match existing Git originals; six additional compositions differ in pose/clothing. Shared reference registration does not prove calibrated multiview.",
-    "bytesLocation": "10-image archive remains in Library;4 exact equivalents already in Git; no duplicate binaries imported."
+    "bytesLocation": "10-image archive remains in Library;4 exact equivalents already in Git; no duplicate binaries imported.",
+    "pixelReviewComplete": true,
+    "additionalCompositionImportPending": true
   },
   "currentCandidateVersion": "0.5.9",
   "currentCandidateVersionCode": 18,
@@ -232,7 +241,9 @@
     "sha256": "e64dc0f67e0c5323e44adff9bd253dce94d112ed21d66731d136f927da6e8eac",
     "anonymousDownloadVerified": true,
     "workflowRun": 40255607657,
-    "prerelease": true
+    "prerelease": true,
+    "downloadReverifiedAt": "2026-10-26T04:15:09.447459+00:00",
+    "downloadReverifiedSha256": "e64dc0f67e0c5323e44adff9bd253dce94d112ed21d66731d136f927da6e8eac"
   },
   "userRequirementsDocument": "docs/CURRENT_HANDOFF-0.5.8.md",
   "targetCandidate": {
@@ -298,7 +309,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T03:58:17.686141+00:00",
+    "lastCheckpointAt": "2026-10-26T04:15:09.447459+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,

@@ -1,6 +1,7 @@
 // Real desktop WebGL interaction regression. Not Android/OEM acceptance.
 import assert from 'node:assert/strict';import fs from 'node:fs/promises';import path from 'node:path';import http from 'node:http';import crypto from 'node:crypto';
 import {createRequire} from 'node:module';const {chromium}=createRequire(import.meta.url)('playwright');
+const {PNG}=createRequire(import.meta.url)('pngjs');
 const root=path.resolve(import.meta.dirname,'..'),errors=[],requests=[];
 const types={'.html':'text/html','.mjs':'text/javascript','.vert':'text/plain','.png':'image/png','.json':'application/json'};
 const server=http.createServer(async(req,res)=>{try{const rel=decodeURIComponent(new URL(req.url,'http://localhost').pathname).slice(1),p=path.resolve(root,rel);if(!p.startsWith(root+path.sep)){res.writeHead(403).end();return;}const data=await fs.readFile(p);res.writeHead(200,{'Content-Type':types[path.extname(p)]||'application/octet-stream'}).end(data);}catch{res.writeHead(404).end();}});
@@ -12,7 +13,11 @@ try{
  await page.route('**/*',route=>{const u=new URL(route.request().url());requests.push(u.origin);if(u.origin!==base)return route.abort();return route.continue();});
  await page.goto(base+'/character-prototype/preview/structural-lab.html');await page.waitForFunction(()=>document.body.dataset.ready,{timeout:30000});assert.equal(await page.getAttribute('body','data-ready'),'true',await page.locator('#error').textContent());
  const imageHash=async()=>crypto.createHash('sha256').update(await page.locator('#scene').screenshot()).digest('hex');
- const neutral=await imageHash();await page.click('#back');await page.waitForTimeout(70);const back=await imageHash();assert.notEqual(neutral,back,'back view changes actual WebGL pixels');
+ const pixels=async()=>PNG.sync.read(await page.locator('#scene').screenshot());
+ function difference(a,b){assert.equal(a.data.length,b.data.length);let sum=0,changed=0,maxError=0;const changedLocations=[];for(let i=0;i<a.data.length;i+=4){let max=0;for(let k=0;k<3;k++){const e=Math.abs(a.data[i+k]-b.data[i+k]);sum+=e;max=Math.max(max,e);}maxError=Math.max(maxError,max);if(max>2){changed++;if(changedLocations.length<40)changedLocations.push([i/4%a.width,Math.floor(i/4/a.width),max]);}}return {mean:sum/(a.width*a.height*3),pixelsOver2:changed,maxError,changedLocations};}
+ const neutralImage=await pixels(),neutral=await imageHash();await page.uncheck('#rear');await page.waitForTimeout(50);const neutralRearDifference=difference(neutralImage,await pixels());assert(neutralRearDifference.mean<.01&&neutralRearDifference.pixelsOver2/(neutralImage.width*neutralImage.height)<.0001,JSON.stringify(neutralRearDifference));await page.check('#rear');
+ await page.click('#back');await page.waitForTimeout(70);const back=await imageHash();assert.notEqual(neutral,back,'back view changes actual WebGL pixels');
+ const backImage=await pixels();await page.uncheck('#rear');await page.waitForTimeout(50);const backRearDifference=difference(backImage,await pixels());assert(backRearDifference.mean>1,'rear proxy really participates in combined scene');await page.check('#rear');
  for(const mode of ['region','normal','depth','support','photo']){await page.selectOption('#mode',mode);await page.waitForTimeout(40);assert.equal(await page.locator('#error').textContent(),'');}
  await page.locator('#body').fill('2.7');await page.locator('#body').dispatchEvent('input');await page.waitForTimeout(50);assert.notEqual(await imageHash(),back,'supported body motion changes actual pixels');
  const initial=JSON.parse(await page.locator('#json').inputValue()),box=await page.locator('#source').boundingBox(),p=initial.chart.rows[0].left;
@@ -22,9 +27,11 @@ try{
  await page.reload();await page.waitForFunction(()=>document.body.dataset.ready==='true');await page.click('#restore');assert.deepEqual(JSON.parse(await page.locator('#json').inputValue()).chart.rows,changed.chart.rows,'draft persists across reload');
  await page.evaluate(()=>localStorage.setItem('qingyang-back-chart-v1',JSON.stringify({sourceSha256:'wrong-source',chart:{confidence:1}})));await page.click('#restore');assert.match(await page.locator('#draftStatus').textContent(),/没有与当前原图一致/);
  await page.click('#motion');assert.equal(await page.getAttribute('#motion','aria-pressed'),'true');await page.waitForTimeout(100);await page.click('#motion');assert.equal(await page.getAttribute('#motion','aria-pressed'),'false');
- await page.click('#reset');await page.click('#back');await page.screenshot({path:path.join(root,'validation/s2-structural-lab.jpg'),type:'jpeg',quality:85,fullPage:true});
+ await page.click('#reset');await page.click('#front');await page.locator('#scene').screenshot({path:path.join(root,'validation/s2-combined-front.jpg'),type:'jpeg',quality:90});
+ await page.locator('#camera').fill('90');await page.locator('#camera').dispatchEvent('input');await page.waitForTimeout(70);await page.locator('#scene').screenshot({path:path.join(root,'validation/s2-combined-side.jpg'),type:'jpeg',quality:90});
+ await page.click('#back');await page.screenshot({path:path.join(root,'validation/s2-structural-lab.jpg'),type:'jpeg',quality:85,fullPage:true});
  await page.setViewportSize({width:412,height:915});await page.waitForTimeout(60);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'no horizontal overflow on phone-size viewport');
  assert.deepEqual(errors,[]);assert(requests.every(origin=>origin===base));
- const report={desktopBrowser:await browser.version(),webglRendered:true,viewsDistinct:true,modes:5,bodyMotionRendered:true,sourceRailDrag:true,draftSaveResetRestoreReload:true,wrongSourceDraftRejected:true,animationStartStop:true,mobileViewportNoOverflow:true,externalRequests:0,consoleErrors:errors,productionConfidence:0,phoneTested:false};
+ const report={desktopBrowser:await browser.version(),webglRendered:true,viewsDistinct:true,modes:5,bodyMotionRendered:true,observedFrontPaperRearCombined:true,neutralRearDifference,neutralFrontPixelExact:neutralRearDifference.pixelsOver2===0,neutralGate:"bounded regression only; seam acceptance remains pending",backRearDifference,frontRearSeamAccepted:false,sourceRailDrag:true,draftSaveResetRestoreReload:true,wrongSourceDraftRejected:true,animationStartStop:true,mobileViewportNoOverflow:true,externalRequests:0,consoleErrors:errors,productionConfidence:0,phoneTested:false};
  await fs.writeFile(path.join(root,'validation/s2-structural-lab-browser.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
