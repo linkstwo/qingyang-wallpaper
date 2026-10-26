@@ -56,6 +56,28 @@ public final class SensorQueueRegression {
         check(futureGyro.motion().alphaY>0,"future gyro timestamp must not lock out subsequent events");
         SystemClock.nanos=6_400_000_000L;futureGyro.decayStale();
         check(!futureGyro.motion().excited(),"post-recovery motion must still decay");
+        // Gravity-only viewing must wake an idle renderer without a gyro impulse.
+        SensorManager.fused=true;
+        SensorFeed gravityOnly=start(7_000_000_000L);
+        final int[] wakes={0};gravityOnly.wake=()->wakes[0]++;
+        event(gravityOnly,Sensor.TYPE_GRAVITY,7_020_000_000L,0,9.80665f,0);
+        check(wakes[0]==0,"gravity baseline alone must not wake animation");
+        event(gravityOnly,Sensor.TYPE_GRAVITY,7_040_000_000L,.8f,9.77f,0);
+        check(wakes[0]>0,"gravity fallback pose change must wake renderer without inertial input");
+        check(!gravityOnly.motion().excited(),"camera wake must not manufacture a soft-body impulse");
+        int quiet=wakes[0];
+        for(int k=1;k<=100;k++)event(gravityOnly,Sensor.TYPE_GRAVITY,7_040_000_000L+k*20_000_000L,.8f,9.77f,0);
+        int settled=wakes[0];
+        for(int k=101;k<=120;k++)event(gravityOnly,Sensor.TYPE_GRAVITY,7_040_000_000L+k*20_000_000L,.8f,9.77f,0);
+        check(wakes[0]==settled,"settled gravity pose must stop waking at sensor frequency");
+        SensorFeed fusedPose=start(10_000_000_000L);
+        final int[] fusedWakes={0};fusedPose.wake=()->fusedWakes[0]++;
+        SensorEvent pose=new SensorEvent();pose.sensor=new Sensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
+        SystemClock.nanos=10_020_000_000L;pose.timestamp=SystemClock.nanos;pose.values=new float[]{0,0,0,1};fusedPose.onSensorChanged(pose);
+        event(fusedPose,Sensor.TYPE_GRAVITY,10_040_000_000L,0,9.80665f,0);
+        event(fusedPose,Sensor.TYPE_GRAVITY,10_060_000_000L,.8f,9.77f,0);
+        check(fusedWakes[0]==0,"valid fused pose must not wake due to fallback gravity noise");
+        SensorManager.fused=false;
         System.out.println("{\"assertions\":"+checks+",\"productionSensorFeed\":true,\"phoneTested\":false}");
     }
 }

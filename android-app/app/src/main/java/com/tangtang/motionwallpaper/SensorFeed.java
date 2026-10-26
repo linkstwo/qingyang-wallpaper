@@ -147,7 +147,7 @@ final class SensorFeed implements SensorEventListener {
                 }
                 gravityReady = true;
                 if (!hasGravity) {
-                    motion.gravity(gravity[0], gravity[1], gravity[2], event.timestamp);
+                    poseChanged = motion.gravity(gravity[0], gravity[1], gravity[2], event.timestamp);
                 }
                 if (!hasLinear) {
                     motion.acceleration(x - gravity[0], y - gravity[1], z - gravity[2], event.timestamp);
@@ -158,7 +158,7 @@ final class SensorFeed implements SensorEventListener {
                 motion.gyro(x, y, z, event.timestamp);
                 break;
             case Sensor.TYPE_GRAVITY:
-                motion.gravity(x, y, z, event.timestamp);
+                poseChanged = motion.gravity(x, y, z, event.timestamp);
                 break;
             case Sensor.TYPE_LINEAR_ACCELERATION:
                 motion.acceleration(x, y, z, event.timestamp);

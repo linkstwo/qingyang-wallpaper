@@ -4,8 +4,8 @@
   "fence": 1,
   "status": "running",
   "startedAt": "2026-10-26T18:23:14.521632+00:00",
-  "heartbeatAt": "2026-10-26T18:28:40.066285+00:00",
-  "expiresAt": "2026-10-26T18:43:40.066285+00:00",
+  "heartbeatAt": "2026-10-26T18:31:04.720278+00:00",
+  "expiresAt": "2026-10-26T18:46:04.720278+00:00",
   "baseHead": "5c3bf05c8c2921f4030f0eafd329b914645702fb",
   "branch": "automation/source-audit-20261027",
   "scope": [
@@ -16,7 +16,8 @@
     "scripts/prepare_shoulder_components.py",
     "tests/shoulder-component-reproducibility.py",
     "android-app/app/src/main/java/com/tangtang/motionwallpaper/SensorFeed.java",
-    "tests/SensorQueueRegression.java"
+    "tests/SensorQueueRegression.java",
+    "android-app/app/src/main/java/com/tangtang/motionwallpaper/MotionInput.java"
   ],
   "note": "Independent branch. Main fence12 untouched. Bundled helper refuses non-default branch, equivalent JSON protocol used."
 }
