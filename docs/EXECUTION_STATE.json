@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "Finalise first private plugin with actual availability verification, then continue S2 local joint structure work under fenced lease. Existing expired schedule was not extended.",
+  "scopeOfThisRun": "Private continuation plugin0.1.0 delivered and available in this chat; real manual continuation verified by two S2 source milestones. Existing expired schedule binding was rejected and remains pending; no autonomous wake-up claimed.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -59,8 +59,8 @@
     "S2 supported skeletal motion: separate torso/camera/spring inputs, six-bone skin, observed far wrist fixed to paper, unobserved cropped near wrist free.27 pose combinations/1038096 triangle cases passed; min area ratio0.709, normal alignment0.9566, wrist/pinned-surface error0, bone length error<3e-13. Neutral mesh exact; production camera and spring solver unchanged."
   ],
   "next": [
-    "Add actual posed-geometry debug rendering and verify exported skin weights/pose parity.",
-    "Continue source registration and hidden-material credibility before textured side/back or widening production view."
+    "Continue S2 actual posed-geometry debug rendering and verify exported skin weights/pose parity.",
+    "Register credible observed sources before texturing hidden body/side/back or enlarging production camera."
   ],
   "stages": {
     "S1": "in_progress",
@@ -277,9 +277,9 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T03:20:15.444Z",
+    "lastCheckpointAt": "2026-10-26T03:22:17.756Z",
     "checkpointIntervalMinutes": 30,
-    "mode": "active_development",
+    "mode": "checkpointed",
     "userAuthorisedContinuousS2": true,
     "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
     "latestRecovery": "Transient directory was removed; restored from21b4df8. Do not imply uninterrupted background execution.",
@@ -348,6 +348,11 @@
       "message": "Task scheduling wasn't completed. Choose a time in the future.",
       "scheduleChanged": false,
       "promptSaved": "docs/CONTINUATION_SCHEDULE_PROMPT-0.1.0.md"
-    }
+    },
+    "liveManualContinuationVerified": true,
+    "liveManualCheckpoints": [
+      "053b565747bed720e76c14b033c97c36d78644ab",
+      "eafd936e1430269e3ccefbf05bb03819460fc698"
+    ]
   }
 }

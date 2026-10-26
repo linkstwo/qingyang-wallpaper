@@ -2,19 +2,20 @@
   "schemaVersion": 1,
   "owner": "manual-plugin-s2-20261026-0303",
   "fence": 2,
-  "status": "running",
+  "status": "released",
   "startedAt": "2026-10-26T03:02:30.379715Z",
-  "heartbeatAt": "2026-10-26T03:20:15.444000Z",
-  "expiresAt": "2026-10-26T03:35:15.444000Z",
+  "heartbeatAt": "2026-10-26T03:22:17.756000Z",
+  "expiresAt": "2026-10-26T03:22:17.756000Z",
   "baseHead": "1f816184fd64a615b7eff0eefe20a9ab3427305e",
   "checkpoint": {
-    "baseHead": "053b565747bed720e76c14b033c97c36d78644ab",
-    "createdAt": "2026-10-26T03:20:15.444Z",
-    "sourceDigest": "3bf828045dd247fc8053db2f55335d023b24ea68c05ac74cd6354505b2ec89eb",
+    "baseHead": "eafd936e1430269e3ccefbf05bb03819460fc698",
+    "createdAt": "2026-10-26T03:22:17.756Z",
+    "sourceDigest": "544acc08d19d7de2da107761b4f1dc4dce63d14f2e198eb9317aace525233226",
     "stage": "S2",
     "next": [
-      "Add actual posed-geometry debug rendering and verify exported skin weights/pose parity.",
-      "Continue source registration and hidden-material credibility before textured side/back or widening production view."
+      "Continue S2 actual posed-geometry debug rendering and verify exported skin weights/pose parity.",
+      "Register credible observed sources before texturing hidden body/side/back or enlarging production camera."
     ]
-  }
+  },
+  "reason": "Checkpoint saved; controlled stop."
 }
