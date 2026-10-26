@@ -21,4 +21,4 @@ assert(minRatio>.15,'production angle margin under combined extremes');
 assert(maxContactError<1e-9,'fixed hand/paper/seat');for(const p of [[590,535],[600,525],[565,550]])assert(solveArm(p).reachable);
 assert.equal(hairWeight(350,330),0);assert(hairWeight(480,590)>.99);assert(hairWeight(550,305)<1e-9);
 for(const [w,h] of [[540,1176],[1080,2400],[1260,2800]]){const f=cropMapping(w,h,cropPreset(w,h));assert(Math.abs(f.y+subject.focus[1]*f.scale-h/2)<.001);assert(1536*f.scale/h>.75);}
-const result={subject:subject.id,cases,triangles,minSignedAreaRatio:minRatio,maxContactError,phoneTested:false};fs.writeFileSync(new URL('../validation/reading-subject-0.5.8.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+const result={subject:subject.id,cases,triangles,minSignedAreaRatio:minRatio,maxContactError,phoneTested:false};fs.writeFileSync(new URL('../validation/reading-subject-0.5.9.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

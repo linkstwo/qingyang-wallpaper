@@ -122,7 +122,8 @@
     "validation/s2-layered-scene.json",
     "validation/s2-depth-order-gles.json",
     "validation/s2-structure-gles.json",
-    "validation/s2-structure-gles.jpg"
+    "validation/s2-structure-gles.jpg",
+    "validation/reading-subject-0.5.9.json"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -186,27 +187,15 @@
   },
   "userRequirementsDocument": "docs/CURRENT_HANDOFF-0.5.8.md",
   "targetCandidate": {
-    "versionName": "0.5.8",
-    "versionCode": 17,
-    "status": "awaiting_phone",
-    "recoveryRequired": false,
-    "durableApplicationBaseline": "e76a8fa9755f2fa4deb703920c43e7cf91593e9c",
-    "lastVerifiedBranchHeadBeforeThisHandoff": "602a4923c4b10f962804fe2daf9f707cc7aff2a6",
-    "applicationChangesCommitted": true,
-    "installableApkDelivered": true,
-    "finalBuildVerified": true,
+    "versionName": "0.5.9",
+    "versionCode": 18,
+    "status": "building",
+    "applicationChangesCommitted": false,
+    "installableApkDelivered": false,
+    "finalBuildVerified": false,
+    "signingVerified": false,
     "sourceImageLibraryId": "libfile_4f121f15747c8191ae4e79700c7fd655",
-    "sourceImageName": "1000030775.png",
-    "signingKeyCertificateVerified": true,
-    "recoveredAssetsAndCrop": true,
-    "uiRecovered": true,
-    "applicationCommit": "2a277fdead480d1be0c1957dd448160839416516",
-    "sha256": "a867fbdd0f19da4610fe89746c7e45b394d3bc62d6022b051ed6cdb125b779d7",
-    "apkBytes": 6284513,
-    "signingVerified": true,
-    "libraryFileId": "libfile_cc0dc13811c48191b49b6f58131caa01",
-    "publicDownloadVerified": true,
-    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.8/qingyang-0.5.8.apk"
+    "recoveryRequired": false
   },
   "recovery": {
     "required": false,
@@ -252,7 +241,7 @@
   },
   "workSession": {
     "startedAt": "2026-10-26T01:31:42.036130+00:00",
-    "lastCheckpointAt": "2026-10-26T01:36:14.067373+00:00",
+    "lastCheckpointAt": "2026-10-26T01:38:37.667296+00:00",
     "checkpointIntervalMinutes": 30,
     "mode": "active_development",
     "userAuthorisedContinuousS2": true,
