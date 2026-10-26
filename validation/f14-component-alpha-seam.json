@@ -1,0 +1,12 @@
+{
+  "sharedEdges": 38,
+  "interiorSeamPixelProbes": 91,
+  "legacyDarkenedPixels": 52,
+  "maxOriginalRgbSampleError": 0.9897959183672356,
+  "geometryOwnsCoverage": true,
+  "rgbaSourceRgbPreserved": true,
+  "actualGles": true,
+  "mainRegistrationAccepted": false,
+  "wholeT04Accepted": false,
+  "phoneTested": false
+}

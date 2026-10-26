@@ -1,5 +1,5 @@
 """Reproducible paper occlusion views; zero body pose, no rear shell."""
-import ctypes as C,json,struct,subprocess,math,os,tempfile
+import ctypes as C,json,struct,subprocess,math,os,tempfile,io,hashlib
 from pathlib import Path
 import numpy as np
 from PIL import Image,ImageDraw
@@ -43,14 +43,18 @@ def render(flat=False,camera=(0,0)):
   g.uniform1f(g.getUniform(p,b'u_masked'),0 if paper else 1);g.drawArrays(4,0,V)
  g.finish();assert g.error()==0;raw=(C.c_ubyte*(g.W*g.H*4))();g.readPixels(0,0,g.W,g.H,0x1908,0x1401,raw)
  return Image.frombytes('RGBA',(g.W,g.H),bytes(raw)).transpose(Image.Transpose.FLIP_TOP_BOTTOM).convert('RGB')
-frames=[]
+def save_checked(im,path,format,**options):
+ blob=io.BytesIO();im.save(blob,format=format,**options);raw=blob.getvalue();Image.open(io.BytesIO(raw)).verify()
+ temp=path.with_suffix(path.suffix+'.tmp');temp.write_bytes(raw);temp.replace(path);Image.open(path).verify()
+ return {'path':str(path.relative_to(g.ROOT)),'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+frames=[];rawFrames=[]
 for angle in [-20,-2.2918,0,2.2918,20]:
  im=render(camera=(math.radians(angle),0));frames.append(im)
- if os.environ.get('PAPER_RAW_PREFIX'):im.save(g.ROOT/'validation'/f'{os.environ["PAPER_RAW_PREFIX"]}-{angle}.png')
+ if os.environ.get('PAPER_RAW_PREFIX'):rawFrames.append(save_checked(im,g.ROOT/'validation'/f'{os.environ["PAPER_RAW_PREFIX"]}-{angle}.png','PNG'))
 canvas=Image.new('RGB',(540*5,1206),(18,24,32));d=ImageDraw.Draw(canvas)
 for i,(angle,im) in enumerate(zip([-20,-2.2918,0,2.2918,20],frames)):
  canvas.paste(im,(i*540,30));d.text((i*540+8,8),f'yaw {angle} / body {bodyPose} / no rear',fill='white')
 name=os.environ.get('PAPER_REPORT','paper-ownership-before')
-canvas.save(g.ROOT/'validation'/f'{name}.jpg',quality=90)
-result={'paperUnderHandBackgroundTrim':os.environ.get('PAPER_UNDER_HAND_BACKGROUND_TRIM')=='1','paperBackgroundTrim':os.environ.get('PAPER_BACKGROUND_TRIM')=='1','paperRightClothContact':os.environ.get('PAPER_RIGHT_CLOTH_CONTACT')=='1','lapContactWidth':float(os.environ.get('PAPER_LAP_WIDTH','48')),'seatSupport':os.environ.get('PAPER_SEAT_SUPPORT')=='1','forearmVolume':os.environ.get('PAPER_FOREARM_VOLUME')=='1','renderer':g.getString(0x1F01).decode(),'angles':[-20,-2.2918,0,2.2918,20],'rear':False,'bodyPose':bodyPose,'paperPartition':os.environ.get('PAPER_PARTITION')=='1','baselineRef':baseline,'paperLapContact':os.environ.get('PAPER_LAP_CONTACT')=='1','paperExteriorTrim':os.environ.get('PAPER_EXTERIOR_TRIM')=='1','image':f'validation/{name}.jpg','phoneTested':False}
+imageReceipt=save_checked(canvas,g.ROOT/'validation'/f'{name}.jpg','JPEG',quality=90)
+result={'rawFrames':rawFrames,'imageReceipt':imageReceipt,'paperUnderHandBackgroundTrim':os.environ.get('PAPER_UNDER_HAND_BACKGROUND_TRIM')=='1','paperBackgroundTrim':os.environ.get('PAPER_BACKGROUND_TRIM')=='1','paperRightClothContact':os.environ.get('PAPER_RIGHT_CLOTH_CONTACT')=='1','lapContactWidth':float(os.environ.get('PAPER_LAP_WIDTH','48')),'seatSupport':os.environ.get('PAPER_SEAT_SUPPORT')=='1','forearmVolume':os.environ.get('PAPER_FOREARM_VOLUME')=='1','renderer':g.getString(0x1F01).decode(),'angles':[-20,-2.2918,0,2.2918,20],'rear':False,'bodyPose':bodyPose,'paperPartition':os.environ.get('PAPER_PARTITION')=='1','baselineRef':baseline,'paperLapContact':os.environ.get('PAPER_LAP_CONTACT')=='1','paperExteriorTrim':os.environ.get('PAPER_EXTERIOR_TRIM')=='1','image':f'validation/{name}.jpg','phoneTested':False}
 (g.ROOT/'validation'/f'{name}.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

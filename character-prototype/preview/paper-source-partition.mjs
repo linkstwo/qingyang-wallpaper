@@ -51,5 +51,6 @@ export const paperLeftBackgroundOutline=[[0,951],[20,988],[35,1035],[40,1070],[4
 
 // Visible workshop background between the held paper, fingers and lap.
 // This is a conservative source classification, not unseen body texture.
-// The outline stays inside the observed background near skin/cloth boundaries.
-export const paperUnderHandBackgroundOutline=[[435,1030],[451,1078],[466,1110],[490,1100],[520,1080],[550,1050],[590,1028],[608,1015],[610,990],[575,995],[550,999],[525,1002],[500,1005],[475,1007],[450,1015]];
+// The paper-facing edge matches the observed paper chain; other boundaries stay
+// conservative near skin/cloth. Boundary precision remains a few source pixels.
+export const paperUnderHandBackgroundOutline=[[432,1030],[451,1078],[466,1110],[490,1100],[520,1080],[550,1050],[590,1028],[608,1015],[610,990],[575,995],[550,999],[525,1002],[500,1005],[475,1007],[450,1015],[425,1025]];

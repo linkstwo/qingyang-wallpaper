@@ -10,16 +10,17 @@ mesh=json.loads(Path('/tmp/f14-component-warp'+suffix+'.json').read_text());part
 p=g.createProgram()
 shaders=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {componentVertexShader,componentFragmentShader} from './character-prototype/preview/component-raster.mjs';console.log(JSON.stringify([componentVertexShader,componentFragmentShader]));"],cwd=g.ROOT,text=True))
 vs,frag=[s.encode() for s in shaders]
+if os.environ.get('COMPONENT_LEGACY_ALPHA')=='1':frag=b'precision mediump float;varying vec2 v_uv;uniform sampler2D u_image;void main(){gl_FragColor=texture2D(u_image,v_uv);}'
 for src,kind in [(vs,0x8B31),(frag,0x8B30)]:
  s=g.createShader(kind);raw=C.c_char_p(src);g.shaderSource(s,1,C.byref(raw),None);g.compileShader(s);ok=g.I();g.getShader(s,0x8B81,C.byref(ok));assert ok.value;g.attach(p,s)
 g.link(p);ok=g.I();g.getProgram(p,0x8B82,C.byref(ok));assert ok.value;g.use(p)
-g.gl('glUniform4f',None,g.I,g.F,g.F,g.F,g.F)(g.getUniform(p,b'u_crop'),*([790,380,240,660] if near else [640,295,330,360]));g.viewport(0,0,540,588);g.disable(0x0B71);g.enable(0x0BE2);g.blend(1,0x0303);g.activeTexture(0x84C0);g.uniform1i(g.getUniform(p,b'u_image'),0)
+g.gl('glUniform4f',None,g.I,g.F,g.F,g.F,g.F)(g.getUniform(p,b'u_crop'),*([790,380,240,660] if near else [640,295,330,360]));g.viewport(0,0,540,588);g.disable(0x0B71);g.enable(0x0BE2);g.blend(0x0302 if os.environ.get('COMPONENT_LEGACY_ALPHA')=='1' else 1,0x0303);g.activeTexture(0x84C0);g.uniform1i(g.getUniform(p,b'u_image'),0)
 textures=[]
 for part in parts:
  t=g.U();g.genTexture(1,C.byref(t));g.bindTexture(0x0DE1,t)
  for a in [0x2800,0x2801]:g.texParam(0x0DE1,a,0x2601)
  for a in [0x2802,0x2803]:g.texParam(0x0DE1,a,0x812F)
- im=Image.open(g.ROOT/part['path']).convert('RGBA');data=np.array(im,dtype=np.uint16);data[:,:,:3]=(data[:,:,:3]*data[:,:,3:4]+127)//255
+ im=Image.open(g.ROOT/part['path']).convert('RGBA');data=np.array(im,dtype=np.uint8)
  g.texImage(0x0DE1,0,0x1908,*im.size,0,0x1908,0x1401,data.astype(np.uint8).tobytes());textures.append(t)
 frames=[]
 for field in ['sourcePositions','targetSourcePositions']:
@@ -35,5 +36,7 @@ for field in ['sourcePositions','targetSourcePositions']:
  g.finish();assert g.error()==0;raw=(C.c_ubyte*(540*588*4))();g.readPixels(0,0,540,588,0x1908,0x1401,raw);frames.append(Image.frombytes('RGBA',(540,588),bytes(raw)).transpose(Image.Transpose.FLIP_TOP_BOTTOM).convert('RGB'))
 out=Image.new('RGB',(1080,618),(18,24,32));d=ImageDraw.Draw(out)
 for i,(label,im) in enumerate(zip(['Same donor shared rest topology','Shared MLS gain55%, UV unchanged'],frames)):out.paste(im,(i*540,30));d.text((i*540+10,8),label,fill='white')
+if os.environ.get('COMPONENT_RAW_TAG'):
+ for i,im in enumerate(frames):im.save('/tmp/f14-components-'+os.environ['COMPONENT_RAW_TAG']+'-'+str(i)+'.png')
 out.save(g.ROOT/('validation/f14-component-deform-gles'+suffix+'.jpg'),quality=92)
 (g.ROOT/('validation/f14-component-deform-gles'+suffix+'.json')).write_text(json.dumps({'renderer':g.getString(0x1F01).decode(),'actualGles':True,'image':('validation/f14-component-deform-gles'+suffix+'.jpg'),'gain':.55,'sameDonorOnly':True,'registeredToMain':False,'visualSeamAcceptance':False,'phoneTested':False},indent=2)+'\n');print('Actual GLES shared donor junction rendered; no main/phone acceptance')
