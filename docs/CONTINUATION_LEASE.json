@@ -1,18 +1,10 @@
 {
   "schemaVersion": 1,
-  "owner": "codex-gradual-seam-1793021652301",
-  "fence": 10,
-  "status": "released",
-  "startedAt": "2026-10-26T13:34:12.301000Z",
-  "heartbeatAt": "2026-10-26T14:05:34.077679Z",
-  "expiresAt": "2026-10-26T14:05:34.077679Z",
-  "baseHead": "0c6077ca9e9a645e1b95d34e84147b5a48d144ad",
-  "checkpoint": {
-    "baseHead": "568cf289d2bd2fe981917d23d13f323233ec414c",
-    "createdAt": "2026-10-26T14:05:34.077679Z",
-    "sourceDigest": "4c03b7f570365b85bc6dca59f5a37e6da833b97c411c7c714e3920b786102108",
-    "stage": "S2",
-    "next": "Read docs/RESUME-20261026-FENCE10.md; inspect remaining paper/body source ownership before geometry edits."
-  },
-  "reason": "User explicitly requested closeout and saved restart point."
+  "owner": "codex-night-20261027-0120",
+  "fence": 11,
+  "status": "running",
+  "startedAt": "2026-10-26T17:20:10.367673Z",
+  "heartbeatAt": "2026-10-26T17:20:10.367673Z",
+  "expiresAt": "2026-10-26T17:35:10.367673Z",
+  "baseHead": "cd3eb09072b7351a33e98aa89e9f4fd17406f032"
 }
