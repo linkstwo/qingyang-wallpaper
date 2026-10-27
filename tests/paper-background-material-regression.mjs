@@ -21,4 +21,4 @@ for(const forearmVolume of [false,true]){
  }
  for(const pixel of [[150,750],[350,700]])assert(traceVisibleObservedSource(candidate,pixel,view).length,'paper/body positive controls must still render');
 }
-fs.writeFileSync(new URL('../validation/f13-background-material.json',import.meta.url),JSON.stringify({rows,declaredBackgroundArea:polygonArea,materialClassification:'manual source observation; approximate boundary',newHiddenTexture:false,wholeT03Accepted:false,phoneTested:false},null,2)+'\n');console.log(JSON.stringify({rows:rows.length,declaredBackgroundArea:polygonArea,passed:true}));
+fs.writeFileSync(new URL('../validation/'+(process.env.PAPER_BACKGROUND_MATERIAL_REPORT||'f13-background-material')+'.json',import.meta.url),JSON.stringify({rows,declaredBackgroundArea:polygonArea,materialClassification:'manual source observation; approximate boundary',newHiddenTexture:false,wholeT03Accepted:false,phoneTested:false},null,2)+'\n');console.log(JSON.stringify({rows:rows.length,declaredBackgroundArea:polygonArea,passed:true}));

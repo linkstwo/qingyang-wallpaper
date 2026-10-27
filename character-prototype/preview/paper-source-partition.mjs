@@ -47,7 +47,7 @@ export function paperExteriorCollars(){
 
 // Actual workshop background left of the lower paper edge, not body/paper.
 // The lower contour is manually observed, with a few-pixel boundary uncertainty.
-export const paperLeftBackgroundOutline=[[0,951],[20,988],[35,1035],[40,1070],[48,1115],[57,1158],[52,1171],[0,1180]];
+export const paperLeftBackgroundOutline=[[0,951],[20,988],[35,1035],[40,1070],[48,1115],[57,1158],[100,1163.4430379746836],[80,1167],[60,1171],[40,1175],[20,1180],[0,1187]];
 
 // Visible workshop background between the held paper, fingers and lap.
 // This is a conservative source classification, not unseen body texture.

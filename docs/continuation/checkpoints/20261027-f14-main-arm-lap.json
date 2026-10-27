@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "dd299311e7e09e940828671338c2d4119ee7757f",
+  "createdAt": "2026-10-27T00:00:44.810141Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/near-arm-surface.mjs",
+      "bytes": 1874,
+      "sha256": "cf6c473d70e6e52c5f3ba6431e0280e9ce69f25590f4cd20925ebfcf3439a951"
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 7325,
+      "sha256": "3bf6623e0bc8c4b2e3b47734a02c9989b10b015ffdc8a912653cde45ec49f6d8"
+    },
+    {
+      "path": "character-prototype/preview/paper-source-partition.mjs",
+      "bytes": 4429,
+      "sha256": "e5eb32d1eda265025e70e7982650f4cf6fdad86a67fa4add948b47c23213a3da"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "bytes": 5777,
+      "sha256": "dea0d4c8dac0bd55e2b957f735902eaeeef814b9828bd4ae21198bfe4400f62e"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 23414,
+      "sha256": "5115204c3d425d29269f61abc730bd08b4c57264d2f17135ded8bf6af86ae3ea"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36442,
+      "sha256": "022c189f560a14835c174bf8a14c810cf9433e77b246b0b7b8bd3d0c6ee57470"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 13053,
+      "sha256": "88a22e509c7a208e6e26d30fdbca9bf7c4ea64df1c11a08bdfbdb67b441bc749"
+    },
+    {
+      "path": "tests/near-arm-depth-regression.mjs",
+      "bytes": 2069,
+      "sha256": "10e35ddac9cffbe4e81a76d486c2a0e7c9c437d2090401d2ba0609e8ac401d89"
+    },
+    {
+      "path": "tests/paper-background-material-regression.mjs",
+      "bytes": 2992,
+      "sha256": "34c1fbe5cfdec33849af78a4789af7aca13cfac3918e84ff7af5dfa59272c01a"
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "bytes": 3967,
+      "sha256": "18a985d47bb8e8fa58dbf1ff86f9f78c7f69b2fd3bc98481461d3c0632df8311"
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "bytes": 7600,
+      "sha256": "c1c12e13bf23634f3b238b14ad61d68c041fc4eb59de8cd0c722bf345b878c11"
+    },
+    {
+      "path": "validation/f14-lap-width-128.json",
+      "bytes": 23838,
+      "sha256": "63ca51d09f5d4771d7b7efde80e317c2cb4a54fb29f7d3f00bdac59b4764342d"
+    },
+    {
+      "path": "validation/f14-lap-width-160.json",
+      "bytes": 23821,
+      "sha256": "821bb872179f97c75b9246a1caeffea0806640edad0824e9217f6eca8ec03380"
+    },
+    {
+      "path": "validation/f14-lap-width-192.json",
+      "bytes": 23677,
+      "sha256": "11f63812f351f72129dcf4841e4b2727e80d81de758e8f9208ef25fb3fd0a9c4"
+    },
+    {
+      "path": "validation/f14-left-background-edge.json",
+      "bytes": 1774,
+      "sha256": "b02a90123336538efea0b180fc39f3aabc5815fde29bbe7683d6fda4caac40da"
+    },
+    {
+      "path": "validation/f14-left-bg-edge-diagnostic.json",
+      "bytes": 24139,
+      "sha256": "02bef5a2cd7da7dc465d7e532e43d595837ad7fd8dab166a41890e0499c30ef8"
+    },
+    {
+      "path": "validation/f14-main-near-arm-detail.jpg",
+      "bytes": 120775,
+      "sha256": "1898862740880967d26f5567992ad762b7560e2c42979c54797e9afaeb69d6e7"
+    },
+    {
+      "path": "validation/f14-main-near-arm-gles.jpg",
+      "bytes": 428487,
+      "sha256": "532dd1ebd0925c3e8ffe9ab849f6aaa608c684b1999547db76cc31a087cfa782"
+    },
+    {
+      "path": "validation/f14-main-near-arm-gles.json",
+      "bytes": 1657,
+      "sha256": "95a68dd900565b21df536789659ca94a98484bc93ce680c0f977077f481bbda7"
+    },
+    {
+      "path": "validation/f14-main-near-arm-production.json",
+      "bytes": 125977,
+      "sha256": "3c7159007af14db8353683faf05a686194b52651ce698d6078d4621fe1625eb5"
+    },
+    {
+      "path": "validation/f14-near-arm-depth.json",
+      "bytes": 513,
+      "sha256": "d6e51f83305d7915ec6879e4bf500139671f57d0c4ccf791a497f620a985e3c7"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/near-arm-depth-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "NEAR_ARM_VOLUME=1 node tests/paper-contact-pose-scan.mjs (243 production poses, before subsequent background contour refinement)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_paper_ownership_gles.py (near arm actual views)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-background-material-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-contact-pose-scan.mjs (width128/160/192 diagnostic, 6/6/3 failing rows)",
+      "status": "failed",
+      "exitCode": 1
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "d76aee73db9034449254eed24b7f538d738fb0370fffbcfa72468223894d87cb"
+}
