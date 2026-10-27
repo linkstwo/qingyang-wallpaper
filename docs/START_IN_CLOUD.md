@@ -1,3 +1,7 @@
+# 最新路线：Wallpaper Engine 原生场景（2026-10-27）
+
+用户明确改用Wallpaper Engine直接制作。先读WALLPAPER-ENGINE-20261027.md、EXECUTION_STATE及实时租约。wallpaper-engine与导出脚本已有原生出图；动作/安卓交互包/手机尚未验收。保留旧Android基线，不把历史APK签名阻塞当成本路线的前置。下面为历史接续记录。
+
 # 当前优先：先跑通一轮（fence15）
 
 先读FIRST-PASS-20261027.md和DOUBAO-DEFERRED-FIRST-PASS.md。用户要求非阻塞细节留给豆包，当前直接推进完整场景与Android；最终任务验收仍据实记录。

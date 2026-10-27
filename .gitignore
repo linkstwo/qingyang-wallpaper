@@ -61,3 +61,8 @@
 !/.github/
 !/.github/workflows/
 !/.github/workflows/first-pass-060.yml
+
+# Wallpaper Engine native sources; compiled textures/packages are reproducible.
+!/wallpaper-engine/
+/wallpaper-engine/**/*.tex
+/wallpaper-engine/**/*.mpkg

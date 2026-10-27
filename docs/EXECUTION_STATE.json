@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-27T04:22:23.344444+00:00",
-  "timezone": "Asia/Shanghai",
+  "updatedAt": "2026-10-27T05:01:32.600401+00:00",
+  "timezone": "Asia/Singapore",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
   "baselineApplicationCommit": "bc5205a3e2a7d8565257a08a659585a821b9e791",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "First-pass end-to-end candidate; only blocking defects, defer refinements to Doubao",
+  "scopeOfThisRun": "User-authorised Wallpaper Engine native-scene route; Windows rendering observed, motion/mobile acceptance pending.",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -78,12 +78,13 @@
     "Applied user supplemental roughly50/50 actual-workload policy: delegate ordinary/medium reviews and scoped medium implementations; Codex samples ordinary evidence and owns core choices/critical acceptance. Per-task delegable scope recorded for all20 packages.",
     "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle.",
     "First-pass source path connects observed paper candidate, donor side/back strip, existing body/Q response and native dual-mode scene buffers. Selected Android fixes from PR3 imported; 96 renderer resource assertions and 57 lifecycle assertions pass on host. Visual/build/phone pending.",
-    "First integrated candidate 0.6.0/19 built successfully in GitHub Actions 40448885010. Actual AndroidManifest parsed: correct package/version/non-debug; CRC passed and 28 packaged assets equal deterministic local exports. Real production GLES side/back source strip reveals at bounded camera angles. Existing JS response drives an 18-second whole-scene video; both unsigned APK and video persisted. This is not signed/installable/phone acceptance."
+    "First integrated candidate 0.6.0/19 built successfully in GitHub Actions 40448885010. Actual AndroidManifest parsed: correct package/version/non-debug; CRC passed and 28 packaged assets equal deterministic local exports. Real production GLES side/back source strip reveals at bounded camera angles. Existing JS response drives an 18-second whole-scene video; both unsigned APK and video persisted. This is not signed/installable/phone acceptance.",
+    "Created Wallpaper Engine native reading-v2 Scene with lossless textures, device-parallax-driven GPU spring feedback and source Q reference. Actual Windows native final scene drawn; continuous motion/mobile not accepted."
   ],
   "next": [
-    "Obtain explicit authorization for reading AI bridge signing handoff or an existing secure source of the original key password.",
-    "Sign the already verified 0.6.0 APK using the existing original keystore without rebuilding; independently verify certificate/version/ZIP/alignment then deliver.",
-    "Use actual phone feedback on this first-pass candidate; delegate nonblocking refinements listed in DOUBAO-DEFERRED-FIRST-PASS.md."
+    "Validate native feedback spring motion/settling/abnormal-dt and 30/60/120fps; compare the GPU pose-rate adaptation with the existing Q baseline.",
+    "Open the editable native project and export an interactive Android .mpkg, retaining actual custom effect resources; no pre-rendered substitute.",
+    "Transfer to the target phone and verify lockscreen/gyro/stop/wake behaviour under user control."
   ],
   "stages": {
     "S1": "in_progress",
@@ -190,7 +191,10 @@
     "validation/s2-forearm-source-boundary.jpg",
     "docs/PARTS-AUTHORING-20261026.md",
     "validation/parts-fit-browser.json",
-    "validation/parts-fit-side-browser.jpg"
+    "validation/parts-fit-side-browser.jpg",
+    "docs/WALLPAPER-ENGINE-20261027.md",
+    "validation/we-native-report.json",
+    "validation/we-native-first-frame.jpg"
   ],
   "priorityAcceptance": "Use the newly authorised reading photo; chest at the centre of the complete lockscreen; enlarge the character as far as head/shoulder/waist continuity allows. Source-picture height occupying 60% of screen is a fallback floor, not the default target. Prefer more height with minimal quiet lower fill. Preserve Q-elastic torso-relative lag/rebound, improve UI and responsiveness; continuous side/back visibility remains the ultimate S1-S8 objective.",
   "assetAuthorization": {
@@ -343,12 +347,12 @@
     "workflowJob": 121195829689
   },
   "workSession": {
-    "mode": "awaiting_signing_authorization",
-    "owner": "codex-first-pass-20261027-1148",
-    "fence": 15,
-    "lastCheckpointAt": "2026-10-27T04:22:23.344444+00:00",
+    "mode": "interrupted_checkpoint",
+    "owner": "codex-we-20261027-1245",
+    "fence": 16,
+    "lastCheckpointAt": "2026-10-27T05:01:32.600401+00:00",
     "backgroundWorkerActive": false,
-    "stopReason": "Unsigned complete first-pass APK and motion comparison are saved. Original keystore is available; password missing. AI bridge history read was rejected by automatic approval as outside current repository-development scope; need user authorization to retrieve signing handoff. Nonblocking refinements deliberately deferred."
+    "stopReason": "User interrupted UI work; save native-scene prototype without claiming motion/mobile acceptance."
   },
   "userReportedIssues": [
     {
@@ -468,7 +472,7 @@
     "resizedSameViewIsNotNewAngle": true,
     "avoidInventedYawNumbers": true
   },
-  "latestResume": "docs/FIRST-PASS-20261027.md",
+  "latestResume": "docs/WALLPAPER-ENGINE-20261027.md",
   "stopRequested": false,
   "nightRun20261027": {
     "owner": "codex-night-20261027-0720",
@@ -502,5 +506,15 @@
     "phoneTested": false,
     "approximateSideBackRegistration": true,
     "wholeTasksAccepted": []
+  },
+  "wallpaperEngine": {
+    "directory": "wallpaper-engine",
+    "exporter": "scripts/export_wallpaper_engine.py",
+    "installedProject": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\wallpaper_engine\\projects\\myprojects\\qingyang-reading",
+    "nativeDrawObserved": true,
+    "validation": "validation/we-native-report.json",
+    "motionAccepted": false,
+    "mobileExported": false,
+    "phoneTested": false
   }
 }
