@@ -7,7 +7,6 @@ import android.graphics.Point;
 import android.hardware.display.DisplayManager;
 import android.view.Display;
 import android.opengl.GLES20;
-import android.opengl.GLUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -327,20 +326,11 @@ final class SceneRenderer {
             bitmap.recycle();
             throw new IOException(detail);
         }
-        int[] ids = new int[1];
-        GLES20.glGenTextures(1, ids, 0);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, ids[0]);
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
-        GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
-        bitmap.recycle();
-        int error = GLES20.glGetError();
-        if (error != GLES20.GL_NO_ERROR) {
-            throw new IOException("贴图上传失败 " + name + " glError=" + error);
+        try {
+            return GlAssets.texture(bitmap, name);
+        } finally {
+            bitmap.recycle();
         }
-        return ids[0];
     }
 
     private String shaderAsset(String name) throws IOException {
@@ -353,35 +343,7 @@ final class SceneRenderer {
     }
 
     private int buildProgram() throws IOException {
-        final int vertex = compile(GLES20.GL_VERTEX_SHADER, shaderAsset("scene.vert"));
-        final int fragment = compile(GLES20.GL_FRAGMENT_SHADER, shaderAsset("scene.frag"));
-        final int created = GLES20.glCreateProgram();
-        GLES20.glAttachShader(created, vertex);
-        GLES20.glAttachShader(created, fragment);
-        GLES20.glLinkProgram(created);
-        final int[] status = new int[1];
-        GLES20.glGetProgramiv(created, GLES20.GL_LINK_STATUS, status, 0);
-        GLES20.glDeleteShader(vertex);
-        GLES20.glDeleteShader(fragment);
-        if (status[0] == 0) {
-            final String log = GLES20.glGetProgramInfoLog(created);
-            GLES20.glDeleteProgram(created);
-            throw new IOException("着色器链接失败：" + log);
-        }
-        return created;
-    }
-
-    private int compile(int type, String source) throws IOException {
-        final int shader = GLES20.glCreateShader(type);
-        GLES20.glShaderSource(shader, source);
-        GLES20.glCompileShader(shader);
-        final int[] status = new int[1];
-        GLES20.glGetShaderiv(shader, GLES20.GL_COMPILE_STATUS, status, 0);
-        if (status[0] == 0) {
-            final String log = GLES20.glGetShaderInfoLog(shader);
-            GLES20.glDeleteShader(shader);
-            throw new IOException("着色器编译失败：" + log);
-        }
-        return shader;
+        // Read both assets before allocating either shader.
+        return GlAssets.program(shaderAsset("scene.vert"), shaderAsset("scene.frag"));
     }
 }

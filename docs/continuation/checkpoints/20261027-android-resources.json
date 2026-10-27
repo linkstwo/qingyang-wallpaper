@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0753-android",
+  "fence": 1,
+  "baseHead": "07e46016c43022d913a99c67053b9a4d9f25d0cd",
+  "createdAt": "2026-10-27T00:00:00Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/GlAssets.java",
+      "bytes": 3398,
+      "sha256": "b1b7efddc9f27d3652e7994c9c1fe17fba2e82f2b3bfe2bc69bed59f0bf46094"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/PreviewView.java",
+      "bytes": 5607,
+      "sha256": "a69a34e050815a113e1be3c0c9801d57aca33ef8e7643070c6a815a73d7e87a6"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/RenderLoop.java",
+      "bytes": 11226,
+      "sha256": "bf4f4c501b97bdd3689987fd410cb84be4452dc12b2794fc679c4224a96fc090"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SceneRenderer.java",
+      "bytes": 15312,
+      "sha256": "b2b62cade0603017c51742fd844eb32ae58b2f456a76be6497e1c7245c2cb524"
+    },
+    {
+      "path": "docs/continuation/ANDROID-INDEPENDENT-20261027.md",
+      "bytes": 2037,
+      "sha256": "f6b3368f250e573e8d9da1c402502ff43019ae02917d192e711ed8ddf718bff1"
+    },
+    {
+      "path": "tests/GlAssetsRegression.java",
+      "bytes": 1495,
+      "sha256": "1a604c50b62ec891760120aae922011fa756f1227a90ae44ff837efe8a0f38b6"
+    },
+    {
+      "path": "tests/PreviewLifecycleRegression.java",
+      "bytes": 3142,
+      "sha256": "615a56e10daf99d4a093c55e765641d54a6ccff251e2f0a348889131533564b2"
+    },
+    {
+      "path": "tests/host-fixtures/com/tangtang/motionwallpaper/LifecycleRegression.java",
+      "bytes": 6046,
+      "sha256": "204c9b5f121804ee9bfc49d2630b1d62ef904474703a72c4154afa3ee1f2cb6b"
+    },
+    {
+      "path": "tests/run_gl_assets.py",
+      "bytes": 3812,
+      "sha256": "d7a044f676eaa75afc7e568c5158af3118aee11c7c9e3f89fac8df036fd06c05"
+    },
+    {
+      "path": "tests/run_preview_lifecycle.py",
+      "bytes": 4435,
+      "sha256": "d200dfccc17bf3e3c4f660e1a41eb64f228b88e6df1edb0562fc59d4cc099c8a"
+    },
+    {
+      "path": "validation/gl-assets-regression.json",
+      "bytes": 94,
+      "sha256": "30116263439f5698ee3312786272da0927fcc71452c0c3200f0f6524859c4949"
+    },
+    {
+      "path": "validation/independent-android-tests.json",
+      "bytes": 619,
+      "sha256": "f5d6a6da6a1381d98ff137d4f86b05e438ca6dc244e5d5bc2fe0b1966c27f3ec"
+    },
+    {
+      "path": "validation/preview-lifecycle-regression.json",
+      "bytes": 92,
+      "sha256": "768ab0430b05f2bb4823a0e908f70a270f4d1f66bb9480818740faf35f4c7558"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python tests/run_preview_lifecycle.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_preview_lifecycle.py --baseline (expected negative)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "python tests/run_lifecycle.py before Surface fix (new negative)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "python tests/run_lifecycle.py after Surface fix (56 assertions)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_gl_assets.py (13 faults/29 assertions)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_response.py (10132 Java/JS assertions)",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Continue independent Android resource recovery, then selectively integrate prior PR2 sensor candidate without its lease/state"
+  ],
+  "phoneTested": false,
+  "sourceDigest": "289ad200a997abfb564d96f87b9856c5c093d7139f7580686d039659996a3bc5"
+}

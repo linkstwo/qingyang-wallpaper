@@ -155,6 +155,8 @@ final class RenderLoop {
             @Override
             public void run() {
                 if (closed) return;
+                feed.stop();
+                physics.reset();
                 destroyGl();
                 firstSwap = false;
                 retryCount = 0;
@@ -205,11 +207,8 @@ final class RenderLoop {
                 lastNanos = 0L;
                 accumulator = 0L;
                 physics.reset();
-                if (active) {
-                    feed.start();
-                } else {
-                    feed.stop();
-                }
+                // Sensors start in frame() only after a valid Surface/EGL is available.
+                if (!active) feed.stop();
                 if (active) {
                     schedule();
                 } else {
