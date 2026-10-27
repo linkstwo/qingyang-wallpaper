@@ -83,9 +83,9 @@ final class MotionInput {
         return MathX.clamp((now - last) * 1.0E-9f, 0.001f, 0.2f);
     }
 
-    synchronized void gravity(float x, float y, float z, long stamp) {
+    synchronized boolean gravity(float x, float y, float z, long stamp) {
         if (!MathX.valid(x, y, z) || stamp <= gravityStamp) {
-            return;
+            return false;
         }
         final float nx = mapX(x, y, rotation) / 9.80665f;
         final float ny = mapY(x, y, rotation) / 9.80665f;
@@ -97,10 +97,13 @@ final class MotionInput {
             gz0 = nz;
             base = true;
         }
+        final float oldX = tiltX, oldY = tiltY, oldZ = tiltZ;
         tiltX = MathX.mix(tiltX, nx - gx0, dt, 0.075f);
         tiltY = MathX.mix(tiltY, ny - gy0, dt, 0.075f);
         tiltZ = MathX.mix(tiltZ, nz - gz0, dt, 0.075f);
         gravityStamp = stamp;
+        // Wake the camera fallback without inventing angular/linear excitation.
+        return !hasPose && Math.abs(tiltX-oldX) + Math.abs(tiltY-oldY) + Math.abs(tiltZ-oldZ) > 0.0005f;
     }
 
     synchronized void acceleration(float x, float y, float z, long stamp) {

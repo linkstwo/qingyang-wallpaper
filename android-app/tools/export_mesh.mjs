@@ -98,3 +98,6 @@ if (CHECK) console.log('PASS: Android assets exactly match the editable prototyp
 const native=fs.readFileSync(new URL('../app/src/main/java/com/tangtang/motionwallpaper/MeshAssets.java',import.meta.url),'utf8');
 const expected=Number(native.match(/EXPECTED_CHARACTER_TRIANGLES\s*=\s*(\d+)/)?.[1]);
 if(expected!==character.length/6)throw Error('Native MeshAssets triangle guard is stale: '+expected+' vs '+character.length/6);
+
+// First-pass candidate has independent buffers and a reversible runtime switch.
+await import("./export_round_one.mjs");

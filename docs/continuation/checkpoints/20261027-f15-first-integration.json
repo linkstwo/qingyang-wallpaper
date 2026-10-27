@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-first-pass-20261027-1148",
+  "fence": 15,
+  "baseHead": "44a50b3e2c4cb06ea1b38f4c619f1ac0140da1c7",
+  "createdAt": "2026-10-27T04:13:49.922343+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 1410,
+      "sha256": "35c2303eb4f3438263e4b44f17bef382d30172dd90b38a75155293976067b66f"
+    },
+    {
+      "path": "android-app/app/build.gradle.kts",
+      "bytes": 2079,
+      "sha256": "a9781744740bc153741be751773906380ff1eb563e35143bea7dc6c022d55464"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene.frag",
+      "bytes": 1202,
+      "sha256": "6e6a6a22d199443b971a37353202dfd5e1b5625fbeb29bab28bec823e1f50467"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene.vert",
+      "bytes": 4947,
+      "sha256": "a6f624f539dee35ad89f7310c6ed19c99ed6bd2f666d2fcc55e5afea4684e6ce"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/FirstPassAssets.java",
+      "bytes": 1155,
+      "sha256": "0d765a14fa9201308c2817763cd8db3bc28f5ced03238c33fe435ffdbd90bacc"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/GlAssets.java",
+      "bytes": 3398,
+      "sha256": "b1b7efddc9f27d3652e7994c9c1fe17fba2e82f2b3bfe2bc69bed59f0bf46094"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MainActivity.java",
+      "bytes": 3452,
+      "sha256": "b5927cef8aeb6030ac471ee9d52e75f4a1c0fd8664c9b8ca00eef246d85d4906"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MeshAssets.java",
+      "bytes": 3637,
+      "sha256": "fdebc5970a6a7303ec1e45f07177d219a29bac196578cb74b6524b275b8a2774"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MotionInput.java",
+      "bytes": 7038,
+      "sha256": "85b88dab69d220e2496344aea718315a13a8bcd45363831a83f5ee5cacfffc5e"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/PreviewView.java",
+      "bytes": 5607,
+      "sha256": "a69a34e050815a113e1be3c0c9801d57aca33ef8e7643070c6a815a73d7e87a6"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/RenderLoop.java",
+      "bytes": 11311,
+      "sha256": "b57d6d05b6843244758c33e853c3c3c8638f6fb62e2e07b921e7d2a1d2cc5b2f"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SceneRenderer.java",
+      "bytes": 17946,
+      "sha256": "b8328cb236b9d9981267c5fde0e703dc309afec187c9c95f6bccd6a58ccd8deb"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SceneSettings.java",
+      "bytes": 2543,
+      "sha256": "949b717d6f28a9b8e20c1eb7533229dc83f844c0a3d5d9c6472f2e5f8089d34a"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SensorFeed.java",
+      "bytes": 7962,
+      "sha256": "1fb5c6eeac031f4c68a0d82c33ffdcebf6da64f7b473fde66098ce2d07d13765"
+    },
+    {
+      "path": "android-app/tools/export_mesh.mjs",
+      "bytes": 4866,
+      "sha256": "43d6008d3d68c638d2cb5c270ae58faa9e81dd6c952360243ac5f05a00d074af"
+    },
+    {
+      "path": "android-app/tools/export_round_one.mjs",
+      "bytes": 2090,
+      "sha256": "7a905459c1425495c01a032d3692844047ed2f0d12a5f06b5241af864e09e8ac"
+    },
+    {
+      "path": "character-prototype/preview/round-one-scene.mjs",
+      "bytes": 3003,
+      "sha256": "dc3352d02e931543cde1adc1b2058315ca482923233c769fed1b82b1474c013b"
+    },
+    {
+      "path": "character-prototype/preview/scene.frag",
+      "bytes": 1202,
+      "sha256": "6e6a6a22d199443b971a37353202dfd5e1b5625fbeb29bab28bec823e1f50467"
+    },
+    {
+      "path": "character-prototype/preview/scene.vert",
+      "bytes": 4947,
+      "sha256": "a6f624f539dee35ad89f7310c6ed19c99ed6bd2f666d2fcc55e5afea4684e6ce"
+    },
+    {
+      "path": "docs/DOUBAO-DEFERRED-FIRST-PASS.md",
+      "bytes": 1449,
+      "sha256": "71c88021e53006c0dec2f84cb05d1840dbf6f0674f883988cc0c40abb3528326"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36343,
+      "sha256": "b2414a0a1789f2649dddd75b7a1766395e3ad3b40b6a9cca606ffa12cda3e081"
+    },
+    {
+      "path": "docs/FIRST-PASS-20261027.md",
+      "bytes": 1045,
+      "sha256": "a095ad75cad762da882bb528b259e20ad5bc904b066da204e53e4dcee7d4f119"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 9310,
+      "sha256": "09bbe82ccce337820c16c23f2955da5ae015514caaee5deef30dac6fd01ba60a"
+    },
+    {
+      "path": "tests/GlAssetsRegression.java",
+      "bytes": 1495,
+      "sha256": "1a604c50b62ec891760120aae922011fa756f1227a90ae44ff837efe8a0f38b6"
+    },
+    {
+      "path": "tests/MeshIntegrityRegression.java",
+      "bytes": 2030,
+      "sha256": "52a5a57bcd1cc845153f1f9bb55b2406b9d80ff0d35e6da0aa6557f15efd93d9"
+    },
+    {
+      "path": "tests/PreviewLifecycleRegression.java",
+      "bytes": 3142,
+      "sha256": "615a56e10daf99d4a093c55e765641d54a6ccff251e2f0a348889131533564b2"
+    },
+    {
+      "path": "tests/RendererResourcesRegression.java",
+      "bytes": 1418,
+      "sha256": "e6227baa5a091b265d9c578a92f4f90fc73aa908e3cd9b13d3cc5b4a67b68268"
+    },
+    {
+      "path": "tests/SensorQueueRegression.java",
+      "bytes": 5989,
+      "sha256": "8713257ace8975424514e5a3e5d17a28df04c4217f83a8a2a60035a5d6d05a4d"
+    },
+    {
+      "path": "tests/SensorTrajectoryRegression.java",
+      "bytes": 5355,
+      "sha256": "504b8e5f59de4d7554f34588107e331bbb74e0d31e89a925ad060b0b6a3ab702"
+    },
+    {
+      "path": "tests/host-fixtures/com/tangtang/motionwallpaper/LifecycleRegression.java",
+      "bytes": 6119,
+      "sha256": "c5f382311f76121cc2d66e2e3edae5e9239bea81349ee79f0416d84fbd8cebfc"
+    },
+    {
+      "path": "tests/run_gl_assets.py",
+      "bytes": 3812,
+      "sha256": "d7a044f676eaa75afc7e568c5158af3118aee11c7c9e3f89fac8df036fd06c05"
+    },
+    {
+      "path": "tests/run_mesh_integrity.py",
+      "bytes": 1815,
+      "sha256": "1e15d0ef4d9b5891f7e372e8fe50b2c69ea6f9136f5ddc9466165be0d39da7e1"
+    },
+    {
+      "path": "tests/run_preview_lifecycle.py",
+      "bytes": 4435,
+      "sha256": "d200dfccc17bf3e3c4f660e1a41eb64f228b88e6df1edb0562fc59d4cc099c8a"
+    },
+    {
+      "path": "tests/run_renderer_resources.py",
+      "bytes": 5697,
+      "sha256": "cd13fc11afa1ae04d10f7de489dd3f8ff3c871ba0cb67cc11f53aa3a80222171"
+    },
+    {
+      "path": "validation/renderer-resources-regression.json",
+      "bytes": 152,
+      "sha256": "127b7d416bc49e4e7f0beeefae3b42ba953ec960358454fa1b5c4faabacc3ccd"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_renderer_resources.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_lifecycle.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect integrated side-back strip with actual production GLSL; fix blocking defects only.",
+    "Compile Android candidate with imported PR3 fixes; original signing identity unchanged."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "9918854b2b55732c6437113f4e7f25ac0dd7297fdf62d0a610e8a49b5cfbbb13"
+}

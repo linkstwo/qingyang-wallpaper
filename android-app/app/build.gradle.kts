@@ -25,8 +25,8 @@ android {
         applicationId = "com.tangtang.motionwallpaper"
         minSdk = 28
         targetSdk = 34
-        versionCode = 18
-        versionName = "0.5.9"
+        versionCode = 19
+        versionName = "0.6.0"
     }
 
     signingConfigs {
@@ -59,3 +59,9 @@ android {
 }
 
 tasks.named("preBuild").configure { dependsOn(prepareFramingAssets) }
+
+val prepareRoundOneAssets by tasks.registering(Exec::class) {
+    workingDir(rootProject.projectDir)
+    commandLine("node", "tools/export_round_one.mjs")
+}
+tasks.named("preBuild").configure { dependsOn(prepareRoundOneAssets) }

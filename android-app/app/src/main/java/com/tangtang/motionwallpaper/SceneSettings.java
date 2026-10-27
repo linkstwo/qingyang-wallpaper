@@ -21,6 +21,8 @@ final class SceneSettings {
     void wider(boolean value) { preferences.edit().putBoolean("wider", value).apply(); }
     int topPercent() { return Math.max(0, Math.min(20, preferences.getInt("topPercent", 10))); }
     void topPercent(int value) { preferences.edit().putInt("topPercent", Math.max(0, Math.min(20, value))).apply(); }
+    boolean firstPass() { return preferences.getBoolean("firstPass",true); }
+    void firstPass(boolean value) { preferences.edit().putBoolean("firstPass",value).apply(); }
     boolean structure() { return preferences.getBoolean("structure", true); }
     void structure(boolean value) { preferences.edit().putBoolean("structure", value).apply(); }
     int sizePercent() { return Math.max(65, Math.min(125, preferences.getInt("sizePercent", 90))); }

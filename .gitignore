@@ -51,3 +51,9 @@
 
 # Recreated by the deterministic response checks.
 /validation/motion-0.5.*.csv
+
+# First-pass buffers are reproducibly generated before Android preBuild.
+/android-app/app/src/main/assets/round_*.bin
+/android-app/app/src/main/assets/side_back_*.bin
+/android-app/app/src/main/assets/side-back.png
+/android-app/app/src/main/assets/round-one-report.json

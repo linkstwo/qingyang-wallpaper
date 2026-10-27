@@ -35,6 +35,8 @@ final class MeshAssets {
         FloatBuffer depth = read(context, "character_depth.bin");
         FloatBuffer foreground = read(context, "foreground_mesh.bin");
 
+        if (mesh.capacity() % 6 != 0) throw new IOException("character_mesh.bin 三角形数据不完整");
+        if (foreground.capacity() % 6 != 0) throw new IOException("foreground_mesh.bin 三角形数据不完整");
         int triangles = mesh.capacity() / 6;
         if (triangles != EXPECTED_CHARACTER_TRIANGLES) {
             throw new IOException("character_mesh.bin 三角数不对：期望 " + EXPECTED_CHARACTER_TRIANGLES + "，实际 " + triangles);
@@ -42,10 +44,14 @@ final class MeshAssets {
         if (pins.capacity() != mesh.capacity() / 2 || depth.capacity() != pins.capacity()) {
             throw new IOException("character_pins.bin 顶点数不匹配：" + pins.capacity() + " vs " + mesh.capacity() / 2);
         }
+        for (int i = 0; i < pins.capacity(); i++) {
+            float value = pins.get(i);
+            if (value < 0f || value > 1f) throw new IOException("character_pins.bin 权重越界 index=" + i);
+        }
         return new MeshAssets(mesh, pins, depth, foreground);
     }
 
-    private static FloatBuffer read(Context context, String name) throws IOException {
+    static FloatBuffer read(Context context, String name) throws IOException {
         try (InputStream in = context.getAssets().open(name)) {
             java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream(in.available() + 16);
             byte[] chunk = new byte[64 * 1024];
@@ -60,7 +66,12 @@ final class MeshAssets {
             ByteBuffer buffer = ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.LITTLE_ENDIAN);
             buffer.put(bytes);
             buffer.position(0);
-            return buffer.asFloatBuffer();
+            FloatBuffer values = buffer.asFloatBuffer();
+            // NaN/Inf can silently clip vertices in GLES without setting a GL error.
+            for (int i = 0; i < values.capacity(); i++) {
+                if (!Float.isFinite(values.get(i))) throw new IOException(name + " 非有限浮点 index=" + i);
+            }
+            return values;
         }
     }
 }

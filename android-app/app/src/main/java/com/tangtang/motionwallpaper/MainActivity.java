@@ -30,7 +30,7 @@ public final class MainActivity extends Activity {
         add(options,"回正",false,()->preview.recalibrate());add(options,"更多",false,()->more());card.addView(options);
         FrameLayout.LayoutParams bottom=new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM);bottom.setMargins(dp(14),0,dp(14),dp(26));root.addView(card,bottom);setContentView(root);
     }
-    private void more(){new AlertDialog.Builder(this).setTitle("显示与查看").setItems(new String[]{settings.structure()?"关闭视角响应":"开启视角响应","查看静态角度参考","版本 0.5.9 · 轮廓与空间遮挡"},(d,n)->{if(n==0){settings.structure(!settings.structure());preview.requestRender();}else if(n==1)startActivity(new Intent(this,FramingStudyActivity.class));}).setNegativeButton("关闭",null).show();}
+    private void more(){new AlertDialog.Builder(this).setTitle("显示与查看").setItems(new String[]{settings.structure()?"关闭视角响应":"开启视角响应","查看静态角度参考",settings.firstPass()?"关闭肩背联调":"开启肩背联调","版本 0.6.0 · 首轮联调"},(d,n)->{if(n==0){settings.structure(!settings.structure());preview.requestRender();}else if(n==1)startActivity(new Intent(this,FramingStudyActivity.class));else if(n==2){settings.firstPass(!settings.firstPass());preview.requestRender();}}).setNegativeButton("关闭",null).show();}
     private Button add(LinearLayout row,String text,boolean primary,Runnable action){Button b=Ui.button(this,text,primary,action);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,dp(48),1);p.setMargins(dp(3),dp(3),dp(3),dp(3));row.addView(b,p);return b;}
     @Override protected void onResume(){super.onResume();Ui.immersive(this);preview.start();}
     @Override protected void onPause(){preview.stop();super.onPause();}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-27T00:20:43.779098+00:00",
+  "updatedAt": "2026-10-27T04:13:49.922343+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -10,7 +10,7 @@
   "baselineVersionCode": 14,
   "currentStage": "S2",
   "status": "in_progress",
-  "scopeOfThisRun": "T03 source background trim and T04 shared donor component deformation",
+  "scopeOfThisRun": "First-pass end-to-end candidate; only blocking defects, defer refinements to Doubao",
   "done": [
     "0.5.5 signed with existing release certificate and verified",
     "User reports motion acceptable; framing/back visibility and continuous view still unsatisfactory",
@@ -76,11 +76,12 @@
     "Doubao2007 landmark draft rejected: old main image and unsupported cross-image correspondence; task2008 requests exact source identity and visible-only observations. No candidate landmark entered model.",
     "Status audit: verified prior GitHub checkpoint2573551, regrouped remaining acceptance into20 packages and archived five Doubao text/data outputs with exact byte hashes; newer2009/2012 points received but not accepted. No app changes.",
     "Applied user supplemental roughly50/50 actual-workload policy: delegate ordinary/medium reviews and scoped medium implementations; Codex samples ordinary evidence and owns core choices/critical acceptance. Per-task delegable scope recorded for all20 packages.",
-    "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle."
+    "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle.",
+    "First-pass source path connects observed paper candidate, donor side/back strip, existing body/Q response and native dual-mode scene buffers. Selected Android fixes from PR3 imported; 96 renderer resource assertions and 57 lifecycle assertions pass on host. Visual/build/phone pending."
   ],
   "next": [
-    "Review actual 224px/160px worst/inverse posed GLES paper/lap contact and source ownership; sampled 405 cases passed, visual still pending.",
-    "Continue true main/donor shoulder correspondence; no new APK or phone acceptance."
+    "Inspect integrated side-back strip with actual production GLSL; fix blocking defects only.",
+    "Compile Android candidate with imported PR3 fixes; original signing identity unchanged."
   ],
   "stages": {
     "S1": "in_progress",
@@ -340,19 +341,12 @@
     "workflowJob": 121195829689
   },
   "workSession": {
-    "startedAt": "2026-10-26T03:03:30.412248+00:00",
-    "lastCheckpointAt": "2026-10-26T22:34:58Z",
-    "checkpointIntervalMinutes": 30,
-    "mode": "stopped_checkpoint",
-    "userAuthorisedContinuousS2": true,
-    "rule": "Commit after every coherent change and at most30minutes between active-work checkpoints; write actual tests/stage/next action. No new background schedule is created.",
-    "latestRecovery": "Original uncommitted files survived; both regressions rerun successfully after recovery.",
-    "owner": "codex-night-20261027-0618",
-    "fence": 13,
-    "latestSourceCheckpoint": "288ef133ee327b9a32da6192763df879acaffa84",
-    "userRequestedDoNotStop": true,
-    "stopReason": "Invocation ended before the authorised 10:00 end. Continuous-until-window requirement was not fulfilled. No observed quota or platform failure is claimed.",
-    "backgroundWorkerActive": false
+    "mode": "active_development",
+    "owner": "codex-first-pass-20261027-1148",
+    "fence": 15,
+    "lastCheckpointAt": "2026-10-27T04:13:49.922343+00:00",
+    "backgroundWorkerActive": false,
+    "next": "Render integrated actual production GLES and build candidate"
   },
   "userReportedIssues": [
     {
@@ -472,7 +466,7 @@
     "resizedSameViewIsNotNewAngle": true,
     "avoidInventedYawNumbers": true
   },
-  "latestResume": "docs/RESUME-20261027-FENCE14.md",
+  "latestResume": "docs/FIRST-PASS-20261027.md",
   "stopRequested": false,
   "nightRun20261027": {
     "owner": "codex-night-20261027-0720",
@@ -482,5 +476,11 @@
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
     "latestCheckpoint": "docs/continuation/checkpoints/20261027-f14-continuous-camera.json"
+  },
+  "firstPassPolicy": {
+    "userAuthorised": true,
+    "priority": "End-to-end visible prototype and Android candidate before nonblocking refinements",
+    "deferred": "docs/DOUBAO-DEFERRED-FIRST-PASS.md",
+    "finalAcceptanceUnchanged": true
   }
 }
