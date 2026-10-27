@@ -24,7 +24,7 @@ export const sceneModel={version:2,units:'source pixels, +Z toward viewer',pivot
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
 export function supportDepth(x,y){const s=smooth(...sceneModel.seat.transition,y),d=sceneModel.cameraDistance,p=sceneModel.paper,refWorldY=(p.referenceY-sceneModel.pivot[1])*(d-p.depth)/d,intercept=p.depth-p.slopeY*refWorldY,sourceY=y-sceneModel.pivot[1],paper=(intercept+p.slopeY*sourceY)/(1+p.slopeY*sourceY/d);return paper*(1-s)+sceneModel.seat.depth*s;}
-export function materialDepthAt(x,y,shapeDepth){const pin=bodySupportDepthWeight(x,y);return shapeDepth*(1-pin)+supportDepth(x,y)*pin;}
+export function materialDepthAt(x,y,shapeDepth,supportFeather=120){const pin=bodySupportDepthWeight(x,y,supportFeather);return shapeDepth*(1-pin)+supportDepth(x,y)*pin;}
 export function unprojectSource(x,y,z){const k=(sceneModel.cameraDistance-z)/sceneModel.cameraDistance;return [(x-sceneModel.pivot[0])*k,(y-sceneModel.pivot[1])*k,z];}
 // Affine homogeneous clip Z, with world near +1000 and far -2000. Multiplying
 // clip Z by clip W again would make coplanar depth depend on tessellation.

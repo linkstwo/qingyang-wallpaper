@@ -1,0 +1,11 @@
+{
+  "changedVertices": 3469,
+  "maxDepthDelta": 47.39536783370731,
+  "default120Exact": true,
+  "sourceUvExact": true,
+  "paperExact": true,
+  "motionSupportWeightsExact": true,
+  "depthInferred": true,
+  "wholeT03Accepted": false,
+  "phoneTested": false
+}

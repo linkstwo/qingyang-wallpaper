@@ -1,0 +1,120 @@
+{
+  "supportDepthFeather": 160.0,
+  "inputFiles": [
+    {
+      "path": "character-prototype/preview/contact-rig.mjs",
+      "sha256": "f52655ef48ad06464c3057a0672765fd1995db41899707acb8eaf60e820b742f",
+      "bytes": 2041
+    },
+    {
+      "path": "character-prototype/preview/source-triangle-quality.mjs",
+      "sha256": "9d236238e4eaf787af6e136b2d8fadc78a82df8469af7d36b31e4434b1d7778f",
+      "bytes": 806
+    },
+    {
+      "path": "character-prototype/preview/layered-mesh.mjs",
+      "sha256": "5248aa3763d62a61aa8b28a24d5f310ce4296018e460d5d4b928a7f9fe89ddb1",
+      "bytes": 3010
+    },
+    {
+      "path": "character-prototype/preview/conforming-mesh.mjs",
+      "sha256": "f91d175438fa04a3a23c4744761773823ee16b498b1c57d9551b8729e0418788",
+      "bytes": 3081
+    },
+    {
+      "path": "character-prototype/preview/quality-source-mesh.mjs",
+      "sha256": "cffce5850450aa6a0707c6da3cad3ccc4a1eeb478a46aea42c064ec060d19462",
+      "bytes": 1893
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "sha256": "597ba3543d3cc045e62df850248301e2e18ea42f372c88a9058200bb1f8638f2",
+      "bytes": 7744
+    },
+    {
+      "path": "character-prototype/preview/paper-source-partition.mjs",
+      "sha256": "e5eb32d1eda265025e70e7982650f4cf6fdad86a67fa4add948b47c23213a3da",
+      "bytes": 4429
+    },
+    {
+      "path": "character-prototype/preview/near-arm-surface.mjs",
+      "sha256": "cf6c473d70e6e52c5f3ba6431e0280e9ce69f25590f4cd20925ebfcf3439a951",
+      "bytes": 1874
+    },
+    {
+      "path": "character-prototype/preview/observed-background.mjs",
+      "sha256": "3ff2792bc5e60e63c6091af1e43678012182a24095b9a9268289a72da2351287",
+      "bytes": 1309
+    },
+    {
+      "path": "character-prototype/preview/forearm-surface.mjs",
+      "sha256": "2f4143ecd942a13005dcce575b0b063d15308ae9bfc3b48749a705f01ae5bbe8",
+      "bytes": 3265
+    },
+    {
+      "path": "character-prototype/preview/scene-model.mjs",
+      "sha256": "4d82daf3f5f3292305568924c47497f24ecce954d04c3a0b47c210cc7c29b938",
+      "bytes": 6584
+    },
+    {
+      "path": "character-prototype/preview/structure.mjs",
+      "sha256": "29b5546b1ca0eac95d7757760b0e5e3f5ee5b6aaf27a15248d9ce903f65a0c63",
+      "bytes": 4277
+    },
+    {
+      "path": "character-prototype/preview/observed-surface.vert",
+      "sha256": "6cb5533f32f115ac5a82156e5e2556bcf2aaeddbf7af8cb1599e0c2996614b5e",
+      "bytes": 1099
+    },
+    {
+      "path": "character-prototype/preview/observed-surface.frag",
+      "sha256": "99d33ebc04f263b0bd89d7d43c2f20e237a9ee9a0721d3ce9459db27de9fc53c",
+      "bytes": 840
+    },
+    {
+      "path": "android-app/app/src/main/assets/original.png",
+      "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+      "bytes": 302522
+    },
+    {
+      "path": "android-app/app/src/main/assets/mask.png",
+      "sha256": "b975fbdfdfe34bcec730fa5ccf9a91fd4d5c0b74cd8ddecb97810b1f5dbcc43d",
+      "bytes": 15793
+    }
+  ],
+  "nearArmVolume": false,
+  "debugOwnership": false,
+  "paperUnderHandBackgroundPlane": false,
+  "rawFrames": [],
+  "imageReceipt": {
+    "path": "validation/f14-T03-lap224-inverse-pose.jpg",
+    "bytes": 435103,
+    "sha256": "2e192c5b730114965d1d561fd7064d06f9f751901406e5bdc6e54cb7541ada03"
+  },
+  "paperUnderHandBackgroundTrim": true,
+  "paperBackgroundTrim": true,
+  "paperRightClothContact": true,
+  "lapContactWidth": 224.0,
+  "seatSupport": true,
+  "forearmVolume": false,
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "angles": [
+    -20,
+    -2.2918,
+    0,
+    2.2918,
+    20
+  ],
+  "rear": false,
+  "bodyPose": {
+    "yaw": 0.059,
+    "pitch": 0.04,
+    "roll": -0.034
+  },
+  "paperPartition": true,
+  "baselineRef": null,
+  "paperLapContact": true,
+  "paperExteriorTrim": false,
+  "image": "validation/f14-T03-lap224-inverse-pose.jpg",
+  "phoneTested": false
+}

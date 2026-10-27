@@ -31,4 +31,4 @@ export function bodyContactWeights(v){return Float32Array.from({length:v.length/
 
 // Depth approaches the paper across the forearm, with a wider geometric transition
 // than the motion pin. This avoids turning the wrist attachment into a depth cliff.
-export function bodySupportDepthWeight(x,y){let pin=smooth(...subject.fixedSeat,y);for(const r of contacts)if(r.name!=='blueprint')pin=Math.max(pin,polygonPin(x,y,r.outline,120));return pin;}
+export function bodySupportDepthWeight(x,y,feather=120){if(!Number.isFinite(feather)||feather<32||feather>256)throw Error('Invalid support-depth feather');let pin=smooth(...subject.fixedSeat,y);for(const r of contacts)if(r.name!=='blueprint')pin=Math.max(pin,polygonPin(x,y,r.outline,feather));return pin;}

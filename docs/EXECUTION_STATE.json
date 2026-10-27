@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-27T00:06:25.842478+00:00",
+  "updatedAt": "2026-10-27T00:13:36.028058+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -79,8 +79,8 @@
     "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle."
   ],
   "next": [
-    "Use verified near/down donor cap and arm for local main-pose correspondence; preserve original source RGB, no whole-image warp claims.",
-    "Continue T03 occlusion and supported boundary; diagnostic angles remain failing."
+    "Review actual 224px/160px worst/inverse posed GLES paper/lap contact and source ownership; sampled 405 cases passed, visual still pending.",
+    "Continue true main/donor shoulder correspondence; no new APK or phone acceptance."
   ],
   "stages": {
     "S1": "in_progress",
@@ -481,6 +481,6 @@
     "tasksAccepted": [],
     "apkChanged": false,
     "backgroundDevelopmentActive": false,
-    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f14-forearm-cut-wip.json"
+    "latestCheckpoint": "docs/continuation/checkpoints/20261027-f14-T03-matrix.json"
   }
 }

@@ -5,7 +5,7 @@ const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 export const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
 const bell=(x,y,c,r)=>Math.exp(-2*(((x-c[0])/r[0])**2+((y-c[1])/r[1])**2));
 export const headWeight=y=>1-smooth(S.head.rigidThroughY,S.head.neckEndsY,y);
-export function depthAt(x,y){const h=1-smooth(380,550,y);const a=[85*bell(x,y,[795,840],[340,460]),95*bell(x,y,[940,490],[180,230]),105*bell(x,y,S.chest.center,S.chest.radius),65*bell(x,y,[1060,950],[150,350])];return materialDepthAt(x,y,h*(110+12*bell(x,y,[550,305],[150,140]))+(1-h)*Math.pow(a.reduce((v,n)=>v+n**4,0),.25));}
+export function depthAt(x,y,supportFeather=120){const h=1-smooth(380,550,y);const a=[85*bell(x,y,[795,840],[340,460]),95*bell(x,y,[940,490],[180,230]),105*bell(x,y,S.chest.center,S.chest.radius),65*bell(x,y,[1060,950],[150,350])];return materialDepthAt(x,y,h*(110+12*bell(x,y,[550,305],[150,140]))+(1-h)*Math.pow(a.reduce((v,n)=>v+n**4,0),.25),supportFeather);}
 export function depthWeights(v){return Float32Array.from({length:v.length/2},(_,i)=>depthAt(v[i*2],v[i*2+1]));}
 // Two smooth material lobes preserve the neckline and taper into the supported ribcage.
 export function chestWeight(x,y){const c=S.chest,far=.82*bell(x,y,c.farCenter,c.farRadius),near=bell(x,y,c.nearCenter,c.nearRadius);return (1-(1-far)*(1-near))*smooth(...c.attachY,y)*(1-smooth(...c.releaseY,y));}
