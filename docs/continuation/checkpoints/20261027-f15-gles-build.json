@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-first-pass-20261027-1148",
+  "fence": 15,
+  "baseHead": "352e12f075474d5b644ed70dc334b6eb83e13ebe",
+  "createdAt": "2026-10-27T04:16:25.719959+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": ".github/workflows/first-pass-060.yml",
+      "bytes": 1516,
+      "sha256": "b779a500fb0013c7e160b1f4973d5e5b0ecd3faf4bf038208be726a25450956b"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 1482,
+      "sha256": "7725b2ef249b428d9daaaa1cdc6b5b819d8a74d26972270418ca1cbf656f7052"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene.vert",
+      "bytes": 4911,
+      "sha256": "0ed8386e7e1ea2568bf5b0bf4c942421f7a22e4debce96200cb23d2ca1001ad0"
+    },
+    {
+      "path": "character-prototype/preview/round-one-scene.mjs",
+      "bytes": 3003,
+      "sha256": "eb2ded683a03a47779ff45a61fbd8bf3b92e6e7be6544b57fd65628cae936c97"
+    },
+    {
+      "path": "character-prototype/preview/scene.vert",
+      "bytes": 4911,
+      "sha256": "0ed8386e7e1ea2568bf5b0bf4c942421f7a22e4debce96200cb23d2ca1001ad0"
+    },
+    {
+      "path": "docs/FIRST-PASS-20261027.md",
+      "bytes": 1409,
+      "sha256": "acef2f65080c934d3b1f2f2f7ecc7e5d453a12fc7225ba261a57c3d9205e6990"
+    },
+    {
+      "path": "tests/render_first_pass_gles.py",
+      "bytes": 3837,
+      "sha256": "e4bd384320d518550052c5148a175551a240319d26aac3b681f5b7852b49b9aa"
+    },
+    {
+      "path": "validation/first-pass-gles.json",
+      "bytes": 884,
+      "sha256": "9f4d3ab8ef5d7421e4ace383c7f723c877b85a0b54e50d13f28b9dc02873606c"
+    },
+    {
+      "path": "validation/mesh-integrity-regression.json",
+      "bytes": 108,
+      "sha256": "88c88548d0fe8d6e177a1c736a7aa5438fce6da77e938866911af5172ad1b9a3"
+    },
+    {
+      "path": "validation/preview-lifecycle-regression.json",
+      "bytes": 92,
+      "sha256": "768ab0430b05f2bb4823a0e908f70a270f4d1f66bb9480818740faf35f4c7558"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python tests/render_first_pass_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_response.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_preview_lifecycle.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_mesh_integrity.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Read actual cloud build result; resolve signing through existing original key."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "5ab22b0239018b654aaaf092b1391c0f984c91574bb4a850ea4789556db06693"
+}

@@ -1,0 +1,38 @@
+{
+  "actualProductionGles": true,
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "approximateRegistration": true,
+  "rows": [
+    {
+      "view": -1,
+      "yawDegrees": -17.188733853924695,
+      "donorChangedPixels": 5636
+    },
+    {
+      "view": -0.5,
+      "yawDegrees": -8.594366926962348,
+      "donorChangedPixels": 514
+    },
+    {
+      "view": 0,
+      "yawDegrees": 0.0,
+      "donorChangedPixels": 18
+    },
+    {
+      "view": 0.5,
+      "yawDegrees": 8.594366926962348,
+      "donorChangedPixels": 42
+    },
+    {
+      "view": 1,
+      "yawDegrees": 17.188733853924695,
+      "donorChangedPixels": 62
+    }
+  ],
+  "phoneTested": false,
+  "wholeTasksAccepted": [],
+  "sourceShaders": {
+    "scene.vert": "0ed8386e7e1ea2568bf5b0bf4c942421f7a22e4debce96200cb23d2ca1001ad0",
+    "scene.frag": "6e6a6a22d199443b971a37353202dfd5e1b5625fbeb29bab28bec823e1f50467"
+  }
+}

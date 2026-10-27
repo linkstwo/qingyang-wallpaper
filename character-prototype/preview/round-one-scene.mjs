@@ -4,7 +4,7 @@ import {buildObservedScene} from './observed-scene.mjs';
 import {paperWideCandidate} from './paper-candidate-config.mjs';
 import {depthAt,deformPoint} from './structure.mjs';
 import {unprojectSource,projectWorld} from './scene-model.mjs';
-export const roundOne={version:1,source:'references/derived/side-b-shoulder-back.png',sourceSha256:'75d3831e06d808247e386b8dfbdec5dcad190225c66c51bb47bbab8be5a56e56',sourceSize:[440,750],yawRadians:.24,pitchRadians:.02,accepted:false,
+export const roundOne={version:1,source:'references/derived/side-b-shoulder-back.png',sourceSha256:'75d3831e06d808247e386b8dfbdec5dcad190225c66c51bb47bbab8be5a56e56',sourceSize:[440,750],yawRadians:.30,pitchRadians:.02,accepted:false,
  limitations:['Side/back association and depth are authored, not measured/calibrated.','Donor arm bends; only its visible torso strip is used.','Colour/contour refinements and phone acceptance are deferred.']};
 // x,y = current main-image outer contour; left/right = observed donor torso rails.
 // The attachment starts at the shoulder and ends before the cropped near elbow.

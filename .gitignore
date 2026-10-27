@@ -57,3 +57,7 @@
 /android-app/app/src/main/assets/side_back_*.bin
 /android-app/app/src/main/assets/side-back.png
 /android-app/app/src/main/assets/round-one-report.json
+
+!/.github/
+!/.github/workflows/
+!/.github/workflows/first-pass-060.yml

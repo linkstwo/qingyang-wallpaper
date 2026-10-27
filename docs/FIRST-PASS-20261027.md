@@ -9,3 +9,7 @@
 已选择性导入PR3的7个Java源文件和相关主机回归，没有导入独立分支租约或旧状态；PR仍保持草稿。实际96资源/57生命周期检查通过。
 
 生成：node android-app/tools/export_mesh.mjs；只读复核：node android-app/tools/export_mesh.mjs --check。首轮.bin和side-back.png由源码/只读素材重建，不重复落Git；preBuild会自动生成。
+
+## 实际整场景GLES
+
+已使用生产scene.vert/frag与真实导出缓冲绘制五个角度；侧背原图局部在揭示侧可见，正面主体与Q弹保留。附first-pass-gles.json。仍是人工近似连接，首轮候选，未冒充可信全背或真机验收。Android编译工作流随此源码提交触发，结果以实际Actions运行记录为准。
