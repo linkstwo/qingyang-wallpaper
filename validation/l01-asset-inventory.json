@@ -1,12 +1,43 @@
 [
   {
+    "path": "references/MULTIVIEW-LIBRARY-INDEX-20261025.json",
+    "bytes": 6822,
+    "sha256": "d0452576ae5bf3305de8d2ccadffc6755b63b2c54e264ec459dcbb404645abec"
+  },
+  {
+    "path": "references/README.md",
+    "bytes": 1378,
+    "sha256": "0fc2e58786465e3481c2b9bda44f59afd99a89e9b5e1f316b3dd547a77e25484"
+  },
+  {
+    "path": "references/asset-manifest.json",
+    "bytes": 5651,
+    "sha256": "ad565242b26c9b739d92684c2bd3d2bc332e5e9f4d3361e5f9d3c1afd58e910f"
+  },
+  {
+    "path": "references/component-source-review-20261027.json",
+    "bytes": 5086,
+    "sha256": "58a4c214887f7ea5f901a5899ee3cd2ea7ae5d560985a7dbbe74e050e1d6a482"
+  },
+  {
+    "path": "references/multiview-archive-manifest.json",
+    "bytes": 3702,
+    "sha256": "05a6dd71d9a7059d595eeab3b7381dd28b543c57a61be1af22ea70cff2ae7187"
+  },
+  {
+    "path": "references/shoulder-source-candidates-20261027.json",
+    "bytes": 2022,
+    "sha256": "9c8aa420cb680c3d5cdda3b04ae6b0125007bd7ce70ca43ec639f8366cfb5190"
+  },
+  {
     "path": "references/originals/back-reference.png",
     "bytes": 3179135,
     "sha256": "8bd1d23c05f72f3a48d3585184a635242d5c5a7cbe5070d2b7d9e0f61ce50574",
     "dimensions": [
       1086,
       1448
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/originals/front-variant.png",
@@ -15,7 +46,8 @@
     "dimensions": [
       1086,
       1448
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/originals/main-front-three-quarter.png",
@@ -24,12 +56,18 @@
     "dimensions": [
       1086,
       1448
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/originals/main-reading-v2.png",
     "bytes": 302522,
-    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411"
+    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+    "dimensions": [
+      1152,
+      1536
+    ],
+    "actualFormat": "JPEG"
   },
   {
     "path": "references/originals/side-reference.png",
@@ -38,7 +76,8 @@
     "dimensions": [
       1086,
       1448
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/derived/near-down-cutout-manifest.json",
@@ -52,7 +91,8 @@
     "dimensions": [
       210,
       320
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/derived/near-down-source.json",
@@ -66,7 +106,8 @@
     "dimensions": [
       130,
       450
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/derived/shoulder-side-b-similarity-candidate.json",
@@ -95,7 +136,8 @@
     "dimensions": [
       250,
       200
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/derived/side-b-nape-shoulder.png",
@@ -104,7 +146,8 @@
     "dimensions": [
       250,
       200
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/derived/side-b-shoulder-back.json",
@@ -118,7 +161,8 @@
     "dimensions": [
       440,
       750
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/derived/side-b-upper-arm-cutout.png",
@@ -127,7 +171,8 @@
     "dimensions": [
       155,
       230
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "references/derived/side-b-upper-arm.png",
@@ -136,7 +181,8 @@
     "dimensions": [
       155,
       230
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "android-app/app/src/main/assets/background.png",
@@ -145,7 +191,8 @@
     "dimensions": [
       1086,
       1448
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "android-app/app/src/main/assets/character_depth.bin",
@@ -174,7 +221,8 @@
     "dimensions": [
       1152,
       1536
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "android-app/app/src/main/assets/mesh-report.json",
@@ -184,7 +232,12 @@
   {
     "path": "android-app/app/src/main/assets/original.png",
     "bytes": 302522,
-    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411"
+    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+    "dimensions": [
+      1152,
+      1536
+    ],
+    "actualFormat": "JPEG"
   },
   {
     "path": "android-app/app/src/main/assets/scene-report.json",
@@ -253,7 +306,8 @@
     "dimensions": [
       1086,
       1448
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "character-prototype/preview/component-collision.mjs",
@@ -372,7 +426,8 @@
     "dimensions": [
       1152,
       1536
-    ]
+    ],
+    "actualFormat": "PNG"
   },
   {
     "path": "character-prototype/preview/material-chart.mjs",
@@ -427,7 +482,12 @@
   {
     "path": "character-prototype/preview/original.png",
     "bytes": 302522,
-    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411"
+    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+    "dimensions": [
+      1152,
+      1536
+    ],
+    "actualFormat": "JPEG"
   },
   {
     "path": "character-prototype/preview/paper-candidate-config.mjs",

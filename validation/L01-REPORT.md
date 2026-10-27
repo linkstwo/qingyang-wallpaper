@@ -62,5 +62,6 @@
 - 所有运行时资产与原型预览资产同步一致
 - 派生素材均记录了来源和用途
 - 原图保持只读，未修改任何原始文件
+- **注意**: main-reading-v2.png 扩展名是.png但实际是JPEG编码（FFD8FF头），尺寸1152×1536，与其他4张1086×1448 PNG不同
 
-**交付产物**: validation/l01-asset-inventory.json（完整104文件哈希清单）
+**交付产物**: validation/l01-asset-inventory.json（完整110+文件哈希清单）
