@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "f58c5e3fdd2fe1fb47b45de31aba412987a1f439",
+  "createdAt": "2026-10-27T00:07:42.268002Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/forearm-surface.mjs",
+      "bytes": 4060,
+      "sha256": "3457a6c942fdf08c9eb3979776df1dda9eaf29268bcd1dbc25f08e55468c9ef2"
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 7630,
+      "sha256": "bf1f6a23566be59b72f3ba623c85754c7cdf44b91cf4a76233e2dda1398181f2"
+    },
+    {
+      "path": "character-prototype/preview/source-triangle-quality.mjs",
+      "bytes": 806,
+      "sha256": "9d236238e4eaf787af6e136b2d8fadc78a82df8469af7d36b31e4434b1d7778f"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36445,
+      "sha256": "d318c1dc39ca1a4ae207030dacb236667743040a9e37e92b283e685d7fdb98f2"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 14372,
+      "sha256": "8ed54b69b8cce58266ca6c98f940452e4f49c711e7200df0830dedbfda021538"
+    },
+    {
+      "path": "tests/forearm-junction-depth-regression.mjs",
+      "bytes": 1176,
+      "sha256": "714ffc2cbeed37b24594ada119b870b2bac0a49adfc84f2e94e9a7707c6227ba"
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "bytes": 4141,
+      "sha256": "7d7a61badc3113543ed9c240e0594c85ba3e2164d7ef06eb5474270c9ec2c1e6"
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "bytes": 7723,
+      "sha256": "66a8447a40574c5534466c203299447d6b8eb0a8728a0530d5635f4aa42ea120"
+    },
+    {
+      "path": "tests/source-triangle-quality-regression.mjs",
+      "bytes": 813,
+      "sha256": "09d8358fd385653b62bfc65626db23bf2e53045ac78dfd92c3b70b0c4c5cc754"
+    },
+    {
+      "path": "validation/f14-forearm-junction-depth.json",
+      "bytes": 247,
+      "sha256": "34ffb5c4470e836b6c88c8d440cdca82d3058ccd9188eea0aa1c352b30afe1dd"
+    },
+    {
+      "path": "validation/f14-lap192-forearm-diagnostic.json",
+      "bytes": 25527,
+      "sha256": "a96bf053e0b34e9fa7f50007fc60eeb172f94dc0bd5c8e73c59626e13b96f6be"
+    },
+    {
+      "path": "validation/f14-lap192-joined-forearm-diagnostic.json",
+      "bytes": 25256,
+      "sha256": "48fe34a18ba375f382cd67fa347b3e1c15b36ce3ad87177bad9d9dc34b34e631"
+    },
+    {
+      "path": "validation/f14-lap192-quantised-clean-diagnostic.json",
+      "bytes": 23959,
+      "sha256": "d75e33d9c64f077a8706ecbfe1012c30d1caa9c191eab531da208ebce079edec"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/source-triangle-quality-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/forearm-junction-depth-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-contact-pose-scan.mjs (forearm joined WIP, 18/45 rows fail)",
+      "status": "failed",
+      "exitCode": 1
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "b2e8ce3dde8c4aa8669a58643c5077ff44d2a71bf5de7c656829674ec8b62b59"
+}

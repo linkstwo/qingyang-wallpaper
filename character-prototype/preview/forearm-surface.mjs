@@ -1,4 +1,5 @@
-// Photo-traced visible skin boundary; depth is inferred. Research only.
+// Conservative photo-traced component cut; some edges lie inside visible skin.
+// It is not an accepted full anatomical silhouette. Depth is inferred. Research only.
 // The proximal elbow is occluded by the sleeve, not an observed landmark.
 import {makeMesh} from './rig.mjs';
 import {makeLayeredCharacterMesh,makePaperNotchedCharacterMesh,subtractPolygon} from './layered-mesh.mjs?paper=10b';
@@ -24,4 +25,13 @@ export function buildForearmSourcePieces({paperOutline=subject.paper,additionalP
  const shared=improveSourceTriangles(conformSourceMesh(joined,{triangleGroups:Array(bodySource.length/6).fill(0).concat(Array(armSource.length/6).fill(1))}));
  function piece(group){const indices=[];for(let i=0;i<shared.triangleGroups.length;i++)if(shared.triangleGroups[i]===group)indices.push(...shared.indices.slice(i*3,i*3+3));return {positions:shared.positions,indices,source:new Float32Array(indices.flatMap(i=>shared.positions.slice(i*2,i*2+2))),report:{...shared.report,triangles:indices.length/3}};}
  return {body:piece(0),arm:piece(1),shared,source:'references/originals/main-reading-v2.png',depthInferred:true,productionUsed:false};
+}
+
+// Align the body side of a conservative component cut to the same depth at
+// its shared boundary. The outer collar is inferred; no new texture is added.
+export function forearmJunctionDepth(x,y,base=depthAt,width=64){
+ if(![x,y,width].every(Number.isFinite)||width<16||width>128)throw Error('Invalid forearm junction sample');
+ if(insideForearm(x,y))return forearmSurfaceDepth(x,y);let distance=Infinity;
+ for(let i=0;i<forearmOutline.length;i++){const a=forearmOutline[i],b=forearmOutline[(i+1)%forearmOutline.length],dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(y-a[1])*dy)/(dx*dx+dy*dy)));distance=Math.min(distance,Math.hypot(x-a[0]-t*dx,y-a[1]-t*dy));}
+ const t=Math.min(1,distance/width),blend=1-t*t*(3-2*t),z=base(x,y);return z+(forearmSurfaceDepth(x,y)-z)*blend;
 }
