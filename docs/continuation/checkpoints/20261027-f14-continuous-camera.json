@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "4ed6b140131d65d7e7d18c741dbc6b52ae2d1dd4",
+  "createdAt": "2026-10-27T00:21:02.665712Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/continuous-camera-facing.mjs",
+      "bytes": 1975,
+      "sha256": "3a0ce0c702553aed94bd756ecc091d022fe454f3d648934b9066137603c0509b"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36452,
+      "sha256": "a0edb60baffe68e26a35d2debf8a8fcc0bccb9b214c82b45459750a755e43973"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 17038,
+      "sha256": "04515b01c1f23c21f598d8b2f757cdfcc57b5a99d2b37e38b138eec68379d4ed"
+    },
+    {
+      "path": "tests/continuous-camera-facing-regression.mjs",
+      "bytes": 1995,
+      "sha256": "e9f40e42fb371cbaea15b8d2dd9763d047c41d1bf64b25b816c79c229815d5d3"
+    },
+    {
+      "path": "tests/paper-candidate-contact-regression.mjs",
+      "bytes": 2665,
+      "sha256": "6e284a0e08f0c4dd002dbaf3ff584a6ebda6b4a1b3d40b58e9dc9d6ebad2cbbc"
+    },
+    {
+      "path": "tests/paper-continuous-camera-facing.mjs",
+      "bytes": 3516,
+      "sha256": "63ce622bba86724f6bd1b9130645bf0f835bade8f956352a5f2f981b249f4bce"
+    },
+    {
+      "path": "validation/f14-continuous-camera-negative.json",
+      "bytes": 110663,
+      "sha256": "adb789a2be2c038f520f254d1b3984e29cb5b6fa0200090d1dad8b3715cc0d51"
+    },
+    {
+      "path": "validation/f14-continuous-camera.json",
+      "bytes": 11130,
+      "sha256": "71de34b11d3e49ba98b7e34b293ddf01e38955c76c721f856eb544a09e174a4b"
+    },
+    {
+      "path": "validation/f14-paper-candidate-contact.json",
+      "bytes": 4617,
+      "sha256": "595d88d408cc6c77a1fbe5247323f70d207257328aa3bec51c31dd42431403bf"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/continuous-camera-facing-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "CONTINUOUS_CAMERA_CONTROL=1 node tests/paper-continuous-camera-facing.mjs (expected folding negative)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "node tests/paper-continuous-camera-facing.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-candidate-contact-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "38f8c083202e7fba088588af283eb55126f1517885e41ec3a71235204f0e7688"
+}
