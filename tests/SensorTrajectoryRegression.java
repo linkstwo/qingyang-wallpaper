@@ -42,12 +42,41 @@ public final class SensorTrajectoryRegression {
         f.stop();check(!f.motion().hasPose&&!f.motion().excited(),"stop clears pose and excitation");
         return new float[]{peak,held};
     }
+    static float fallbackReplay(int fps,int rotation,boolean accelerometerOnly){
+        Display.rotation=rotation;SensorManager.fused=!accelerometerOnly;SystemClock.nanos=20_000_000_000L;
+        SensorFeed f=new SensorFeed(new android.content.Context(),new android.os.Handler());f.start();
+        final int[] wakes={0};f.wake=()->wakes[0]++;
+        Physics p=new Physics();int settled=-1;
+        for(int tick=1;tick<=600*9;tick++){
+            long t=20_000_000_000L+tick*1_000_000_000L/600;SystemClock.nanos=t;
+            if(tick%12==0){
+                float sec=tick/600f,tilt=.1f*Math.max(0,Math.min(1,sec-1));
+                float x=9.80665f*tilt,y=9.80665f*(float)Math.sqrt(1-tilt*tilt),dx=x,dy=y;
+                switch(rotation){case 1:dx=-y;dy=x;break;case 2:dx=-x;dy=-y;break;case 3:dx=y;dy=-x;break;}
+                send(f,accelerometerOnly?Sensor.TYPE_ACCELEROMETER:Sensor.TYPE_GRAVITY,t,dx,dy,0);
+            }
+            if(tick%5==0){f.decayStale();p.step(1f/120,f.motion());}
+            if(tick%(600/fps)==0)check(Float.isFinite(p.viewX)&&Math.abs(p.viewX)<=1,"fallback camera finite and bounded");
+            if(tick==600*8)settled=wakes[0];
+        }
+        check(wakes[0]>0,"fallback tilt wakes idle renderer without quaternion or gyro");
+        check(wakes[0]==settled,"held fallback settles instead of waking forever");
+        check(!f.motion().hasPose,"fallback test must not accidentally use fused quaternion");
+        check(p.viewX>.1f,"held fallback view stays displaced");
+        check(Math.abs(p.chestPx)+Math.abs(p.hairPx)<.002f,"holding fallback does not sustain soft-body motion");
+        f.stop();return p.viewX;
+    }
     public static void main(String[] args){
         float[] reference=replay(60,0);
         for(int rotation=0;rotation<4;rotation++)for(int fps:new int[]{30,60,120}){
             float[] r=replay(fps,rotation);
             check(Math.abs(r[0]-reference[0])<1e-5,"same sensor trace has same inertia in every screen rotation/frame rate");
             check(Math.abs(r[1]-reference[1])<1e-6,"same held screen yaw in every rotation/frame rate");
+        }
+        for(boolean accel:new boolean[]{false,true}){
+            float base=fallbackReplay(60,0,accel);
+            for(int rotation=0;rotation<4;rotation++)for(int fps:new int[]{30,60,120})
+                check(Math.abs(fallbackReplay(fps,rotation,accel)-base)<1e-6,"fallback orientation/render-rate invariance");
         }
         System.out.printf(java.util.Locale.US,"{\"assertions\":%d,\"sensorHz\":50,\"solverHz\":120,\"renderFps\":[30,60,120],\"screenRotations\":[0,1,2,3],\"chestPeakPx\":%.7f,\"heldViewX\":%.7f,\"phoneTested\":false}%n",checks,reference[0],reference[1]);
     }

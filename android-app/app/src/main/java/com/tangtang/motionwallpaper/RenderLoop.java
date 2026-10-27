@@ -69,10 +69,11 @@ final class RenderLoop {
                     Log.i(TAG, "EGL ready " + width + "x" + height + " | " + title);
                     firstSwap = false;
                     needResize = true;
-                    feed.start();
                 } else if (!egl.makeCurrent()) {
                     throw new IllegalStateException(egl.lastError());
                 }
+                // Also resume sensors when the EGL context survived a visibility pause.
+                feed.start();
             } catch (Exception error) {
                 report(error);
                 return;
