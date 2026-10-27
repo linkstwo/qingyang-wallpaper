@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-first-pass-20261027-1148",
+  "fence": 15,
+  "baseHead": "ea79388acf8789fc83e8cc113724d0fbf213511c",
+  "createdAt": "2026-10-27T04:22:23.344444+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 38019,
+      "sha256": "fa781a6bb1883db0ee01a74b113cd6067df69fb7158101f156c1abaafbc49ee9"
+    },
+    {
+      "path": "docs/FIRST-PASS-20261027.md",
+      "bytes": 2660,
+      "sha256": "cd5e9c62b01759efa960129d40473f499983f7c9b5d22f9b0b9c37174334cb24"
+    },
+    {
+      "path": "tests/render_first_pass_gles.py",
+      "bytes": 3967,
+      "sha256": "7f91eb0e3b30f70ca982a5c44fd434e513441e0c294e9ce851da0c8e234a56c9"
+    },
+    {
+      "path": "tests/render_first_pass_motion.py",
+      "bytes": 2057,
+      "sha256": "6fb8fab6a42dd4eba056de9492f95986662734c55bc8b43d12730a3f77ddfdfa"
+    },
+    {
+      "path": "tests/verify_first_pass_apk.py",
+      "bytes": 3001,
+      "sha256": "eabe9040e0651662b8c11d7be7aee89986b0c70b7edf8c7198945385837724b6"
+    },
+    {
+      "path": "validation/first-pass-apk.json",
+      "bytes": 486,
+      "sha256": "0c2bf68ef25da7c4679710cff550ebd6666ae1f37ae6dbd29a1cdbcafadcfbe6"
+    },
+    {
+      "path": "validation/first-pass-motion.json",
+      "bytes": 358,
+      "sha256": "224105812657629be81aab905d10bfef723d2e6b4af4e88ef4c3b8b5bf8edc24"
+    }
+  ],
+  "tests": [
+    {
+      "command": "GitHub Actions40448885010 assembleRelease including vitalLint",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/verify_first_pass_apk.py <actual 0.6.0 unsigned APK>",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_first_pass_motion.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Obtain explicit authorization for reading AI bridge signing handoff or an existing secure source of the original key password.",
+    "Sign the already verified 0.6.0 APK using the existing original keystore without rebuilding; independently verify certificate/version/ZIP/alignment then deliver.",
+    "Use actual phone feedback on this first-pass candidate; delegate nonblocking refinements listed in DOUBAO-DEFERRED-FIRST-PASS.md."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "af3bafc4bf30eb9b7539dce0f756b635e4c653a3261762e8bf25ce7b63b91ab1"
+}

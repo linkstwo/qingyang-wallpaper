@@ -13,8 +13,10 @@ im=Image.open(A/'side-back.png').convert('RGBA');g.texImage(0x0DE1,0,0x1908,*im.
 aUv=g.getAttrib(g.program,b'a_uv');roundLoc=g.getUniform(g.program,b'u_roundMode')
 # Match Android's chest-centred default source window. Keep the side in view.
 scale=540/1152*1.28;mapping=(scale,270-725*scale,588-755*scale,1.4)
-def render(v,enabled=True,motion=False):
+def render(v,enabled=True,motion=False,values=None):
  g.use(g.program);g.uniform1f(roundLoc,1);g.u('structureMode',1);g.u('view',v,0);g.u('body',*( (1.2,-.8) if motion else (0,0)));g.u('chest',*((5,2,1) if motion else (0,0,0)));g.u('hair',0,0);g.u('motionGain',1.4);g.u('softFrame',1);g.u('cover',1)
+ if values is not None:
+  g.u('body',*values[:2]);g.u('chest',values[2],values[3],values[6]);g.u('hair',*values[4:6])
  g.disable(0x0B71);g.depthMask(1);g.clearColor(.06,.09,.12,1);g.clear(0x4000|0x0100)
  g.transform(g.frame(False));g.layer(g.quad,6,'background.png',-1,0)
  g.transform(mapping);g.layer(g.quad,6,'original.png',0,0);g.layer(g.quad,6,'background.png',0,2)

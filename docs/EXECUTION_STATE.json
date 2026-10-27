@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-27T04:13:49.922343+00:00",
+  "updatedAt": "2026-10-27T04:22:23.344444+00:00",
   "timezone": "Asia/Shanghai",
   "plan": "docs/STAGED-DEVELOPMENT-20261025.md",
   "branch": "feature/cloud-framing-response",
@@ -77,11 +77,13 @@
     "Status audit: verified prior GitHub checkpoint2573551, regrouped remaining acceptance into20 packages and archived five Doubao text/data outputs with exact byte hashes; newer2009/2012 points received but not accepted. No app changes.",
     "Applied user supplemental roughly50/50 actual-workload policy: delegate ordinary/medium reviews and scoped medium implementations; Codex samples ordinary evidence and owns core choices/critical acceptance. Per-task delegable scope recorded for all20 packages.",
     "Fence10 optional paper-source partition restores missed visible paper pixels; two-mode source/projection/pin regression passed. Actual +/-20deg browser renders still expose thin residuals and occluded-body opening; T03/S2 not accepted. Doubao audits and angle review archived; same-view resized front variant is not an added angle.",
-    "First-pass source path connects observed paper candidate, donor side/back strip, existing body/Q response and native dual-mode scene buffers. Selected Android fixes from PR3 imported; 96 renderer resource assertions and 57 lifecycle assertions pass on host. Visual/build/phone pending."
+    "First-pass source path connects observed paper candidate, donor side/back strip, existing body/Q response and native dual-mode scene buffers. Selected Android fixes from PR3 imported; 96 renderer resource assertions and 57 lifecycle assertions pass on host. Visual/build/phone pending.",
+    "First integrated candidate 0.6.0/19 built successfully in GitHub Actions 40448885010. Actual AndroidManifest parsed: correct package/version/non-debug; CRC passed and 28 packaged assets equal deterministic local exports. Real production GLES side/back source strip reveals at bounded camera angles. Existing JS response drives an 18-second whole-scene video; both unsigned APK and video persisted. This is not signed/installable/phone acceptance."
   ],
   "next": [
-    "Inspect integrated side-back strip with actual production GLSL; fix blocking defects only.",
-    "Compile Android candidate with imported PR3 fixes; original signing identity unchanged."
+    "Obtain explicit authorization for reading AI bridge signing handoff or an existing secure source of the original key password.",
+    "Sign the already verified 0.6.0 APK using the existing original keystore without rebuilding; independently verify certificate/version/ZIP/alignment then deliver.",
+    "Use actual phone feedback on this first-pass candidate; delegate nonblocking refinements listed in DOUBAO-DEFERRED-FIRST-PASS.md."
   ],
   "stages": {
     "S1": "in_progress",
@@ -341,12 +343,12 @@
     "workflowJob": 121195829689
   },
   "workSession": {
-    "mode": "active_development",
+    "mode": "awaiting_signing_authorization",
     "owner": "codex-first-pass-20261027-1148",
     "fence": 15,
-    "lastCheckpointAt": "2026-10-27T04:13:49.922343+00:00",
+    "lastCheckpointAt": "2026-10-27T04:22:23.344444+00:00",
     "backgroundWorkerActive": false,
-    "next": "Render integrated actual production GLES and build candidate"
+    "stopReason": "Unsigned complete first-pass APK and motion comparison are saved. Original keystore is available; password missing. AI bridge history read was rejected by automatic approval as outside current repository-development scope; need user authorization to retrieve signing handoff. Nonblocking refinements deliberately deferred."
   },
   "userReportedIssues": [
     {
@@ -482,5 +484,23 @@
     "priority": "End-to-end visible prototype and Android candidate before nonblocking refinements",
     "deferred": "docs/DOUBAO-DEFERRED-FIRST-PASS.md",
     "finalAcceptanceUnchanged": true
+  },
+  "firstPassCandidate": {
+    "versionName": "0.6.0",
+    "versionCode": 19,
+    "status": "unsigned_built_verified",
+    "applicationCommit": "ea79388acf8789fc83e8cc113724d0fbf213511c",
+    "workflowRun": 40448885010,
+    "workflowConclusion": "success",
+    "sha256": "2eaae0554d09b666069204031cf35daccfaef3f69c55bd2cd4da29ba9cfc5030",
+    "apkBytes": 8013350,
+    "assetsByteCompared": 28,
+    "unsignedLibraryId": "libfile_0fae8280301481918beebc03a17a5145",
+    "motionVideoLibraryId": "libfile_fffc71dddca881918b43aa1fa3483bd8",
+    "signed": false,
+    "installableDelivered": false,
+    "phoneTested": false,
+    "approximateSideBackRegistration": true,
+    "wholeTasksAccepted": []
   }
 }
