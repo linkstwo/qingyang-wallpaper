@@ -1,0 +1,43 @@
+{
+  "renderer": "llvmpipe",
+  "viewport": [
+    540,
+    1176
+  ],
+  "rows": [
+    {
+      "angle": -20,
+      "changedChannels": 16286,
+      "maxChannelDelta": 242,
+      "formerBackgroundPixelsNowCoveredInRightClothRoi": 962
+    },
+    {
+      "angle": -2.2918,
+      "changedChannels": 10800,
+      "maxChannelDelta": 242,
+      "formerBackgroundPixelsNowCoveredInRightClothRoi": 207
+    },
+    {
+      "angle": 0,
+      "changedChannels": 13,
+      "maxChannelDelta": 1,
+      "formerBackgroundPixelsNowCoveredInRightClothRoi": 0
+    },
+    {
+      "angle": 2.2918,
+      "changedChannels": 9684,
+      "maxChannelDelta": 223,
+      "formerBackgroundPixelsNowCoveredInRightClothRoi": 0
+    },
+    {
+      "angle": 20,
+      "changedChannels": 5022,
+      "maxChannelDelta": 245,
+      "formerBackgroundPixelsNowCoveredInRightClothRoi": 0
+    }
+  ],
+  "rawPngComparison": true,
+  "wholeT03Accepted": false,
+  "neutralNote": "13 channels differ by at most 1; not exact equality",
+  "remaining": "upper occlusion/background gap and opposite-angle fragments remain"
+}

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "79cac64b594b8c4a99293531ddbc464f4a0970c9",
+  "createdAt": "2026-10-26T23:25:38.774041Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 6940,
+      "sha256": "afd52bbc6c21f09b79f40ac988f0198b95fe5176cb4119faba361d63f23253b6"
+    },
+    {
+      "path": "character-prototype/preview/paper-source-partition.mjs",
+      "bytes": 4281,
+      "sha256": "9f3fc20653fbd2aaa2d239659c5d37170436489ddccf4a8c6e98b9104deea99b"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "bytes": 5536,
+      "sha256": "d9f6ab8cf82d7bdbbb56c975bb818470d4b8ea583a0e7deb681c8f7e1fc2d302"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 22752,
+      "sha256": "a0d20762b1b41abf8bda6476dc2bda62c2172dc5304abed691fb0f4a6d20d198"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36404,
+      "sha256": "9d4adbf2c46e638eb535488fee12491c98262ba0d76a55136b801b1664b2be63"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 1789,
+      "sha256": "faf994b600c9d3dae14ceae61c4fd066d774932713a7e82fa6b2e74ace76aeed"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 9077,
+      "sha256": "6dd4d837f5023757456a95109ab1a9127bea725d601e6ba4baf4db53782c526c"
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "bytes": 3871,
+      "sha256": "219c0125628e8345227eceef1df7c4612c9ae5f36ad21570f0914900a2bb1be2"
+    },
+    {
+      "path": "tests/paper-under-hand-material-regression.mjs",
+      "bytes": 3247,
+      "sha256": "9a60d961de41088ac748b8b12ed00c0db2dc9d16f7b227c77e3be7312f59641a"
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "bytes": 5649,
+      "sha256": "849b9fe99b95dd1f5141e7055dc08ab6da867c3ff78922b6aef994cf071df00d"
+    },
+    {
+      "path": "validation/f14-under-hand-detail.jpg",
+      "bytes": 56729,
+      "sha256": "4c26c3b466e2b4eb216f610d11ad09db110f65566a692d177c7c182a104a653d"
+    },
+    {
+      "path": "validation/f14-under-hand-material.json",
+      "bytes": 2272,
+      "sha256": "63e918d732652b6d13838d318d9aad8bb93df1877a7ec2045b9a364c9e660698"
+    },
+    {
+      "path": "validation/f14-under-hand-production.json",
+      "bytes": 125035,
+      "sha256": "f87da686169fe990494494708c91d5362d78d9c3bdcb5720ed674db16886785b"
+    },
+    {
+      "path": "validation/f14-under-hand-trim.jpg",
+      "bytes": 428167,
+      "sha256": "7ec37ce100a7909e0b9c17880e57463f411e72b2581248bb78bbab722e4a481b"
+    },
+    {
+      "path": "validation/f14-under-hand-trim.json",
+      "bytes": 515,
+      "sha256": "768c9a4e82e22afd4b26d788c45d18407519d49788668b0683c2589829e34725"
+    },
+    {
+      "path": "validation/f14-zero-before.jpg",
+      "bytes": 427706,
+      "sha256": "f57d27014a73efb9d91603e9277467c36fa33e220f648b5a68996b861cc24e54"
+    },
+    {
+      "path": "validation/f14-zero-before.json",
+      "bytes": 471,
+      "sha256": "e70f3d48fbdedd7f73244c4e9f6d72de27922f3bf3ec2d284a6c6edfb2cdcd48"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/paper-under-hand-material-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_paper_ownership_gles.py (before/after)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-contact-pose-scan.mjs (243 production poses)",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "5979729b93036686b53055a7f723703f43e072202b6bd396befa8994a5439468"
+}

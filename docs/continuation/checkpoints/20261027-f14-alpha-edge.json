@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "11cd8fb2688948e1987c487796b07d590a43ad7c",
+  "createdAt": "2026-10-26T23:43:16.133904Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/component-raster.mjs",
+      "bytes": 3432,
+      "sha256": "1bc15fe475a1123d3fbbafc20a1b34a10a48fc66a7833a437f4293292e1fbbf3"
+    },
+    {
+      "path": "character-prototype/preview/paper-source-partition.mjs",
+      "bytes": 4374,
+      "sha256": "524f46770a14b2ac0c7ca3fd5ec1ad840a2ee1552ec0fa8312ae489fb182520b"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36440,
+      "sha256": "47ff1573b588aeb83d1b79193c1fcf7d9a8e68d3c6e001d3c310c194c6c317e0"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 8590,
+      "sha256": "e88b712698809f344ebfc905dc9737208201ccde9b2f5f19efe41427b1222a26"
+    },
+    {
+      "path": "tests/component-alpha-seam-gles.py",
+      "bytes": 2764,
+      "sha256": "88cd6974ba333cb35f6bf6479758522165a21b8cef73a7249f49a1c0419dc4f1"
+    },
+    {
+      "path": "tests/render_component_junction_gles.py",
+      "bytes": 3918,
+      "sha256": "482ce73a5bde540b8bbedc6ce84aec9f9ae345078baf3fe148a2da8ed4b646f5"
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "bytes": 6156,
+      "sha256": "66f28be5b291235a1f4c35dccebfa9c8eb1555f6e5822e3f04f9847e909afb9d"
+    },
+    {
+      "path": "validation/f14-component-alpha-seam-after.jpg",
+      "bytes": 52653,
+      "sha256": "665c2dd124a1d194a07c3ee9fd3e99b98b8c9b710f7c2c04feaef6f3059e62b0"
+    },
+    {
+      "path": "validation/f14-component-alpha-seam-before.jpg",
+      "bytes": 52906,
+      "sha256": "7f82a819b2bd06ceef84b6c3257035a96707dbca9bfd7faa3364c075b755cfad"
+    },
+    {
+      "path": "validation/f14-component-alpha-seam.jpg",
+      "bytes": 43271,
+      "sha256": "09047d8b2f65106915f4b844adcfdb9e0eb49d342400f0f243eb38cac7776d0f"
+    },
+    {
+      "path": "validation/f14-component-alpha-seam.json",
+      "bytes": 316,
+      "sha256": "ab6447f9db748851f4466eec0e8053ee3edbe1889956c0975888c586208cd0a3"
+    },
+    {
+      "path": "validation/f14-component-deform-gles-near-down.jpg",
+      "bytes": 52653,
+      "sha256": "665c2dd124a1d194a07c3ee9fd3e99b98b8c9b710f7c2c04feaef6f3059e62b0"
+    },
+    {
+      "path": "validation/f14-edge-final--20.png",
+      "bytes": 380276,
+      "sha256": "2da199c5ded25af4e258c85408e258ec45026a5464993c60c9769e58b4193c98"
+    },
+    {
+      "path": "validation/f14-under-hand-edge-aligned.jpg",
+      "bytes": 428123,
+      "sha256": "4e2e249ca965e187933513d71087cdc4c28a6fec8aeab2ce8ce04431f90dd28e"
+    },
+    {
+      "path": "validation/f14-under-hand-edge-aligned.json",
+      "bytes": 1583,
+      "sha256": "efbb000db52a31bdd154191f18d05eeacc3c927f16da7b4ea34a84823a55c10f"
+    },
+    {
+      "path": "validation/f14-under-hand-edge-diagnostic.json",
+      "bytes": 24157,
+      "sha256": "cfdb41727038949f81a478aee76566b0941903b213a78c606e1f374da737e781"
+    },
+    {
+      "path": "validation/f14-under-hand-material.json",
+      "bytes": 2272,
+      "sha256": "e77f97e8640e9209219b09de22bca3aca1f342b936ae6749065650912ed4a3ec"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python tests/component-alpha-seam-gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-under-hand-material-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_paper_ownership_gles.py (atomic image verification)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-contact-pose-scan.mjs (edge-aligned 45 diagnostic poses)",
+      "status": "failed",
+      "exitCode": 1
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "317c50ee0768d8a41797c57e5ba1bdf3576a92dc30f36d8373605151998697ab"
+}

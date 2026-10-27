@@ -10,39 +10,48 @@ import java.nio.FloatBuffer;
 
 /**
  * 网格资产。这些 .bin 由 tools/export_mesh.mjs 用样片真源码
- * （preview/rig.mjs 的 makeMesh + contact-rig.mjs 的 contactWeights）导出，
+ * （preview/layered-mesh.mjs + contact-rig.mjs 的 bodyContactWeights）导出，
  * 所以安卓端的三角化结果与浏览器里通过验收的那套逐字节一致，不在手机端重算。
  */
 final class MeshAssets {
     /** 与样片一致的必需三角数，用来在加载阶段就发现资产被换过。 */
-    static final int EXPECTED_CHARACTER_TRIANGLES = 16384;
+    static final int EXPECTED_CHARACTER_TRIANGLES = 18089;
 
     final FloatBuffer characterMesh;
     final FloatBuffer characterPins;
+    final FloatBuffer characterDepth;
     final FloatBuffer foregroundMesh;
 
-    private MeshAssets(FloatBuffer characterMesh, FloatBuffer characterPins, FloatBuffer foregroundMesh) {
+    private MeshAssets(FloatBuffer characterMesh, FloatBuffer characterPins, FloatBuffer characterDepth, FloatBuffer foregroundMesh) {
         this.characterMesh = characterMesh;
         this.characterPins = characterPins;
+        this.characterDepth = characterDepth;
         this.foregroundMesh = foregroundMesh;
     }
 
     static MeshAssets load(Context context) throws IOException {
         FloatBuffer mesh = read(context, "character_mesh.bin");
         FloatBuffer pins = read(context, "character_pins.bin");
+        FloatBuffer depth = read(context, "character_depth.bin");
         FloatBuffer foreground = read(context, "foreground_mesh.bin");
 
+        if (mesh.capacity() % 6 != 0) throw new IOException("character_mesh.bin 三角形数据不完整");
+        if (foreground.capacity() % 6 != 0) throw new IOException("foreground_mesh.bin 三角形数据不完整");
         int triangles = mesh.capacity() / 6;
         if (triangles != EXPECTED_CHARACTER_TRIANGLES) {
             throw new IOException("character_mesh.bin 三角数不对：期望 " + EXPECTED_CHARACTER_TRIANGLES + "，实际 " + triangles);
         }
-        if (pins.capacity() != mesh.capacity() / 2) {
+        if (pins.capacity() != mesh.capacity() / 2 || depth.capacity() != pins.capacity()) {
             throw new IOException("character_pins.bin 顶点数不匹配：" + pins.capacity() + " vs " + mesh.capacity() / 2);
         }
-        return new MeshAssets(mesh, pins, foreground);
+        for (int i = 0; i < pins.capacity(); i++) {
+            float value = pins.get(i);
+            if (value < 0f || value > 1f) throw new IOException("character_pins.bin 权重越界 index=" + i);
+        }
+        return new MeshAssets(mesh, pins, depth, foreground);
     }
 
-    private static FloatBuffer read(Context context, String name) throws IOException {
+    static FloatBuffer read(Context context, String name) throws IOException {
         try (InputStream in = context.getAssets().open(name)) {
             java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream(in.available() + 16);
             byte[] chunk = new byte[64 * 1024];
@@ -57,7 +66,12 @@ final class MeshAssets {
             ByteBuffer buffer = ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.LITTLE_ENDIAN);
             buffer.put(bytes);
             buffer.position(0);
-            return buffer.asFloatBuffer();
+            FloatBuffer values = buffer.asFloatBuffer();
+            // NaN/Inf can silently clip vertices in GLES without setting a GL error.
+            for (int i = 0; i < values.capacity(); i++) {
+                if (!Float.isFinite(values.get(i))) throw new IOException(name + " 非有限浮点 index=" + i);
+            }
+            return values;
         }
     }
 }

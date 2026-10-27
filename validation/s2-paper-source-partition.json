@@ -1,0 +1,62 @@
+{
+  "recoveredPaperPixels": [
+    [
+      100,
+      798
+    ],
+    [
+      134,
+      823
+    ],
+    [
+      179,
+      858
+    ],
+    [
+      224,
+      891
+    ],
+    [
+      2,
+      880
+    ],
+    [
+      4,
+      910
+    ],
+    [
+      12,
+      840
+    ],
+    [
+      30,
+      800
+    ],
+    [
+      410,
+      1045
+    ]
+  ],
+  "oldOutlineFailsSelectedPixels": true,
+  "rows": [
+    {
+      "forearmVolume": false,
+      "bodyVertices": 48477,
+      "paperVertices": 4275,
+      "sourceAreaError": 0,
+      "maxNeutralProjectionError": 2.2737367544323206e-13,
+      "paperMotion": 0
+    },
+    {
+      "forearmVolume": true,
+      "bodyVertices": 87102,
+      "paperVertices": 4275,
+      "sourceAreaError": 0.000003999797627329826,
+      "maxNeutralProjectionError": 2.2737367544323206e-13,
+      "paperMotion": 0
+    }
+  ],
+  "productionUsed": false,
+  "phoneTested": false,
+  "continuousShoulderBackAccepted": false
+}

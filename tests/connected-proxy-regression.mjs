@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+import {buildConnectedProxy} from '../character-prototype/preview/connected-proxy.mjs';
+const m=buildConnectedProxy(),V=m.positions.length/3,edges=new Map(),adj=Array.from({length:V},()=>[]);let volume=0,minArea=Infinity,checks=0;
+const check=(v,s)=>{assert(v,s);checks++;};check(V<65536,'GLES2 unsigned-short indices');
+for(let i=0;i<V;i++){const n=m.normals.slice(i*3,i*3+3),w=m.skinWeights.slice(i*6,i*6+6);check(Math.abs(Math.hypot(...n)-1)<1e-8,'normal length');check(Math.abs(w.reduce((a,b)=>a+b,0)-1)<1e-12&&w.every(x=>x>=0&&x<=1),'normalised nonnegative joint weights');check(m.confidence[i]===0,'unregistered surface cannot use photo');}
+for(let i=0;i<m.indices.length;i+=3){const ids=m.indices.slice(i,i+3);check(ids.every(j=>j>=0&&j<V),'index bounds');const [a,b,c]=ids.map(j=>m.positions.slice(j*3,j*3+3)),u=b.map((x,k)=>x-a[k]),v=c.map((x,k)=>x-a[k]),n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]],area=Math.hypot(...n)/2;minArea=Math.min(minArea,area);check(area>1e-10,'surface triangle not collapsed');volume+=(a[0]*(b[1]*c[2]-b[2]*c[1])+a[1]*(b[2]*c[0]-b[0]*c[2])+a[2]*(b[0]*c[1]-b[1]*c[0]))/6;
+ for(let k=0;k<3;k++){const x=ids[k],y=ids[(k+1)%3],key=Math.min(x,y)+','+Math.max(x,y);const e=edges.get(key)||[];e.push(x<y?1:-1);edges.set(key,e);adj[x].push(y);adj[y].push(x);}}
+for(const e of edges.values())check(e.length===2&&e[0]+e[1]===0,'closed edge with opposite winding');
+let components=0;const seen=new Set();for(let i=0;i<V;i++)if(!seen.has(i)){components++;const q=[i];seen.add(i);while(q.length){for(const j of adj[q.pop()])if(!seen.has(j)){seen.add(j);q.push(j);}}}
+check(components===1,'head/torso/arms must be one component');check(volume>0,'outward volume');check(V-edges.size+m.indices.length/3===2,'single genus-zero closed surface');
+const result={checks,vertices:V,triangles:m.indices.length/3,components,boundaryEdges:[...edges.values()].filter(e=>e.length!==2).length,euler:V-edges.size+m.indices.length/3,volume,minTriangleArea:minArea,bones:m.bones,grid:m.grid,untextured:true,productionPhotoChanged:false,phoneTested:false};fs.writeFileSync(new URL('../validation/s2-connected-proxy.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

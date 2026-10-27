@@ -1,0 +1,38 @@
+{
+  "rows": [
+    {
+      "forearmVolume": false,
+      "lostSourceArea": 0.015396230676389608,
+      "sharedContacts": 402,
+      "maxSharedGap": 9.320899607700994e-10,
+      "contactVertices": 402,
+      "projectionError": 2.3437142008433856e-13,
+      "contactDepthError": 9.320899607700994e-10,
+      "pinnedMotion": 9.850964488578029e-11,
+      "upperOcclusionNotWelded": true,
+      "exteriorCollars": 9,
+      "depthInferred": true,
+      "productionUsed": false,
+      "phoneTested": false,
+      "wholeT03Accepted": false
+    },
+    {
+      "forearmVolume": true,
+      "lostSourceArea": 0.014366337232145525,
+      "sharedContacts": 427,
+      "maxSharedGap": 9.320899607700994e-10,
+      "contactVertices": 427,
+      "projectionError": 2.3437142008433856e-13,
+      "contactDepthError": 9.320899607700994e-10,
+      "pinnedMotion": 9.850964488578029e-11,
+      "upperOcclusionNotWelded": true,
+      "exteriorCollars": 9,
+      "depthInferred": true,
+      "productionUsed": false,
+      "phoneTested": false,
+      "wholeT03Accepted": false
+    }
+  ],
+  "productionUsed": false,
+  "wholeT03Accepted": false
+}

@@ -1,0 +1,129 @@
+{
+  "frameSize": [
+    540,
+    1176
+  ],
+  "contactSheetHeaderRemoved": 30,
+  "zeroBodyPose": true,
+  "yawDegrees": -20,
+  "rows": [
+    {
+      "pixel": [
+        131.5,
+        585.5
+      ],
+      "hits": [
+        {
+          "paper": false,
+          "triangle": 8191,
+          "source": [
+            52.71307926510628,
+            762.3515565036498
+          ],
+          "ndcDepth": 0.4064661319345063,
+          "nearestSourceRgb": [
+            89,
+            76,
+            70
+          ],
+          "nearestMotionMask": 105
+        }
+      ]
+    },
+    {
+      "pixel": [
+        143.5,
+        605.5
+      ],
+      "hits": [
+        {
+          "paper": false,
+          "triangle": 273,
+          "source": [
+            99.01828805531292,
+            797.1412290349587
+          ],
+          "ndcDepth": 0.3973402071571813,
+          "nearestSourceRgb": [
+            192,
+            174,
+            164
+          ],
+          "nearestMotionMask": 255
+        }
+      ]
+    },
+    {
+      "pixel": [
+        152.5,
+        620.5
+      ],
+      "hits": [
+        {
+          "paper": false,
+          "triangle": 224,
+          "source": [
+            133.37735934779394,
+            822.9515772891123
+          ],
+          "ndcDepth": 0.3904858704844376,
+          "nearestSourceRgb": [
+            249,
+            229,
+            218
+          ],
+          "nearestMotionMask": 255
+        }
+      ]
+    },
+    {
+      "pixel": [
+        164.5,
+        640.5
+      ],
+      "hits": [
+        {
+          "paper": false,
+          "triangle": 481,
+          "source": [
+            178.7612511359651,
+            856.9968446825895
+          ],
+          "ndcDepth": 0.38123138520679123,
+          "nearestSourceRgb": [
+            218,
+            193,
+            189
+          ],
+          "nearestMotionMask": 255
+        }
+      ]
+    },
+    {
+      "pixel": [
+        169.5,
+        660.5
+      ],
+      "hits": [
+        {
+          "paper": false,
+          "triangle": 6,
+          "source": [
+            223.901238677866,
+            890.2682892071829
+          ],
+          "ndcDepth": 0.32949070084296966,
+          "nearestSourceRgb": [
+            171,
+            150,
+            145
+          ],
+          "nearestMotionMask": 255
+        }
+      ]
+    }
+  ],
+  "sourcePartitionVersionAtTrace": 1,
+  "traceBeforeUpperEdgeCorrection": true,
+  "finding": "True paper rim RGB was assigned to body, not merely background in the motion-matte collar. Two observed outline endpoints were corrected; do not fill occluded body by welding the upper edge."
+}

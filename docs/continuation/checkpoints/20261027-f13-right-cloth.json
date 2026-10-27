@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0618",
+  "fence": 13,
+  "baseHead": "742c883b963d912bf7af1b05b1ac2a095e99ed25",
+  "createdAt": "2026-10-26T22:22:55.862947+00:00",
+  "stage": "S2",
+  "tasksAccepted": [],
+  "next": [
+    "T03 upper source ownership and T01/T04 component correspondence"
+  ],
+  "files": [
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "sha256": "380dce0905062dfb265bc8beb86f22b718e5d1d78300d802c24562b2a638542e",
+      "bytes": 6200
+    },
+    {
+      "path": "character-prototype/preview/paper-source-partition.mjs",
+      "sha256": "6c06f29deced8dab5eadc6cd4d9d229dcf07bacad23c344327579541b8108755",
+      "bytes": 3566
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "sha256": "5db5113a50a5dfab23b09222e98ff7b23fb60853750522638fe647dcb71a2324",
+      "bytes": 5330
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "sha256": "9d706b3d5083d1f2689a505389ed299fbe032a2552da201745102c21bc45ceba",
+      "bytes": 22433
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "sha256": "125f91ed3caed197a3c8223bd70503e80834881955a6d8ade656ce9aaf6cc5dd",
+      "bytes": 3591
+    },
+    {
+      "path": "tests/paper-right-cloth-regression.mjs",
+      "sha256": "dd78026552547c1fc247f87f15e5261daede8e76c8898d67e5fcaacd7e3b887d",
+      "bytes": 2635
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "sha256": "3571141e46a582bc6b9304333fbf79f2f2045780b44dee3c6e4af07baea27941",
+      "bytes": 5355
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "sha256": "85dc1e724b05d68a9f42623800a3ac7470bc097165c46c728c6160eba3442206",
+      "bytes": 36296
+    },
+    {
+      "path": "docs/REMAINING-TASKS-20261026.json",
+      "sha256": "d5d425a47db0983ccb8da2828273e86791104c50009be153b2b2d14f684ab9cd",
+      "bytes": 18803
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE13.md",
+      "sha256": "0eeedc2999d27f0508f12677b06388f71b5c5bc09223f3df473d9a93250ab6a1",
+      "bytes": 1806
+    },
+    {
+      "path": "validation/f13-contact-right.json",
+      "sha256": "adfd8448a9680099bc8c0de34dbeadb4d82e57e4760611751c91adbda00b6198",
+      "bytes": 442
+    },
+    {
+      "path": "validation/f13-right-production-forearm.json",
+      "sha256": "cba948a5ded1faa1e86828b83d5b68dcaf498f651306b673c7f31b29a5079a71",
+      "bytes": 123109
+    },
+    {
+      "path": "validation/f13-right-cloth-raster.json",
+      "sha256": "f99e1b2ee26af55d4200480edf5aa2c6afa4495d1ad19e20272f0018a4b8cf7f",
+      "bytes": 1068
+    },
+    {
+      "path": "validation/f13-right-contact-scan.json",
+      "sha256": "7d3ec6bcccb27c7e70616d677141b5dc778dba9b4d82e46243a43fd2002f2816",
+      "bytes": 22553
+    },
+    {
+      "path": "validation/f13-right-production.json",
+      "sha256": "562f225c7b9a490210c5a378fee8d04615a85f5d53a3f953aaea3caca71dde00",
+      "bytes": 119871
+    },
+    {
+      "path": "validation/f13-zero-before.json",
+      "sha256": "719fe009e35f1baf77141fbd69b33812c01d2f7ac047e65ef580dc3604b8468a",
+      "bytes": 441
+    },
+    {
+      "path": "validation/f13-right-cloth-rays.json",
+      "sha256": "5331463363b7384830bdeaf385989b8d177cb49ecab1625289ad177456c7a140",
+      "bytes": 2541
+    },
+    {
+      "path": "validation/f13-right-cloth-detail.jpg",
+      "sha256": "15ccf175a43d3e627dc8227749e50cad89edc547831a1e86750dc6874da9e53b",
+      "bytes": 71857
+    },
+    {
+      "path": "validation/f13-contact-right.jpg",
+      "sha256": "2280c13992aa4fb8ebe4c6fc0acd2d187d0776d2b39f62a5d3579b0523508476",
+      "bytes": 430467
+    },
+    {
+      "path": "validation/f13-zero-before.jpg",
+      "sha256": "0015141715a09f5f1deb2a89dca4d6a6799eb97f968a671044bf007881170471",
+      "bytes": 430824
+    }
+  ],
+  "tests": [
+    {
+      "command": "PAPER_MATTE_BYTES=... node tests/paper-right-cloth-regression.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "production pose scans plain/forearm 243 each",
+      "exitCode": 0
+    },
+    {
+      "command": "diagnostic45 pose scan",
+      "exitCode": 1
+    },
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "exitCode": 0
+    }
+  ],
+  "phoneTested": false,
+  "sourceDigest": "bce1174a54930fd92294aa1995eb4641ce95c6e57e64fc10e561983ca2243394"
+}

@@ -1,0 +1,443 @@
+{
+  "control": false,
+  "sceneOptions": {
+    "forearmVolume": false,
+    "nearArmVolume": false,
+    "paperPartition": true,
+    "paperLapContact": true,
+    "paperRightClothContact": true,
+    "paperBackgroundTrim": true,
+    "paperUnderHandBackgroundTrim": true,
+    "paperUnderHandBackgroundPlane": false,
+    "paperExteriorTrim": false,
+    "seatSupport": true,
+    "lapContactWidth": 224,
+    "supportDepthFeather": 160
+  },
+  "continuousCameraDomain": {
+    "yaw": [
+      -0.3490658503988659,
+      0.3490658503988659
+    ],
+    "pitch": [
+      -0.02,
+      0.02
+    ]
+  },
+  "bodyPoseCount": 27,
+  "bodyPoseDomainContinuousProven": false,
+  "method": "analytic extrema of rotated plane normal minus plane offset / distance, evaluated in Float64; positive homogeneous-W bound",
+  "matteFilter": "all vertices and centroid nearest sample >=254; transparent edge raster not covered",
+  "rows": [
+    {
+      "bodyPose": {
+        "yaw": -0.059,
+        "pitch": -0.04,
+        "roll": -0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.08049355153733805,
+      "minSignedFacingRatio": 0.12547896513211107,
+      "minClipZ": -247.6212411738672,
+      "maxClipZ": 416.557025701966,
+      "minW": 0.5105092701756266,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": -0.059,
+        "pitch": -0.04,
+        "roll": 0
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.08460369657465956,
+      "minSignedFacingRatio": 0.19881560929441067,
+      "minClipZ": -249.12256498063408,
+      "maxClipZ": 416.557025701966,
+      "minW": 0.5099157134457692,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": -0.059,
+        "pitch": -0.04,
+        "roll": 0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.060237276529873915,
+      "minSignedFacingRatio": 0.1421862836890338,
+      "minClipZ": -250.36960195852478,
+      "maxClipZ": 416.557025701966,
+      "minW": 0.5093201035176071,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": -0.059,
+        "pitch": 0,
+        "roll": -0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.07045405728240563,
+      "minSignedFacingRatio": 0.10996687370967369,
+      "minClipZ": -241.77721954080948,
+      "maxClipZ": 416.557025701966,
+      "minW": 0.5109840365751996,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": -0.059,
+        "pitch": 0,
+        "roll": 0
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.08960996099595361,
+      "minSignedFacingRatio": 0.21059973797930737,
+      "minClipZ": -243.28557198553804,
+      "maxClipZ": 416.557025701966,
+      "minW": 0.5103883154734141,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": -0.059,
+        "pitch": 0,
+        "roll": 0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.06732507736080756,
+      "minSignedFacingRatio": 0.1582182062089138,
+      "minClipZ": -244.53962147985393,
+      "maxClipZ": 416.557025701966,
+      "minW": 0.5097905578864355,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": -0.059,
+        "pitch": 0.04,
+        "roll": -0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.05947313356771207,
+      "minSignedFacingRatio": 0.09295623233407284,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 416.5924758531851,
+      "minW": 0.5114658168053134,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": -0.059,
+        "pitch": 0.04,
+        "roll": 0
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.09434723577253273,
+      "minSignedFacingRatio": 0.22175198796197085,
+      "minClipZ": -237.4254741401696,
+      "maxClipZ": 416.59932148389953,
+      "minW": 0.510868791016404,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": -0.059,
+        "pitch": 0.04,
+        "roll": 0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.07231844715939895,
+      "minSignedFacingRatio": 0.1699641638156599,
+      "minClipZ": -238.6836397939236,
+      "maxClipZ": 416.59898701565226,
+      "minW": 0.5102697359969359,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0,
+        "pitch": -0.04,
+        "roll": -0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.14114549639070126,
+      "minSignedFacingRatio": 0.22010397145322327,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 417.3183963716133,
+      "minW": 0.5101665774040838,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0,
+        "pitch": -0.04,
+        "roll": 0
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.153047060106352,
+      "minSignedFacingRatio": 0.3599549119329428,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 417.327780776845,
+      "minW": 0.5095744278138357,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0,
+        "pitch": -0.04,
+        "roll": 0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.13057202128306666,
+      "minSignedFacingRatio": 0.30709013263575036,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 417.32862433730327,
+      "minW": 0.5089802889278734,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": -0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.13571900632471104,
+      "minSignedFacingRatio": 0.2119083731195023,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 417.3820065311332,
+      "minW": 0.5106375465320436,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.15601552460411944,
+      "minSignedFacingRatio": 0.3669569381852289,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 417.3903741057129,
+      "minW": 0.5100427287690381,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.1337113648498798,
+      "minSignedFacingRatio": 0.3144819444863993,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 417.39024610714125,
+      "minW": 0.5094459440239009,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0,
+        "pitch": 0.04,
+        "roll": -0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.12933409890805772,
+      "minSignedFacingRatio": 0.2022202497072031,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 417.44102302659616,
+      "minW": 0.5111159734219812,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0,
+        "pitch": 0.04,
+        "roll": 0
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.1586252154939889,
+      "minSignedFacingRatio": 0.3686510073608714,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 417.44829982869135,
+      "minW": 0.5105193450901864,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0,
+        "pitch": 0.04,
+        "roll": 0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.1364786833208889,
+      "minSignedFacingRatio": 0.32099523838563093,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 417.4471445457041,
+      "minW": 0.509920762664412,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0.059,
+        "pitch": -0.04,
+        "roll": -0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.19454759727226106,
+      "minSignedFacingRatio": 0.32752638992638544,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 418.3393171053754,
+      "minW": 0.5098051641749235,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0.059,
+        "pitch": -0.04,
+        "roll": 0
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.21559755499450856,
+      "minSignedFacingRatio": 0.37414296049966006,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 418.3506789815339,
+      "minW": 0.5092146102984139,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0.059,
+        "pitch": -0.04,
+        "roll": 0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.19329643243310904,
+      "minSignedFacingRatio": 0.3421787394011393,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 418.3521567637079,
+      "minW": 0.5086221559465012,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0.059,
+        "pitch": 0,
+        "roll": -0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.20066708550359905,
+      "minSignedFacingRatio": 0.3264846256098313,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 418.43074128860206,
+      "minW": 0.5102723627171757,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0.059,
+        "pitch": 0,
+        "roll": 0
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.2165374944111001,
+      "minSignedFacingRatio": 0.3871639467784596,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 418.44525697647214,
+      "minW": 0.5096786436067613,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0.059,
+        "pitch": 0,
+        "roll": 0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.19430967009345265,
+      "minSignedFacingRatio": 0.3552244826050548,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 418.4465137943976,
+      "minW": 0.5090830518756917,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0.059,
+        "pitch": 0.04,
+        "roll": -0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.20711946896746197,
+      "minSignedFacingRatio": 0.32392959770192814,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 418.5261227089754,
+      "minW": 0.510747456963456,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0.059,
+        "pitch": 0.04,
+        "roll": 0
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.21703135514048663,
+      "minSignedFacingRatio": 0.39987875073156404,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 418.53787260419716,
+      "minW": 0.51015142815334,
+      "failures": []
+    },
+    {
+      "bodyPose": {
+        "yaw": 0.059,
+        "pitch": 0.04,
+        "roll": 0.034
+      },
+      "tested": 20856,
+      "failed": 0,
+      "minRatioBound": 0.1948634864705397,
+      "minSignedFacingRatio": 0.3680158358238947,
+      "minClipZ": -236.23483670131426,
+      "maxClipZ": 418.53643386263417,
+      "minW": 0.50955354518812,
+      "failures": []
+    }
+  ],
+  "hasFailures": false,
+  "selfIntersectionChecked": false,
+  "visualAcceptance": false,
+  "phoneTested": false,
+  "wholeT03Accepted": false
+}

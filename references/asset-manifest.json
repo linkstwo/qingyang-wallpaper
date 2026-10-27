@@ -38,8 +38,8 @@
     },
     {
       "path": "character-prototype/preview/background.png",
-      "bytes": 2095777,
-      "sha256": "0286d772a001f9b908692f691641889e54ec27e26ebe83e4c2d51b9bf944e317",
+      "bytes": 2542130,
+      "sha256": "aa5a1a522533693b401d9c148b45786163631a376bb4958d8ea7a1c5aeb9e84d",
       "dimensions": [
         1086,
         1448
@@ -47,26 +47,26 @@
     },
     {
       "path": "character-prototype/preview/mask.png",
-      "bytes": 949379,
-      "sha256": "627fdc83355ae1a952e8e9ad194abaafb9cb11c207b739e9794cdd5ca97e5789",
+      "bytes": 15793,
+      "sha256": "b975fbdfdfe34bcec730fa5ccf9a91fd4d5c0b74cd8ddecb97810b1f5dbcc43d",
       "dimensions": [
-        1086,
-        1448
+        1152,
+        1536
       ]
     },
     {
       "path": "character-prototype/preview/original.png",
-      "bytes": 3149695,
-      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "bytes": 302522,
+      "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
       "dimensions": [
-        1086,
-        1448
+        1152,
+        1536
       ]
     },
     {
       "path": "android-app/app/src/main/assets/background.png",
-      "bytes": 2095777,
-      "sha256": "0286d772a001f9b908692f691641889e54ec27e26ebe83e4c2d51b9bf944e317",
+      "bytes": 2542130,
+      "sha256": "aa5a1a522533693b401d9c148b45786163631a376bb4958d8ea7a1c5aeb9e84d",
       "dimensions": [
         1086,
         1448
@@ -74,41 +74,90 @@
     },
     {
       "path": "android-app/app/src/main/assets/character_mesh.bin",
-      "bytes": 393216,
-      "sha256": "c527def9574b7b2d456f7052b86e17a4ab49e9d980719c1b3e4ede12613fbe04"
+      "bytes": 434136,
+      "sha256": "ceaeef7a416a88c4c4291a76575da0b3429bef38db992064873afb4189da70c1"
     },
     {
       "path": "android-app/app/src/main/assets/character_pins.bin",
-      "bytes": 196608,
-      "sha256": "16eb1ee449b422dfca32dec08ffb9f048eb16c2ce07a8557e262ea1c1b7fefbd"
+      "bytes": 217068,
+      "sha256": "0321b96e7c866a7912f0478fe780613c1ed991045793d6f48e796aa5a380f4a7"
     },
     {
       "path": "android-app/app/src/main/assets/foreground_mesh.bin",
-      "bytes": 1704,
-      "sha256": "013bf3671344d6bdd047920853baefafbdee3bc794a530e882c88dc8a699b9e4"
+      "bytes": 3936,
+      "sha256": "06ed4ff9c5ea6d5e87e25bb7a28a2721b935d609eabfc047e5381ba50c2f55f4"
     },
     {
       "path": "android-app/app/src/main/assets/mask.png",
-      "bytes": 949379,
-      "sha256": "627fdc83355ae1a952e8e9ad194abaafb9cb11c207b739e9794cdd5ca97e5789",
+      "bytes": 15793,
+      "sha256": "b975fbdfdfe34bcec730fa5ccf9a91fd4d5c0b74cd8ddecb97810b1f5dbcc43d",
       "dimensions": [
-        1086,
-        1448
+        1152,
+        1536
       ]
     },
     {
       "path": "android-app/app/src/main/assets/original.png",
-      "bytes": 3149695,
-      "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+      "bytes": 302522,
+      "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
       "dimensions": [
-        1086,
-        1448
+        1152,
+        1536
       ]
+    },
+    {
+      "path": "references/originals/main-reading-v2.png",
+      "bytes": 302522,
+      "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+      "dimensions": [
+        1152,
+        1536
+      ]
+    },
+    {
+      "path": "android-app/app/src/main/assets/character_depth.bin",
+      "bytes": 217068,
+      "sha256": "5a4a0caf072c50bce906930f015322abfbd65cb2c3c26e5b816eff8c5eaa0229"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_confidence.bin",
+      "bytes": 76904,
+      "sha256": "f24da5d640df31c51ef97a37d4e5e6b0e436087868c3c5b1ca0da4510c3ff264"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_indices.bin",
+      "bytes": 230688,
+      "sha256": "b19a3995393c7a2d7af35a44dd54e8038be71c7b69020a4c58e6189ded8a63ef"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_normals.bin",
+      "bytes": 230712,
+      "sha256": "e6537a731351055a10e4115e53e0c3b076ad5198630a55552378ab7dd702595f"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_positions.bin",
+      "bytes": 230712,
+      "sha256": "34553e1575a606663e8424a2d83d72ab9176bd858110184f9816d76c83b8b895"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_regions.bin",
+      "bytes": 76904,
+      "sha256": "ac5bcaaaa9346717fcd95f457936c7e656db492f3cf11d51a83f833a4d90e8b7"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_uv.bin",
+      "bytes": 153808,
+      "sha256": "582ad596c2d713da5baf601fc8e4a20cd5dd9f227ffba511ca7767e7ffd69fc3"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_skin.bin",
+      "bytes": 461424,
+      "sha256": "b7cad8ff1952a0dfda53d9c8c48b129acd0da0c08961e6806b35c877d5a99666"
     }
   ],
   "identicalCopies": [
     [
-      "references/originals/main-front-three-quarter.png",
+      "references/originals/main-reading-v2.png",
       "character-prototype/preview/original.png"
     ],
     [
@@ -123,5 +172,7 @@
       "character-prototype/preview/background.png",
       "android-app/app/src/main/assets/background.png"
     ]
-  ]
+  ],
+  "revisionNote": "Post0.5.8 feedback: motion coverage R includes antialiased pale cloth; conservative source erasure G stays inside opaque R to avoid a neutral dark ring. Separate material lobes taper at neckline/ribcage; original source bytes and spring solver unchanged.",
+  "sourceEncodingNote": "The authorised upload is named1000030775.png but contains JPEG bytes. Source/reference/runtime copies preserve the exact original encoding and bytes; header verification supports both PNG and JPEG."
 }

@@ -1,0 +1,24 @@
+{
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "depthBits": 16,
+  "views": 9,
+  "colouredPixels": [
+    97053,
+    125922,
+    109340,
+    97268,
+    125997,
+    109269,
+    74352,
+    126101,
+    88231
+  ],
+  "debugYawRadians": [
+    -0.7,
+    0,
+    0.7
+  ],
+  "debugOnly": true,
+  "texturedHiddenFaces": false,
+  "phoneTested": false
+}

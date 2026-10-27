@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "76c621bf60d1f3a4c23561d4bcad32845aba9210",
+  "owner": "codex-night-recovery-20261027-0157",
+  "fence": 12,
+  "createdAt": "2026-10-26T18:20:19.373260+00:00",
+  "stage": "S2",
+  "next": "Compare 48px versus wider lap support as an isolated candidate; paper-hidden source remains incomplete",
+  "files": [
+    {
+      "path": "references/derived/side-b-nape-shoulder.png",
+      "sha256": "cc21d3541f50fb452dc0daa9abbbedd5b47e16e47650fb3a31531291b6e83d7e",
+      "bytes": 83352
+    },
+    {
+      "path": "references/derived/side-b-upper-arm.png",
+      "sha256": "63bde24e89142a2ff67a0bb7b743040b29bd87b6ae9e6fecdd42552e835cf014",
+      "bytes": 52305
+    },
+    {
+      "path": "references/derived/side-b-component-manifest.json",
+      "sha256": "0b561294ddf66184a1f5dd50e4033bbf2d7f0ee97e654b6e8ddc9cd0f3b97591",
+      "bytes": 1663
+    },
+    {
+      "path": "references/derived/shoulder-side-b-similarity-candidate.json",
+      "sha256": "8de29a177717da972f02b5d0bee7edf4903420e0ad1307124707635b79117009",
+      "bytes": 2764
+    },
+    {
+      "path": "scripts/prepare_shoulder_components.py",
+      "sha256": "717088975a11506bd1a7a5f3b30221b5bda50a182bed09e7b9b4504eb1aa9035",
+      "bytes": 1619
+    },
+    {
+      "path": "scripts/fit_shoulder_candidate.py",
+      "sha256": "21ac75fac766a2a92618ac46a51c8da74b4d22a8e5809f03d12e0d7c28ff2f8f",
+      "bytes": 3354
+    },
+    {
+      "path": "validation/shoulder-components-browser.json",
+      "sha256": "c248b4741ff07791b2087989bed55d46f42a896cbb9ba301893943bf58e12344",
+      "bytes": 684
+    },
+    {
+      "path": "validation/paper-notch-candidate.jpg",
+      "sha256": "c36000332ebab0bc334e501d4d70a8b9afd9978ddaba8fbd705b43cb9c5dafcf",
+      "bytes": 431743
+    },
+    {
+      "path": "validation/paper-notch-forearm-candidate.jpg",
+      "sha256": "24266ecbc5572153554a3529b347e8a6c732a4d3a1b36c9319d5830cf52baa8e",
+      "bytes": 433205
+    },
+    {
+      "path": "validation/paper-notch-seated-posed.jpg",
+      "sha256": "d4aa55329b92e1a9b2561b9209d32131bde871b930a02a4151164d84fa3eaa97",
+      "bytes": 442591
+    },
+    {
+      "path": "validation/paper-notch-unseated-posed.jpg",
+      "sha256": "f9d8b853d43dce9ac2649b7b3bde7f8e9eaece2b2ff0ed542959fe63f677f11a",
+      "bytes": 441316
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/shoulder-components-browser.mjs <existing Chromium>",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/parts-warp-regression.mjs",
+      "status": "passed_1678_checks",
+      "exitCode": 0
+    },
+    {
+      "command": "python3 scripts/fit_shoulder_candidate.py",
+      "status": "orientation_reversed_candidate_rejected",
+      "exitCode": 0
+    }
+  ],
+  "imageTransferCorrection": "Four large JPEG first uploads did not match local bytes. Reuploaded in bounded chunks and Git blob SHA matched exact local bytes before tree update; current receipt binds repaired bytes.",
+  "tasksAccepted": [],
+  "phoneTested": false,
+  "sourceDigest": "7e2e7865dac00710f1e71948528dbe58b69dad6192b5126f91cc0bfe018dc3e5"
+}

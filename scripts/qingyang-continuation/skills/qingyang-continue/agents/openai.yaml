@@ -1,0 +1,4 @@
+interface:
+  display_name: "轻漾持续开发"
+  short_description: "从仓库检查点恢复开发、保存证据并继续下一项，避免重复返工"
+  default_prompt: "使用 $qingyang-continue 从轻漾最新检查点继续实际开发。"

@@ -1,0 +1,17 @@
+{
+  "checks": 7293,
+  "vertices": 550,
+  "triangles": 1088,
+  "closedParts": 3,
+  "neutralProjectionMaxError": 1.6077746776921858e-13,
+  "minTriangleArea": 71.11042237487835,
+  "untexturedVertices": 357,
+  "productionYawRadians": 0.04,
+  "productionPitchRadians": 0.02,
+  "phoneTested": false,
+  "limitations": [
+    "Cross-sections/thickness are inferred proxies, not a reconstructed body.",
+    "Hidden side/back UV confidence is zero; do not sample a stretched main photo there.",
+    "Parts overlap at attachment regions but are not welded into one manifold."
+  ]
+}

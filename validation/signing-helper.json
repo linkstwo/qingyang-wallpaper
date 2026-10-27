@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "reject altered APK",
+    "reject wrong release certificate",
+    "clean failed staging files",
+    "align/sign/verify disposable fixture",
+    "preserve existing output",
+    "no password in output"
+  ],
+  "passed": true,
+  "productionKeyUsed": false,
+  "disposableTestKeyOnly": true,
+  "signedUserApkProduced": false
+}

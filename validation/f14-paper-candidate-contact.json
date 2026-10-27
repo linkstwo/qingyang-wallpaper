@@ -1,0 +1,243 @@
+{
+  "sharedContactVertexPairs": 216,
+  "maxWorldGap": 4.6501477891783135e-11,
+  "oldMaxWorldGap": 196.85636716246262,
+  "poses": [
+    {
+      "pose": {
+        "yaw": -0.059,
+        "pitch": -0.04,
+        "roll": -0.034
+      },
+      "maxWorldGap": 4.6501477891783135e-11
+    },
+    {
+      "pose": {
+        "yaw": -0.059,
+        "pitch": -0.04,
+        "roll": 0
+      },
+      "maxWorldGap": 4.64763021583191e-11
+    },
+    {
+      "pose": {
+        "yaw": -0.059,
+        "pitch": -0.04,
+        "roll": 0.034
+      },
+      "maxWorldGap": 4.648899489948447e-11
+    },
+    {
+      "pose": {
+        "yaw": -0.059,
+        "pitch": 0,
+        "roll": -0.034
+      },
+      "maxWorldGap": 4.616864375635996e-11
+    },
+    {
+      "pose": {
+        "yaw": -0.059,
+        "pitch": 0,
+        "roll": 0
+      },
+      "maxWorldGap": 4.615549976347056e-11
+    },
+    {
+      "pose": {
+        "yaw": -0.059,
+        "pitch": 0,
+        "roll": 0.034
+      },
+      "maxWorldGap": 4.6155536954285244e-11
+    },
+    {
+      "pose": {
+        "yaw": -0.059,
+        "pitch": 0.04,
+        "roll": -0.034
+      },
+      "maxWorldGap": 4.5812518260497703e-11
+    },
+    {
+      "pose": {
+        "yaw": -0.059,
+        "pitch": 0.04,
+        "roll": 0
+      },
+      "maxWorldGap": 4.5803892905642536e-11
+    },
+    {
+      "pose": {
+        "yaw": -0.059,
+        "pitch": 0.04,
+        "roll": 0.034
+      },
+      "maxWorldGap": 4.584806720756182e-11
+    },
+    {
+      "pose": {
+        "yaw": 0,
+        "pitch": -0.04,
+        "roll": -0.034
+      },
+      "maxWorldGap": 4.435635746327518e-11
+    },
+    {
+      "pose": {
+        "yaw": 0,
+        "pitch": -0.04,
+        "roll": 0
+      },
+      "maxWorldGap": 4.43272004552741e-11
+    },
+    {
+      "pose": {
+        "yaw": 0,
+        "pitch": -0.04,
+        "roll": 0.034
+      },
+      "maxWorldGap": 4.433755698659184e-11
+    },
+    {
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": -0.034
+      },
+      "maxWorldGap": 4.3998782178749114e-11
+    },
+    {
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0
+      },
+      "maxWorldGap": 4.397524824604094e-11
+    },
+    {
+      "pose": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0.034
+      },
+      "maxWorldGap": 4.4003013829138715e-11
+    },
+    {
+      "pose": {
+        "yaw": 0,
+        "pitch": 0.04,
+        "roll": -0.034
+      },
+      "maxWorldGap": 4.36667170107002e-11
+    },
+    {
+      "pose": {
+        "yaw": 0,
+        "pitch": 0.04,
+        "roll": 0
+      },
+      "maxWorldGap": 4.3660170162237895e-11
+    },
+    {
+      "pose": {
+        "yaw": 0,
+        "pitch": 0.04,
+        "roll": 0.034
+      },
+      "maxWorldGap": 4.369732455365613e-11
+    },
+    {
+      "pose": {
+        "yaw": 0.059,
+        "pitch": -0.04,
+        "roll": -0.034
+      },
+      "maxWorldGap": 4.221768219330921e-11
+    },
+    {
+      "pose": {
+        "yaw": 0.059,
+        "pitch": -0.04,
+        "roll": 0
+      },
+      "maxWorldGap": 4.220475758270274e-11
+    },
+    {
+      "pose": {
+        "yaw": 0.059,
+        "pitch": -0.04,
+        "roll": 0.034
+      },
+      "maxWorldGap": 4.222388115754684e-11
+    },
+    {
+      "pose": {
+        "yaw": 0.059,
+        "pitch": 0,
+        "roll": -0.034
+      },
+      "maxWorldGap": 4.185468254286989e-11
+    },
+    {
+      "pose": {
+        "yaw": 0.059,
+        "pitch": 0,
+        "roll": 0
+      },
+      "maxWorldGap": 4.186039252811251e-11
+    },
+    {
+      "pose": {
+        "yaw": 0.059,
+        "pitch": 0,
+        "roll": 0.034
+      },
+      "maxWorldGap": 4.1889097104889835e-11
+    },
+    {
+      "pose": {
+        "yaw": 0.059,
+        "pitch": 0.04,
+        "roll": -0.034
+      },
+      "maxWorldGap": 4.154808955178002e-11
+    },
+    {
+      "pose": {
+        "yaw": 0.059,
+        "pitch": 0.04,
+        "roll": 0
+      },
+      "maxWorldGap": 4.1545163371192577e-11
+    },
+    {
+      "pose": {
+        "yaw": 0.059,
+        "pitch": 0.04,
+        "roll": 0.034
+      },
+      "maxWorldGap": 4.158638310613304e-11
+    }
+  ],
+  "bodySourceArea": 1622441.1653646894,
+  "paperSourceArea": 127319.49900988024,
+  "conformity": {
+    "inputTriangles": 27914,
+    "triangles": 27977,
+    "vertices": 14231,
+    "splitEdges": 17,
+    "edgeInsertions": 29,
+    "changedFaces": 17,
+    "epsilon": 0.0001,
+    "qualityFlips": 9520,
+    "qualityPasses": 11,
+    "droppedDegenerateFaces": 5,
+    "degenerateSourceArea": 0.000029115937650203705,
+    "float32AltitudeGate": true
+  },
+  "depthInferred": true,
+  "visualAcceptance": false,
+  "phoneTested": false,
+  "wholeT03Accepted": false
+}

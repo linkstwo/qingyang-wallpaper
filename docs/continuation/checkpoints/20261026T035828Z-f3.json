@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0329",
+  "fence": 3,
+  "baseHead": "1cdb5af3818360957bfa8b1e2a283356b4c2498a",
+  "createdAt": "2026-10-26T03:58:28.074348+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/material-chart.mjs",
+      "bytes": 2910,
+      "sha256": "2e0a76907af58619eac20856918fe164a240b28f15925b026f4bf7950e9bcc16"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "bytes": 4158,
+      "sha256": "c9b660374e34350337af51502cbc8df1f0b49b41bf22adac328cdacd2d271b86"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 9648,
+      "sha256": "a02d9d61468457d0eb5a4e5786439080b26b373b82044cfed1ae8cb0c6336954"
+    },
+    {
+      "path": "character-prototype/preview/structural-pose.mjs",
+      "bytes": 4511,
+      "sha256": "ac450347ae88fb7b90b714c8291dcf5813af768aad64f03bb9ccd3ae4d613b6f"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 25520,
+      "sha256": "1e554e389be4b320f30edad9286ac3c016fc819759fdc7ef86cb48563665dc17"
+    },
+    {
+      "path": "docs/S2-MATERIAL-REGISTRATION.md",
+      "bytes": 3028,
+      "sha256": "b7a09c2372ef78648e323bc80ac0ad9a9c51731d601f6c69c7deb19ae43837b0"
+    },
+    {
+      "path": "scripts/fit_back_camera.py",
+      "bytes": 3957,
+      "sha256": "b906e4d7265c2726660f11c900b8ac1995392ee2e136668a0272ce40a65db12e"
+    },
+    {
+      "path": "tests/material-chart-regression.mjs",
+      "bytes": 1856,
+      "sha256": "9a17cfa97c47295bcf3573ac9e2f42b6ffc7454abde271cb41bf2b314d424dfc"
+    },
+    {
+      "path": "tests/scan_structural_intersections.py",
+      "bytes": 5132,
+      "sha256": "b1cfa3abb7e999ce7e18fcbeb664538c0bdd380833054e3e1af8b3d5ac0c326d"
+    },
+    {
+      "path": "tests/structural-lab-browser.mjs",
+      "bytes": 5253,
+      "sha256": "3c31dbf38de6457592d7bf7805de82ec34df5294221d0de50f79fd6dc0c121dc"
+    },
+    {
+      "path": "validation/s2-back-camera-fit.jpg",
+      "bytes": 105101,
+      "sha256": "21a3a80aa432e94a9b7c956c79264c3f2b0e8a2f3d8942b50c177417a8c5e03f"
+    },
+    {
+      "path": "validation/s2-back-camera-fit.json",
+      "bytes": 6576,
+      "sha256": "17391360fcd05e4894a8273528225b58047499847f87d3d069a7f195498d07b6"
+    },
+    {
+      "path": "validation/s2-back-chart-gles.jpg",
+      "bytes": 54172,
+      "sha256": "83a394a61cb5ef51bc830e71b9ed795f2c12c289283c56f37b99589ff76ec29c"
+    },
+    {
+      "path": "validation/s2-self-intersections.json",
+      "bytes": 6076,
+      "sha256": "aefc108fa54dde64820038c55848f8cab537339010f9290caaca4ffdb5276c66"
+    },
+    {
+      "path": "validation/s2-structural-lab-browser.json",
+      "bytes": 402,
+      "sha256": "a791fb14f61cdbb80a4fab757a59e93ffd54ad95211856278559094e099e154e"
+    },
+    {
+      "path": "validation/s2-structural-lab.jpg",
+      "bytes": 140324,
+      "sha256": "2dfbef42dac7d3cc4bdfce7906633b3ea36a521702b45750c4e9496d74fc7db3"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python tests/scan_structural_intersections.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python scripts/fit_back_camera.py (provisional fit rejected, evidence recorded)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/material-chart-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_material_chart_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check character-prototype/preview/structural-lab.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/structural-lab-browser.mjs <headless-chrome>",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Android native/phone and production back material",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Join observed front-photo surface, paper and inferred rear proxy in one diagnostic scene; verify neutral source preservation and expose depth/matte conflicts before production.",
+    "Use the interactive source chart and correspondence evidence to refine shoulder/neck seam and local geometry; provisional back camera fit is not production-accepted."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "4fdaecfabe22096792a700b8b8589caa9f7bf09cf44ae7efa728c80710bd8c9c"
+}

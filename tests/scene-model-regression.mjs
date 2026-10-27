@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+import {sceneModel,unprojectSource,projectSource,projectWorld,supportDepth,materialDepthAt,buildThicknessProxy} from '../character-prototype/preview/scene-model.mjs';
+let checks=0;const check=(v,m)=>{assert(v,m);checks++;};let neutralError=0;
+for(let x=0;x<=1152;x+=64)for(let y=0;y<=1536;y+=64)for(const z of [-100,0,40,116,230]){const q=projectWorld(unprojectSource(x,y,z));neutralError=Math.max(neutralError,Math.hypot(q[0]-x,q[1]-y));check(neutralError<1e-9,'calibrated neutral projection');}
+for(const p of [[330,990],[500,1450]]){check(Math.abs(materialDepthAt(...p,70)-supportDepth(...p))<1e-9,'supported material shares support depth');const q=projectSource(...p,supportDepth(...p),[.8,-.3]);check(Math.hypot(q[0]-p[0],q[1]-p[1])>1e-4,'camera moves supported contact on screen');}
+// All observed paper points share a plane in calibrated world space.
+const refWorld=unprojectSource(330,1000,180),intercept=180-sceneModel.paper.slopeY*refWorld[1];
+for(const p of [[50,800],[300,1000],[500,1200],[1000,900]]){const w=unprojectSource(...p,supportDepth(...p));check(Math.abs(w[2]-sceneModel.paper.slopeY*w[1]-intercept)<1e-10,'paper is a world plane');}
+const model=buildThicknessProxy(),V=model.positions.length/3,edges=new Map();let minArea=Infinity,hidden=0;
+for(let i=0;i<V;i++){const n=model.normals.slice(i*3,i*3+3);check(Math.abs(Math.hypot(...n)-1)<1e-8,'unit geometric normal');if(model.confidence[i]===0)hidden++;check(Number.isFinite(model.uv[i*2])&&Number.isFinite(model.uv[i*2+1]),'finite projected UV');}
+for(let i=0;i<model.indices.length;i+=3){const ids=model.indices.slice(i,i+3),p=ids.map(n=>model.positions.slice(n*3,n*3+3));check(ids.every(n=>n>=0&&n<V),'index bounds');const a=p[1].map((v,k)=>v-p[0][k]),b=p[2].map((v,k)=>v-p[0][k]),cross=[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],area=Math.hypot(...cross)/2;check(area>1e-5,'nondegenerate volume face');minArea=Math.min(minArea,area);for(let k=0;k<3;k++){const a=ids[k],b=ids[(k+1)%3],key=Math.min(a,b)+','+Math.max(a,b),e=edges.get(key)||[];e.push(a<b?1:-1);edges.set(key,e);}}
+for(const e of edges.values())check(e.length===2&&e[0]+e[1]===0,'closed, consistently wound part surface');
+check(hidden>V*.35,'hidden/uncertain surfaces explicitly have no usable texture');check(model.parts.length===3,'head-neck-torso plus linked arm parts');
+const result={checks,vertices:V,triangles:model.indices.length/3,closedParts:model.parts.length,neutralProjectionMaxError:neutralError,minTriangleArea:minArea,untexturedVertices:hidden,productionYawRadians:sceneModel.yawRadians,productionPitchRadians:sceneModel.pitchRadians,phoneTested:false,limitations:sceneModel.limitations};fs.writeFileSync(new URL('../validation/s2-scene-model.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

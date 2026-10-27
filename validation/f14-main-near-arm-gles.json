@@ -1,0 +1,59 @@
+{
+  "nearArmVolume": true,
+  "debugOwnership": false,
+  "paperUnderHandBackgroundPlane": false,
+  "rawFrames": [
+    {
+      "path": "validation/f14-main-arm--20.png",
+      "bytes": 380500,
+      "sha256": "0c95b11ef738c20f3e09101e92531f44db078cc406f5e838e2b433c74d32289a"
+    },
+    {
+      "path": "validation/f14-main-arm--2.2918.png",
+      "bytes": 419303,
+      "sha256": "dd6589755fcf62461094553fa7dd0f772c33a9faebb1bbbcc80fb3fcb5fc9633"
+    },
+    {
+      "path": "validation/f14-main-arm-0.png",
+      "bytes": 421867,
+      "sha256": "609047b238eff27543c59977b51de2d03f12cd861bdd3dfda2eb66e65b05ca09"
+    },
+    {
+      "path": "validation/f14-main-arm-2.2918.png",
+      "bytes": 424884,
+      "sha256": "13db1dffa15053f9c99fecbd0cb4d0103846f447a5e9fbcc02214eee02e18bf7"
+    },
+    {
+      "path": "validation/f14-main-arm-20.png",
+      "bytes": 429701,
+      "sha256": "8406dfd44696f60e9fd6e18280f4877ad5331c3825cdda1271082f0440dbf2f1"
+    }
+  ],
+  "imageReceipt": {
+    "path": "validation/f14-main-near-arm-gles.jpg",
+    "bytes": 428487,
+    "sha256": "532dd1ebd0925c3e8ffe9ab849f6aaa608c684b1999547db76cc31a087cfa782"
+  },
+  "paperUnderHandBackgroundTrim": true,
+  "paperBackgroundTrim": true,
+  "paperRightClothContact": true,
+  "lapContactWidth": 96.0,
+  "seatSupport": true,
+  "forearmVolume": false,
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "angles": [
+    -20,
+    -2.2918,
+    0,
+    2.2918,
+    20
+  ],
+  "rear": false,
+  "bodyPose": {},
+  "paperPartition": true,
+  "baselineRef": null,
+  "paperLapContact": true,
+  "paperExteriorTrim": false,
+  "image": "validation/f14-main-near-arm-gles.jpg",
+  "phoneTested": false
+}

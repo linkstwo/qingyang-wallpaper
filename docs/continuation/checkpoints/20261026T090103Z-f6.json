@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0833",
+  "fence": 6,
+  "baseHead": "2365f12e77578625b64cbefea7ad514cfa388ba4",
+  "createdAt": "2026-10-26T09:01:03.386877+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/conforming-mesh.mjs",
+      "bytes": 3081,
+      "sha256": "f91d175438fa04a3a23c4744761773823ee16b498b1c57d9551b8729e0418788"
+    },
+    {
+      "path": "character-prototype/preview/forearm-surface.mjs",
+      "bytes": 2765,
+      "sha256": "8932bde296f2bad6646aa614d5f4e69f4ec4083a657569508fdf59b58d82a35f"
+    },
+    {
+      "path": "character-prototype/preview/observed-surface.frag",
+      "bytes": 707,
+      "sha256": "c6d4f7546ea4433c90112f185ebf18640d17327edf40b13c78b0737b169ac1a3"
+    },
+    {
+      "path": "character-prototype/preview/quality-source-mesh.mjs",
+      "bytes": 1893,
+      "sha256": "cffce5850450aa6a0707c6da3cad3ccc4a1eeb478a46aea42c064ec060d19462"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 19498,
+      "sha256": "c99f6cf2028416f57478e94a3679545d70451d9c0e6d20bfb4705442b1e48c2e"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 32668,
+      "sha256": "829a92b2780cf544777d39b64e8c58e9968677a1ef6b14c1a8f47770a6a1f5e9"
+    },
+    {
+      "path": "docs/S2-FOREARM-SURFACE.md",
+      "bytes": 3852,
+      "sha256": "62d4a41d78eeca7a6f2e8e746ba50a71d143564ffac00dbdc83b20c1b9dc26a6"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 6134,
+      "sha256": "8e4ea48d522223746d3f4311c9456c7ce874c03632ddd7afdcc1682b4cb8ce2f"
+    },
+    {
+      "path": "tests/conforming-mesh-regression.mjs",
+      "bytes": 2900,
+      "sha256": "87afedbf1078ab5e60c7d7aeab37169614f6e1bd3cd100c4d2f3b7137248796b"
+    },
+    {
+      "path": "tests/forearm-surface-regression.mjs",
+      "bytes": 3681,
+      "sha256": "4b173b909adb66b58e177c0c9b132cc94e86c6fae953ea453c9e68e7baa3a641"
+    },
+    {
+      "path": "tests/quality-source-mesh-regression.mjs",
+      "bytes": 1955,
+      "sha256": "bfc5f0b2847eab48a27fd968ba091b8e6f3e24997a0435a58c096e60f70ff89c"
+    },
+    {
+      "path": "tests/structural-lab-browser.mjs",
+      "bytes": 10394,
+      "sha256": "124b1459a028b3084bc752e707ddef6e717ff0ccfe45f10b39ed2ca31e112c35"
+    },
+    {
+      "path": "validation/s2-combined-front.jpg",
+      "bytes": 57845,
+      "sha256": "df546688b64e0f6e31ee2e665d5ab79df330dcdf9b7b570127d24f9120bb8b1c"
+    },
+    {
+      "path": "validation/s2-forearm-front.jpg",
+      "bytes": 68595,
+      "sha256": "8f17ca8fcb9cc6989c003a2d0317087124028aedbe1f7d8328385e76d89f2211"
+    },
+    {
+      "path": "validation/s2-forearm-pose.json",
+      "bytes": 609,
+      "sha256": "d45e1bcc2dd67cda4a41a34a953117bb4a06aa4d7f436b40843384dae745217c"
+    },
+    {
+      "path": "validation/s2-forearm-surface.json",
+      "bytes": 2563,
+      "sha256": "12cb6efb9974a01157d2a1d51c4dd01a56f31ec59ccd1c308210805b7ad4fa08"
+    },
+    {
+      "path": "validation/s2-forearm-yaw8.jpg",
+      "bytes": 71328,
+      "sha256": "6d7efcd094fab2dc8ca76fe5da3ba112e73fa7d327cebbbdb0247f61629c2c32"
+    },
+    {
+      "path": "validation/s2-structural-lab-browser.json",
+      "bytes": 6190,
+      "sha256": "a2e0d830bf941d7d989b4f745ceca1a55004b81746fd37142efe8531c8b148ec"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/projected-surface-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/front-fit-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/front-fit-regression.mjs --segmented",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/quality-source-mesh-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/forearm-surface-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/forearm-volume-negative-control.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/forearm-pose-regression.mjs (forearm component only; fullFrontAccepted=false)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/conforming-mesh-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/observed-scene-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/layered-scene-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/scene-model-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/structural-lab-browser.mjs <Chrome134>",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/prepare_reading_subject.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_scene.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/projective-depth-gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python scripts/verify_assets.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Full-front combined skeletal acceptance, initial node tests/forearm-pose-regression.mjs",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "New Android candidate build/sign/phone acceptance",
+      "status": "not_run"
+    },
+    {
+      "command": "node tests/structural-lab-browser.mjs <Chrome134>, strict forearm neutral maxError=0",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Read latest HEAD and claim a fresh lease before further edits.",
+    "Separate paper-edge background/source material binding near(243,900); full-front skeletal acceptance remains false.",
+    "Continue shoulder/nape/back material continuity after source/pose constraints; confidence0 until calibration passes."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "73475eed0256fc68ab84e859f306821dea87eb403994a3d3e2e1dc14d871797e"
+}

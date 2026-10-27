@@ -1,0 +1,4 @@
+interface:
+  display_name: "轻漾真实进度"
+  short_description: "核对提交、占用有效期、验收和安装包，报告可验证的当前进度"
+  default_prompt: "使用 $qingyang-status 查看轻漾当前真实进度与安装包。"

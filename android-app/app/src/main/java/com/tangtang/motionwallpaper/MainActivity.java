@@ -1,112 +1,38 @@
 package com.tangtang.motionwallpaper;
 
 import android.app.Activity;
-import android.app.WallpaperManager;
-import android.content.ComponentName;
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.TypedValue;
-import android.view.ViewGroup;
+import android.view.Gravity;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/** 入口页：应用内预览（与壁纸同一个渲染器和物理）＋ 一个“设为动态壁纸”按钮。 */
+/** A full-screen character preview with two primary actions. */
 public final class MainActivity extends Activity {
     private PreviewView preview;
-    private TextView status;
-    private final Handler handler = new Handler(Looper.getMainLooper());
-    private final Runnable tick = new Runnable() {
-        @Override
-        public void run() {
-            if (status != null && preview != null) {
-                status.setText(preview.stats());
-            }
-            handler.postDelayed(this, 500L);
-        }
-    };
-
-    @Override
-    protected void onCreate(Bundle saved) {
-        super.onCreate(saved);
-        LinearLayout root = new LinearLayout(this);
-        root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(Color.parseColor("#0b0f14"));
-
-        preview = new PreviewView(this);
-        root.addView(preview, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
-
-        TextView hint = new TextView(this);
-        hint.setText("缓慢倾斜手机 → 人物小幅连续转向；快速轻晃 → 身体、胸部与头发的惯性回弹。\n"
-                + "点【设为动态壁纸】后选择“轻漾 · 感应动态壁纸”，桌面与锁屏都生效。");
-        hint.setTextColor(Color.parseColor("#cfe6e0"));
-        hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13.0f);
-        hint.setPadding(dp(14), dp(10), dp(14), dp(4));
-        root.addView(hint);
-
-        status = new TextView(this);
-        status.setTextColor(Color.parseColor("#8fbdb2"));
-        status.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12.0f);
-        status.setPadding(dp(14), dp(4), dp(14), dp(8));
-        root.addView(status);
-
-        LinearLayout row = new LinearLayout(this);
-        row.setOrientation(LinearLayout.HORIZONTAL);
-        row.setPadding(dp(10), 0, dp(10), dp(12));
-        Button apply = new Button(this);
-        apply.setText("设为动态壁纸");
-        Button center = new Button(this);
-        center.setText("校准回正");
-        row.addView(apply, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        row.addView(center, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        root.addView(row);
-        setContentView(root);
-
-        apply.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View view) {
-                Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
-                intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                        new ComponentName(MainActivity.this, MotionWallpaperService.class));
-                try {
-                    startActivity(intent);
-                } catch (Exception failure) {
-                    status.setText("打不开系统壁纸选择器：" + failure.getMessage());
-                }
-            }
-        });
-        center.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View view) {
-                preview.recalibrate();
-                status.setText("已重新取中性姿态：手怎么拿着都算正中");
-            }
-        });
-        handler.post(tick);
+    private SceneSettings settings;
+    private TextView subtitle;
+    @Override public void onCreate(Bundle state){
+        super.onCreate(state);Ui.immersive(this);settings=new SceneSettings(this);
+        FrameLayout root=new FrameLayout(this);root.setBackgroundColor(0xff17221c);
+        preview=new PreviewView(this);root.addView(preview,new FrameLayout.LayoutParams(-1,-1));
+        LinearLayout header=new LinearLayout(this);header.setOrientation(LinearLayout.VERTICAL);header.setPadding(dp(20),dp(42),dp(20),dp(12));
+        header.addView(Ui.text(this,"轻漾",25,Ui.INK));subtitle=Ui.text(this,"正在加载人物…",12,Ui.MUTED);header.addView(subtitle);
+        root.addView(header,new FrameLayout.LayoutParams(-1,-2,Gravity.TOP));
+        preview.listener(error->subtitle.setText(error.isEmpty()?"轻转手机看视角 · 轻晃感受回弹":"加载失败："+error));
+        LinearLayout card=new LinearLayout(this);card.setOrientation(LinearLayout.VERTICAL);card.setPadding(dp(12),dp(12),dp(12),dp(12));card.setBackground(Ui.card(this,0xe91b2a22));
+        LinearLayout actions=new LinearLayout(this);add(actions,"调整构图",false,()->startActivity(new Intent(this,FramingEditorActivity.class)));add(actions,"设为壁纸",true,()->Ui.apply(this));card.addView(actions);
+        LinearLayout options=new LinearLayout(this);Button response=add(options,settings.lively()?"Q弹 · 开启":"动感 · 柔和",false,()->{});
+        response.setOnClickListener(v->{settings.lively(!settings.lively());response.setText(settings.lively()?"Q弹 · 开启":"动感 · 柔和");preview.requestRender();});
+        add(options,"回正",false,()->preview.recalibrate());add(options,"更多",false,()->more());card.addView(options);
+        FrameLayout.LayoutParams bottom=new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM);bottom.setMargins(dp(14),0,dp(14),dp(26));root.addView(card,bottom);setContentView(root);
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        preview.start();
-    }
-
-    @Override
-    protected void onPause() {
-        preview.stop();
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        handler.removeCallbacks(tick);
-        super.onDestroy();
-    }
-
-    private int dp(float value) {
-        return Math.round(value * getResources().getDisplayMetrics().density);
-    }
+    private void more(){new AlertDialog.Builder(this).setTitle("显示与查看").setItems(new String[]{settings.structure()?"关闭视角响应":"开启视角响应","查看静态角度参考",settings.firstPass()?"关闭肩背联调":"开启肩背联调","版本 0.6.0 · 首轮联调"},(d,n)->{if(n==0){settings.structure(!settings.structure());preview.requestRender();}else if(n==1)startActivity(new Intent(this,FramingStudyActivity.class));else if(n==2){settings.firstPass(!settings.firstPass());preview.requestRender();}}).setNegativeButton("关闭",null).show();}
+    private Button add(LinearLayout row,String text,boolean primary,Runnable action){Button b=Ui.button(this,text,primary,action);LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,dp(48),1);p.setMargins(dp(3),dp(3),dp(3),dp(3));row.addView(b,p);return b;}
+    @Override protected void onResume(){super.onResume();Ui.immersive(this);preview.start();}
+    @Override protected void onPause(){preview.stop();super.onPause();}
+    private int dp(float v){return Ui.dp(this,v);}
 }

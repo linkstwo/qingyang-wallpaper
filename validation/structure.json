@@ -1,0 +1,67 @@
+{
+  "triangles": 16384,
+  "vertices": 49152,
+  "depthMin": 0.00017840771761257201,
+  "depthMax": 121.94358825683594,
+  "minAreaRatio": 0.49683091520356426,
+  "maxAreaRatio": 1.4769534305508012,
+  "maxTravel": 21.571455259918093,
+  "pinnedError": 0,
+  "minCoupledAreaRatio": 0.4868524737791203,
+  "maxCoupledAreaRatio": 1.6922020370604216,
+  "phoneTested": false,
+  "structure": {
+    "version": 4,
+    "source": [
+      1086,
+      1448
+    ],
+    "units": "source pixels; positive depth towards viewer",
+    "pivot": [
+      620,
+      1100
+    ],
+    "cameraDistance": 2200,
+    "yawRadians": 0.14,
+    "pitchRadians": 0.07,
+    "headPlate": {
+      "anchor": [
+        430,
+        330
+      ],
+      "depth": 116,
+      "rigidThroughY": 395,
+      "neckEndsY": 565
+    },
+    "hairEnvelope": {
+      "width": 56,
+      "rootStart": 285,
+      "rootEnd": 465,
+      "releaseStart": 480,
+      "releaseEnd": 650
+    },
+    "armSupport": {
+      "shoulder": [
+        815,
+        575
+      ],
+      "elbow": [
+        815,
+        1010
+      ],
+      "wrist": [
+        350,
+        1175
+      ],
+      "upperRadius": 48,
+      "foreRadius": 42,
+      "feather": 36
+    },
+    "references": [
+      "main-front-three-quarter.png",
+      "side-reference.png",
+      "back-reference.png"
+    ],
+    "limitation": "Bounded main-view depth proxy. Hidden surfaces and 360-degree viewing are not reconstructed."
+  }
+}

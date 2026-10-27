@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "singleAffinePatchAllowed": false,
+  "orientationTriplet": [
+    "frameRightNeckBase",
+    "frameRightStrapAtShoulder",
+    "upperShoulderSkinCandidate"
+  ],
+  "signedDoubleAreaPixels": {
+    "main": -2620,
+    "sideB": 968
+  },
+  "rejectionReason": "These proposed point pairs reverse orientation and are rejected as a single affine correspondence. Smooth-skin candidates are not verified homologous anatomy; this does not prove the physical shoulder must fold.",
+  "source": "references/derived/side-b-shoulder-back.png",
+  "sourceSha256": "75d3831e06d808247e386b8dfbdec5dcad190225c66c51bb47bbab8be5a56e56",
+  "target": "references/originals/main-reading-v2.png",
+  "targetSha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+  "method": "two-point orientation-preserving similarity, no mirror",
+  "fitAnchors": [
+    "frameRightNeckBase",
+    "frameRightStrapAtShoulder"
+  ],
+  "cropToMainRowMajor2x3": [
+    [
+      1.048529411764706,
+      -0.21911764705882356,
+      721.3514705882353
+    ],
+    [
+      0.21911764705882356,
+      1.048529411764706,
+      361.9808823529412
+    ]
+  ],
+  "scale": 1.0711799431413171,
+  "imagePlaneRotationRadians": 0.20601139403989002,
+  "cameraYawInferred": false,
+  "residuals": {
+    "frameRightStrapAtShoulder": {
+      "fittedAnchor": true,
+      "predictedMain": [
+        905.0,
+        431.0
+      ],
+      "observedMain": [
+        905.0,
+        431.0
+      ],
+      "residualPixels": 0.0,
+      "insideCrop": true
+    },
+    "frameRightNeckBase": {
+      "fittedAnchor": true,
+      "predictedMain": [
+        865.0,
+        392.0
+      ],
+      "observedMain": [
+        865.0,
+        392.0
+      ],
+      "residualPixels": 0.0,
+      "insideCrop": true
+    },
+    "frameRightEarVisibleCenter": {
+      "fittedAnchor": false,
+      "predictedMain": [
+        715.3294117647059,
+        207.5176470588235
+      ],
+      "observedMain": [
+        703.0,
+        255.0
+      ],
+      "residualPixels": 49.05698966808013,
+      "insideCrop": false
+    },
+    "upperShoulderSkinCandidate": {
+      "fittedAnchor": false,
+      "predictedMain": [
+        940.1794117647061,
+        493.0676470588236
+      ],
+      "observedMain": [
+        1005.0,
+        463.0
+      ],
+      "residualPixels": 71.45468535249113,
+      "insideCrop": true
+    }
+  },
+  "observationErrorPerImagePixels": 30,
+  "pointReview": {
+    "reviewedSourceCrops": {
+      "main": [
+        550,
+        300,
+        1100,
+        900
+      ],
+      "sideB": [
+        650,
+        300,
+        900,
+        500
+      ]
+    },
+    "observedIssue": "upperShoulderSkinCandidate is a smooth-skin sample at different silhouette-relative locations; it is not an identified homologous anatomical vertex.",
+    "rejectedAsCorrespondence": [
+      "upperShoulderSkinCandidate"
+    ],
+    "neckAndStrapStatus": "local authoring candidates only; clothing and view dependent",
+    "consequence": "Opposite orientation of the old three-point sample does not establish an unavoidable physical fold; it establishes that those three proposed correspondences must not be used as one affine patch.",
+    "confidence": 0,
+    "crossImageCorrespondenceAccepted": false
+  },
+  "confidence": 0,
+  "accepted": false,
+  "limitations": [
+    "Two fitted anchors have zero residual by construction; they are not validation.",
+    "Held-out shoulder/ear differences can reflect pose or landmark ambiguity; refine observations before registration.",
+    "Ear lies outside this crop and is not a texture provider here.",
+    "Do not transfer the whole bent arm or treat this image-plane transform as a camera angle."
+  ]
+}

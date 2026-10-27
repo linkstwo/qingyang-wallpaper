@@ -1,0 +1,135 @@
+{
+  "rows": [
+    {
+      "forearmVolume": false,
+      "pixel": [
+        239.5,
+        795.5
+      ],
+      "before": 0,
+      "after": [
+        {
+          "paper": false,
+          "triangle": 13597,
+          "source": [
+            501.716931368866,
+            1107.295064483552
+          ],
+          "ndcDepth": 0.22465376947325033,
+          "sourceAlpha": 1
+        }
+      ]
+    },
+    {
+      "forearmVolume": false,
+      "pixel": [
+        235.5,
+        807.5
+      ],
+      "before": 0,
+      "after": [
+        {
+          "paper": false,
+          "triangle": 13604,
+          "source": [
+            501.3031915870748,
+            1125.8914221627192
+          ],
+          "ndcDepth": 0.20198228741886817,
+          "sourceAlpha": 1
+        }
+      ]
+    },
+    {
+      "forearmVolume": false,
+      "pixel": [
+        227.5,
+        820.5
+      ],
+      "before": 0,
+      "after": [
+        {
+          "paper": false,
+          "triangle": 9089,
+          "source": [
+            487.2018188289826,
+            1146.1457309564148
+          ],
+          "ndcDepth": 0.18209383419116112,
+          "sourceAlpha": 1
+        }
+      ]
+    },
+    {
+      "forearmVolume": true,
+      "pixel": [
+        239.5,
+        795.5
+      ],
+      "before": 0,
+      "after": [
+        {
+          "paper": false,
+          "triangle": 24126,
+          "source": [
+            501.6429307185418,
+            1107.2950494697873
+          ],
+          "ndcDepth": 0.2247962661521663,
+          "sourceAlpha": 1
+        }
+      ]
+    },
+    {
+      "forearmVolume": true,
+      "pixel": [
+        235.5,
+        807.5
+      ],
+      "before": 0,
+      "after": [
+        {
+          "paper": false,
+          "triangle": 24135,
+          "source": [
+            501.3031915870748,
+            1125.8914221627192
+          ],
+          "ndcDepth": 0.20198228741886817,
+          "sourceAlpha": 1
+        }
+      ]
+    },
+    {
+      "forearmVolume": true,
+      "pixel": [
+        227.5,
+        820.5
+      ],
+      "before": 0,
+      "after": [
+        {
+          "paper": false,
+          "triangle": 14331,
+          "source": [
+            487.2018188289826,
+            1146.1457309564148
+          ],
+          "ndcDepth": 0.18209383419116112,
+          "sourceAlpha": 1
+        }
+      ]
+    }
+  ],
+  "viewport": [
+    540,
+    1176
+  ],
+  "cameraYaw": -0.3490658503988659,
+  "bodyPose": {},
+  "rear": false,
+  "geometryDepthInferred": true,
+  "sourceUvUnchanged": true,
+  "wholeT03Accepted": false,
+  "phoneTested": false
+}

@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0303",
+  "fence": 2,
+  "baseHead": "3cf1e6b819d13a1f394ba1a255fc62491194102a",
+  "createdAt": "2026-10-26T03:14:31.106Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "android-app/app/src/main/assets/scene-report.json",
+      "bytes": 5352,
+      "sha256": "13ab5a3378bdd83e4ce431d8448050b3479ef8aebc2fe4f2f958fdcafc19e723"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_confidence.bin",
+      "bytes": 76904,
+      "sha256": "f24da5d640df31c51ef97a37d4e5e6b0e436087868c3c5b1ca0da4510c3ff264"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_indices.bin",
+      "bytes": 230688,
+      "sha256": "b19a3995393c7a2d7af35a44dd54e8038be71c7b69020a4c58e6189ded8a63ef"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_normals.bin",
+      "bytes": 230712,
+      "sha256": "e6537a731351055a10e4115e53e0c3b076ad5198630a55552378ab7dd702595f"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_positions.bin",
+      "bytes": 230712,
+      "sha256": "34553e1575a606663e8424a2d83d72ab9176bd858110184f9816d76c83b8b895"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_regions.bin",
+      "bytes": 76904,
+      "sha256": "ac5bcaaaa9346717fcd95f457936c7e656db492f3cf11d51a83f833a4d90e8b7"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_skin.bin",
+      "bytes": 461424,
+      "sha256": "4dcab355f5d1fb999653592148410f7cf766b05f26a49cbb480092ad835dcec8"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_uv.bin",
+      "bytes": 153808,
+      "sha256": "582ad596c2d713da5baf601fc8e4a20cd5dd9f227ffba511ca7767e7ffd69fc3"
+    },
+    {
+      "path": "android-app/tools/export_scene.mjs",
+      "bytes": 1687,
+      "sha256": "e2c891e676a2784ace13e782024091b5d3be1cfa23de0a1b53c719f8659a386c"
+    },
+    {
+      "path": "character-prototype/preview/connected-proxy.mjs",
+      "bytes": 5273,
+      "sha256": "6a580c7766d181bb22ce5dd35372311a18a6b44d5df4fabd09571dbc63cd1af3"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 22002,
+      "sha256": "4c769eb06c2b4fc8daa0cd51a7f28324b4bb2f2e304d171a7d7e96b6c6c3aa31"
+    },
+    {
+      "path": "docs/S2-CONNECTED-STRUCTURE.md",
+      "bytes": 942,
+      "sha256": "8d424b44b4cddfa63c5b454d1b9e07d03effdd691a2eb7bbdd0bba3ce4aa8067"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 3094,
+      "sha256": "64cb8b2a756f2e90b3b82334bd3b058a341f73f302cf73c22b22d103435e3e46"
+    },
+    {
+      "path": "references/asset-manifest.json",
+      "bytes": 5651,
+      "sha256": "d5e742a32b5d73539784e0f25104212b7061d7b94877ebcede454c903e8e110a"
+    },
+    {
+      "path": "tests/connected-proxy-regression.mjs",
+      "bytes": 2302,
+      "sha256": "5503385ab024d72cfc0e73a5006e5a0ae937dbd0b0ee8f66747855184d0cafcd"
+    },
+    {
+      "path": "validation/s2-connected-proxy.json",
+      "bytes": 867,
+      "sha256": "be167a8baa94e4b8deeee19e858bfd5b6a2e8adb4786003372f9260117db78b0"
+    },
+    {
+      "path": "validation/s2-structure-gles.jpg",
+      "bytes": 109087,
+      "sha256": "8200395edbf729acd2d83dead3c3afe62df1b318fc531f7831634dc34214dfb8"
+    },
+    {
+      "path": "validation/s2-structure-gles.json",
+      "bytes": 346,
+      "sha256": "46a51b9c8f8304d7fb1f980116a952162e2d1af7d84f9c817584cbfbfef94f99"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/connected-proxy-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_scene.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python3 tests/render_structure_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python3 scripts/verify_assets.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Implement supported skeletal motion for the joined proxy; fixed observed paper wrist, free unobserved near wrist, test shape/contact bounds.",
+    "Continue source registration and hidden-material credibility before textured side/back or widening production view."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "33b18832565b84a8ae24623a149d954902948b2f79f072cee017c2420d2a1937"
+}

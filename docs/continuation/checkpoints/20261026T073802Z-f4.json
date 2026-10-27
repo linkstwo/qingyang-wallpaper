@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0650",
+  "fence": 4,
+  "baseHead": "1d7073730cfeb64d544d2ca859ea84857b50d10a",
+  "createdAt": "2026-10-26T07:38:02.122306+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "android-app/app/src/main/assets/mesh-report.json",
+      "bytes": 4885,
+      "sha256": "a33f5df9dcd9bbb64b638e3fe7641ecb3abe20f4b082b0cf783eb4d031c5499c"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene-report.json",
+      "bytes": 5975,
+      "sha256": "9f446e1c9dcd69dd42bf67ea50f533d97f783cca854ca0d42ae5b4525843f8b5"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene.vert",
+      "bytes": 4613,
+      "sha256": "2c3162d1f7c1136e6bd2cf9ca5448625dfb3007b41ea726334fabf197de853db"
+    },
+    {
+      "path": "character-prototype/preview/observed-surface.vert",
+      "bytes": 1099,
+      "sha256": "6cb5533f32f115ac5a82156e5e2556bcf2aaeddbf7af8cb1599e0c2996614b5e"
+    },
+    {
+      "path": "character-prototype/preview/scene-model.mjs",
+      "bytes": 6549,
+      "sha256": "f7161b61e136da905aa0dd96161be9a29acf97bac7d639d2d81c12d1e035f934"
+    },
+    {
+      "path": "character-prototype/preview/scene.vert",
+      "bytes": 4613,
+      "sha256": "2c3162d1f7c1136e6bd2cf9ca5448625dfb3007b41ea726334fabf197de853db"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 18368,
+      "sha256": "757fb856d313ce9298a0ff0cb27e8b828dfc6d6419330511fdde2c0f4a0433bc"
+    },
+    {
+      "path": "character-prototype/preview/structural-skin.vert",
+      "bytes": 1400,
+      "sha256": "5565b13a10352b06e210e64906cbd8b497419073a3a64f17ad8c0c73318a4916"
+    },
+    {
+      "path": "character-prototype/preview/structure.mjs",
+      "bytes": 4243,
+      "sha256": "cf3cec4aa4b0d01624ff6629d1e4ba20123b9cc2fd5f124d539e2df4a13b12d1"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 29283,
+      "sha256": "ddce9c48e0a0d2edb0aeb7e73d77f10ea9badb9e7d0564265d873937b8767a4d"
+    },
+    {
+      "path": "docs/S2-PROJECTIVE-DEPTH.md",
+      "bytes": 1559,
+      "sha256": "1d7ce15955c2bef297032531eb16d0b2567cd1220d2e7ce0be01c64883e51bb4"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 4351,
+      "sha256": "2e291281defe99bbe5d9cc6b7e596bb467d9505fb72f2dbf857b2f50cffa4207"
+    },
+    {
+      "path": "tests/projective-depth-gles.py",
+      "bytes": 3638,
+      "sha256": "88a5a65e102750be2ba719cc2f57408e0058460986b0a84ffbe0607c86cfe11f"
+    },
+    {
+      "path": "tests/render_material_chart_gles.py",
+      "bytes": 4178,
+      "sha256": "a066589043d7671667db24ff6c38bd025fea1e738a6376a7ac51ff5de4a7cef6"
+    },
+    {
+      "path": "tests/render_structure_gles.py",
+      "bytes": 3631,
+      "sha256": "ef33f331f9029c4a56ae879cdb51bcf3519fe111e83b17fe8e5c743ce038b8ae"
+    },
+    {
+      "path": "tests/structural-lab-browser.mjs",
+      "bytes": 8816,
+      "sha256": "b32510c349b7cd7fc67e99b167e198211d0c55cbfd3e5d57580ace387d66be9a"
+    },
+    {
+      "path": "validation/s2-projective-depth.json",
+      "bytes": 1563,
+      "sha256": "8eada04b87725f289e1b56b7c4c0f1fb5032c749a22e9150050394fa575bb7aa"
+    },
+    {
+      "path": "validation/s2-structural-lab-browser.json",
+      "bytes": 3282,
+      "sha256": "528a2f4e05885f0d6cf107edb0b764be1a4df328dee98935598652bc7f9516c0"
+    },
+    {
+      "path": "validation/s2-structural-lab.jpg",
+      "bytes": 141958,
+      "sha256": "c1eea54ddd40c44487d95d14572fad0f7e31625a6ef88ff00eb6cc924e407c67"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python tests/projective-depth-gles.py (old quadratic negative control rejected)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/depth-order-gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/check_projection_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_observed_scene_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/scene-model-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/layered-scene-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python scripts/verify_assets.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_scene.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_lifecycle.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/structural-lab-browser.mjs <Chrome134>",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "New Android release build/signing/phone acceptance",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Continue source-constrained connected front/rear geometry and regional source provenance; protect strict neutral RGB equality.",
+    "Inspect the reference-backed nape/shoulder bridge in actual rendered poses and restrict unsupported material/view ranges before Android candidate integration."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "1498142894cd3ac3faa6884acfce1b0aee0400f3022028dd0a779e7cff232eb9"
+}

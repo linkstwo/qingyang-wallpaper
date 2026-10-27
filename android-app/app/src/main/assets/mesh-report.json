@@ -1,31 +1,167 @@
 {
   "source": "character-prototype/preview/{rig.mjs,contact-rig.mjs,mesh.json}（只读）",
   "canvas": [
-    1086,
-    1448
+    1152,
+    1536
   ],
   "bins": [
     {
       "name": "character_mesh.bin",
-      "bytes": 393216,
-      "sha256": "C527DEF9574B7B2D456F7052B86E17A4AB49E9D980719C1B3E4EDE12613FBE04"
+      "bytes": 434136,
+      "sha256": "CEAEEF7A416A88C4C4291A76575DA0B3429BEF38DB992064873AFB4189DA70C1"
     },
     {
       "name": "character_pins.bin",
-      "bytes": 196608,
-      "sha256": "16EB1EE449B422DFCA32DEC08FFB9F048EB16C2CE07A8557E262EA1C1B7FEFBD"
+      "bytes": 217068,
+      "sha256": "0321B96E7C866A7912F0478FE780613C1ED991045793D6F48E796AA5A380F4A7"
+    },
+    {
+      "name": "character_depth.bin",
+      "bytes": 217068,
+      "sha256": "5A4A0CAF072C50BCE906930F015322ABFBD65CB2C3C26E5B816EFF8C5EAA0229"
     },
     {
       "name": "foreground_mesh.bin",
-      "bytes": 1704,
-      "sha256": "013BF3671344D6BDD047920853BAEFAFBDEE3BC794A530E882C88DC8A699B9E4"
+      "bytes": 3936,
+      "sha256": "06ED4FF9C5EA6D5E87E25BB7A28A2721B935D609EABFC047E5381BA50C2F55F4"
     }
   ],
+  "structure": {
+    "version": 8,
+    "source": [
+      1152,
+      1536
+    ],
+    "pivot": [
+      790,
+      1110
+    ],
+    "cameraDistance": 2300,
+    "depthClip": {
+      "nearWorldZ": 1000,
+      "farWorldZ": -2000,
+      "numerator": [
+        4250,
+        -14
+      ],
+      "denominator": 17250
+    },
+    "yawRadians": 0.04,
+    "pitchRadians": 0.02,
+    "headPlate": {
+      "anchor": [
+        550,
+        305
+      ],
+      "depth": 116,
+      "rigidThroughY": 420,
+      "neckEndsY": 590
+    },
+    "armSupport": {
+      "shoulder": [
+        590,
+        535
+      ],
+      "elbow": [
+        635,
+        920
+      ],
+      "wrist": [
+        350,
+        1005
+      ],
+      "upperRadius": 36,
+      "foreRadius": 33,
+      "feather": 100,
+      "visibleY": [
+        820,
+        910
+      ]
+    },
+    "hairEnvelope": {
+      "rootY": 330,
+      "tipY": 590,
+      "rootX": 350,
+      "tipX": 480,
+      "width": 50,
+      "releaseY": 730,
+      "outline": [
+        [
+          329,
+          320
+        ],
+        [
+          359,
+          320
+        ],
+        [
+          392,
+          385
+        ],
+        [
+          428,
+          440
+        ],
+        [
+          461,
+          490
+        ],
+        [
+          486,
+          535
+        ],
+        [
+          509,
+          587
+        ],
+        [
+          500,
+          640
+        ],
+        [
+          474,
+          667
+        ],
+        [
+          451,
+          624
+        ],
+        [
+          453,
+          578
+        ],
+        [
+          420,
+          540
+        ],
+        [
+          389,
+          484
+        ],
+        [
+          362,
+          424
+        ],
+        [
+          343,
+          373
+        ]
+      ]
+    },
+    "references": [
+      "main-reading-v2.png",
+      "side-reference.png",
+      "back-reference.png"
+    ],
+    "limitation": "Bounded main-view 2.5D proxy; side/back reference textures are not registered yet."
+  },
+  "topologyVersion": 2,
+  "topologyNote": "Observed paper polygon removed from character triangles; only hand/seat depths attach body to support.",
   "counts": {
-    "characterTriangles": 16384,
-    "characterVertices": 49152,
-    "foregroundTriangles": 71,
-    "foregroundVertices": 213
+    "characterTriangles": 18089,
+    "characterVertices": 54267,
+    "foregroundTriangles": 164,
+    "foregroundVertices": 492
   },
   "springs": {
     "body": {
@@ -44,6 +180,7 @@
       "limit": 1.5
     }
   },
+  "responseNote": "springs/limits are legacy geometry metadata; runtime response is Physics.java + preview/response.mjs, checked by tests/run_response.py",
   "limits": {
     "bodyPixels": 5,
     "chestPixels": 7,
@@ -53,28 +190,28 @@
   "pins": {
     "min": 0,
     "max": 1,
-    "pinnedCount": 7068
+    "pinnedCount": 5806
   },
   "images": [
     {
       "name": "original.png",
-      "bytes": 3149695,
-      "srcSha256": "90FCBEDFABA49FAC7028597393FB4532C3D649E2F150CF45DB6F6B9DC624B7E1",
-      "dstSha256": "90FCBEDFABA49FAC7028597393FB4532C3D649E2F150CF45DB6F6B9DC624B7E1",
+      "bytes": 302522,
+      "srcSha256": "CC43F133C865B272F06CDFF0D35086FAE5B668100A70DF09CC5CC1D0301EB411",
+      "dstSha256": "CC43F133C865B272F06CDFF0D35086FAE5B668100A70DF09CC5CC1D0301EB411",
       "identical": true
     },
     {
       "name": "mask.png",
-      "bytes": 949379,
-      "srcSha256": "627FDC83355AE1A952E8E9AD194ABAAFB9CB11C207B739E9794CDD5CA97E5789",
-      "dstSha256": "627FDC83355AE1A952E8E9AD194ABAAFB9CB11C207B739E9794CDD5CA97E5789",
+      "bytes": 15793,
+      "srcSha256": "B975FBDFDFE34BCEC730FA5CCF9A91FD4D5C0B74CD8DDECB97810B1F5DBCC43D",
+      "dstSha256": "B975FBDFDFE34BCEC730FA5CCF9A91FD4D5C0B74CD8DDECB97810B1F5DBCC43D",
       "identical": true
     },
     {
       "name": "background.png",
-      "bytes": 2095777,
-      "srcSha256": "0286D772A001F9B908692F691641889E54EC27E26EBE83E4C2D51B9BF944E317",
-      "dstSha256": "0286D772A001F9B908692F691641889E54EC27E26EBE83E4C2D51B9BF944E317",
+      "bytes": 2542130,
+      "srcSha256": "AA5A1A522533693B401D9C148B45786163631A376BB4958D8EA7A1C5AEB9E84D",
+      "dstSha256": "AA5A1A522533693B401D9C148B45786163631A376BB4958D8EA7A1C5AEB9E84D",
       "identical": true
     }
   ],
@@ -84,23 +221,7 @@
       "pin": 1
     },
     {
-      "name": "paper edge",
-      "pin": 1
-    },
-    {
-      "name": "far fingers",
-      "pin": 1
-    },
-    {
-      "name": "far palm",
-      "pin": 1
-    },
-    {
-      "name": "near fingers",
-      "pin": 1
-    },
-    {
-      "name": "near palm",
+      "name": "holding hand",
       "pin": 1
     },
     {

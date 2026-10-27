@@ -1,0 +1,9 @@
+{
+  "samples": 91,
+  "max3dRayError": 8.526512829121202e-13,
+  "closestOccluderSelected": true,
+  "backfaceExcluded": true,
+  "clipNearFarVerified": true,
+  "cameraDistance": 2300,
+  "phoneTested": false
+}

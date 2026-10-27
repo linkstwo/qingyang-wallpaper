@@ -4,8 +4,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import {makeLayeredCharacterMesh,layeredMeshVersion} from '../../character-prototype/preview/layered-mesh.mjs';
 import { makeMesh } from '../../character-prototype/preview/rig.mjs';
-import { contactWeights, contactPin } from '../../character-prototype/preview/contact-rig.mjs';
+import { structure, depthWeights } from '../../character-prototype/preview/structure.mjs';
+import { bodyContactWeights, contactPin } from '../../character-prototype/preview/contact-rig.mjs';
 
 const PREVIEW = fileURLToPath(new URL('../../character-prototype/preview/', import.meta.url));
 const OUT = fileURLToPath(new URL('../app/src/main/assets/', import.meta.url));
@@ -23,8 +25,8 @@ function output(name, bytes) {
 const config = JSON.parse(fs.readFileSync(path.join(PREVIEW, 'mesh.json'), 'utf8'));
 const [W, H] = config.canvas;
 
-const character = makeMesh([[0, 0], [W, 0], [W, H], [0, H]], [], config.limits.triangleEdgePixels);
-const pins = contactWeights(character);
+const character = makeLayeredCharacterMesh(config.limits.triangleEdgePixels);
+const pins = bodyContactWeights(character);
 const foreground = makeMesh(config.foregroundOutline, [], 80);
 
 const sha = (buf) => crypto.createHash('sha256').update(buf).digest('hex').toUpperCase();
@@ -41,8 +43,12 @@ const report = {
   bins: [
     writeBin('character_mesh.bin', character),
     writeBin('character_pins.bin', pins),
+    writeBin('character_depth.bin', depthWeights(character)),
     writeBin('foreground_mesh.bin', foreground),
   ],
+  structure,
+  topologyVersion:layeredMeshVersion,
+  topologyNote:"Observed paper polygon removed from character triangles; only hand/seat depths attach body to support.",
   counts: {
     characterTriangles: character.length / 6,
     characterVertices: character.length / 2,
@@ -50,6 +56,7 @@ const report = {
     foregroundVertices: foreground.length / 2,
   },
   springs: config.springs,
+  responseNote: 'springs/limits are legacy geometry metadata; runtime response is Physics.java + preview/response.mjs, checked by tests/run_response.py',
   limits: config.limits,
   pins: {
     min: Math.min(...pins),
@@ -75,12 +82,22 @@ for (const name of ['original.png', 'mask.png', 'background.png']) {
   });
 }
 
+for (const name of ['scene.vert', 'scene.frag']) output(name, fs.readFileSync(path.join(PREVIEW, name)));
+
 // 独立复核：安卓端会用它校验的关键接触点
-const fixed = [['paper', 120, 1010], ['paper edge', 300, 1100], ['far fingers', 170, 920], ['far palm', 260, 930], ['near fingers', 205, 1190], ['near palm', 310, 1190], ['seated support', 500, 1400]];
-const free = [['face', 430, 340], ['shoulder', 815, 528], ['torso', 700, 780], ['elbow', 815, 1010]];
+const fixed=[['paper',100,1000],['holding hand',330,990],['seated support',500,1450]];
+const free=[['face',550,305],['shoulder',940,490],['torso',795,800],['elbow',635,920]];
 report.contactRecheck = [...fixed, ...free].map(([name, x, y]) => ({ name, pin: contactPin(x, y) }));
 report.contactRecheckPassed = report.contactRecheck.every(({ name, pin }) => fixed.some(([n]) => n === name) ? pin > 0.9999 : pin < 0.001);
 
 output('mesh-report.json', Buffer.from(JSON.stringify(report, null, 2)));
 console.log(JSON.stringify(report, null, 2));
 if (CHECK) console.log('PASS: Android assets exactly match the editable prototype; no files were written.');
+
+// Native load guard must track regenerated topology before an APK can be built.
+const native=fs.readFileSync(new URL('../app/src/main/java/com/tangtang/motionwallpaper/MeshAssets.java',import.meta.url),'utf8');
+const expected=Number(native.match(/EXPECTED_CHARACTER_TRIANGLES\s*=\s*(\d+)/)?.[1]);
+if(expected!==character.length/6)throw Error('Native MeshAssets triangle guard is stale: '+expected+' vs '+character.length/6);
+
+// First-pass candidate has independent buffers and a reversible runtime switch.
+await import("./export_round_one.mjs");

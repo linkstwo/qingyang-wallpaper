@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0618",
+  "fence": 13,
+  "baseHead": "bb4e34a111b3ec4542220aa64c7b304824feee85",
+  "createdAt": "2026-10-26T22:34:06.152439+00:00",
+  "stage": "S2",
+  "tasksAccepted": [],
+  "next": [
+    "Actual local main/donor registration with independent anatomical landmarks"
+  ],
+  "files": [
+    {
+      "path": "character-prototype/preview/component-junction.mjs",
+      "sha256": "d4afffa44002dacb505ce46449a0b24ad718a30476406d88d1ff1e62b3db5c87",
+      "bytes": 2939
+    },
+    {
+      "path": "tests/component-junction-regression.mjs",
+      "sha256": "8ecc4d022ea2be943447c531a5231b98c6d9c2e62507d09341ec3a9ac95df326",
+      "bytes": 3879
+    },
+    {
+      "path": "validation/f13-component-junction.json",
+      "sha256": "9116da1fd0c19c1f5faca1c9ee7e486cf8e7ef5a205b4f1f810deeab9d004602",
+      "bytes": 347
+    },
+    {
+      "path": "references/derived/side-b-component-junction.json.gz",
+      "sha256": "35d18a48c374e43ebca1d746aaaa31c872bed0d88c6f996f5bdcd43f2627a9f7",
+      "bytes": 30825
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE13.md",
+      "sha256": "b564e58caa36fd6a99aa64c8ad0828f0255a2848e95090c8f25006cc3be89623",
+      "bytes": 4783
+    },
+    {
+      "path": "docs/REMAINING-TASKS-20261026.json",
+      "sha256": "dd21f7b18c6d4274a86af359c82749a229a55d231193a16b338163faab78e814",
+      "bytes": 19196
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "sha256": "fbe191a114801686b9ef43153d95aaa76129753ddf799941c89d169feddd1dc8",
+      "bytes": 36331
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/component-junction-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "depthModel": "export is donor image plane; curved lift only used as test",
+  "mainRegistrationAccepted": false,
+  "sourceDigest": "88cd621ee27a4e225d3477f77422022d9252177af09884f8efee7df31634dae5"
+}

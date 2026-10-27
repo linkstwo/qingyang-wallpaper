@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wallpaper xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/wallpaper_description"
-    android:settingsActivity="com.tangtang.motionwallpaper.MainActivity"
+    android:settingsActivity="com.tangtang.motionwallpaper.FramingEditorActivity"
     android:thumbnail="@drawable/icon" />

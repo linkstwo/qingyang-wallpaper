@@ -9,7 +9,7 @@ public class LifecycleRegression {
  static RenderLoop start(boolean activeFirst){RenderLoop r=new RenderLoop(new Context());if(activeFirst)r.setActive(true);r.setSurface(new Surface(),1080,2400);if(!activeFirst)r.setActive(true);Looper.advance(0);return r;}
  public static void main(String[]args)throws Exception{
   RenderLoop r=start(false);check(EGL14.swaps>0,"initial wallpaper frame must reach swap (original 0.5.0 regression)");check(Log.lines.stream().anyMatch(s->s.contains("FIRST_SWAP_OK")),"first frame acknowledgement");
-  int draws=SceneRenderer.draws;r.setActive(false);Looper.advance(0);Looper.advance(500);check(SceneRenderer.draws==draws,"hidden screen must stop frames");check(!feed(r).active,"hidden screen must stop sensors");r.setActive(true);Looper.advance(0);check(SceneRenderer.draws>draws,"visible screen resumes");check(Log.lines.stream().filter(s->s.contains("FIRST_SWAP_OK")).count()>=2,"resume acknowledges a new submitted frame");
+  int draws=SceneRenderer.draws;r.setActive(false);Looper.advance(0);Looper.advance(500);check(SceneRenderer.draws==draws,"hidden screen must stop frames");check(!feed(r).active,"hidden screen must stop sensors");r.setActive(true);Looper.advance(0);check(SceneRenderer.draws>draws,"visible screen resumes");check(feed(r).active,"visible retained-context resume restarts sensors");check(Log.lines.stream().filter(s->s.contains("FIRST_SWAP_OK")).count()>=2,"resume acknowledges a new submitted frame");
   int contexts=EGL14.created;r.resize(2400,1080);Looper.advance(0);check(EGL14.created==contexts,"resize must retain context");check(SceneRenderer.resizes>0,"resize updates renderer viewport");
   Looper.on(looper(r),r::clearSurface);draws=SceneRenderer.draws;Looper.advance(500);check(SceneRenderer.draws==draws,"destroyed surface stops drawing");check(EGL14.contexts.isEmpty()&&EGL14.surfaces.isEmpty(),"destroyed surface releases EGL");
   r.setSurface(new Surface(),1080,2400);r.setActive(true);Looper.advance(0);check(SceneRenderer.draws>draws,"replacement surface renders");
@@ -20,6 +20,13 @@ public class LifecycleRegression {
   r=start(true);RenderLoop second=start(false);int before=EGL14.swaps;close(r);Looper.advance(300);check(EGL14.swaps>before,"second wallpaper engine survives first teardown");close(second);check(EGL14.contexts.isEmpty()&&EGL14.surfaces.isEmpty(),"both engines clean up independently");
   Surface invalid=new Surface();invalid.valid=false;r=new RenderLoop(new Context());r.setSurface(invalid,1,1);r.setActive(true);draws=SceneRenderer.draws;Looper.advance(300);check(SceneRenderer.draws==draws,"invalid native Surface never draws");close(r);
   r=start(false);EGL14.failure="swap";EGL14.persistentFailure=true;Looper.advance(6000);long retries=Log.lines.stream().filter(s->s.contains("EGL retry")).count();check(Looper.pending()==1,"permanent failure retains only one bounded retry");draws=SceneRenderer.draws;r.setActive(false);Looper.advance(0);Looper.advance(4000);check(SceneRenderer.draws==draws&&Looper.pending()==0,"screen off cancels pending fault recovery");close(r);EGL14.persistentFailure=false;EGL14.failure="";
+  r=new RenderLoop(new Context());r.setActive(true);Looper.advance(0);
+  check(!feed(r).active,"activation without a Surface must not register sensors");
+  r.setSurface(new Surface(),1080,2400);Looper.advance(0);check(feed(r).active,"valid Surface starts sensors after EGL creation");
+  Field pf=RenderLoop.class.getDeclaredField("physics");pf.setAccessible(true);Physics prior=(Physics)pf.get(r);prior.chestPx=3;
+  r.setSurface(new Surface(),1080,2400);Looper.advance(0);check(prior.chestPx==0,"replacement Surface discards old motion");
+  Surface replacement=new Surface();replacement.valid=false;r.setSurface(replacement,1,1);Looper.advance(0);
+  check(!feed(r).active,"invalid replacement stops prior Surface sensors");close(r);
   r=new RenderLoop(new Context());r.setSurface(new Surface(),1,1);r.setActive(true);close(r);draws=SceneRenderer.draws;Looper.advance(1000);check(SceneRenderer.draws==draws,"close defeats queued surface/activation callbacks");check(EGL14.contexts.isEmpty()&&EGL14.surfaces.isEmpty(),"no EGL leaks at end");check(EGL14.refs==0,"all display initialize references balanced");
   System.out.println("PASS "+checks+" lifecycle assertions; host Java uses real RenderLoop/EglCore, fake Android/EGL/renderer, no phone claim.");
  }

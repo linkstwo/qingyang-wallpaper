@@ -44,3 +44,25 @@
 !/validation/
 /validation/*.log
 /validation/*.apk
+
+# Rendered previews are delivered separately; regenerate with tests/render_gles.py.
+/validation/*.png
+/validation/*.mp4
+
+# Recreated by the deterministic response checks.
+/validation/motion-0.5.*.csv
+
+# First-pass buffers are reproducibly generated before Android preBuild.
+/android-app/app/src/main/assets/round_*.bin
+/android-app/app/src/main/assets/side_back_*.bin
+/android-app/app/src/main/assets/side-back.png
+/android-app/app/src/main/assets/round-one-report.json
+
+!/.github/
+!/.github/workflows/
+!/.github/workflows/first-pass-060.yml
+
+# Wallpaper Engine native sources; compiled textures/packages are reproducible.
+!/wallpaper-engine/
+/wallpaper-engine/**/*.tex
+/wallpaper-engine/**/*.mpkg

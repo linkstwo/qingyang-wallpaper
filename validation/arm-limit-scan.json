@@ -1,0 +1,35 @@
+{
+  "allMeshHardLimitPassed": true,
+  "repairedRegression": "Original hair-tip fold reproduced in baseline and absent in tested current hard-limit combinations; not phone evidence.",
+  "results": [
+    {
+      "name": "baseline",
+      "cases": 24,
+      "minArea": -0.5378271841465964,
+      "minArmArea": 0.2682411232666754,
+      "worst": {
+        "x": 246.046875,
+        "y": 486.4375,
+        "vx": 1,
+        "vy": -1,
+        "sx": 1,
+        "sy": 1
+      }
+    },
+    {
+      "name": "current",
+      "cases": 24,
+      "minArea": 0.20237297422660594,
+      "minArmArea": 0.2682411232666754,
+      "worst": {
+        "x": 263.015625,
+        "y": 463.8125,
+        "vx": -1,
+        "vy": 1,
+        "sx": 1,
+        "sy": -1
+      }
+    }
+  ],
+  "phoneTested": false
+}

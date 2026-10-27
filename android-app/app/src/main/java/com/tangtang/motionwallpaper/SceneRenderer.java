@@ -3,11 +3,14 @@ package com.tangtang.motionwallpaper;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.hardware.display.DisplayManager;
+import android.view.Display;
 import android.opengl.GLES20;
-import android.opengl.GLUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -18,71 +21,30 @@ import java.nio.FloatBuffer;
  * character-prototype/preview/app.mjs；网格来自 MeshAssets（由样片真源码导出）。
  */
 final class SceneRenderer {
-    static final int SOURCE_WIDTH = 1086;
-    static final int SOURCE_HEIGHT = 1448;
+    static final int SOURCE_WIDTH = 1152;
+    static final int SOURCE_HEIGHT = 1536;
 
-    private static final String VERTEX_SHADER =
-            "precision highp float;\n"
-            + "attribute vec2 a_source;\n"
-            + "attribute float a_pin;\n"
-            + "uniform vec2 u_size,u_view,u_body,u_chest,u_ndcScale,u_ndcOffset;\n"
-            + "uniform float u_layer,u_hair;\n"
-            + "varying vec2 v_uv;\n"
-            + "float bell(vec2 p,vec2 c,vec2 r){vec2 d=(p-c)/r;return exp(-dot(d,d)*2.0);}\n"
-            + "void main(){\n"
-            + "  vec2 p=a_source,q=p;\n"
-            + "  v_uv=p/u_size;\n"
-            + "  if(u_layer<0.5){q+=u_view*vec2(3.0,2.0);}\n"
-            + "  else if(u_layer<1.5){\n"
-            + "    // 人物与图纸是一整块连续贴图面：用区域场保住衣物连续性，\n"
-            + "    // 图纸/双手/坐姿由 a_pin 显式固定，不被切开。\n"
-            + "    float active=1.0-a_pin;\n"
-            + "    float head=1.0-smoothstep(340.0,495.0,p.y);\n"
-            + "    float neck=bell(p,vec2(630.0,410.0),vec2(220.0,180.0));\n"
-            + "    float chest=bell(p,vec2(577.0,785.0),vec2(165.0,205.0));\n"
-            + "    float shoulder=bell(p,vec2(815.0,528.0),vec2(170.0,210.0));\n"
-            + "    float torso=bell(p,vec2(721.0,789.0),vec2(310.0,430.0));\n"
-            + "    float cheek=bell(p,vec2(392.0,333.0),vec2(170.0,155.0));\n"
-            + "    float hair=bell(p,vec2(246.0,367.0),vec2(110.0,210.0));\n"
-            + "    float depth=19.0*torso+11.0*shoulder+20.0*chest+head*(11.0+13.0*cheek);\n"
-            + "    vec2 turn=vec2(u_view.x*depth, u_view.y*depth*0.63);\n"
-            + "    turn.x+=(p.x-560.0)*(-0.006*u_view.x)*head;\n"
-            + "    turn.y+=(p.x-650.0)*u_view.y*0.008*torso;\n"
-            + "    vec2 inertia=u_body*(0.32+0.68*torso+0.22*neck);\n"
-            + "    inertia+=u_chest*chest;\n"
-            + "    inertia+=vec2(u_hair,u_hair*0.35)*hair;\n"
-            + "    inertia+=u_body*0.3*head;\n"
-            + "    q+=(turn+inertia)*active;\n"
-            + "  }\n"
-            + "  else if(u_layer>2.5){q+=u_view*vec2(4.0,2.5);}\n"
-            + "  gl_Position=vec4(q.x*u_ndcScale.x+u_ndcOffset.x,q.y*u_ndcScale.y+u_ndcOffset.y,0.0,1.0);\n"
-            + "}\n";
-
-    private static final String FRAGMENT_SHADER =
-            "precision highp float;varying vec2 v_uv;\n"
-            + "uniform sampler2D u_texture,u_mask;\n"
-            + "uniform float u_maskMode,u_cover;uniform vec2 u_size;\n"
-            + "void main(){\n"
-            + "  float alpha=1.0;\n"
-            + "  if(u_maskMode>0.5){\n"
-            + "    alpha=texture2D(u_mask,v_uv).r;\n"
-            + "    if(u_maskMode>1.5){\n"
-            + "      vec2 d=vec2(3.0)/u_size;\n"
-            + "      alpha=max(alpha,texture2D(u_mask,v_uv+d).r);\n"
-            + "      alpha=max(alpha,texture2D(u_mask,v_uv-d).r);\n"
-            + "      alpha=max(alpha,texture2D(u_mask,v_uv+vec2(d.x,-d.y)).r);\n"
-            + "      alpha=max(alpha,texture2D(u_mask,v_uv+vec2(-d.x,d.y)).r);\n"
-            + "      alpha*=u_cover;\n"
-            + "    }\n"
-            + "  }\n"
-            + "  gl_FragColor=vec4(texture2D(u_texture,v_uv).rgb,alpha);\n"
-            + "}\n";
-
+    private float backdropScaleX,backdropScaleY,backdropOffsetX,backdropOffsetY;
     private final Context context;
+    private final SceneSettings settings;
+    private boolean wider;
+    private boolean phonePreview;
+    private int viewportWidth = 1, viewportHeight = 1;
+    private int viewportX, viewportY, sizePercent, topPercent;
+    private float xOffset = 0.5f, yOffset = 0.5f;
+    private int xPixels, yPixels;
+    private float motionGain = 1f;
+    private CropFrame cropOverride;
+    private CropFrame renderedOverride;
+    private int cropRevision;
+    private CropFrame currentCrop;
     private MeshAssets meshes;
     private int program;
     private int aSource;
-    private int aPin;
+    private int aUv,uRoundMode,texSide;
+    private int roundBody,roundPins,roundDepth,roundPaper,sideBuffer,sideDepth,sideUv;
+    private int roundBodyCount,roundPaperCount,sideCount;
+    private int aPin, aDepth;
     private int uSize;
     private int uView;
     private int uBody;
@@ -92,6 +54,7 @@ final class SceneRenderer {
     private int uMaskMode;
     private int uCover;
     private int uNdcScale;
+    private int uMotionGain, uTipMode, uSoftFrame, uStructureMode;
     private int uNdcOffset;
     private int uTexture;
     private int uMask;
@@ -100,7 +63,7 @@ final class SceneRenderer {
     private int texBackground;
     private int quadBuffer;
     private int characterBuffer;
-    private int pinBuffer;
+    private int pinBuffer, depthBuffer;
     private int foregroundBuffer;
     private int quadCount;
     private int characterCount;
@@ -116,6 +79,19 @@ final class SceneRenderer {
 
     SceneRenderer(Context context) {
         this.context = context.getApplicationContext();
+        settings = new SceneSettings(this.context);
+    }
+
+    void phonePreview(boolean value) { phonePreview = value; }
+    void cropOverride(CropFrame value) { cropOverride=value; }
+
+    void offsets(float x, float y, int px, int py) {
+        xOffset = x; yOffset = y; xPixels = px; yPixels = py;
+    }
+
+    String framingSnapshot() {
+        return "surface=" + surfaceWidth + "x" + surfaceHeight + " visible=" + viewportX + "," + viewportY
+                + ":" + viewportWidth + "x" + viewportHeight + " crop=" + (currentCrop==null?"pending":currentCrop.encode());
     }
 
     boolean isReady() {
@@ -135,12 +111,19 @@ final class SceneRenderer {
         program = buildProgram();
         GLES20.glUseProgram(program);
         aSource = GLES20.glGetAttribLocation(program, "a_source");
+        aUv = GLES20.glGetAttribLocation(program,"a_uv");
+        uRoundMode = GLES20.glGetUniformLocation(program,"u_roundMode");
         aPin = GLES20.glGetAttribLocation(program, "a_pin");
+        aDepth = GLES20.glGetAttribLocation(program, "a_depth");
+        uStructureMode = GLES20.glGetUniformLocation(program, "u_structureMode");
         uSize = GLES20.glGetUniformLocation(program, "u_size");
         uView = GLES20.glGetUniformLocation(program, "u_view");
         uBody = GLES20.glGetUniformLocation(program, "u_body");
         uChest = GLES20.glGetUniformLocation(program, "u_chest");
         uHair = GLES20.glGetUniformLocation(program, "u_hair");
+        uMotionGain = GLES20.glGetUniformLocation(program, "u_motionGain");
+        uTipMode = GLES20.glGetUniformLocation(program, "u_tipMode");
+        uSoftFrame = GLES20.glGetUniformLocation(program, "u_softFrame");
         uLayer = GLES20.glGetUniformLocation(program, "u_layer");
         uMaskMode = GLES20.glGetUniformLocation(program, "u_maskMode");
         uCover = GLES20.glGetUniformLocation(program, "u_cover");
@@ -148,7 +131,7 @@ final class SceneRenderer {
         uNdcOffset = GLES20.glGetUniformLocation(program, "u_ndcOffset");
         uTexture = GLES20.glGetUniformLocation(program, "u_texture");
         uMask = GLES20.glGetUniformLocation(program, "u_mask");
-        if (aSource < 0 || aPin < 0 || uSize < 0 || uView < 0 || uHair < 0) {
+        if (aDepth < 0 || aSource < 0 || aPin < 0 || uSize < 0 || uView < 0 || uHair < 0) {
             throw new IOException("着色器变量缺失");
         }
 
@@ -156,6 +139,11 @@ final class SceneRenderer {
         texOriginal = loadTexture("original.png");
         texMask = loadTexture("mask.png");
         texBackground = loadTexture("background.png");
+        texSide = loadTexture("side-back.png");
+        FirstPassAssets first = new FirstPassAssets(context);
+        roundBody=makeBuffer(first.body); roundPins=makeBuffer(first.pins); roundDepth=makeBuffer(first.depth);
+        roundPaper=makeBuffer(first.paper); sideBuffer=makeBuffer(first.side); sideDepth=makeBuffer(first.sideDepth); sideUv=makeBuffer(first.sideUv);
+        roundBodyCount=first.body.capacity()/2; roundPaperCount=first.paper.capacity()/2; sideCount=first.side.capacity()/2;
 
         quadBuffer = makeBuffer(new float[]{
                 0.0f, 0.0f, SOURCE_WIDTH, 0.0f, 0.0f, SOURCE_HEIGHT,
@@ -164,6 +152,7 @@ final class SceneRenderer {
         characterBuffer = makeBuffer(meshes.characterMesh);
         characterCount = meshes.characterMesh.capacity() / 2;
         pinBuffer = makeBuffer(meshes.characterPins);
+        depthBuffer = makeBuffer(meshes.characterDepth);
         foregroundBuffer = makeBuffer(meshes.foregroundMesh);
         foregroundCount = meshes.foregroundMesh.capacity() / 2;
 
@@ -178,44 +167,106 @@ final class SceneRenderer {
         ready = true;
     }
 
-    /** 屏幕尺寸变化：按“铺满并居中裁切”算 NDC 变换（与原轻漾 0.4.0 的 ViewMapping 同策略）。 */
+    /** Persistent wider/close composition. Uncovered space uses the clean workshop background. */
     void resize(int width, int height) {
         surfaceWidth = Math.max(1, width);
         surfaceHeight = Math.max(1, height);
-        final float k = Math.max(surfaceWidth / (float) SOURCE_WIDTH, surfaceHeight / (float) SOURCE_HEIGHT);
-        final float offsetX = (surfaceWidth - SOURCE_WIDTH * k) * 0.5f;
-        final float offsetY = (surfaceHeight - SOURCE_HEIGHT * k) * 0.5f;
-        ndcScaleX = 2.0f * k / surfaceWidth;
-        ndcOffsetX = 2.0f * offsetX / surfaceWidth - 1.0f;
-        ndcScaleY = -2.0f * k / surfaceHeight;
-        ndcOffsetY = 1.0f - 2.0f * offsetY / surfaceHeight;
-        GLES20.glViewport(0, 0, surfaceWidth, surfaceHeight);
+        wider = settings.wider();
+        sizePercent = settings.sizePercent();
+        topPercent = settings.topPercent();
+        Point displaySize = new Point(surfaceWidth, surfaceHeight);
+        DisplayManager manager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+        Display display = manager == null ? null : manager.getDisplay(Display.DEFAULT_DISPLAY);
+        if (display != null) display.getRealSize(displaySize);
+        int[] viewport = phonePreview
+                ? Framing.previewViewport(surfaceWidth, surfaceHeight, displaySize.x / (float) Math.max(1, displaySize.y))
+                : WallpaperViewport.visible(surfaceWidth, surfaceHeight, displaySize.x, displaySize.y,
+                        xOffset, yOffset, xPixels, yPixels);
+        viewportX = viewport[0]; viewportY = viewport[1];
+        viewportWidth = viewport[2]; viewportHeight = viewport[3];
+        float backdrop=Math.max(viewportWidth/(float)SOURCE_WIDTH,viewportHeight/(float)SOURCE_HEIGHT);
+        backdropScaleX=2f*backdrop/viewportWidth;backdropScaleY=-2f*backdrop/viewportHeight;
+        backdropOffsetX=-SOURCE_WIDTH*backdrop/viewportWidth;backdropOffsetY=SOURCE_HEIGHT*backdrop/viewportHeight;
+        updateCrop();
+        GLES20.glViewport(viewportX, surfaceHeight - viewportY - viewportHeight, viewportWidth, viewportHeight);
+    }
+
+    // A gesture changes transforms only; never query the display or rebuild assets here.
+    private void updateCrop() {
+        CropFrame frame = (cropOverride!=null?cropOverride:settings.frame(viewportWidth,viewportHeight)).bounded(viewportWidth,viewportHeight);
+        currentCrop=frame;
+        renderedOverride=cropOverride; cropRevision=settings.cropRevision();
+        ndcScaleX = 2f * frame.scale(viewportWidth) / viewportWidth;
+        ndcScaleY = -2f * frame.scale(viewportWidth) / viewportHeight;
+        ndcOffsetX = 2f * frame.x(viewportWidth) / viewportWidth - 1f;
+        ndcOffsetY = 1f - 2f * frame.y(viewportWidth,viewportHeight) / viewportHeight;
+        float cover=Math.max(viewportWidth/(float)SOURCE_WIDTH,viewportHeight/(float)SOURCE_HEIGHT);
+        motionGain = Math.min(1.45f,cover/frame.scale(viewportWidth));
     }
 
     void draw(Physics physics) {
         if (!ready) {
             return;
         }
-        final float cover = MathX.clamp(
-                (float) Math.hypot(physics.viewX, physics.viewY) * 100.0f
-                        + Math.max(Math.abs(physics.bodyPx), Math.max(Math.abs(physics.chestPx), Math.abs(physics.hairPx))) * 3.0f,
-                0.0f, 1.0f);
+        physics.lively(settings.lively());
+        final boolean firstPass=settings.firstPass();
+        final boolean sideEnabled=firstPass && settings.structure();
+        if (renderedOverride!=cropOverride || cropRevision!=settings.cropRevision()) updateCrop();
+        // Always fill the old silhouette. A motion-dependent cover made it flash at rest.
+        final float cover = 1f;
         GLES20.glUseProgram(program);
+        GLES20.glUniform1f(uRoundMode,sideEnabled?1f:0f);
         GLES20.glUniform2f(uView, physics.viewX, physics.viewY);
         GLES20.glUniform2f(uBody, physics.bodyPx, physics.bodyPy);
-        GLES20.glUniform2f(uChest, physics.chestPx, physics.chestPy);
-        GLES20.glUniform1f(uHair, physics.hairPx);
+        GLES20.glUniform3f(uChest, physics.chestPx, physics.chestPy, physics.chestPz);
+        GLES20.glUniform2f(uHair, physics.hairPx, physics.hairPy);
+        GLES20.glUniform1f(uMotionGain, motionGain);
+        GLES20.glUniform1f(uTipMode, 1f);
+        GLES20.glUniform1f(uStructureMode, settings.structure() ? 1f : 0f);
+        GLES20.glUniform1f(uSoftFrame, 1f);
         GLES20.glUniform1f(uCover, cover);
         GLES20.glUniform2f(uNdcScale, ndcScaleX, ndcScaleY);
         GLES20.glUniform2f(uNdcOffset, ndcOffsetX, ndcOffsetY);
 
         GLES20.glClearColor(0.06f, 0.09f, 0.12f, 1.0f);
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+        GLES20.glDisable(GLES20.GL_DEPTH_TEST);
+        GLES20.glDepthMask(true);
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
+        {
+            GLES20.glUniform2f(uNdcScale,backdropScaleX,backdropScaleY);
+            GLES20.glUniform2f(uNdcOffset,backdropOffsetX,backdropOffsetY);
+            drawLayer(quadBuffer, quadCount, texBackground, -1f, 0f, false);
+            GLES20.glUniform2f(uNdcScale, ndcScaleX, ndcScaleY);
+            GLES20.glUniform2f(uNdcOffset, ndcOffsetX, ndcOffsetY);
+        }
         drawLayer(quadBuffer, quadCount, texOriginal, 0.0f, 0.0f, false);
         drawLayer(quadBuffer, quadCount, texBackground, 0.0f, 2.0f, false);
-        drawLayer(characterBuffer, characterCount, texOriginal, 1.0f, 1.0f, true);
-        drawLayer(foregroundBuffer, foregroundCount, texOriginal, 3.0f, 0.0f, false);
+        GLES20.glEnable(GLES20.GL_DEPTH_TEST);
+        GLES20.glDepthFunc(GLES20.GL_LEQUAL);
+        if(firstPass){
+            final int oldPins=pinBuffer,oldDepth=depthBuffer;
+            pinBuffer=roundPins; depthBuffer=roundDepth;
+            drawLayer(roundBody,roundBodyCount,texOriginal,1f,1f,true);
+            pinBuffer=oldPins; depthBuffer=oldDepth;
+            if(sideEnabled){
+                GLES20.glUniform1f(uLayer,2f); GLES20.glUniform1f(uMaskMode,0f);
+                GLES20.glActiveTexture(GLES20.GL_TEXTURE0); GLES20.glBindTexture(GLES20.GL_TEXTURE_2D,texSide);
+                GLES20.glDisableVertexAttribArray(aPin); GLES20.glVertexAttrib1f(aPin,0f);
+                GLES20.glEnableVertexAttribArray(aDepth); GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER,sideDepth);
+                GLES20.glVertexAttribPointer(aDepth,1,GLES20.GL_FLOAT,false,0,0);
+                GLES20.glEnableVertexAttribArray(aUv); GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER,sideUv);
+                GLES20.glVertexAttribPointer(aUv,2,GLES20.GL_FLOAT,false,0,0);
+                GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER,sideBuffer);
+                GLES20.glVertexAttribPointer(aSource,2,GLES20.GL_FLOAT,false,0,0);
+                GLES20.glDrawArrays(GLES20.GL_TRIANGLES,0,sideCount);
+                GLES20.glDisableVertexAttribArray(aUv);
+            }
+            drawLayer(roundPaper,roundPaperCount,texOriginal,3f,0f,false);
+        }else{
+            drawLayer(characterBuffer,characterCount,texOriginal,1f,1f,true);
+            drawLayer(foregroundBuffer,foregroundCount,texOriginal,3f,0f,false);
+        }
         drawnFrames++;
     }
 
@@ -229,10 +280,15 @@ final class SceneRenderer {
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         if (usePins) {
             GLES20.glEnableVertexAttribArray(aPin);
+            GLES20.glEnableVertexAttribArray(aDepth);
+            GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, depthBuffer);
+            GLES20.glVertexAttribPointer(aDepth, 1, GLES20.GL_FLOAT, false, 0, 0);
             GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, pinBuffer);
             GLES20.glVertexAttribPointer(aPin, 1, GLES20.GL_FLOAT, false, 0, 0);
         } else {
             GLES20.glDisableVertexAttribArray(aPin);
+            GLES20.glDisableVertexAttribArray(aDepth);
+            GLES20.glVertexAttrib1f(aDepth, 0f);
             GLES20.glVertexAttrib1f(aPin, 0.0f);
         }
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, buffer);
@@ -246,28 +302,30 @@ final class SceneRenderer {
             GLES20.glDeleteProgram(program);
             program = 0;
         }
-        int[] textures = {texOriginal, texMask, texBackground};
+        int[] textures = {texOriginal, texMask, texBackground,texSide};
         for (int texture : textures) {
             if (texture != 0) {
                 GLES20.glDeleteTextures(1, new int[]{texture}, 0);
             }
         }
-        texOriginal = texMask = texBackground = 0;
-        int[] buffers = {quadBuffer, characterBuffer, pinBuffer, foregroundBuffer};
+        texOriginal = texMask = texBackground = texSide = 0;
+        int[] buffers = {quadBuffer, characterBuffer, pinBuffer, depthBuffer, foregroundBuffer,roundBody,roundPins,roundDepth,roundPaper,sideBuffer,sideDepth,sideUv};
         for (int buffer : buffers) {
             if (buffer != 0) {
                 GLES20.glDeleteBuffers(1, new int[]{buffer}, 0);
             }
         }
-        quadBuffer = characterBuffer = pinBuffer = foregroundBuffer = 0;
+        quadBuffer = characterBuffer = pinBuffer = depthBuffer = foregroundBuffer = 0;
+        roundBody=roundPins=roundDepth=roundPaper=sideBuffer=sideDepth=sideUv=0;
         meshes = null;
     }
 
     /** A lost context already owns/deletes these objects; never delete its IDs in another context. */
     void abandonGlResources() {
         ready = false;
-        program = texOriginal = texMask = texBackground = 0;
-        quadBuffer = characterBuffer = pinBuffer = foregroundBuffer = 0;
+        program = texOriginal = texMask = texBackground = texSide = 0;
+        quadBuffer = characterBuffer = pinBuffer = depthBuffer = foregroundBuffer = 0;
+        roundBody=roundPins=roundDepth=roundPaper=sideBuffer=sideDepth=sideUv=0;
         meshes = null;
     }
 
@@ -299,55 +357,29 @@ final class SceneRenderer {
         if (bitmap == null) {
             throw new IOException("素材解码失败：" + name);
         }
-        if (bitmap.getWidth() != SOURCE_WIDTH || bitmap.getHeight() != SOURCE_HEIGHT) {
-            throw new IOException(name + " 尺寸与网格画布不一致：" + bitmap.getWidth() + "x" + bitmap.getHeight());
+        if (!name.equals("background.png") && !name.equals("side-back.png") && (bitmap.getWidth() != SOURCE_WIDTH || bitmap.getHeight() != SOURCE_HEIGHT)) {
+            String detail=name + " 尺寸与网格画布不一致：" + bitmap.getWidth() + "x" + bitmap.getHeight();
+            bitmap.recycle();
+            throw new IOException(detail);
         }
-        int[] ids = new int[1];
-        GLES20.glGenTextures(1, ids, 0);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, ids[0]);
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
-        GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
-        bitmap.recycle();
-        int error = GLES20.glGetError();
-        if (error != GLES20.GL_NO_ERROR) {
-            throw new IOException("贴图上传失败 " + name + " glError=" + error);
+        try {
+            return GlAssets.texture(bitmap, name);
+        } finally {
+            bitmap.recycle();
         }
-        return ids[0];
+    }
+
+    private String shaderAsset(String name) throws IOException {
+        try (InputStream input = context.getAssets().open(name);
+             ByteArrayOutputStream output = new ByteArrayOutputStream()) {
+            byte[] chunk = new byte[4096]; int read;
+            while ((read = input.read(chunk)) != -1) output.write(chunk, 0, read);
+            return output.toString("UTF-8");
+        }
     }
 
     private int buildProgram() throws IOException {
-        final int vertex = compile(GLES20.GL_VERTEX_SHADER, VERTEX_SHADER);
-        final int fragment = compile(GLES20.GL_FRAGMENT_SHADER, FRAGMENT_SHADER);
-        final int created = GLES20.glCreateProgram();
-        GLES20.glAttachShader(created, vertex);
-        GLES20.glAttachShader(created, fragment);
-        GLES20.glLinkProgram(created);
-        final int[] status = new int[1];
-        GLES20.glGetProgramiv(created, GLES20.GL_LINK_STATUS, status, 0);
-        GLES20.glDeleteShader(vertex);
-        GLES20.glDeleteShader(fragment);
-        if (status[0] == 0) {
-            final String log = GLES20.glGetProgramInfoLog(created);
-            GLES20.glDeleteProgram(created);
-            throw new IOException("着色器链接失败：" + log);
-        }
-        return created;
-    }
-
-    private int compile(int type, String source) throws IOException {
-        final int shader = GLES20.glCreateShader(type);
-        GLES20.glShaderSource(shader, source);
-        GLES20.glCompileShader(shader);
-        final int[] status = new int[1];
-        GLES20.glGetShaderiv(shader, GLES20.GL_COMPILE_STATUS, status, 0);
-        if (status[0] == 0) {
-            final String log = GLES20.glGetShaderInfoLog(shader);
-            GLES20.glDeleteShader(shader);
-            throw new IOException("着色器编译失败：" + log);
-        }
-        return shader;
+        // Read both assets before allocating either shader.
+        return GlAssets.program(shaderAsset("scene.vert"), shaderAsset("scene.frag"));
     }
 }

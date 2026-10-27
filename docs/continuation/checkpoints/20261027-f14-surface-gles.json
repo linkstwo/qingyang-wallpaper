@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "9a24a706dbe5b22bfa6f37a5571527c0fd0b2d7b",
+  "createdAt": "2026-10-26T23:54:09.072006Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/component-surface-shaders.mjs",
+      "bytes": 794,
+      "sha256": "1587e887b4153c27e98e0a25a43bd30f6992df826b6cf138e66ae217a9772313"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36442,
+      "sha256": "11c87f09631ee3f2073580e7fa2aefdaea80454aa67f26e7d38c2d20134456ff"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 11623,
+      "sha256": "63f82f7c953f3ae4a62deab8cc0bc387d57b78115a3763b9daa7a08e1746d773"
+    },
+    {
+      "path": "tests/component-surface-regression.mjs",
+      "bytes": 3818,
+      "sha256": "5b20770f385d62d76139dacb843b7fd4b7a6c2723ff19a88e626469a66263f19"
+    },
+    {
+      "path": "tests/render_component_surface_gles.py",
+      "bytes": 4397,
+      "sha256": "e33801110c41fb565094b0f61440c2c4995bef3f48fffa14e6d9e103f78dd953"
+    },
+    {
+      "path": "validation/f14-component-surface-gles.jpg",
+      "bytes": 86883,
+      "sha256": "c61b55e60c8749ef1c5771fd64b432617d7288998a19c26e9f03e2dbc8d7799a"
+    },
+    {
+      "path": "validation/f14-component-surface-gles.json",
+      "bytes": 313,
+      "sha256": "26e3670b716236bd8cf02ca5f98c39f32b33e31ae3ab3e7f408143eafad356c6"
+    },
+    {
+      "path": "validation/f14-component-surface.json",
+      "bytes": 2305,
+      "sha256": "44334248ff8d6b27ebf3e2e8c9f8ab871a2ed2f5ed08228e0c118ba85e4e9527"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/component-surface-regression.mjs (sqrt failure negative included)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_component_surface_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "6d5c10a5552bff9559adbc477dc307cc2f0bf9505a505030f393395b6680b050"
+}

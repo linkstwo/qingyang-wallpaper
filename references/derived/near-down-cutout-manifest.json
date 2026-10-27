@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "independentDonorViews": 1,
+  "newCameraAnglesClaimed": 0,
+  "components": [
+    {
+      "id": "near-down-shoulder",
+      "path": "references/derived/near-down-shoulder-cutout.png",
+      "sha256": "98be4114e7d4f89fad403bc250cb9d0391bf4523a01921f2db80c52e0494ba79",
+      "originalSourceSha256": "56a79d4fa430d24396d3413c2f444e10e224d2e196fae9b87c72f9f1b5ddfeea",
+      "originalCropRect": [
+        800,
+        390,
+        1010,
+        710
+      ],
+      "size": [
+        210,
+        320
+      ],
+      "alphaPolygonLocal": [
+        [
+          50,
+          28
+        ],
+        [
+          95,
+          30
+        ],
+        [
+          130,
+          44
+        ],
+        [
+          155,
+          64
+        ],
+        [
+          174,
+          95
+        ],
+        [
+          182,
+          145
+        ],
+        [
+          186,
+          200
+        ],
+        [
+          190,
+          275
+        ],
+        [
+          141,
+          290
+        ],
+        [
+          116,
+          252
+        ],
+        [
+          102,
+          220
+        ],
+        [
+          73,
+          191
+        ],
+        [
+          42,
+          166
+        ],
+        [
+          27,
+          140
+        ],
+        [
+          33,
+          90
+        ],
+        [
+          43,
+          60
+        ]
+      ],
+      "opaquePixels": 28155,
+      "rgbExactIncludingTransparentPixels": true,
+      "acceptedCrossViewRegistration": false,
+      "confidence": 0,
+      "boundary": "conservative manually traced subset; no invented hidden pixels"
+    },
+    {
+      "id": "near-down-upper-arm",
+      "path": "references/derived/near-down-upper-arm-cutout.png",
+      "sha256": "dc48e33703ab0c30a3491a702c2a707b40921042863bdc57756167e1c95497fe",
+      "originalSourceSha256": "56a79d4fa430d24396d3413c2f444e10e224d2e196fae9b87c72f9f1b5ddfeea",
+      "originalCropRect": [
+        890,
+        580,
+        1020,
+        1030
+      ],
+      "size": [
+        130,
+        450
+      ],
+      "alphaPolygonLocal": [
+        [
+          32,
+          20
+        ],
+        [
+          96,
+          10
+        ],
+        [
+          100,
+          85
+        ],
+        [
+          102,
+          160
+        ],
+        [
+          103,
+          250
+        ],
+        [
+          104,
+          340
+        ],
+        [
+          109,
+          420
+        ],
+        [
+          46,
+          435
+        ],
+        [
+          33,
+          360
+        ],
+        [
+          25,
+          290
+        ],
+        [
+          18,
+          220
+        ],
+        [
+          10,
+          150
+        ],
+        [
+          8,
+          80
+        ]
+      ],
+      "opaquePixels": 33619,
+      "rgbExactIncludingTransparentPixels": true,
+      "acceptedCrossViewRegistration": false,
+      "confidence": 0,
+      "boundary": "conservative manually traced subset; no invented hidden pixels"
+    }
+  ],
+  "sourcePose": "same facing as main; near arm downward, unlike bent side-B elbow",
+  "registeredToMain": false
+}

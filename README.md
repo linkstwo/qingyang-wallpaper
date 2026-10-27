@@ -4,9 +4,17 @@
 
 长期目标是手机转动如同换角度观察角色，角色轮廓与遮挡随之自然变化的裸眼立体感；现有主视角表面形变仍只是早期起点。
 
-**当前不是可交付完成版：0.5.0 用户真机反馈锁屏黑屏。优先修复壁纸显示，再调 Q 弹和发梢。** 应用内预览能动不代表锁屏通过。
+**当前候选0.5.7/16，分支feature/cloud-framing-response。** 保留主图，新增全屏锁屏取景：双指缩放/拖动/保存与旧版构图对照；新版相对回弹保留原版可切换。原密钥签名与构建检查通过，原生手势及OEM锁屏待实测。见[本轮结果](docs/S1-BASICS-0.5.7.md)和[接续入口](docs/START_IN_CLOUD.md)。
 
-云端接手先读 [AGENTS.md](AGENTS.md)，再执行 [云端任务](docs/CLOUD_TASK.md)。全部代码、原图和参考资料都随仓库提供，不依赖本机 D 盘、AI 桥或聊天附件。
+0.5.5发梢修复与用户认可的基本律动保留；背向参考目前只用于固定构图对照，连续多角度、真实锁屏肩背同屏仍未完成。
+
+此前 [肩肘腕支撑](docs/CLOUD_RESULT-20261025-ARM.md) 和头颈形状保持继续保留。下一步处理遮挡边界，实际锁屏/手感仍须本机沿用原密钥签名后验证。
+
+头颈结构子节点见 [2026-10-25头颈连接与验证](docs/CLOUD_RESULT-20261025-HEAD.md)：沿用0.5.4/13，头部形状保持、颈肩连续连接；本轮APK构建因下载网络受阻。
+
+后续开发顺序与阶段完成条件见 [当前节点与路线](docs/CHECKPOINT-0.5.4-ROADMAP.md)。
+
+接续先读 [最新结果与dsh交接](docs/CLOUD_RESULT-0.5.5-HAIR.md)，可单独回看 [裁剪与运动节点](docs/CLOUD_RESULT-0.5.3.md)。代码、四张原图与参考资料随仓库提供。大角度的隐藏表面与自遮挡尚未完成；游戏旋转向量可能长期漂移。
 
 | 内容 | 路径 |
 |---|---|
@@ -25,10 +33,13 @@
 ```sh
 node android-app/tools/export_mesh.mjs --check
 python3 scripts/verify_assets.py
+python3 tests/run_lifecycle.py
+python3 tests/run_response.py
+node tests/structure-regression.mjs
 cd android-app
-./gradlew assembleDebug
+./gradlew assembleRelease
 ```
 
 桌面查看：`python3 character-prototype/serve_preview.py --port 8643`，打开 `http://127.0.0.1:8643/`。此页面用于比较人物效果，不能当作手机锁屏验收。
 
-工程是自定义 2.5D，未包含完成的 Cubism 动作模型。旧 0.4.0 APK 的反编译材料与工具没有放入仓库，也不参与编译。签名私钥和口令只留本地；云端调试用 debug 包，正式覆盖升级回本地用原 0.5.0 密钥签名。
+工程是自定义 2.5D，未包含完成的 Cubism 动作模型。旧 0.4.0 APK 的反编译材料与工具没有放入仓库，也不参与编译。签名私钥和口令只留本地；云端 unsigned release 不能直接安装，正式覆盖升级回本地用原发布密钥签名。

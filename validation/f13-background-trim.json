@@ -1,0 +1,23 @@
+{
+  "paperBackgroundTrim": true,
+  "paperRightClothContact": true,
+  "lapContactWidth": 96.0,
+  "seatSupport": true,
+  "forearmVolume": false,
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "angles": [
+    -20,
+    -2.2918,
+    0,
+    2.2918,
+    20
+  ],
+  "rear": false,
+  "bodyPose": {},
+  "paperPartition": true,
+  "baselineRef": null,
+  "paperLapContact": true,
+  "paperExteriorTrim": false,
+  "image": "validation/f13-background-trim.jpg",
+  "phoneTested": false
+}

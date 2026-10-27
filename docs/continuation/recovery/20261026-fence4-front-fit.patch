@@ -1,0 +1,72 @@
+*** Begin Patch
+*** Add File: character-prototype/preview/projected-surface.mjs
++// Recovery copy reconstructed from applied edits after executor transport closed.
++// Re-run the companion tests before treating this recovered text as validated.
++import {projectWorld,sceneModel} from './scene-model.mjs';
++export function projectedSurface(positions,indices,cell=32){
++ const projected=Array.from({length:positions.length/3},(_,i)=>projectWorld(positions.slice(i*3,i*3+3))),bins=new Map(),triangles=[];
++ for(let i=0;i<indices.length;i+=3){const ids=indices.slice(i,i+3),p=ids.map(j=>projected[j]),den=(p[1][1]-p[2][1])*(p[0][0]-p[2][0])+(p[2][0]-p[1][0])*(p[0][1]-p[2][1]);if(den<=1e-10)continue;const n=triangles.length;triangles.push({id:i/3,ids,p,den});for(let x=Math.floor(Math.min(...p.map(q=>q[0]))/cell);x<=Math.floor(Math.max(...p.map(q=>q[0]))/cell);x++)for(let y=Math.floor(Math.min(...p.map(q=>q[1]))/cell);y<=Math.floor(Math.max(...p.map(q=>q[1]))/cell);y++){const k=x+','+y;if(!bins.has(k))bins.set(k,[]);bins.get(k).push(n);}}
++ function nearest(x,y){let best=null;for(const n of bins.get(Math.floor(x/cell)+','+Math.floor(y/cell))||[]){const t=triangles[n],[a,b,c]=t.p,u=((b[1]-c[1])*(x-c[0])+(c[0]-b[0])*(y-c[1]))/t.den,v=((c[1]-a[1])*(x-c[0])+(a[0]-c[0])*(y-c[1]))/t.den,w=1-u-v;if(Math.min(u,v,w)<-1e-7)continue;const inverseW=u/a[2]+v/b[2]+w/c[2],z=sceneModel.cameraDistance*(1-1/inverseW);if(!best||z>best.z)best={triangle:t.id,z,barycentric:[u,v,w]};}return best;}
++ return {nearest,projected,triangles:triangles.length};
++}
+*** Add File: character-prototype/preview/front-fit.mjs
++// Recovery copy reconstructed from applied edits after executor transport closed.
++// The historical tests passed locally; this exact recovered text is NOT revalidated.
++// Fit a connected shell to an inferred front depth field, preserving source projection.
++import {projectWorld,unprojectSource} from './scene-model.mjs';
++import {depthAt,smooth} from './structure.mjs';
++import {subject} from './subject.mjs';
++import {geometricNormals} from './structural-pose.mjs';
++import {projectedSurface} from './projected-surface.mjs';
++function inside(x,y,poly){let yes=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])yes=!yes;}return yes;}
++const cross=(a,b,c)=>{const u=b.map((v,k)=>v-a[k]),v=c.map((x,k)=>x-a[k]);return [u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]];};
++export function fitObservedFront(model){
++ const rays=projectedSurface(model.positions,model.indices),positions=[],weights=[],observed=[],targets=[],deltas=[],constrained=new Set();
++ let fitted=0,maxDisplacement=0,maxProjectionError=0,maxResidualBefore=0,maxResidualAfter=0,maxResidualPoint=null,passes=0;
++ for(let i=0;i<model.positions.length/3;i++){
++  const p=model.positions.slice(i*3,i*3+3),q=rays.projected[i],hit=rays.nearest(q[0],q[1]),sourceSeen=inside(q[0],q[1],subject.outline)&&(!inside(q[0],q[1],subject.paper)||model.supportWeights[i]>.99),gap=hit?Math.max(0,hit.z-p[2]):Infinity;
++  const weight=sourceSeen?(1-smooth(.1,4,gap))*smooth(.05,.5,model.normals[i*3+2]):0,target=depthAt(q[0],q[1]),delta=Math.max(-60,Math.min(60,target-p[2]))*weight,out=weight>0?unprojectSource(q[0],q[1],p[2]+delta):p;
++  weights.push(weight);targets.push(target);deltas.push(Math.max(-60,Math.min(60,target-p[2])));observed.push(sourceSeen&&gap<.1?1:0);positions.push(...out);
++ }
++ const originalWeights=weights.slice(),depthMoves=deltas.map((d,i)=>d*weights[i]),edges=[],seen=new Set();
++ for(let i=0;i<model.indices.length;i+=3)for(let k=0;k<3;k++){const a=model.indices[i+k],b=model.indices[i+(k+1)%3],key=Math.min(a,b)+','+Math.max(a,b);if(seen.has(key))continue;seen.add(key);const A=model.positions.slice(a*3,a*3+3),B=model.positions.slice(b*3,b*3+3);edges.push([a,b,.15*Math.hypot(...A.map((v,j)=>v-B[j]))]);}
++ let smoothingPasses=0;
++ for(;smoothingPasses<128;smoothingPasses++){let changed=0;for(const [a,b,limit] of edges){const x=depthMoves[a],y=depthMoves[b];if(Math.abs(x-y)<=limit)continue;let X=x,Y=y;if(x*y>=0){if(Math.abs(x)>Math.abs(y))X=Math.sign(x)*(Math.abs(y)+limit);else Y=Math.sign(y)*(Math.abs(x)+limit);}else{const factor=limit/(Math.abs(x)+Math.abs(y));X=x*factor;Y=y*factor;}changed=Math.max(changed,Math.abs(X-x),Math.abs(Y-y));depthMoves[a]=X;depthMoves[b]=Y;constrained.add(a);constrained.add(b);}if(changed<1e-6)break;}
++ function rebuild(){for(let i=0;i<weights.length;i++){const p=model.positions.slice(i*3,i*3+3),q=rays.projected[i],out=depthMoves[i]===0?p:unprojectSource(q[0],q[1],p[2]+depthMoves[i]);for(let k=0;k<3;k++)positions[i*3+k]=out[k];weights[i]=deltas[i]===0?originalWeights[i]:depthMoves[i]/deltas[i];}}
++ const restNormals=[];for(let i=0;i<model.indices.length;i+=3)restNormals.push(cross(...model.indices.slice(i,i+3).map(j=>model.positions.slice(j*3,j*3+3))));
++ rebuild();
++ for(;passes<24;passes++){let valid=true;for(let i=0;i<model.indices.length;i+=3){const ids=model.indices.slice(i,i+3),a=restNormals[i/3],b=cross(...ids.map(j=>positions.slice(j*3,j*3+3))),A=Math.hypot(...a),B=Math.hypot(...b),dot=a.reduce((s,v,k)=>s+v*b[k],0);if(B/A<.15||dot<.15*A*B){valid=false;break;}}if(valid)break;for(let i=0;i<depthMoves.length;i++)depthMoves[i]*=.5;rebuild();}
++ if(passes===24)throw Error('Front fit did not satisfy local area/orientation constraints');
++ let residualCount=0,residualBefore2=0,residualAfter2=0;
++ for(let i=0;i<weights.length;i++){const p=model.positions.slice(i*3,i*3+3),out=positions.slice(i*3,i*3+3),q=rays.projected[i],r=projectWorld(out);maxProjectionError=Math.max(maxProjectionError,Math.hypot(q[0]-r[0],q[1]-r[1]));if(weights[i]>0){fitted++;maxDisplacement=Math.max(maxDisplacement,Math.hypot(...out.map((v,k)=>v-p[k])));}if(originalWeights[i]>.999){residualCount++;residualBefore2+=(targets[i]-p[2])**2;residualAfter2+=(targets[i]-out[2])**2;maxResidualBefore=Math.max(maxResidualBefore,Math.abs(targets[i]-p[2]));const residual=Math.abs(targets[i]-out[2]);if(residual>maxResidualAfter){maxResidualAfter=residual;maxResidualPoint={vertex:i,source:q.slice(0,2),region:model.region[i],oldZ:p[2],newZ:out[2],targetZ:targets[i]};}}}
++ return {...model,version:4,positions,normals:Array.from(geometricNormals(positions,model.indices)),frontFit:{weights,observed,fittedVertices:fitted,constraintPasses:passes,smoothingPasses,rmsResidualBefore:Math.sqrt(residualBefore2/Math.max(1,residualCount)),rmsResidualAfter:Math.sqrt(residualAfter2/Math.max(1,residualCount)),constrainedVertices:constrained.size,maxDisplacement,maxProjectionError,maxResidualBefore,maxResidualAfter,maxResidualPoint,depthInferred:true,hiddenTextureConfidence:0,productionUsed:false}};
++}
+*** Add File: tests/front-fit-regression.mjs
++// Recovered from the applied local regression; rerun after applying this patch.
++import assert from 'node:assert/strict';import fs from 'node:fs';
++import {buildConnectedProxy} from '../character-prototype/preview/connected-proxy.mjs';
++import {fitObservedFront} from '../character-prototype/preview/front-fit.mjs';
++import {poseConnectedProxy} from '../character-prototype/preview/structural-pose.mjs';
++const rest=buildConnectedProxy(),model=fitObservedFront(rest),cross=(a,b,c)=>{const u=b.map((v,k)=>v-a[k]),v=c.map((x,k)=>x-a[k]);return [u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]];};
++let minRestAreaRatio=Infinity,minPosedAreaRatio=Infinity,triangleCases=0,maxPinnedError=0;
++for(let i=0;i<model.indices.length;i+=3){const ids=model.indices.slice(i,i+3),a=ids.map(j=>rest.positions.slice(j*3,j*3+3)),b=ids.map(j=>model.positions.slice(j*3,j*3+3)),ratio=Math.hypot(...cross(...b))/Math.hypot(...cross(...a));assert(Number.isFinite(ratio)&&ratio>.01);minRestAreaRatio=Math.min(minRestAreaRatio,ratio);}
++assert(model.frontFit.fittedVertices>1000);assert(model.frontFit.maxProjectionError<1e-8);assert(model.frontFit.rmsResidualAfter<model.frontFit.rmsResidualBefore*.99);
++for(const yaw of [-.06,0,.06])for(const pitch of [-.04,0,.04])for(const roll of [-.035,0,.035]){
++ const q=poseConnectedProxy(model,{yaw,pitch,roll});maxPinnedError=Math.max(maxPinnedError,q.maxPinnedError);
++ for(let i=0;i<model.indices.length;i+=3){const ids=model.indices.slice(i,i+3),a=ids.map(j=>model.positions.slice(j*3,j*3+3)),b=ids.map(j=>q.positions.slice(j*3,j*3+3)),na=cross(...a),nb=cross(...b),A=Math.hypot(...na),B=Math.hypot(...nb),ratio=B/A;assert(ratio>.01&&na.reduce((s,v,k)=>s+v*nb[k],0)>0,JSON.stringify({yaw,pitch,roll,ids,ratio}));minPosedAreaRatio=Math.min(minPosedAreaRatio,ratio);triangleCases++;}}
++assert.equal(maxPinnedError,0);const {weights,observed,...fit}=model.frontFit,r={...fit,minRestAreaRatio,minPosedAreaRatio,triangleCases,maxPinnedError,phoneTested:false};
++fs.writeFileSync(new URL('../validation/s2-front-fit.json',import.meta.url),JSON.stringify(r,null,2)+'\n');console.log(JSON.stringify(r));
+*** Add File: tests/projected-surface-regression.mjs
++// Recovered from the applied local regression; rerun after applying this patch.
++import assert from 'node:assert/strict';import fs from 'node:fs';
++import {projectedSurface} from '../character-prototype/preview/projected-surface.mjs';
++import {unprojectSource,sceneModel,ndcDepth} from '../character-prototype/preview/scene-model.mjs';
++const source=[[450,600],[1000,700],[650,1150]],z=(x,y)=>{const t=.08*(x-790)+.12*(y-1110);return (110+t)/(1+t/2300);},base=source.map(p=>unprojectSource(...p,z(...p))),near=source.map(p=>unprojectSource(...p,z(...p)+60)),positions=[...base.flat(),...near.flat()],indices=[0,1,2,3,4,5];
++const mesh=projectedSurface(positions,indices),dot=(a,b)=>a.reduce((s,v,k)=>s+v*b[k],0),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],sub=(a,b)=>a.map((v,k)=>v-b[k]);
++function intersect(x,y,tri){const origin=[0,0,2300],direction=[(x-790)/2300,(y-1110)/2300,-1],e1=sub(tri[1],tri[0]),e2=sub(tri[2],tri[0]),h=cross(direction,e2),det=dot(e1,h),s=sub(origin,tri[0]),u=dot(s,h)/det,q=cross(s,e1),v=dot(direction,q)/det,t=dot(e2,q)/det;return u>=0&&v>=0&&u+v<=1?2300-t:null;}
++let samples=0,maxError=0;
++for(let i=1;i<15;i++)for(let j=1;j<15-i;j++){const a=i/15,b=j/15,c=1-a-b,x=source[0][0]*a+source[1][0]*b+source[2][0]*c,y=source[0][1]*a+source[1][1]*b+source[2][1]*c,expected=intersect(x,y,near),hit=mesh.nearest(x,y);assert(expected!==null&&hit?.triangle===1);maxError=Math.max(maxError,Math.abs(hit.z-expected));samples++;}
++assert(maxError<1e-9);assert.equal(mesh.nearest(50,50),null);assert.equal(projectedSurface(base.flat(),[0,2,1]).nearest(700,850),null);assert(Math.abs(ndcDepth(1000)+1)<1e-12&&Math.abs(ndcDepth(-2000)-1)<1e-12);for(let z=-1900;z<900;z+=100)assert(ndcDepth(z+1)<ndcDepth(z));
++const r={samples,max3dRayError:maxError,closestOccluderSelected:true,backfaceExcluded:true,clipNearFarVerified:true,cameraDistance:sceneModel.cameraDistance,phoneTested:false};
++fs.writeFileSync(new URL('../validation/s2-projected-surface.json',import.meta.url),JSON.stringify(r,null,2)+'\n');console.log(JSON.stringify(r));
+*** End Patch

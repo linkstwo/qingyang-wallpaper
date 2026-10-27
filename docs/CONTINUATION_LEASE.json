@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-we-20261027-1245",
+  "fence": 16,
+  "status": "released",
+  "startedAt": "2026-10-27T04:46:58.904402Z",
+  "heartbeatAt": "2026-10-27T05:01:56.350462Z",
+  "expiresAt": "2026-10-27T05:01:56.350462Z",
+  "baseHead": "42bbea28d158c18113708611414c3b8b631e3d04",
+  "checkpoint": {
+    "baseHead": "cecbbbf487dc0412fbd399953f138eb31dc5be5b",
+    "createdAt": "2026-10-27T05:01:56.350462+00:00",
+    "sourceDigest": "1657e873af406735cebc637761fc8bb42a185363599e4d225db771172754a32c",
+    "stage": "S2",
+    "next": [
+      "Validate native feedback spring motion/settling/abnormal-dt and 30/60/120fps; compare the GPU pose-rate adaptation with the existing Q baseline.",
+      "Open the editable native project and export an interactive Android .mpkg, retaining actual custom effect resources; no pre-rendered substitute.",
+      "Transfer to the target phone and verify lockscreen/gyro/stop/wake behaviour under user control."
+    ]
+  },
+  "reason": "User interrupted; native scene/source/evidence checkpointed, motion and mobile acceptance pending."
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "402dab2abb19f902990c0957f1c7a28d1b7b2ad9",
+  "owner": "codex-night-recovery-20261027-0157",
+  "fence": 12,
+  "createdAt": "2026-10-26T18:43:11.301852+00:00",
+  "stage": "S2",
+  "next": "Probe selected remaining gap pixels using posed source rays and matte discard; no final raster acceptance",
+  "files": [
+    {
+      "path": "character-prototype/preview/observed-source-ray.mjs",
+      "sha256": "9b0267cc63cb4a81d7fc082c3ce7e67b4ea1068e57f9b927306c51efe7afae96",
+      "bytes": 3290
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "sha256": "51bb3781454bfeca12102511689e0fc819fff6a1ff0a1875b1dd680ba2e4b8ed",
+      "bytes": 5239
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "sha256": "30dc8963fa25257555e181ff8454f7bd428d6dfe528694553f0e708074cfedae",
+      "bytes": 22280
+    },
+    {
+      "path": "tests/observed-source-ray-regression.mjs",
+      "sha256": "d7e2c2b24a5a1037dae326b02de798c153d71260f70ea9f60d4a4687ddac94e8",
+      "bytes": 4866
+    },
+    {
+      "path": "tests/paper-lab-candidates-browser.mjs",
+      "sha256": "a5131e756b6f60a5337ccc6859175006fc5a779e9b4096afad59898ec4bb29b4",
+      "bytes": 4833
+    },
+    {
+      "path": "validation/source-ray-posed.json",
+      "sha256": "8388a6102c0d28c1ea1003a6ca4721dd39454f1c27d092f2ba496a83a3d20bb6",
+      "bytes": 230
+    },
+    {
+      "path": "validation/paper-lab-candidates-browser96.json",
+      "sha256": "5a1bc72acfe885695ee911eaa09fb31bdc15b094fcd245e12957a1185c86f3d7",
+      "bytes": 700
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE12.md",
+      "sha256": "9a549330777f1b4b3800466b7784e508d4171427edf13b43e8f6d913d08bc0b5",
+      "bytes": 9432
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/observed-source-ray-regression.mjs",
+      "status": "passed_mixed_depth_and_pose_negatives",
+      "exitCode": 0
+    },
+    {
+      "command": "PAPER_LAP_WIDTH=96 node tests/paper-lab-candidates-browser.mjs <Chromium>",
+      "status": "passed_real_framebuffer_and_current_pose_probe",
+      "exitCode": 0
+    }
+  ],
+  "phoneTested": false,
+  "tasksAccepted": [],
+  "sourceDigest": "0b3ed507ccc5e1ac38acef266d93ae9c8061a76f423409d44df8347b2f11b4ba"
+}

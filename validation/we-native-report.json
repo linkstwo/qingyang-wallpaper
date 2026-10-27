@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-27T05:01:32.600401+00:00",
+  "engineVersion": "2.8.42",
+  "type": "native scene",
+  "sourceBase": "42bbea28d158c18113708611414c3b8b631e3d04",
+  "nativeDrawObserved": true,
+  "screenshot": "validation/we-native-first-frame.jpg",
+  "generatedSceneScriptSyntax": {
+    "status": "passed",
+    "exitCode": 0
+  },
+  "losslessTextures": [
+    {
+      "name": "original",
+      "pixelsExact": true,
+      "width": 1152,
+      "height": 1536,
+      "sha256": "fd747fc1cde912ba0ab723d3e48713cfd1c6b77b0731e7a0505d296f8b26d26f"
+    },
+    {
+      "name": "mask",
+      "pixelsExact": true,
+      "width": 1152,
+      "height": 1536,
+      "sha256": "6714a614b9e0137b07aebee717f04776dee37c3ad39f4574040f18d85e200e4c"
+    },
+    {
+      "name": "background",
+      "pixelsExact": true,
+      "width": 1086,
+      "height": 1448,
+      "sha256": "a72eac6c57886e7173220c2a9772b16304d8b6e27dc43472b01c59c0a7bd1b82"
+    }
+  ],
+  "nativeMotionAcceptance": "not_run",
+  "gpuFloat16Stability": "not_run",
+  "fpsParity": "not_run",
+  "mobilePackageExported": false,
+  "phoneTested": false,
+  "continuousSideBackAccepted": false,
+  "reasonForStop": "User interrupted turn; source saved for resumption."
+}

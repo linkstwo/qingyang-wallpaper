@@ -1,0 +1,280 @@
+{
+  "sampledPoses": 25,
+  "fixtures": 5,
+  "totalCandidatePairs": 303642,
+  "nonlocalIntersections": 0,
+  "frames": [
+    {
+      "t": 0,
+      "input": {
+        "yaw": 0,
+        "pitch": 0,
+        "roll": 0.035
+      },
+      "candidatePairs": 14164,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 0.39269908169872414,
+      "input": {
+        "yaw": 0.022961005941905387,
+        "pitch": 0.028284271247461898,
+        "roll": 0.03233578363789504
+      },
+      "candidatePairs": 12691,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 0.7853981633974483,
+      "input": {
+        "yaw": 0.04242640687119285,
+        "pitch": 0.04,
+        "roll": 0.024748737341529166
+      },
+      "candidatePairs": 11957,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 1.1780972450961724,
+      "input": {
+        "yaw": 0.0554327719506772,
+        "pitch": 0.028284271247461905,
+        "roll": 0.013393920132778146
+      },
+      "candidatePairs": 11424,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 1.5707963267948966,
+      "input": {
+        "yaw": 0.06,
+        "pitch": 4.898587196589413e-18,
+        "roll": 2.1431318985078684e-18
+      },
+      "candidatePairs": 12283,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 1.9634954084936207,
+      "input": {
+        "yaw": 0.0554327719506772,
+        "pitch": -0.028284271247461898,
+        "roll": -0.013393920132778141
+      },
+      "candidatePairs": 11248,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 2.356194490192345,
+      "input": {
+        "yaw": 0.042426406871192854,
+        "pitch": -0.04,
+        "roll": -0.024748737341529162
+      },
+      "candidatePairs": 10887,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 2.748893571891069,
+      "input": {
+        "yaw": 0.022961005941905394,
+        "pitch": -0.02828427124746191,
+        "roll": -0.03233578363789504
+      },
+      "candidatePairs": 10088,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 3.141592653589793,
+      "input": {
+        "yaw": 7.347880794884118e-18,
+        "pitch": -9.797174393178826e-18,
+        "roll": -0.035
+      },
+      "candidatePairs": 12149,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 3.5342917352885173,
+      "input": {
+        "yaw": -0.02296100594190538,
+        "pitch": 0.028284271247461894,
+        "roll": -0.03233578363789504
+      },
+      "candidatePairs": 11709,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 3.9269908169872414,
+      "input": {
+        "yaw": -0.04242640687119285,
+        "pitch": 0.04,
+        "roll": -0.024748737341529173
+      },
+      "candidatePairs": 11437,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 4.319689898685965,
+      "input": {
+        "yaw": -0.05543277195067719,
+        "pitch": 0.028284271247461936,
+        "roll": -0.013393920132778164
+      },
+      "candidatePairs": 10924,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 4.71238898038469,
+      "input": {
+        "yaw": -0.06,
+        "pitch": 1.4695761589768237e-17,
+        "roll": -6.429395695523605e-18
+      },
+      "candidatePairs": 15265,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 5.105088062083414,
+      "input": {
+        "yaw": -0.055432771950677195,
+        "pitch": -0.028284271247461915,
+        "roll": 0.013393920132778151
+      },
+      "candidatePairs": 13282,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 5.497787143782138,
+      "input": {
+        "yaw": -0.04242640687119286,
+        "pitch": -0.04,
+        "roll": 0.02474873734152916
+      },
+      "candidatePairs": 12614,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 5.890486225480862,
+      "input": {
+        "yaw": -0.02296100594190542,
+        "pitch": -0.02828427124746194,
+        "roll": 0.03233578363789503
+      },
+      "candidatePairs": 12401,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "t": 6.283185307179586,
+      "input": {
+        "yaw": -1.4695761589768237e-17,
+        "pitch": -1.959434878635765e-17,
+        "roll": 0.035
+      },
+      "candidatePairs": 14164,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "input": {
+        "yaw": -0.06,
+        "pitch": -0.04,
+        "roll": -0.035
+      },
+      "candidatePairs": 10961,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "input": {
+        "yaw": -0.06,
+        "pitch": -0.04,
+        "roll": 0.035
+      },
+      "candidatePairs": 13077,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "input": {
+        "yaw": -0.06,
+        "pitch": 0.04,
+        "roll": -0.035
+      },
+      "candidatePairs": 11688,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "input": {
+        "yaw": -0.06,
+        "pitch": 0.04,
+        "roll": 0.035
+      },
+      "candidatePairs": 13066,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "input": {
+        "yaw": 0.06,
+        "pitch": -0.04,
+        "roll": -0.035
+      },
+      "candidatePairs": 10445,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "input": {
+        "yaw": 0.06,
+        "pitch": -0.04,
+        "roll": 0.035
+      },
+      "candidatePairs": 11904,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "input": {
+        "yaw": 0.06,
+        "pitch": 0.04,
+        "roll": -0.035
+      },
+      "candidatePairs": 11408,
+      "intersections": 0,
+      "examples": []
+    },
+    {
+      "input": {
+        "yaw": 0.06,
+        "pitch": 0.04,
+        "roll": 0.035
+      },
+      "candidatePairs": 12406,
+      "intersections": 0,
+      "examples": []
+    }
+  ],
+  "method": "spatial hash, bidirectional segment/triangle plus coplanar2D SAT",
+  "continuousCollisionDetection": false,
+  "sharedVertexNeighboursExcluded": true,
+  "elapsedSeconds": 16.558427328000107,
+  "phoneTested": false
+}

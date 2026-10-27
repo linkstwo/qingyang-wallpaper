@@ -1,0 +1,16 @@
+{
+  "status": "partial_offline_verified",
+  "strictNeutralEquality": true,
+  "neutralMeanRgbRearOnOff": 0,
+  "pixelsOver2": 0,
+  "maxChannelDifference": 0,
+  "frontRearWelded": false,
+  "backCameraCalibrated": false,
+  "hiddenProductionConfidence": 0,
+  "phoneTested": false,
+  "next": [
+    "Register shoulder/neck/back source correspondence.",
+    "Join observed front to inferred rear geometry; neutral pixel protection is only one acceptance item."
+  ],
+  "renderer": "single-sample scene FBO,2x supersampled presentation"
+}

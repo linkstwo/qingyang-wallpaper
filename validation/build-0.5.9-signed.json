@@ -1,0 +1,38 @@
+{
+  "versionName": "0.5.9",
+  "versionCode": 18,
+  "package": "com.tangtang.motionwallpaper",
+  "applicationCommit": "cfdf79642e01580d6310438af4020639a3f1aa61",
+  "verifiedAt": "2026-10-26T01:41:47.228824+00:00",
+  "sha256": "e64dc0f67e0c5323e44adff9bd253dce94d112ed21d66731d136f927da6e8eac",
+  "apkBytes": 6330059,
+  "unsignedSha256": "511b23f65b6f0987cb81fa939d2ba6bb8c4938ed82c3fa525e2743a37efd86f7",
+  "sourceFingerprint": "589e8750f7dcb2da3f43f35b8a1e7c0ec921556c9e6512cee667f4114c3d183f",
+  "certificateSha256": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
+  "signatureScheme": "v3-only, minSdk28",
+  "zipCrcVerified": true,
+  "zipAlignmentVerified": true,
+  "assetsByteCompared": 18,
+  "releaseNotDebug": true,
+  "unsignedRejected": true,
+  "tamperedRejected": true,
+  "phoneInstallTested": false,
+  "stage": "S2",
+  "stageStatus": "in_progress",
+  "limitations": [
+    "Hidden side/back textures not registered",
+    "Unobserved body under paper not completed",
+    "Native lockscreen and subjective feel remain untested"
+  ],
+  "libraryFileId": "libfile_582f73752c608191b0709b0362de9f4c",
+  "release": {
+    "tag": "v0.5.9",
+    "url": "https://github.com/linkstwo/qingyang-wallpaper/releases/tag/v0.5.9",
+    "downloadUrl": "https://github.com/linkstwo/qingyang-wallpaper/releases/download/v0.5.9/qingyang-0.5.9.apk",
+    "assetId": 676671394,
+    "sha256": "e64dc0f67e0c5323e44adff9bd253dce94d112ed21d66731d136f927da6e8eac",
+    "anonymousDownloadVerified": true,
+    "workflowRun": 40255607657,
+    "prerelease": true
+  }
+}

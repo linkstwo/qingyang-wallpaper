@@ -1,10 +1,9 @@
 package com.tangtang.motionwallpaper;
 
-/**
- * 手机姿态与挥动信号。算法沿用原轻漾 0.4.0 反编译出来的 MotionInput（只读参考）：
- * 重力取“相对进入壁纸那一刻的基线差值”，因此锁屏里手机怎么拿着都算中性；
- * 线性加速度用短时间常数平滑；陀螺仪另算角加速度，用于“快速晃动”的回弹激励；
- * 全部按当前屏幕旋转做轴映射，横竖屏切换时不会串轴。
+/** Atomic sensor state: relative fused quaternion, gravity fallback and inertial signals.
+ * All timestamps are monotonic sensor nanoseconds. Rotation remaps device XY into
+ * current screen axes. Pose controls the camera; angular and linear acceleration
+ * excite secondary motion. Visibility changes and recentering establish a new baseline.
  */
 final class MotionInput {
     /** 倾斜（重力归一化后的差值），±0.30 约等于 ±17 度。 */
@@ -22,6 +21,11 @@ final class MotionInput {
     float alphaX;
     float alphaY;
     float alphaZ;
+    /** Fused attitude relative to calibration, in screen-local radians. */
+    float poseYaw, posePitch, poseRoll;
+    boolean hasPose;
+    private final Attitude attitude = new Attitude();
+    private long poseStamp;
 
     private float gx0;
     private float gy0;
@@ -32,7 +36,7 @@ final class MotionInput {
     private long accelStamp;
     private int rotation;
 
-    void reset() {
+    synchronized void reset() {
         tiltX = tiltY = tiltZ = 0.0f;
         ax = ay = az = 0.0f;
         wx = wy = wz = 0.0f;
@@ -41,9 +45,13 @@ final class MotionInput {
         gravityStamp = 0L;
         gyroStamp = 0L;
         accelStamp = 0L;
+        poseStamp = 0L;
+        hasPose = false;
+        poseYaw = posePitch = poseRoll = 0f;
+        attitude.reset();
     }
 
-    void rotation(int value) {
+    synchronized void rotation(int value) {
         if (rotation != value) {
             rotation = value;
             reset();
@@ -75,9 +83,9 @@ final class MotionInput {
         return MathX.clamp((now - last) * 1.0E-9f, 0.001f, 0.2f);
     }
 
-    void gravity(float x, float y, float z, long stamp) {
+    synchronized boolean gravity(float x, float y, float z, long stamp) {
         if (!MathX.valid(x, y, z) || stamp <= gravityStamp) {
-            return;
+            return false;
         }
         final float nx = mapX(x, y, rotation) / 9.80665f;
         final float ny = mapY(x, y, rotation) / 9.80665f;
@@ -89,13 +97,16 @@ final class MotionInput {
             gz0 = nz;
             base = true;
         }
+        final float oldX = tiltX, oldY = tiltY, oldZ = tiltZ;
         tiltX = MathX.mix(tiltX, nx - gx0, dt, 0.075f);
         tiltY = MathX.mix(tiltY, ny - gy0, dt, 0.075f);
         tiltZ = MathX.mix(tiltZ, nz - gz0, dt, 0.075f);
         gravityStamp = stamp;
+        // Wake the camera fallback without inventing angular/linear excitation.
+        return !hasPose && Math.abs(tiltX-oldX) + Math.abs(tiltY-oldY) + Math.abs(tiltZ-oldZ) > 0.0005f;
     }
 
-    void acceleration(float x, float y, float z, long stamp) {
+    synchronized void acceleration(float x, float y, float z, long stamp) {
         if (!MathX.valid(x, y, z) || stamp <= accelStamp) {
             return;
         }
@@ -111,7 +122,7 @@ final class MotionInput {
         accelStamp = stamp;
     }
 
-    void gyro(float x, float y, float z, long stamp) {
+    synchronized void gyro(float x, float y, float z, long stamp) {
         if (!MathX.valid(x, y, z) || stamp <= gyroStamp) {
             return;
         }
@@ -137,8 +148,17 @@ final class MotionInput {
         gyroStamp = stamp;
     }
 
+    synchronized boolean orientation(float x, float y, float z, float w, long stamp) {
+        if (stamp <= poseStamp || !attitude.update(x, y, z, w, rotation)) return false;
+        float change = Math.abs(attitude.yaw-poseYaw) + Math.abs(attitude.pitch-posePitch)
+                + Math.abs(attitude.roll-poseRoll);
+        poseYaw=attitude.yaw; posePitch=attitude.pitch; poseRoll=attitude.roll;
+        hasPose=true; poseStamp=stamp;
+        return change > 0.0005f;
+    }
+
     /** 传感器长时间没数据时把挥动量衰减掉，避免锁屏里残留一个假回弹。 */
-    void age(long nowNanos) {
+    synchronized void age(long nowNanos) {
         if (accelStamp != 0L && nowNanos - accelStamp > 180000000L) {
             ax = ay = az = 0.0f;
         }
@@ -146,10 +166,22 @@ final class MotionInput {
             wx = wy = wz = 0.0f;
             alphaX = alphaY = alphaZ = 0.0f;
         }
+        if (poseStamp != 0L && nowNanos - poseStamp > 500000000L) hasPose=false;
+    }
+
+    /** Atomic frame input for GLSurfaceView's render thread. */
+    synchronized MotionInput copy() {
+        MotionInput sample = new MotionInput();
+        sample.tiltX = tiltX; sample.tiltY = tiltY; sample.tiltZ = tiltZ;
+        sample.ax = ax; sample.ay = ay; sample.az = az;
+        sample.wx = wx; sample.wy = wy; sample.wz = wz;
+        sample.alphaX = alphaX; sample.alphaY = alphaY; sample.alphaZ = alphaZ;
+        sample.poseYaw=poseYaw; sample.posePitch=posePitch; sample.poseRoll=poseRoll; sample.hasPose=hasPose;
+        return sample;
     }
 
     /** 有没有值得唤醒渲染的动作（用于静止时降到 10fps 省电）。 */
-    boolean excited() {
+    synchronized boolean excited() {
         return Math.abs(ax) + Math.abs(ay) + Math.abs(az) > 0.18f
                 || Math.abs(alphaX) + Math.abs(alphaY) + Math.abs(alphaZ) > 0.25f
                 || Math.abs(wx) + Math.abs(wy) + Math.abs(wz) > 0.12f;

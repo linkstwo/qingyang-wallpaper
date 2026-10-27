@@ -1,0 +1,31 @@
+{
+  "fittedVertices": 8484,
+  "constraintPasses": 1,
+  "smoothingPasses": 21,
+  "rmsResidualBefore": 63.13182985782868,
+  "rmsResidualAfter": 58.352784960647085,
+  "constrainedVertices": 9041,
+  "maxDisplacement": 19.054783191258327,
+  "maxProjectionError": 2.2737367544323206e-13,
+  "maxResidualBefore": 157.82797911764914,
+  "maxResidualAfter": 154.37673978852752,
+  "maxResidualPoint": {
+    "vertex": 18931,
+    "source": [
+      525.5504206580176,
+      953.7735849056604
+    ],
+    "region": 2,
+    "oldZ": 180,
+    "newZ": 176.54876067087838,
+    "targetZ": 22.172020882350864
+  },
+  "depthInferred": true,
+  "hiddenTextureConfidence": 0,
+  "productionUsed": false,
+  "minRestAreaRatio": 0.4680116913558458,
+  "minPosedAreaRatio": 0.7090678446608442,
+  "triangleCases": 1038096,
+  "maxPinnedError": 0,
+  "phoneTested": false
+}

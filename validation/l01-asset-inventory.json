@@ -1,0 +1,642 @@
+[
+  {
+    "path": "references/MULTIVIEW-LIBRARY-INDEX-20261025.json",
+    "bytes": 6822,
+    "sha256": "d0452576ae5bf3305de8d2ccadffc6755b63b2c54e264ec459dcbb404645abec"
+  },
+  {
+    "path": "references/README.md",
+    "bytes": 1378,
+    "sha256": "0fc2e58786465e3481c2b9bda44f59afd99a89e9b5e1f316b3dd547a77e25484"
+  },
+  {
+    "path": "references/asset-manifest.json",
+    "bytes": 5651,
+    "sha256": "ad565242b26c9b739d92684c2bd3d2bc332e5e9f4d3361e5f9d3c1afd58e910f"
+  },
+  {
+    "path": "references/component-source-review-20261027.json",
+    "bytes": 5086,
+    "sha256": "58a4c214887f7ea5f901a5899ee3cd2ea7ae5d560985a7dbbe74e050e1d6a482"
+  },
+  {
+    "path": "references/multiview-archive-manifest.json",
+    "bytes": 3702,
+    "sha256": "05a6dd71d9a7059d595eeab3b7381dd28b543c57a61be1af22ea70cff2ae7187"
+  },
+  {
+    "path": "references/shoulder-source-candidates-20261027.json",
+    "bytes": 2022,
+    "sha256": "9c8aa420cb680c3d5cdda3b04ae6b0125007bd7ce70ca43ec639f8366cfb5190"
+  },
+  {
+    "path": "references/originals/back-reference.png",
+    "bytes": 3179135,
+    "sha256": "8bd1d23c05f72f3a48d3585184a635242d5c5a7cbe5070d2b7d9e0f61ce50574",
+    "dimensions": [
+      1086,
+      1448
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/originals/front-variant.png",
+    "bytes": 3082076,
+    "sha256": "5c767d2a58335d2aef978f6ad35a7e556f6da3c96d1de2312cf863dd4f4967bc",
+    "dimensions": [
+      1086,
+      1448
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/originals/main-front-three-quarter.png",
+    "bytes": 3149695,
+    "sha256": "90fcbedfaba49fac7028597393fb4532c3d649e2f150cf45db6f6b9dc624b7e1",
+    "dimensions": [
+      1086,
+      1448
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/originals/main-reading-v2.png",
+    "bytes": 302522,
+    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+    "dimensions": [
+      1152,
+      1536
+    ],
+    "actualFormat": "JPEG"
+  },
+  {
+    "path": "references/originals/side-reference.png",
+    "bytes": 3024201,
+    "sha256": "a516ad4653775d3295434602371861f7ed1ea822454dedd810cf1dabd0d620d3",
+    "dimensions": [
+      1086,
+      1448
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/derived/near-down-cutout-manifest.json",
+    "bytes": 3045,
+    "sha256": "e9529bb1390b0fc8a5767b516bafc836a49afd5d6ffddb3ea47bab8111d900dc"
+  },
+  {
+    "path": "references/derived/near-down-shoulder-cutout.png",
+    "bytes": 97540,
+    "sha256": "98be4114e7d4f89fad403bc250cb9d0391bf4523a01921f2db80c52e0494ba79",
+    "dimensions": [
+      210,
+      320
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/derived/near-down-source.json",
+    "bytes": 299,
+    "sha256": "96c0dca6eb5c0eff785afecc9251cd9c9a61e61233027a193558194f676e9a5b"
+  },
+  {
+    "path": "references/derived/near-down-upper-arm-cutout.png",
+    "bytes": 79395,
+    "sha256": "dc48e33703ab0c30a3491a702c2a707b40921042863bdc57756167e1c95497fe",
+    "dimensions": [
+      130,
+      450
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/derived/shoulder-side-b-similarity-candidate.json",
+    "bytes": 3656,
+    "sha256": "19406ceb4b016571344da039a9816e4ef7a75efac76d6cb288daf28f8a654f04"
+  },
+  {
+    "path": "references/derived/side-b-component-junction.json.gz",
+    "bytes": 30825,
+    "sha256": "35d18a48c374e43ebca1d746aaaa31c872bed0d88c6f996f5bdcd43f2627a9f7"
+  },
+  {
+    "path": "references/derived/side-b-component-manifest.json",
+    "bytes": 1663,
+    "sha256": "0b561294ddf66184a1f5dd50e4033bbf2d7f0ee97e654b6e8ddc9cd0f3b97591"
+  },
+  {
+    "path": "references/derived/side-b-cutout-manifest.json",
+    "bytes": 3142,
+    "sha256": "b21962b1d7fd4e6625eeea7a12c6317b8d16f66db5ff62b391d664e2c3067306"
+  },
+  {
+    "path": "references/derived/side-b-nape-shoulder-cutout.png",
+    "bytes": 94182,
+    "sha256": "93dd07941d15f80fb0acc24ed4a541bebe06dbb57e03bb49536b072b824b9548",
+    "dimensions": [
+      250,
+      200
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/derived/side-b-nape-shoulder.png",
+    "bytes": 83352,
+    "sha256": "cc21d3541f50fb452dc0daa9abbbedd5b47e16e47650fb3a31531291b6e83d7e",
+    "dimensions": [
+      250,
+      200
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/derived/side-b-shoulder-back.json",
+    "bytes": 766,
+    "sha256": "c4dad6920683f72be21349f5e0256101e3ebc42d82a069e9206655f9c2d905e4"
+  },
+  {
+    "path": "references/derived/side-b-shoulder-back.png",
+    "bytes": 469438,
+    "sha256": "75d3831e06d808247e386b8dfbdec5dcad190225c66c51bb47bbab8be5a56e56",
+    "dimensions": [
+      440,
+      750
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/derived/side-b-upper-arm-cutout.png",
+    "bytes": 59129,
+    "sha256": "0542f125803496833627a3817999906f7b3c0b3a8f190f0f807662152e3b3f59",
+    "dimensions": [
+      155,
+      230
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "references/derived/side-b-upper-arm.png",
+    "bytes": 52305,
+    "sha256": "63bde24e89142a2ff67a0bb7b743040b29bd87b6ae9e6fecdd42552e835cf014",
+    "dimensions": [
+      155,
+      230
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "android-app/app/src/main/assets/background.png",
+    "bytes": 2542130,
+    "sha256": "aa5a1a522533693b401d9c148b45786163631a376bb4958d8ea7a1c5aeb9e84d",
+    "dimensions": [
+      1086,
+      1448
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "android-app/app/src/main/assets/character_depth.bin",
+    "bytes": 217068,
+    "sha256": "5a4a0caf072c50bce906930f015322abfbd65cb2c3c26e5b816eff8c5eaa0229"
+  },
+  {
+    "path": "android-app/app/src/main/assets/character_mesh.bin",
+    "bytes": 434136,
+    "sha256": "ceaeef7a416a88c4c4291a76575da0b3429bef38db992064873afb4189da70c1"
+  },
+  {
+    "path": "android-app/app/src/main/assets/character_pins.bin",
+    "bytes": 217068,
+    "sha256": "0321b96e7c866a7912f0478fe780613c1ed991045793d6f48e796aa5a380f4a7"
+  },
+  {
+    "path": "android-app/app/src/main/assets/foreground_mesh.bin",
+    "bytes": 3936,
+    "sha256": "06ed4ff9c5ea6d5e87e25bb7a28a2721b935d609eabfc047e5381ba50c2f55f4"
+  },
+  {
+    "path": "android-app/app/src/main/assets/mask.png",
+    "bytes": 15793,
+    "sha256": "b975fbdfdfe34bcec730fa5ccf9a91fd4d5c0b74cd8ddecb97810b1f5dbcc43d",
+    "dimensions": [
+      1152,
+      1536
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "android-app/app/src/main/assets/mesh-report.json",
+    "bytes": 4885,
+    "sha256": "a33f5df9dcd9bbb64b638e3fe7641ecb3abe20f4b082b0cf783eb4d031c5499c"
+  },
+  {
+    "path": "android-app/app/src/main/assets/original.png",
+    "bytes": 302522,
+    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+    "dimensions": [
+      1152,
+      1536
+    ],
+    "actualFormat": "JPEG"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene-report.json",
+    "bytes": 5976,
+    "sha256": "615515356a85026f98f21c0755574d8add0aa590739e11345277027c4c74620d"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene.frag",
+    "bytes": 1202,
+    "sha256": "6e6a6a22d199443b971a37353202dfd5e1b5625fbeb29bab28bec823e1f50467"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene.vert",
+    "bytes": 4911,
+    "sha256": "0ed8386e7e1ea2568bf5b0bf4c942421f7a22e4debce96200cb23d2ca1001ad0"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene_confidence.bin",
+    "bytes": 76904,
+    "sha256": "f24da5d640df31c51ef97a37d4e5e6b0e436087868c3c5b1ca0da4510c3ff264"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene_indices.bin",
+    "bytes": 230688,
+    "sha256": "b19a3995393c7a2d7af35a44dd54e8038be71c7b69020a4c58e6189ded8a63ef"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene_normals.bin",
+    "bytes": 230712,
+    "sha256": "e6537a731351055a10e4115e53e0c3b076ad5198630a55552378ab7dd702595f"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene_positions.bin",
+    "bytes": 230712,
+    "sha256": "34553e1575a606663e8424a2d83d72ab9176bd858110184f9816d76c83b8b895"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene_regions.bin",
+    "bytes": 76904,
+    "sha256": "ac5bcaaaa9346717fcd95f457936c7e656db492f3cf11d51a83f833a4d90e8b7"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene_skin.bin",
+    "bytes": 461424,
+    "sha256": "b7cad8ff1952a0dfda53d9c8c48b129acd0da0c08961e6806b35c877d5a99666"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene_support.bin",
+    "bytes": 76904,
+    "sha256": "219d4f3ad6a8a55858aa4df0af1c1e6ab0f4e7a7f37a1565a54626d0c0a65653"
+  },
+  {
+    "path": "android-app/app/src/main/assets/scene_uv.bin",
+    "bytes": 153808,
+    "sha256": "582ad596c2d713da5baf601fc8e4a20cd5dd9f227ffba511ca7767e7ffd69fc3"
+  },
+  {
+    "path": "character-prototype/preview/app.mjs",
+    "bytes": 10779,
+    "sha256": "d17ff1f5b1ccce22e0f79d3533f76c98adcff36d26d728f5801d265ed3d5a2f4"
+  },
+  {
+    "path": "character-prototype/preview/background.png",
+    "bytes": 2542130,
+    "sha256": "aa5a1a522533693b401d9c148b45786163631a376bb4958d8ea7a1c5aeb9e84d",
+    "dimensions": [
+      1086,
+      1448
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "character-prototype/preview/component-collision.mjs",
+    "bytes": 2048,
+    "sha256": "73c97f355ddfdab3d4d0f8a78bbe8d9475d2727110da09cebcedfe399c1349da"
+  },
+  {
+    "path": "character-prototype/preview/component-deform.mjs",
+    "bytes": 2585,
+    "sha256": "89719dae9b07dd61357490153be5cc1f21e99312286cc7818cf433fae266c61c"
+  },
+  {
+    "path": "character-prototype/preview/component-fit.html",
+    "bytes": 2073,
+    "sha256": "bee4ad50c87d847d57dfa8b12a43fa4e02ca87b41ba0c3ff6ec02cc6ce3c17c3"
+  },
+  {
+    "path": "character-prototype/preview/component-fit.mjs",
+    "bytes": 5313,
+    "sha256": "8cd52255acbee856aaec747859a39d3b8df4795fd36cfde1ed6dbe5c3b62994e"
+  },
+  {
+    "path": "character-prototype/preview/component-junction.mjs",
+    "bytes": 2939,
+    "sha256": "d4afffa44002dacb505ce46449a0b24ad718a30476406d88d1ff1e62b3db5c87"
+  },
+  {
+    "path": "character-prototype/preview/component-raster.mjs",
+    "bytes": 3924,
+    "sha256": "cd893f6fc120f2db52731f1450920d6dd7f97f319fad45eead788a7120df0919"
+  },
+  {
+    "path": "character-prototype/preview/component-surface-shaders.mjs",
+    "bytes": 794,
+    "sha256": "1587e887b4153c27e98e0a25a43bd30f6992df826b6cf138e66ae217a9772313"
+  },
+  {
+    "path": "character-prototype/preview/component-surface.mjs",
+    "bytes": 2488,
+    "sha256": "3dbe027a68ec118207c96a4680c28fecfa6dc48596e5712036f47a01cfd3ffaa"
+  },
+  {
+    "path": "character-prototype/preview/conforming-mesh.mjs",
+    "bytes": 3081,
+    "sha256": "f91d175438fa04a3a23c4744761773823ee16b498b1c57d9551b8729e0418788"
+  },
+  {
+    "path": "character-prototype/preview/connected-proxy.mjs",
+    "bytes": 5718,
+    "sha256": "d21b9dc7db8f57885b375095ff01099e49a73b401b257856dbfc2949a12a3198"
+  },
+  {
+    "path": "character-prototype/preview/contact-rig.mjs",
+    "bytes": 2041,
+    "sha256": "f52655ef48ad06464c3057a0672765fd1995db41899707acb8eaf60e820b742f"
+  },
+  {
+    "path": "character-prototype/preview/continuous-camera-facing.mjs",
+    "bytes": 1975,
+    "sha256": "3a0ce0c702553aed94bd756ecc091d022fe454f3d648934b9066137603c0509b"
+  },
+  {
+    "path": "character-prototype/preview/crop-frame.mjs",
+    "bytes": 599,
+    "sha256": "b14ed1ee663c59084d4542108fa7b0c0285261f81475281c1a841798dfcd2633"
+  },
+  {
+    "path": "character-prototype/preview/earcut-LICENSE.txt",
+    "bytes": 738,
+    "sha256": "324139c19d87af03fda38afea1590e00ca354c4159bdb2ae9e9cec070cfa46a8"
+  },
+  {
+    "path": "character-prototype/preview/earcut.mjs",
+    "bytes": 21256,
+    "sha256": "83d5b59bc520601bb2dd7401a2f8382a008d8d95e0e6e0fe45759ae4fda1aa56"
+  },
+  {
+    "path": "character-prototype/preview/forearm-surface.mjs",
+    "bytes": 3265,
+    "sha256": "2f4143ecd942a13005dcce575b0b063d15308ae9bfc3b48749a705f01ae5bbe8"
+  },
+  {
+    "path": "character-prototype/preview/forearm-volume.mjs",
+    "bytes": 1194,
+    "sha256": "2d0f019bba309960cb926df0e4c154701a1ae3a4883328929c3255609a899e12"
+  },
+  {
+    "path": "character-prototype/preview/framing-lab.html",
+    "bytes": 5998,
+    "sha256": "006873e6f288ea31ab2b4d8e944995812719028ce9e59fbec633cdf233ce70e2"
+  },
+  {
+    "path": "character-prototype/preview/framing-study.mjs",
+    "bytes": 4528,
+    "sha256": "a039cd0508d30192c22c64c9ff8d5d3759b986099a987347a48475dd8802a979"
+  },
+  {
+    "path": "character-prototype/preview/front-fit.mjs",
+    "bytes": 5012,
+    "sha256": "a564a19a73728708f44e716e9c63b51c9f5ef3f69183ca57958f180551cc5b08"
+  },
+  {
+    "path": "character-prototype/preview/index.html",
+    "bytes": 3819,
+    "sha256": "81278ee968578c95b463cb521e47b86aa8c4e94203421f3129af7325d216c9bc"
+  },
+  {
+    "path": "character-prototype/preview/layered-mesh.mjs",
+    "bytes": 3010,
+    "sha256": "5248aa3763d62a61aa8b28a24d5f310ce4296018e460d5d4b928a7f9fe89ddb1"
+  },
+  {
+    "path": "character-prototype/preview/mask.png",
+    "bytes": 15793,
+    "sha256": "b975fbdfdfe34bcec730fa5ccf9a91fd4d5c0b74cd8ddecb97810b1f5dbcc43d",
+    "dimensions": [
+      1152,
+      1536
+    ],
+    "actualFormat": "PNG"
+  },
+  {
+    "path": "character-prototype/preview/material-chart.mjs",
+    "bytes": 4238,
+    "sha256": "c8e6d782da24486811ec58214fda1d267f8588bb92baab8310945f15a8e9e137"
+  },
+  {
+    "path": "character-prototype/preview/mesh.json",
+    "bytes": 4655,
+    "sha256": "e895ad1e467751744959ea9c4b218f82f8d30f9bb759243d460ce7b7234d3c66"
+  },
+  {
+    "path": "character-prototype/preview/monotone-curve.mjs",
+    "bytes": 1054,
+    "sha256": "0e492151c870c8d1b2959179c1d99badebe573371105afd6cebadd24649d3f16"
+  },
+  {
+    "path": "character-prototype/preview/motion-preview-v1.webm",
+    "bytes": 8302040,
+    "sha256": "dfbfcb3033b949d8f6c30bd1227e5c4991d29259b10f943523313cd4816036ff"
+  },
+  {
+    "path": "character-prototype/preview/near-arm-surface.mjs",
+    "bytes": 1874,
+    "sha256": "cf6c473d70e6e52c5f3ba6431e0280e9ce69f25590f4cd20925ebfcf3439a951"
+  },
+  {
+    "path": "character-prototype/preview/observed-background.mjs",
+    "bytes": 1309,
+    "sha256": "3ff2792bc5e60e63c6091af1e43678012182a24095b9a9268289a72da2351287"
+  },
+  {
+    "path": "character-prototype/preview/observed-scene.mjs",
+    "bytes": 7744,
+    "sha256": "597ba3543d3cc045e62df850248301e2e18ea42f372c88a9058200bb1f8638f2"
+  },
+  {
+    "path": "character-prototype/preview/observed-source-ray.mjs",
+    "bytes": 3395,
+    "sha256": "be2ededd10dfa47d26de29e232fd08f95e75591c9851002494c495749f03655f"
+  },
+  {
+    "path": "character-prototype/preview/observed-surface.frag",
+    "bytes": 840,
+    "sha256": "99d33ebc04f263b0bd89d7d43c2f20e237a9ee9a0721d3ce9459db27de9fc53c"
+  },
+  {
+    "path": "character-prototype/preview/observed-surface.vert",
+    "bytes": 1099,
+    "sha256": "6cb5533f32f115ac5a82156e5e2556bcf2aaeddbf7af8cb1599e0c2996614b5e"
+  },
+  {
+    "path": "character-prototype/preview/original.png",
+    "bytes": 302522,
+    "sha256": "cc43f133c865b272f06cdff0d35086fae5b668100a70df09cc5cc1d0301eb411",
+    "dimensions": [
+      1152,
+      1536
+    ],
+    "actualFormat": "JPEG"
+  },
+  {
+    "path": "character-prototype/preview/paper-candidate-config.mjs",
+    "bytes": 711,
+    "sha256": "abe82931f0d8802818f6918118178778db06955565d6aaac99e8e063838c3903"
+  },
+  {
+    "path": "character-prototype/preview/paper-source-partition.mjs",
+    "bytes": 4429,
+    "sha256": "e5eb32d1eda265025e70e7982650f4cf6fdad86a67fa4add948b47c23213a3da"
+  },
+  {
+    "path": "character-prototype/preview/parts-fit.html",
+    "bytes": 4930,
+    "sha256": "4ac9d6fd4d755d8a7c4be2e11f620de1127bb65c67d8a80972cfae38c8b0539c"
+  },
+  {
+    "path": "character-prototype/preview/parts-fit.mjs",
+    "bytes": 8182,
+    "sha256": "af7f277dbacf4e1d7562548f99e33bfff3d8d8e4e312008db2d7eb9f590399fc"
+  },
+  {
+    "path": "character-prototype/preview/parts-raster.mjs",
+    "bytes": 2788,
+    "sha256": "ca1cb540ea2c8d3aa56fb7e04e8d960edc3bdf74e0917876cdb3f472e87e18c0"
+  },
+  {
+    "path": "character-prototype/preview/parts-sources.mjs",
+    "bytes": 1904,
+    "sha256": "013d9b1f3be556c5fd08181c745bc242501801b6aa9a351bcddfed124c0e8c8d"
+  },
+  {
+    "path": "character-prototype/preview/parts-warp.mjs",
+    "bytes": 4394,
+    "sha256": "c5b1b94860b786386bc061b9248da63daa264d802d1be7a37510e3bb0d6122e8"
+  },
+  {
+    "path": "character-prototype/preview/projected-surface.mjs",
+    "bytes": 1457,
+    "sha256": "0e505b85f06f20f842a1610fb5546a9808ad788f0c640d7b039347f57e50330d"
+  },
+  {
+    "path": "character-prototype/preview/quality-source-mesh.mjs",
+    "bytes": 1893,
+    "sha256": "cffce5850450aa6a0707c6da3cad3ccc4a1eeb478a46aea42c064ec060d19462"
+  },
+  {
+    "path": "character-prototype/preview/response.mjs",
+    "bytes": 4310,
+    "sha256": "be8a5ae4261ec299b8ba061f4f1445890595c18f04908a30c08da39efc783ddb"
+  },
+  {
+    "path": "character-prototype/preview/rig.mjs",
+    "bytes": 2230,
+    "sha256": "eedb4b6e60a79706c02ae3a8a799568238144435fe41701dd62c4c89b070d95a"
+  },
+  {
+    "path": "character-prototype/preview/round-one-scene.mjs",
+    "bytes": 3003,
+    "sha256": "eb2ded683a03a47779ff45a61fbd8bf3b92e6e7be6544b57fd65628cae936c97"
+  },
+  {
+    "path": "character-prototype/preview/scene-model.mjs",
+    "bytes": 6584,
+    "sha256": "4d82daf3f5f3292305568924c47497f24ecce954d04c3a0b47c210cc7c29b938"
+  },
+  {
+    "path": "character-prototype/preview/scene.frag",
+    "bytes": 1202,
+    "sha256": "6e6a6a22d199443b971a37353202dfd5e1b5625fbeb29bab28bec823e1f50467"
+  },
+  {
+    "path": "character-prototype/preview/scene.vert",
+    "bytes": 4911,
+    "sha256": "0ed8386e7e1ea2568bf5b0bf4c942421f7a22e4debce96200cb23d2ca1001ad0"
+  },
+  {
+    "path": "character-prototype/preview/source-triangle-quality.mjs",
+    "bytes": 806,
+    "sha256": "9d236238e4eaf787af6e136b2d8fadc78a82df8469af7d36b31e4434b1d7778f"
+  },
+  {
+    "path": "character-prototype/preview/structural-lab.html",
+    "bytes": 6102,
+    "sha256": "711f98c7a8d2ddbeca2e03a01dd676f9cdf294400bc9e5aa2b96b0a442e2f095"
+  },
+  {
+    "path": "character-prototype/preview/structural-lab.mjs",
+    "bytes": 24640,
+    "sha256": "4a12925a066213af4b026054cc7b526666e5f0b31af2681c9d0435c3c48baa8d"
+  },
+  {
+    "path": "character-prototype/preview/structural-pose.mjs",
+    "bytes": 4511,
+    "sha256": "ac450347ae88fb7b90b714c8291dcf5813af768aad64f03bb9ccd3ae4d613b6f"
+  },
+  {
+    "path": "character-prototype/preview/structural-skin.vert",
+    "bytes": 1400,
+    "sha256": "5565b13a10352b06e210e64906cbd8b497419073a3a64f17ad8c0c73318a4916"
+  },
+  {
+    "path": "character-prototype/preview/structure.mjs",
+    "bytes": 4277,
+    "sha256": "29b5546b1ca0eac95d7757760b0e5e3f5ee5b6aaf27a15248d9ce903f65a0c63"
+  },
+  {
+    "path": "character-prototype/preview/subject-mask.svg",
+    "bytes": 737,
+    "sha256": "52c88c2a1aea9ae1a33ed0c9e09ebd70221057a26e141681373ccb60ff94c28b"
+  },
+  {
+    "path": "character-prototype/preview/subject.mjs",
+    "bytes": 2051,
+    "sha256": "a17fc842d5c5ac291127ced8a0363ca5e3e516afeb7eeaee919a5e5ff68bfb0f"
+  },
+  {
+    "path": "character-prototype/preview/trial-side-chart.mjs",
+    "bytes": 6023,
+    "sha256": "4e0aafeb8f78ebdb100edec37b64e43acad8bc1b72d4427336b3105e3866a69c"
+  },
+  {
+    "path": "character-prototype/preview/trial-side-lab.html",
+    "bytes": 4411,
+    "sha256": "b34d26851d834c2107386885ed73654a11cafbfa1cbf6be64007d2cb902acf00"
+  },
+  {
+    "path": "character-prototype/preview/trial-side-lab.mjs",
+    "bytes": 20847,
+    "sha256": "d7101b842bc54e63c49d57012a0942ad7594d0c78fd480cce6c28ca3f8e7d2c4"
+  },
+  {
+    "path": "character-prototype/preview/trial-side-scene.mjs",
+    "bytes": 3147,
+    "sha256": "8e2df1614a7d362c36c92e24087af200cd45adfa721801f78a337a92da3a5941"
+  },
+  {
+    "path": "character-prototype/preview/validate-contacts.mjs",
+    "bytes": 1950,
+    "sha256": "257fc55b0b2e5d162b7de89723a656b6acfc36b05d95ee7ac5f3669cb94251ec"
+  },
+  {
+    "path": "character-prototype/preview/validate.mjs",
+    "bytes": 1956,
+    "sha256": "d891a46e8e8ca29780572bb2acfed7b459c8dd3ec92a2ea43944970659e9b8f8"
+  },
+  {
+    "path": "character-prototype/preview/video.html",
+    "bytes": 527,
+    "sha256": "39a70fab3986e7624cc61d65388d771fb95047f4e7293087f220ffac95b5081e"
+  }
+]

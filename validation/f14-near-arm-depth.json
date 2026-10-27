@@ -1,0 +1,23 @@
+{
+  "rows": [
+    {
+      "forearmVolume": false,
+      "modified": 2486,
+      "maxDepthDelta": 101.24990402972333,
+      "maxNeutral": 2.2737367544323206e-13
+    },
+    {
+      "forearmVolume": true,
+      "modified": 4872,
+      "maxDepthDelta": 101.6248234543529,
+      "maxNeutral": 2.2737367544323206e-13
+    }
+  ],
+  "depthInferred": true,
+  "sourceUvExact": true,
+  "sourceRgbChanged": false,
+  "hiddenTextureAdded": false,
+  "defaultEnabled": false,
+  "wholeT04Accepted": false,
+  "phoneTested": false
+}

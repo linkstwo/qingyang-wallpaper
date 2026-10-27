@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-gradual-seam-1793021652301",
+  "fence": 10,
+  "baseHead": "568cf289d2bd2fe981917d23d13f323233ec414c",
+  "createdAt": "2026-10-26T14:05:34.077679Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype\\preview\\forearm-surface.mjs",
+      "bytes": 2971,
+      "sha256": "02c29598f00a0c0aac630b154bc1589a403f801b8ec0cce95af74c28d0fcddf0"
+    },
+    {
+      "path": "character-prototype\\preview\\layered-mesh.mjs",
+      "bytes": 2134,
+      "sha256": "282688478deeed1001968b3efea0725b277dbde404d51e32c78b3bbfe486f6ba"
+    },
+    {
+      "path": "character-prototype\\preview\\observed-scene.mjs",
+      "bytes": 3642,
+      "sha256": "64b0779feabc76bc0a69333b0195364600bbfd29a0cfb2e3d70e73ace2de3a81"
+    },
+    {
+      "path": "character-prototype\\preview\\paper-source-partition.mjs",
+      "bytes": 2053,
+      "sha256": "fc787643af06a4b8cdb2eefb0b0fb9c344b0a6dc0662fe7be7c597b5333a094c"
+    },
+    {
+      "path": "character-prototype\\preview\\structural-lab.html",
+      "bytes": 4584,
+      "sha256": "22b6fdf25f326459f636af013d7a146765cb3bc5b3e6649870a0b378a373e47b"
+    },
+    {
+      "path": "character-prototype\\preview\\structural-lab.mjs",
+      "bytes": 19778,
+      "sha256": "6beedf872a153aceaf9f797359b68f66bcf9dc1f4c463687439a083ec421856d"
+    },
+    {
+      "path": "docs\\EXECUTION_STATE.json",
+      "bytes": 36390,
+      "sha256": "8023d2c8580e5f9b1ee4582d1cf37474af0e58e969306cb453431f2b13ea93e6"
+    },
+    {
+      "path": "docs\\RESUME-20261026-FENCE10.md",
+      "bytes": 3962,
+      "sha256": "e00d51b7084b50387ed11419313ef460ea1dbbc43da75dd6c1636bef01091b32"
+    },
+    {
+      "path": "docs\\START_IN_CLOUD.md",
+      "bytes": 7554,
+      "sha256": "de6f7475dc11598894c0080a7e5f7393721a46d355ec501edcd2d8406a827590"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-fence10-20261026\\README.md",
+      "bytes": 484,
+      "sha256": "08860645856373614b1de5af7314eb959c7f2af3cfa3d61232a50ffb6f670dae"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-fence10-20261026\\angle-sequence-review.json",
+      "bytes": 5222,
+      "sha256": "5b89539740b49e2be878697db42d3946d129beafd6f5f86aafc4e9d9f0211b14"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-fence10-20261026\\angle-sequence-review.md",
+      "bytes": 4446,
+      "sha256": "d1146602c730f10ecf7c16463391ee8cdf4dfb1dc9f50cfe458b6feb871cc8a8"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-fence10-20261026\\handoff-20261026.md",
+      "bytes": 2307,
+      "sha256": "13baccdd7fcd212d172321d499e2dd5433f63ac3928d37425f7fef9898528c0c"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-fence10-20261026\\paper-edge-zero-pose-scan.json",
+      "bytes": 2281,
+      "sha256": "5ca95bc4ea06f52790921daf495dabd16c787d08cba59e58a298f1d439c665fe"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-fence10-20261026\\paper-partition-4combo-audit.json",
+      "bytes": 2506,
+      "sha256": "1ac8e3e854180a56a93f8be7321a2f79b401f51d16db80e11b252f4a25fe3268"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-fence10-20261026\\paper-partition-4combo-audit.mjs",
+      "bytes": 4843,
+      "sha256": "2cb5f99c9d80ac5ffc8b06abe1b17b88763e16fb582fb365151de7a66e0c4bcc"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-fence10-20261026\\t01-source-audit.md",
+      "bytes": 1542,
+      "sha256": "d13fa65957296ac9104c52dbe76341236b68bce32040600b04ced4225473e7f3"
+    },
+    {
+      "path": "tests\\paper-source-partition-regression.mjs",
+      "bytes": 2823,
+      "sha256": "2e26ba539c59b191900cbea8696bf027f56382356bee69e16ba42fcc263408fe"
+    },
+    {
+      "path": "validation\\paper-partition-after-browser.jpg",
+      "bytes": 151622,
+      "sha256": "147651085d6bd8464f1a1898ce3a6049ecef0d49b88c42098502647dc787917b"
+    },
+    {
+      "path": "validation\\paper-partition-before-browser.jpg",
+      "bytes": 152357,
+      "sha256": "121e8e1ad1bce42657286011d4173a2eefdb4f587a2ce868d32621912c6422ea"
+    },
+    {
+      "path": "validation\\s2-paper-source-partition.json",
+      "bytes": 813,
+      "sha256": "3ec162bd9913eb4c3672d0da935c9109894617ebf16ef51e4f9ae53baf48030b"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/paper-source-partition-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Actual browser +/-20deg visual paper/body acceptance",
+      "status": "failed"
+    },
+    {
+      "command": "Android build and phone acceptance",
+      "status": "not_run"
+    }
+  ],
+  "next": "Read docs/RESUME-20261026-FENCE10.md; inspect remaining paper/body source ownership before geometry edits.",
+  "phoneTested": false,
+  "sourceDigest": "4c03b7f570365b85bc6dca59f5a37e6da833b97c411c7c714e3920b786102108",
+  "textEncoding": "UTF-8 without BOM, normalized LF as uploaded to GitHub; binary bytes unchanged."
+}

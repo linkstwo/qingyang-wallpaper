@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-26T08:02:06.455Z",
+  "cause": "Selected execution environment reported unavailable; exec-server transport closed during source-image diagnostic crop.",
+  "durableValidatedSourceCommit": "4be1b385ba41bbd33b840ee913b38cc74e0bb53f",
+  "durablePriorMilestones": [
+    "f31ff5b8bc28b91918a55164af37be393a28fd48",
+    "cf279cbed2822363ef6f3723bec447fbe0535134",
+    "4be1b385ba41bbd33b840ee913b38cc74e0bb53f"
+  ],
+  "recoveredPatch": "docs/continuation/recovery/20261026-fence4-front-fit.patch",
+  "patchStatus": "Reconstructed from visible applied tool edits after filesystem became inaccessible. This exact recovered text has NOT been executed or byte-compared to the lost local files. Apply only after reviewing paths and rerun both regressions.",
+  "helperExecutedForThisRemoteRecovery": false,
+  "historicalLocalValidationBeforeInterruption": {
+    "frontFit": {
+      "status": "passed on local code before shutdown, not validation of recovered text",
+      "fittedVertices": 8484,
+      "constraintPasses": 1,
+      "smoothingPasses": 21,
+      "rmsResidualBefore": 63.13182985782868,
+      "rmsResidualAfter": 58.352784960647085,
+      "constrainedVertices": 9041,
+      "maxDisplacement": 19.054783191258327,
+      "maxProjectionError": 2.2737367544323206e-13,
+      "maxResidualBefore": 157.82797911764914,
+      "maxResidualAfter": 154.37673978852752,
+      "minRestAreaRatio": 0.4680116913558458,
+      "minPosedAreaRatio": 0.7090678446608442,
+      "triangleCases": 1038096,
+      "maxPinnedError": 0,
+      "productionUsed": false
+    },
+    "rayQuery": {
+      "samples": 91,
+      "max3dRayError": 8.526512829121202e-13,
+      "closestOccluderSelected": true,
+      "backfaceExcluded": true,
+      "clipNearFarVerified": true
+    }
+  },
+  "unresolved": [
+    "The fit is still partial; its depth field is inferred and hidden material confidence remains0.",
+    "Largest residual at source[525.5504206580176,953.7735849056604], far-arm vertex18931:oldZ180,newZ176.54876067087838,targetZ22.172020882350864.",
+    "Review the actual original photo and existing far-arm elbow[635,920] before changing anchors. A background/arm correspondence mismatch is a hypothesis only; the attempted diagnostic image was not visually read before transport closed.",
+    "Shoulder/neck/back photographic registration, complete front/rear joining and phone acceptance remain pending.",
+    "No new APK was built or signed."
+  ],
+  "next": [
+    "Restore a working executor and clone the latest branch; inspect/claim a new lease before edits.",
+    "Review/apply the recovered patch, then rerun node tests/projected-surface-regression.mjs and node tests/front-fit-regression.mjs.",
+    "Verify the largest-residual far-arm source point against actual photo pixels; do not promote geometry or hidden texture from numeric results alone."
+  ]
+}

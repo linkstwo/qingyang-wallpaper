@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-task-audit-1793020900109",
+  "fence": 8,
+  "baseHead": "1bef9e4e974fc1686c056bdabe160b466ab04293",
+  "createdAt": "2026-10-26T13:24:17.631Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "docs\\EXECUTION_STATE.json",
+      "bytes": 35504,
+      "sha256": "8d7ce8b34e1ed1edfb26ec2590ac43397cb75c499a89355886c6e8fa74907190"
+    },
+    {
+      "path": "docs\\REMAINING-TASKS-20261026.json",
+      "bytes": 10446,
+      "sha256": "3ad2896547fd77d58b2e7c4aed6626eba59898fff6edb5bc982c1bbf5164e406"
+    },
+    {
+      "path": "docs\\REMAINING-TASKS-20261026.md",
+      "bytes": 7055,
+      "sha256": "068198cbee42b71d72f3640c96277ea3d67d2b8edcf4388b574199e4d9f4e0e4"
+    },
+    {
+      "path": "docs\\START_IN_CLOUD.md",
+      "bytes": 7168,
+      "sha256": "f02e65ec18054291aa6211484d93718804b9823614ef0c8c1d9e7e1cc85a58fe"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-20261026\\README.md",
+      "bytes": 926,
+      "sha256": "5586f31a33a6fb6e8dc76e5125a0d76ac521d8d3972a8143d4fb0649866abc54"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-20261026\\asset-inventory-full.csv",
+      "bytes": 3642,
+      "sha256": "8dec5de18ad9ba7989402b80c3d3ffc40efd8b554e927463547996cf68c74fdd"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-20261026\\diff-1946.md",
+      "bytes": 971,
+      "sha256": "3355ccaa1cf62af43c13aee02d435d387eeba8f259402dca7527b954307ef3a9"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-20261026\\manifest.json",
+      "bytes": 979,
+      "sha256": "b4ecc792141e657089f9d6488f28c9055991d1c4669dfd5551b99318b1e4b8d2"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-20261026\\next-low-level-tasks.md",
+      "bytes": 956,
+      "sha256": "476457fb72661960da913c45f280112b55e30ff84619583a30a5e0f836d447fa"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-20261026\\parts-ui-check.md",
+      "bytes": 1485,
+      "sha256": "5f36eaa4b1878190804cd5af7be55bbb38ddedd8c18caf66e10e2f08da7ccec1"
+    },
+    {
+      "path": "docs\\collaboration\\doubao-20261026\\shoulder-landmark-candidates.md",
+      "bytes": 2933,
+      "sha256": "6d689dc1aa672e09cc7e8d7f6d0b548ea5b3a5c73f42c6168c4a9fb0415fd81a"
+    }
+  ],
+  "tests": [
+    {
+      "command": "Task ledger package counts/dependencies and five archived helper snapshot byte hashes",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "T01 review corrected observed landmarks.",
+    "T03 fix paper seam, T04 connect shoulder/back geometry."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "17731163157d781e7e36837c77f43bf83b337d2188f40ffd7ae0ae50eed913e3"
+}

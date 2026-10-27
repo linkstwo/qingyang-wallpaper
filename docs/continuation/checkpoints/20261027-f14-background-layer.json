@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "d5cf0f012e9cd046986453d242b3f2dac87983ee",
+  "createdAt": "2026-10-26T23:47:27.165073Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/observed-background.mjs",
+      "bytes": 1309,
+      "sha256": "3ff2792bc5e60e63c6091af1e43678012182a24095b9a9268289a72da2351287"
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 7193,
+      "sha256": "2d7d99437f7048d7f219b666729f22a0743e054b68f23f08a9e8928fd2a744dd"
+    },
+    {
+      "path": "character-prototype/preview/observed-source-ray.mjs",
+      "bytes": 3395,
+      "sha256": "be2ededd10dfa47d26de29e232fd08f95e75591c9851002494c495749f03655f"
+    },
+    {
+      "path": "character-prototype/preview/observed-surface.frag",
+      "bytes": 840,
+      "sha256": "99d33ebc04f263b0bd89d7d43c2f20e237a9ee9a0721d3ce9459db27de9fc53c"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "bytes": 5684,
+      "sha256": "fef4f1e10b8f52fa8ea1fbe826cf0147b249c031a0f16c0d45244a658cce9c68"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 23110,
+      "sha256": "245631e17e6af2c9ad2be20ec38cd50d5a8fbe7bfad1dfeb1a8724b4531a942d"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36446,
+      "sha256": "ab531903919e08444fd01cad749c3fe0485015cfa5b3384015021733f0e59039"
+    },
+    {
+      "path": "docs/REMAINING-TASKS-20261026.json",
+      "bytes": 20451,
+      "sha256": "8bcd00b1fb43e284d104029544865028c37492e86d2ce8fe24733b1de36afd33"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 9820,
+      "sha256": "0410ad95e1dfaf1abb981d4ba7d8bb6a4209274bdc195d9629bb4c55fe6f94f1"
+    },
+    {
+      "path": "tests/observed-background-regression.mjs",
+      "bytes": 2764,
+      "sha256": "d5c29ad69ce793d8761a035628f89f3f63cfc11ff7eff77b3c02584708b8aeac"
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "bytes": 6833,
+      "sha256": "1b730efe7715ce0228d34702b36b3d2536a0e59827e23a35868dcf1d868e4f36"
+    },
+    {
+      "path": "validation/f14-background-gles-probes.json",
+      "bytes": 582,
+      "sha256": "da89305275db7b7e70692d290e99253422ee4f62f703d09f215b247fb500c1a2"
+    },
+    {
+      "path": "validation/f14-background-material-ownership.jpg",
+      "bytes": 174372,
+      "sha256": "3b381b782faa4b45e3dadef47fee18e3b37a1e9c1734f0a36f37956b9f6bca9e"
+    },
+    {
+      "path": "validation/f14-background-material-ownership.json",
+      "bytes": 1707,
+      "sha256": "f6ac231704ac465f0e15f1072e27894c4281356b7ae8fd6cff092f5a5274693e"
+    },
+    {
+      "path": "validation/f14-background-ownership--2.2918.png",
+      "bytes": 14960,
+      "sha256": "e48fc0afa89ec5af5e7b5a687ab70b65dff066a2f6201133f26bba232b5aed43"
+    },
+    {
+      "path": "validation/f14-background-ownership--20.png",
+      "bytes": 14572,
+      "sha256": "da6aaaa0b3f2024e2e3e344cb4353aecac5aa2dc39b7fd0dd0e09a1b0fb2e4b5"
+    },
+    {
+      "path": "validation/f14-background-ownership-0.png",
+      "bytes": 14221,
+      "sha256": "4d7b2d470a0932b7adb1e71f3587090678221ade2757460a713eb38f83fbd400"
+    },
+    {
+      "path": "validation/f14-background-ownership-2.2918.png",
+      "bytes": 14601,
+      "sha256": "21a2ae8c5d46712c687896f42b668f714eb5a79d5cc3f8fd14186dd68f14729c"
+    },
+    {
+      "path": "validation/f14-background-ownership-20.png",
+      "bytes": 14971,
+      "sha256": "6669640aba9f87cd56c1f4a898244bed9be7c356ad0ca2a515e193c0155e81ba"
+    },
+    {
+      "path": "validation/f14-observed-background-plane.jpg",
+      "bytes": 428548,
+      "sha256": "4334059326022c43227bd423bf20554e264cab67cab37074beb398a5150ba175"
+    },
+    {
+      "path": "validation/f14-observed-background-plane.json",
+      "bytes": 772,
+      "sha256": "9c8b92a4cab1cdeac985a6be589a14d96cf60b05775fbfe928e7e38ae49207c2"
+    },
+    {
+      "path": "validation/f14-observed-background.json",
+      "bytes": 243,
+      "sha256": "32687a31e6f8b7f6e092d364bbd9b08c988d0e58cb010494108d2ec76ee6dd9a"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/observed-background-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/observed-source-ray-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_paper_ownership_gles.py (observed background plane and ownership)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python inline background/occlusion raw pixel probes (recorded in f14-background-gles-probes.json)",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "0861a15b74f8e024797f538ae896b13b45de6c30c5b65bcedc8823b3de8e2f76"
+}

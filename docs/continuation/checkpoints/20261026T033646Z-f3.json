@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0329",
+  "fence": 3,
+  "baseHead": "9f6363a4a570da686ff53982c26922678d072cc1",
+  "createdAt": "2026-10-26T03:36:46.408337+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "android-app/app/src/main/assets/scene-report.json",
+      "bytes": 5814,
+      "sha256": "4cd8f28ba2ff890d347807ce25e3dccabbbbaf0d4891015adf4febb893f18e6b"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_support.bin",
+      "bytes": 76904,
+      "sha256": "219d4f3ad6a8a55858aa4df0af1c1e6ab0f4e7a7f37a1565a54626d0c0a65653"
+    },
+    {
+      "path": "android-app/tools/export_scene.mjs",
+      "bytes": 1992,
+      "sha256": "caa51d6b4ff7691dbb5189da7e5076a790f62e0f431129d1748eb27b8549a858"
+    },
+    {
+      "path": "character-prototype/preview/connected-proxy.mjs",
+      "bytes": 5560,
+      "sha256": "368ecd1a263acda2afc31f1a0720a80e17d4433f764a475868f67d7ce141c0ff"
+    },
+    {
+      "path": "character-prototype/preview/structural-pose.mjs",
+      "bytes": 4019,
+      "sha256": "5a77f351e6def6cd63dec9681b0428f4215be66cce2b8c501286d12aa52c02a7"
+    },
+    {
+      "path": "character-prototype/preview/structural-skin.vert",
+      "bytes": 1388,
+      "sha256": "b7867669fe8d70743335c5af4226f7d163ee4647bce6d4114d721ccbc9296cf4"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 23114,
+      "sha256": "af5c37be6ff6ce0739a0a856dec9a33f392ba6442fa700059eaab5c485e06847"
+    },
+    {
+      "path": "docs/S2-CONNECTED-STRUCTURE.md",
+      "bytes": 2439,
+      "sha256": "b14d6115310fac11982b26575f22160b7f36d37048264b115957373e8f1e2db0"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 3205,
+      "sha256": "4750c0a997a3bb9f2b0d1c3b4df0e36ad05efa6aae28b4fb67fe657309855456"
+    },
+    {
+      "path": "tests/render_structural_pose_gles.py",
+      "bytes": 6899,
+      "sha256": "23033529a8254234f49ef1d6ab6988da91b4b7e7f2dd4d0b629bfd9dc5f97b20"
+    },
+    {
+      "path": "validation/s2-posed-gles.jpg",
+      "bytes": 88914,
+      "sha256": "0150fe2a01359d504a488e501dd561aa574f8058d63a99017f5c5db837c72167"
+    },
+    {
+      "path": "validation/s2-posed-gles.json",
+      "bytes": 532,
+      "sha256": "afd4d1393f12cca60650f5da21a5f622a9a65c09c78808472c403ab7ba9e5c5c"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node android-app/tools/export_scene.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_scene.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/structural-pose-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/connected-proxy-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_structural_pose_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Android phone/native subjective validation",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Review and register observed shoulder/back source regions with explicit per-region pose limits; reject incompatible arm/head/garment mappings.",
+    "Validate correspondence and source visibility before any hidden-surface texture confidence or production camera expansion."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "5e9d1f196d633cceaeed049f31e7a883ead66a40ed71bca39f694b8c2eea37be"
+}

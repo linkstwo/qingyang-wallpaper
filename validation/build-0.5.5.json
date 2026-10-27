@@ -1,0 +1,21 @@
+{
+  "versionName": "0.5.5",
+  "versionCode": 14,
+  "sourceCommit": "bc5205a3e2a7d8565257a08a659585a821b9e791",
+  "package": "com.tangtang.motionwallpaper",
+  "command": "Gradle8.7 assembleRelease",
+  "succeeded": true,
+  "apkBytes": 6413314,
+  "unsignedSha256": "14ae1e751d1ca2ce3f4c134fbc5bade0acb67ae0d2c374e916072199a8d0127a",
+  "signed": false,
+  "originalCertificateVerifiedFromBaseline": "0a8f4734e62f984c94bd38d63a0ac15dd06cf9bfb5041175f51fb3ae114ceaab",
+  "zipAligned": true,
+  "payloadAssetsMatchSource": true,
+  "phoneTested": false,
+  "signingBlocked": "No bridge tool mounted; known historical public bridge endpoint returned HTTP404",
+  "networkFix": "Use configured HTTPS proxy for Gradle launcher and worker JVMs; official SDK and Gradle archive checksums verified",
+  "newApkProduced": true,
+  "installable": false,
+  "signingHelperTestedWithDisposableKey": true,
+  "unsignedSignatureCheckRejectedAsExpected": true
+}

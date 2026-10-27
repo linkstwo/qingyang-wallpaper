@@ -1,0 +1,40 @@
+name: Build first-pass Android 0.6.0
+on:
+  push:
+    branches: [feature/cloud-framing-response]
+    paths: [.github/workflows/first-pass-060.yml]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CI: 'true'
+      GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.vfs.watch=false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Generate matching first-pass assets
+        run: |
+          node android-app/tools/export_mesh.mjs > /tmp/export.json
+          node android-app/tools/export_mesh.mjs --check
+      - name: Build release candidate without signing secrets
+        working-directory: android-app
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon --console=plain -Dorg.gradle.internal.instrumentation.agent=false assembleRelease
+      - name: Bind candidate to source and assets
+        run: |
+          mkdir -p delivery
+          cp android-app/app/build/outputs/apk/release/app-release-unsigned.apk delivery/qingyang-0.6.0-unsigned.apk
+          cp android-app/app/src/main/assets/round-one-report.json delivery/
+          printf '%s\n' "$GITHUB_SHA" > delivery/source-commit.txt
+          sha256sum delivery/qingyang-0.6.0-unsigned.apk > delivery/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qingyang-0.6.0-first-pass-unsigned
+          path: delivery/
+          retention-days: 7

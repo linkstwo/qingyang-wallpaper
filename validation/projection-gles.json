@@ -1,0 +1,6 @@
+{
+  "landmarks": 1440,
+  "maxRasterErrorPixels": 0.7071067811865476,
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "phoneTested": false
+}

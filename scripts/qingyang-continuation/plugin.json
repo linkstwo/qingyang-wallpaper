@@ -1,0 +1,27 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "qingyang-continuation",
+  "version": "0.1.0",
+  "description": "Reliable Qingyang development recovery, expiring fenced coordination, evidence checkpoints and verified APK delivery using existing GitHub and scheduled tasks.",
+  "author": {
+    "name": "轻漾项目"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "轻漾开发接续",
+        "shortDescription": "保存进度、中断接续、核对真实执行与APK交付",
+        "longDescription": "从仓库最新节点接续轻漾开发，使用带有效期的占用记录、防止旧执行者覆盖、保存验证证据并交付原签名APK。复用已有GitHub与定时任务；自身不提供后台守护进程，不突破额度，也不自动延长排期。",
+        "developerName": "轻漾项目",
+        "category": "Productivity",
+        "capabilities": [],
+        "logo": "./assets/logo.svg",
+        "composerIcon": "./assets/logo.svg",
+        "defaultPrompt": [
+          "继续轻漾壁纸开发，从最新检查点恢复并推进后续可做工作。",
+          "查看轻漾真实进度、执行状态和最新APK。"
+        ]
+      }
+    }
+  }
+}

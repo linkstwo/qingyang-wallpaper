@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "0055ed71de6535744a98bb36f001e773b611d2e4",
+  "createdAt": "2026-10-27T00:14:02.897953Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/contact-rig.mjs",
+      "bytes": 2041,
+      "sha256": "f52655ef48ad06464c3057a0672765fd1995db41899707acb8eaf60e820b742f"
+    },
+    {
+      "path": "character-prototype/preview/forearm-surface.mjs",
+      "bytes": 3265,
+      "sha256": "2f4143ecd942a13005dcce575b0b063d15308ae9bfc3b48749a705f01ae5bbe8"
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 7744,
+      "sha256": "597ba3543d3cc045e62df850248301e2e18ea42f372c88a9058200bb1f8638f2"
+    },
+    {
+      "path": "character-prototype/preview/paper-candidate-config.mjs",
+      "bytes": 711,
+      "sha256": "abe82931f0d8802818f6918118178778db06955565d6aaac99e8e063838c3903"
+    },
+    {
+      "path": "character-prototype/preview/scene-model.mjs",
+      "bytes": 6584,
+      "sha256": "4d82daf3f5f3292305568924c47497f24ecce954d04c3a0b47c210cc7c29b938"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "bytes": 6102,
+      "sha256": "711f98c7a8d2ddbeca2e03a01dd676f9cdf294400bc9e5aa2b96b0a442e2f095"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 24640,
+      "sha256": "4a12925a066213af4b026054cc7b526666e5f0b31af2681c9d0435c3c48baa8d"
+    },
+    {
+      "path": "character-prototype/preview/structure.mjs",
+      "bytes": 4277,
+      "sha256": "29b5546b1ca0eac95d7757760b0e5e3f5ee5b6aaf27a15248d9ce903f65a0c63"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36445,
+      "sha256": "0e2c9e23cfd5fba045df99a642f98a669489751864a8b45fb176e85969cb7fd6"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 15644,
+      "sha256": "e86f0f21fde3ea2b0cff91f9f0a159bcedfd93c3beb1ba772b927bbf11d0ed0f"
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "bytes": 4168,
+      "sha256": "cbf9d046716deab66e078a030e87afe9d43861863718d66305dd4f739d2b7548"
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "bytes": 7857,
+      "sha256": "1ed9d36e1bb7272715594c8d41b63d2037f59d9cc4e8e18a9b2d54fb88ecf90a"
+    },
+    {
+      "path": "tests/support-depth-feather-regression.mjs",
+      "bytes": 1512,
+      "sha256": "55e2918880f69b7cf7ec8d3a1f3bbdf185c51288abaafd1b85baa7673bd0d307"
+    },
+    {
+      "path": "validation/f14-T03-expanded-matrix.json",
+      "bytes": 205828,
+      "sha256": "9819660dde3b5cacfe60fdabedb6c666bb4424e31346499d9710c16673a6d4ae"
+    },
+    {
+      "path": "validation/f14-T03-lap224-expanded.json",
+      "bytes": 209233,
+      "sha256": "87c30e94ec741f11f66edfa405f67863d6510d8f308b5e27c3b0184ecbfeb085"
+    },
+    {
+      "path": "validation/f14-T03-lap224-inverse-pose.jpg",
+      "bytes": 435103,
+      "sha256": "2e192c5b730114965d1d561fd7064d06f9f751901406e5bdc6e54cb7541ada03"
+    },
+    {
+      "path": "validation/f14-T03-lap224-inverse-pose.json",
+      "bytes": 3849,
+      "sha256": "7a95adbdd5ac35b2d8fd969e650c24499b190256df40b66aecc3061b8cebd7c8"
+    },
+    {
+      "path": "validation/f14-T03-lap224-worst-pose.jpg",
+      "bytes": 440451,
+      "sha256": "9ac8a63101c9862b01289bb28ee6e5c89ebea419dbd96962ab81e2f5d5a3241e"
+    },
+    {
+      "path": "validation/f14-T03-lap224-worst-pose.json",
+      "bytes": 4697,
+      "sha256": "34a624dde2e14f0b13cd1fa93c80132ce962aace3459d37cc047ecd3c7377cea"
+    },
+    {
+      "path": "validation/f14-T03-wide-gradient-gles.jpg",
+      "bytes": 428150,
+      "sha256": "0c4d149850897e25f35c9b5c0a74ce2876e5b9b50dce551dc12a81f52e2c0551"
+    },
+    {
+      "path": "validation/f14-T03-wide-gradient-gles.json",
+      "bytes": 4679,
+      "sha256": "bcc421c7308b5d5b8d8165d9128ebf3159b345552e0a13ee6a306f2e7e2c7d5d"
+    },
+    {
+      "path": "validation/f14-support-feather-160.json",
+      "bytes": 23515,
+      "sha256": "00a784e86e2e2682a40d85f3bd4712d0b40204d5d89f062c1f5edabe95944ed2"
+    },
+    {
+      "path": "validation/f14-support-feather-192.json",
+      "bytes": 23507,
+      "sha256": "526595e0c58e5ac2ba77b16d8b941cbad7dbc6e950b0566e0d5f3828befe09b1"
+    },
+    {
+      "path": "validation/f14-support-feather-224.json",
+      "bytes": 23540,
+      "sha256": "ff7ebd8edf6c616c7b8dda5e2d232c971c55cbe4e3bcd8dfb3cfc488b60af8f3"
+    },
+    {
+      "path": "validation/f14-support-feather.json",
+      "bytes": 257,
+      "sha256": "9af75bdb39231ed47a11d205d5ec326eb5cb8d21ccd7eb6e811200663e28563d"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/support-depth-feather-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-contact-pose-scan.mjs (160/192, 405 cases, 2 failing rows)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "node tests/paper-contact-pose-scan.mjs (160/224, 405 cases)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_paper_ownership_gles.py (worst and inverse 224px poses; visual review pending)",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "f45f429b9114f2a966e69a242f26577ad3f11f703505cd08589f785274a53af6"
+}

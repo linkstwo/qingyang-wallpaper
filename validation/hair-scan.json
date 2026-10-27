@@ -1,0 +1,40 @@
+{
+  "baseline": "ab69656ada60996787f89df31818d48051a207d9",
+  "productionGlesCrops": 6,
+  "cpuMeshDiagnostics": 6,
+  "neutralPixelIdentical": true,
+  "legacyPixelIdentical": true,
+  "folds": [
+    {
+      "model": "before",
+      "case": "neutral",
+      "negativeHairTriangles": 0
+    },
+    {
+      "model": "before",
+      "case": "hard +X +Y",
+      "negativeHairTriangles": 3
+    },
+    {
+      "model": "before",
+      "case": "hard +X -Y",
+      "negativeHairTriangles": 5
+    },
+    {
+      "model": "repaired",
+      "case": "neutral",
+      "negativeHairTriangles": 0
+    },
+    {
+      "model": "repaired",
+      "case": "hard +X +Y",
+      "negativeHairTriangles": 0
+    },
+    {
+      "model": "repaired",
+      "case": "hard +X -Y",
+      "negativeHairTriangles": 0
+    }
+  ],
+  "phoneTested": false
+}

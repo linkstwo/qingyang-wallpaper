@@ -1,0 +1,21 @@
+import {subject as S} from './subject.mjs';
+import {sceneModel,materialDepthAt,projectSource,rigidHeadCamera} from './scene-model.mjs';
+export const structure={version:8,source:S.canvas,pivot:sceneModel.pivot,cameraDistance:sceneModel.cameraDistance,depthClip:sceneModel.depthClip,yawRadians:sceneModel.yawRadians,pitchRadians:sceneModel.pitchRadians,headPlate:S.head,armSupport:S.arm,hairEnvelope:S.hair,references:['main-reading-v2.png','side-reference.png','back-reference.png'],limitation:S.limitation};
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+export const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
+const bell=(x,y,c,r)=>Math.exp(-2*(((x-c[0])/r[0])**2+((y-c[1])/r[1])**2));
+export const headWeight=y=>1-smooth(S.head.rigidThroughY,S.head.neckEndsY,y);
+export function depthAt(x,y,supportFeather=120){const h=1-smooth(380,550,y);const a=[85*bell(x,y,[795,840],[340,460]),95*bell(x,y,[940,490],[180,230]),105*bell(x,y,S.chest.center,S.chest.radius),65*bell(x,y,[1060,950],[150,350])];return materialDepthAt(x,y,h*(110+12*bell(x,y,[550,305],[150,140]))+(1-h)*Math.pow(a.reduce((v,n)=>v+n**4,0),.25),supportFeather);}
+export function depthWeights(v){return Float32Array.from({length:v.length/2},(_,i)=>depthAt(v[i*2],v[i*2+1]));}
+// Two smooth material lobes preserve the neckline and taper into the supported ribcage.
+export function chestWeight(x,y){const c=S.chest,far=.82*bell(x,y,c.farCenter,c.farRadius),near=bell(x,y,c.nearCenter,c.nearRadius);return (1-(1-far)*(1-near))*smooth(...c.attachY,y)*(1-smooth(...c.releaseY,y));}
+export function hairWeight(x,y){const h=S.hair,t=clamp((y-h.rootY)/(h.tipY-h.rootY),0,1),d=(x-(h.rootX+(h.tipX-h.rootX)*t))/h.width;return Math.exp(-2*d*d)*smooth(h.rootY,h.tipY,y)*(1-smooth(h.tipY,h.releaseY,y));}
+const bodyWeight=(x,y)=>.32+.68*bell(x,y,S.torso.center,S.torso.radius)+.22*bell(x,y,S.neck.center,S.neck.radius);
+function materialPoint(x,y,body,chest,hair,gain){const hw=headWeight(y),cw=chestWeight(x,y),hairW=hairWeight(x,y),w=bodyWeight(x,y)+.3*(1-smooth(360,520,y)),bw=bodyWeight(...S.head.anchor)+.3;return [x+((body[0]*w+chest[0]*cw)*(1-hw)+body[0]*bw*hw+hair[0]*hairW)*gain,y+((body[1]*w+chest[1]*cw)*(1-hw)+body[1]*bw*hw+hair[1]*hairW)*gain];}
+const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+export function solveArm(shoulder){const {shoulder:s,elbow:e,wrist:w}=S.arm;if(shoulder[0]===s[0]&&shoulder[1]===s[1])return {shoulder,elbow:e,wrist:w,reachable:true};const u=distance(s,e),f=distance(e,w),dx=w[0]-shoulder[0],dy=w[1]-shoulder[1],d=Math.hypot(dx,dy),reach=clamp(d,Math.abs(u-f)+.0001,u+f-.0001),along=(u*u-f*f+reach*reach)/(2*reach),height=Math.sqrt(Math.max(0,u*u-along*along));return {shoulder,elbow:[shoulder[0]+dx/d*along+dy/d*height,shoulder[1]+dy/d*along-dx/d*height],wrist:w,reachable:d>=Math.abs(u-f)&&d<=u+f};}
+function segmentWeight(x,y,a,b,r){const vx=b[0]-a[0],vy=b[1]-a[1],dx=x-a[0],dy=y-a[1],t=clamp((dx*vx+dy*vy)/(vx*vx+vy*vy),0,1);return 1-smooth(r,r+S.arm.feather,Math.hypot(dx-t*vx,dy-t*vy));}
+export function armWeights(x,y){const a=S.arm,u=segmentWeight(x,y,a.shoulder,a.elbow,a.upperRadius),f=segmentWeight(x,y,a.elbow,a.wrist,a.foreRadius);return [u,f,Math.max(u,f)*smooth(...S.arm.visibleY,y)];}
+function segmentTransform(p,a,b,qa,qb){const vx=b[0]-a[0],vy=b[1]-a[1],qx=qb[0]-qa[0],qy=qb[1]-qa[1],dx=p[0]-a[0],dy=p[1]-a[1],den=Math.hypot(vx,vy)*Math.hypot(qx,qy),c=(vx*qx+vy*qy)/den,s=(vx*qy-vy*qx)/den;return [qa[0]+c*dx-s*dy,qa[1]+s*dx+c*dy];}
+export function deformPoint(x,y,z,view,body,chest,hair,gain,pin=0,spatial=true){let q=materialPoint(x,y,body,chest,hair,gain);const [u,f,w]=armWeights(x,y);if(w>0){const a=S.arm,s=materialPoint(...a.shoulder,body,[0,0,0],[0,0],gain),pose=solveArm(s),p=[x,y],qa=segmentTransform(p,a.shoulder,a.elbow,s,pose.elbow),qb=segmentTransform(p,a.elbow,a.wrist,pose.elbow,a.wrist);q=q.map((v,i)=>v+(qa[i]+(qb[i]-qa[i])*f/(u+f)-v)*w);}q=[x+(q[0]-x)*(1-pin),y+(q[1]-y)*(1-pin)];if(!spatial)return q;const h=headWeight(y),dz=(chest[2]||0)*chestWeight(x,y)*gain*(1-pin)*(1-h),projected=projectSource(...q,z,view,dz),head=rigidHeadCamera(...q,view);return projected.slice(0,2).map((v,i)=>v*(1-h)+head[i]*h);}
+export const projectPoint=(x,y,z,vx,vy,pin=0)=>deformPoint(x,y,z,[vx,vy],[0,0],[0,0,0],[0,0],1,pin,true);

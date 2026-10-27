@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-lightweight-parts-1793017723001",
+  "fence": 7,
+  "baseHead": "f334f04ed1342f0d7ddd100eb8c5b5f499db730d",
+  "createdAt": "2026-10-26T13:15:34.858Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "docs\\EXECUTION_STATE.json",
+      "bytes": 34727,
+      "sha256": "b182d7cdb68b76414d05765b2557544172e39cce80cb93c9af58d6ddca431a63"
+    },
+    {
+      "path": "docs\\PARTS-AUTHORING-20261026.md",
+      "bytes": 5334,
+      "sha256": "eb8ee06a2f133a61f7690678f1d99506f0b276492c583ecd7a92de3eb9d29ad6"
+    },
+    {
+      "path": "docs\\SOURCE-CORRESPONDENCE-CONTRACT-20261026.md",
+      "bytes": 2222,
+      "sha256": "73fc3994f40413a1c88d0ac142c9f85bf14afed17ccd1c1ea2bc0612f7005e7c"
+    }
+  ],
+  "tests": [
+    {
+      "command": "Pillow decode dimensions and hashlib SHA256 for current main/side/back",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Review corrected Doubao2008 observations using exact source identities.",
+    "Resolve bounded paper/front seam and shoulder/back shared boundaries."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "7739ee4403d79cd093325caf26c26a911722ca439ac0360d6c878a72e938ef13"
+}

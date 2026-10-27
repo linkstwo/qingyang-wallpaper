@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-workshare-audit-1793021247857",
+  "fence": 9,
+  "baseHead": "416050ffb18f064771204ced921fa341168a427e",
+  "createdAt": "2026-10-26T13:29:09.893Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "docs\\EXECUTION_STATE.json",
+      "bytes": 36392,
+      "sha256": "13cd32a66efb62a1f863ec11ce5e8bfca37c252c2a979f7288f57a50b176d74f"
+    },
+    {
+      "path": "docs\\REMAINING-TASKS-20261026.json",
+      "bytes": 17948,
+      "sha256": "1b03a26c90975973697593ef0696d9a6de9a66392e5248b6e8b96a1d9fd2b594"
+    },
+    {
+      "path": "docs\\REMAINING-TASKS-20261026.md",
+      "bytes": 9700,
+      "sha256": "4af9a442aa66fdf15316f6588da4c5ce1812d703cc20510b8b577bf8be9bd347"
+    }
+  ],
+  "tests": [
+    {
+      "command": "Ledger update preserved20 packages and added20 delegated responsibility scopes",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Apply roughly50/50 actual-workload delegation for T01/T03/T04.",
+    "Ordinary reviews owned by Doubao; core direction and critical acceptance by Codex."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "515c089157fd1ca161d597b50631236ec6e65a59194d1153e48c982a99853d3c"
+}

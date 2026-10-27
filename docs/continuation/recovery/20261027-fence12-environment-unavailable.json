@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-26T19:04:50Z",
+  "environmentStatus": "unavailable",
+  "owner": "codex-night-recovery-20261027-0157",
+  "fence": 12,
+  "lastRemoteHead": "2512938d758b916ea8dc7dfddd4ba1b33d6272f4",
+  "lastValidatedSourceCommit": "a39f9eecd4768ce949e174446948a6048c0188e5",
+  "interruption": "User environment_context reports selected execution environment unavailable; functions.exec cell57 hung during local checkpoint preparation and was terminated to permit remote recovery. No quota or user-stop claim.",
+  "remoteSourcePreserved": [
+    "SensorFeed queued-event fix",
+    "notched paper topology and forearm route",
+    "seat support and lap96 optional candidate",
+    "243 independent body/camera samples per forearm mode with no source-matte-filtered projection flips",
+    "real browser authoring and source-ownership controls",
+    "posed source rays and bilinear/discard tests"
+  ],
+  "unsavedLocalWork": [
+    "configureObservedExperiment batch API append",
+    "tests/paper-gap-probes-browser.mjs and final zero-body right/lower-paper audit outputs",
+    "traceReferenceDepth hypothesis utility, tests/paper-gap-reference-planes.mjs, raw reference depth/RGB table",
+    "local docs/continuation/checkpoints/20261027-zero-body-gap-fence12.json; final save did not reach GitHub"
+  ],
+  "actualObservedResults": {
+    "zeroBodyProbe": {
+      "cameraYawDegrees": -20,
+      "rear": false,
+      "lapWidth": 96,
+      "candidateCount": 800,
+      "points": [
+        {
+          "pixel": [
+            309.5,
+            439.5
+          ],
+          "geometricHits": 0,
+          "maskKeptHits": 0
+        },
+        {
+          "pixel": [
+            302.5,
+            425.5
+          ],
+          "geometricHits": 0,
+          "maskKeptHits": 0
+        },
+        {
+          "pixel": [
+            292.5,
+            413.5
+          ],
+          "geometricHits": 0,
+          "maskKeptHits": 0
+        }
+      ],
+      "positiveBodyAndPaperControlsPassed": true,
+      "pageErrors": []
+    },
+    "referenceDepthHypotheses": {
+      "depths": [
+        -50,
+        0,
+        40,
+        80,
+        120,
+        170
+      ],
+      "insideObservedPaperCounts": [
+        4,
+        4,
+        5
+      ],
+      "actualBodyDepthKnown": false,
+      "note": "Some depth hypotheses land outside paper in observed cloth; absence of current hits does not prove all rays need newly invented texture. Refine depth/correspondence or add an explicitly inferred component."
+    }
+  },
+  "recoveryAppendsAreReconstructedNotByteVerified": true,
+  "reconstructedSourceAppends": [
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "text": "\nexport function configureObservedExperiment(options={}){\n if(!ready)throw Error('Observed experiment not ready');\n const bools=['forearmVolume','paperPartition','paperContact','paperTrim','seatSupport'];\n for(const [key,value] of Object.entries(options)){\n  if(key==='lapWidth'){if(![48,96].includes(value))throw Error('Unsupported lap width preset');}\n  else if(!bools.includes(key)||typeof value!=='boolean')throw Error('Unsupported observed experiment setting');\n }\n for(const [key,value] of Object.entries(options)){if(key==='lapWidth')$(key).value=String(value);else $(key).checked=value;}\n updateObservedExperiment();return {vertices:observedScene.body.vertices,source:observedScene.source};\n}\n"
+    },
+    {
+      "path": "character-prototype/preview/observed-source-ray.mjs",
+      "text": "\nexport function traceReferenceDepth(pixel,{width=540,height=1176,yaw=0,pitch=0,worldZ=0}={}){\n if(!Array.isArray(pixel)||pixel.length!==2||![...pixel,width,height,yaw,pitch,worldZ].every(Number.isFinite)||width<=0||height<=0)throw Error('Invalid reference ray');\n const q=[(pixel[0]/width-.14)*1600-790,(pixel[1]/height-.04)*1740-1110],c=Math.cos(yaw),s=Math.sin(yaw),cx=Math.cos(pitch),sx=Math.sin(pitch);\n const inverse=p=>{const y=cx*p[1]+sx*p[2],z=-sx*p[1]+cx*p[2];return [c*p[0]-s*z,y,s*p[0]+c*z];};\n const origin=inverse([q[0],q[1],0]),direction=inverse([-q[0]/2300,-q[1]/2300,1]);if(Math.abs(direction[2])<1e-12)return null;\n const t=(worldZ-origin[2])/direction[2];if(t>=2300)return null;const point=origin.map((v,k)=>v+t*direction[k]),w=(2300-worldZ)/2300;if(w<=0)return null;\n return {world:point,hypothesizedSource:[point[0]/w+790,point[1]/w+1110],referenceWorldZ:worldZ,inferred:true,observedBodyHit:false};\n}\n"
+    }
+  ],
+  "browserAuditReconstruction": [
+    "Use tests/paper-lab-candidates-browser.mjs local server/Chromium setup; import actual script.src, not queryless duplicate module.",
+    "Batch configure paperPartition=true,paperContact=true,paperTrim=false,seatSupport=true,lapWidth=96. Set body/roll/pitch=0, camera=-20, rear=false, sourceOwnership=true.",
+    "Capture native framebuffer; green if G>150,R<80,B<100, blue if B>180,R<80,G in(70,140), dark if R<20,G<30,B<40.",
+    "Compute 4-neighbour distances to green/blue. Select dark pixels at/right and below blue centroid, each distance3..20; rank max(min(distances)), keep3 points separated>15px. Convert bottom-up framebuffer row to top-down source probe pixel centres.",
+    "Trace each using traceScenePixel; record all geometric hits/matte discard. Positive control mid green and blue pixel must hit respective source. Do not call every dark exterior background a missing body defect."
+  ],
+  "next": [
+    "Recover fresh execution environment; re-read latest remote HEAD, lease and this JSON.",
+    "If old local files survive compare against remote before reuse. Otherwise apply reconstructed appends only after review; rerun unit and browser audits.",
+    "Remaining T03 gap is not accepted; keep all inferred cloth reconstruction confidence0. A proposed cloth patch was NOT implemented.",
+    "Continue T01/T04 component alignment and actual material/geometry supply, preserve original source and signing identity."
+  ],
+  "stage": "S2",
+  "tasksAccepted": [],
+  "newApkBuilt": false,
+  "latestApk": "0.5.9/18",
+  "backgroundDevelopmentActive": false
+}

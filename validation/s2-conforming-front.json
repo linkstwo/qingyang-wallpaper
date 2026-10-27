@@ -1,0 +1,15 @@
+{
+  "fixtureSplitEdges": 1,
+  "inputTriangles": 18089,
+  "triangles": 18095,
+  "vertices": 9313,
+  "splitEdges": 2,
+  "edgeInsertions": 2,
+  "changedFaces": 2,
+  "epsilon": 0.0001,
+  "boundaryEdges": 529,
+  "unmatchedInternalEdges": 0,
+  "sourceAreaDrift": 0.000029109884053468704,
+  "productionUsed": false,
+  "phoneTested": false
+}

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-lightweight-parts-1793017723001",
+  "fence": 7,
+  "baseHead": "5b933474ae506ebb6aeec66ef11d09fa19da06d2",
+  "createdAt": "2026-10-26T13:11:08.699Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype\\preview\\parts-fit.mjs",
+      "bytes": 8111,
+      "sha256": "2e7e6675133870ae6b0f9987e81e775af0c3cce600effd404e3be2547c9e9df5"
+    },
+    {
+      "path": "character-prototype\\preview\\structural-lab.html",
+      "bytes": 4504,
+      "sha256": "143f753f887ad88947c57b31344b92e658883cb25c425d0477f2a590d6cf3090"
+    },
+    {
+      "path": "character-prototype\\preview\\trial-side-chart.mjs",
+      "bytes": 6023,
+      "sha256": "4e0aafeb8f78ebdb100edec37b64e43acad8bc1b72d4427336b3105e3866a69c"
+    },
+    {
+      "path": "character-prototype\\preview\\trial-side-lab.html",
+      "bytes": 4411,
+      "sha256": "b34d26851d834c2107386885ed73654a11cafbfa1cbf6be64007d2cb902acf00"
+    },
+    {
+      "path": "character-prototype\\preview\\trial-side-lab.mjs",
+      "bytes": 20930,
+      "sha256": "3098f503ecf4c8c59effd08f67821469c2ad2cdcee8d58e07eab173582045347"
+    },
+    {
+      "path": "character-prototype\\preview\\trial-side-scene.mjs",
+      "bytes": 3147,
+      "sha256": "8e2df1614a7d362c36c92e24087af200cd45adfa721801f78a337a92da3a5941"
+    },
+    {
+      "path": "docs\\EXECUTION_STATE.json",
+      "bytes": 34588,
+      "sha256": "80046d7f98c36a8d3b9f80f4e21eef1312ec954d2ef97fff85d9d7e0bd0f07c9"
+    },
+    {
+      "path": "docs\\PARTS-AUTHORING-20261026.md",
+      "bytes": 5149,
+      "sha256": "774b9740d5f29db41c17b9fc1802a95d8359d5c20cc7f90243ba0cfca0fec82e"
+    },
+    {
+      "path": "docs\\START_IN_CLOUD.md",
+      "bytes": 6873,
+      "sha256": "ba5589ff33d2ea26c25ff63fbdd30a53d4036339e0d27cd0fb858103d650b513"
+    },
+    {
+      "path": "validation\\parts-fit-browser.json",
+      "bytes": 1113,
+      "sha256": "4bd75204314788661547156e0b643ecc8f4f616f93575eb29742337b55ef21dc"
+    },
+    {
+      "path": "validation\\side-trial-back-browser.jpg",
+      "bytes": 129311,
+      "sha256": "ada85b8115b32829216e38a5faaad45a2a0cfc98a387a7a650c1d864f31fb1f8"
+    },
+    {
+      "path": "validation\\side-trial-browser.json",
+      "bytes": 1622,
+      "sha256": "cc315340a3e3d859d323367c637c331da3ce71e42e63c9fc154319240f9d485e"
+    },
+    {
+      "path": "validation\\side-trial-side-browser.jpg",
+      "bytes": 123839,
+      "sha256": "a772793a5922c5f020626c960812ef1d82dd7fa4a77f9c1c315fe14a8b7b875f"
+    },
+    {
+      "path": "validation\\side-trial-small-angle-browser.jpg",
+      "bytes": 144561,
+      "sha256": "aee18d33ac974f0778359dad4d299e67a1c8a16c6ad19843450a07a27a24ada9"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/parts-warp-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check parts-fit.mjs and trial-side-lab.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Actual IAB display, eight attribute slots, reset; +/-20,90,180 review",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Continuous shoulder/back and paper visual acceptance",
+      "status": "failed",
+      "exitCode": 1
+    }
+  ],
+  "next": [
+    "Review Doubao visible shoulder landmarks and pose differences.",
+    "Resolve paper/front seam and shoulder/back shared boundaries; do not promote rejected side trial."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "8617dc3fcbe6db941f3f48fc384570b81dcd8852b0178b3b256c22d60fd6bf58"
+}

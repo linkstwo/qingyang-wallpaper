@@ -1,0 +1,29 @@
+{
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "exportVersion": 3,
+  "poseCases": 27,
+  "vertexComponentProbes": 1557306,
+  "maxWorldError": 0.00034913442067363576,
+  "worst": {
+    "input": {
+      "yaw": 0.06,
+      "pitch": 0,
+      "roll": -0.035
+    },
+    "vertex": 8301,
+    "axis": 0
+  },
+  "renderedViews": 6,
+  "colouredPixels": [
+    94856,
+    97302,
+    99705,
+    125958,
+    120923,
+    115513
+  ],
+  "geometricPosedNormals": true,
+  "texturedHiddenFaces": false,
+  "debugOnly": true,
+  "phoneTested": false
+}

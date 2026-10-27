@@ -1,0 +1,59 @@
+{
+  "checks": 192250,
+  "vertices": 19226,
+  "triangles": 38448,
+  "components": 1,
+  "boundaryEdges": 0,
+  "euler": 2,
+  "volume": 65975543.3334298,
+  "minTriangleArea": 0.000010248404762998928,
+  "bones": [
+    {
+      "name": "head",
+      "parent": 1
+    },
+    {
+      "name": "torso",
+      "parent": -1
+    },
+    {
+      "name": "far-upper-arm",
+      "parent": 1
+    },
+    {
+      "name": "far-forearm",
+      "parent": 2
+    },
+    {
+      "name": "near-upper-arm",
+      "parent": 1
+    },
+    {
+      "name": "near-forearm",
+      "parent": 4
+    }
+  ],
+  "grid": {
+    "step": 18,
+    "dims": [
+      55,
+      91,
+      23
+    ],
+    "bounds": [
+      [
+        -522,
+        -1188,
+        -126
+      ],
+      [
+        450,
+        432,
+        270
+      ]
+    ]
+  },
+  "untextured": true,
+  "productionPhotoChanged": false,
+  "phoneTested": false
+}

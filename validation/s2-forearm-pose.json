@@ -1,0 +1,37 @@
+{
+  "poses": 9,
+  "cameraViews": 5,
+  "minAreaRatio": -0.12475751133732269,
+  "minForearmAreaRatio": 0.742005862087507,
+  "fullFrontAccepted": false,
+  "triangleCases": 1403910,
+  "maxPinnedError": 0,
+  "worst": {
+    "source": [
+      [
+        243,
+        900
+      ],
+      [
+        234,
+        908.6666870117188
+      ],
+      [
+        228.11764526367188,
+        904.1568603515625
+      ]
+    ],
+    "input": {
+      "yaw": -0.06,
+      "pitch": 0.04,
+      "roll": -0.035
+    },
+    "view": [
+      -1,
+      1
+    ]
+  },
+  "depthInferred": true,
+  "productionUsed": false,
+  "phoneTested": false
+}

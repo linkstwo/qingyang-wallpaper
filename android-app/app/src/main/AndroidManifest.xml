@@ -31,6 +31,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".FramingEditorActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".FramingStudyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <service
             android:name=".MotionWallpaperService"
             android:exported="true"

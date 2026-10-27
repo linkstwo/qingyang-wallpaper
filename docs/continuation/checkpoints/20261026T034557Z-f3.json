@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0329",
+  "fence": 3,
+  "baseHead": "c68c2e0e7b5c29c1052e83669275e773fe8612ee",
+  "createdAt": "2026-10-26T03:45:57.060475+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/material-chart.mjs",
+      "bytes": 2203,
+      "sha256": "146e280a7a3477b710972896f383ef5cc637ed6ca1410831030d5a5f6a8e1863"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 24423,
+      "sha256": "37b8e1c5e00ac102df08c87bcb7f4f93876be2a4a36e050ac57843973330f2a6"
+    },
+    {
+      "path": "docs/S2-MATERIAL-REGISTRATION.md",
+      "bytes": 1732,
+      "sha256": "5d5e7b599ba0fd8b153675d5331668f3b47ad48bee958e16558e8ceee209bd4c"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 3467,
+      "sha256": "1cc57163271c542f127d98cf59cda9dcb712f9e5f92369f5416eceadb0d41fee"
+    },
+    {
+      "path": "references/multiview-archive-manifest.json",
+      "bytes": 3702,
+      "sha256": "05a6dd71d9a7059d595eeab3b7381dd28b543c57a61be1af22ea70cff2ae7187"
+    },
+    {
+      "path": "scripts/register_source_images.py",
+      "bytes": 6216,
+      "sha256": "93c802bb3c311de279da89cb8b6a1f9760b4587aed08425c304f4380638e7297"
+    },
+    {
+      "path": "tests/material-chart-regression.mjs",
+      "bytes": 1267,
+      "sha256": "c35584951f8510115c266f44a167b32ed2f798d381f59137705224e5cd330a2a"
+    },
+    {
+      "path": "tests/render_material_chart_gles.py",
+      "bytes": 4166,
+      "sha256": "467ab80643e728d197679ce0afc2e8a68c73ea04606fc6131290f6e302bdad70"
+    },
+    {
+      "path": "tests/source-registration-regression.py",
+      "bytes": 1106,
+      "sha256": "e045b60cb778c820d61d61a45b66820e1c21838a725047bc2e7a2e541dc122f3"
+    },
+    {
+      "path": "validation/s1-reading-source-registration.jpg",
+      "bytes": 139165,
+      "sha256": "33b897d3ee16b9c55922b92274ace8231533117b438b9c345f3c54fe1d26fed0"
+    },
+    {
+      "path": "validation/s1-reading-source-registration.json",
+      "bytes": 10140,
+      "sha256": "74ff7e80b321f953ed9d087f0f011d234be0a8f98334c4d6d457c61210ba946f"
+    },
+    {
+      "path": "validation/s1-source-registration-negatives.json",
+      "bytes": 939,
+      "sha256": "8c9e42f066969dff79d75f8f26977565b6abf186a86fbc2cbeff21d416802c72"
+    },
+    {
+      "path": "validation/s2-back-chart-gles.jpg",
+      "bytes": 54266,
+      "sha256": "c9848ea63b8d9748ccbeda2dabc558fbb616123da8dbeb38872f8a287626172c"
+    },
+    {
+      "path": "validation/s2-back-chart-gles.json",
+      "bytes": 498,
+      "sha256": "8ddc2da58f67ef29078b26a2c831f60159d47d48f8f65ccfa491528012bc4cc5"
+    },
+    {
+      "path": "validation/s2-back-chart.json",
+      "bytes": 181,
+      "sha256": "192f53760ed6005f9f697e1a8b508f2492e6d7b96e95787491de3eba7529004f"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python scripts/register_source_images.py --archive <original-archive>",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python scripts/register_source_images.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/source-registration-regression.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/material-chart-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_material_chart_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Android production/back-chart phone validation",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Scan continuous supported poses for nonlocal triangle intersections, not just area/orientation; preserve observed wrist support.",
+    "Calibrate/refine torso-back chart and shoulder/neck seams before promoting any patch to production confidence; current prototype visibly stretches."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "1d15bf508a4dfb984ed8348a0a8d4a15ba1ff536c694f6df8e283cbba9f99407"
+}

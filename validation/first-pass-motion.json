@@ -1,0 +1,13 @@
+{
+  "file": "qingyang-0.6.0-motion.mp4",
+  "bytes": 1124329,
+  "sha256": "938ac28f12c7591ef402a892f2412b5affea6810f62a30b7c7f118dbb447b9c4",
+  "frames": 216,
+  "fps": 12,
+  "durationSeconds": 18,
+  "realProductionShaders": true,
+  "existingJsResponseTrace": true,
+  "syntheticInput": true,
+  "phoneTested": false,
+  "approximateSideBackRegistration": true
+}

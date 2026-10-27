@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-lightweight-parts-1793017723001",
+  "fence": 7,
+  "baseHead": "0a25ac0b90b38aeb13d92afe936c13dffb16e57a",
+  "createdAt": "2026-10-26T12:46:30.746Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype\\preview\\parts-fit.html",
+      "bytes": 4467,
+      "sha256": "c0ad5c3489d7b83afd9c557cf8d18943e5c327ef7caca39485c7cc412a9c6ebb"
+    },
+    {
+      "path": "character-prototype\\preview\\parts-fit.mjs",
+      "bytes": 8025,
+      "sha256": "3340c48b95f5ecdbf6bb48480f5379f717c3a4404d6618a503c53e996906106c"
+    },
+    {
+      "path": "character-prototype\\preview\\parts-raster.mjs",
+      "bytes": 2578,
+      "sha256": "f8ae2f3367a0ffbd4056e90aaf9ccbdd26736bb64a11375b04e8317d4b9a60dc"
+    },
+    {
+      "path": "character-prototype\\preview\\parts-warp.mjs",
+      "bytes": 4394,
+      "sha256": "c5b1b94860b786386bc061b9248da63daa264d802d1be7a37510e3bb0d6122e8"
+    },
+    {
+      "path": "character-prototype\\preview\\third-party\\MLS-LICENSE.txt",
+      "bytes": 1302,
+      "sha256": "ffa2b03e4fcd62f96c601546e4ce4765abaf3cdae5b0b3eb7504b23d619fbb89"
+    },
+    {
+      "path": "docs\\EXECUTION_STATE.json",
+      "bytes": 33155,
+      "sha256": "d2b33c6e2a48966070d275e2cd9ba001589e028ad5e794346eb374ac87d3def5"
+    },
+    {
+      "path": "docs\\PARTS-AUTHORING-20261026.md",
+      "bytes": 3118,
+      "sha256": "28fd18977834aeae1794b80d0410e0d5695ea99f85b7f4dd113076c7d7187dd0"
+    },
+    {
+      "path": "docs\\START_IN_CLOUD.md",
+      "bytes": 6732,
+      "sha256": "7a95a32190c526d4007c1fa8953681e6f896b3cf7ff60098cd01be4a11a180ed"
+    },
+    {
+      "path": "tests\\parts-warp-regression.mjs",
+      "bytes": 2078,
+      "sha256": "9a4d82db0e9eeac981b51ad625d8ed445933a9db277ffa457a90e140cc00a299"
+    },
+    {
+      "path": "validation\\parts-fit-browser.json",
+      "bytes": 672,
+      "sha256": "5e49a6eac3361457643d8f08874d7b8ee5b5e843642e5807a9507fac37c4a2d0"
+    },
+    {
+      "path": "validation\\parts-fit-side-browser.jpg",
+      "bytes": 85594,
+      "sha256": "a44e8979c70c1daa74ff94346b11172ccc7597de1d65be0d46d0d05ce1cabbf0"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/parts-warp-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check character-prototype/preview/parts-fit.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check character-prototype/preview/parts-raster.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Codex browser: actual image,drag,55% save/reload/restore,JSON round trip,wrong source rejection,side preview",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Review Doubao candidate-1946 attribute-slot patch in an isolated browser; retain old production source.",
+    "Use authoring controls on one independently observed shoulder correspondence; exported JSON is not yet backChart or Android data.",
+    "Continue paper-edge foreground/material binding and shoulder/back continuity; S1/S2 remain incomplete."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "1535f0fb0b34a3e5fe2546519485edc4e3f389e6c855e0aa257fd622286006fa"
+}

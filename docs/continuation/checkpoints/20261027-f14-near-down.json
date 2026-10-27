@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "4a3d75d0b38530a49c1eba474ac0cb01ff440994",
+  "createdAt": "2026-10-26T23:38:55.630603Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/component-fit.html",
+      "bytes": 2073,
+      "sha256": "bee4ad50c87d847d57dfa8b12a43fa4e02ca87b41ba0c3ff6ec02cc6ce3c17c3"
+    },
+    {
+      "path": "character-prototype/preview/component-fit.mjs",
+      "bytes": 5310,
+      "sha256": "bd27b58e0a81fb9d63248698e99fed8046c0cc86e274281754e37b3717fd09f0"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36439,
+      "sha256": "fc9d89105563a6883f48d6fc9407a582badb3f82acdf22853e3f8559e70b42b4"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 7239,
+      "sha256": "7bec87def5da5207ae8c09bdcfcfa72f3c964d0c42ebfc044c96f6b6d4aee7f5"
+    },
+    {
+      "path": "references/derived/near-down-cutout-manifest.json",
+      "bytes": 3045,
+      "sha256": "e9529bb1390b0fc8a5767b516bafc836a49afd5d6ffddb3ea47bab8111d900dc"
+    },
+    {
+      "path": "references/derived/near-down-shoulder-cutout.png",
+      "bytes": 97540,
+      "sha256": "98be4114e7d4f89fad403bc250cb9d0391bf4523a01921f2db80c52e0494ba79"
+    },
+    {
+      "path": "references/derived/near-down-source.json",
+      "bytes": 299,
+      "sha256": "96c0dca6eb5c0eff785afecc9251cd9c9a61e61233027a193558194f676e9a5b"
+    },
+    {
+      "path": "references/derived/near-down-upper-arm-cutout.png",
+      "bytes": 79395,
+      "sha256": "dc48e33703ab0c30a3491a702c2a707b40921042863bdc57756167e1c95497fe"
+    },
+    {
+      "path": "scripts/prepare_near_down_components.py",
+      "bytes": 2648,
+      "sha256": "d0b0b28e2721573eefd8da021696f8f4af86acdc9e3377cf18e2049697d8cfae"
+    },
+    {
+      "path": "tests/component-deform-regression.mjs",
+      "bytes": 4758,
+      "sha256": "1ba1fd55f90f138e6e5a713a1dfa58b974f73d8ebc4f7adaebe2be631ea67d8a"
+    },
+    {
+      "path": "tests/component-fit-interaction.mjs",
+      "bytes": 4383,
+      "sha256": "852318d14d0881ee7e3aa761e3b0ecb563833774936eb59634433f6ce1d9f744"
+    },
+    {
+      "path": "tests/near-down-source-regression.py",
+      "bytes": 1662,
+      "sha256": "d08f193c2d1de707f7d2a8011d808e89428f2f79f441c09eff7366064d37a7d1"
+    },
+    {
+      "path": "tests/render_component_junction_gles.py",
+      "bytes": 3580,
+      "sha256": "d890ae5332f4ab1e3ba565c636809ad39ae3dbd1d2464898347be276f9192664"
+    },
+    {
+      "path": "validation/f14-component-deform-gles-near-down.jpg",
+      "bytes": 52906,
+      "sha256": "7f82a819b2bd06ceef84b6c3257035a96707dbca9bfd7faa3364c075b755cfad"
+    },
+    {
+      "path": "validation/f14-component-deform-gles-near-down.json",
+      "bytes": 267,
+      "sha256": "352c14c4dc8600ca6fef4735107a9660a6ac333ca5e18cd5a9cfb3fdd364e1d5"
+    },
+    {
+      "path": "validation/f14-component-deform-near-down.json",
+      "bytes": 346,
+      "sha256": "037acdca2103b437ebbd1339afb7321c03c9a58f1ed2bf1cac8cc25d9eda4627"
+    },
+    {
+      "path": "validation/f14-near-down-components.jpg",
+      "bytes": 124889,
+      "sha256": "e9e58ab7173c82b2f5705a5aed0dba9f674b8fc5b8e7d9de2ddc35d2a069f785"
+    },
+    {
+      "path": "validation/f14-near-down-source.json",
+      "bytes": 675,
+      "sha256": "8f0c442966e07b2224073810dca96501e35e980708470b110a51afa64b2aa2aa"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/component-fit-interaction.mjs (both donor selections)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/near-down-source-regression.py SOURCE",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "COMPONENT_DONOR=nearDown python tests/render_component_junction_gles.py (black internal seam observed)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/component-deform-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "33ebe9363ec0e5235438ec239e99f5e2251aa7bd5469426f419d08d1d159fa0b"
+}

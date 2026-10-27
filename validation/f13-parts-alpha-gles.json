@@ -1,0 +1,19 @@
+{
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "premultiplied": [
+    100,
+    50,
+    25,
+    128
+  ],
+  "straightUploadNegative": [
+    100,
+    150,
+    153,
+    128
+  ],
+  "transparentRgbFringeRejected": true,
+  "actualPartsFragmentShader": true,
+  "browserDomUploadTested": false,
+  "phoneTested": false
+}

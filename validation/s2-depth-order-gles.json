@@ -1,0 +1,8 @@
+{
+  "checks": 5,
+  "depthBits": 16,
+  "bothDrawOrders": true,
+  "transparentMatteDoesNotOcclude": true,
+  "productionShader": true,
+  "phoneTested": false
+}

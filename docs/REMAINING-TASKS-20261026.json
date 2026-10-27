@@ -1,0 +1,409 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-26T23:47:13.824842+00:00",
+  "repository": "linkstwo/qingyang-wallpaper",
+  "branch": "feature/cloud-framing-response",
+  "auditedSourceHead": "2573551f5b48d958737ca2028a4dfdc15ae52d26",
+  "goal": "较大且饱满的阅读人物；可信肩背随手机转动连续显露；身体有支撑、局部相对滞后回弹；Android锁屏稳定且功耗可接受。",
+  "countingRule": "20个尚未整体验收的剩余工作包；允许复用已完成子实现。不是20次对话或工时预测。原S1-S8计划70个细项不等于剩余70项；不按提交/测试条数算完成度。",
+  "originalPlanItemsByStage": {
+    "S1": 8,
+    "S2": 9,
+    "S3": 10,
+    "S4": 9,
+    "S5": 10,
+    "S6": 9,
+    "S7": 8,
+    "S8": 7
+  },
+  "originalPlanItemsTotal": 70,
+  "remainingPackages": 20,
+  "remainingPackagesByStage": {
+    "S1": 2,
+    "S2": 3,
+    "S3": 3,
+    "S4": 2,
+    "S5": 3,
+    "S6": 3,
+    "S7": 3,
+    "S8": 1
+  },
+  "acceptedWholeStages": 0,
+  "nextPriority": [
+    "T01",
+    "T03",
+    "T04"
+  ],
+  "userVisibleNextMilestone": "正确来源的肩背小范围连续显露、纸面不裂，并保留当前主图外观；未通过不升S3。",
+  "phoneAcceptancePending": true,
+  "backgroundDevelopmentActive": false,
+  "tasks": [
+    {
+      "id": "T01",
+      "stage": "S1",
+      "task": "确认可用素材与部位对应",
+      "acceptance": "在正确原图上标出可见肩颈/肩带/躯干，区分姿态差异、遮挡和推断；审核豆包修正版",
+      "currentEvidence": "Ten archive hashes verified; all composition/component choices recorded; same-facing lossless shoulder/back crop wired into authoring tool; cross-source correspondence still unaccepted. Two conservative alpha cutouts with exact RGB prepared; no accepted cross-source registration.",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "源身份/哈希/尺寸全量审核、点位偏差和遮挡记录；不自行确立跨姿态对应",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      },
+      "fence14Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE14.md",
+        "wholeTaskAccepted": false,
+        "sourceCheckpoint": "d5cf0f012e9cd046986453d242b3f2dac87983ee",
+        "summary": "Verified near/down source cutouts and rejected false homologous skin candidate."
+      }
+    },
+    {
+      "id": "T02",
+      "stage": "S1",
+      "task": "冻结目标构图与可行范围",
+      "acceptance": "同屏人物足够大，保留脸/肩/腰并出现明确肩背区域；有来源、窗口和连续揭示图示",
+      "currentEvidence": "取景工具已有；肩背目标未通过",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T01"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "按固定窗口批量构图、裁切与区域覆盖审核，对照图和数据交付",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T03",
+      "stage": "S2",
+      "task": "修复纸面与人体支撑接缝",
+      "acceptance": "约定有限角度与身体姿态中，纸面无分离长条/三角裂口，手纸接触仍成立",
+      "currentEvidence": "Optional right-cloth contact fixes three reproducible zero-body -20deg gap probes using unchanged observed UV. 243 production-range pose/camera samples per arm mode pass; diagnostic flips and upper gaps remain. Full task unaccepted. Misclassified left-background shard (8155px²) removed in optional experiment; actual GLES and source rays verified, upper occlusion remains.",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "复现有限角度纸面缺口、定位边界/绑定问题，提交独占候选补丁及对照",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      },
+      "fence14Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE14.md",
+        "wholeTaskAccepted": false,
+        "sourceCheckpoint": "d5cf0f012e9cd046986453d242b3f2dac87983ee",
+        "summary": "Under-hand background traced/trimmed; optional separate observed background plane; diagnostic flips and disocclusion remain."
+      }
+    },
+    {
+      "id": "T04",
+      "stage": "S2",
+      "task": "连接肩颈、躯干、手臂与背面",
+      "acceptance": "新表面有连续结构和明确连接；近远臂按各自姿态处理，禁止镜像整图冒充",
+      "currentEvidence": "Same-donor nape/arm junction implemented: 51 shared material edges, observed source UV exact, overlap removed, 10464 source coverage samples agree. Not registered to current main pose, no whole-task acceptance.",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T01"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "按接口处理局部网格导出、边界索引/邻接数据与限定实现",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      },
+      "fence14Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE14.md",
+        "wholeTaskAccepted": false,
+        "sourceCheckpoint": "d5cf0f012e9cd046986453d242b3f2dac87983ee",
+        "summary": "Shared MLS component topology and tool; real alpha seam corrected; not registered to main."
+      }
+    },
+    {
+      "id": "T05",
+      "stage": "S2",
+      "task": "通过完整结构与姿态检查",
+      "acceptance": "主视角外观保留，支持范围内无翻折/自交/断裂，接触约束及CPU/GLSL一致",
+      "currentEvidence": "局部扫描通过；整幅前景姿态仍有失败项",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T03",
+        "T04"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "独立负责普通/中等结构审核、回归和负例报告，核心失败即时上报",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      },
+      "fence14Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE14.md",
+        "wholeTaskAccepted": false,
+        "sourceCheckpoint": "d5cf0f012e9cd046986453d242b3f2dac87983ee",
+        "summary": "Donor-plane overlap/fold gates and negative controls; whole-body 3D/phone unaccepted."
+      }
+    },
+    {
+      "id": "T06",
+      "stage": "S3",
+      "task": "把侧背素材贴到正确表面",
+      "acceptance": "每块新纹理有正确源图/区域/表面/可用角度，完成局部姿态校正和缺口记录",
+      "currentEvidence": "工作台能画背图，但拉伸且可信度0",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T01",
+        "T04"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "区域UV数据、来源清单和局部校正候选实现/审核",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T07",
+      "stage": "S3",
+      "task": "处理遮挡、发丝与材料过渡",
+      "acceptance": "手臂/躯干/肩背/头发/纸面前后关系正确，色调和衣纹连续，设备能力可用",
+      "currentEvidence": "待可信纹理与连接完成",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T05",
+        "T06"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "边界明确的材质/遮挡辅助实现，色调/衣纹与发丝普通审核",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T08",
+      "stage": "S3",
+      "task": "冻结连续视角可展示范围",
+      "acceptance": "慢转、保持和反向都有来源可追踪的新增表面，无整图跳变/拉长/空洞",
+      "currentEvidence": "当前候选未通过；不承诺360度",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T07"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "角度回放、缺口测量、来源调试图与连续性普通审核",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T09",
+      "stage": "S4",
+      "task": "确定满屏默认构图与窗口适配",
+      "acceptance": "多种竖屏和系统裁剪下主体大、胸部居中，脸肩腰连贯，少填充；保留手动取景",
+      "currentEvidence": "已有取景/UI；最终侧背构图和手机裁剪待验",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T02",
+        "T08"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "窗口/屏幕比例适配、中等UI实现及取景普通审核",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T10",
+      "stage": "S4",
+      "task": "标定手机转动到观察方向",
+      "acceptance": "相机和身体动作分开；慢转保持不回弹错位，方向/归中/死区/边界一致",
+      "currentEvidence": "已有传感器与小角度路径；最终映射未验",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T08"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "传感器轨迹、方向/归中边界用例与限定输入辅助实现",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
+    },
+    {
+      "id": "T11",
+      "stage": "S5",
+      "task": "完成身体整体惯性与支撑运动",
+      "acceptance": "相机、躯干和柔性运动可分开对照；身体有小幅惯性且支撑不漂移",
+      "currentEvidence": "已有骨架和支撑基础；最终联动未验",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T05"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "支撑轨迹回放、接口辅助实现与普通审核",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T12",
+      "stage": "S5",
+      "task": "完成相对躯干的局部滞后回弹",
+      "acceptance": "保留已有Q弹，胸部相对身体明显滞后/超越/回弹，背部不一起鼓动，附着自然",
+      "currentEvidence": "已有求解器与渐进附着；最终观感待验",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T11",
+        "T07"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "参数对照工具、附着区域数据、运动曲线与限定实现",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T13",
+      "stage": "S5",
+      "task": "通过变帧率、碰撞和组合输入检查",
+      "acceptance": "30/60/120及异常dt有界，无穿插/翻折，停止收敛，脸/发根/手纸稳定",
+      "currentEvidence": "已有旧回归；完整新范围未验",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T10",
+        "T12"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "独立负责变帧率/异常输入/普通碰撞回归及证据",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
+    },
+    {
+      "id": "T14",
+      "stage": "S6",
+      "task": "把新结构纹理物理接进Android",
+      "acceptance": "真实APK包含新的资产和统一版本数据，Java/JS/GLSL结果可核对，保留回退",
+      "currentEvidence": "0.5.9不包含后续全部研究成果",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T09",
+        "T10",
+        "T13"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "资产/导出格式接入、Java/JS接口适配中明确划定的实现",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T15",
+      "stage": "S6",
+      "task": "验证真实壁纸生命周期与资源",
+      "acceptance": "Surface/双Engine/上下文丢失/暂停恢复一致；不可见停止工作，恢复无旧冲量",
+      "currentEvidence": "旧路径有修复和离线检查；新完整组合未验",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T14"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "独立负责中等生命周期/资源审核和明确复现问题的小修",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核",
+      "fence12Evidence": {
+        "resume": "docs/RESUME-20261027-FENCE12.md",
+        "wholeTaskAccepted": false
+      }
+    },
+    {
+      "id": "T16",
+      "stage": "S6",
+      "task": "构建原签名完整候选并交付",
+      "acceptance": "源码/资产/APK绑定，原证书、版本、完整性和下载核对通过；提供最短验收步骤",
+      "currentEvidence": "当前最新可安装包0.5.9/18；无本轮新包",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T14",
+        "T15"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "构建产物内容、版本、ZIP/对齐/哈希普通审核与交付记录",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T17",
+      "stage": "S7",
+      "task": "完成手机效果验收与反馈修正",
+      "acceptance": "目标手机锁屏构图、慢转保持、快晃反向、停止、熄屏唤醒和主观手感通过",
+      "currentEvidence": "无本轮手机验收",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T16"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "按实际手机反馈复现、记录和边界明确的UI/配置修正",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T18",
+      "stage": "S7",
+      "task": "测量并优化性能功耗温升",
+      "acceptance": "真实设备记录帧耗时、CPU/GPU/内存/耗电/温升；按瓶颈优化并定默认档位",
+      "currentEvidence": "离线/GLES证据不能代替手机数据",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T16"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "性能数据采集整理、明确热点的优化候选与对照审核",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T19",
+      "stage": "S7",
+      "task": "完成长期与异常情况稳定性验收",
+      "acceptance": "亮灭屏/双引擎/升级/参数迁移/传感器缺失/漂移/低帧率均有结果及问题闭环",
+      "currentEvidence": "历史局部检查已有；完整候选长测未做",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T17",
+        "T18"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "独立负责异常/长测/迁移清单审核和明确小修",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    },
+    {
+      "id": "T20",
+      "stage": "S8",
+      "task": "整理稳定版与可复现交付",
+      "acceptance": "最终APK/源码/来源/支持角度/默认参数/回退与构建签名说明齐全，所有完成声明有证据",
+      "currentEvidence": "已有签名和Git交付基础；最终稳定版待验",
+      "owner": "双方分担实质工作；豆包负责明确实现/普通及中等审核，Codex负责核心与关键验收",
+      "dependsOn": [
+        "T19"
+      ],
+      "status": "unaccepted",
+      "accepted": false,
+      "doubaoResponsibilities": "主导来源/构建/回退/安装交付文档与完整性审核",
+      "codexResponsibilities": "核心结构/接口/算法取舍和关键结果验收；普通项必要抽查，不完整重复豆包审核"
+    }
+  ],
+  "worksharePolicy": {
+    "targetByActualWorkload": {
+      "codex": 0.5,
+      "doubao": 0.5
+    },
+    "basis": "User supplemental instruction, relayed from side conversation during this audit",
+    "rule": "Aim for roughly equal substantive workload, not equal task count; actual shares not measured yet. Delegate ordinary and medium reviews and scoped medium implementation.",
+    "review": "Doubao owns ordinary reviews to explicit criteria; Codex samples necessary evidence rather than repeating all work. Codex owns core technical choices and critical geometry/visual/phone-result acceptance."
+  }
+}

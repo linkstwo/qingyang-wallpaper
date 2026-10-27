@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "ea79388acf8789fc83e8cc113724d0fbf213511c",
+  "workflowRun": 40448885010,
+  "sha256": "2eaae0554d09b666069204031cf35daccfaef3f69c55bd2cd4da29ba9cfc5030",
+  "bytes": 8013350,
+  "package": "com.tangtang.motionwallpaper",
+  "versionName": "0.6.0",
+  "versionCode": 19,
+  "debuggable": false,
+  "crcVerified": true,
+  "packagedAssetsByteCompared": 28,
+  "firstPassNativeClassesPresent": true,
+  "signed": false,
+  "installableDelivered": false,
+  "phoneTested": false
+}

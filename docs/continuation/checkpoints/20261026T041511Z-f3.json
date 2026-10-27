@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0329",
+  "fence": 3,
+  "baseHead": "075c39c9bcef2a2d37c7fa44354a51b34b57977e",
+  "createdAt": "2026-10-26T04:15:11.000899+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/connected-proxy.mjs",
+      "bytes": 5718,
+      "sha256": "d21b9dc7db8f57885b375095ff01099e49a73b401b257856dbfc2949a12a3198"
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 2160,
+      "sha256": "d9dce13a2e1f04a7aec91e6e4db9cc1e5894c949de6889facaae00a382a37aa5"
+    },
+    {
+      "path": "character-prototype/preview/observed-surface.frag",
+      "bytes": 279,
+      "sha256": "e57cff01ac160e4fed0dcf5983372442cc77d7080624dd0a55fb5181c8cd159e"
+    },
+    {
+      "path": "character-prototype/preview/observed-surface.vert",
+      "bytes": 1087,
+      "sha256": "70147621ff6a4262f132af7276c30c9ca48d056637add6b49cf6b6ec13c80b95"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "bytes": 4336,
+      "sha256": "c6e480b1cae5b9958534ad8c997ea680ccae74f1ef115147c8152550676967a9"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 13309,
+      "sha256": "8e8f2e18e43a10cee2ae98ac817c1e2a94b26fcf586ebb67454093ec6ed18280"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 26867,
+      "sha256": "f0c0ba32eaeed536c8ded8aff4742f817ade26ba1397db9593d4baef72cfc16e"
+    },
+    {
+      "path": "docs/S2-MATERIAL-REGISTRATION.md",
+      "bytes": 4604,
+      "sha256": "893e3b2bfa13bd95fe61ce3f31a19a8bd9dfaeafc857f8e9afee015c3e7b1bf6"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 3794,
+      "sha256": "ebe800c376604b659149a9058a7da79dbb6e97a46b1a2f6ae62cc212c0ca3dde"
+    },
+    {
+      "path": "tests/observed-scene-regression.mjs",
+      "bytes": 1131,
+      "sha256": "4e39c62d2ba59340221d1ac4802a08b5374ad8a50f4b491701b2848935e7a503"
+    },
+    {
+      "path": "tests/render_observed_scene_gles.py",
+      "bytes": 3878,
+      "sha256": "0967dcdc2bf2ac58813b61500879f44b751bcb45f42bb51a3face1266451561e"
+    },
+    {
+      "path": "tests/structural-lab-browser.mjs",
+      "bytes": 7123,
+      "sha256": "964a7d60531a67992e2bc0b4b7cdbe7e7ae12abe3434e1ac708a82ae497a4bd7"
+    },
+    {
+      "path": "validation/s2-combined-front.jpg",
+      "bytes": 62060,
+      "sha256": "4188831e4e13b9575398df3045b01d638e541ac5f4fd30f753c3ed5356895eee"
+    },
+    {
+      "path": "validation/s2-combined-side.jpg",
+      "bytes": 18696,
+      "sha256": "09e1040a7561c9e90cbf9f7d4c5bc6027350c4007111fbe8234749fc7f3b9915"
+    },
+    {
+      "path": "validation/s2-front-rear-seam-acceptance.json",
+      "bytes": 459,
+      "sha256": "a69346b8a398426375ddba721ecaeed3a538b432bd2f849d018329775a302fd7"
+    },
+    {
+      "path": "validation/s2-observed-scene-gles.jpg",
+      "bytes": 111825,
+      "sha256": "b6ec80ab85f5e81711162d5f7f84b497d285aedee03ff4c6e4e8ad6a9e15d2cf"
+    },
+    {
+      "path": "validation/s2-observed-scene-gles.json",
+      "bytes": 363,
+      "sha256": "b990ad845d9c1addf21ef3525d93b0f9f1949e31a875258e98cf687e3dd436ac"
+    },
+    {
+      "path": "validation/s2-observed-scene.json",
+      "bytes": 228,
+      "sha256": "cab8cecb6b6ba22464ced5a8f5dbd9ad0df9a9bfaf21ccad6ddc85153fdd4867"
+    },
+    {
+      "path": "validation/s2-structural-lab-browser.json",
+      "bytes": 3864,
+      "sha256": "79562ec52bb821abb26ead1b917b7ce8feaae4ea8d7dcc6f62d5a39f09e3912a"
+    },
+    {
+      "path": "validation/s2-structural-lab.jpg",
+      "bytes": 142898,
+      "sha256": "86b4f1e21c88df0b0abd8c1af6c3efb94feac8c74872939d3ff8b355c0ac9276"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/observed-scene-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_scene.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_observed_scene_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/structural-lab-browser.mjs <headless-chrome> (bounded functional regression only)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "curl public v0.5.9 download + sha256sum",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "strict rear-on/off neutral pixel equality in earlier browser revision",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "Android native/phone/new candidate build",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Locate/correct the16 neutral joint-edge pixel differences in the combined scene; retain strict seam acceptance as false until resolved.",
+    "Replace provisional back chart association with semantically matched shoulder/neck/back observations, refine local geometry and source seams before Android integration or a new candidate."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "e6e4500315360248b81225cb0ef38a2fdc4efeb654652a8f810673d8bacc40ff"
+}

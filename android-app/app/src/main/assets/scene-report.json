@@ -1,0 +1,313 @@
+{
+  "version": 3,
+  "scene": {
+    "version": 2,
+    "units": "source pixels, +Z toward viewer",
+    "pivot": [
+      790,
+      1110
+    ],
+    "cameraDistance": 2300,
+    "yawRadians": 0.04,
+    "pitchRadians": 0.02,
+    "depthClip": {
+      "nearWorldZ": 1000,
+      "farWorldZ": -2000,
+      "numerator": [
+        4250,
+        -14
+      ],
+      "denominator": 17250
+    },
+    "paper": {
+      "sourceAnchor": [
+        330,
+        990
+      ],
+      "depth": 180,
+      "slopeY": 0.12,
+      "referenceY": 1000
+    },
+    "seat": {
+      "sourceAnchor": [
+        500,
+        1450
+      ],
+      "depth": 40,
+      "transition": [
+        1270,
+        1410
+      ]
+    },
+    "sections": [
+      {
+        "y": 12,
+        "cx": 585,
+        "rx": 160,
+        "cz": 35,
+        "rz": 75,
+        "region": "head"
+      },
+      {
+        "y": 85,
+        "cx": 570,
+        "rx": 245,
+        "cz": 45,
+        "rz": 110,
+        "region": "head"
+      },
+      {
+        "y": 210,
+        "cx": 550,
+        "rx": 220,
+        "cz": 50,
+        "rz": 105,
+        "region": "head"
+      },
+      {
+        "y": 335,
+        "cx": 580,
+        "rx": 175,
+        "cz": 55,
+        "rz": 85,
+        "region": "head"
+      },
+      {
+        "y": 415,
+        "cx": 650,
+        "rx": 110,
+        "cz": 60,
+        "rz": 60,
+        "region": "neck"
+      },
+      {
+        "y": 465,
+        "cx": 725,
+        "rx": 82,
+        "cz": 65,
+        "rz": 48,
+        "region": "neck"
+      },
+      {
+        "y": 520,
+        "cx": 750,
+        "rx": 178,
+        "cz": 60,
+        "rz": 65,
+        "region": "torso"
+      },
+      {
+        "y": 650,
+        "cx": 745,
+        "rx": 220,
+        "cz": 52,
+        "rz": 80,
+        "region": "torso"
+      },
+      {
+        "y": 790,
+        "cx": 755,
+        "rx": 240,
+        "cz": 45,
+        "rz": 95,
+        "region": "torso"
+      },
+      {
+        "y": 945,
+        "cx": 790,
+        "rx": 210,
+        "cz": 40,
+        "rz": 82,
+        "region": "torso"
+      },
+      {
+        "y": 1100,
+        "cx": 830,
+        "rx": 180,
+        "cz": 30,
+        "rz": 60,
+        "region": "waist"
+      }
+    ],
+    "arms": [
+      {
+        "name": "far-arm",
+        "source": [
+          [
+            590,
+            535
+          ],
+          [
+            635,
+            920
+          ],
+          [
+            350,
+            1005
+          ]
+        ],
+        "depths": [
+          95,
+          125,
+          180.6
+        ],
+        "radii": [
+          42,
+          38,
+          27
+        ],
+        "observed": [
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "name": "near-arm",
+        "source": [
+          [
+            940,
+            490
+          ],
+          [
+            1085,
+            1030
+          ],
+          [
+            1150,
+            1490
+          ]
+        ],
+        "depths": [
+          115,
+          95,
+          55
+        ],
+        "radii": [
+          68,
+          52,
+          32
+        ],
+        "observed": [
+          true,
+          true,
+          false
+        ]
+      }
+    ],
+    "limitations": [
+      "Cross-sections/thickness are inferred proxies, not a reconstructed body.",
+      "Hidden side/back UV confidence is zero; do not sample a stretched main photo there.",
+      "Parts overlap at attachment regions but are not welded into one manifold."
+    ]
+  },
+  "grid": {
+    "step": 18,
+    "dims": [
+      55,
+      91,
+      23
+    ],
+    "bounds": [
+      [
+        -522,
+        -1188,
+        -126
+      ],
+      [
+        450,
+        432,
+        270
+      ]
+    ]
+  },
+  "bones": [
+    {
+      "name": "head",
+      "parent": 1
+    },
+    {
+      "name": "torso",
+      "parent": -1
+    },
+    {
+      "name": "far-upper-arm",
+      "parent": 1
+    },
+    {
+      "name": "far-forearm",
+      "parent": 2
+    },
+    {
+      "name": "near-upper-arm",
+      "parent": 1
+    },
+    {
+      "name": "near-forearm",
+      "parent": 4
+    }
+  ],
+  "parts": [
+    {
+      "name": "welded-inferred-body",
+      "firstVertex": 0,
+      "vertexCount": 19226,
+      "firstIndex": 0,
+      "indexCount": 115344,
+      "hiddenTextureReady": false
+    }
+  ],
+  "vertices": 19226,
+  "triangles": 38448,
+  "layout": {
+    "positions": "float32 xyz",
+    "normals": "float32 xyz",
+    "skin": "float32 head,torso,far-upper,far-fore,near-upper,near-fore",
+    "support": "float32 rest-position pin in [0,1]",
+    "indices": "uint16 triangles",
+    "matrices": "six column-major mat4, world rest to world pose"
+  },
+  "bins": [
+    {
+      "name": "scene_positions.bin",
+      "bytes": 230712,
+      "sha256": "34553e1575a606663e8424a2d83d72ab9176bd858110184f9816d76c83b8b895"
+    },
+    {
+      "name": "scene_normals.bin",
+      "bytes": 230712,
+      "sha256": "e6537a731351055a10e4115e53e0c3b076ad5198630a55552378ab7dd702595f"
+    },
+    {
+      "name": "scene_uv.bin",
+      "bytes": 153808,
+      "sha256": "582ad596c2d713da5baf601fc8e4a20cd5dd9f227ffba511ca7767e7ffd69fc3"
+    },
+    {
+      "name": "scene_confidence.bin",
+      "bytes": 76904,
+      "sha256": "f24da5d640df31c51ef97a37d4e5e6b0e436087868c3c5b1ca0da4510c3ff264"
+    },
+    {
+      "name": "scene_regions.bin",
+      "bytes": 76904,
+      "sha256": "ac5bcaaaa9346717fcd95f457936c7e656db492f3cf11d51a83f833a4d90e8b7"
+    },
+    {
+      "name": "scene_skin.bin",
+      "bytes": 461424,
+      "sha256": "b7cad8ff1952a0dfda53d9c8c48b129acd0da0c08961e6806b35c877d5a99666"
+    },
+    {
+      "name": "scene_support.bin",
+      "bytes": 76904,
+      "sha256": "219d4f3ad6a8a55858aa4df0af1c1e6ab0f4e7a7f37a1565a54626d0c0a65653"
+    },
+    {
+      "name": "scene_indices.bin",
+      "bytes": 230688,
+      "sha256": "b19a3995393c7a2d7af35a44dd54e8038be71c7b69020a4c58e6189ded8a63ef"
+    }
+  ],
+  "usage": "S2 inferred structural/debug proxy. Production uses calibrated front projection; hidden parts remain untextured pending S3."
+}

@@ -1,0 +1,36 @@
+{
+  "cases": [
+    {
+      "lapContactWidth": 96,
+      "forearmVolume": false,
+      "paperTrim": false,
+      "seatSupport": true,
+      "width": 697,
+      "height": 620,
+      "nonzero": 104545
+    },
+    {
+      "lapContactWidth": 96,
+      "forearmVolume": true,
+      "paperTrim": false,
+      "seatSupport": true,
+      "width": 697,
+      "height": 620,
+      "nonzero": 103977
+    }
+  ],
+  "ownership": {
+    "greenMain": 153862,
+    "bluePaper": 14221,
+    "whiteCoverage": 167453,
+    "sourceProbeHits": 1,
+    "sourceProbePose": {
+      "yaw": 0.05759586531581287,
+      "roll": 0
+    }
+  },
+  "pageErrors": [],
+  "realWebgl": true,
+  "visualAcceptance": false,
+  "phoneTested": false
+}

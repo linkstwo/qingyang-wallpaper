@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "5c3bf05c8c2921f4030f0eafd329b914645702fb",
+  "owner": "codex-night-recovery-20261027-0157",
+  "fence": 12,
+  "createdAt": "2026-10-26T18:27:07.904582+00:00",
+  "stage": "S2",
+  "next": "Source ownership/depth coverage debug for remaining paper-hidden gap; no-flip grid is not visual acceptance",
+  "files": [
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "sha256": "caf50cfa9775fa515407dd43d504f3f214a6959d8d8b899e0d12f3747eeafe1a",
+      "bytes": 6082
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "sha256": "129e5fb52b63c32f643f58ffa699d2dce4f5d1147c1b99e42c425645a8fa1ae0",
+      "bytes": 4949
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "sha256": "f4cde32a08f72aa69f1c39197d6b92aa467afc10610212974034856bb47dec0f",
+      "bytes": 20325
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "sha256": "37bb864e0a811ac2c35b0a98dbef172e5961d5f75466439ade13b88fed211d3b",
+      "bytes": 3457
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "sha256": "7c203fc0de1b1be5bc98d28e8f008371d7ef2dcc89f90a80856b8888bb9fa549",
+      "bytes": 5098
+    },
+    {
+      "path": "tests/paper-contact-regression.mjs",
+      "sha256": "2924b911d1ea0fc49f59e31677e66963dc9da5b193299dad363c8b9561aff628",
+      "bytes": 3494
+    },
+    {
+      "path": "tests/paper-lab-candidates-browser.mjs",
+      "sha256": "515ac39dfa3370aea2968a7fb2c4b290105d1b771e6fdbeab4d99c058a5148c1",
+      "bytes": 3614
+    },
+    {
+      "path": "validation/paper-notch-contact-96-regression.json",
+      "sha256": "b1761891622a3228b82855479f3a2308e8648228ed6e15e0ed299ecc64b21e9b",
+      "bytes": 1126
+    },
+    {
+      "path": "validation/paper-lap96-posed.json",
+      "sha256": "6fa229b014752df46fcd4508ee08bacb5f89b0ccdbaa547a36330c881c7b8622",
+      "bytes": 447
+    },
+    {
+      "path": "validation/paper-lab-candidates-browser96.json",
+      "sha256": "4e993d4d5f73134580a094ae23225273f5d0df709d4046ddc68d52b41bb46662",
+      "bytes": 493
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE12.md",
+      "sha256": "471b101c724cbb081964d19ea2571fab7e75fe5793bc7e2e4616f679aba694db",
+      "bytes": 7272
+    },
+    {
+      "path": "docs/REMAINING-TASKS-20261026.json",
+      "sha256": "38f1318e1b1c61ec6e3111af4a489007c2535e90a47a9d0c8fa2dafb55761af8",
+      "bytes": 18755
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "sha256": "ccca20a7fd36c857fc20e3f98800df64943a020583ca34ec7266597bf174cf54",
+      "bytes": 36647
+    },
+    {
+      "path": "validation/paper-lap96-visible-pose-scan.json",
+      "sha256": "ca58b91af076276db3074d7b3bc32ae87db17cd3466c6bcaf608cf10461a94c8",
+      "bytes": 9427
+    },
+    {
+      "path": "validation/paper-lap96-forearm-visible-pose-scan.json",
+      "sha256": "dc71e5c52ad7f46f028916e503f6b910b364b43957dd917990c892537e8a3ab6",
+      "bytes": 9934
+    },
+    {
+      "path": "validation/paper-lap96-independent-body-grid.json",
+      "sha256": "cd11ffe81a2d210f6631cead3c2cf638e259441d34820054fd8167d6b760f145",
+      "bytes": 52013
+    },
+    {
+      "path": "validation/paper-lap96-forearm-independent-body-grid.json",
+      "sha256": "920d8019c905f502fdf957e428ecb9a6f3c32750ebe3b749985026ef089e1bdd",
+      "bytes": 55132
+    },
+    {
+      "path": "validation/paper-lap96-posed.jpg",
+      "sha256": "e6befaf9c31da23b424740f680f8c344b04ebb4e2d7d68741d88e2fcc90fb5a3",
+      "bytes": 442499
+    },
+    {
+      "path": "validation/paper-lab-candidate-plain-lap96.jpg",
+      "sha256": "3cbbc033bab4176495067ade53c6cc2884d20fc51cd5fa28adbba70ba3f363ea",
+      "bytes": 141778
+    },
+    {
+      "path": "validation/paper-lab-candidate-forearm-lap96.jpg",
+      "sha256": "0534e27c198487b3ced56cdeb52d9cf189b406c4d6d7acfd07b81788ecefcbb7",
+      "bytes": 142206
+    }
+  ],
+  "tests": [
+    {
+      "command": "PAPER_LAP_WIDTH=96 <45-row matte scan, both modes>",
+      "status": "failed_15_of_45",
+      "exitCode": 1
+    },
+    {
+      "command": "PAPER_FULL_POSES=1 PAPER_PRODUCTION_ONLY=1 PAPER_LAP_WIDTH=96 <matte scan, both modes>",
+      "status": "passed_243_each",
+      "exitCode": 0
+    },
+    {
+      "command": "PAPER_LAP_WIDTH=96 PAPER_CONTACT_NOTCH=1 node tests/paper-contact-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "PAPER_LAP_WIDTH=96 node tests/paper-lab-candidates-browser.mjs <Chromium>",
+      "status": "passed_real_webgl_report_renamed_without_behavior_change",
+      "exitCode": 0
+    }
+  ],
+  "phoneTested": false,
+  "tasksAccepted": [],
+  "sourceDigest": "9cf25e77c289c1cd75387266bfc562b45fca0c0efc30135de0a9d7ce346489b4"
+}

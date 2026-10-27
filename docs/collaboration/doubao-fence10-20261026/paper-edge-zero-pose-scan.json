@@ -1,0 +1,128 @@
+{
+  "scanTime": "2026-10-26T13:43:33.953Z",
+  "auditor": "doubao",
+  "mode": "old-default (buildObservedScene default)",
+  "pose": "zero-pose (yaw=0, pitch=0, roll=0)",
+  "paperOutline": [
+    [
+      44,
+      763
+    ],
+    [
+      284,
+      947
+    ],
+    [
+      367,
+      1022
+    ],
+    [
+      435,
+      1125
+    ],
+    [
+      570,
+      1264
+    ],
+    [
+      360,
+      1216
+    ],
+    [
+      193,
+      1183
+    ],
+    [
+      23,
+      1168
+    ],
+    [
+      0,
+      1044
+    ],
+    [
+      0,
+      938
+    ]
+  ],
+  "paperMeshLeftEdge": {
+    "vertexCount": 428,
+    "vRange": [
+      "0.5530",
+      "0.7616"
+    ],
+    "pixelRange": [
+      849,
+      1170
+    ]
+  },
+  "missedPaperZone": {
+    "description": "body vertices with u<0.05, v=0.55-0.61 (x<58, y=845-937) — region codex says is white paper but not in paper outline",
+    "bodyVertexCount": 75,
+    "sample": [
+      {
+        "sourcePixel": [
+          14,
+          883
+        ],
+        "supportWeight": "0.0000"
+      },
+      {
+        "sourcePixel": [
+          9,
+          876
+        ],
+        "supportWeight": "0.0000"
+      },
+      {
+        "sourcePixel": [
+          18,
+          864
+        ],
+        "supportWeight": "0.0000"
+      },
+      {
+        "sourcePixel": [
+          14,
+          883
+        ],
+        "supportWeight": "0.0000"
+      },
+      {
+        "sourcePixel": [
+          18,
+          864
+        ],
+        "supportWeight": "0.0000"
+      }
+    ]
+  },
+  "boundaryGap": {
+    "count": 75,
+    "maxGap": "182.212",
+    "minGap": "173.206",
+    "avgGap": "177.665",
+    "worstCase": {
+      "bodyVertex": 4321,
+      "bodySource": [
+        0,
+        936
+      ],
+      "bodySupportWeight": 0,
+      "nearestPaperVertex": 2,
+      "nearestPaperSource": [
+        6,
+        916
+      ],
+      "worldGap": 182.21159411963626
+    }
+  },
+  "finding": "Paper mesh left edge starts at y=849, but body layer covers y=845-937 at x<58. If those pixels are actually white paper (per codex pixel read), they are incorrectly classified as body with supportWeights=0.0000, causing the paper/body split at zero pose.",
+  "notTouched": [
+    "subject.paper",
+    "observed-scene.mjs",
+    "layered-mesh.mjs",
+    "forearm-surface.mjs",
+    "structural-pose.mjs"
+  ]
+}

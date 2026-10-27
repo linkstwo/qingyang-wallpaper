@@ -1,0 +1,11 @@
+{
+  "vertices": 2400,
+  "zeroPoseExact": true,
+  "bodyPoseIndependent": true,
+  "sourceUvRetained": true,
+  "inferredDepth": -180,
+  "hiddenTextureAdded": false,
+  "defaultEnabled": false,
+  "wholeT03Accepted": false,
+  "phoneTested": false
+}

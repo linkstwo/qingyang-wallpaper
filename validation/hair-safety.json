@@ -1,0 +1,25 @@
+{
+  "baseline": "ab69656ada60996787f89df31818d48051a207d9",
+  "negativeBaselineArea": -0.5378271841465964,
+  "fullMeshCases": 240,
+  "minFullAreaRatio": 0.20237297422660594,
+  "hairRegionTriangles": 1795,
+  "independentHairCases": 4608,
+  "minIndependentHairAreaRatio": 0.16372522701438605,
+  "worst": {
+    "vx": -1,
+    "vy": 0,
+    "spatial": true,
+    "gain": 1.45,
+    "bits": 50
+  },
+  "maxCentrelineDifference": 0,
+  "hairEnvelope": {
+    "width": 56,
+    "rootStart": 285,
+    "rootEnd": 465,
+    "releaseStart": 480,
+    "releaseEnd": 650
+  },
+  "phoneTested": false
+}

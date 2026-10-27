@@ -1,0 +1,275 @@
+{
+  "baseHead": "17b7e3451a667b82859366555d8d5d123e005c09",
+  "maskSha256": "b975fbdfdfe34bcec730fa5ccf9a91fd4d5c0b74cd8ddecb97810b1f5dbcc43d",
+  "method": "7 nearest source-mask samples; opaque>=250/255 and area>=0.01px². These are source-opaque candidates, not final depth-visible pixels.",
+  "bodyPoseDiagnosticOnly": true,
+  "groups": [
+    {
+      "volume": false,
+      "range": {
+        "name": "production-camera",
+        "yaw": 0.04,
+        "pitch": 0.02
+      },
+      "triangleCases": 1032750,
+      "flips": 602,
+      "degenerateFlips": 0,
+      "opaqueFlips": 578,
+      "worst": {
+        "ratio": -18.236372281692397,
+        "sourceArea": 0.24374153092503548,
+        "source": [
+          [
+            567,
+            1308
+          ],
+          [
+            558.6162719726562,
+            1296.9434814453125
+          ],
+          [
+            563,
+            1302.6666259765625
+          ]
+        ],
+        "input": {
+          "yaw": 0.06,
+          "pitch": 0.04,
+          "roll": -0.035
+        },
+        "view": [
+          1,
+          1
+        ]
+      },
+      "opaqueWorst": {
+        "ratio": -18.236372281692397,
+        "sourceArea": 0.24374153092503548,
+        "source": [
+          [
+            567,
+            1308
+          ],
+          [
+            558.6162719726562,
+            1296.9434814453125
+          ],
+          [
+            563,
+            1302.6666259765625
+          ]
+        ],
+        "input": {
+          "yaw": 0.06,
+          "pitch": 0.04,
+          "roll": -0.035
+        },
+        "view": [
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "volume": false,
+      "range": {
+        "name": "diagnostic-camera",
+        "yaw": 0.14,
+        "pitch": 0.07
+      },
+      "triangleCases": 1032750,
+      "flips": 2229,
+      "degenerateFlips": 5,
+      "opaqueFlips": 2189,
+      "worst": {
+        "ratio": -35.696521702333875,
+        "sourceArea": 0.24374153092503548,
+        "source": [
+          [
+            567,
+            1308
+          ],
+          [
+            558.6162719726562,
+            1296.9434814453125
+          ],
+          [
+            563,
+            1302.6666259765625
+          ]
+        ],
+        "input": {
+          "yaw": 0.06,
+          "pitch": 0.04,
+          "roll": -0.035
+        },
+        "view": [
+          1,
+          1
+        ]
+      },
+      "opaqueWorst": {
+        "ratio": -35.696521702333875,
+        "sourceArea": 0.24374153092503548,
+        "source": [
+          [
+            567,
+            1308
+          ],
+          [
+            558.6162719726562,
+            1296.9434814453125
+          ],
+          [
+            563,
+            1302.6666259765625
+          ]
+        ],
+        "input": {
+          "yaw": 0.06,
+          "pitch": 0.04,
+          "roll": -0.035
+        },
+        "view": [
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "volume": true,
+      "range": {
+        "name": "production-camera",
+        "yaw": 0.04,
+        "pitch": 0.02
+      },
+      "triangleCases": 1702305,
+      "flips": 829,
+      "degenerateFlips": 4,
+      "opaqueFlips": 825,
+      "worst": {
+        "ratio": -0.7590040095077172,
+        "sourceArea": 5.053925525397062,
+        "source": [
+          [
+            45,
+            1188
+          ],
+          [
+            36,
+            1177.24365234375
+          ],
+          [
+            36.87229919433594,
+            1177.1630859375
+          ]
+        ],
+        "input": {
+          "yaw": -0.06,
+          "pitch": -0.04,
+          "roll": 0.035
+        },
+        "view": [
+          -1,
+          -1
+        ]
+      },
+      "opaqueWorst": {
+        "ratio": -0.7590040095077172,
+        "sourceArea": 5.053925525397062,
+        "source": [
+          [
+            45,
+            1188
+          ],
+          [
+            36,
+            1177.24365234375
+          ],
+          [
+            36.87229919433594,
+            1177.1630859375
+          ]
+        ],
+        "input": {
+          "yaw": -0.06,
+          "pitch": -0.04,
+          "roll": 0.035
+        },
+        "view": [
+          -1,
+          -1
+        ]
+      }
+    },
+    {
+      "volume": true,
+      "range": {
+        "name": "diagnostic-camera",
+        "yaw": 0.14,
+        "pitch": 0.07
+      },
+      "triangleCases": 1702305,
+      "flips": 2810,
+      "degenerateFlips": 18,
+      "opaqueFlips": 2764,
+      "worst": {
+        "ratio": -1.5029766436074243,
+        "sourceArea": 5.053925525397062,
+        "source": [
+          [
+            45,
+            1188
+          ],
+          [
+            36,
+            1177.24365234375
+          ],
+          [
+            36.87229919433594,
+            1177.1630859375
+          ]
+        ],
+        "input": {
+          "yaw": -0.06,
+          "pitch": -0.04,
+          "roll": 0.035
+        },
+        "view": [
+          -1,
+          -1
+        ]
+      },
+      "opaqueWorst": {
+        "ratio": -1.5029766436074243,
+        "sourceArea": 5.053925525397062,
+        "source": [
+          [
+            45,
+            1188
+          ],
+          [
+            36,
+            1177.24365234375
+          ],
+          [
+            36.87229919433594,
+            1177.1630859375
+          ]
+        ],
+        "input": {
+          "yaw": -0.06,
+          "pitch": -0.04,
+          "roll": 0.035
+        },
+        "view": [
+          -1,
+          -1
+        ]
+      }
+    }
+  ],
+  "accepted": false,
+  "phoneTested": false,
+  "sourceGeometryModified": false
+}

@@ -1,0 +1,11 @@
+{
+  "versionName": "0.5.4",
+  "versionCode": 13,
+  "package": "com.tangtang.motionwallpaper",
+  "variant": "release",
+  "signed": false,
+  "apkBytes": 6412182,
+  "sha256": "15f83bb6cd8719b28651121c6cc8f50aa7e413f9f5df23b2e6aa49a7f222d278",
+  "phoneTested": false,
+  "build": "SDK34 / Build Tools34.0.0 / Gradle8.7 / JDK17 / assembleRelease"
+}

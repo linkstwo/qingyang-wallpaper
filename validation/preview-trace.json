@@ -1,0 +1,11 @@
+{
+  "frames": 340,
+  "fps": 20,
+  "seconds": 17.0,
+  "motionSeconds": 15.0,
+  "sensorHz": 50,
+  "physicsHz": 120,
+  "phoneTested": false,
+  "renderedWithProductionShaders": true,
+  "physics": "production Java MotionInput + Attitude + Physics"
+}

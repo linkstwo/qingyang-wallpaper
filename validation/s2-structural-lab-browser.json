@@ -1,0 +1,468 @@
+{
+  "forearmStudy": {
+    "neutralDifference": {
+      "mean": 0,
+      "pixelsOver2": 0,
+      "maxError": 0,
+      "changedLocations": []
+    },
+    "rearOnOff": {
+      "maxError": 0,
+      "pixelsOver2": 0
+    },
+    "obliqueDifference": {
+      "mean": 0.11657891230802049,
+      "pixelsOver2": 2388,
+      "maxError": 242,
+      "changedLocations": [
+        [
+          456,
+          31,
+          3
+        ],
+        [
+          254,
+          53,
+          3
+        ],
+        [
+          254,
+          56,
+          3
+        ],
+        [
+          254,
+          57,
+          4
+        ],
+        [
+          253,
+          58,
+          3
+        ],
+        [
+          253,
+          59,
+          4
+        ],
+        [
+          253,
+          60,
+          3
+        ],
+        [
+          253,
+          61,
+          3
+        ],
+        [
+          252,
+          62,
+          3
+        ],
+        [
+          252,
+          63,
+          3
+        ],
+        [
+          252,
+          67,
+          3
+        ],
+        [
+          246,
+          87,
+          3
+        ],
+        [
+          247,
+          88,
+          3
+        ],
+        [
+          253,
+          89,
+          3
+        ],
+        [
+          251,
+          133,
+          3
+        ],
+        [
+          251,
+          157,
+          4
+        ],
+        [
+          251,
+          158,
+          3
+        ],
+        [
+          252,
+          158,
+          3
+        ],
+        [
+          252,
+          159,
+          5
+        ],
+        [
+          274,
+          159,
+          4
+        ],
+        [
+          252,
+          160,
+          6
+        ],
+        [
+          274,
+          161,
+          5
+        ],
+        [
+          283,
+          161,
+          3
+        ],
+        [
+          290,
+          161,
+          3
+        ],
+        [
+          299,
+          161,
+          3
+        ],
+        [
+          274,
+          162,
+          3
+        ],
+        [
+          300,
+          162,
+          3
+        ],
+        [
+          322,
+          164,
+          3
+        ],
+        [
+          323,
+          164,
+          5
+        ],
+        [
+          331,
+          164,
+          3
+        ],
+        [
+          401,
+          165,
+          4
+        ],
+        [
+          402,
+          165,
+          5
+        ],
+        [
+          441,
+          165,
+          3
+        ],
+        [
+          401,
+          166,
+          3
+        ],
+        [
+          402,
+          166,
+          3
+        ],
+        [
+          440,
+          166,
+          4
+        ],
+        [
+          441,
+          166,
+          6
+        ],
+        [
+          440,
+          167,
+          4
+        ],
+        [
+          441,
+          167,
+          4
+        ],
+        [
+          479,
+          168,
+          4
+        ]
+      ]
+    },
+    "productionUsed": false
+  },
+  "desktopBrowser": "134.0.6998.35",
+  "webglRendered": true,
+  "viewsDistinct": true,
+  "modes": 5,
+  "bodyMotionRendered": true,
+  "observedFrontPaperRearCombined": true,
+  "neutralFramebuffer": {
+    "width": 697,
+    "height": 620,
+    "antialias": true,
+    "samples": [],
+    "mean": 0,
+    "pixelsOver2": 0,
+    "maxError": 0
+  },
+  "directFramebuffer": {
+    "sceneSamples": 4,
+    "supersample": 1,
+    "pixelsOver2": 16,
+    "maxError": 26
+  },
+  "neutralRearDifference": {
+    "mean": 0,
+    "pixelsOver2": 0,
+    "maxError": 0,
+    "changedLocations": []
+  },
+  "neutralFrontPixelExact": true,
+  "neutralGate": "native framebuffer comparison; photographic seam acceptance remains pending",
+  "backRearDifference": {
+    "mean": 16.951833292132296,
+    "pixelsOver2": 71678,
+    "maxError": 225,
+    "changedLocations": [
+      [
+        529,
+        17,
+        94
+      ],
+      [
+        530,
+        17,
+        94
+      ],
+      [
+        531,
+        17,
+        94
+      ],
+      [
+        532,
+        17,
+        94
+      ],
+      [
+        533,
+        17,
+        94
+      ],
+      [
+        534,
+        17,
+        94
+      ],
+      [
+        535,
+        17,
+        93
+      ],
+      [
+        536,
+        17,
+        93
+      ],
+      [
+        537,
+        17,
+        93
+      ],
+      [
+        538,
+        17,
+        93
+      ],
+      [
+        539,
+        17,
+        93
+      ],
+      [
+        540,
+        17,
+        93
+      ],
+      [
+        541,
+        17,
+        93
+      ],
+      [
+        542,
+        17,
+        93
+      ],
+      [
+        543,
+        17,
+        94
+      ],
+      [
+        544,
+        17,
+        94
+      ],
+      [
+        545,
+        17,
+        94
+      ],
+      [
+        546,
+        17,
+        94
+      ],
+      [
+        547,
+        17,
+        94
+      ],
+      [
+        548,
+        17,
+        94
+      ],
+      [
+        549,
+        17,
+        94
+      ],
+      [
+        550,
+        17,
+        95
+      ],
+      [
+        551,
+        17,
+        95
+      ],
+      [
+        552,
+        17,
+        95
+      ],
+      [
+        510,
+        18,
+        99
+      ],
+      [
+        511,
+        18,
+        99
+      ],
+      [
+        512,
+        18,
+        148
+      ],
+      [
+        513,
+        18,
+        197
+      ],
+      [
+        514,
+        18,
+        196
+      ],
+      [
+        515,
+        18,
+        196
+      ],
+      [
+        516,
+        18,
+        195
+      ],
+      [
+        517,
+        18,
+        195
+      ],
+      [
+        518,
+        18,
+        194
+      ],
+      [
+        519,
+        18,
+        194
+      ],
+      [
+        520,
+        18,
+        194
+      ],
+      [
+        521,
+        18,
+        194
+      ],
+      [
+        522,
+        18,
+        193
+      ],
+      [
+        523,
+        18,
+        193
+      ],
+      [
+        524,
+        18,
+        193
+      ],
+      [
+        525,
+        18,
+        192
+      ]
+    ]
+  },
+  "frontRearSeamAccepted": false,
+  "sourceRailDrag": true,
+  "draftSaveResetRestoreReload": true,
+  "wrongSourceDraftRejected": true,
+  "animationStartStop": true,
+  "mobileViewportNoOverflow": true,
+  "externalRequests": 0,
+  "consoleErrors": [],
+  "productionConfidence": 0,
+  "phoneTested": false
+}

@@ -1,0 +1,124 @@
+{
+  "reviewTime": "2026-10-26",
+  "reviewer": "doubao",
+  "scope": "active/references/originals/ local 5 PNGs",
+  "selectionPrinciple": "front-middle: prefer gradual angle change with similar pose, forming continuous reveal",
+  "note": "No calibrated angles. All orientation descriptions are visual estimates from contact sheet, not measurements.",
+  "images": [
+    {
+      "id": 1,
+      "file": "front-variant.png",
+      "size": [1086, 1448],
+      "bodyOrientation": "front-right, near frontal",
+      "head": "down looking at paper, face lower-left",
+      "arms": "right hand on paper edge, left arm behind supporting",
+      "clothing": "white wet tank top + black work pants",
+      "pose": "seated"
+    },
+    {
+      "id": 2,
+      "file": "main-reading-v2.png",
+      "size": [1152, 1536],
+      "bodyOrientation": "front-right, same as image 1 (pixel-verified)",
+      "head": "down looking at paper, face lower-left",
+      "arms": "right hand on paper, left arm behind supporting",
+      "clothing": "white wet tank top + black work pants",
+      "pose": "seated",
+      "note": "current main image, different resolution but SAME composition as image 1 (mean pixel diff=1.51/255)"
+    },
+    {
+      "id": 3,
+      "file": "main-front-three-quarter.png",
+      "size": [1086, 1448],
+      "bodyOrientation": "front-left",
+      "head": "down looking at paper, face lower-right",
+      "arms": "both hands on paper",
+      "clothing": "white wet tank top + black work pants",
+      "pose": "seated",
+      "note": "old main image, deprecated"
+    },
+    {
+      "id": 4,
+      "file": "side-reference.png",
+      "size": [1086, 1448],
+      "bodyOrientation": "right side profile",
+      "head": "down looking at paper, face to the right",
+      "arms": "both hands on paper on table",
+      "clothing": "white wet tank top + black work pants",
+      "pose": "seated leaning forward",
+      "archiveName": "工业车间里的专注侧影.png"
+    },
+    {
+      "id": 5,
+      "file": "back-reference.png",
+      "size": [1086, 1448],
+      "bodyOrientation": "back, face turned to right",
+      "head": "face turned to right side",
+      "arms": "right hand on paper",
+      "clothing": "white wet tank top + black work pants",
+      "pose": "seated at desk",
+      "archiveName": "阳光下的湿衣工坊蓝图.png"
+    }
+  ],
+  "sequences": [
+    {
+      "name": "A-same-composition-duplicate",
+      "members": [1, 2],
+      "orientationChange": "NONE - same composition, different resolution",
+      "poseSimilarity": "identical",
+      "arms": "identical",
+      "head": "identical, both face lower-left",
+      "clothing": "identical",
+      "usableRegions": ["front chest", "right shoulder", "right arm", "left cheek", "partial left shoulder"],
+      "unjoinableRegions": ["left arm (hidden behind)", "back", "back of head"],
+      "missingOrientations": ["true frontal", "front-left micro-adjustment"],
+      "continuousReveal": "none",
+      "note": "Pixel diff mean=1.51/255 after resizing. Same angle, not a sequence. Do not count as different viewpoint."
+    },
+    {
+      "name": "B-front-left-to-right-side",
+      "members": [3, 4],
+      "orientationChange": "large, front-left to right side",
+      "poseSimilarity": "low",
+      "arms": "different: both-on-chest vs both-on-table",
+      "head": "different: face lower-right vs face-right",
+      "clothing": "identical",
+      "usableRegions": ["front chest (3)", "right side body (4)"],
+      "unjoinableRegions": ["front-to-side transition", "no intermediate orientation images"],
+      "missingOrientations": ["front-right to side intermediate views"],
+      "continuousReveal": "broken",
+      "note": "Large orientation jump with different pose"
+    },
+    {
+      "name": "C-side-to-back",
+      "members": [4, 5],
+      "orientationChange": "very large, right side to back",
+      "poseSimilarity": "low",
+      "arms": "different: both on table vs right only",
+      "head": "different: down-facing vs turned-right",
+      "clothing": "identical",
+      "usableRegions": ["right side body (4)", "back (5)"],
+      "unjoinableRegions": ["side-to-back transition", "no intermediate orientation images"],
+      "missingOrientations": ["side-to-back intermediate views"],
+      "continuousReveal": "broken",
+      "note": "Very large orientation jump, completely broken"
+    }
+  ],
+  "archiveNotDownloaded": [
+    "阳光下的工业车间肖像.png",
+    "汗湿图纸与工业车间的专注时刻.png",
+    "工业车间里的蓝图时光.png",
+    "工业车间暖光下的湿润肖像.png",
+    "阳光车间中的湿发女孩.png",
+    "阳光下的车间绘图者.png"
+  ],
+  "overallConclusion": "front-variant and main-reading-v2 are same composition (pixel diff=1.51). Local 5 images = 4 unique views. No continuous angle sequence exists. Side-to-back completely broken.",
+  "contactSheet": "angle-sequence-contact-sheet.jpg",
+  "notDone": [
+    "did not download 6 archive images",
+    "did not generate new images",
+    "did not treat ordering as completed continuity",
+    "did not establish cross-pose correspondence (codex responsibility)",
+    "did not report precise angles or error margins (no calibration)"
+  ]
+}

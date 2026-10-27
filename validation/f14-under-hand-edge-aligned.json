@@ -1,0 +1,56 @@
+{
+  "rawFrames": [
+    {
+      "path": "validation/f14-edge-final--20.png",
+      "bytes": 380276,
+      "sha256": "2da199c5ded25af4e258c85408e258ec45026a5464993c60c9769e58b4193c98"
+    },
+    {
+      "path": "validation/f14-edge-final--2.2918.png",
+      "bytes": 419354,
+      "sha256": "88de63a9026f9f4353812ea9ece41af43669620fba396cbf719109e80f63630a"
+    },
+    {
+      "path": "validation/f14-edge-final-0.png",
+      "bytes": 421863,
+      "sha256": "112c65bfa179248471d16f3a0a3fe9780cacda7cbe95f2f9de966ae51d72e306"
+    },
+    {
+      "path": "validation/f14-edge-final-2.2918.png",
+      "bytes": 425111,
+      "sha256": "570ae928e4d490eac883346a28694e10e7a4cca1e6ce67302d27080ecfdf8ab8"
+    },
+    {
+      "path": "validation/f14-edge-final-20.png",
+      "bytes": 430273,
+      "sha256": "df10248be09262f39c042a2326ab9bf04e5bf67ae28c27abbff0302c1f8393fe"
+    }
+  ],
+  "imageReceipt": {
+    "path": "validation/f14-under-hand-edge-aligned.jpg",
+    "bytes": 428123,
+    "sha256": "4e2e249ca965e187933513d71087cdc4c28a6fec8aeab2ce8ce04431f90dd28e"
+  },
+  "paperUnderHandBackgroundTrim": true,
+  "paperBackgroundTrim": true,
+  "paperRightClothContact": true,
+  "lapContactWidth": 96.0,
+  "seatSupport": true,
+  "forearmVolume": false,
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "angles": [
+    -20,
+    -2.2918,
+    0,
+    2.2918,
+    20
+  ],
+  "rear": false,
+  "bodyPose": {},
+  "paperPartition": true,
+  "baselineRef": null,
+  "paperLapContact": true,
+  "paperExteriorTrim": false,
+  "image": "validation/f14-under-hand-edge-aligned.jpg",
+  "phoneTested": false
+}

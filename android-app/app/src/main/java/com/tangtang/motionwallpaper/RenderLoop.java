@@ -69,10 +69,11 @@ final class RenderLoop {
                     Log.i(TAG, "EGL ready " + width + "x" + height + " | " + title);
                     firstSwap = false;
                     needResize = true;
-                    feed.start();
                 } else if (!egl.makeCurrent()) {
                     throw new IllegalStateException(egl.lastError());
                 }
+                // Also resume sensors when the EGL context survived a visibility pause.
+                feed.start();
             } catch (Exception error) {
                 report(error);
                 return;
@@ -102,7 +103,7 @@ final class RenderLoop {
                 if (!egl.swap()) throw new IllegalStateException(egl.lastError());
                 if (!firstSwap) {
                     firstSwap = true;
-                    Log.i(TAG, "FIRST_SWAP_OK " + width + "x" + height
+                    Log.i(TAG, "FIRST_SWAP_OK " + renderer.framingSnapshot()
                             + " triangles=" + renderer.characterTriangles() + " | " + title);
                 }
                 lastError = "";
@@ -155,6 +156,8 @@ final class RenderLoop {
             @Override
             public void run() {
                 if (closed) return;
+                feed.stop();
+                physics.reset();
                 destroyGl();
                 firstSwap = false;
                 retryCount = 0;
@@ -166,6 +169,15 @@ final class RenderLoop {
                 accumulator = 0L;
                 schedule();
             }
+        });
+    }
+
+    void offsets(final float x, final float y, final int px, final int py) {
+        handler.post(() -> {
+            if (closed) return;
+            renderer.offsets(x, y, px, py);
+            needResize = true;
+            schedule();
         });
     }
 
@@ -196,11 +208,8 @@ final class RenderLoop {
                 lastNanos = 0L;
                 accumulator = 0L;
                 physics.reset();
-                if (active) {
-                    feed.start();
-                } else {
-                    feed.stop();
-                }
+                // Sensors start in frame() only after a valid Surface/EGL is available.
+                if (!active) feed.stop();
                 if (active) {
                     schedule();
                 } else {

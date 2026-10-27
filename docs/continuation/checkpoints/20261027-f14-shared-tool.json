@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "c370543f0475fe2ca152802bdd7caab7d10d980b",
+  "createdAt": "2026-10-26T23:31:19.539440Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/component-collision.mjs",
+      "bytes": 2048,
+      "sha256": "73c97f355ddfdab3d4d0f8a78bbe8d9475d2727110da09cebcedfe399c1349da"
+    },
+    {
+      "path": "character-prototype/preview/component-deform.mjs",
+      "bytes": 2585,
+      "sha256": "89719dae9b07dd61357490153be5cc1f21e99312286cc7818cf433fae266c61c"
+    },
+    {
+      "path": "character-prototype/preview/component-fit.html",
+      "bytes": 1922,
+      "sha256": "89a723d8bdbfb28e4cdb64e63422a6af7de213b4f930c6644b9beb90935857bc"
+    },
+    {
+      "path": "character-prototype/preview/component-fit.mjs",
+      "bytes": 4577,
+      "sha256": "3fee3a5779d0055b42c5c94b80affef15db477a31b887da891d2d787a1879b93"
+    },
+    {
+      "path": "character-prototype/preview/component-raster.mjs",
+      "bytes": 3184,
+      "sha256": "2d84f15b244bf636f94d9cb906785a108a7193b5eab6be2b26f40630abd7cd19"
+    },
+    {
+      "path": "character-prototype/preview/parts-fit.html",
+      "bytes": 4930,
+      "sha256": "4ac9d6fd4d755d8a7c4be2e11f620de1127bb65c67d8a80972cfae38c8b0539c"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36382,
+      "sha256": "217bb9bfa83d58a13231a6ed6e99bbce8f670fcdd4577c2e339a68b33bfdfb3e"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 4363,
+      "sha256": "2f54ae741781309b2fdb044c6f43deac83d36c943c294d969f8feb65a55519c7"
+    },
+    {
+      "path": "tests/component-collision-regression.mjs",
+      "bytes": 1176,
+      "sha256": "c52a9f76b9a070e7c8b3c6d684d54e6ba0ca2a819058ea670cfbf653caedafa8"
+    },
+    {
+      "path": "tests/component-deform-regression.mjs",
+      "bytes": 4008,
+      "sha256": "50f9fe3fe023435674c625b9b54f640c2473e49f760497e7af3b2e8077853815"
+    },
+    {
+      "path": "tests/render_component_junction_gles.py",
+      "bytes": 3364,
+      "sha256": "df99011ebfc8edc418771a614f24f3304e40808e95df693b43febf4accc4aaa9"
+    },
+    {
+      "path": "validation/f14-component-deform-gles.jpg",
+      "bytes": 65378,
+      "sha256": "aa374e389c3822a72cc3faf3d5430cd9f6dff9bb13c56c8d31cf58e01e51bec8"
+    },
+    {
+      "path": "validation/f14-component-deform-gles.json",
+      "bytes": 257,
+      "sha256": "c2844057b58dec6e8632397cd24e344a69b1f9b96d5712ac597345bc04cec7af"
+    },
+    {
+      "path": "validation/f14-component-deform.json",
+      "bytes": 364,
+      "sha256": "cd8b7d339c64d8cb7b8b409dc4f7504a2121934c4eb9c9a0602832b0a913f4e6"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/component-deform-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/component-collision-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_component_junction_gles.py (imports production module shaders)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check component-fit.mjs; node --check component-raster.mjs",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "bb4a3f50cb02bc9356d754335212164d084ff4b7b8092eae31ddca6b9b80b298"
+}

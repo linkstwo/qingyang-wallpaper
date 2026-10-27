@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-recovery-20261027-0157",
+  "fence": 12,
+  "baseHead": "c15239b5f022b673964ee762a67f1f1cc1e42b5b",
+  "createdAt": "2026-10-26T18:09:30.912777+00:00",
+  "stage": "S2",
+  "next": "Refine held-out shoulder/neck correspondence before local source registration; paper-hidden gap remains",
+  "files": [
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "sha256": "42c828a6700afad83a2be38753c22a4583fab89a713c53f1bebc05a6d21b90b8",
+      "bytes": 5927
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "sha256": "158e067942103e887ce481f34f34c5a307aadfd115c9cb8601628a9174a21d55",
+      "bytes": 4817
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "sha256": "98c70a6b3419a99f7f8c1d72e4c0043eeacb062c62fdd57baf623c9e4247dc1c",
+      "bytes": 20215
+    },
+    {
+      "path": "tests/observed-seat-support.mjs",
+      "sha256": "2149a7fcc126ab62f3114facd68df5311550720c9872c849c9aaa5384c23edcc",
+      "bytes": 1760
+    },
+    {
+      "path": "tests/paper-contact-pose-scan.mjs",
+      "sha256": "b5036016dbbe6d83f3cc00b5baf59dbf82bc5fcfeb29a65785eb7eb22d33c6a7",
+      "bytes": 3045
+    },
+    {
+      "path": "tests/render_paper_ownership_gles.py",
+      "sha256": "ceffe83f87e931fb33477329cc270e0e19d8f0acc21948f957caa4a99335f186",
+      "bytes": 4978
+    },
+    {
+      "path": "tests/paper-lab-candidates-browser.mjs",
+      "sha256": "13a46cb6ea7706248219dd23d24be82c98591b68cfd9cd1f245ec614c51b5bae",
+      "bytes": 3401
+    },
+    {
+      "path": "tests/structural-lab-browser.mjs",
+      "sha256": "2e7eb110e1dcc3f1549afa4c65a2d19935cc03d5d8479dd9a6b419fa2785334f",
+      "bytes": 10481
+    },
+    {
+      "path": "tests/paper-contact-regression.mjs",
+      "sha256": "b5ad16780512692d850b4c051d4b0b29a147d2ccc197dee27dd2a4f5f25ee59f",
+      "bytes": 3148
+    },
+    {
+      "path": "scripts/fit_shoulder_candidate.py",
+      "sha256": "28f3240df3a193315725b78e8c9b4d54aa3b942bee6d595a9fd8dd5b8282a214",
+      "bytes": 2681
+    },
+    {
+      "path": "references/derived/shoulder-side-b-similarity-candidate.json",
+      "sha256": "a78d14e8ad04e1e4880010b15700af0062e6a5f218948fbd830332d88d84c082",
+      "bytes": 2353
+    },
+    {
+      "path": "validation/observed-seat-support.json",
+      "sha256": "418dc5200e391533193a2aa9cb976ceceba0ff4d3de7f632e217cbb23e61bc21",
+      "bytes": 445
+    },
+    {
+      "path": "validation/paper-notch-seated-visible-pose-scan.json",
+      "sha256": "ccadba1bfa6f6b82d39519cbd0789050baf68d52183a9a31d963b118a1e91b44",
+      "bytes": 21672
+    },
+    {
+      "path": "validation/paper-notch-contact-regression.json",
+      "sha256": "0137bcbc422a8aa1735cac78135ad5725defff53b7e8bd4a240a0e7df5617f9b",
+      "bytes": 1070
+    },
+    {
+      "path": "validation/paper-notch-seated-posed.json",
+      "sha256": "5ce8443d21a79f3e50e6e20060b5b30c0db5dfe8f005e02fa925d55fa6a54a5c",
+      "bytes": 427
+    },
+    {
+      "path": "validation/paper-notch-unseated-posed.json",
+      "sha256": "03eadca71cd4a40b68d487955f0a18935b6e8ec6053e4ba232aad4975e0cf768",
+      "bytes": 430
+    },
+    {
+      "path": "validation/paper-lab-candidates-browser.json",
+      "sha256": "b1ad5ef64037821a86ff4b74d3b480c507e3b1df3dc17b60cdf313cd16ad19b4",
+      "bytes": 435
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE12.md",
+      "sha256": "bbd0f3304af1b223d6eba9230db50e29df50b157fd31e28f8e409534cd2e67be",
+      "bytes": 4288
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "sha256": "7712bb9c43b954a1a1d19db32ce9fc91a87a88eb6e121b73f89b211a79bd9de8",
+      "bytes": 8258
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "sha256": "1f93afd776f9ab46acea8eaf0e883c23d3d4e97f15e0f082eccdd342ddd3cdc8",
+      "bytes": 36646
+    },
+    {
+      "path": "validation/paper-notch-seated-posed.jpg",
+      "sha256": "d4aa55329b92e1a9b2561b9209d32131bde871b930a02a4151164d84fa3eaa97",
+      "bytes": 442591
+    },
+    {
+      "path": "validation/paper-notch-unseated-posed.jpg",
+      "sha256": "f9d8b853d43dce9ac2649b7b3bde7f8e9eaece2b2ff0ed542959fe63f677f11a",
+      "bytes": 441316
+    },
+    {
+      "path": "validation/paper-lab-candidate-plain.jpg",
+      "sha256": "9ba2f8b59ede9f4059498796c9e0590970c8b82cd54eb665a2049cadc748778b",
+      "bytes": 153913
+    },
+    {
+      "path": "validation/paper-lab-candidate-forearm.jpg",
+      "sha256": "2dd9601d2780e8ab98db89ddeba814e5d37ddd757e054f7600ab42c6664c0e5a",
+      "bytes": 154296
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/observed-seat-support.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "PAPER_SEAT_SUPPORT=1 <45-case matte pose scan>",
+      "status": "failed_25_of_45",
+      "exitCode": 1
+    },
+    {
+      "command": "PAPER_CONTACT_NOTCH=1 node tests/paper-contact-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/paper-lab-candidates-browser.mjs <existing Chromium>",
+      "status": "passed_real_webgl",
+      "exitCode": 0
+    },
+    {
+      "command": "python3 scripts/fit_shoulder_candidate.py",
+      "status": "generated_confidence0_not_accepted",
+      "exitCode": 0
+    }
+  ],
+  "sourceDigest": "0fa7978a48168b236111fd5e7270731dab8842ff17dce7d2947f4df420162d02"
+}

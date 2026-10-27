@@ -1,0 +1,58 @@
+{
+  "debugOwnership": true,
+  "paperUnderHandBackgroundPlane": true,
+  "rawFrames": [
+    {
+      "path": "validation/f14-background-ownership--20.png",
+      "bytes": 14572,
+      "sha256": "da6aaaa0b3f2024e2e3e344cb4353aecac5aa2dc39b7fd0dd0e09a1b0fb2e4b5"
+    },
+    {
+      "path": "validation/f14-background-ownership--2.2918.png",
+      "bytes": 14960,
+      "sha256": "e48fc0afa89ec5af5e7b5a687ab70b65dff066a2f6201133f26bba232b5aed43"
+    },
+    {
+      "path": "validation/f14-background-ownership-0.png",
+      "bytes": 14221,
+      "sha256": "4d7b2d470a0932b7adb1e71f3587090678221ade2757460a713eb38f83fbd400"
+    },
+    {
+      "path": "validation/f14-background-ownership-2.2918.png",
+      "bytes": 14601,
+      "sha256": "21a2ae8c5d46712c687896f42b668f714eb5a79d5cc3f8fd14186dd68f14729c"
+    },
+    {
+      "path": "validation/f14-background-ownership-20.png",
+      "bytes": 14971,
+      "sha256": "6669640aba9f87cd56c1f4a898244bed9be7c356ad0ca2a515e193c0155e81ba"
+    }
+  ],
+  "imageReceipt": {
+    "path": "validation/f14-background-material-ownership.jpg",
+    "bytes": 174372,
+    "sha256": "3b381b782faa4b45e3dadef47fee18e3b37a1e9c1734f0a36f37956b9f6bca9e"
+  },
+  "paperUnderHandBackgroundTrim": true,
+  "paperBackgroundTrim": true,
+  "paperRightClothContact": true,
+  "lapContactWidth": 96.0,
+  "seatSupport": true,
+  "forearmVolume": false,
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "angles": [
+    -20,
+    -2.2918,
+    0,
+    2.2918,
+    20
+  ],
+  "rear": false,
+  "bodyPose": {},
+  "paperPartition": true,
+  "baselineRef": null,
+  "paperLapContact": true,
+  "paperExteriorTrim": false,
+  "image": "validation/f14-background-material-ownership.jpg",
+  "phoneTested": false
+}

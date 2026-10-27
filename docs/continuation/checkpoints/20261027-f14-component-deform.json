@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0720",
+  "fence": 14,
+  "baseHead": "130de2362272a79c2abcc2e22b0a8899fb3d7bc5",
+  "createdAt": "2026-10-26T23:28:00.169060Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "character-prototype/preview/component-deform.mjs",
+      "bytes": 2261,
+      "sha256": "cd1a067fa9e98bf431cd78d9af50c40007f4af7baddd538558765f88390d7efe"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 36387,
+      "sha256": "d4070d2e4ac22b2408afe994d00ad760d6a6264a20d1e4db279b0dd9b5830bd6"
+    },
+    {
+      "path": "docs/RESUME-20261027-FENCE14.md",
+      "bytes": 2876,
+      "sha256": "a6f2a9c583984a1abcafcc48c7b1193b3d64e390cf787bcbdfcfc22dbcd3b85e"
+    },
+    {
+      "path": "tests/component-deform-regression.mjs",
+      "bytes": 3455,
+      "sha256": "c7010bc3949e6f4af6afa9786c5a542ee7a30ca9da684fb7617d37a304875507"
+    },
+    {
+      "path": "tests/render_component_junction_gles.py",
+      "bytes": 3252,
+      "sha256": "14a4fdecd55c0401dd5f31121d1f2c376d54d77bd7ae52af73b38bb0de51909a"
+    },
+    {
+      "path": "validation/f14-component-deform-gles.jpg",
+      "bytes": 65378,
+      "sha256": "aa374e389c3822a72cc3faf3d5430cd9f6dff9bb13c56c8d31cf58e01e51bec8"
+    },
+    {
+      "path": "validation/f14-component-deform-gles.json",
+      "bytes": 257,
+      "sha256": "c2844057b58dec6e8632397cd24e344a69b1f9b96d5712ac597345bc04cec7af"
+    },
+    {
+      "path": "validation/f14-component-deform.json",
+      "bytes": 365,
+      "sha256": "a179623f4da9e783fae4fb7613fa0a5c7eb9bfb4587801d380216581ab6fb79e"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/component-deform-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/render_component_junction_gles.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Inspect conservative under-hand background border and model its separate background depth before claiming T03 fixed.",
+    "Continue T01/T04 component correspondence; no hidden texture or new angle claimed."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "47fcee57e305cd73917ab1a7ddaea4fd158e766a0e54d2e0eb7ef1e1314403ad"
+}

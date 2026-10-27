@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0833",
+  "fence": 6,
+  "baseHead": "44dd66b01f81c50971ec4a65e49577e1fbe05f22",
+  "createdAt": "2026-10-26T08:53:34.076053+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "android-app/app/src/main/assets/scene-report.json",
+      "bytes": 5976,
+      "sha256": "615515356a85026f98f21c0755574d8add0aa590739e11345277027c4c74620d"
+    },
+    {
+      "path": "android-app/tools/prepare_reading_subject.mjs",
+      "bytes": 7177,
+      "sha256": "cc9951758e1330c67c794e8d7b082ce569682b202f84b6c5ef2d03291ba7123c"
+    },
+    {
+      "path": "character-prototype/preview/forearm-surface.mjs",
+      "bytes": 2025,
+      "sha256": "b60bae5be11c2490216b5810f4b0bad1aae02c1741cf3764cc640a71257f4c9e"
+    },
+    {
+      "path": "character-prototype/preview/forearm-volume.mjs",
+      "bytes": 1194,
+      "sha256": "2d0f019bba309960cb926df0e4c154701a1ae3a4883328929c3255609a899e12"
+    },
+    {
+      "path": "character-prototype/preview/front-fit.mjs",
+      "bytes": 5012,
+      "sha256": "a564a19a73728708f44e716e9c63b51c9f5ef3f69183ca57958f180551cc5b08"
+    },
+    {
+      "path": "character-prototype/preview/mesh.json",
+      "bytes": 4655,
+      "sha256": "e895ad1e467751744959ea9c4b218f82f8d30f9bb759243d460ce7b7234d3c66"
+    },
+    {
+      "path": "character-prototype/preview/observed-scene.mjs",
+      "bytes": 3147,
+      "sha256": "41ab2febb635bf5a22053cdaf9e8212576cb6b1afca74deb17432ee6d9eb424d"
+    },
+    {
+      "path": "character-prototype/preview/quality-source-mesh.mjs",
+      "bytes": 1798,
+      "sha256": "1f8c5ec61984e895db45aab6dfe1c9cccf0b4adee483ae7b0493a300e5a6a919"
+    },
+    {
+      "path": "character-prototype/preview/scene-model.mjs",
+      "bytes": 6550,
+      "sha256": "a2da0c44797c9118e958fed4b8284ddf0a14ec3daa005fb82fa32410ee8eb77b"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.html",
+      "bytes": 4418,
+      "sha256": "5784bfdc8032c79d854dd34d672f5b6111d84e3084a6a7d561cd1dfbaf2a6337"
+    },
+    {
+      "path": "character-prototype/preview/structural-lab.mjs",
+      "bytes": 19184,
+      "sha256": "ff5fb00535ee0c1dbb153d35fe6e333686816a15960812eea2ae9a76cf0ef46e"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 32019,
+      "sha256": "4686e347ed86af667bd09fee20556f67129156883f57560b2fc9a2a1f8bc6fc5"
+    },
+    {
+      "path": "docs/S2-FOREARM-SURFACE.md",
+      "bytes": 2646,
+      "sha256": "cdc89fc06f873dace831f58d161f7f137a01f8155aabd79ca5d67cd9937fb94c"
+    },
+    {
+      "path": "docs/START_IN_CLOUD.md",
+      "bytes": 5787,
+      "sha256": "5c0acd34a1662bcde2ea2f1b3546fb4081dbf0c3524a4083623a16a0c29addcb"
+    },
+    {
+      "path": "tests/forearm-pose-regression.mjs",
+      "bytes": 2115,
+      "sha256": "d7157f354107c8b8cddecce5b8d78c2295700f32a700c9b1d04c6d35af6bf57b"
+    },
+    {
+      "path": "tests/forearm-surface-regression.mjs",
+      "bytes": 3332,
+      "sha256": "249c7686617cdc52593a6b5ffb78b5e6d99f51c4fcf386a9e71eeece94606ffb"
+    },
+    {
+      "path": "tests/forearm-volume-negative-control.mjs",
+      "bytes": 1506,
+      "sha256": "f4701bafe10b1905ac9e206037287f6a0aabe3682cb0c3a3123ae2b666c94ec6"
+    },
+    {
+      "path": "tests/front-fit-regression.mjs",
+      "bytes": 2283,
+      "sha256": "c70d9744914b5aab3e7b7ea4908f27f8ed0cfbc441941e2d37d626f8600b06a2"
+    },
+    {
+      "path": "tests/layered-scene-regression.mjs",
+      "bytes": 4208,
+      "sha256": "2d5eee56bb83d2aa0e580ab00dc6166e3341efe3a9aa1d078572dee6af556d33"
+    },
+    {
+      "path": "tests/quality-source-mesh-regression.mjs",
+      "bytes": 1821,
+      "sha256": "0fc25fa22d8674cf1324c0ee72282a8a7ca43e7b682331a641a3b83cf4f5b07e"
+    },
+    {
+      "path": "tests/structural-lab-browser.mjs",
+      "bytes": 10274,
+      "sha256": "3acfa3e990f24beca84a69a40f791bb007255631a0c9ccc4230364847425c2ed"
+    },
+    {
+      "path": "validation/s2-forearm-front.jpg",
+      "bytes": 68606,
+      "sha256": "1271adf5720cafeef922d24ee18bc10b63a237fa967fe1da2cc4934f6d389aa3"
+    },
+    {
+      "path": "validation/s2-forearm-negative-control.json",
+      "bytes": 256,
+      "sha256": "778cde41d03c77c34621f48cca9c1b1adfcc2aec4d28ad53a00c8aa8bbc49b4b"
+    },
+    {
+      "path": "validation/s2-forearm-pose.json",
+      "bytes": 610,
+      "sha256": "47df157f83732c66de379955099b3f0b70bd1c2884e9bad0ebd44e41a9cbcb0f"
+    },
+    {
+      "path": "validation/s2-forearm-source-boundary.jpg",
+      "bytes": 75965,
+      "sha256": "2d42f802f9d66d8b786e1d4721e0618a6f46eb5ecd552303e7a97842b6448d2e"
+    },
+    {
+      "path": "validation/s2-forearm-surface.json",
+      "bytes": 2536,
+      "sha256": "b4e129440bba8c06bd1e8741f9d6801563c9213f9e7bdbbe35d75893e92b5371"
+    },
+    {
+      "path": "validation/s2-forearm-yaw8.jpg",
+      "bytes": 71314,
+      "sha256": "1613ec6f35e28f73123f7e41e3d4958fc39cb8fef32ba3929201016b1541aa0a"
+    },
+    {
+      "path": "validation/s2-front-fit-segmented.json",
+      "bytes": 846,
+      "sha256": "59e14949f882981853cfbda2d32be9e9d3f46842e0c938d83e5c1421eb4fcf1b"
+    },
+    {
+      "path": "validation/s2-scene-model.json",
+      "bytes": 570,
+      "sha256": "fd420c219f367e120e2555a2373090d21e1e3f8b52db3f0cacef3429d46b071f"
+    },
+    {
+      "path": "validation/s2-structural-lab-browser.json",
+      "bytes": 8038,
+      "sha256": "dc32807c274f99707fc54e0144a278d854f6b75a407d0ce73b90a281c9d3963f"
+    },
+    {
+      "path": "validation/s2-structural-lab.jpg",
+      "bytes": 126807,
+      "sha256": "3d2072143ba2fe240281341f0bbaa17d7da8bb3c3e513a5faf98c3abcb364bad"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/projected-surface-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/front-fit-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/front-fit-regression.mjs --segmented",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/quality-source-mesh-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/forearm-surface-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/forearm-volume-negative-control.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/forearm-pose-regression.mjs (forearm component only; fullFrontAccepted=false)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/conforming-mesh-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/observed-scene-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/layered-scene-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/scene-model-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/structural-lab-browser.mjs <Chrome134>",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/prepare_reading_subject.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_scene.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/projective-depth-gles.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python scripts/verify_assets.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Full-front combined skeletal acceptance, initial node tests/forearm-pose-regression.mjs",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "Experimental forearm-versus-baseline neutral screenshot equality",
+      "status": "failed",
+      "details": "29 pixels over2/max51; not promoted"
+    },
+    {
+      "command": "New Android candidate build/sign/phone acceptance",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Fix source sampling/raster coverage at the optional forearm split; preserve strict neutral image acceptance.",
+    "Constrain observed front pose near paper/hand; full-front skeletal scan remains not accepted.",
+    "Continue source-registered shoulder/nape/back material continuity, confidence0 until calibration passes."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "7551c3e4ec113d9f054533c2a87d3e5bfc807c575a349233bc2d15b5663785ea"
+}

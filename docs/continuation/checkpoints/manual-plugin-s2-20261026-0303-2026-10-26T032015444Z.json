@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "owner": "manual-plugin-s2-20261026-0303",
+  "fence": 2,
+  "baseHead": "053b565747bed720e76c14b033c97c36d78644ab",
+  "createdAt": "2026-10-26T03:20:15.444Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "android-app/app/src/main/assets/scene-report.json",
+      "bytes": 5352,
+      "sha256": "4b29fb32676f675bb5c423f5ee1a1623ec6f093f987d748e4842378241678ce0"
+    },
+    {
+      "path": "android-app/app/src/main/assets/scene_skin.bin",
+      "bytes": 461424,
+      "sha256": "b7cad8ff1952a0dfda53d9c8c48b129acd0da0c08961e6806b35c877d5a99666"
+    },
+    {
+      "path": "character-prototype/preview/connected-proxy.mjs",
+      "bytes": 5273,
+      "sha256": "ef9422948a6ba4e176db886fb4cd652d75dd1fbe59c1a6ee4144f97b53c16ea5"
+    },
+    {
+      "path": "character-prototype/preview/structural-pose.mjs",
+      "bytes": 3730,
+      "sha256": "629b2e690df0169346f027847983b8a201641086d7b51a7bb39ac44b2e7b1f52"
+    },
+    {
+      "path": "docs/EXECUTION_STATE.json",
+      "bytes": 22368,
+      "sha256": "9b0e58e3ed384d844815a1626be1385a885b5fcf1a109fa289fe980f13172f1c"
+    },
+    {
+      "path": "docs/S2-CONNECTED-STRUCTURE.md",
+      "bytes": 1608,
+      "sha256": "3c61c6fa95c7e37dd54afabd7b5120884d42d983ca2ab55b01ac447bc0e1098c"
+    },
+    {
+      "path": "references/asset-manifest.json",
+      "bytes": 5651,
+      "sha256": "ad565242b26c9b739d92684c2bd3d2bc332e5e9f4d3361e5f9d3c1afd58e910f"
+    },
+    {
+      "path": "tests/structural-pose-regression.mjs",
+      "bytes": 2132,
+      "sha256": "374c96189548f0b0813f88f2b315e913a6db2cc5926af165db55600efadfcc28"
+    },
+    {
+      "path": "validation/s2-structural-pose.json",
+      "bytes": 350,
+      "sha256": "ebdf162d731e83e4c80ae0612c4a159ad58db12525a91f80989210dd369f9799"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node tests/structural-pose-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node tests/connected-proxy-regression.mjs",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_scene.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python3 scripts/verify_assets.py",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Add actual posed-geometry debug rendering and verify exported skin weights/pose parity.",
+    "Continue source registration and hidden-material credibility before textured side/back or widening production view."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "3bf828045dd247fc8053db2f55335d023b24ea68c05ac74cd6354505b2ec89eb"
+}

@@ -47,6 +47,7 @@ public final class MotionWallpaperService extends WallpaperService {
             super.onCreate(holder);
             loop = new RenderLoop(MotionWallpaperService.this);
             setTouchEventsEnabled(false);
+            setOffsetNotificationsEnabled(true);
             IntentFilter filter = new IntentFilter();
             filter.addAction(Intent.ACTION_SCREEN_ON);
             filter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -74,6 +75,20 @@ public final class MotionWallpaperService extends WallpaperService {
             super.onSurfaceChanged(holder, format, width, height);
             loop.resize(width, height);
             update();
+        }
+
+        @Override
+        public void onOffsetsChanged(float xOffset, float yOffset, float xStep, float yStep,
+                                     int xPixelOffset, int yPixelOffset) {
+            if (loop != null) loop.offsets(xOffset, yOffset, xPixelOffset, yPixelOffset);
+            Log.i(TAG, "window offset=" + xOffset + "," + yOffset + " pixels=" + xPixelOffset + "," + yPixelOffset);
+        }
+
+        @Override
+        public void onZoomChanged(float zoom) {
+            // This is a normalized launcher hint, not a physical scale factor.
+            // Do not guess an inverse scale from it. Reserve composition margin instead.
+            Log.i(TAG, "system zoom hint=" + zoom);
         }
 
         @Override

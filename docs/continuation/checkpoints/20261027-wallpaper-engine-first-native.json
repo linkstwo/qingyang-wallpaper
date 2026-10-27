@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-we-20261027-1245",
+  "fence": 16,
+  "baseHead": "cecbbbf487dc0412fbd399953f138eb31dc5be5b",
+  "createdAt": "2026-10-27T05:01:56.350462+00:00",
+  "stage": "S2",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 1638,
+      "sha256": "1ce6d98ba73b05f73a7bb6f533eb6f637bc68aa798e689639f63161558095d1f"
+    },
+    {
+      "path": "docs\\EXECUTION_STATE.json",
+      "bytes": 39076,
+      "sha256": "12897b515406960d4b9f5aa062ecd37e0b9ea2d54ffaeb3fe13d59f0301b245c"
+    },
+    {
+      "path": "docs\\START_IN_CLOUD.md",
+      "bytes": 9783,
+      "sha256": "c10283de3d7feee575ffc29a3c660ec9fce8400e4091bf4220ef047b97d9079a"
+    },
+    {
+      "path": "docs\\WALLPAPER-ENGINE-20261027.md",
+      "bytes": 2223,
+      "sha256": "790a9bc693dca07efbe68577c449721d07b2cdbbca834f15329040b5e9ebd45f"
+    },
+    {
+      "path": "scripts\\export_wallpaper_engine.py",
+      "bytes": 4747,
+      "sha256": "0e44d59c2a36cceeb2c2b5da39d00ba79a9525c786a636e11fd8aa8c026ae004"
+    },
+    {
+      "path": "validation\\we-native-first-frame.jpg",
+      "bytes": 107169,
+      "sha256": "764851e2e6b470496619910ccbfe82fe2a58592d76166718c7ff2bc2262582b1"
+    },
+    {
+      "path": "validation\\we-native-report.json",
+      "bytes": 1251,
+      "sha256": "7686dbabed9b89d59a6becf39b9dc5d0dc72ddddcd6a74df44b7cc390d7d42ac"
+    },
+    {
+      "path": "wallpaper-engine\\README.md",
+      "bytes": 2577,
+      "sha256": "a585dfa601f28c6118d405766f83e6e1a7edb8397b46225719a0fdbb23b7a8ac"
+    },
+    {
+      "path": "wallpaper-engine\\effects\\qingyang\\effect.json",
+      "bytes": 855,
+      "sha256": "32ad8a942929ce9e55b8d8cd064af357ffc44bd235eed747b88e5f833af27b3d"
+    },
+    {
+      "path": "wallpaper-engine\\materials\\qingyang-motion.json",
+      "bytes": 129,
+      "sha256": "1e31e1fb2c68692ec673a8e72575db7390278d6ba368ec1c6553ef1a678e1d74"
+    },
+    {
+      "path": "wallpaper-engine\\materials\\qingyang-state.json",
+      "bytes": 128,
+      "sha256": "88481956dc995706c239a2ac68a72170f1e0791449797210837300576a52c6ce"
+    },
+    {
+      "path": "wallpaper-engine\\materials\\qingyang.json",
+      "bytes": 182,
+      "sha256": "2d53d7a87633ab67ff84fa507b689d744fe888fa6817b12101d216f70235346d"
+    },
+    {
+      "path": "wallpaper-engine\\models\\qingyang.json",
+      "bytes": 72,
+      "sha256": "ec25e787686747cba14624a19ed338628b2267f0e542ecbc96afbc90a778087d"
+    },
+    {
+      "path": "wallpaper-engine\\motion.js",
+      "bytes": 1627,
+      "sha256": "664e6b1534f168d806f729a7f8583ec60b052a9823f785d588c094b000a7f8e4"
+    },
+    {
+      "path": "wallpaper-engine\\shaders\\qingyang-motion.frag",
+      "bytes": 2291,
+      "sha256": "8eee65606e17ead148ef6c6eb4828d8d3e684f91697bb4639d3a3058477c6be6"
+    },
+    {
+      "path": "wallpaper-engine\\shaders\\qingyang-motion.vert",
+      "bytes": 359,
+      "sha256": "6711103c3f792bfb02f7cab0769893a7ce590457321b71e0405dd33f79f30f45"
+    },
+    {
+      "path": "wallpaper-engine\\shaders\\qingyang-state.frag",
+      "bytes": 2066,
+      "sha256": "8530f6bda93bb6c896cc3be8bb893a223188bf6cd2562dea6accec0ebc3905dc"
+    },
+    {
+      "path": "wallpaper-engine\\shaders\\qingyang-state.vert",
+      "bytes": 277,
+      "sha256": "7746d5344e6fbe6a16eff6d0655ffde244e3edc620a06ae165d5a4f2cf58939d"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python -m py_compile scripts/export_wallpaper_engine.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node --input-type=module --check generated SceneScript on stdin",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Independent TEX header/raw-pixel comparison for original/mask/background",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "Native GPU feedback motion and Android export acceptance",
+      "status": "not_run"
+    }
+  ],
+  "next": [
+    "Validate native feedback spring motion/settling/abnormal-dt and 30/60/120fps; compare the GPU pose-rate adaptation with the existing Q baseline.",
+    "Open the editable native project and export an interactive Android .mpkg, retaining actual custom effect resources; no pre-rendered substitute.",
+    "Transfer to the target phone and verify lockscreen/gyro/stop/wake behaviour under user control."
+  ],
+  "phoneTested": false,
+  "sourceDigest": "1657e873af406735cebc637761fc8bb42a185363599e4d225db771172754a32c"
+}
