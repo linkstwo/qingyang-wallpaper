@@ -4,8 +4,8 @@
   "fence": 1,
   "status": "running",
   "startedAt": "2026-10-26T23:53:02Z",
-  "heartbeatAt": "2026-10-27T00:02:32Z",
-  "expiresAt": "2026-10-27T00:17:32+00:00",
+  "heartbeatAt": "2026-10-27T00:05:12Z",
+  "expiresAt": "2026-10-27T00:20:12+00:00",
   "baseHead": "9a24a706dbe5b22bfa6f37a5571527c0fd0b2d7b",
   "scope": "Independent T15 Android lifecycle branch; mainline fence14 left untouched"
 }

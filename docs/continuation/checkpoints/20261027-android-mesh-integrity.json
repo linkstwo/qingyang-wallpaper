@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "owner": "codex-night-20261027-0753-android",
+  "fence": 1,
+  "baseHead": "776cde01fc43d22571c1add2e3b0a2815242144f",
+  "createdAt": "2026-10-27T00:05:12Z",
+  "stage": "S2",
+  "files": [
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/GlAssets.java",
+      "bytes": 3398,
+      "sha256": "b1b7efddc9f27d3652e7994c9c1fe17fba2e82f2b3bfe2bc69bed59f0bf46094"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MeshAssets.java",
+      "bytes": 3645,
+      "sha256": "7179b26b6d9789befee0ea00f3c114f217970b44332ddbee63961036ee69a5fc"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/MotionInput.java",
+      "bytes": 7038,
+      "sha256": "85b88dab69d220e2496344aea718315a13a8bcd45363831a83f5ee5cacfffc5e"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/PreviewView.java",
+      "bytes": 5607,
+      "sha256": "a69a34e050815a113e1be3c0c9801d57aca33ef8e7643070c6a815a73d7e87a6"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/RenderLoop.java",
+      "bytes": 11311,
+      "sha256": "b57d6d05b6843244758c33e853c3c3c8638f6fb62e2e07b921e7d2a1d2cc5b2f"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SceneRenderer.java",
+      "bytes": 15312,
+      "sha256": "b2b62cade0603017c51742fd844eb32ae58b2f456a76be6497e1c7245c2cb524"
+    },
+    {
+      "path": "android-app/app/src/main/java/com/tangtang/motionwallpaper/SensorFeed.java",
+      "bytes": 7962,
+      "sha256": "1fb5c6eeac031f4c68a0d82c33ffdcebf6da64f7b473fde66098ce2d07d13765"
+    },
+    {
+      "path": "docs/continuation/ANDROID-INDEPENDENT-20261027.md",
+      "bytes": 4046,
+      "sha256": "0603903e324d326f3966f0120b9142e9bffec8ceed6fcce8a418fcfcfb3748b1"
+    },
+    {
+      "path": "tests/GlAssetsRegression.java",
+      "bytes": 1495,
+      "sha256": "1a604c50b62ec891760120aae922011fa756f1227a90ae44ff837efe8a0f38b6"
+    },
+    {
+      "path": "tests/MeshIntegrityRegression.java",
+      "bytes": 2030,
+      "sha256": "52a5a57bcd1cc845153f1f9bb55b2406b9d80ff0d35e6da0aa6557f15efd93d9"
+    },
+    {
+      "path": "tests/PreviewLifecycleRegression.java",
+      "bytes": 3142,
+      "sha256": "615a56e10daf99d4a093c55e765641d54a6ccff251e2f0a348889131533564b2"
+    },
+    {
+      "path": "tests/RendererResourcesRegression.java",
+      "bytes": 1418,
+      "sha256": "e6227baa5a091b265d9c578a92f4f90fc73aa908e3cd9b13d3cc5b4a67b68268"
+    },
+    {
+      "path": "tests/SensorQueueRegression.java",
+      "bytes": 5989,
+      "sha256": "8713257ace8975424514e5a3e5d17a28df04c4217f83a8a2a60035a5d6d05a4d"
+    },
+    {
+      "path": "tests/SensorTrajectoryRegression.java",
+      "bytes": 5355,
+      "sha256": "504b8e5f59de4d7554f34588107e331bbb74e0d31e89a925ad060b0b6a3ab702"
+    },
+    {
+      "path": "tests/host-fixtures/com/tangtang/motionwallpaper/LifecycleRegression.java",
+      "bytes": 6119,
+      "sha256": "c5f382311f76121cc2d66e2e3edae5e9239bea81349ee79f0416d84fbd8cebfc"
+    },
+    {
+      "path": "tests/run_gl_assets.py",
+      "bytes": 3812,
+      "sha256": "d7a044f676eaa75afc7e568c5158af3118aee11c7c9e3f89fac8df036fd06c05"
+    },
+    {
+      "path": "tests/run_mesh_integrity.py",
+      "bytes": 1815,
+      "sha256": "1e15d0ef4d9b5891f7e372e8fe50b2c69ea6f9136f5ddc9466165be0d39da7e1"
+    },
+    {
+      "path": "tests/run_preview_lifecycle.py",
+      "bytes": 4435,
+      "sha256": "d200dfccc17bf3e3c4f660e1a41eb64f228b88e6df1edb0562fc59d4cc099c8a"
+    },
+    {
+      "path": "tests/run_renderer_resources.py",
+      "bytes": 5679,
+      "sha256": "2c9a6783cdeec6ba033df53162f1aa51f5894660a887bb5467a8d4ca9729edbc"
+    },
+    {
+      "path": "validation/gl-assets-regression.json",
+      "bytes": 94,
+      "sha256": "30116263439f5698ee3312786272da0927fcc71452c0c3200f0f6524859c4949"
+    },
+    {
+      "path": "validation/independent-android-tests.json",
+      "bytes": 2100,
+      "sha256": "8218620f8baee4dd3e9d4248c8ba95b2ab4b49d2925e3d7c5ad73601a0427b68"
+    },
+    {
+      "path": "validation/mesh-integrity-regression.json",
+      "bytes": 108,
+      "sha256": "88c88548d0fe8d6e177a1c736a7aa5438fce6da77e938866911af5172ad1b9a3"
+    },
+    {
+      "path": "validation/preview-lifecycle-regression.json",
+      "bytes": 92,
+      "sha256": "768ab0430b05f2bb4823a0e908f70a270f4d1f66bb9480818740faf35f4c7558"
+    },
+    {
+      "path": "validation/renderer-resources-regression.json",
+      "bytes": 152,
+      "sha256": "127b7d416bc49e4e7f0beeefae3b42ba953ec960358454fa1b5c4faabacc3ccd"
+    },
+    {
+      "path": "validation/sensor-queue-regression.json",
+      "bytes": 66,
+      "sha256": "c06cab261f8f2a65b8fb089093b57adf3fb7ff5ad31a5a500a9bd2bb3ff36c03"
+    },
+    {
+      "path": "validation/sensor-trajectory-regression.json",
+      "bytes": 169,
+      "sha256": "941a786214d638d722a1e5a948b3dffdc7e047e7ccd52398f18ec2f790a9187e"
+    }
+  ],
+  "tests": [
+    {
+      "command": "python tests/run_preview_lifecycle.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_preview_lifecycle.py --baseline (expected negative)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "python tests/run_lifecycle.py before Surface fix (new negative)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "python tests/run_lifecycle.py after Surface fix (56 assertions)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_gl_assets.py (13 faults/29 assertions)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_response.py (10132 Java/JS assertions)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_lifecycle.py retained-context negative (intermediate regression)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "python tests/run_lifecycle.py after fix (57 assertions)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_renderer_resources.py (96 assertions/full renderer)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_renderer_resources.py --baseline (expected allocation leak)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "python tests/run_sensor_feed.py after selective PR2 import (17/32617)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "node android-app/tools/export_mesh.mjs --check",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python scripts/verify_assets.py",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_mesh_integrity.py --baseline (expected malformed mesh rejection failure)",
+      "status": "failed",
+      "exitCode": 1
+    },
+    {
+      "command": "python tests/run_mesh_integrity.py (12 mutations/26 assertions)",
+      "status": "passed",
+      "exitCode": 0
+    },
+    {
+      "command": "python tests/run_renderer_resources.py after parser change",
+      "status": "passed",
+      "exitCode": 0
+    }
+  ],
+  "next": [
+    "Continue independent Android resource recovery, then selectively integrate prior PR2 sensor candidate without its lease/state"
+  ],
+  "phoneTested": false,
+  "sourceDigest": "3885e5c233056da5a6e26007346148e9a8081084ae0f9034802f137659ebc56c"
+}

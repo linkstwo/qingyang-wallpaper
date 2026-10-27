@@ -63,5 +63,20 @@
     "command": "python scripts/verify_assets.py",
     "status": "passed",
     "exitCode": 0
+  },
+  {
+    "command": "python tests/run_mesh_integrity.py --baseline (expected malformed mesh rejection failure)",
+    "status": "failed",
+    "exitCode": 1
+  },
+  {
+    "command": "python tests/run_mesh_integrity.py (12 mutations/26 assertions)",
+    "status": "passed",
+    "exitCode": 0
+  },
+  {
+    "command": "python tests/run_renderer_resources.py after parser change",
+    "status": "passed",
+    "exitCode": 0
   }
 ]
