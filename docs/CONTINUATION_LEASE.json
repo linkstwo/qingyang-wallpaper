@@ -2,10 +2,12 @@
   "schemaVersion": 1,
   "owner": "codex-night-20261027-0753-android",
   "fence": 1,
-  "status": "running",
+  "status": "released",
   "startedAt": "2026-10-26T23:53:02Z",
-  "heartbeatAt": "2026-10-27T00:05:12Z",
-  "expiresAt": "2026-10-27T00:20:12+00:00",
+  "heartbeatAt": "2026-10-27T00:06:18Z",
+  "expiresAt": "2026-10-27T00:06:18Z",
   "baseHead": "9a24a706dbe5b22bfa6f37a5571527c0fd0b2d7b",
-  "scope": "Independent T15 Android lifecycle branch; mainline fence14 left untouched"
+  "scope": "Independent T15 Android lifecycle branch; mainline fence14 left untouched",
+  "releasedAt": "2026-10-27T00:06:18Z",
+  "reason": "Independent implementation checkpointed; run ended before authorized end, no platform failure observed"
 }
