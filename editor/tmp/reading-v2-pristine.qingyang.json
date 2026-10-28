@@ -1,0 +1,579 @@
+{
+ "format": "qingyang-editor-project",
+ "version": 1,
+ "meta": {
+  "name": "reading-v2 导入",
+  "created": "2026-10-28T00:34:27.289Z",
+  "modified": "2026-10-28T00:34:27.290Z",
+  "notes": "从 character-prototype/preview/mesh.json 导入；viewportPins=[{\"name\":\"paper and hands\",\"region\":[0,850,392,1268]},{\"name\":\"seated support\",\"region\":[0,1310,1086,1448]}]"
+ },
+ "canvas": [
+  1086,
+  1448
+ ],
+ "subjectId": "editor-v1",
+ "layers": [
+  {
+   "id": "layer-74fqapv",
+   "name": "背景补绘",
+   "kind": "background",
+   "visible": true,
+   "locked": false,
+   "texture": {
+    "file": "background.png",
+    "sha256": null
+   },
+   "mask": null,
+   "mesh": {
+    "mode": "quad",
+    "outline": null,
+    "holes": [],
+    "edgePx": 27
+   },
+   "pins": [],
+   "seatSupport": null,
+   "vertexEdits": {},
+   "regions": [
+    {
+     "id": "head",
+     "kind": "smoothstepY",
+     "y0": 340,
+     "y1": 495,
+     "depth": 11,
+     "depthHeadGain": 13,
+     "inertia": 0.3,
+     "squeezeX": -0.006
+    },
+    {
+     "id": "neck",
+     "kind": "bell",
+     "cx": 630,
+     "cy": 410,
+     "rx": 220,
+     "ry": 180,
+     "depth": 0,
+     "inertia": 0.22
+    },
+    {
+     "id": "chest",
+     "kind": "bell",
+     "cx": 577,
+     "cy": 785,
+     "rx": 165,
+     "ry": 205,
+     "depth": 20,
+     "inertia": 0
+    },
+    {
+     "id": "shoulder",
+     "kind": "bell",
+     "cx": 815,
+     "cy": 528,
+     "rx": 170,
+     "ry": 210,
+     "depth": 11,
+     "inertia": 0
+    },
+    {
+     "id": "torso",
+     "kind": "bell",
+     "cx": 721,
+     "cy": 789,
+     "rx": 310,
+     "ry": 430,
+     "depth": 19,
+     "inertia": 0.68,
+     "squeezeY": 0.008
+    },
+    {
+     "id": "cheek",
+     "kind": "bell",
+     "cx": 392,
+     "cy": 333,
+     "rx": 170,
+     "ry": 155,
+     "depth": 0,
+     "inertia": 0
+    },
+    {
+     "id": "hair",
+     "kind": "bell",
+     "cx": 246,
+     "cy": 367,
+     "rx": 110,
+     "ry": 210,
+     "depth": 0,
+     "inertia": 0
+    }
+   ],
+   "squeeze": {
+    "headX": -0.006,
+    "torsoY": 0.008,
+    "pivotX": 560,
+    "pivotY": 650
+   },
+   "inertiaBase": {
+    "body": 0.32,
+    "hairGain": 1,
+    "hairYRatio": 0.35
+   },
+   "spring": {
+    "frequency": 1.6,
+    "damping": 0.22,
+    "limit": 1
+   },
+   "springGains": {
+    "body": 1.4,
+    "chestX": 3.4,
+    "chestY": 4.2,
+    "chestCoupling": 60,
+    "chestCouplingY": 75,
+    "hair": 2.2
+   },
+   "limits": {
+    "bodyPixels": 5,
+    "chestPixels": 7,
+    "hairPixels": 10
+   },
+   "turnViewRatio": [
+    3,
+    2
+   ]
+  },
+  {
+   "id": "layer-o0bmlc3",
+   "name": "人物",
+   "kind": "character",
+   "visible": true,
+   "locked": false,
+   "texture": {
+    "file": "original.png",
+    "sha256": null
+   },
+   "mask": {
+    "file": "mask.png",
+    "featherPx": 3,
+    "cover": 1,
+    "mode": "mask"
+   },
+   "mesh": {
+    "mode": "full-canvas",
+    "outline": null,
+    "holes": [],
+    "edgePx": 27
+   },
+   "pins": [
+    {
+     "name": "blueprint",
+     "feather": 32,
+     "outline": [
+      [
+       0,
+       831
+      ],
+      [
+       113,
+       886
+      ],
+      [
+       173,
+       940
+      ],
+      [
+       237,
+       969
+      ],
+      [
+       295,
+       1001
+      ],
+      [
+       332,
+       1061
+      ],
+      [
+       377,
+       1108
+      ],
+      [
+       366,
+       1143
+      ],
+      [
+       0,
+       1105
+      ]
+     ]
+    },
+    {
+     "name": "far-hand",
+     "feather": 48,
+     "outline": [
+      [
+       121,
+       881
+      ],
+      [
+       185,
+       872
+      ],
+      [
+       251,
+       882
+      ],
+      [
+       309,
+       887
+      ],
+      [
+       324,
+       924
+      ],
+      [
+       294,
+       955
+      ],
+      [
+       244,
+       972
+      ],
+      [
+       190,
+       970
+      ],
+      [
+       141,
+       949
+      ]
+     ]
+    },
+    {
+     "name": "near-hand",
+     "feather": 60,
+     "outline": [
+      [
+       170,
+       1162
+      ],
+      [
+       202,
+       1138
+      ],
+      [
+       251,
+       1130
+      ],
+      [
+       305,
+       1125
+      ],
+      [
+       350,
+       1135
+      ],
+      [
+       380,
+       1175
+      ],
+      [
+       365,
+       1210
+      ],
+      [
+       315,
+       1238
+      ],
+      [
+       275,
+       1257
+      ],
+      [
+       239,
+       1260
+      ],
+      [
+       211,
+       1246
+      ],
+      [
+       187,
+       1220
+      ],
+      [
+       169,
+       1205
+      ],
+      [
+       164,
+       1184
+      ]
+     ]
+    }
+   ],
+   "seatSupport": {
+    "y0": 1240,
+    "y1": 1360
+   },
+   "vertexEdits": {},
+   "regions": [
+    {
+     "id": "head",
+     "kind": "smoothstepY",
+     "y0": 340,
+     "y1": 495,
+     "depth": 11,
+     "depthHeadGain": 13,
+     "inertia": 0.3,
+     "squeezeX": -0.006
+    },
+    {
+     "id": "neck",
+     "kind": "bell",
+     "cx": 630,
+     "cy": 410,
+     "rx": 220,
+     "ry": 180,
+     "depth": 0,
+     "inertia": 0.22
+    },
+    {
+     "id": "chest",
+     "kind": "bell",
+     "cx": 577,
+     "cy": 785,
+     "rx": 165,
+     "ry": 205,
+     "depth": 20,
+     "inertia": 0
+    },
+    {
+     "id": "shoulder",
+     "kind": "bell",
+     "cx": 815,
+     "cy": 528,
+     "rx": 170,
+     "ry": 210,
+     "depth": 11,
+     "inertia": 0
+    },
+    {
+     "id": "torso",
+     "kind": "bell",
+     "cx": 721,
+     "cy": 789,
+     "rx": 310,
+     "ry": 430,
+     "depth": 19,
+     "inertia": 0.68,
+     "squeezeY": 0.008
+    },
+    {
+     "id": "cheek",
+     "kind": "bell",
+     "cx": 392,
+     "cy": 333,
+     "rx": 170,
+     "ry": 155,
+     "depth": 0,
+     "inertia": 0
+    },
+    {
+     "id": "hair",
+     "kind": "bell",
+     "cx": 246,
+     "cy": 367,
+     "rx": 110,
+     "ry": 210,
+     "depth": 0,
+     "inertia": 0
+    }
+   ],
+   "squeeze": {
+    "headX": -0.006,
+    "torsoY": 0.008,
+    "pivotX": 560,
+    "pivotY": 650
+   },
+   "inertiaBase": {
+    "body": 0.32,
+    "hairGain": 1,
+    "hairYRatio": 0.35
+   },
+   "spring": {
+    "frequency": 2.4,
+    "damping": 0.88,
+    "limit": 1.2
+   },
+   "springGains": {
+    "body": 1.4,
+    "chestX": 3.4,
+    "chestY": 4.2,
+    "chestCoupling": 60,
+    "chestCouplingY": 75,
+    "hair": 2.2
+   },
+   "limits": {
+    "bodyPixels": 5,
+    "chestPixels": 7,
+    "hairPixels": 10,
+    "triangleEdgePixels": 27
+   },
+   "turnViewRatio": [
+    3,
+    2
+   ]
+  },
+  {
+   "id": "layer-vrv1iek",
+   "name": "前景（图纸）",
+   "kind": "foreground",
+   "visible": true,
+   "locked": false,
+   "texture": {
+    "file": "original.png",
+    "sha256": null
+   },
+   "mask": null,
+   "mesh": {
+    "mode": "outline",
+    "outline": [
+     [
+      1026,
+      801
+     ],
+     [
+      1086,
+      792
+     ],
+     [
+      1086,
+      1448
+     ],
+     [
+      958,
+      1448
+     ],
+     [
+      957,
+      1414
+     ],
+     [
+      1028,
+      1380
+     ]
+    ],
+    "holes": [],
+    "edgePx": 80
+   },
+   "pins": [],
+   "seatSupport": null,
+   "vertexEdits": {},
+   "regions": [
+    {
+     "id": "head",
+     "kind": "smoothstepY",
+     "y0": 340,
+     "y1": 495,
+     "depth": 11,
+     "depthHeadGain": 13,
+     "inertia": 0.3,
+     "squeezeX": -0.006
+    },
+    {
+     "id": "neck",
+     "kind": "bell",
+     "cx": 630,
+     "cy": 410,
+     "rx": 220,
+     "ry": 180,
+     "depth": 0,
+     "inertia": 0.22
+    },
+    {
+     "id": "chest",
+     "kind": "bell",
+     "cx": 577,
+     "cy": 785,
+     "rx": 165,
+     "ry": 205,
+     "depth": 20,
+     "inertia": 0
+    },
+    {
+     "id": "shoulder",
+     "kind": "bell",
+     "cx": 815,
+     "cy": 528,
+     "rx": 170,
+     "ry": 210,
+     "depth": 11,
+     "inertia": 0
+    },
+    {
+     "id": "torso",
+     "kind": "bell",
+     "cx": 721,
+     "cy": 789,
+     "rx": 310,
+     "ry": 430,
+     "depth": 19,
+     "inertia": 0.68,
+     "squeezeY": 0.008
+    },
+    {
+     "id": "cheek",
+     "kind": "bell",
+     "cx": 392,
+     "cy": 333,
+     "rx": 170,
+     "ry": 155,
+     "depth": 0,
+     "inertia": 0
+    },
+    {
+     "id": "hair",
+     "kind": "bell",
+     "cx": 246,
+     "cy": 367,
+     "rx": 110,
+     "ry": 210,
+     "depth": 0,
+     "inertia": 0
+    }
+   ],
+   "squeeze": {
+    "headX": -0.006,
+    "torsoY": 0.008,
+    "pivotX": 560,
+    "pivotY": 650
+   },
+   "inertiaBase": {
+    "body": 0.32,
+    "hairGain": 1,
+    "hairYRatio": 0.35
+   },
+   "spring": {
+    "frequency": 1.6,
+    "damping": 0.22,
+    "limit": 1
+   },
+   "springGains": {
+    "body": 1.4,
+    "chestX": 3.4,
+    "chestY": 4.2,
+    "chestCoupling": 60,
+    "chestCouplingY": 75,
+    "hair": 2.2
+   },
+   "limits": {
+    "bodyPixels": 5,
+    "chestPixels": 7,
+    "hairPixels": 10
+   },
+   "turnViewRatio": [
+    3,
+    2
+   ]
+  }
+ ]
+}

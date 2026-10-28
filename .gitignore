@@ -10,6 +10,7 @@
 !/evidence/
 !/android-app/
 !/character-prototype/
+!/editor/
 
 /character-prototype/*
 !/character-prototype/preview/
