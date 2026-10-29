@@ -77,15 +77,16 @@ function main() { window.__wb = ['main-entered']; return (async () => {
     pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
     ctx.closePath();
     ctx.stroke();
-    // 锚点
-    ctx.fillStyle = ctx.strokeStyle;
+    // 锚点（绿=像素校验 PASS，黄=SUSPECT；校验见 anchor-verification.json）
     for (const [k, p] of Object.entries(v.anchors)) {
       const [x, y] = applyTransform(t, p);
+      const ver = v.anchorVerification?.[k];
+      ctx.fillStyle = !ver ? ctx.strokeStyle : ver.verdict === 'PASS' ? 'rgba(124,252,0,0.95)' : 'rgba(255,213,74,0.95)';
       ctx.beginPath();
       ctx.arc(x, y, 4 / scale / t.scale, 0, Math.PI * 2);
       ctx.fill();
       ctx.font = `${14 / scale / t.scale}px sans-serif`;
-      ctx.fillText(k, x + 6 / t.scale, y);
+      ctx.fillText(k + (ver ? '·' + ver.classified : ''), x + 6 / t.scale, y);
     }
     ctx.restore();
   }

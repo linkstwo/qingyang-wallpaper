@@ -1,0 +1,540 @@
+{
+ "format": "qingyang-anchor-verification",
+ "version": 1,
+ "views": [
+  {
+   "id": "fv",
+   "anchors": [
+    {
+     "name": "face",
+     "xy": [
+      500,
+      330
+     ],
+     "rgb": [
+      133,
+      99,
+      93
+     ],
+     "classified": "skin",
+     "expected": [
+      "dark",
+      "skin"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "bun",
+     "xy": [
+      700,
+      90
+     ],
+     "rgb": [
+      20,
+      16,
+      17
+     ],
+     "classified": "dark",
+     "expected": [
+      "dark"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "shoulderL",
+     "xy": [
+      505,
+      490
+     ],
+     "rgb": [
+      174,
+      133,
+      117
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "shoulderR",
+     "xy": [
+      880,
+      480
+     ],
+     "rgb": [
+      132,
+      101,
+      92
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "chest",
+     "xy": [
+      620,
+      700
+     ],
+     "rgb": [
+      153,
+      110,
+      96
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest",
+      "vest-shadow"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "waist",
+     "xy": [
+      700,
+      1030
+     ],
+     "rgb": [
+      26,
+      23,
+      28
+     ],
+     "classified": "dark",
+     "expected": [
+      "dark",
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "handPaper",
+     "xy": [
+      390,
+      940
+     ],
+     "rgb": [
+      121,
+      81,
+      76
+     ],
+     "classified": "skin",
+     "expected": [
+      "paper",
+      "skin"
+     ],
+     "verdict": "PASS"
+    }
+   ]
+  },
+  {
+   "id": "mf",
+   "anchors": [
+    {
+     "name": "face",
+     "xy": [
+      330,
+      320
+     ],
+     "rgb": [
+      165,
+      139,
+      126
+     ],
+     "classified": "skin",
+     "expected": [
+      "dark",
+      "skin"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "bun",
+     "xy": [
+      660,
+      90
+     ],
+     "rgb": [
+      22,
+      18,
+      20
+     ],
+     "classified": "dark",
+     "expected": [
+      "dark"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "shoulderL",
+     "xy": [
+      530,
+      500
+     ],
+     "rgb": [
+      155,
+      125,
+      110
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "shoulderR",
+     "xy": [
+      770,
+      470
+     ],
+     "rgb": [
+      135,
+      108,
+      104
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "chest",
+     "xy": [
+      560,
+      720
+     ],
+     "rgb": [
+      190,
+      151,
+      137
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest",
+      "vest-shadow"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "waist",
+     "xy": [
+      640,
+      1060
+     ],
+     "rgb": [
+      199,
+      169,
+      157
+     ],
+     "classified": "skin",
+     "expected": [
+      "dark",
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "handPaper",
+     "xy": [
+      250,
+      1140
+     ],
+     "rgb": [
+      216,
+      181,
+      167
+     ],
+     "classified": "skin",
+     "expected": [
+      "paper",
+      "skin"
+     ],
+     "verdict": "PASS"
+    }
+   ]
+  },
+  {
+   "id": "sd",
+   "anchors": [
+    {
+     "name": "face",
+     "xy": [
+      560,
+      330
+     ],
+     "rgb": [
+      165,
+      124,
+      118
+     ],
+     "classified": "skin",
+     "expected": [
+      "dark",
+      "skin"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "bun",
+     "xy": [
+      280,
+      90
+     ],
+     "rgb": [
+      41,
+      34,
+      35
+     ],
+     "classified": "dark",
+     "expected": [
+      "dark"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "shoulderBack",
+     "xy": [
+      300,
+      480
+     ],
+     "rgb": [
+      132,
+      101,
+      92
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "shoulderFront",
+     "xy": [
+      560,
+      440
+     ],
+     "rgb": [
+      121,
+      98,
+      88
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "chest",
+     "xy": [
+      610,
+      760
+     ],
+     "rgb": [
+      148,
+      130,
+      136
+     ],
+     "classified": "vest-shadow",
+     "expected": [
+      "skin",
+      "vest",
+      "vest-shadow"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "waist",
+     "xy": [
+      340,
+      1090
+     ],
+     "rgb": [
+      27,
+      25,
+      30
+     ],
+     "classified": "dark",
+     "expected": [
+      "dark",
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "handPaper",
+     "xy": [
+      900,
+      930
+     ],
+     "rgb": [
+      151,
+      113,
+      103
+     ],
+     "classified": "skin",
+     "expected": [
+      "paper",
+      "skin"
+     ],
+     "verdict": "PASS"
+    }
+   ]
+  },
+  {
+   "id": "bk",
+   "anchors": [
+    {
+     "name": "face",
+     "xy": [
+      640,
+      330
+     ],
+     "rgb": [
+      186,
+      137,
+      117
+     ],
+     "classified": "skin",
+     "expected": [
+      "dark",
+      "skin"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "bun",
+     "xy": [
+      430,
+      80
+     ],
+     "rgb": [
+      19,
+      15,
+      16
+     ],
+     "classified": "dark",
+     "expected": [
+      "dark"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "shoulderL",
+     "xy": [
+      250,
+      480
+     ],
+     "rgb": [
+      158,
+      123,
+      115
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "shoulderR",
+     "xy": [
+      640,
+      440
+     ],
+     "rgb": [
+      200,
+      175,
+      160
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "chest",
+     "xy": [
+      430,
+      700
+     ],
+     "rgb": [
+      150,
+      120,
+      116
+     ],
+     "classified": "skin",
+     "expected": [
+      "skin",
+      "vest",
+      "vest-shadow"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "waist",
+     "xy": [
+      420,
+      1050
+     ],
+     "rgb": [
+      30,
+      27,
+      33
+     ],
+     "classified": "dark",
+     "expected": [
+      "dark",
+      "skin",
+      "vest"
+     ],
+     "verdict": "PASS"
+    },
+    {
+     "name": "handPaper",
+     "xy": [
+      900,
+      960
+     ],
+     "rgb": [
+      214,
+      194,
+      189
+     ],
+     "classified": "skin",
+     "expected": [
+      "paper",
+      "skin"
+     ],
+     "verdict": "PASS"
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "total": 28,
+  "passed": 28,
+  "suspect": 0,
+  "passRate": 1.0
+ }
+}
