@@ -36,11 +36,11 @@ test('30/60/120fps 同一连续轨迹误差（G3）：峰值位移相对偏差 <
   assert.ok(spread < 0.10, `峰值离散 ${spread.toFixed(3)} 应 < 0.10（30fps ${p30.toFixed(3)} / 60fps ${p60.toFixed(3)} / 120fps ${p120.toFixed(3)}）`);
 });
 
-test('SpringBank：与 app.mjs 同公式，可视位移带限幅单位', () => {
+test('SpringBank：与 app.mjs 同公式，可视位移带限幅单位（含 hairTip 通道）', () => {
   const bank = new SpringBank(CFG);
   const vis = bank.step(180, 180, GAINS, LIMITS, 1 / 60);
-  assert.equal(vis.length, 5);
-  for (const [v, lim] of [[vis[0], LIMITS.bodyPixels], [vis[1], LIMITS.bodyPixels], [vis[2], LIMITS.chestPixels], [vis[3], LIMITS.chestPixels], [vis[4], LIMITS.hairPixels]]) {
+  assert.equal(vis.length, 6);
+  for (const [v, lim] of [[vis[0], LIMITS.bodyPixels], [vis[1], LIMITS.bodyPixels], [vis[2], LIMITS.chestPixels], [vis[3], LIMITS.chestPixels], [vis[4], LIMITS.hairPixels], [vis[5], LIMITS.hairTipPixels ?? 0]]) {
     assert.ok(Math.abs(v) <= lim + 1e-9, `位移 ${v} 超限 ${lim}`);
     assert.ok(Number.isFinite(v));
   }

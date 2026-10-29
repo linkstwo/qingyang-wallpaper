@@ -70,6 +70,11 @@
     <button id="assetBtn" onclick="document.querySelector('#assetFile').click()">导入 PNG/JPG…</button>
     <h3>图层</h3>
     <div id="layerTree"></div>
+    <h3>输入轨迹（B9）</h3>
+    <button id="recBtn">⏺ 开始录制</button>
+    <select id="trackSel" style="width:100%;margin:4px 0;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:4px;padding:4px"></select>
+    <button id="playTrackBtn" style="width:100%">↻ 回放选中轨迹</button>
+    <button id="fpsCmpBtn" style="width:100%;margin-top:4px">📊 30/60/120fps 对比</button>
     <h3>显示</h3>
     <label class="inline"><input type="checkbox" id="showMesh" checked> 网格与控制点</label>
     <label class="inline">编辑强度 <input type="range" id="editAmount" min="0" max="100" value="60" style="flex:1"> <span id="editAmountVal">0.60</span></label>

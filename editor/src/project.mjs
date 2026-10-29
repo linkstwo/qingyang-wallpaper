@@ -14,7 +14,9 @@ export const DEFAULT_REGIONS = [
   { id: 'shoulder', kind: 'bell', cx: 815, cy: 528, rx: 170, ry: 210, depth: 11, inertia: 0 },
   { id: 'torso',    kind: 'bell', cx: 721, cy: 789, rx: 310, ry: 430, depth: 19, inertia: 0.68, squeezeY: 0.008 },
   { id: 'cheek',    kind: 'bell', cx: 392, cy: 333, rx: 170, ry: 155, depth: 0,  inertia: 0 },
-  { id: 'hair',     kind: 'bell', cx: 246, cy: 367, rx: 110, ry: 210, depth: 0,  inertia: 0 },
+  { id: 'hairRoot', kind: 'bell', cx: 246, cy: 367, rx: 110, ry: 210, depth: 0,  inertia: 0 },
+  // B10 分段发束：发梢独立通道（更低频率弹簧 + 更大惯性 → 相位滞后与过冲更明显）
+  { id: 'hairTip',  kind: 'bell', cx: 235, cy: 520, rx: 95,  ry: 170, depth: 0,  inertia: 0 },
 ];
 
 export const DEFAULT_SQUEEZE = { headX: -0.006, torsoY: 0.008, pivotX: 560, pivotY: 650 };
@@ -38,9 +40,15 @@ export function defaultLayer(name, textureFile, maskFile) {
     regions: structuredClone(DEFAULT_REGIONS),
     squeeze: { ...DEFAULT_SQUEEZE },
     inertiaBase: { ...DEFAULT_INERTIA_BASE },
-    spring: { frequency: 1.6, damping: 0.22, limit: 1.0 },
-    springGains: { body: 1.4, chestX: 3.4, chestY: 4.2, chestCoupling: 60, chestCouplingY: 75, hair: 2.2 },
-    limits: { bodyPixels: 5, chestPixels: 7, hairPixels: 10 },
+    // 三组弹簧参数独立可调（B8）。默认三组同值 = 样片 app.mjs 行为（共用 config.springs）。
+    springs: {
+      body: { frequency: 1.6, damping: 0.22, limit: 1.0 },
+      chest: { frequency: 1.6, damping: 0.22, limit: 1.0 },
+      hair: { frequency: 1.6, damping: 0.22, limit: 1.0 },
+      hairTip: { frequency: 1.3, damping: 0.16, limit: 1.0 },
+    },
+    springGains: { body: 1.4, chestX: 3.4, chestY: 4.2, chestCoupling: 60, chestCouplingY: 75, hair: 2.2, hairTip: 3.0 },
+    limits: { bodyPixels: 5, chestPixels: 7, hairPixels: 10, hairTipPixels: 14 },
     turnViewRatio: [3, 2],
   };
 }
@@ -53,6 +61,8 @@ export function createProject({ name = '未命名工程', canvas = [1086, 1448] 
     canvas: [...canvas],
     subjectId: 'editor-v1',
     layers: [],
+    // B9：输入轨迹（预设/录制），回放与帧率对比用。{name, points:[[t,x,y]...], created}
+    inputTracks: [],
   };
 }
 
@@ -73,7 +83,9 @@ export function projectFromPrototypeMesh(config) {
   character.seatSupport = { y0: 1240, y1: 1360 };
   if (config.springs) {
     const s = config.springs.body ?? config.springs.hair ?? Object.values(config.springs)[0];
-    if (s) character.spring = { ...character.spring, ...s };
+    if (s) {
+      for (const key of ['body', 'chest', 'hair']) character.springs[key] = { ...character.springs[key], ...s };
+    }
   }
   if (config.limits) character.limits = { ...character.limits, ...config.limits };
   const background = defaultLayer('背景补绘', config.background ?? 'background.png', null);
@@ -106,7 +118,7 @@ export function validateProject(p) {
     for (const [i, pin] of (layer.pins ?? []).entries()) {
       if (!Array.isArray(pin.outline) || pin.outline.length < 3) errors.push(`接触区 #${i} (${pin.name ?? '?'}) outline 至少 3 个点`);
     }
-    const sp = layer.spring ?? {};
+    const sp = layer.springs?.body ?? layer.spring ?? {};
     if (![sp.frequency, sp.damping, sp.limit].every(Number.isFinite)) errors.push(`图层 ${layer.name} 弹簧参数不完整`);
   }
   return errors;

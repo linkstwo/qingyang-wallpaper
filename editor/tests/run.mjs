@@ -7,6 +7,6 @@ import { fileURLToPath } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const result = spawnSync(process.execPath, ['--test', ...[
   'project.test.mjs', 'geometry.test.mjs', 'contacts.test.mjs',
-  'physics.test.mjs', 'history.test.mjs', 'export.test.mjs',
+  'physics.test.mjs', 'history.test.mjs', 'export.test.mjs', 'input-recorder.test.mjs',
 ].map(f => path.join(here, f))], { stdio: 'inherit' });
 process.exit(result.status ?? 1);

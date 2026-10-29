@@ -5,7 +5,7 @@
 // 新增 a_edit 顶点属性承载手工网格编辑（图层.vertexEdits），u_editAmount 总开关。
 // 图层顺序与 app.mjs 相同：背景原图 → 背景+mask(膨胀cover) → 人物(形变) → 前景。
 
-export const REGION_IDS = ['head', 'neck', 'chest', 'shoulder', 'torso', 'cheek', 'hair'];
+export const REGION_IDS = ['head', 'neck', 'chest', 'shoulder', 'torso', 'cheek', 'hairRoot', 'hairTip'];
 
 const VERT = `
 precision highp float;
@@ -13,14 +13,15 @@ attribute vec2 a_source;
 attribute vec2 a_edit;
 attribute float a_pin;
 uniform vec2 u_size, u_view, u_body, u_chest;
-uniform float u_hair, u_layer, u_cover, u_editAmount;
+uniform float u_hair, u_hairTip, u_layer, u_cover, u_editAmount;
 uniform vec4 u_head;      // y0, y1, depthBase, cheekGain
 uniform vec4 u_bell0;     // neck   cx,cy,rx,ry
 uniform vec4 u_bell1;     // chest
 uniform vec4 u_bell2;     // shoulder
 uniform vec4 u_bell3;     // torso
 uniform vec4 u_bell4;     // cheek
-uniform vec4 u_bell5;     // hair
+uniform vec4 u_bell5;     // hairRoot（原样片 hair 场）
+uniform vec4 u_bell6;     // hairTip（分段发束通道）
 uniform float u_depth[7];   // head,neck,chest,shoulder,torso,cheek,hair 的 depth 权重
 uniform float u_inertia[7]; // 对应惯性增益（head=0.30, neck=0.22, torso=0.68, 其余 0）
 uniform vec4 u_squeeze;   // headSqueezeX, torsoSqueezeY, pivotX, pivotY
@@ -40,6 +41,7 @@ void main(){
     float torso = bell(p, u_bell3);
     float cheek = bell(p, u_bell4);
     float hair = bell(p, u_bell5);
+    float hairTip = bell(p, u_bell6);
     float depth = u_depth[2]*torso + u_depth[3]*shoulder + u_depth[1]*chest + head*(u_depth[0] + u_head.w*cheek);
     vec2 turn = vec2(u_view.x*depth, u_view.y*depth*u_extra.x);
     turn.x += (p.x-u_squeeze.z)*(u_squeeze.x*u_view.x)*head;
@@ -47,6 +49,7 @@ void main(){
     vec2 inertia = u_body*(u_extra.y + u_inertia[4]*torso + u_inertia[1]*neck);
     inertia += u_chest*chest;
     inertia += vec2(u_hair, u_hair*u_extra.z)*hair;
+    inertia += vec2(u_hairTip, u_hairTip*u_extra.z)*hairTip;
     inertia += u_body*u_extra.w*head;
     q += (turn + inertia) * active;
   } else if (u_layer < 0.5) {
@@ -95,7 +98,7 @@ export function regionUniforms(layer) {
   return {
     head: [head.y0 ?? 340, head.y1 ?? 495, depth[0], head.depthHeadGain ?? 13],
     bell0: bell('neck'), bell1: bell('chest'), bell2: bell('shoulder'),
-    bell3: bell('torso'), bell4: bell('cheek'), bell5: bell('hair'),
+    bell3: bell('torso'), bell4: bell('cheek'), bell5: bell('hairRoot'), bell6: bell('hairTip'),
     depth, inertia,
     squeeze: [squeeze.headX ?? -0.006, squeeze.torsoY ?? 0.008, squeeze.pivotX ?? 560, squeeze.pivotY ?? 650],
     extra: [0.63, base.body ?? 0.32, base.hairYRatio ?? 0.35, head.inertia ?? 0.30],
@@ -112,7 +115,7 @@ export function createRenderer(glCanvas) {
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error('program 链接失败: ' + gl.getProgramInfoLog(gl));
   gl.useProgram(program);
   const U = {};
-  for (const n of ['size', 'view', 'body', 'chest', 'hair', 'layer', 'cover', 'editAmount', 'head', 'bell0', 'bell1', 'bell2', 'bell3', 'bell4', 'bell5', 'depth', 'inertia', 'squeeze', 'extra', 'maskMode'])
+  for (const n of ['size', 'view', 'body', 'chest', 'hair', 'hairTip', 'layer', 'cover', 'editAmount', 'head', 'bell0', 'bell1', 'bell2', 'bell3', 'bell4', 'bell5', 'bell6', 'depth', 'inertia', 'squeeze', 'extra', 'maskMode'])
     U[n] = gl.getUniformLocation(program, 'u_' + n);
   U.texture = gl.getUniformLocation(program, 'u_texture');
   U.mask = gl.getUniformLocation(program, 'u_mask');
@@ -201,6 +204,7 @@ export function createRenderer(glCanvas) {
     gl.uniform2f(U.body, state.body[0], state.body[1]);
     gl.uniform2f(U.chest, state.chest[0], state.chest[1]);
     gl.uniform1f(U.hair, state.hair);
+    gl.uniform1f(U.hairTip, state.hairTip ?? 0);
     gl.uniform1f(U.cover, state.cover ?? 0);
     gl.uniform1f(U.editAmount, state.editAmount ?? 1.0);
     const ru = state.regionUniforms;
@@ -211,6 +215,7 @@ export function createRenderer(glCanvas) {
     gl.uniform4f(U.bell3, ...ru.bell3);
     gl.uniform4f(U.bell4, ...ru.bell4);
     gl.uniform4f(U.bell5, ...ru.bell5);
+    gl.uniform4f(U.bell6, ...ru.bell6);
     gl.uniform1fv(U.depth, ru.depth);
     gl.uniform1fv(U.inertia, ru.inertia);
     gl.uniform4f(U.squeeze, ...ru.squeeze);

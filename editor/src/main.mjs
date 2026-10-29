@@ -9,6 +9,7 @@ import { demoInput, clamp } from '../../character-prototype/preview/rig.mjs';
 import { createRenderer, regionUniforms } from './gl-scene.mjs';
 import { History } from './history.mjs';
 import { createMaskCanvas, fillPolygon, paintStroke, featherMask, maskCoverage, maskToBlob } from './mask-editor.mjs';
+import { createTrack, recordSample, sampleTrack, compareFps } from './input-recorder.mjs';
 
 const $ = (sel) => document.querySelector(sel);
 const statusEl = $('#statusbar');
@@ -33,12 +34,15 @@ const state = {
   editAmount: 0,             // 预览时渐变到 1（编辑态 0.6 保持可见）
   playing: false, demoStart: null, paused: false, fixedTime: null,
   springs: null, tracker: new ViewTracker(),
-  visual: [0, 0, 0, 0, 0],
+  visual: [0, 0, 0, 0, 0, 0],
   view: { x: 0, y: 0 },
   maskPoly: [],              // 正在绘制中的多边形
   dragging: null,            // {slot, layerId}
   hoverSlot: -1,
   showMesh: true,
+  recording: null,            // 录制中的轨迹
+  playTrack: null,            // 回放中的轨迹
+  playTrackStart: null,
   overlayScale: 1, overlayOX: 0, overlayOY: 0,
 };
 
@@ -92,7 +96,12 @@ function frame(now) {
   lastFrame = now;
   const layer = selectedLayer();
   if (state.playing && !state.paused) {
-    if (state.demoStart !== null) {
+    if (state.playTrack !== null) {
+      const t = (now - state.playTrackStart) / 1000;
+      const d = sampleTrack(state.playTrack, t);
+      state.tracker.target = d;
+      $('#phase').textContent = `轨迹回放 ${state.playTrack.name} t=${t.toFixed(2)}s`;
+    } else if (state.demoStart !== null) {
       const t = (now - state.demoStart) / 1000;
       const d = demoInput(t);
       state.tracker.target = { x: d.x, y: d.y };
@@ -111,7 +120,7 @@ function frame(now) {
     const cover = clamp(speed * 100 + Math.max(...state.visual.map(Math.abs)) * 3, 0, 1);
     state.renderer.render({
       view: state.view, body: [state.visual[0], state.visual[1]], chest: [state.visual[2], state.visual[3]],
-      hair: state.visual[4], cover,
+      hair: state.visual[4], hairTip: state.visual[5] ?? 0, cover,
       regionUniforms: regionUniforms(charLayer ?? { regions: [] }),
       editAmount: state.editAmount,
       visibility: Object.fromEntries(state.project.layers.map(l => [l.kind === 'background' ? 'bg' : l.kind === 'character' ? 'char' : 'fg', l.visible])),
@@ -239,6 +248,7 @@ function refreshUI() {
     tree.append(row);
   }
   buildPropertyPanel();
+  refreshTrackSelector();
 }
 
 function numInput(label, value, oncommit, step = 0.01, min = -1e6, max = 1e6) {
@@ -269,22 +279,33 @@ function buildPropertyPanel() {
   h.textContent = `属性 · ${layer.name}`;
   panel.append(h);
 
-  // 弹簧参数
-  const sec1 = document.createElement('h4'); sec1.textContent = '弹簧（基础回弹）'; panel.append(sec1);
-  panel.append(
-    numInput('频率 Hz', layer.spring.frequency, v => { layer.spring.frequency = v; commit('弹簧频率=' + v); }, 0.05, 0.1, 12),
-    numInput('阻尼比', layer.spring.damping, v => { layer.spring.damping = v; commit('弹簧阻尼=' + v); }, 0.01, 0.01, 2),
-    numInput('弹簧限幅', layer.spring.limit, v => { layer.spring.limit = v; commit('弹簧限幅=' + v); }, 0.1, 0.05, 10),
-  );
+  // 弹簧参数（B8：body/chest/hair/hairTip 四组独立）
+  const springsCfg = layer.springs ?? { body: layer.spring, chest: layer.spring, hair: layer.spring };
+  const sec1 = document.createElement('h4'); sec1.textContent = '弹簧（四组独立：频率/阻尼/限幅）'; panel.append(sec1);
+  for (const groupName of Object.keys(springsCfg)) {
+    const box = document.createElement('details');
+    const sum = document.createElement('summary');
+    sum.textContent = groupName;
+    box.append(sum);
+    const cfg = springsCfg[groupName];
+    box.append(
+      numInput('频率 Hz', cfg.frequency, v => { cfg.frequency = v; commit('弹簧 ' + groupName + ' 频率=' + v); }, 0.05, 0.1, 12),
+      numInput('阻尼比', cfg.damping, v => { cfg.damping = v; commit('弹簧 ' + groupName + ' 阻尼=' + v); }, 0.01, 0.01, 2),
+      numInput('限幅', cfg.limit, v => { cfg.limit = v; commit('弹簧 ' + groupName + ' 限幅=' + v); }, 0.1, 0.05, 10),
+    );
+    panel.append(box);
+  }
   // 位移上限
   const sec2 = document.createElement('h4'); sec2.textContent = '位移上限（像素）'; panel.append(sec2);
   panel.append(
     numInput('躯干', layer.limits.bodyPixels, v => { layer.limits.bodyPixels = v; commit('躯干上限=' + v); }, 1, 0, 60),
     numInput('胸部', layer.limits.chestPixels, v => { layer.limits.chestPixels = v; commit('胸部上限=' + v); }, 1, 0, 60),
     numInput('头发', layer.limits.hairPixels, v => { layer.limits.hairPixels = v; commit('头发上限=' + v); }, 1, 0, 60),
+    numInput('发梢', layer.limits.hairTipPixels ?? 14, v => { layer.limits.hairTipPixels = v; commit('发梢上限=' + v); }, 1, 0, 60),
   );
   // 弹簧增益
   const sec3 = document.createElement('h4'); sec3.textContent = '激发增益'; panel.append(sec3);
+  if (layer.springGains.hairTip === undefined) layer.springGains.hairTip = 3.0;
   for (const key of Object.keys(layer.springGains)) {
     panel.append(numInput(key, layer.springGains[key], v => { layer.springGains[key] = v; commit('增益 ' + key + '=' + v); }, 0.1, 0, 50));
   }
@@ -397,6 +418,11 @@ function bindCanvasEvents() {
       const r = stage.getBoundingClientRect();
       state.tracker.target = { x: clamp((e.clientX - r.left) / r.width * 2 - 1, -1, 1), y: clamp((e.clientY - r.top) / r.height * 2 - 1, -1, 1) };
     }
+    if (state.recording) {
+      const r = stage.getBoundingClientRect();
+      const x = clamp((e.clientX - r.left) / r.width * 2 - 1, -1, 1), y = clamp((e.clientY - r.top) / r.height * 2 - 1, -1, 1);
+      recordSample(state.recording, (performance.now() - state.recording.t0) / 1000, x, y);
+    }
   });
   stage.addEventListener('pointerdown', (e) => {
     if (!state.project) return;
@@ -505,6 +531,7 @@ async function importPrototype() {
   refreshUI();
   refreshHistoryButtons();
   say(`已导入 character-prototype 资产：${triangleCount(state.meshes.get(state.selectedLayerId).positions)} 个三角形，画布 ${project.canvas.join('x')}`);
+  $('#phase').textContent = '就绪 · 播放演示/移动指针预览，或拖拽顶点编辑';
 }
 
 async function syncRendererImages() {
@@ -602,7 +629,7 @@ function bindProjectIO() {
           state.masks.set(layer.id, createMaskCanvas(project.canvas[0], project.canvas[1], state.assets.get(layer.mask.file).image));
         }
       }
-      state.springs = new SpringBank(selectedLayer()?.spring ?? { frequency: 1.6, damping: 0.22, limit: 1 });
+      state.springs = new SpringBank(selectedLayer()?.springs ?? selectedLayer()?.spring ?? { frequency: 1.6, damping: 0.22, limit: 1 });
       state.history.init(serializeProject(project));
       await syncRendererImages();
       pushGeometryToRenderer();
@@ -623,9 +650,20 @@ function setTool(tool) {
 }
 
 function stopPlay() {
-  state.playing = false; state.paused = false; state.demoStart = null; state.fixedTime = null;
+  state.playing = false; state.paused = false; state.demoStart = null; state.fixedTime = null; state.playTrack = null;
   $('#playBtn').textContent = '▶ 播放演示';
   $('#phase').textContent = '已停止 · 移动指针继续手动预览';
+}
+
+function refreshTrackSelector() {
+  const sel = $('#trackSel');
+  sel.innerHTML = '';
+  for (const [i, track] of (state.project.inputTracks ?? []).entries()) {
+    const opt = document.createElement('option');
+    opt.value = String(i);
+    opt.textContent = `${track.name}（${track.points.length}点）`;
+    sel.append(opt);
+  }
 }
 
 function bindPlayControls() {
@@ -651,9 +689,47 @@ function bindPlayControls() {
     $('#phase').textContent = `单步 t=${state.fixedTime.toFixed(2)}s · ${d.phase}`;
   };
   $('#resetBtn').onclick = () => {
-    state.springs?.reset(); state.tracker.reset(); state.visual = [0, 0, 0, 0, 0];
+    state.springs?.reset(); state.tracker.reset(); state.visual = [0, 0, 0, 0, 0, 0];
     stopPlay();
     $('#phase').textContent = '已复位（视角与弹簧归零）';
+  };
+  $('#recBtn').onclick = () => {
+    if (state.recording) {
+      const track = state.recording; state.recording = null;
+      state.project.inputTracks = state.project.inputTracks ?? [];
+      track.created = new Date().toISOString();
+      state.project.inputTracks.push(track);
+      refreshTrackSelector();
+      commit(`保存输入轨迹「${track.name}」（${track.points.length} 采样点）`);
+    } else {
+      state.recording = createTrack('录制 ' + new Date().toLocaleTimeString());
+      state.recording.t0 = performance.now();
+      stopPlay();
+      say('录制中：在预览画布上移动指针……再点一次【录制】结束并保存');
+    }
+  };
+  $('#trackSel').addEventListener('change', () => {});
+  $('#playTrackBtn').onclick = () => {
+    const track = state.project.inputTracks?.[Number($('#trackSel').value)];
+    if (!track) { say('没有可选轨迹，先录制一条', 'warn'); return; }
+    state.springs?.reset(); state.tracker.reset();
+    state.playTrack = track; state.playTrackStart = performance.now();
+    state.playing = true; state.paused = false; state.demoStart = null;
+    $('#playBtn').textContent = '⏸ 暂停';
+    const dur = track.points.length ? track.points[track.points.length - 1][0] : 0;
+    setTimeout(() => { if (state.playTrack === track) { state.playTrack = null; stopPlay(); say(`轨迹回放完成（${dur.toFixed(1)}s）`); } }, (dur + 0.8) * 1000);
+  };
+  $('#fpsCmpBtn').onclick = () => {
+    const track = state.project.inputTracks?.[Number($('#trackSel').value)];
+    if (!track) { say('没有可选轨迹，先录制一条', 'warn'); return; }
+    const layer = selectedLayer();
+    if (!layer) return;
+    try {
+      const report = compareFps(track, layer);
+      const line = report.entries.map(e => `${e.fps}fps: RMS差 ${e.rmsVsBase}px (${(e.rmsRatio * 100).toFixed(1)}%)`).join(' · ');
+      say(`帧率对比（基准 ${report.baseFps}fps，峰值 ${report.peak.toFixed(2)}px）→ ${line}`);
+      downloadBlob(new Blob([JSON.stringify({ track: track.name, report }, null, 1)], { type: 'application/json' }), 'fps-compare-' + Date.now() + '.json');
+    } catch (e) { say('对比失败: ' + e.message, 'error'); }
   };
   $('#editAmount').addEventListener('input', (e) => {
     state.editAmount = Number(e.target.value) / 100;
@@ -671,7 +747,7 @@ function bindHistory() {
     state.project = loadProject(s);
     state.selectedLayerId = state.project.layers.some(l => l.id === state.selectedLayerId) ? state.selectedLayerId : state.project.layers[0].id;
     for (const layer of state.project.layers) rebuildLayerMesh(layer);
-    state.springs = new SpringBank(selectedLayer()?.spring ?? { frequency: 1.6, damping: 0.22, limit: 1 });
+    state.springs = new SpringBank(selectedLayer()?.springs ?? selectedLayer()?.spring ?? { frequency: 1.6, damping: 0.22, limit: 1 });
     pushGeometryToRenderer(); refreshUI(); refreshHistoryButtons();
     say('已撤销');
   };
@@ -680,7 +756,7 @@ function bindHistory() {
     if (!s) { say('没有可重做的操作', 'warn'); return; }
     state.project = loadProject(s);
     for (const layer of state.project.layers) rebuildLayerMesh(layer);
-    state.springs = new SpringBank(selectedLayer()?.spring ?? { frequency: 1.6, damping: 0.22, limit: 1 });
+    state.springs = new SpringBank(selectedLayer()?.springs ?? selectedLayer()?.spring ?? { frequency: 1.6, damping: 0.22, limit: 1 });
     pushGeometryToRenderer(); refreshUI(); refreshHistoryButtons();
     say('已重做');
   };
@@ -701,7 +777,7 @@ async function boot() {
     await startRenderer();
     await importPrototype();
     const layer = selectedLayer();
-    state.springs = new SpringBank(layer.spring);
+    state.springs = new SpringBank(layer.springs ?? layer.spring);
     state.editAmount = Number($('#editAmount').value) / 100;
     document.body.dataset.ready = 'true';
     // 只读自动化钩子：供自动化测试/验收脚本读取工程状态（不含可变更入口）
