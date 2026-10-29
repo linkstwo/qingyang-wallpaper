@@ -57,7 +57,8 @@ node editor/tests/run.mjs        # 25 项：project/geometry/contacts/physics/hi
 ## 边界与已知限制（不冒充完成）
 
 - **连续视角真实范围 ±0.35 视角**（≈±10° 等效）：范围内局部轮廓/遮挡连续；超出为同一曲面滑移，不生成新轮廓/遮挡。研究页 `editor/research/view-arc.html` 有完整标注与素材缺口清单（多角度序列/深度代理/中间角度/背面内容四条缺口）。
-- **Android 参数接线未做**：导出的 bins（几何/权重）与现有资产管线逐字节兼容，但编辑器调出的区域场/弹簧参数尚无 Android 消费通道（Android Physics.java 为固定常量）——不写"已集成"。
+- **参数接线已通**：`editor/export/export-android-assets.mjs` 同时产出 `qingyang-params.json`（qingyang-render-params v1）。Android 端 `RenderParams.java` 从 assets 读取并驱动渲染/物理；**文件缺失或解析失败一律回落内置默认值**（assets 里现存的默认参数=真机调优值，接线本身不改变现有手机行为）。把编辑器导出的 params.json 放进 `android-app/app/src/main/assets/` 重新打包，手机手感即随编辑器走——真机效果待验（G7）。
+- **注意**：编辑器默认工程弹簧（mesh.json 系）与安卓真机调优值不同，替换 params 后手感变化属接线语义本身。
 - 文件选择器（打开工程/导入素材）在自动化浏览器（IAB）中不可驱动，已在真实浏览器路径实现但自动化验收标注 UNTESTED（数据回环由 Node 200 次测试覆盖）。
 - 发梢 hairTip 通道是大视角演示增强：默认参数下与样片观感略有差异，需要完全一致时把 hairTip 增益调 0。
 - 顶点编辑直接存储为槽位偏移；pin=1 的点拖拽时提示"接触固定区"，渲染权重不跟随（与导出语义一致）。

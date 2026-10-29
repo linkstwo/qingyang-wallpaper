@@ -55,7 +55,7 @@
 - 编辑器"未编辑"工程导出的 character_mesh.bin / character_pins.bin / foreground_mesh.bin 与 android-app/app/src/main/assets/ **逐字节一致**（--check PASS）。
 - 带编辑工程 --check 正确拒绝（反向用例）；editor-export-report.json 含 sha256 与 contactRecheckPassed=true。
 - 既有三件套（export_mesh --check / verify_assets.py / validate-contacts.mjs allPassed）全过。
-- 注：编辑器区域场/弹簧参数尚无对应 Android 消费端（Android 端 Physics.java 为固定常量）——bins 几何/权重已兼容，**参数注入 Android 属未接线，不写"已集成"**。
+- **参数接线已完成**（commit 6a21ea1）：导出器生成 qingyang-render-params v1；Android 端 RenderParams.java 从 assets 读取，缺文件/解析失败回落默认（壁纸不黑屏）；SceneRenderer 区域场 uniform 化 + hairTip 通道；assets 默认参数=真机当前值（接线不改变现有行为）。**真机替换参数后的效果属 UNTESTED（G7 范围）**。
 
 **G6 手机构图 — PASS**：4 档画幅、窗口偏移可调、锚点着色、三档对照 JSON；腰在 9:20 三档偏移下均不完全切掉（数据见 evidence 与上文表）。
 
@@ -88,7 +88,7 @@ node character-prototype/preview/validate-contacts.mjs  # allPassed=true
 
 1. **连续视角真实范围 ±0.35 视角（≈±10° 等效）**：范围内局部轮廓/遮挡连续；超出为同一曲面滑移，不生成新轮廓/遮挡（不冒充全角度）。
 2. **侧背真实生成未实现**：四张参考图姿态不一致（非同瞬间多机位）、无深度/几何代理、无中间角度实拍、背面内容与主图不对应——详见研究页四条缺口。
-3. **Android 参数接线未做**：编辑器调出的区域场/弹簧参数尚无 Android 消费端。
+3. **编辑器参数在真机上的实际效果未验**：参数链路（导出→assets→RenderParams→渲染）已通且编译通过，但替换参数后 iQOO 上的观感/手感需真机确认。
 4. **发梢 hairTip 通道为大视角演示增强**：默认参数下与样片观感略有差异（发梢惯性更大），如需与样片完全一致可将 hairTip 增益调 0。
 
 ## 具体文件路径与运行说明
