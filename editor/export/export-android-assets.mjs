@@ -136,6 +136,48 @@ report.contactRecheck = [...fixed, ...free].map(([name, x, y]) => ({ name, pin: 
 report.contactRecheckPassed = report.contactRecheck.every(({ name, pin }) => fixed.some(([n]) => n === name) ? pin > 0.9999 : pin < 0.001);
 
 if (!CHECK) output('editor-export-report.json', Buffer.from(JSON.stringify(report, null, 2)));
+
+// ---- Android 渲染参数文件（qingyang-render-params v1）----
+// 与 android-app 的 RenderParams.java 对应：区域场/弹簧/增益/限幅，
+// 放进 app/src/main/assets/ 后 Android 端在构建时读取覆盖默认值。
+if (!CHECK) {
+  const byId = Object.fromEntries((charLayer.regions ?? []).map(r => [r.id, r]));
+  const bell = (id) => ({ id, cx: byId[id]?.cx ?? 0, cy: byId[id]?.cy ?? 0, rx: byId[id]?.rx ?? 0, ry: byId[id]?.ry ?? 0 });
+  const paramsOut = {
+    format: 'qingyang-render-params',
+    version: 1,
+    subjectId: project.subjectId,
+    canvas: [W, H],
+    headY0: byId.head?.y0 ?? 340,
+    headY1: byId.head?.y1 ?? 495,
+    headDepth: byId.head?.depth ?? 11,
+    headCheekGain: byId.head?.depthHeadGain ?? 13,
+    bells: ['neck', 'chest', 'shoulder', 'torso', 'cheek', 'hairRoot', 'hairTip'].map(bell),
+    depth: ['head', 'neck', 'chest', 'shoulder', 'torso', 'cheek', 'hairRoot'].map(id => byId[id]?.depth ?? 0),
+    inertia: ['head', 'neck', 'chest', 'shoulder', 'torso', 'cheek', 'hairRoot'].map(id => byId[id]?.inertia ?? 0),
+    squeeze: charLayer.squeeze,
+    turnRatioY: 0.63,
+    inertiaBase: charLayer.inertiaBase?.body ?? 0.32,
+    hairYRatio: charLayer.inertiaBase?.hairYRatio ?? 0.35,
+    headBodyGain: byId.head?.inertia ?? 0.30,
+    bgRatio: [3.0, 2.0],
+    fgRatio: [4.0, 2.5],
+    springBody: charLayer.springs?.body ?? charLayer.spring,
+    springChest: charLayer.springs?.chest ?? charLayer.spring,
+    springHair: charLayer.springs?.hair ?? charLayer.spring,
+    springHairTip: charLayer.springs?.hairTip ?? null,
+    gains: charLayer.springGains,
+    // RenderParams.java 约定的字段名：body/chest/hair/hairTip（无单位 = 像素上限）
+    limits: {
+      body: charLayer.limits?.bodyPixels ?? 5,
+      chest: charLayer.limits?.chestPixels ?? 7,
+      hair: charLayer.limits?.hairPixels ?? 10,
+      hairTip: charLayer.limits?.hairTipPixels ?? 14,
+    },
+  };
+  output('qingyang-params.json', Buffer.from(JSON.stringify(paramsOut, null, 1)));
+  report.renderParams = 'qingyang-params.json (qingyang-render-params v1)';
+}
 if (!CHECK) console.log(JSON.stringify(report, null, 2));
 if (CHECK) console.log('PASS: 导出内容与比对目录逐字节一致。');
 if (CHECK && !report.contactRecheckPassed) { console.error('FAIL: 接触点复核未通过'); process.exit(1); }

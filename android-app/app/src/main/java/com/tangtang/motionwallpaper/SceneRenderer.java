@@ -26,35 +26,42 @@ final class SceneRenderer {
             + "attribute vec2 a_source;\n"
             + "attribute float a_pin;\n"
             + "uniform vec2 u_size,u_view,u_body,u_chest,u_ndcScale,u_ndcOffset;\n"
-            + "uniform float u_layer,u_hair;\n"
+            + "uniform float u_layer,u_hair,u_hairTip;\n"
+            + "uniform vec4 u_head,u_bell0,u_bell1,u_bell2,u_bell3,u_bell4,u_bell5,u_bell6;\n"
+            + "uniform float u_depth[7],u_inertia[7];\n"
+            + "uniform vec4 u_squeeze,u_extra;\n"
+            + "uniform vec2 u_bgRatio,u_fgRatio;\n"
             + "varying vec2 v_uv;\n"
-            + "float bell(vec2 p,vec2 c,vec2 r){vec2 d=(p-c)/r;return exp(-dot(d,d)*2.0);}\n"
+            + "float bell(vec2 p,vec4 b){vec2 d=(p-b.xy)/b.zw;return exp(-dot(d,d)*2.0);}\n"
             + "void main(){\n"
             + "  vec2 p=a_source,q=p;\n"
             + "  v_uv=p/u_size;\n"
-            + "  if(u_layer<0.5){q+=u_view*vec2(3.0,2.0);}\n"
+            + "  if(u_layer<0.5){q+=u_view*u_bgRatio;}\n"
             + "  else if(u_layer<1.5){\n"
             + "    // 人物与图纸是一整块连续贴图面：用区域场保住衣物连续性，\n"
             + "    // 图纸/双手/坐姿由 a_pin 显式固定，不被切开。\n"
+            + "    // 区域场参数来自 RenderParams（编辑器导出 qingyang-params.json 可覆盖）。\n"
             + "    float active=1.0-a_pin;\n"
-            + "    float head=1.0-smoothstep(340.0,495.0,p.y);\n"
-            + "    float neck=bell(p,vec2(630.0,410.0),vec2(220.0,180.0));\n"
-            + "    float chest=bell(p,vec2(577.0,785.0),vec2(165.0,205.0));\n"
-            + "    float shoulder=bell(p,vec2(815.0,528.0),vec2(170.0,210.0));\n"
-            + "    float torso=bell(p,vec2(721.0,789.0),vec2(310.0,430.0));\n"
-            + "    float cheek=bell(p,vec2(392.0,333.0),vec2(170.0,155.0));\n"
-            + "    float hair=bell(p,vec2(246.0,367.0),vec2(110.0,210.0));\n"
-            + "    float depth=19.0*torso+11.0*shoulder+20.0*chest+head*(11.0+13.0*cheek);\n"
-            + "    vec2 turn=vec2(u_view.x*depth, u_view.y*depth*0.63);\n"
-            + "    turn.x+=(p.x-560.0)*(-0.006*u_view.x)*head;\n"
-            + "    turn.y+=(p.x-650.0)*u_view.y*0.008*torso;\n"
-            + "    vec2 inertia=u_body*(0.32+0.68*torso+0.22*neck);\n"
+            + "    float head=1.0-smoothstep(u_head.x,u_head.y,p.y);\n"
+            + "    float neck=bell(p,u_bell0);\n"
+            + "    float chest=bell(p,u_bell1);\n"
+            + "    float shoulder=bell(p,u_bell2);\n"
+            + "    float torso=bell(p,u_bell3);\n"
+            + "    float cheek=bell(p,u_bell4);\n"
+            + "    float hair=bell(p,u_bell5);\n"
+            + "    float hairTip=bell(p,u_bell6);\n"
+            + "    float depth=u_depth[4]*torso+u_depth[3]*shoulder+u_depth[2]*chest+head*(u_depth[0]+u_head.w*cheek);\n"
+            + "    vec2 turn=vec2(u_view.x*depth, u_view.y*depth*u_extra.x);\n"
+            + "    turn.x+=(p.x-u_squeeze.z)*(u_squeeze.x*u_view.x)*head;\n"
+            + "    turn.y+=(p.x-u_squeeze.w)*(u_squeeze.y*u_view.y)*torso;\n"
+            + "    vec2 inertia=u_body*(u_extra.y+u_inertia[4]*torso+u_inertia[1]*neck);\n"
             + "    inertia+=u_chest*chest;\n"
-            + "    inertia+=vec2(u_hair,u_hair*0.35)*hair;\n"
-            + "    inertia+=u_body*0.3*head;\n"
+            + "    inertia+=vec2(u_hair,u_hair*u_extra.z)*hair;\n"
+            + "    inertia+=vec2(u_hairTip,u_hairTip*u_extra.z)*hairTip;\n"
+            + "    inertia+=u_body*u_extra.w*head;\n"
             + "    q+=(turn+inertia)*active;\n"
             + "  }\n"
-            + "  else if(u_layer>2.5){q+=u_view*vec2(4.0,2.5);}\n"
+            + "  else if(u_layer>2.5){q+=u_view*u_fgRatio;}\n"
             + "  gl_Position=vec4(q.x*u_ndcScale.x+u_ndcOffset.x,q.y*u_ndcScale.y+u_ndcOffset.y,0.0,1.0);\n"
             + "}\n";
 
@@ -80,6 +87,7 @@ final class SceneRenderer {
 
     private final Context context;
     private MeshAssets meshes;
+    private RenderParams params;
     private int program;
     private int aSource;
     private int aPin;
@@ -93,6 +101,15 @@ final class SceneRenderer {
     private int uCover;
     private int uNdcScale;
     private int uNdcOffset;
+    private int uHairTip;
+    private int uHead;
+    private final int[] uBells = new int[7];
+    private int uDepth;
+    private int uInertia;
+    private int uSqueeze;
+    private int uExtra;
+    private int uBgRatio;
+    private int uFgRatio;
     private int uTexture;
     private int uMask;
     private int texOriginal;
@@ -146,11 +163,25 @@ final class SceneRenderer {
         uCover = GLES20.glGetUniformLocation(program, "u_cover");
         uNdcScale = GLES20.glGetUniformLocation(program, "u_ndcScale");
         uNdcOffset = GLES20.glGetUniformLocation(program, "u_ndcOffset");
+        uHairTip = GLES20.glGetUniformLocation(program, "u_hairTip");
+        uHead = GLES20.glGetUniformLocation(program, "u_head");
+        for (int i = 0; i < 7; i++) {
+            uBells[i] = GLES20.glGetUniformLocation(program, "u_bell" + i);
+        }
+        uDepth = GLES20.glGetUniformLocation(program, "u_depth");
+        uInertia = GLES20.glGetUniformLocation(program, "u_inertia");
+        uSqueeze = GLES20.glGetUniformLocation(program, "u_squeeze");
+        uExtra = GLES20.glGetUniformLocation(program, "u_extra");
+        uBgRatio = GLES20.glGetUniformLocation(program, "u_bgRatio");
+        uFgRatio = GLES20.glGetUniformLocation(program, "u_fgRatio");
         uTexture = GLES20.glGetUniformLocation(program, "u_texture");
         uMask = GLES20.glGetUniformLocation(program, "u_mask");
-        if (aSource < 0 || aPin < 0 || uSize < 0 || uView < 0 || uHair < 0) {
+        if (aSource < 0 || aPin < 0 || uSize < 0 || uView < 0 || uHair < 0 || uHead < 0 || uDepth < 0) {
             throw new IOException("着色器变量缺失");
         }
+
+        params = RenderParams.load(context);
+        uploadParams();
 
         meshes = MeshAssets.load(context);
         texOriginal = loadTexture("original.png");
@@ -192,6 +223,22 @@ final class SceneRenderer {
         GLES20.glViewport(0, 0, surfaceWidth, surfaceHeight);
     }
 
+    /** 把 RenderParams 上传为 uniform（编辑器导出的 qingyang-params.json 决定这些值）。 */
+    private void uploadParams() {
+        RenderParams p = params;
+        GLES20.glUniform4f(uHead, p.headY0, p.headY1, p.headDepth, p.headCheekGain);
+        for (int i = 0; i < 7; i++) {
+            float[] b = p.bells[i];
+            GLES20.glUniform4f(uBells[i], b[0], b[1], b[2], b[3]);
+        }
+        GLES20.glUniform1fv(uDepth, 7, p.depth, 0);
+        GLES20.glUniform1fv(uInertia, 7, p.inertia, 0);
+        GLES20.glUniform4f(uSqueeze, p.squeeze[0], p.squeeze[1], p.squeeze[2], p.squeeze[3]);
+        GLES20.glUniform4f(uExtra, p.turnRatioY, p.inertiaBase, p.hairYRatio, p.headBodyGain);
+        GLES20.glUniform2f(uBgRatio, p.bgRatio[0], p.bgRatio[1]);
+        GLES20.glUniform2f(uFgRatio, p.fgRatio[0], p.fgRatio[1]);
+    }
+
     void draw(Physics physics) {
         if (!ready) {
             return;
@@ -205,6 +252,7 @@ final class SceneRenderer {
         GLES20.glUniform2f(uBody, physics.bodyPx, physics.bodyPy);
         GLES20.glUniform2f(uChest, physics.chestPx, physics.chestPy);
         GLES20.glUniform1f(uHair, physics.hairPx);
+        GLES20.glUniform1f(uHairTip, physics.hairTipPx);
         GLES20.glUniform1f(uCover, cover);
         GLES20.glUniform2f(uNdcScale, ndcScaleX, ndcScaleY);
         GLES20.glUniform2f(uNdcOffset, ndcOffsetX, ndcOffsetY);
@@ -242,6 +290,7 @@ final class SceneRenderer {
 
     void release() {
         ready = false;
+        params = null;
         if (program != 0) {
             GLES20.glDeleteProgram(program);
             program = 0;

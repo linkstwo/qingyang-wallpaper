@@ -1,0 +1,38 @@
+{
+ "format": "qingyang-render-params",
+ "version": 1,
+ "subjectId": "reading-v2",
+ "canvas": [1086, 1448],
+ "headY0": 340.0,
+ "headY1": 495.0,
+ "headDepth": 11.0,
+ "headCheekGain": 13.0,
+ "bells": [
+  { "id": "neck",     "cx": 630.0, "cy": 410.0, "rx": 220.0, "ry": 180.0 },
+  { "id": "chest",    "cx": 577.0, "cy": 785.0, "rx": 165.0, "ry": 205.0 },
+  { "id": "shoulder", "cx": 815.0, "cy": 528.0, "rx": 170.0, "ry": 210.0 },
+  { "id": "torso",    "cx": 721.0, "cy": 789.0, "rx": 310.0, "ry": 430.0 },
+  { "id": "cheek",    "cx": 392.0, "cy": 333.0, "rx": 170.0, "ry": 155.0 },
+  { "id": "hairRoot", "cx": 246.0, "cy": 367.0, "rx": 110.0, "ry": 210.0 },
+  { "id": "hairTip",  "cx": 235.0, "cy": 520.0, "rx": 95.0,  "ry": 170.0 }
+ ],
+ "depth":  [11.0, 0.0, 20.0, 11.0, 19.0, 0.0, 0.0],
+ "inertia": [0.30, 0.22, 0.0, 0.0, 0.68, 0.0, 0.0],
+ "squeeze": [-0.006, 0.008, 560.0, 650.0],
+ "turnRatioY": 0.63,
+ "inertiaBase": 0.32,
+ "hairYRatio": 0.35,
+ "headBodyGain": 0.30,
+ "bgRatio": [3.0, 2.0],
+ "fgRatio": [4.0, 2.5],
+ "springBody":   { "frequency": 2.4, "damping": 0.88, "limit": 1.2 },
+ "springChest":  { "frequency": 3.2, "damping": 0.50, "limit": 1.4 },
+ "springHair":   { "frequency": 1.7, "damping": 0.58, "limit": 1.5 },
+ "springHairTip": { "frequency": 1.4, "damping": 0.45, "limit": 1.6 },
+ "gains": {
+  "body": 1.4, "chestX": 3.4, "chestY": 4.2,
+  "chestCoupling": 60.0, "chestCouplingY": 75.0,
+  "hair": 2.2, "hairTip": 3.0
+ },
+ "limits": { "body": 5.0, "chest": 7.0, "hair": 10.0, "hairTip": 14.0 }
+}

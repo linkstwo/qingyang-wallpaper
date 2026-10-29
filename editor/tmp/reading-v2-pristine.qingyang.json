@@ -3,8 +3,8 @@
  "version": 1,
  "meta": {
   "name": "reading-v2 导入",
-  "created": "2026-10-28T00:34:27.289Z",
-  "modified": "2026-10-28T00:34:27.290Z",
+  "created": "2026-10-29T16:00:51.691Z",
+  "modified": "2026-10-29T16:00:51.691Z",
   "notes": "从 character-prototype/preview/mesh.json 导入；viewportPins=[{\"name\":\"paper and hands\",\"region\":[0,850,392,1268]},{\"name\":\"seated support\",\"region\":[0,1310,1086,1448]}]"
  },
  "canvas": [
@@ -14,7 +14,7 @@
  "subjectId": "editor-v1",
  "layers": [
   {
-   "id": "layer-74fqapv",
+   "id": "layer-7g5mo8a",
    "name": "背景补绘",
    "kind": "background",
    "visible": true,
@@ -96,12 +96,22 @@
      "inertia": 0
     },
     {
-     "id": "hair",
+     "id": "hairRoot",
      "kind": "bell",
      "cx": 246,
      "cy": 367,
      "rx": 110,
      "ry": 210,
+     "depth": 0,
+     "inertia": 0
+    },
+    {
+     "id": "hairTip",
+     "kind": "bell",
+     "cx": 235,
+     "cy": 520,
+     "rx": 95,
+     "ry": 170,
      "depth": 0,
      "inertia": 0
     }
@@ -117,10 +127,27 @@
     "hairGain": 1,
     "hairYRatio": 0.35
    },
-   "spring": {
-    "frequency": 1.6,
-    "damping": 0.22,
-    "limit": 1
+   "springs": {
+    "body": {
+     "frequency": 1.6,
+     "damping": 0.22,
+     "limit": 1
+    },
+    "chest": {
+     "frequency": 1.6,
+     "damping": 0.22,
+     "limit": 1
+    },
+    "hair": {
+     "frequency": 1.6,
+     "damping": 0.22,
+     "limit": 1
+    },
+    "hairTip": {
+     "frequency": 1.3,
+     "damping": 0.16,
+     "limit": 1
+    }
    },
    "springGains": {
     "body": 1.4,
@@ -128,12 +155,14 @@
     "chestY": 4.2,
     "chestCoupling": 60,
     "chestCouplingY": 75,
-    "hair": 2.2
+    "hair": 2.2,
+    "hairTip": 3
    },
    "limits": {
     "bodyPixels": 5,
     "chestPixels": 7,
-    "hairPixels": 10
+    "hairPixels": 10,
+    "hairTipPixels": 14
    },
    "turnViewRatio": [
     3,
@@ -141,7 +170,7 @@
    ]
   },
   {
-   "id": "layer-o0bmlc3",
+   "id": "layer-55tm3p7",
    "name": "人物",
    "kind": "character",
    "visible": true,
@@ -378,12 +407,22 @@
      "inertia": 0
     },
     {
-     "id": "hair",
+     "id": "hairRoot",
      "kind": "bell",
      "cx": 246,
      "cy": 367,
      "rx": 110,
      "ry": 210,
+     "depth": 0,
+     "inertia": 0
+    },
+    {
+     "id": "hairTip",
+     "kind": "bell",
+     "cx": 235,
+     "cy": 520,
+     "rx": 95,
+     "ry": 170,
      "depth": 0,
      "inertia": 0
     }
@@ -399,10 +438,27 @@
     "hairGain": 1,
     "hairYRatio": 0.35
    },
-   "spring": {
-    "frequency": 2.4,
-    "damping": 0.88,
-    "limit": 1.2
+   "springs": {
+    "body": {
+     "frequency": 2.4,
+     "damping": 0.88,
+     "limit": 1.2
+    },
+    "chest": {
+     "frequency": 2.4,
+     "damping": 0.88,
+     "limit": 1.2
+    },
+    "hair": {
+     "frequency": 2.4,
+     "damping": 0.88,
+     "limit": 1.2
+    },
+    "hairTip": {
+     "frequency": 1.3,
+     "damping": 0.16,
+     "limit": 1
+    }
    },
    "springGains": {
     "body": 1.4,
@@ -410,12 +466,14 @@
     "chestY": 4.2,
     "chestCoupling": 60,
     "chestCouplingY": 75,
-    "hair": 2.2
+    "hair": 2.2,
+    "hairTip": 3
    },
    "limits": {
     "bodyPixels": 5,
     "chestPixels": 7,
     "hairPixels": 10,
+    "hairTipPixels": 14,
     "triangleEdgePixels": 27
    },
    "turnViewRatio": [
@@ -424,7 +482,7 @@
    ]
   },
   {
-   "id": "layer-vrv1iek",
+   "id": "layer-6x6cnk3",
    "name": "前景（图纸）",
    "kind": "foreground",
    "visible": true,
@@ -531,12 +589,22 @@
      "inertia": 0
     },
     {
-     "id": "hair",
+     "id": "hairRoot",
      "kind": "bell",
      "cx": 246,
      "cy": 367,
      "rx": 110,
      "ry": 210,
+     "depth": 0,
+     "inertia": 0
+    },
+    {
+     "id": "hairTip",
+     "kind": "bell",
+     "cx": 235,
+     "cy": 520,
+     "rx": 95,
+     "ry": 170,
      "depth": 0,
      "inertia": 0
     }
@@ -552,10 +620,27 @@
     "hairGain": 1,
     "hairYRatio": 0.35
    },
-   "spring": {
-    "frequency": 1.6,
-    "damping": 0.22,
-    "limit": 1
+   "springs": {
+    "body": {
+     "frequency": 1.6,
+     "damping": 0.22,
+     "limit": 1
+    },
+    "chest": {
+     "frequency": 1.6,
+     "damping": 0.22,
+     "limit": 1
+    },
+    "hair": {
+     "frequency": 1.6,
+     "damping": 0.22,
+     "limit": 1
+    },
+    "hairTip": {
+     "frequency": 1.3,
+     "damping": 0.16,
+     "limit": 1
+    }
    },
    "springGains": {
     "body": 1.4,
@@ -563,17 +648,20 @@
     "chestY": 4.2,
     "chestCoupling": 60,
     "chestCouplingY": 75,
-    "hair": 2.2
+    "hair": 2.2,
+    "hairTip": 3
    },
    "limits": {
     "bodyPixels": 5,
     "chestPixels": 7,
-    "hairPixels": 10
+    "hairPixels": 10,
+    "hairTipPixels": 14
    },
    "turnViewRatio": [
     3,
     2
    ]
   }
- ]
+ ],
+ "inputTracks": []
 }
