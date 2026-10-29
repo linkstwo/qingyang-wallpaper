@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>轻漾 · 多角度研究工作台（C12 原型）</title>
+<style>
+  body { margin:0; font:14px/1.6 "Segoe UI",system-ui,sans-serif; background:#14161a; color:#dfe3e8; padding:20px; max-width:1200px; margin:auto; }
+  h1 { color:#4fd2ff; font-size:18px; } h2 { font-size:15px; margin-top:24px; }
+  .card { background:#1d2026; border:1px solid #31363f; border-radius:10px; padding:14px 18px; margin:12px 0; }
+  .warn { color:#ffd54a; } .ok { color:#7CFC00; } .dim { color:#8b93a1; } .err { color:#ff6b6b; }
+  table { border-collapse:collapse; width:100%; margin:8px 0; }
+  td, th { border:1px solid #31363f; padding:4px 10px; font-variant-numeric:tabular-nums; }
+  th { color:#8b93a1; }
+  canvas { max-width:100%; border:1px solid #31363f; border-radius:8px; display:block; margin:8px auto; }
+  input[type=range] { width:55%; vertical-align:middle; }
+  label { margin-right:14px; }
+  .seg { display:inline-block; padding:2px 10px; border-radius:4px; margin-right:6px; cursor:pointer; border:1px solid #31363f; }
+  .seg.active { background:#4fd2ff; color:#10222b; font-weight:600; }
+</style>
+</head>
+<body>
+<h1>多角度研究工作台（4 张真实视角 · C12 原型）</h1>
+<p class="dim">4 档 = 4 张<b>真实原图</b>（正面偏右 → 正面偏左 → 右侧面 → 背面）。档位间为<b class="warn">对齐插值过渡</b>（按人工锚点相似变换对齐 + 交叉淡化），<b>不是真实 3D 生成</b>。锚点无相机标定（人工目测），残差表给出每对的可信度。</p>
+
+<div class="card">
+  <h2>视角滑杆</h2>
+  <div id="segbar"></div>
+  <label>视角 <input type="range" id="slider" min="0" max="300" value="0"> <span id="tval">0.00</span></label>
+  <label><input type="checkbox" id="showLabels" checked> 显示锚点/轮廓/区域标注</label>
+  <label><input type="checkbox" id="showGhost" checked> 显示两侧独有区域</label>
+  <canvas id="stage" width="820" height="545"></canvas>
+  <p id="state" class="dim"></p>
+</div>
+
+<div class="card">
+  <h2>逐对对齐质量（相似变换：缩放+平移，最小二乘）</h2>
+  <table id="pairtable"></table>
+  <p class="dim">残差 = 对齐后锚点平均偏移（px）。&lt;40px 可用于粗过渡；&gt;80px 只能整档切换，不能平滑过渡。</p>
+</div>
+
+<div class="card">
+  <h2>遮挡/重叠分析（当前段）</h2>
+  <table id="regiontable"></table>
+  <p class="dim">重叠区 = 两图对齐后都覆盖（可融合）；"仅前图/仅后图"= 切换时出现或消失的区域（遮挡缺口，插值时该区域是<b class="warn">补绘推断</b>）。</p>
+</div>
+
+<div class="card">
+  <h2>与 S 阶段自评的关系（诚实映射）</h2>
+  <ul>
+    <li><b>T01（S1）素材与部位对应</b>：本页锚点+逐对残差 = 对应关系的<b>量化候选</b>，仍待 Codex/豆包像素级复核。</li>
+    <li><b>T03/T04/T05（S2）</b>：本页<b>不做</b>纸面接缝修复、肩背连接、完整姿态检查——那是几何/网格工作，在 character-prototype 的 structural-lab 线上。</li>
+    <li><b>T06/T08（S3）</b>：本页给出"侧背素材贴到正确表面"的<b>前置数据</b>（每对的变换+遮挡缺口区域）；冻结连续范围仍不可承诺（残差+姿势差异摆在那里）。</li>
+    <li>终极结论不变：4 档<b>整档是真实的</b>，档位间是插值；要真实连续需要同瞬间多机位或补绘管线。</li>
+  </ul>
+</div>
+
+<script type="module" src="./view-workbench.mjs"></script>
+</body>
+</html>

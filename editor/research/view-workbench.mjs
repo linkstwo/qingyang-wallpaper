@@ -1,0 +1,153 @@
+// 错误直接显示在页面状态行（研究工具自诊断）
+window.addEventListener('error', e => { const el = document.querySelector('#state'); if (el) el.textContent = '页面错误: ' + e.message + ' @' + (e.lineno ?? '?'); });
+window.addEventListener('unhandledrejection', e => { const el = document.querySelector('#state'); if (el) el.textContent = '异步错误: ' + String(e.reason && e.reason.message || e.reason).slice(0, 160); });
+import { estimateSimilarTransform, applyTransform, composeTransform, regionAnalysis, viewLerp } from '../src/view-study.mjs';
+import { VIEW_STUDY_DATA } from './view-study-data.mjs';
+
+main().catch(e => { const el = document.querySelector("#state"); const st = String(e && e.stack || e).split('\n').slice(0, 4).join(' | '); if (el) el.textContent = '启动错误: ' + st.slice(0, 240); console.error(e); });
+function main() { window.__wb = ['main-entered']; return (async () => {
+  window.__wb.push('start');
+  const data = VIEW_STUDY_DATA;
+  const [W, H] = [1086, 1448];
+  const images = new Map();
+  // 缩略图以 dataURL 内联（543x724），零网络依赖——IAB 页面上下文的图片网络加载不可靠
+  for (const v of data.views) {
+    const img = new Image();
+    // IAB 的 img.decode() promise 在页面上下文会挂死（dataURL 也挂），改用 onload 老事件
+    await new Promise((res, rej) => {
+      img.onload = () => res();
+      img.onerror = () => rej(new Error(v.id + ' 缩略图加载失败'));
+      img.src = v.thumbDataUrl;
+      setTimeout(() => rej(new Error(v.id + ' 缩略图加载超时(6s)')), 6000);
+    });
+    images.set(v.id, img);
+    window.__wb.push('img:' + v.id);
+  }
+  const byId = Object.fromEntries(data.views.map(v => [v.id, v]));
+
+  // 逐对变换（以 from 图空间为基准）：to → from 的变换
+  const pairResults = {};
+  for (const pair of data.pairs) {
+    const A = byId[pair.from], B = byId[pair.to];
+    const pts = pair.commonAnchors.map(k => [A.anchors[k], B.anchors[k]]);
+    // to 图 → from 图 空间（把 B 对齐到 A）
+    const t = estimateSimilarTransform(pts.map(([a, b]) => [b, a]));
+    pairResults[pair.from + '>' + pair.to] = { ...t, pair };
+  }
+  // 链式：全部对齐到 fv 空间
+  const toFv = { fv: { scale: 1, tx: 0, ty: 0 } };
+  for (const p of ['mf', 'sd', 'bk']) {
+    const prev = { mf: 'fv', sd: 'mf', bk: 'sd' }[p]; // p 的前一个视角
+    const key = prev + '>' + p; // pairResults 以 from>to 为键
+    toFv[p] = composeTransform(pairResults[key], toFv[prev]);
+  }
+
+  // 对齐质量表
+  const pt = document.querySelector('#pairtable');
+  pt.innerHTML = '<tr><th>对</th><th>缩放</th><th>平均残差 px</th><th>最大残差 px</th><th>可用于</th></tr>';
+  for (const [key, r] of Object.entries(pairResults)) {
+    if (!r || typeof r.scale !== 'number' || !r.pair) { console.warn('跳过异常对', key, r); continue; }
+    const usable = r.meanResidual < 40 ? '<span class="ok">平滑过渡</span>' : r.meanResidual < 80 ? '<span class="warn">谨慎过渡</span>' : '<span class="err">仅整档切换</span>';
+    pt.innerHTML += '<tr><td>' + r.pair.from + ' → ' + r.pair.to + '</td><td>' + r.scale.toFixed(3) + '</td><td>' + r.meanResidual.toFixed(1) + '</td><td>' + r.maxResidual.toFixed(1) + '</td><td>' + usable + '</td></tr>';
+  }
+
+  const cv = document.querySelector('#stage'), ctx = cv.getContext('2d');
+  const scale = cv.width / W;
+
+  function drawView(viewId, alpha, ghost) {
+    const img = images.get(viewId);
+    const t = toFv[viewId];
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    ctx.transform(t.scale, 0, 0, t.scale, t.tx, t.ty);
+    ctx.drawImage(img, 0, 0, W, H);
+    ctx.restore();
+    if (ghost) drawOutline(viewId, t);
+  }
+
+  function drawOutline(viewId, t) {
+    const v = byId[viewId];
+    ctx.save();
+    ctx.setTransform(scale, 0, 0, scale, 0, 0);
+    ctx.strokeStyle = viewId === 'fv' ? 'rgba(80,220,255,0.7)' : viewId === 'mf' ? 'rgba(124,252,0,0.7)' : viewId === 'sd' ? 'rgba(255,213,74,0.7)' : 'rgba(255,120,120,0.7)';
+    ctx.lineWidth = 2 / scale / t.scale;
+    ctx.beginPath();
+    const pts = v.outline.map(p => applyTransform(t, p));
+    pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
+    ctx.closePath();
+    ctx.stroke();
+    // 锚点
+    ctx.fillStyle = ctx.strokeStyle;
+    for (const [k, p] of Object.entries(v.anchors)) {
+      const [x, y] = applyTransform(t, p);
+      ctx.beginPath();
+      ctx.arc(x, y, 4 / scale / t.scale, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.font = `${14 / scale / t.scale}px sans-serif`;
+      ctx.fillText(k, x + 6 / t.scale, y);
+    }
+    ctx.restore();
+  }
+
+  function draw() {
+    const t = Number(document.querySelector('#slider').value) / 100;
+    document.querySelector('#tval').textContent = t.toFixed(2);
+    const { fromView, toView, frac } = viewLerp(t, data.views.length);
+    const fromId = data.views[fromView].id, toId = data.views[toView].id;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = '#101114';
+    ctx.fillRect(0, 0, cv.width, cv.height);
+    const labels = document.querySelector('#showLabels').checked;
+    const ghost = document.querySelector('#showGhost').checked;
+    if (fromView === toView) {
+      drawView(fromId, 1, labels);
+    } else {
+      // 后图先画（在下），前图淡出（在上）→ 前图独有区随 alpha 消失
+      drawView(toId, frac, labels && ghost);
+      drawView(fromId, 1 - frac, labels && ghost);
+    }
+    // 段内区域分析
+    if (fromView !== toView) {
+      const key = fromId + '>' + toId;
+      const pairR = pairResults[key];
+      const A = byId[fromId], B = byId[toId];
+      const reg = regionAnalysis(A.outline, { scale: 1, tx: 0, ty: 0 }, B.outline, toFv[toId], [W, H]);
+      const rt = document.querySelector('#regiontable');
+      rt.innerHTML = `<tr><td>${fromId} → ${toId}（缩放 ${pairR.scale.toFixed(3)}）</td><td>重叠 ${reg.overlap} 格 (${(reg.overlapRatio * 100).toFixed(0)}%)</td><td>仅 ${fromId}（淡出）${reg.onlyA} 格</td><td>仅 ${toId}（淡入）${reg.onlyB} 格</td></tr>`;
+      if (ghost) {
+        // 只画"仅后图"块（淡入的遮挡区）
+        ctx.save();
+        ctx.setTransform(scale, 0, 0, scale, 0, 0);
+        ctx.fillStyle = 'rgba(255,213,74,0.18)';
+        for (let r = 0; r < reg.rows; r++) {
+          for (let c = 0; c < reg.cols; c++) {
+            if (reg.gridB[r * reg.cols + c] && !reg.gridA[r * reg.cols + c]) {
+              ctx.fillRect(c * reg.cell, r * reg.cell, reg.cell, reg.cell);
+            }
+          }
+        }
+        ctx.restore();
+      }
+      document.querySelector('#state').textContent =
+        `视角 ${t.toFixed(2)} = ${fromId}(${(100 - frac * 100).toFixed(0)}%) × ${toId}(${(frac * 100).toFixed(0)}%) —— 档位间为对齐插值，档位处为真实原图；黄色块=后图独有（遮挡补绘推断区）`;
+    } else {
+      document.querySelector('#regiontable').innerHTML = '<tr><td>整档（真实原图）</td></tr>';
+      document.querySelector('#state').textContent = `视角 ${t.toFixed(2)} = ${fromId}（真实原图档位）`;
+    }
+  }
+
+  // 档位按钮
+  const segbar = document.querySelector('#segbar');
+  data.views.forEach((v, i) => {
+    const s = document.createElement('span');
+    s.className = 'seg';
+    s.textContent = `${i}·${v.label}`;
+    s.onclick = () => { document.querySelector('#slider').value = i * 100; draw(); };
+    segbar.append(s);
+  });
+  document.querySelector('#slider').addEventListener('input', draw);
+  document.querySelector('#showLabels').addEventListener('change', draw);
+  document.querySelector('#showGhost').addEventListener('change', draw);
+  draw();
+})(); }
