@@ -70,6 +70,20 @@
     <button id="assetBtn" onclick="document.querySelector('#assetFile').click()">导入 PNG/JPG…</button>
     <h3>图层</h3>
     <div id="layerTree"></div>
+    <h3>连续视角（C11）</h3>
+    <label class="inline">视角X <input type="range" id="viewX" min="-100" max="100" value="0" style="flex:1"> <span id="viewXVal">0.00</span></label>
+    <label class="inline">视角Y <input type="range" id="viewY" min="-100" max="100" value="0" style="flex:1"> <span id="viewYVal">0.00</span></label>
+    <button id="baselineBtn" style="width:100%">⬓ 与静态基线对比（归零）</button>
+    <h3>手机安全框（C13）</h3>
+    <select id="frameRatio" style="width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:4px;padding:4px">
+      <option value="off">关闭</option>
+      <option value="9-20">9:20（直板旗舰全屏）</option>
+      <option value="9-19.5">9:19.5（iPhone 类）</option>
+      <option value="16-9">16:9（横屏）</option>
+      <option value="1-1">1:1（方幅）</option>
+    </select>
+    <label class="inline">窗口偏移 <input type="range" id="frameOffset" min="0" max="100" value="50" style="flex:1"></label>
+    <button id="framingBtn" style="width:100%">📋 输出可见性对照数据</button>
     <h3>输入轨迹（B9）</h3>
     <button id="recBtn">⏺ 开始录制</button>
     <select id="trackSel" style="width:100%;margin:4px 0;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:4px;padding:4px"></select>

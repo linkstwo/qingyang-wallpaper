@@ -10,6 +10,8 @@ import { createRenderer, regionUniforms } from './gl-scene.mjs';
 import { History } from './history.mjs';
 import { createMaskCanvas, fillPolygon, paintStroke, featherMask, maskCoverage, maskToBlob } from './mask-editor.mjs';
 import { createTrack, recordSample, sampleTrack, compareFps } from './input-recorder.mjs';
+import { cropWindow, anchorVisibility, framingComparison, waistVerdict, FRAMING_PRESETS } from './framing.mjs';
+import { viewArcPoint, CONTINUOUS_RANGE, VIEW_ARC_GAPS } from './view-arc.mjs';
 
 const $ = (sel) => document.querySelector(sel);
 const statusEl = $('#statusbar');
@@ -40,6 +42,7 @@ const state = {
   dragging: null,            // {slot, layerId}
   hoverSlot: -1,
   showMesh: true,
+  frameRatio: 'off', frameOffset: 0.5,
   recording: null,            // 录制中的轨迹
   playTrack: null,            // 回放中的轨迹
   playTrackStart: null,
@@ -95,6 +98,8 @@ function frame(now) {
   const dt = clamp((now - lastFrame) / 1000, 1 / 240, 1 / 20);
   lastFrame = now;
   const layer = selectedLayer();
+  // 物理每帧推进：播放源（轨迹/演示）在播放时接管 target；滑杆/指针随时可改 target，
+  // 静止时 target=view、角加速度为 0 → 弹簧自然回 0，不产生额外位移。
   if (state.playing && !state.paused) {
     if (state.playTrack !== null) {
       const t = (now - state.playTrackStart) / 1000;
@@ -108,6 +113,8 @@ function frame(now) {
       $('#phase').textContent = d.phase;
       if (d.done) { state.demoStart = null; stopPlay(); }
     }
+  }
+  {
     const [ax, ay] = state.tracker.update(state.tracker.target, dt);
     if (layer?.kind === 'character') {
       state.visual = state.springs.step(ax, ay, layer.springGains, layer.limits, dt);
@@ -201,6 +208,25 @@ function drawOverlay() {
       pin.outline.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
       ctx.closePath();
       ctx.stroke();
+    }
+  }
+  // 手机画幅安全框（C13）
+  if (state.frameRatio !== 'off') {
+    const preset = FRAMING_PRESETS.find(f => f.id === state.frameRatio);
+    if (preset) {
+      const win = cropWindow(state.project.canvas, preset.ratio, state.frameOffset);
+      ctx.strokeStyle = 'rgba(255, 210, 80, 0.9)';
+      ctx.lineWidth = 2 / scale;
+      ctx.setLineDash([10 / scale, 6 / scale]);
+      ctx.strokeRect(win.x0, win.y0, win.x1 - win.x0, win.y1 - win.y0);
+      ctx.setLineDash([]);
+      // 关键锚点
+      for (const a of anchorVisibility(win)) {
+        ctx.fillStyle = a.visible ? 'rgba(120, 255, 140, 0.9)' : a.clipped ? 'rgba(255, 200, 80, 0.9)' : 'rgba(255, 90, 90, 0.9)';
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, 5 / scale, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
   }
   // 正在画的多边形
@@ -730,6 +756,32 @@ function bindPlayControls() {
       say(`帧率对比（基准 ${report.baseFps}fps，峰值 ${report.peak.toFixed(2)}px）→ ${line}`);
       downloadBlob(new Blob([JSON.stringify({ track: track.name, report }, null, 1)], { type: 'application/json' }), 'fps-compare-' + Date.now() + '.json');
     } catch (e) { say('对比失败: ' + e.message, 'error'); }
+  };
+  $('#viewX').addEventListener('input', (e) => {
+    const v = Number(e.target.value) / 100;
+    $('#viewXVal').textContent = v.toFixed(2);
+    state.tracker.target = { x: v, y: Number($('#viewY').value) / 100 };
+  });
+  $('#viewY').addEventListener('input', (e) => {
+    const v = Number(e.target.value) / 100;
+    $('#viewYVal').textContent = v.toFixed(2);
+    state.tracker.target = { x: Number($('#viewX').value) / 100, y: v };
+  });
+  $('#baselineBtn').onclick = () => {
+    $('#viewX').value = 0; $('#viewY').value = 0;
+    $('#viewXVal').textContent = '0.00'; $('#viewYVal').textContent = '0.00';
+    state.tracker.target = { x: 0, y: 0 };
+    say('已归零到静态基线视角（0,0）——当前画面即静态基线；拖滑杆可对比连续视角形变');
+  };
+  $('#frameRatio').addEventListener('change', (e) => { state.frameRatio = e.target.value; });
+  $('#frameOffset').addEventListener('input', (e) => { state.frameOffset = Number(e.target.value) / 100; });
+  $('#framingBtn').onclick = () => {
+    const preset = FRAMING_PRESETS.find(f => f.id === state.frameRatio);
+    if (!preset || state.frameRatio === 'off') { say('先选择一个画幅预设', 'warn'); return; }
+    const opts = framingComparison(state.project.canvas, preset.ratio);
+    const lines = opts.map(o => `偏移${Math.round(o.offsetX * 100)}%: ` + o.anchors.map(a => `${a.label}${a.visible ? '✓' : a.clipped ? '边裁' : '切'}`).join(' ') + ` → ${waistVerdict(o)}`);
+    say('画幅 ' + preset.label + ' 三档对照：\n' + lines.join('\n'));
+    downloadBlob(new Blob([JSON.stringify({ preset: preset.label, comparison: opts, verdicts: opts.map(waistVerdict) }, null, 1)], { type: 'application/json' }), 'framing-compare-' + preset.id + '.json');
   };
   $('#editAmount').addEventListener('input', (e) => {
     state.editAmount = Number(e.target.value) / 100;
