@@ -2,6 +2,7 @@
 window.addEventListener('error', e => { const el = document.querySelector('#state'); if (el) el.textContent = '页面错误: ' + e.message + ' @' + (e.lineno ?? '?'); });
 window.addEventListener('unhandledrejection', e => { const el = document.querySelector('#state'); if (el) el.textContent = '异步错误: ' + String(e.reason && e.reason.message || e.reason).slice(0, 160); });
 import { estimateSimilarTransform, applyTransform, composeTransform, regionAnalysis, viewLerp } from '../src/view-study.mjs';
+import { multiViewFraming } from '../src/framing.mjs';
 import { VIEW_STUDY_DATA } from './view-study-data.mjs';
 
 main().catch(e => { const el = document.querySelector("#state"); const st = String(e && e.stack || e).split('\n').slice(0, 4).join(' | '); if (el) el.textContent = '启动错误: ' + st.slice(0, 240); console.error(e); });
@@ -108,6 +109,32 @@ function main() { window.__wb = ['main-entered']; return (async () => {
       drawView(toId, frac, labels && ghost);
       drawView(fromId, 1 - frac, labels && ghost);
     }
+    // T02/T09 多视角构图对照（9:20 三档，四视角关键点可见性矩阵）
+    try {
+      const keyAnchors = {};
+      for (const v of data.views) {
+        const va = {};
+        for (const [k, xy] of Object.entries(v.anchors)) {
+          if (['face', 'shoulderL', 'shoulderR', 'shoulderBack', 'shoulderFront', 'waist'].includes(k)) va[k] = xy;
+        }
+        keyAnchors[v.id] = va;
+      }
+      const mv = multiViewFraming(keyAnchors, [W, H], 9 / 20);
+      const mt = document.querySelector('#mvtable');
+      if (mt) {
+        let html = '<tr><th>9:20 偏移</th>' + data.views.map(v => '<th>' + v.id + '</th>').join('') + '<th>结论</th></tr>';
+        for (const o of mv.options) {
+          html += '<tr><td>' + Math.round(o.offsetX * 100) + '%</td>';
+          for (const pv of o.perView) {
+            const lost = pv.points.filter(p => !p.visible).map(p => p.name);
+            html += '<td>' + (pv.allVisible ? '<span class="ok">全可见</span>' : '<span class="warn">缺 ' + lost.join(',') + '</span>') + '</td>';
+          }
+          html += '<td>' + (o.allViewsAllVisible ? '<span class="ok">四视角全保</span>' : '<span class="err">有遮挡</span>') + '</td></tr>';
+        }
+        html += '<tr><td colspan="6">推荐偏移：' + (mv.recommended !== null ? Math.round(mv.recommended * 100) + '%（四视角关键点全可见）' : '无——需要权衡（见上表）') + '</td></tr>';
+        mt.innerHTML = html;
+      }
+    } catch (e) { console.warn('mv framing:', e); }
     // 段内区域分析
     if (fromView !== toView) {
       const key = fromId + '>' + toId;

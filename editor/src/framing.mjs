@@ -59,3 +59,23 @@ export function waistVerdict(option) {
   const waist = option.anchors.find(a => a.id === 'waist');
   return waist.visible ? 'waist-fully-visible' : waist.clipped ? 'waist-edge-clipped' : 'waist-cut';
 }
+
+// ---- T02/T09：多视角构图对照 ----
+// 每个视角的人物位置不同（锚点已像素校验），同一裁剪窗口下关键点可见性随视角变化。
+// keyAnchors: 该视角实际可见锚点子集（从 view-study 数据取，像素校验过的）。
+export function multiViewFraming(viewKeyAnchors, canvas, ratio, offsets = [0.2, 0.5, 0.8]) {
+  const options = offsets.map(offsetX => {
+    const win = cropWindow(canvas, ratio, offsetX);
+    const perView = Object.entries(viewKeyAnchors).map(([viewId, anchors]) => {
+      const vis = Object.entries(anchors).map(([name, [x, y]]) => {
+        const inside = x >= win.x0 && x <= win.x1;
+        const edge = inside ? 0 : Math.max(win.x0 - x, x - win.x1, 0);
+        return { name, xy: [x, y], visible: inside, clipped: !inside && edge <= 40 };
+      });
+      return { viewId, points: vis, allVisible: vis.every(p => p.visible) };
+    });
+    return { offsetX, window: win, perView, allViewsAllVisible: perView.every(pv => pv.allVisible) };
+  });
+  const best = options.find(o => o.allViewsAllVisible) ?? null;
+  return { ratio, options, recommended: best ? best.offsetX : null };
+}
