@@ -4,9 +4,11 @@
 
 ```yaml
 基线分支/commit:   main @ 9c73bfe（"Clarify continuous viewing-angle goal and cloud access fallback"）
-本次分支/commit:   feature/zcode-2p5d-editor，本地三个提交：
-                   a4c2e04 (A 闭环) → 0baab10 (B 运动结构) → d9e5d9f (C 视角/安全框/研究页)
-                   （工作区另有 D 阶段稳定性测试与验收文档提交）
+本次分支/commit:   feature/zcode-2p5d-editor，a4c2e04 (A) → 0baab10 (B) → d9e5d9f (C) → c726e1d (D 验收) →
+                   6a21ea1 (T14 参数接线) → 6f2c0e9 (多角度工作台) → 7864634 (T01 锚点校验) →
+                   c175e98/51f35a3 (T02 构图对照+跟移窗口) → d0bdc55/9dc737d (T14 跟移取景落地) →
+                   2653425 (T15 冒烟+EGL 修复) → 26d9682/96d7203 (D15/T16/T10) —— 全部推送 GitHub
+                   最新 96d7203+（dist 候选包与 T10 文档；推送到远端的最新确认 SHA 见 ls-remote）
 可运行入口:        node editor/server.mjs  →  http://127.0.0.1:8644/
                    研究页: http://127.0.0.1:8644/editor/research/view-arc.html
                    零 npm 依赖；本机 Node: C:\Users\Administrator\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\node\bin\node.exe (v24.21.0)
@@ -75,7 +77,7 @@
 ## 可重现测试命令及结果
 
 ```bash
-node editor/tests/run.mjs        # 41/41 PASS（约 0.6s）
+node editor/tests/run.mjs        # 56/56 PASS（含大编辑压测/跟移窗口/多视角构图）
 node editor/scripts/make-pristine-project.mjs && \
 node editor/export/export-android-assets.mjs editor/tmp/reading-v2-pristine.qingyang.json \
      android-app/app/src/main/assets --check   # PASS 逐字节一致
