@@ -11,6 +11,7 @@
 !/android-app/
 !/character-prototype/
 !/editor/
+!/dist/
 
 /character-prototype/*
 !/character-prototype/preview/
