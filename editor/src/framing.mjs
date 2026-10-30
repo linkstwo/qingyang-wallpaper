@@ -79,3 +79,35 @@ export function multiViewFraming(viewKeyAnchors, canvas, ratio, offsets = [0.2, 
   const best = options.find(o => o.allViewsAllVisible) ?? null;
   return { ratio, options, recommended: best ? best.offsetX : null };
 }
+
+// ---- T02 权衡选项 A：按视角跟移窗口 ----
+// 结论背景：四视角人物位置差异使固定窗口无法全保（见 multiViewFraming）。
+// 跟移方案：每档窗口中心对准该视角人物质心（锚点均值），档间过渡时窗口位置线性插值。
+export function followWindowOffset(anchors, canvas, ratio, fallback = 0.5) {
+  const [W, H] = canvas;
+  const pts = Object.values(anchors);
+  if (!pts.length) return fallback;
+  const cx = pts.reduce((s, [x]) => s + x, 0) / pts.length;
+  // 窗口宽（横裁模式）与允许的中心范围
+  const w = Math.min(W, H * ratio);
+  const minCenter = w / 2, maxCenter = W - w / 2;
+  if (maxCenter <= minCenter) return fallback; // 全宽（竖裁模式）无横向自由度
+  const clamped = Math.max(minCenter, Math.min(maxCenter, cx));
+  return (clamped - w / 2) / (W - w); // → offsetX ∈ [0,1]
+}
+
+export function followWindowPath(viewAnchorsById, canvas, ratio, order) {
+  const path = {};
+  for (const id of order) {
+    path[id] = followWindowOffset(viewAnchorsById[id] ?? {}, canvas, ratio);
+  }
+  return path;
+}
+
+// 跟移窗口对象（与 cropWindow 同结构，横裁模式）
+export function followCropWindow(canvas, ratio, offsetX) {
+  const [W, H] = canvas;
+  const w = Math.min(W, H * ratio);
+  const x0 = Math.max(0, Math.min(W - w, offsetX * (W - w)));
+  return { x0, x1: x0 + w, y0: 0, y1: H, mode: 'crop-horizontal-follow' };
+}

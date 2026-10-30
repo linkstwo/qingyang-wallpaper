@@ -2,7 +2,7 @@
 window.addEventListener('error', e => { const el = document.querySelector('#state'); if (el) el.textContent = '页面错误: ' + e.message + ' @' + (e.lineno ?? '?'); });
 window.addEventListener('unhandledrejection', e => { const el = document.querySelector('#state'); if (el) el.textContent = '异步错误: ' + String(e.reason && e.reason.message || e.reason).slice(0, 160); });
 import { estimateSimilarTransform, applyTransform, composeTransform, regionAnalysis, viewLerp } from '../src/view-study.mjs';
-import { multiViewFraming } from '../src/framing.mjs';
+import { multiViewFraming, followWindowPath, followCropWindow, cropWindow } from '../src/framing.mjs';
 import { VIEW_STUDY_DATA } from './view-study-data.mjs';
 
 main().catch(e => { const el = document.querySelector("#state"); const st = String(e && e.stack || e).split('\n').slice(0, 4).join(' | '); if (el) el.textContent = '启动错误: ' + st.slice(0, 240); console.error(e); });
@@ -109,6 +109,60 @@ function main() { window.__wb = ['main-entered']; return (async () => {
       drawView(toId, frac, labels && ghost);
       drawView(fromId, 1 - frac, labels && ghost);
     }
+    // T02 权衡：构图模式（固定窗口 vs 按视角跟移窗口）
+    try {
+      const mode = document.querySelector('input[name=fmode]:checked')?.value ?? 'fixed';
+      const keyAnchorsAll = {};
+      for (const v of data.views) {
+        const va = {};
+        for (const [k, xy] of Object.entries(v.anchors)) {
+          if (['face', 'shoulderL', 'shoulderR', 'shoulderBack', 'shoulderFront', 'waist'].includes(k)) va[k] = xy;
+        }
+        keyAnchorsAll[v.id] = va;
+      }
+      const ratio = 9 / 20;
+      let win, label;
+      if (mode === 'follow') {
+        const path = followWindowPath(keyAnchorsAll, [W, H], ratio, data.views.map(v => v.id));
+        const off = path[fromId] + (path[toId] - path[fromId]) * frac;
+        win = followCropWindow([W, H], ratio, off);
+        label = '跟移窗口：' + fromId + '→' + toId + ' 偏移 ' + (off * 100).toFixed(0) + '%（窗口中心跟随人物质心，档间线性插值）';
+      } else {
+        win = cropWindow([W, H], ratio, 0.5);
+        label = '固定窗口：居中 50%';
+      }
+      // 画窗口 + 关键点落窗检查（当前两个视角的锚点）
+      ctx.save();
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      ctx.strokeStyle = 'rgba(255, 210, 80, 0.95)';
+      ctx.lineWidth = 3 / scale;
+      ctx.strokeRect(win.x0, win.y0, win.x1 - win.x0, win.y1 - win.y0);
+      for (const vid of [fromId, toId]) {
+        for (const [k, xy] of Object.entries(keyAnchorsAll[vid])) {
+          const inside = xy[0] >= win.x0 && xy[0] <= win.x1;
+          ctx.fillStyle = inside ? 'rgba(124,252,0,0.95)' : 'rgba(255,90,90,0.95)';
+          ctx.beginPath();
+          ctx.arc(xy[0], xy[1], 4 / scale, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      ctx.restore();
+      document.querySelector('#fmodeLabel').textContent = label;
+      // 跟移模式下每档全档可见性（应全绿——这就是方案验证）
+      if (mode === 'follow') {
+        const mt2 = document.querySelector('#followtable');
+        if (mt2) {
+          const path = followWindowPath(keyAnchorsAll, [W, H], ratio, data.views.map(v => v.id));
+          let html = '<tr><th>档位</th><th>窗口偏移</th><th>关键点</th><th>结论</th></tr>';
+          for (const v of data.views) {
+            const w2 = followCropWindow([W, H], ratio, path[v.id]);
+            const lost = Object.entries(keyAnchorsAll[v.id]).filter(([, xy]) => xy[0] < w2.x0 || xy[0] > w2.x1).map(([k]) => k);
+            html += '<tr><td>' + v.id + '</td><td>' + (path[v.id] * 100).toFixed(0) + '%</td><td>' + (lost.length ? '<span class="warn">缺 ' + lost.join(',') + '</span>' : '<span class="ok">全部在窗内</span>') + '</td><td>' + (lost.length ? '<span class="warn">仍需权衡</span>' : '<span class="ok">跟移有效</span>') + '</td></tr>';
+          }
+          mt2.innerHTML = html;
+        }
+      }
+    } catch (e) { console.warn('follow framing:', e); }
     // T02/T09 多视角构图对照（9:20 三档，四视角关键点可见性矩阵）
     try {
       const keyAnchors = {};
@@ -175,6 +229,7 @@ function main() { window.__wb = ['main-entered']; return (async () => {
     segbar.append(s);
   });
   document.querySelector('#slider').addEventListener('input', draw);
+for (const r of document.querySelectorAll('input[name=fmode]')) r.addEventListener('change', draw);
   document.querySelector('#showLabels').addEventListener('change', draw);
   document.querySelector('#showGhost').addEventListener('change', draw);
   draw();

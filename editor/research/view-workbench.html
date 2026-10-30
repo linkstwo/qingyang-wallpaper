@@ -28,6 +28,12 @@
   <label>视角 <input type="range" id="slider" min="0" max="300" value="0"> <span id="tval">0.00</span></label>
   <label><input type="checkbox" id="showLabels" checked> 显示锚点/轮廓/区域标注</label>
   <label><input type="checkbox" id="showGhost" checked> 显示两侧独有区域</label>
+  <div style="margin-top:8px">
+    <b>构图模式（T02 权衡）：</b>
+    <label><input type="radio" name="fmode" value="fixed" checked> 固定居中窗口</label>
+    <label><input type="radio" name="fmode" value="follow"> 按视角跟移窗口</label>
+    <span id="fmodeLabel" class="dim"></span>
+  </div>
   <canvas id="stage" width="820" height="545"></canvas>
   <p id="state" class="dim"></p>
 </div>
@@ -36,6 +42,12 @@
   <h2>逐对对齐质量（相似变换：缩放+平移，最小二乘）</h2>
   <table id="pairtable"></table>
   <p class="dim">残差 = 对齐后锚点平均偏移（px）。&lt;40px 可用于粗过渡；&gt;80px 只能整档切换，不能平滑过渡。</p>
+</div>
+
+<div class="card">
+  <h2>跟移窗口方案验证（每档全档关键点可见性）</h2>
+  <table id="followtable"></table>
+  <p class="dim">跟移 = 窗口中心对准该视角人物质心（像素校验锚点均值），档间线性插值。若每档全绿，则"构图权衡选项 A"成立。</p>
 </div>
 
 <div class="card">
