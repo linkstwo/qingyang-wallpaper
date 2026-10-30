@@ -51,7 +51,7 @@ final class RenderLoop {
         @Override
         public void run() {
             framePending = false;
-            if (closed || !active || !surfaceReady || !egl.hasSurface()) {
+            if (closed || !active || !surfaceReady) {
                 return;
             }
             final long startNanos = SystemClock.elapsedRealtimeNanos();
@@ -66,6 +66,18 @@ final class RenderLoop {
                 accumulator -= STEP_NANOS;
             }
             try {
+                // EGL 惰性创建：首帧（或 surface 重建后）在这里初始化，失败进 report 停机。
+                // 修复 main 分支 bug：原版 setSurface 要求 hasSurface 才建，首次永不建立 → 壁纸黑屏。
+                if (!egl.hasSurface()) {
+                    if (surface == null || !surface.isValid()) {
+                        schedule();
+                        return;
+                    }
+                    if (!egl.create(surface)) {
+                        throw new IllegalStateException("EGL 初始化失败");
+                    }
+                    needResize = true;
+                }
                 if (!renderer.isReady()) {
                     renderer.create(width, height);
                 } else if (needResize) {
