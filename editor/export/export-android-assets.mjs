@@ -167,6 +167,8 @@ if (!CHECK) {
     springHair: charLayer.springs?.hair ?? charLayer.spring,
     springHairTip: charLayer.springs?.hairTip ?? null,
     gains: charLayer.springGains,
+    // 跟移取景（T02 选项 A）：主图质心偏移为基准，随视角小幅摆动
+    viewPan: { base: 0.56, range: 0.08 },
     // RenderParams.java 约定的字段名：body/chest/hair/hairTip（无单位 = 像素上限）
     limits: {
       body: charLayer.limits?.bodyPixels ?? 5,

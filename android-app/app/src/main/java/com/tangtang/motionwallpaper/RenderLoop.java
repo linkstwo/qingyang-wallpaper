@@ -27,7 +27,7 @@ final class RenderLoop {
     private final HandlerThread thread;
     private final Handler handler;
     private final SensorFeed feed;
-    private final Physics physics = new Physics();
+    private final Physics physics;
     private final SceneRenderer renderer;
     private final EglCore egl = new EglCore();
 
@@ -100,6 +100,7 @@ final class RenderLoop {
     private volatile String title = "";
 
     RenderLoop(Context context) {
+        physics = new Physics(RenderParams.load(context.getApplicationContext()));
         thread = new HandlerThread("QingyangWallpaper");
         thread.start();
         handler = new Handler(thread.getLooper());

@@ -22,6 +22,8 @@ final class Physics {
     /** 传给渲染的当前值。 */
     float viewX;
     float viewY;
+    /** 跟移取景偏移（0=左贴边 1=右贴边），由 RenderParams.viewPan 决定基准与幅度。 */
+    float pan01;
     float bodyPx;
     float bodyPy;
     float chestPx;
@@ -59,6 +61,7 @@ final class Physics {
         hairTipX.reset();
         viewX = viewY = targetX = targetY = prevVx = prevVy = 0.0f;
         bodyPx = bodyPy = chestPx = chestPy = hairPx = hairTipPx = 0.0f;
+        pan01 = params != null ? params.viewPanBase : 0.5f;
     }
 
     /**
@@ -105,6 +108,8 @@ final class Physics {
         chestPy = cy * p.limitChest;
         hairPx = hx * p.limitHair;
         hairTipPx = tx * p.limitHairTip;
+        // 跟移取景：基准偏移随视角小幅摆动（T02 选项 A；range=0 时不跟移=原行为）
+        pan01 = MathX.clamp(p.viewPanBase + viewX * p.viewPanRange, 0.0f, 1.0f);
     }
 
     /** 是否还有值得画的运动（静止时渲染降到 10fps 省电）。 */
@@ -120,7 +125,7 @@ final class Physics {
 
     /** 供验收日志打印：一行说清当前视角与回弹。 */
     String snapshot() {
-        return String.format(java.util.Locale.US, "view=%.3f,%.3f body=%.2f,%.2f chest=%.2f,%.2f hair=%.2f tip=%.2f",
-                viewX, viewY, bodyPx, bodyPy, chestPx, chestPy, hairPx, hairTipPx);
+        return String.format(java.util.Locale.US, "view=%.3f,%.3f body=%.2f,%.2f chest=%.2f,%.2f hair=%.2f tip=%.2f pan=%.3f",
+                viewX, viewY, bodyPx, bodyPy, chestPx, chestPy, hairPx, hairTipPx, pan01);
     }
 }

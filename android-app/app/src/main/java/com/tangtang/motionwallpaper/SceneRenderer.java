@@ -124,6 +124,7 @@ final class SceneRenderer {
     private int foregroundCount;
     private int surfaceWidth = 1;
     private int surfaceHeight = 1;
+    private float viewPan01 = 0.5f;
     private float ndcScaleX = 1.0f;
     private float ndcScaleY = 1.0f;
     private float ndcOffsetX = 0.0f;
@@ -209,18 +210,39 @@ final class SceneRenderer {
         ready = true;
     }
 
-    /** 屏幕尺寸变化：按“铺满并居中裁切”算 NDC 变换（与原轻漾 0.4.0 的 ViewMapping 同策略）。 */
+    /** 屏幕尺寸变化：按"铺满并居中裁切"算 NDC 变换（与原轻漾 0.4.0 的 ViewMapping 同策略）。 */
     void resize(int width, int height) {
         surfaceWidth = Math.max(1, width);
         surfaceHeight = Math.max(1, height);
+        updateNdc();
+        GLES20.glViewport(0, 0, surfaceWidth, surfaceHeight);
+    }
+
+    /**
+     * 跟移取景（T02 选项 A）：pan01 ∈ [0,1] 为取景窗口基准偏移，
+     * 由 Physics 按视角给出（base + viewX*range）。横向有裁切余量时窗口随 pan01 移动，
+     * 余量为负（纵向裁切/铺满）时自动退回居中——永不越界。
+     */
+    void setViewPan(float pan01) {
+        final float clamped = MathX.clamp(pan01, 0.0f, 1.0f);
+        if (clamped != viewPan01) {
+            viewPan01 = clamped;
+            if (ready) {
+                updateNdc();
+            }
+        }
+    }
+
+    private void updateNdc() {
         final float k = Math.max(surfaceWidth / (float) SOURCE_WIDTH, surfaceHeight / (float) SOURCE_HEIGHT);
-        final float offsetX = (surfaceWidth - SOURCE_WIDTH * k) * 0.5f;
-        final float offsetY = (surfaceHeight - SOURCE_HEIGHT * k) * 0.5f;
+        final float slackX = surfaceWidth - SOURCE_WIDTH * k;
+        final float slackY = surfaceHeight - SOURCE_HEIGHT * k;
+        final float offsetX = slackX > 0.0f ? viewPan01 * slackX : slackX * 0.5f;
+        final float offsetY = slackY > 0.0f ? 0.5f * slackY : slackY * 0.5f;
         ndcScaleX = 2.0f * k / surfaceWidth;
         ndcOffsetX = 2.0f * offsetX / surfaceWidth - 1.0f;
         ndcScaleY = -2.0f * k / surfaceHeight;
         ndcOffsetY = 1.0f - 2.0f * offsetY / surfaceHeight;
-        GLES20.glViewport(0, 0, surfaceWidth, surfaceHeight);
     }
 
     /** 把 RenderParams 上传为 uniform（编辑器导出的 qingyang-params.json 决定这些值）。 */
@@ -248,6 +270,7 @@ final class SceneRenderer {
                         + Math.max(Math.abs(physics.bodyPx), Math.max(Math.abs(physics.chestPx), Math.abs(physics.hairPx))) * 3.0f,
                 0.0f, 1.0f);
         GLES20.glUseProgram(program);
+        setViewPan(physics.pan01);
         GLES20.glUniform2f(uView, physics.viewX, physics.viewY);
         GLES20.glUniform2f(uBody, physics.bodyPx, physics.bodyPy);
         GLES20.glUniform2f(uChest, physics.chestPx, physics.chestPy);

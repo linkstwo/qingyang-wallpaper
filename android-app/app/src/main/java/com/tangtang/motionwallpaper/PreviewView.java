@@ -18,7 +18,7 @@ final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer 
     private static final long STEP_NANOS = 8333333L;
     private static final float STEP_SECONDS = 0.008333334f;
 
-    private final Physics physics = new Physics();
+    private final Physics physics;
     private final SensorFeed feed;
     private SceneRenderer scene;
     private long lastNanos;
@@ -31,6 +31,7 @@ final class PreviewView extends GLSurfaceView implements GLSurfaceView.Renderer 
 
     PreviewView(Context context) {
         super(context);
+        physics = new Physics(RenderParams.load(context.getApplicationContext()));
         setEGLContextClientVersion(2);
         setRenderer(this);
         setRenderMode(RENDERMODE_CONTINUOUSLY);

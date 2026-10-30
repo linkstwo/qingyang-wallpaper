@@ -64,6 +64,10 @@ final class RenderParams {
     float gainHairTip = 3.0f;
     // 位移上限（像素）
     float limitBody = 5.0f, limitChest = 7.0f, limitHair = 10.0f, limitHairTip = 14.0f;
+    // 跟移取景（T02 选项 A）：窗口基准偏移（0=左贴边 0.5=居中 1=右贴边）与随视角摆动幅度。
+    // 默认 0.5/0 = 居中且不跟移（与参数接线前行为一致）。
+    float viewPanBase = 0.5f;
+    float viewPanRange = 0.0f;
 
     /** 从 assets 加载；文件缺失或解析失败返回全默认（保证壁纸永不因参数黑屏）。 */
     static RenderParams load(Context context) {
@@ -120,6 +124,11 @@ final class RenderParams {
             limitChest = (float) limits.optDouble("chest", limitChest);
             limitHair = (float) limits.optDouble("hair", limitHair);
             limitHairTip = (float) limits.optDouble("hairTip", limitHairTip);
+        }
+        JSONObject viewPan = root.optJSONObject("viewPan");
+        if (viewPan != null) {
+            viewPanBase = (float) viewPan.optDouble("base", viewPanBase);
+            viewPanRange = (float) viewPan.optDouble("range", viewPanRange);
         }
     }
 

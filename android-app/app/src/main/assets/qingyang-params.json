@@ -34,5 +34,6 @@
   "chestCoupling": 60.0, "chestCouplingY": 75.0,
   "hair": 2.2, "hairTip": 3.0
  },
- "limits": { "body": 5.0, "chest": 7.0, "hair": 10.0, "hairTip": 14.0 }
+ "limits": { "body": 5.0, "chest": 7.0, "hair": 10.0, "hairTip": 14.0 },
+ "viewPan": { "base": 0.5, "range": 0.0 }
 }
