@@ -55,7 +55,7 @@
 - 编辑器"未编辑"工程导出的 character_mesh.bin / character_pins.bin / foreground_mesh.bin 与 android-app/app/src/main/assets/ **逐字节一致**（--check PASS）。
 - 带编辑工程 --check 正确拒绝（反向用例）；editor-export-report.json 含 sha256 与 contactRecheckPassed=true。
 - 既有三件套（export_mesh --check / verify_assets.py / validate-contacts.mjs allPassed）全过。
-- **参数接线已完成**（commit 6a21ea1）：导出器生成 qingyang-render-params v1；Android 端 RenderParams.java 从 assets 读取，缺文件/解析失败回落默认（壁纸不黑屏）；SceneRenderer 区域场 uniform 化 + hairTip 通道；assets 默认参数=真机当前值（接线不改变现有行为）。**真机替换参数后的效果属 UNTESTED（G7 范围）**。
+- **参数接线已完成并扩展**（commit 6a21ea1 + d0bdc55）：qingyang-render-params v1 含 viewPan 跟移取景；Android 端 RenderParams.java 从 assets 读取，缺文件/解析失败回落默认（壁纸不黑屏）；SceneRenderer 区域场 uniform 化 + hairTip 通道 + **跟移取景（NDC 按视角平移）**。**模拟器实测**：range=0.08 时 pan 随倾斜 0.56→0.48→0.52 实时摆动、回正收敛；range=0（默认）pan 恒 0.5 与接线前一致。**真机（iQOO）替换参数后的最终观感仍属 UNTESTED（G7）**。
 
 **G6 手机构图 — PASS**：4 档画幅、窗口偏移可调、锚点着色、三档对照 JSON；腰在 9:20 三档偏移下均不完全切掉（数据见 evidence 与上文表）。
 
