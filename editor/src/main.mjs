@@ -831,6 +831,32 @@ async function boot() {
     const layer = selectedLayer();
     state.springs = new SpringBank(layer.springs ?? layer.spring);
     state.editAmount = Number($('#editAmount').value) / 100;
+    // 视角参考条：4 张真实视角缩略（内联 dataURL），点击浮层放大对照
+    import('./view-study-data.mjs').then(({ VIEW_STUDY_DATA }) => {
+      const strip = $('#refStrip');
+      if (!strip) return;
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:99;align-items:center;justify-content:center;cursor:zoom-out';
+      overlay.onclick = () => { overlay.style.display = 'none'; };
+      const big = document.createElement('img');
+      big.style.cssText = 'max-width:92vw;max-height:92vh';
+      overlay.append(big);
+      document.body.append(overlay);
+      for (const v of VIEW_STUDY_DATA.views) {
+        const wrap = document.createElement('div');
+        wrap.style.cssText = 'width:64px;cursor:zoom-in;text-align:center';
+        const img = document.createElement('img');
+        img.src = v.thumbDataUrl;
+        img.style.cssText = 'width:64px;border:1px solid var(--line);border-radius:4px';
+        img.title = v.label;
+        const cap = document.createElement('div');
+        cap.style.cssText = 'font-size:10px;color:var(--dim)';
+        cap.textContent = v.label;
+        wrap.onclick = () => { big.src = v.thumbDataUrl; overlay.style.display = 'flex'; };
+        wrap.append(img, cap);
+        strip.append(wrap);
+      }
+    }).catch(e => console.warn('ref strip:', e));
     document.body.dataset.ready = 'true';
     // 只读自动化钩子：供自动化测试/验收脚本读取工程状态（不含可变更入口）
     window.__qingyangEditor = {
