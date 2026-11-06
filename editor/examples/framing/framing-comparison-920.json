@@ -1,0 +1,119 @@
+{
+ "format": "qingyang-framing-comparison",
+ "version": 1,
+ "note": "C13 构图对照存档：9:20 画幅，单视角三档 + 四视角矩阵。结论=单一固定窗口无法四视角全保（fv 与 mf 人物位置差异），推荐跟移窗口方案（followWindowPath，四档偏移 fv74%/mf56%/sd26%/bk37% 全保）。",
+ "singleView": [
+  {
+   "offsetX": 0.2,
+   "window": {
+    "x0": 86.88,
+    "x1": 738.48,
+    "y0": 0,
+    "y1": 1448,
+    "mode": "crop-horizontal"
+   },
+   "verdict": "waist-fully-visible"
+  },
+  {
+   "offsetX": 0.5,
+   "window": {
+    "x0": 217.2,
+    "x1": 868.8,
+    "y0": 0,
+    "y1": 1448,
+    "mode": "crop-horizontal"
+   },
+   "verdict": "waist-fully-visible"
+  },
+  {
+   "offsetX": 0.8,
+   "window": {
+    "x0": 347.52,
+    "x1": 999.12,
+    "y0": 0,
+    "y1": 1448,
+    "mode": "crop-horizontal"
+   },
+   "verdict": "waist-fully-visible"
+  }
+ ],
+ "multiView": [
+  {
+   "offsetX": 0.2,
+   "perView": [
+    {
+     "viewId": "fv",
+     "lost": [
+      "shoulderR"
+     ]
+    },
+    {
+     "viewId": "mf",
+     "lost": [
+      "shoulderR"
+     ]
+    },
+    {
+     "viewId": "sd",
+     "lost": []
+    },
+    {
+     "viewId": "bk",
+     "lost": []
+    }
+   ]
+  },
+  {
+   "offsetX": 0.5,
+   "perView": [
+    {
+     "viewId": "fv",
+     "lost": [
+      "shoulderR"
+     ]
+    },
+    {
+     "viewId": "mf",
+     "lost": []
+    },
+    {
+     "viewId": "sd",
+     "lost": []
+    },
+    {
+     "viewId": "bk",
+     "lost": []
+    }
+   ]
+  },
+  {
+   "offsetX": 0.8,
+   "perView": [
+    {
+     "viewId": "fv",
+     "lost": []
+    },
+    {
+     "viewId": "mf",
+     "lost": [
+      "face"
+     ]
+    },
+    {
+     "viewId": "sd",
+     "lost": [
+      "shoulderBack",
+      "waist"
+     ]
+    },
+    {
+     "viewId": "bk",
+     "lost": [
+      "shoulderL"
+     ]
+    }
+   ]
+  }
+ ],
+ "recommendation": "follow-window (Option A, verified)"
+}
