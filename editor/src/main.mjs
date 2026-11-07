@@ -13,6 +13,7 @@ import { VIEW_STUDY_DATA } from '../research/view-study-data.mjs';
 import { createTrack, recordSample, sampleTrack, compareFps } from './input-recorder.mjs';
 import { cropWindow, anchorVisibility, framingComparison, waistVerdict, FRAMING_PRESETS } from './framing.mjs';
 import { viewArcPoint, CONTINUOUS_RANGE, VIEW_ARC_GAPS } from './view-arc.mjs';
+import { saveAutosave, loadAutosave, clearAutosave, pushRecent, listRecent, HELP_CONTENT } from './product.mjs';
 
 const $ = (sel) => document.querySelector(sel);
 const statusEl = $('#statusbar');
@@ -244,9 +245,20 @@ function drawOverlay() {
 }
 
 // ---------- 历史 ----------
+let autosaveTimer = null;
 function commit(label) {
   const ok = state.history.commit(serializeProject(state.project));
-  if (ok) { refreshHistoryButtons(); say(label + '（已入撤销栈）'); }
+  if (ok) {
+    refreshHistoryButtons();
+    say(label + '（已入撤销栈）');
+    // 自动保存（3 秒节流）：关页面不丢最近工作
+    clearTimeout(autosaveTimer);
+    autosaveTimer = setTimeout(() => {
+      const json = serializeProject(state.project);
+      saveAutosave(json);
+      pushRecent(state.project.meta?.name ?? '未命名工程', json);
+    }, 3000);
+  }
   refreshUI();
 }
 function refreshHistoryButtons() {
@@ -559,6 +571,12 @@ async function importPrototype() {
   refreshHistoryButtons();
   say(`已导入 character-prototype 资产：${triangleCount(state.meshes.get(state.selectedLayerId).positions)} 个三角形，画布 ${project.canvas.join('x')}`);
   $('#phase').textContent = '就绪 · 播放演示/移动指针预览，或拖拽顶点编辑';
+  // boot 就绪后再显示自动备份提示（避免与初始化竞态）
+  if (loadAutosave()) {
+    const when = new Date(loadAutosave().time).toLocaleString();
+    $('#recoverText').textContent = `检测到自动备份（${when}），要恢复吗？`;
+    $('#recoverBar').style.display = 'block';
+  }
 }
 
 async function syncRendererImages() {
@@ -820,10 +838,53 @@ function bindHistory() {
   });
 }
 
+// ---------- 商品化：帮助/关于、自动保存恢复、扩展快捷键 ----------
+function bindProduct() {
+  const VERSION = '1.0.0-beta';
+  const helpOv = $('#helpOverlay');
+  $('#aboutVersion').textContent = 'v' + VERSION;
+  $('#helpBody').innerHTML = HELP_CONTENT
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+    .split('\n').map(line => line.startsWith('<h3>') || line.startsWith('<code') || line.startsWith('|') ? line : (line.trim() ? line + '<br>' : '')).join('\n');
+  $('#helpBtn').onclick = () => { helpOv.style.display = 'block'; };
+  $('#helpClose').onclick = () => { helpOv.style.display = 'none'; };
+  helpOv.onclick = (e) => { if (e.target === helpOv) helpOv.style.display = 'none'; };
+
+  // 自动保存恢复提示（挂处理，显示延迟到 boot 就绪后，避免与初始化竞态）
+  const auto = loadAutosave();
+  $('#recoverYes').onclick = () => {
+      try {
+        state.project = loadProject(auto.json);
+        state.meshes.clear(); state.masks.clear();
+        state.selectedLayerId = state.project.layers.find(l => l.kind === 'character')?.id ?? state.project.layers[0].id;
+        for (const layer of state.project.layers) rebuildLayerMesh(layer);
+        state.springs = new SpringBank(selectedLayer()?.springs ?? selectedLayer()?.spring ?? { frequency: 1.6, damping: 0.22, limit: 1 });
+        state.history.init(serializeProject(state.project));
+        syncRendererImages().then(() => { pushGeometryToRenderer(); refreshUI(); refreshHistoryButtons(); });
+        say('已恢复自动备份 ' + new Date(auto.time).toLocaleString());
+      } catch (e) { say('恢复失败: ' + e.message, 'error'); }
+      $('#recoverBar').style.display = 'none';
+    };
+    $('#recoverNo').onclick = () => { clearAutosave(); $('#recoverBar').style.display = 'none'; };
+
+  // 扩展快捷键：数字切工具、空格播放、F 复位（不干扰输入框）
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const tag = document.activeElement?.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    const tools = { '1': 'select', '2': 'maskPoly', '3': 'maskBrush', '4': 'maskErase' };
+    if (tools[e.key]) setTool(tools[e.key]);
+    else if (e.key === ' ') { e.preventDefault(); $('#playBtn').click(); }
+    else if (e.key.toLowerCase() === 'f') $('#resetBtn').click();
+  });
+}
+
 // ---------- 启动 ----------
 async function boot() {
   try {
     bindCanvasEvents(); bindAssetImport(); bindProjectIO(); bindPlayControls(); bindHistory();
+    bindProduct();
     for (const b of document.querySelectorAll('[data-tool]')) b.onclick = () => setTool(b.dataset.tool);
     state.brushRadius = Number($('#brushRadius').value);
     setTool('select');
