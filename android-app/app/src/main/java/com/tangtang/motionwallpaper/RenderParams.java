@@ -80,6 +80,14 @@ final class RenderParams {
         } catch (Exception broken) {
             Log.w(TAG, ASSET_NAME + " 解析失败，使用内置默认参数: " + broken);
         }
+        // 用户设置（应用内参数页，SharedPreferences）优先级最高
+        try {
+            android.content.SharedPreferences sp = context.getSharedPreferences("qingyang_settings", Context.MODE_PRIVATE);
+            if (sp.contains("viewPanBase")) params.viewPanBase = sp.getFloat("viewPanBase", params.viewPanBase);
+            if (sp.contains("viewPanRange")) params.viewPanRange = sp.getFloat("viewPanRange", params.viewPanRange);
+        } catch (Exception spError) {
+            Log.w(TAG, "读取用户参数设置失败（忽略）: " + spError);
+        }
         return params;
     }
 
