@@ -30,7 +30,8 @@ test('demoInput 轨迹回放：60fps 位移有限且峰值合理', () => {
   assert.ok(run.frames.length > 1000, `18s@60fps 应 >1000 帧，实际 ${run.frames.length}`);
   for (const f of run.frames) for (const v of f) assert.ok(Number.isFinite(v), '帧数据有限');
   const peak = Math.max(...run.frames.flatMap(f => f.slice(1).map(Math.abs)));
-  assert.ok(peak > 1 && peak < 40, `峰值 ${peak.toFixed(2)}px 合理`);
+  // 2026-11-08 老板定调「要Q弹、幅度大」后重标定：胸上限 7→27px，回放峰值实测 49.4px（ tune-springs.mjs 仿真同源）
+  assert.ok(peak > 1 && peak < 90, `峰值 ${peak.toFixed(2)}px 合理`);
 });
 
 test('30/60/120fps 对比（G3）：RMS 差异 < 6% 峰值', () => {

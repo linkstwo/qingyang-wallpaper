@@ -40,15 +40,16 @@ export function defaultLayer(name, textureFile, maskFile) {
     regions: structuredClone(DEFAULT_REGIONS),
     squeeze: { ...DEFAULT_SQUEEZE },
     inertiaBase: { ...DEFAULT_INERTIA_BASE },
-    // 三组弹簧参数独立可调（B8）。默认三组同值 = 样片 app.mjs 行为（共用 config.springs）。
+    // 三组弹簧参数独立可调（B8）。2026-11-08 老板定调「要Q弹、幅度大」：胸 2.6Hz/低阻尼，
+    // 幅度上限放大到肉眼可见量级（胸 27px≈图高1.9%），零撞限幅（撞限=假感来源，tune-springs.mjs 实测）。
     springs: {
-      body: { frequency: 1.6, damping: 0.22, limit: 1.0 },
-      chest: { frequency: 1.6, damping: 0.22, limit: 1.0 },
-      hair: { frequency: 1.6, damping: 0.22, limit: 1.0 },
-      hairTip: { frequency: 1.3, damping: 0.16, limit: 1.0 },
+      body: { frequency: 2.2, damping: 0.75, limit: 1.2 },
+      chest: { frequency: 2.6, damping: 0.36, limit: 1.8 },
+      hair: { frequency: 1.5, damping: 0.40, limit: 1.5 },
+      hairTip: { frequency: 1.3, damping: 0.35, limit: 1.7 },
     },
     springGains: { body: 1.1, chestX: 2.6, chestY: 3.2, chestCoupling: 60, chestCouplingY: 75, hair: 1.6, hairTip: 2.0 },
-    limits: { bodyPixels: 5, chestPixels: 7, hairPixels: 10, hairTipPixels: 14 },
+    limits: { bodyPixels: 13, chestPixels: 27, hairPixels: 26, hairTipPixels: 40 },
     turnViewRatio: [3, 2],
     // 转头（活人感）：[转头角增益(rad/viewX), 脸宽压缩量, 颈部枢轴X, 混合总开关]
     headTurn: [0.06, 0.12, 630, 1],

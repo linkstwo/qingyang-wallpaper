@@ -53,18 +53,19 @@ final class RenderParams {
     final float[] fgRatio = {4.0f, 2.5f};
 
     // ---- 物理弹簧（Android 真机调整值为默认；编辑器导出可覆盖）----
-    final float[] springBody = {2.4f, 0.88f, 1.2f};
-    final float[] springChest = {3.2f, 0.50f, 1.4f};
-    final float[] springHair = {1.7f, 0.58f, 1.5f};
-    final float[] springHairTip = {1.4f, 0.45f, 1.6f};
+    final float[] springBody = {2.2f, 0.75f, 1.2f};
+    final float[] springChest = {2.6f, 0.36f, 1.8f};
+    final float[] springHair = {1.5f, 0.40f, 1.5f};
+    final float[] springHairTip = {1.3f, 0.35f, 1.7f};
     // 激发增益
-    // 默认增益调含蓄（老板反馈"动了但假"=果冻感，来源是增益过猛）——快晃仍能到限幅
+    // 2026-11-08 老板定调「要Q弹、幅度大」：瓶颈在位移上限（旧 5/7/10/14px 肉眼不可见且
+    // 频繁撞限削顶=假感来源），不是增益——增益维持含蓄值，上限放大 4~5 倍，弹簧不再撞顶。
     float gainBody = 1.1f;
     float gainChestX = 2.6f, gainChestY = 3.2f, gainChestCoupling = 60.0f, gainChestCouplingY = 75.0f;
     float gainHair = 1.6f;
     float gainHairTip = 2.0f;
-    // 位移上限（像素）
-    float limitBody = 5.0f, limitChest = 7.0f, limitHair = 10.0f, limitHairTip = 14.0f;
+    // 位移上限（像素）：胸 27px≈图高1.9%，快晃峰值实测 67px（tune-springs.mjs，零撞限）
+    float limitBody = 13.0f, limitChest = 27.0f, limitHair = 26.0f, limitHairTip = 40.0f;
     // 跟移取景（T02 选项 A）：窗口基准偏移（0=左贴边 0.5=居中 1=右贴边）与随视角摆动幅度。
     // 默认 0.5/0 = 居中且不跟移（与参数接线前行为一致）。
     float viewPanBase = 0.5f;

@@ -12,10 +12,14 @@ import org.junit.Test;
 public class RenderParamsTest {
     @Test public void defaults_matchPreWiringBehavior() {
         RenderParams p = new RenderParams();
-        assertEquals(2.4f, p.springBody[0], 1e-6f);
-        assertEquals(3.2f, p.springChest[0], 1e-6f);
-        assertEquals(1.7f, p.springHair[0], 1e-6f);
-        assertEquals(5.0f, p.limitBody, 1e-6f);
+        // 2026-11-08 老板定调「要Q弹、幅度大」：上限 5/7/10/14→13/27/26/40，
+        // 弹簧降频降阻尼（胸 2.6Hz/0.36）。数值来源 tune-springs.mjs 仿真（零撞限幅），
+        // 与 assets/qingyang-params.json、编辑器 project.mjs 三处同步。
+        assertEquals(2.2f, p.springBody[0], 1e-6f);
+        assertEquals(2.6f, p.springChest[0], 1e-6f);
+        assertEquals(1.5f, p.springHair[0], 1e-6f);
+        assertEquals(13.0f, p.limitBody, 1e-6f);
+        assertEquals(27.0f, p.limitChest, 1e-6f);
         assertEquals(0.5f, p.viewPanBase, 1e-6f);
         assertEquals(0.0f, p.viewPanRange, 1e-6f);
         assertEquals(19.0f, p.depth[4], 1e-6f);

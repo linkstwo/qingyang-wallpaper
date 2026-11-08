@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>轻漾 · 身位接融演示（fv↔mf 对齐融合）</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #16181d; color: #d8d5cc; font: 14px/1.5 system-ui, "Microsoft YaHei", sans-serif; }
+  header { padding: 12px 18px 6px; }
+  h1 { font-size: 17px; margin: 0 0 2px; color: #f0ede4; }
+  header p { margin: 0; color: #8f8b80; font-size: 12.5px; }
+  main { display: flex; flex-wrap: wrap; gap: 16px; padding: 10px 18px 18px; align-items: flex-start; }
+  #stage { position: relative; width: 543px; max-width: 96vw; }
+  canvas { display: block; width: 100%; border-radius: 6px; background: #0c0d10; }
+  #overlay { position: absolute; inset: 0; pointer-events: none; background: transparent; }
+  #panel { min-width: 260px; flex: 1; }
+  label { display: block; margin: 10px 0 4px; color: #b9b4a6; }
+  select, input[type=range] { width: 100%; }
+  #tval { color: #f0ede4; font-variant-numeric: tabular-nums; }
+  .row { display: flex; gap: 14px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+  .row label { margin: 0; display: flex; gap: 6px; align-items: center; }
+  #state { margin: 10px 0 0; padding: 8px 10px; border-radius: 6px; background: #20242c; color: #9fd49f; font-size: 12.5px; min-height: 18px; white-space: pre-wrap; }
+  #note { margin-top: 12px; font-size: 12.5px; color: #8f8b80; border-top: 1px solid #2a2e36; padding-top: 10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>身位接融演示 — 不同身位图片之间的对齐融合</h1>
+  <p>老板 2026-11-08 定向：转变 = 不同身位图的接融，不是一张图拉扯。本页验证：锚点对齐 + 网格形变 + 交叉融合能否把两张身位图融成连续过渡。</p>
+</header>
+<main>
+  <div id="stage">
+    <canvas id="gl"></canvas>
+    <canvas id="overlay"></canvas>
+  </div>
+  <div id="panel">
+    <label>身位对
+      <select id="pair">
+        <option value="fv-mf" selected>正面偏右 ↔ 正面偏左（同构 · 平滑）</option>
+        <option value="mf-sd">正面偏左 ↔ 右侧面（姿势差异 · 研究边界）</option>
+        <option value="sd-bk">右侧面 ↔ 背面（研究边界）</option>
+      </select>
+    </label>
+    <label>过渡 t = <span id="tval">0.00</span>
+      <input id="t" type="range" min="0" max="1000" value="0">
+    </label>
+    <div class="row">
+      <label><input id="auto" type="checkbox" checked> 自动摆动</label>
+      <label><input id="anchors" type="checkbox"> 显示锚点</label>
+      <label><input id="maskw" type="checkbox" checked> 人物区外减弱形变（护背景）</label>
+    </div>
+    <div id="state">加载中…</div>
+    <div id="note">
+      原理：7 对锚点（脸/发髻/双肩/胸/腰/手纸）求 IDW 位移场 → 两图网格各自形变到同一中间几何 → 按权重交叉融合。
+      t=0/1 为原图本身；中间帧锚点处特征严格重合，双影主要出现在无锚点区域与背景（背景未分层，双影=下一步拆背景的依据）。
+      姿势差异大的对（侧/背）预期只在「快速转动掩蔽」下可用——这正是本页要看的边界。
+    </div>
+  </div>
+</main>
+<script type="module" src="./pose-blend.mjs"></script>
+</body>
+</html>

@@ -52,7 +52,7 @@ async function start(){
   const uniform=name=>gl.getUniformLocation(program,name),pos=gl.getAttribLocation(program,'a_source'),pin=gl.getAttribLocation(program,'a_pin');
   const U=Object.fromEntries(['size','view','body','chest','hair','layer','texture','mask','maskMode','cover'].map(n=>[n,uniform('u_'+n)]));
   gl.uniform2f(U.size,W,H);gl.uniform1i(U.texture,0);gl.uniform1i(U.mask,1);gl.enableVertexAttribArray(pos);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
-  const texture=async name=>{const img=new Image();img.src=name;await img.decode();if(img.width!==W||img.height!==H)throw Error('素材尺寸未对齐');const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);return tex;};
+  const texture=async name=>{const img=new Image();img.src=name;await new Promise((res,rej)=>{img.onload=res;img.onerror=()=>rej(Error(name+' 加载失败'));setTimeout(()=>rej(Error(name+' 加载超时')),8000);});if(img.width!==W||img.height!==H)throw Error('素材尺寸未对齐');const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);return tex;};
   const original=await texture(config.texture),background=await texture(config.background),mask=await texture('mask.png');
   gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,mask);gl.activeTexture(gl.TEXTURE0);
   const buffer=data=>{const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);return {b,count:data.length/2};};
@@ -95,6 +95,8 @@ async function start(){
     visualValues=[bx*config.limits.bodyPixels,by*config.limits.bodyPixels,cx*config.limits.chestPixels,cy*config.limits.chestPixels,hair*config.limits.hairPixels];
   }
   if(fixed!==null){for(let t=0;t<fixed;t+=1/120){const d=demoInput(t);target={x:d.x,y:d.y};physics(1/120);}const d=demoInput(fixed);phase.textContent=d.phase;}
+  // 自动化验收钩子：advance 同步推物理，values() 返回当前位移（源图像素）——浏览器验证无需等渲染帧
+  window.qingyang={reset,setInput:input=>{startDemo=null;target=input;},advance:(seconds,input)=>{for(let t=0;t<seconds-1e-8;t+=1/120)physics(1/120,input);},values:()=>visualValues.slice()};
   function render(now){
     const dt=clamp((now-last)/1000,1/240,1/20);last=now;
     if(!paused){

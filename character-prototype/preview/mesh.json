@@ -10,9 +10,9 @@
   "foregroundOutline": [[1026,801],[1086,792],[1086,1448],[958,1448],[957,1414],[1028,1380]],
   "pins": [{"name":"paper and hands","region":[0,850,392,1268]},{"name":"seated support","region":[0,1310,1086,1448]}],
   "springs": {
-    "body":{"frequency":2.4,"damping":0.88,"limit":1.2},
-    "chest":{"frequency":3.2,"damping":0.50,"limit":1.4},
-    "hair":{"frequency":1.7,"damping":0.58,"limit":1.5}
+    "body":{"frequency":2.2,"damping":0.75,"limit":1.2},
+    "chest":{"frequency":2.6,"damping":0.36,"limit":1.8},
+    "hair":{"frequency":1.5,"damping":0.40,"limit":1.5}
   },
-  "limits": {"bodyPixels":5.0,"chestPixels":7.0,"hairPixels":10.0,"triangleEdgePixels":27}
+  "limits": {"bodyPixels":13.0,"chestPixels":27.0,"hairPixels":26.0,"triangleEdgePixels":27}
 }
