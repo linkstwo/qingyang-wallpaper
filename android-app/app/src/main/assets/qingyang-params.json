@@ -30,10 +30,12 @@
  "springHair":   { "frequency": 1.7, "damping": 0.58, "limit": 1.5 },
  "springHairTip": { "frequency": 1.4, "damping": 0.45, "limit": 1.6 },
  "gains": {
-  "body": 1.4, "chestX": 3.4, "chestY": 4.2,
+  "body": 1.1, "chestX": 2.6, "chestY": 3.2,
   "chestCoupling": 60.0, "chestCouplingY": 75.0,
-  "hair": 2.2, "hairTip": 3.0
+  "hair": 1.6, "hairTip": 2.0
  },
  "limits": { "body": 5.0, "chest": 7.0, "hair": 10.0, "hairTip": 14.0 },
- "viewPan": { "base": 0.5, "range": 0.0 }
+ "viewPan": { "base": 0.5, "range": 0.0 },
+ "headTurn": [0.06, 0.12, 630.0, 1.0],
+ "breath": { "hz": 0.28, "ampPx": 1.2 }
 }

@@ -29,7 +29,8 @@ final class SceneRenderer {
             + "uniform float u_layer,u_hair,u_hairTip;\n"
             + "uniform vec4 u_head,u_bell0,u_bell1,u_bell2,u_bell3,u_bell4,u_bell5,u_bell6;\n"
             + "uniform float u_depth[7],u_inertia[7];\n"
-            + "uniform vec4 u_squeeze,u_extra;\n"
+            + "uniform vec4 u_squeeze,u_extra,u_headTurn;\n"
+            + "uniform float u_breath;\n"
             + "uniform vec2 u_bgRatio,u_fgRatio;\n"
             + "varying vec2 v_uv;\n"
             + "float bell(vec2 p,vec4 b){vec2 d=(p-b.xy)/b.zw;return exp(-dot(d,d)*2.0);}\n"
@@ -59,6 +60,15 @@ final class SceneRenderer {
             + "    inertia+=vec2(u_hair,u_hair*u_extra.z)*hair;\n"
             + "    inertia+=vec2(u_hairTip,u_hairTip*u_extra.z)*hairTip;\n"
             + "    inertia+=u_body*u_extra.w*head;\n"
+            + "    // 转头：head 区域绕颈部枢轴旋转+水平压缩（活人转头感，Live2D AngleX 同源手法）\n"
+            + "    float turnA=u_view.x*u_headTurn.x;\n"
+            + "    float sqw=1.0-abs(u_headTurn.y*u_view.x);\n"
+            + "    vec2 piv=vec2(u_headTurn.z,u_head.y);\n"
+            + "    vec2 rel=p-piv;\n"
+            + "    float ca=cos(turnA),sa=sin(turnA);\n"
+            + "    vec2 rotP=vec2(rel.x*sqw*ca-rel.y*sa,rel.x*sqw*sa+rel.y*ca)+piv;\n"
+            + "    q=mix(q,rotP,head*active*u_headTurn.w);\n"
+            + "    q.y+=u_breath*(chest*2.0+head)*active;\n"
             + "    q+=(turn+inertia)*active;\n"
             + "  }\n"
             + "  else if(u_layer>2.5){q+=u_view*u_fgRatio;}\n"
@@ -110,6 +120,8 @@ final class SceneRenderer {
     private int uExtra;
     private int uBgRatio;
     private int uFgRatio;
+    private int uHeadTurn;
+    private int uBreath;
     private int uTexture;
     private int uMask;
     private int texOriginal;
@@ -175,6 +187,8 @@ final class SceneRenderer {
         uExtra = GLES20.glGetUniformLocation(program, "u_extra");
         uBgRatio = GLES20.glGetUniformLocation(program, "u_bgRatio");
         uFgRatio = GLES20.glGetUniformLocation(program, "u_fgRatio");
+        uHeadTurn = GLES20.glGetUniformLocation(program, "u_headTurn");
+        uBreath = GLES20.glGetUniformLocation(program, "u_breath");
         uTexture = GLES20.glGetUniformLocation(program, "u_texture");
         uMask = GLES20.glGetUniformLocation(program, "u_mask");
         if (aSource < 0 || aPin < 0 || uSize < 0 || uView < 0 || uHair < 0 || uHead < 0 || uDepth < 0) {
@@ -259,6 +273,7 @@ final class SceneRenderer {
         GLES20.glUniform4f(uExtra, p.turnRatioY, p.inertiaBase, p.hairYRatio, p.headBodyGain);
         GLES20.glUniform2f(uBgRatio, p.bgRatio[0], p.bgRatio[1]);
         GLES20.glUniform2f(uFgRatio, p.fgRatio[0], p.fgRatio[1]);
+        GLES20.glUniform4f(uHeadTurn, p.headTurn[0], p.headTurn[1], p.headTurn[2], p.headTurn[3]);
     }
 
     void draw(Physics physics) {
@@ -276,6 +291,7 @@ final class SceneRenderer {
         GLES20.glUniform2f(uChest, physics.chestPx, physics.chestPy);
         GLES20.glUniform1f(uHair, physics.hairPx);
         GLES20.glUniform1f(uHairTip, physics.hairTipPx);
+        GLES20.glUniform1f(uBreath, physics.breathPx);
         GLES20.glUniform1f(uCover, cover);
         GLES20.glUniform2f(uNdcScale, ndcScaleX, ndcScaleY);
         GLES20.glUniform2f(uNdcOffset, ndcOffsetX, ndcOffsetY);

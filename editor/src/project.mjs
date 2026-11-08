@@ -47,9 +47,13 @@ export function defaultLayer(name, textureFile, maskFile) {
       hair: { frequency: 1.6, damping: 0.22, limit: 1.0 },
       hairTip: { frequency: 1.3, damping: 0.16, limit: 1.0 },
     },
-    springGains: { body: 1.4, chestX: 3.4, chestY: 4.2, chestCoupling: 60, chestCouplingY: 75, hair: 2.2, hairTip: 3.0 },
+    springGains: { body: 1.1, chestX: 2.6, chestY: 3.2, chestCoupling: 60, chestCouplingY: 75, hair: 1.6, hairTip: 2.0 },
     limits: { bodyPixels: 5, chestPixels: 7, hairPixels: 10, hairTipPixels: 14 },
     turnViewRatio: [3, 2],
+    // 转头（活人感）：[转头角增益(rad/viewX), 脸宽压缩量, 颈部枢轴X, 混合总开关]
+    headTurn: [0.06, 0.12, 630, 1],
+    // 呼吸（活人感）：静止时胸口/头部微起伏
+    breath: { hz: 0.28, ampPx: 1.2 },
   };
 }
 

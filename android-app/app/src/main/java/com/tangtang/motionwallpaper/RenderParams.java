@@ -58,16 +58,22 @@ final class RenderParams {
     final float[] springHair = {1.7f, 0.58f, 1.5f};
     final float[] springHairTip = {1.4f, 0.45f, 1.6f};
     // 激发增益
-    float gainBody = 1.4f;
-    float gainChestX = 3.4f, gainChestY = 4.2f, gainChestCoupling = 60.0f, gainChestCouplingY = 75.0f;
-    float gainHair = 2.2f;
-    float gainHairTip = 3.0f;
+    // 默认增益调含蓄（老板反馈"动了但假"=果冻感，来源是增益过猛）——快晃仍能到限幅
+    float gainBody = 1.1f;
+    float gainChestX = 2.6f, gainChestY = 3.2f, gainChestCoupling = 60.0f, gainChestCouplingY = 75.0f;
+    float gainHair = 1.6f;
+    float gainHairTip = 2.0f;
     // 位移上限（像素）
     float limitBody = 5.0f, limitChest = 7.0f, limitHair = 10.0f, limitHairTip = 14.0f;
     // 跟移取景（T02 选项 A）：窗口基准偏移（0=左贴边 0.5=居中 1=右贴边）与随视角摆动幅度。
     // 默认 0.5/0 = 居中且不跟移（与参数接线前行为一致）。
     float viewPanBase = 0.5f;
     float viewPanRange = 0.0f;
+    // 转头（活人感）：[转头角增益(rad/viewX), 脸宽压缩量(0-1), 颈部枢轴X, 混合总开关(0-1)]
+    final float[] headTurn = {0.06f, 0.12f, 630.0f, 1.0f};
+    // 呼吸（活人感）：静止时胸口/头部的持续微起伏
+    float breathHz = 0.28f;
+    float breathAmpPx = 1.2f;
 
     /** 从 assets 加载；文件缺失或解析失败返回全默认（保证壁纸永不因参数黑屏）。 */
     static RenderParams load(Context context) {
@@ -137,6 +143,17 @@ final class RenderParams {
         if (viewPan != null) {
             viewPanBase = (float) viewPan.optDouble("base", viewPanBase);
             viewPanRange = (float) viewPan.optDouble("range", viewPanRange);
+        }
+        org.json.JSONArray headTurnArr = root.optJSONArray("headTurn");
+        if (headTurnArr != null) {
+            for (int i = 0; i < Math.min(4, headTurnArr.length()); i++) {
+                headTurn[i] = (float) headTurnArr.optDouble(i, headTurn[i]);
+            }
+        }
+        org.json.JSONObject breath = root.optJSONObject("breath");
+        if (breath != null) {
+            breathHz = (float) breath.optDouble("hz", breathHz);
+            breathAmpPx = (float) breath.optDouble("ampPx", breathAmpPx);
         }
     }
 

@@ -120,6 +120,10 @@ function frame(now) {
     const [ax, ay] = state.tracker.update(state.tracker.target, dt);
     if (layer?.kind === 'character') {
       state.visual = state.springs.step(ax, ay, layer.springGains, layer.limits, dt);
+      // 呼吸：静止时也持续的胸口/头部微起伏（活人感；phase 持续推进）
+      const breathCfg = layer.breath ?? { hz: 0.28, ampPx: 1.2 };
+      state.breathPhase = (state.breathPhase ?? 0) + dt * breathCfg.hz * 2 * Math.PI;
+      state.breathPx = Math.sin(state.breathPhase) * breathCfg.ampPx;
     }
   }
   state.view = state.tracker.view;
@@ -130,6 +134,7 @@ function frame(now) {
     state.renderer.render({
       view: state.view, body: [state.visual[0], state.visual[1]], chest: [state.visual[2], state.visual[3]],
       hair: state.visual[4], hairTip: state.visual[5] ?? 0, cover,
+      breathPx: state.breathPx ?? 0,
       regionUniforms: regionUniforms(charLayer ?? { regions: [] }),
       editAmount: state.editAmount,
       visibility: Object.fromEntries(state.project.layers.map(l => [l.kind === 'background' ? 'bg' : l.kind === 'character' ? 'char' : 'fg', l.visible])),

@@ -24,6 +24,9 @@ final class Physics {
     float viewY;
     /** 跟移取景偏移（0=左贴边 1=右贴边），由 RenderParams.viewPan 决定基准与幅度。 */
     float pan01;
+    /** 呼吸位移（像素），静止时也持续——活人感。 */
+    float breathPx;
+    private float breathPhase;
     float bodyPx;
     float bodyPy;
     float chestPx;
@@ -62,6 +65,8 @@ final class Physics {
         viewX = viewY = targetX = targetY = prevVx = prevVy = 0.0f;
         bodyPx = bodyPy = chestPx = chestPy = hairPx = hairTipPx = 0.0f;
         pan01 = params != null ? params.viewPanBase : 0.5f;
+        breathPhase = 0.0f;
+        breathPx = 0.0f;
     }
 
     /**
@@ -108,6 +113,9 @@ final class Physics {
         chestPy = cy * p.limitChest;
         hairPx = hx * p.limitHair;
         hairTipPx = tx * p.limitHairTip;
+        // 呼吸：静止时也持续的胸口/头部微起伏（活人感；phase 持续推进）
+        breathPhase += dt * p.breathHz * 2.0f * (float) Math.PI;
+        breathPx = (float) Math.sin(breathPhase) * p.breathAmpPx;
         // 跟移取景：基准偏移随视角小幅摆动（T02 选项 A；range=0 时不跟移=原行为）
         pan01 = MathX.clamp(p.viewPanBase + viewX * p.viewPanRange, 0.0f, 1.0f);
     }

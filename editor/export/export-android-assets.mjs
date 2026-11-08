@@ -167,6 +167,9 @@ if (!CHECK) {
     springHair: charLayer.springs?.hair ?? charLayer.spring,
     springHairTip: charLayer.springs?.hairTip ?? null,
     gains: charLayer.springGains,
+    // 活人感：转头（绕颈部旋转+脸宽压缩）与呼吸（静止微起伏）
+    headTurn: charLayer.headTurn ?? [0.06, 0.12, 630.0, 1.0],
+    breath: charLayer.breath ?? { hz: 0.28, ampPx: 1.2 },
     // 跟移取景（T02 选项 A）：主图质心偏移为基准，随视角小幅摆动
     viewPan: { base: 0.56, range: 0.08 },
     // RenderParams.java 约定的字段名：body/chest/hair/hairTip（无单位 = 像素上限）

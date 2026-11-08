@@ -26,6 +26,8 @@ uniform float u_depth[7];   // head,neck,chest,shoulder,torso,cheek,hair 的 dep
 uniform float u_inertia[7]; // 对应惯性增益（head=0.30, neck=0.22, torso=0.68, 其余 0）
 uniform vec4 u_squeeze;   // headSqueezeX, torsoSqueezeY, pivotX, pivotY
 uniform vec4 u_extra;     // turnRatioY(0.63), inertiaBase(0.32), hairYRatio(0.35), headBodyGain(0.30)
+uniform vec4 u_headTurn;  // 转头：turnGain(rad/viewX), 脸宽压缩量, 颈部枢轴X, 混合总开关
+uniform float u_breath;   // 呼吸位移（像素），物理层正弦
 varying vec2 v_uv;
 float bell(vec2 p, vec4 b){ vec2 d=(p-b.xy)/b.zw; return exp(-dot(d,d)*2.0); }
 void main(){
@@ -51,6 +53,15 @@ void main(){
     inertia += vec2(u_hair, u_hair*u_extra.z)*hair;
     inertia += vec2(u_hairTip, u_hairTip*u_extra.z)*hairTip;
     inertia += u_body*u_extra.w*head;
+    // 转头：head 区域绕颈部枢轴旋转+水平压缩（活人转头感，Live2D AngleX 同源手法）
+    float turnA = u_view.x*u_headTurn.x;
+    float sqw = 1.0 - abs(u_headTurn.y*u_view.x);
+    vec2 piv = vec2(u_headTurn.z, u_head.y);
+    vec2 rel = p - piv;
+    float ca = cos(turnA), sa = sin(turnA);
+    vec2 rotP = vec2(rel.x*sqw*ca - rel.y*sa, rel.x*sqw*sa + rel.y*ca) + piv;
+    q = mix(q, rotP, head*active*u_headTurn.w);
+    q.y += u_breath*(chest*2.0 + head)*active;
     q += (turn + inertia) * active;
   } else if (u_layer < 0.5) {
     q += u_view*vec2(3.0, 2.0);
@@ -102,6 +113,7 @@ export function regionUniforms(layer) {
     depth, inertia,
     squeeze: [squeeze.headX ?? -0.006, squeeze.torsoY ?? 0.008, squeeze.pivotX ?? 560, squeeze.pivotY ?? 650],
     extra: [0.63, base.body ?? 0.32, base.hairYRatio ?? 0.35, head.inertia ?? 0.30],
+    headTurn: layer.headTurn ?? [0.06, 0.12, 630, 1],
   };
 }
 
@@ -115,7 +127,7 @@ export function createRenderer(glCanvas) {
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error('program 链接失败: ' + gl.getProgramInfoLog(gl));
   gl.useProgram(program);
   const U = {};
-  for (const n of ['size', 'view', 'body', 'chest', 'hair', 'hairTip', 'layer', 'cover', 'editAmount', 'head', 'bell0', 'bell1', 'bell2', 'bell3', 'bell4', 'bell5', 'bell6', 'depth', 'inertia', 'squeeze', 'extra', 'maskMode'])
+  for (const n of ['size', 'view', 'body', 'chest', 'hair', 'hairTip', 'layer', 'cover', 'editAmount', 'head', 'bell0', 'bell1', 'bell2', 'bell3', 'bell4', 'bell5', 'bell6', 'depth', 'inertia', 'squeeze', 'extra', 'headTurn', 'breath', 'maskMode'])
     U[n] = gl.getUniformLocation(program, 'u_' + n);
   U.texture = gl.getUniformLocation(program, 'u_texture');
   U.mask = gl.getUniformLocation(program, 'u_mask');
@@ -205,6 +217,7 @@ export function createRenderer(glCanvas) {
     gl.uniform2f(U.chest, state.chest[0], state.chest[1]);
     gl.uniform1f(U.hair, state.hair);
     gl.uniform1f(U.hairTip, state.hairTip ?? 0);
+    gl.uniform1f(U.breath, state.breath ?? 0);
     gl.uniform1f(U.cover, state.cover ?? 0);
     gl.uniform1f(U.editAmount, state.editAmount ?? 1.0);
     const ru = state.regionUniforms;
@@ -220,6 +233,8 @@ export function createRenderer(glCanvas) {
     gl.uniform1fv(U.inertia, ru.inertia);
     gl.uniform4f(U.squeeze, ...ru.squeeze);
     gl.uniform4f(U.extra, ...ru.extra);
+    gl.uniform4f(U.headTurn, ...(ru.headTurn ?? [0.06, 0.12, 630, 1]));
+    gl.uniform1f(U.breath, state.breathPx ?? 0);
     gl.clearColor(0.1, 0.1, 0.1, 1);
     gl.clear(gl.COLOR_BUFFER_BIT);
     const bgVisible = state.visibility?.bg !== false && textures.background;
